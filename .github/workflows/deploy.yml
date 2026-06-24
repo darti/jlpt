@@ -31,11 +31,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configurer Pages
-        # Sur un dépôt PUBLIC, le workflow peut activer Pages automatiquement.
-        # Si l'auto-activation échoue, active-le manuellement : Settings → Pages → Source = "GitHub Actions".
+        # PRÉREQUIS (une fois) : Settings → Pages → Build and deployment → Source = "GitHub Actions".
+        # L'auto-activation (enablement) est impossible : le GITHUB_TOKEN n'a pas le droit de créer le site Pages ici.
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Préparer l'artefact du site
         # On ne publie que les fichiers statiques (pas .git ni .github).
