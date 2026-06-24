@@ -140,6 +140,6 @@
   }
 })();
 </script>
-<script>if('serviceWorker'in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
+<script>if('serviceWorker'in navigator){let r=false;navigator.serviceWorker.addEventListener('controllerchange',function(){if(r)return;r=true;location.reload();});window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').then(function(g){g&&g.update&&g.update();}).catch(function(){})})}</script>
 </body>
 </html>
