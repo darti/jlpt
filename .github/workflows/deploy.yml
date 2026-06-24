@@ -40,6 +40,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html app-n3.html cours-n3.html planning-n3.html _site/
+          cp manifest.webmanifest sw.js icon-180.png icon-192.png icon-512.png _site/
           cp README.md _site/ 2>/dev/null || true
 
       - name: Téléverser l'artefact
