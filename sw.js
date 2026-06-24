@@ -1,7 +1,7 @@
 /* Service worker — mode hors ligne pour l'app JLPT N3.
    Stratégie : cache-first pour la coquille de l'app (same-origin),
    réseau direct pour tout le reste (ex. api.github.com pour la synchro). */
-const CACHE = 'jlpt-n3-v1';
+const CACHE = 'jlpt-n3-v2';
 const SHELL = [
   './',
   'index.html',
