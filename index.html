@@ -18,12 +18,33 @@
   a.card .emoji{font-size:1.6rem}
   a.card p{margin:0;color:var(--muted);font-size:.92rem}
   footer{text-align:center;color:var(--muted);font-size:.82rem;margin-top:30px}
+  .dash{display:block;text-decoration:none;color:var(--txt);background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 22px;margin:0 0 22px;transition:.15s}
+  .dash:hover{border-color:var(--accent2)}
+  .dash .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .dash .top h2{margin:0;font-size:1.05rem}
+  .dash .see{color:var(--accent2);font-size:.82rem}
+  .stat{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;margin:12px 0 6px}
+  .stat .b{background:var(--card2,#1d212b);border:1px solid var(--line);border-radius:10px;padding:9px 4px}
+  .stat .n{font-size:1.25rem;font-weight:700}
+  .stat .l{font-size:.68rem;color:var(--muted)}
+  .seg{height:12px;border-radius:999px;background:linear-gradient(90deg,#ef5365,#f5b942,#3ecf8e);position:relative;margin:8px 0;border:1px solid var(--line)}
+  .seg>.mk{position:absolute;top:-4px;width:3px;height:20px;background:#fff;border-radius:2px;transform:translateX(-50%);box-shadow:0 0 5px #000}
+  .row{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:.8rem}
+  .row .name{width:96px;color:var(--muted)}
+  .row .track{flex:1;height:9px;background:#1d212b;border-radius:999px;overflow:hidden;border:1px solid var(--line)}
+  .row .track>i{display:block;height:100%}
+  .empty{color:var(--muted);font-size:.9rem;margin:6px 0 0}
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>Préparation <span class="jp">JLPT N3</span> 🎌</h1>
   <p class="sub">Objectif : session de décembre 2026 · 5 mois de préparation</p>
+
+  <a class="dash" href="app-n3.html" id="dash">
+    <div class="top"><h2>📊 Mon tableau de bord</h2><span class="see">Analyse complète →</span></div>
+    <div id="dashBody"></div>
+  </a>
 
   <a class="card" href="app-n3.html">
     <div class="emoji">🧠</div>
@@ -45,5 +66,53 @@
 
   <footer>頑張ってください！ — Bon courage 💪</footer>
 </div>
+
+<script>
+/* Lit la progression sauvegardée par l'appli (même origine) et affiche un résumé. */
+(function(){
+  const CATS=['grammaire','vocabulaire','kanji','lecture'];
+  const LABELS={grammaire:'Grammaire',vocabulaire:'Vocab',kanji:'Kanji',lecture:'Lecture'};
+  const COLORS={grammaire:'#e2466b',vocabulaire:'#3fb6e0',kanji:'#f5b942',lecture:'#3ecf8e'};
+  const PASS=1600, EXAM=new Date('2026-12-06T09:00:00');
+  const body=document.getElementById('dashBody');
+  let S=null; try{S=JSON.parse(localStorage.getItem('jlptN3adapt_v2')||'null')}catch(e){}
+  const days=Math.max(0,Math.ceil((EXAM-new Date())/864e5));
+
+  if(!S||!S.skill||!S.total){
+    body.innerHTML='<p class="empty">Aucune donnée pour l\'instant — lance un quiz dans l\'entraînement adaptatif pour générer ton analyse. ('+days+' jours avant l\'examen)</p>';
+    return;
+  }
+  const mastery=c=>1/(1+Math.pow(10,(PASS-S.skill[c].R)/400));
+  const lang=(mastery('vocabulaire')+mastery('kanji'))/2;
+  const gram=(mastery('grammaire')+mastery('lecture'))/2;
+  const list=0.85*((lang+gram)/2);
+  const sec={lang:lang*60,gram:gram*60,list:list*60};
+  const total=sec.lang+sec.gram+sec.list;
+  const pSec=v=>1/(1+Math.exp(-(v-22)/4));
+  const pTot=1/(1+Math.exp(-(total-95)/12));
+  const conf=Math.min(1,S.total/60);
+  let p=pTot*pSec(sec.lang)*pSec(sec.gram)*pSec(sec.list);
+  p=conf*p+(1-conf)*0.5*pTot;
+  const pct=Math.round(p*100);
+  const avg=CATS.reduce((a,c)=>a+S.skill[c].R,0)/CATS.length;
+  const lvl=avg<1400?'N4-':avg<1520?'N4+':avg<1620?'N3-':avg<1720?'N3':'N3+';
+  const pColor=pct>=70?'#3ecf8e':pct>=40?'#f5b942':'#ef5365';
+
+  let rows='';
+  CATS.forEach(c=>{const m=Math.round(mastery(c)*100);
+    rows+=`<div class="row"><span class="name">${LABELS[c]}</span><div class="track"><i style="width:${m}%;background:${COLORS[c]}"></i></div><span style="width:34px;text-align:right;color:var(--muted)">${m}%</span></div>`;});
+
+  body.innerHTML=`
+    <div class="stat">
+      <div class="b"><div class="n" style="color:${pColor}">${S.total<5?'?':pct+'%'}</div><div class="l">réussite estimée</div></div>
+      <div class="b"><div class="n" style="color:#3fb6e0">${S.total<5?'—':Math.round(total)+'/180'}</div><div class="l">score estimé</div></div>
+      <div class="b"><div class="n" style="color:#f5b942">${lvl}</div><div class="l">niveau</div></div>
+      <div class="b"><div class="n" style="color:#3ecf8e">${days}</div><div class="l">jours restants</div></div>
+    </div>
+    <div class="seg"><div class="mk" style="left:${Math.max(1,Math.min(99,pct))}%"></div></div>
+    ${rows}
+    <p class="empty">${S.total} réponses · fiabilité ${Math.round(conf*100)}%</p>`;
+})();
+</script>
 </body>
 </html>
