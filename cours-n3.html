@@ -550,6 +550,6 @@
   Cours N3 — contenu de référence à approfondir avec tes manuels. 一緒に頑張ろう！<br>
   <a href="planning-n3.html">→ Retour au planning 20 semaines</a>
 </footer>
-<script>if('serviceWorker'in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
+<script>if('serviceWorker'in navigator){let r=false;navigator.serviceWorker.addEventListener('controllerchange',function(){if(r)return;r=true;location.reload();});window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').then(function(g){g&&g.update&&g.update();}).catch(function(){})})}</script>
 </body>
 </html>

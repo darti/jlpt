@@ -1,7 +1,9 @@
 /* Service worker — mode hors ligne pour l'app JLPT N3.
-   Stratégie : cache-first pour la coquille de l'app (same-origin),
-   réseau direct pour tout le reste (ex. api.github.com pour la synchro). */
-const CACHE = 'jlpt-n3-v3';
+   Stratégie :
+   - pages HTML : network-first (toujours la dernière version en ligne, repli cache hors ligne) ;
+   - autres ressources same-origin (icônes, manifest) : cache-first avec mise à jour ;
+   - tout le cross-origin (api.github.com, etc.) : réseau direct. */
+const CACHE = 'jlpt-n3-v4';
 const SHELL = [
   './',
   'index.html',
@@ -27,18 +29,28 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   const req = e.request;
-  // On ne gère que les GET same-origin ; le reste (API GitHub, etc.) passe au réseau.
   if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
-  e.respondWith(
-    caches.match(req).then(cached => {
-      const net = fetch(req).then(res => {
+  const isHTML = req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html');
+
+  if (isHTML) {
+    // network-first : on tente le réseau, on met à jour le cache, sinon on sert le cache.
+    e.respondWith(
+      fetch(req).then(res => {
+        const copy = res.clone();
+        caches.open(CACHE).then(c => c.put(req, copy));
+        return res;
+      }).catch(() => caches.match(req).then(r => r || caches.match('index.html')))
+    );
+  } else {
+    // cache-first pour les ressources statiques.
+    e.respondWith(
+      caches.match(req).then(cached => cached || fetch(req).then(res => {
         if (res && res.status === 200 && res.type === 'basic') {
           const copy = res.clone();
           caches.open(CACHE).then(c => c.put(req, copy));
         }
         return res;
-      }).catch(() => cached || (req.mode === 'navigate' ? caches.match('index.html') : undefined));
-      return cached || net;
-    })
-  );
+      }))
+    );
+  }
 });
