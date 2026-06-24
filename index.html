@@ -42,6 +42,18 @@
   .row .track>i{display:block;height:100%}
   .empty{color:var(--muted);font-size:.9rem;margin:6px 0 0}
   #installBtn{display:none;width:100%;margin:0 0 18px;background:var(--accent2);color:#06121a;border:none;border-radius:12px;padding:12px;font-weight:700;font-size:1rem;cursor:pointer}
+  #iosGuide{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:50;align-items:center;justify-content:center;padding:20px}
+  #iosGuide.show{display:flex}
+  #iosGuide .box{background:var(--card);border:1px solid var(--line);border-radius:16px;max-width:360px;width:100%;padding:22px}
+  #iosGuide h3{margin:0 0 12px;font-size:1.15rem}
+  #iosGuide ol{margin:0;padding-left:20px}
+  #iosGuide li{margin:8px 0;font-size:.95rem}
+  #iosGuide .share{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border:2px solid var(--accent2);border-radius:7px;color:var(--accent2);vertical-align:-7px;margin:0 2px}
+  #iosGuide .warn{background:rgba(245,185,66,.12);border:1px solid var(--warn,#f5b942);border-radius:9px;padding:10px;font-size:.86rem;margin:12px 0 0}
+  #iosGuide .btns{display:flex;gap:8px;margin-top:16px}
+  #iosGuide button{flex:1;border:none;border-radius:10px;padding:11px;font-weight:700;cursor:pointer;font-size:.95rem}
+  #iosGuide .copy{background:var(--accent2);color:#06121a}
+  #iosGuide .close{background:var(--card2,#1d212b);color:var(--txt);border:1px solid var(--line)}
 </style>
 </head>
 <body>
@@ -50,6 +62,23 @@
   <p class="sub">Objectif : session de décembre 2026 · 5 mois de préparation</p>
 
   <button id="installBtn">📲 Installer l'application</button>
+
+  <div id="iosGuide">
+    <div class="box">
+      <h3>📲 Ajouter à l'écran d'accueil</h3>
+      <div id="iosWarn" class="warn" style="display:none">⚠️ Cette page n'est pas ouverte dans <b>Safari</b>. L'ajout à l'écran d'accueil n'existe que dans Safari. Copie le lien et colle-le dans Safari.</div>
+      <ol>
+        <li>Ouvre la page dans <b>Safari</b> (pas Chrome ni un navigateur intégré).</li>
+        <li>Touche le bouton <b>Partager</b> <span class="share">↑</span> (barre du bas).</li>
+        <li><b>Fais défiler la liste</b> vers le bas → <b>« Sur l'écran d'accueil »</b>.</li>
+        <li>Touche <b>« Ajouter »</b>. (Si l'option manque : Partager → « Modifier les actions » → active-la.)</li>
+      </ol>
+      <div class="btns">
+        <button class="copy" id="copyLink">🔗 Copier le lien</button>
+        <button class="close" id="closeGuide">Fermer</button>
+      </div>
+    </div>
+  </div>
 
   <a class="dash" href="app-n3.html" id="dash">
     <div class="top"><h2>📊 Mon tableau de bord</h2><span class="see">Analyse complète →</span></div>
@@ -138,9 +167,21 @@
   // Hors application installée, on montre toujours le bouton (repli manuel pour Safari)
   btn.style.display='block';
   if(isIOS)btn.textContent='📲 Ajouter à l\'écran d\'accueil';
+  // navigateur iOS qui n'est PAS Safari (Chrome, Firefox, Edge, app intégrée)
+  var notSafariIOS=isIOS&&(/crios|fxios|edgios|gsa/i.test(ua)||(!/safari/i.test(ua)));
+  var guide=document.getElementById('iosGuide');
+  function openGuide(){document.getElementById('iosWarn').style.display=notSafariIOS?'block':'none';guide.classList.add('show');}
+  document.getElementById('closeGuide').onclick=function(){guide.classList.remove('show');};
+  guide.addEventListener('click',function(e){if(e.target===guide)guide.classList.remove('show');});
+  document.getElementById('copyLink').onclick=function(){
+    var url='https://darti.github.io/jlpt/';
+    var done=function(){var b=document.getElementById('copyLink');b.textContent='✅ Lien copié !';setTimeout(function(){b.textContent='🔗 Copier le lien';},2000);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(function(){prompt('Copie ce lien et ouvre-le dans Safari :',url);});}
+    else{prompt('Copie ce lien et ouvre-le dans Safari :',url);}
+  };
   btn.onclick=function(){
     if(deferred){deferred.prompt();deferred.userChoice.finally(function(){deferred=null;btn.style.display='none';});return;}
-    if(isIOS){alert('Installer sur iPhone / iPad (Safari) :\n\n1. Touche le bouton Partager  ⬆  (carré avec une flèche)\n2. Fais défiler et choisis « Sur l\'écran d\'accueil »\n3. Touche « Ajouter »\n\n⚠ Doit être ouvert dans Safari — pas Chrome ni un navigateur intégré (Gmail, Instagram…).');}
+    if(isIOS){openGuide();}
     else{alert('Pour installer :\n• Chrome/Edge : menu ⋮ → « Installer l\'application »\n• Safari (Mac) : menu Fichier → « Ajouter au Dock »');}
   };
 })();
