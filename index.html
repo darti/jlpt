@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JLPT N3 — Préparation</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0f1116">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JLPT N3">
+<link rel="apple-touch-icon" href="icon-180.png">
 <style>
   :root{--bg:#0f1116;--card:#171a21;--line:#2a2f3a;--txt:#e7e9ee;--muted:#9aa3b2;--accent:#e2466b;--accent2:#3fb6e0}
   *{box-sizing:border-box}
@@ -114,5 +121,6 @@
     <p class="empty">${S.total} réponses · fiabilité ${Math.round(conf*100)}%</p>`;
 })();
 </script>
+<script>if('serviceWorker'in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
 </body>
 </html>

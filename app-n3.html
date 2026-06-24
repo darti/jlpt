@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JLPT N3 — Entraînement adaptatif</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0f1116">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JLPT N3">
+<link rel="apple-touch-icon" href="icon-180.png">
 <style>
   :root{
     --bg:#0f1116;--card:#171a21;--card2:#1d212b;--line:#2a2f3a;
@@ -59,6 +66,12 @@
   h2{font-size:1.1rem;border-left:4px solid var(--accent);padding-left:10px;margin:22px 0 8px}
   a{color:var(--accent2)} footer{text-align:center;color:var(--muted);font-size:.78rem;padding:22px}
   svg text{fill:var(--muted);font-size:9px}
+  /* furigana cliquables */
+  ruby{cursor:pointer}
+  rt{visibility:hidden;color:var(--accent2);font-size:.5em;font-weight:400;user-select:none}
+  #qtext.furi-on rt, ruby.show rt{visibility:visible}
+  .furibtn{margin-left:auto;background:var(--card2);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:3px 10px;cursor:pointer;font-size:.74rem}
+  .furibtn.on{background:var(--accent2);border-color:var(--accent2);color:#06121a;font-weight:700}
 </style>
 </head>
 <body>
@@ -149,7 +162,7 @@
   <div id="quiz" style="display:none">
     <div class="bar"><i id="qbar"></i></div>
     <div class="card">
-      <div class="qmeta"><span class="tag" id="qcat"></span><span class="diff" id="qdiff"></span><span id="qnum"></span></div>
+      <div class="qmeta"><span class="tag" id="qcat"></span><span class="diff" id="qdiff"></span><span id="qnum"></span><button class="furibtn" id="furiBtn" onclick="toggleFuri()">ふりがな</button></div>
       <div class="qtext" id="qtext"></div>
       <div id="opts"></div>
       <div class="expl" id="expl"></div>
@@ -429,11 +442,13 @@ async function cloudCreate(){
 }
 async function cloudPush(manual){
   const c=ghCfg();if(!c||!c.token||!c.gist)return;
+  if(navigator.onLine===false){localStorage.setItem('jlptN3_pending','1');syncMsg('Hors ligne — sera synchronisé à la reconnexion 📴',true);return;}
   try{
     const body={files:{[GIST_FILE]:{content:JSON.stringify(collectData(),null,2)}}};
     await ghFetch('https://api.github.com/gists/'+c.gist,{method:'PATCH',body:JSON.stringify(body)});
+    localStorage.removeItem('jlptN3_pending');
     if(manual)syncMsg('Envoyé vers le cloud ⬆️',true);
-  }catch(e){syncMsg('Envoi échoué : '+e.message,false)}
+  }catch(e){localStorage.setItem('jlptN3_pending','1');syncMsg('Envoi reporté (sera resynchronisé) : '+e.message,false)}
 }
 async function cloudPull(manual){
   const c=ghCfg();if(!c||!c.token||!c.gist)return;
@@ -472,8 +487,17 @@ function renderSync(){
 async function cloudInit(){
   const c=ghCfg();if(!c||!c.token||!c.gist){renderSync();return}
   renderSync();
-  try{await cloudPull(false)}catch(e){syncMsg('Synchro indisponible : '+e.message,false)}
+  try{
+    await cloudPull(false);
+    // changements faits hors ligne ? on pousse maintenant que la connexion est revenue
+    if(localStorage.getItem('jlptN3_pending'))cloudPush(false);
+  }catch(e){syncMsg('Synchro indisponible : '+e.message,false)}
 }
+// resync automatique dès le retour de la connexion
+window.addEventListener('online',()=>{
+  const c=ghCfg();
+  if(c&&c.token&&c.gist&&localStorage.getItem('jlptN3_pending')){syncMsg('Connexion rétablie — synchronisation… 🔄');cloudPush(true);}
+});
 
 /* Elo : met à jour le rating de la compétence */
 function updateRating(cat,d,correct){
@@ -621,13 +645,44 @@ function buildQuiz(mode){
 /* =================== DÉROULÉ QUIZ =================== */
 function start(mode){const q=buildQuiz(mode);if(!q)return;sessionMode=mode;quiz=q;qi=0;sessionRight=0;sessionLog=[];showScreen('quiz');renderQ()}
 
+/* =================== FURIGANA CLIQUABLES =================== */
+const FURI={
+ // mots longs / composés spéciaux d'abord
+ '関係者以外立入禁止':'かんけいしゃいがいたちいりきんし','日本語':'にほんご','使用後':'しようご',
+ // composés (2 kanji+)
+ '丁寧':'ていねい','三日':'みっか','上手':'じょうず','中止':'ちゅうし','予定':'よてい','予約':'よやく','事実':'じじつ','二度':'にど','京都':'きょうと','今年':'ことし','仕事':'しごと','会議':'かいぎ','何時':'なんじ','健康':'けんこう','先生':'せんせい','割引':'わりびき','努力':'どりょく','勉強':'べんきょう','動作':'どうさ','去年':'きょねん','合格':'ごうかく','商品':'しょうひん','問題':'もんだい','国際':'こくさい','場合':'ばあい','場所':'ばしょ','場面':'ばめん','増加':'ぞうか','変更':'へんこう','大事':'だいじ','大切':'たいせつ','失敗':'しっぱい','失礼':'しつれい','子供':'こども','学生':'がくせい','定員':'ていいん','宿題':'しゅくだい','専門':'せんもん','工事':'こうじ','広告':'こうこく','彼女':'かのじょ','心配':'しんぱい','情報':'じょうほう','意味':'いみ','意見':'いけん','感情':'かんじょう','成功':'せいこう','我慢':'がまん','手紙':'てがみ','技術':'ぎじゅつ','招待':'しょうたい','掲示':'けいじ','改善':'かいぜん','政治':'せいじ','文化':'ぶんか','旅行':'りょこう','日本':'にほん','明日':'あした','昨夜':'さくや','時間':'じかん','書類':'しょるい','未来':'みらい','来週':'らいしゅう','東京':'とうきょう','案内':'あんない','次第':'しだい','気持':'きも','準備':'じゅんび','漢字':'かんじ','無料':'むりょう','状況':'じょうきょう','現在':'げんざい','環境':'かんきょう','生産':'せいさん','発展':'はってん','短文':'たんぶん','確実':'かくじつ','確認':'かくにん','筆者':'ひっしゃ','約束':'やくそく','経済':'けいざい','経験':'けいけん','結果':'けっか','結論':'けつろん','給料':'きゅうりょう','練習':'れんしゅう','自由':'じゆう','複数':'ふくすう','複雑':'ふくざつ','観光':'かんこう','解決':'かいけつ','計画':'けいかく','許可':'きょか','証拠':'しょうこ','試合':'しあい','試験':'しけん','説明':'せつめい','財布':'さいふ','責任':'せきにん','貿易':'ぼうえき','質問':'しつもん','辞書':'じしょ','近所':'きんじょ','連絡':'れんらく','遅刻':'ちこく','道理':'どうり','遠慮':'えんりょ','部屋':'へや','重要':'じゅうよう','関係':'かんけい','雨天':'うてん','電気':'でんき','電話':'でんわ','電車':'でんしゃ','面白':'おもしろ','音楽':'おんがく','食後':'しょくご','記憶':'きおく','郵便':'ゆうびん','先着':'せんちゃく','本日':'ほんじつ','使用':'しよう','在庫':'ざいこ','毎日':'まいにち','毎朝':'まいあさ','残業':'ざんぎょう','注意':'ちゅうい','以外':'いがい',
+ // kanji simples (radicaux de verbes/adjectifs, sans okurigana)
+ '下':'さ','体':'からだ','休':'やす','傘':'かさ','元':'もと','先':'さき','入':'はい','分':'わ','切':'き','前':'まえ','効':'き','危':'あぶ','取':'と','合':'あ','向':'む','周':'まわ','問':'と','守':'まも','家':'いえ','寄':'よ','少':'すこ','帰':'かえ','年':'とし','店':'みせ','弟':'おとうと','彼':'かれ','後':'あと','得':'え','思':'おも','悪':'わる','感':'かん','戻':'もど','手':'て','扱':'あつか','教':'おし','整':'ととの','新':'あたら','方':'かた','早':'はや','時':'じ','暑':'あつ','暗':'くら','書':'か','服':'ふく','本':'ほん','来':'く','歌':'うた','決':'き','混':'こ','物':'もの','申':'もう','疲':'つか','眠':'ねむ','知':'し','窓':'まど','立':'た','笑':'わら','答':'こた','終':'お','締':'し','聞':'き','落':'お','薬':'くすり','見':'み','覧':'らん','解':'と','言':'い','認':'みと','読':'よ','誰':'だれ','謝':'あやま','買':'か','転':'ころ','込':'こ','近':'ちか','遅':'おく','遊':'あそ','道':'みち','達':'たっ','金':'かね','長':'なが','開':'あ','降':'ふ','限':'かぎ','難':'むずか','雨':'あめ','願':'ねが','食':'た','飲':'の','高':'たか','会':'あ','力':'りょく','順':'じゅん','中':'ちゅう','走':'はし'
+};
+function furi(s){
+  let out='',i=0;
+  while(i<s.length){
+    const c=s[i];
+    if(/[一-鿿]/.test(c)){
+      let m=null;
+      for(let L=Math.min(12,s.length-i);L>=1;L--){
+        const sub=s.substr(i,L);
+        if(/^[一-鿿]+$/.test(sub)&&FURI[sub]){m=sub;break;}
+      }
+      if(m){out+=`<ruby onclick="this.classList.toggle('show')">${m}<rt>${FURI[m]}</rt></ruby>`;i+=m.length;}
+      else{out+=c;i++;}
+    }else{out+=c;i++;}
+  }
+  return out;
+}
+function toggleFuri(){
+  const t=document.getElementById('qtext'),b=document.getElementById('furiBtn');
+  const on=t.classList.toggle('furi-on');b.classList.toggle('on',on);
+}
+
 function renderQ(){
   const q=quiz[qi];
   document.getElementById('qbar').style.width=(qi/quiz.length*100)+'%';
   document.getElementById('qcat').textContent=LABELS[q.cat];
   const dd=document.getElementById('qdiff');dd.textContent=['','facile','moyen','difficile'][q.d];dd.className='diff d'+q.d;
   document.getElementById('qnum').textContent=`${qi+1}/${quiz.length}${sessionMode==='diagnostic'?' · diagnostic':''}`;
-  document.getElementById('qtext').innerHTML=q.q.replace('___','<span class="blank">？</span>');
+  const qt=document.getElementById('qtext');qt.classList.remove('furi-on');document.getElementById('furiBtn').classList.remove('on');
+  qt.innerHTML=furi(q.q).replace('___','<span class="blank">？</span>');
   const opts=document.getElementById('opts');opts.innerHTML='';
   shuffle(q.o.map((t,i)=>({t,i}))).forEach(({t})=>{const b=document.createElement('button');b.className='opt';b.textContent=t;b.onclick=()=>answer(b,q,opts);opts.appendChild(b)});
   const ex=document.getElementById('expl');ex.className='expl';ex.innerHTML='';
@@ -702,5 +757,6 @@ function resetAll(){if(confirm('Effacer tout (niveau, historique, erreurs) ?')){
 
 renderCats();renderHome();cloudInit();
 </script>
+<script>if('serviceWorker'in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
 </body>
 </html>
