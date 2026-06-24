@@ -1,0 +1,52 @@
+name: Déploiement GitHub Pages
+
+# Publie l'application JLPT N3 (fichiers HTML statiques) sur GitHub Pages.
+# Prérequis côté dépôt : Settings → Pages → "Build and deployment" → Source = "GitHub Actions".
+
+on:
+  push:
+    branches:
+      - main
+      - claude/jlpt-n3-prep-bxqvvb
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un seul déploiement à la fois ; on n'annule pas un déploiement en cours.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurer Pages
+        # PRÉREQUIS (une fois) : Settings → Pages → Build and deployment → Source = "GitHub Actions".
+        # L'auto-activation (enablement) est impossible : le GITHUB_TOKEN n'a pas le droit de créer le site Pages ici.
+        uses: actions/configure-pages@v5
+
+      - name: Préparer l'artefact du site
+        # On ne publie que les fichiers statiques (pas .git ni .github).
+        run: |
+          mkdir -p _site
+          cp index.html app-n3.html cours-n3.html planning-n3.html _site/
+          cp README.md _site/ 2>/dev/null || true
+
+      - name: Téléverser l'artefact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Déployer sur GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
