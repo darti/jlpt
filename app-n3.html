@@ -104,6 +104,32 @@
       <p class="muted" id="trend"></p>
     </div>
 
+    <!-- CLOUD / SYNCHRO -->
+    <div class="card">
+      <h2 style="margin-top:0">☁️ Synchronisation multi-appareils</h2>
+      <p class="muted" id="syncStatus">Non connecté. Synchronise ta progression entre appareils via un Gist GitHub privé.</p>
+      <div id="syncSetup">
+        <input id="ghToken" type="password" placeholder="Personal Access Token (scope: gist)"
+          style="width:100%;padding:10px;border-radius:9px;border:1px solid var(--line);background:var(--card2);color:var(--txt);margin:6px 0">
+        <input id="ghGist" type="text" placeholder="Gist ID (laisser vide pour en créer un)"
+          style="width:100%;padding:10px;border-radius:9px;border:1px solid var(--line);background:var(--card2);color:var(--txt);margin:6px 0">
+        <button class="start ghost" onclick="cloudConnect()">🔗 Connecter & synchroniser</button>
+        <p class="muted" style="font-size:.78rem;margin:6px 0 0">
+          Crée un token sur <a href="https://github.com/settings/tokens?type=beta" target="_blank">github.com/settings/tokens</a>
+          (Fine-grained → Account permissions → <b>Gists: Read and write</b>, ou classic avec scope <b>gist</b>).
+          Le token reste stocké dans ce navigateur uniquement.
+        </p>
+      </div>
+      <div id="syncActive" style="display:none">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="start ghost" style="margin:4px 0" onclick="cloudPush(true)">⬆️ Envoyer</button>
+          <button class="start ghost" style="margin:4px 0" onclick="cloudPull(true)">⬇️ Récupérer</button>
+          <button class="reset" onclick="cloudDisconnect()">Déconnecter</button>
+        </div>
+        <p class="muted" style="font-size:.78rem;margin:6px 0 0" id="gistLink"></p>
+      </div>
+    </div>
+
     <!-- LANCER -->
     <h2>S'entraîner</h2>
     <div class="cats" id="cats"></div>
@@ -280,7 +306,98 @@ function load(){
   if(d&&d.skill)return d;
   return {skill:blank(),total:0,right:0,bestStreak:0,streak:0,wrong:[],history:[],lastDiag:null};
 }
-function save(){localStorage.setItem(SKEY,JSON.stringify(S))}
+function save(){localStorage.setItem(SKEY,JSON.stringify(S));localStorage.setItem('jlptN3_updatedAt',new Date().toISOString());scheduleAutoPush()}
+
+/* =================== SYNCHRO GITHUB GIST =================== */
+const GH_CFG='jlptN3_gh', GIST_FILE='jlpt-n3-progress.json';
+let pushTimer=null;
+function ghCfg(){try{return JSON.parse(localStorage.getItem(GH_CFG)||'null')}catch(e){return null}}
+function setGhCfg(c){localStorage.setItem(GH_CFG,JSON.stringify(c))}
+function collectData(){
+  const store={};
+  for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);
+    if(k.startsWith('jlptN3')&&k!==GH_CFG)store[k]=localStorage.getItem(k)}
+  return {app:'jlpt-n3',updatedAt:localStorage.getItem('jlptN3_updatedAt')||new Date().toISOString(),store};
+}
+function applyData(payload){
+  if(!payload||!payload.store)return false;
+  Object.entries(payload.store).forEach(([k,v])=>localStorage.setItem(k,v));
+  S=load();return true;
+}
+async function ghFetch(url,opt){
+  const c=ghCfg();
+  const r=await fetch(url,{...opt,headers:{'Authorization':'Bearer '+c.token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28',...(opt&&opt.headers||{})}});
+  if(!r.ok)throw new Error('GitHub '+r.status+(r.status===401?' (token invalide)':r.status===404?' (Gist introuvable)':''));
+  return r.json();
+}
+function syncMsg(t,ok){const e=document.getElementById('syncStatus');e.textContent=t;e.style.color=ok===false?'var(--bad)':ok===true?'var(--ok)':'var(--muted)'}
+
+async function cloudConnect(){
+  const token=document.getElementById('ghToken').value.trim();
+  const gist=document.getElementById('ghGist').value.trim();
+  if(!token){syncMsg('Renseigne un token.',false);return}
+  setGhCfg({token,gist});
+  syncMsg('Connexion…');
+  try{
+    if(gist){await cloudPull(false);syncMsg('Connecté et synchronisé.',true);}
+    else{await cloudCreate();}
+    renderSync();
+  }catch(e){syncMsg('Échec : '+e.message,false)}
+}
+async function cloudCreate(){
+  const body={description:'JLPT N3 — progression (sauvegarde auto)',public:false,
+    files:{[GIST_FILE]:{content:JSON.stringify(collectData(),null,2)}}};
+  const j=await ghFetch('https://api.github.com/gists',{method:'POST',body:JSON.stringify(body)});
+  setGhCfg({...ghCfg(),gist:j.id});
+  syncMsg('Gist privé créé. Progression sauvegardée ☁️',true);renderSync();
+}
+async function cloudPush(manual){
+  const c=ghCfg();if(!c||!c.token||!c.gist)return;
+  try{
+    const body={files:{[GIST_FILE]:{content:JSON.stringify(collectData(),null,2)}}};
+    await ghFetch('https://api.github.com/gists/'+c.gist,{method:'PATCH',body:JSON.stringify(body)});
+    if(manual)syncMsg('Envoyé vers le cloud ⬆️',true);
+  }catch(e){syncMsg('Envoi échoué : '+e.message,false)}
+}
+async function cloudPull(manual){
+  const c=ghCfg();if(!c||!c.token||!c.gist)return;
+  const j=await ghFetch('https://api.github.com/gists/'+c.gist,{});
+  const f=j.files&&j.files[GIST_FILE];
+  if(!f){if(manual)syncMsg('Aucune donnée distante.',false);return}
+  let payload;try{payload=JSON.parse(f.content)}catch(e){return}
+  const localT=localStorage.getItem('jlptN3_updatedAt')||'';
+  if(manual||!localT||(payload.updatedAt||'')>localT){
+    applyData(payload);renderHome();renderCats();
+    if(manual)syncMsg('Récupéré depuis le cloud ⬇️',true);
+    else syncMsg('Synchronisé (données distantes plus récentes).',true);
+  }else{
+    if(manual)syncMsg('Local déjà à jour.',true);
+  }
+}
+function scheduleAutoPush(){
+  const c=ghCfg();if(!c||!c.token||!c.gist)return;
+  clearTimeout(pushTimer);pushTimer=setTimeout(()=>cloudPush(false),1500);
+}
+function cloudDisconnect(){
+  if(confirm('Déconnecter la synchro ? (les données locales sont conservées)')){
+    localStorage.removeItem(GH_CFG);renderSync();syncMsg('Déconnecté. Données conservées localement.');
+  }
+}
+function renderSync(){
+  const c=ghCfg(),setup=document.getElementById('syncSetup'),active=document.getElementById('syncActive');
+  if(c&&c.token&&c.gist){
+    setup.style.display='none';active.style.display='block';
+    document.getElementById('gistLink').innerHTML='Gist : <a href="https://gist.github.com/'+c.gist+'" target="_blank">'+c.gist.slice(0,8)+'…</a> · sauvegarde auto après chaque quiz.';
+    if(document.getElementById('syncStatus').textContent.startsWith('Non connecté'))syncMsg('Connecté ☁️',true);
+  }else{
+    setup.style.display='block';active.style.display='none';
+  }
+}
+async function cloudInit(){
+  const c=ghCfg();if(!c||!c.token||!c.gist){renderSync();return}
+  renderSync();
+  try{await cloudPull(false)}catch(e){syncMsg('Synchro indisponible : '+e.message,false)}
+}
 
 /* Elo : met à jour le rating de la compétence */
 function updateRating(cat,d,correct){
@@ -484,7 +601,7 @@ function showScreen(id){['home','quiz','result'].forEach(x=>document.getElementB
 function goHome(){showScreen('home');renderHome();renderCats()}
 function resetAll(){if(confirm('Effacer tout (niveau, historique, erreurs) ?')){S={skill:blank(),total:0,right:0,bestStreak:0,streak:0,wrong:[],history:[],lastDiag:null};save();renderHome();renderCats()}}
 
-renderCats();renderHome();
+renderCats();renderHome();cloudInit();
 </script>
 </body>
 </html>

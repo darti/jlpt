@@ -19,4 +19,28 @@ Ouvre **`index.html`** dans un navigateur.
 - Un diagnostic complet est conseillé chaque semaine pour mesurer l'évolution.
 - La probabilité de réussite est une **estimation pédagogique** fondée sur ta maîtrise par section ; elle se précise avec le nombre de réponses.
 
+## Déploiement GitHub Pages
+
+Le workflow `.github/workflows/deploy.yml` publie automatiquement le site à chaque push
+sur `main` ou la branche de préparation.
+
+**Activation (une seule fois) :** dans le dépôt → **Settings → Pages → Build and deployment →
+Source = « GitHub Actions »**. Le site est ensuite servi à l'URL indiquée dans l'onglet *Actions*
+(job *Déployer sur GitHub Pages*).
+
+> ⚠️ **« Page privée » :** sur un compte gratuit/Pro, une page issue d'un dépôt privé reste
+> **accessible publiquement** via son URL (juste non indexée). Le contrôle d'accès réservé aux
+> membres n'est disponible qu'avec **GitHub Enterprise Cloud**.
+
+## Persistance & synchronisation
+
+- **Local :** progression, niveau, erreurs et checklist sont sauvegardés dans le navigateur
+  (`localStorage`), partagés entre toutes les pages du site (même origine).
+- **Multi-appareils (☁️ Gist) :** dans l'appli, section *Synchronisation*, colle un
+  **Personal Access Token** GitHub avec la permission **Gists: Read and write** (fine-grained)
+  ou le scope **`gist`** (classic). Au premier usage, un **Gist privé** est créé ; ensuite la
+  progression est **poussée automatiquement** après chaque quiz et **récupérée** au chargement
+  (résolution par horodatage, la version la plus récente gagne).
+  Le token reste stocké uniquement dans ton navigateur.
+
 がんばって！
