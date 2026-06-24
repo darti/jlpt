@@ -32,6 +32,9 @@ jobs:
 
       - name: Configurer Pages
         uses: actions/configure-pages@v5
+        with:
+          # Active automatiquement GitHub Pages (build via Actions) si ce n'est pas déjà fait.
+          enablement: true
 
       - name: Préparer l'artefact du site
         # On ne publie que les fichiers statiques (pas .git ni .github).

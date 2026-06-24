@@ -136,7 +136,12 @@
     <button class="start" onclick="start('adaptive')">▶ Quiz adaptatif (10 questions)</button>
     <button class="start ghost" onclick="start('diagnostic')">🩺 Lancer un diagnostic complet (15 q)</button>
     <button class="start ghost" onclick="start('wrong')">↻ Réviser mes erreurs</button>
-    <button class="reset" onclick="resetAll()">↺ Tout réinitialiser</button>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+      <button class="reset" onclick="exportData()">💾 Exporter (JSON)</button>
+      <button class="reset" onclick="document.getElementById('importFile').click()">📂 Importer</button>
+      <button class="reset" onclick="resetAll()">↺ Tout réinitialiser</button>
+      <input id="importFile" type="file" accept="application/json,.json" style="display:none" onchange="importData(this)">
+    </div>
     <p class="muted" style="margin-top:16px"><a href="cours-n3.html">📚 Cours</a> · <a href="planning-n3.html">🗓️ Planning</a></p>
   </div>
 
@@ -595,6 +600,28 @@ function finish(){
   const det=document.getElementById('r-detail');det.innerHTML='<h2 style="font-size:1rem">Récapitulatif</h2>';
   sessionLog.forEach(l=>{const d=document.createElement('div');d.style.cssText='padding:8px 0;border-bottom:1px solid var(--line);font-size:.88rem';
     d.innerHTML=`${l.ok?'✅':'❌'} <span style="color:${COLORS[l.cat]}">[${LABELS[l.cat]}]</span> ${l.q.replace('___','＿')}<br><span class="muted">→ ${l.correct} · ${l.e}</span>`;det.appendChild(d)});
+}
+
+/* =================== EXPORT / IMPORT (secours sans token) =================== */
+function exportData(){
+  const blob=new Blob([JSON.stringify(collectData(),null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='jlpt-n3-backup.json';a.click();URL.revokeObjectURL(a.href);
+}
+function importData(input){
+  const file=input.files&&input.files[0];if(!file)return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const payload=JSON.parse(r.result);
+      if(!payload.store)throw new Error('format invalide');
+      if(!confirm('Remplacer la progression actuelle par le fichier importé ?')){input.value='';return}
+      applyData(payload);localStorage.setItem('jlptN3_updatedAt',new Date().toISOString());
+      renderHome();renderCats();alert('Import réussi ✅');cloudPush(false);
+    }catch(e){alert('Import impossible : '+e.message)}
+    input.value='';
+  };
+  r.readAsText(file);
 }
 
 function showScreen(id){['home','quiz','result'].forEach(x=>document.getElementById(x).style.display=x===id?'block':'none');window.scrollTo(0,0)}
