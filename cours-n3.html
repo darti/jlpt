@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cours JLPT N3 — Grammaire, Kanji, Vocabulaire</title>
+<style>
+  :root{
+    --bg:#0f1116;--card:#171a21;--card2:#1d212b;--line:#2a2f3a;
+    --txt:#e7e9ee;--muted:#9aa3b2;--accent:#e2466b;--accent2:#3fb6e0;--ok:#3ecf8e;--warn:#f5b942;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6}
+  header{padding:34px 20px 22px;text-align:center;background:radial-gradient(900px 300px at 50% -40%,rgba(63,182,224,.22),transparent),var(--card)}
+  header h1{margin:0 0 4px;font-size:1.7rem}
+  header .jp{color:var(--accent2)}
+  header p{color:var(--muted);margin:4px 0}
+  .wrap{max-width:900px;margin:0 auto;padding:18px}
+  nav{position:sticky;top:0;z-index:5;background:rgba(15,17,22,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 14px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  nav a{color:var(--muted);text-decoration:none;font-size:.85rem;padding:5px 11px;border:1px solid var(--line);border-radius:999px}
+  nav a:hover{color:var(--accent2);border-color:var(--accent2)}
+  h2{margin:36px 0 12px;font-size:1.4rem;border-left:4px solid var(--accent2);padding-left:11px;scroll-margin-top:60px}
+  h3{margin:24px 0 8px;color:var(--warn);font-size:1.05rem}
+  .lesson{background:var(--card);border:1px solid var(--line);border-radius:13px;margin:14px 0;overflow:hidden}
+  .lesson>summary{cursor:pointer;padding:14px 18px;font-weight:600;list-style:none;display:flex;gap:10px;align-items:center}
+  .lesson>summary::-webkit-details-marker{display:none}
+  .lesson[open]>summary{border-bottom:1px solid var(--line)}
+  .lesson .body{padding:8px 18px 16px}
+  .wk{font-size:.72rem;background:rgba(63,182,224,.15);color:var(--accent2);padding:2px 9px;border-radius:999px;font-weight:700}
+  .g{border-bottom:1px solid var(--line);padding:14px 0}
+  .g:last-child{border-bottom:none}
+  .g .form{font-size:1.15rem;font-weight:700;color:var(--accent)}
+  .g .mean{color:var(--txt);margin:3px 0 2px}
+  .g .struct{font-size:.85rem;color:var(--muted);font-family:ui-monospace,monospace;background:var(--card2);display:inline-block;padding:2px 8px;border-radius:6px;margin:4px 0}
+  .ex{margin:7px 0 3px;padding-left:12px;border-left:2px solid var(--line)}
+  .ex .jp{font-size:1.05rem}
+  .ex .ro{color:var(--accent2);font-size:.82rem}
+  .ex .fr{color:var(--muted);font-size:.9rem;font-style:italic}
+  table{width:100%;border-collapse:collapse;font-size:.95rem}
+  th,td{padding:8px 7px;border-bottom:1px solid var(--line);text-align:left}
+  th{color:var(--muted);font-weight:600}
+  .k{font-size:1.3rem;font-weight:700;color:var(--accent2)}
+  .tip{background:var(--card2);border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:9px;padding:10px 14px;margin:12px 0;font-size:.9rem}
+  footer{text-align:center;color:var(--muted);font-size:.82rem;padding:30px 20px 50px}
+  a{color:var(--accent2)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Cours <span class="jp">JLPT N3</span> — Leçons & Contenu</h1>
+  <p>Grammaire expliquée · Kanji · Vocabulaire — aligné sur le planning 20 semaines</p>
+</header>
+<nav>
+  <a href="#gram">文法 Grammaire</a>
+  <a href="#kanji">漢字 Kanji</a>
+  <a href="#vocab">語彙 Vocabulaire</a>
+  <a href="#dokkai">読解 Lecture</a>
+  <a href="#choukai">聴解 Écoute</a>
+  <a href="planning-n3.html">← Planning</a>
+</nav>
+
+<div class="wrap">
+
+<h2 id="gram">文法 — Grammaire N3 par leçons</h2>
+<p style="color:var(--muted)">Chaque point : <b>forme</b>, sens, <span style="font-family:monospace">construction</span>, et 2 exemples (japonais · lecture · français). Déplie une leçon.</p>
+
+<!-- ===================== LEÇON 1 ===================== -->
+<details class="lesson" open>
+<summary><span class="wk">S2</span> Leçon 1 — Conditionnels & hypothèses</summary>
+<div class="body">
+
+  <div class="g">
+    <div class="form">〜ば</div>
+    <div class="struct">V(forme ば) / い-adj：〜ければ</div>
+    <div class="mean">« si… » — condition générale, vérité logique ou naturelle.</div>
+    <div class="ex"><div class="jp">安ければ買います。</div><div class="ro">yasukereba kaimasu.</div><div class="fr">Si c'est bon marché, je l'achète.</div></div>
+    <div class="ex"><div class="jp">練習すれば上手になる。</div><div class="ro">renshū sureba jōzu ni naru.</div><div class="fr">Si tu t'entraînes, tu deviendras bon.</div></div>
+  </div>
+
+  <div class="g">
+    <div class="form">〜たら</div>
+    <div class="struct">V(た)＋ら / 名・な-adj＋だったら</div>
+    <div class="mean">« quand / si… » — le plus courant à l'oral ; condition + résultat ponctuel.</div>
+    <div class="ex"><div class="jp">家に帰ったら電話します。</div><div class="ro">ie ni kaettara denwa shimasu.</div><div class="fr">Quand je rentrerai, je t'appellerai.</div></div>
+    <div class="ex"><div class="jp">時間があったら手伝ってください。</div><div class="ro">jikan ga attara tetsudatte kudasai.</div><div class="fr">Si tu as le temps, aide-moi.</div></div>
+  </div>
+
+  <div class="g">
+    <div class="form">〜なら</div>
+    <div class="struct">名 / V・adj 普通形＋なら</div>
+    <div class="mean">« si c'est le cas de… / dans ce cas » — réagit à ce que dit l'interlocuteur.</div>
+    <div class="ex"><div class="jp">日本へ行くなら京都がいいよ。</div><div class="ro">nihon e iku nara kyōto ga ii yo.</div><div class="fr">Si tu vas au Japon, Kyoto, c'est bien.</div></div>
+    <div class="ex"><div class="jp">天気がいいなら散歩しよう。</div><div class="ro">tenki ga ii nara sanpo shiyō.</div><div class="fr">S'il fait beau, allons nous promener.</div></div>
+  </div>
+
+  <div class="g">
+    <div class="form">〜と</div>
+    <div class="struct">V/adj 辞書形＋と</div>
+    <div class="mean">« dès que / à chaque fois que » — conséquence automatique, naturelle.</div>
+    <div class="ex"><div class="jp">このボタンを押すと水が出ます。</div><div class="ro">kono botan o osu to mizu ga demasu.</div><div class="fr">Si on appuie sur ce bouton, l'eau coule.</div></div>
+    <div class="ex"><div class="jp">春になると花が咲く。</div><div class="ro">haru ni naru to hana ga saku.</div><div class="fr">Quand le printemps arrive, les fleurs s'ouvrent.</div></div>
+  </div>
+
+  <div class="tip">💡 Choisir le bon « si » : <b>と</b> = automatique/naturel · <b>ば</b> = condition générale · <b>たら</b> = oral, cas précis · <b>なら</b> = réagit au contexte/sujet.</div>
+</div>
+</details>
+
+<!-- ===================== LEÇON 2 ===================== -->
+<details class="lesson">
+<summary><span class="wk">S3</span> Leçon 2 — Apparence, ouï-dire, conjecture</summary>
+<div class="body">
+
+  <div class="g">
+    <div class="form">〜そうだ <small>(apparence)</small></div>
+    <div class="struct">V(ます語幹) / adj語幹 ＋ そう</div>
+    <div class="mean">« avoir l'air de / sembler sur le point de » — jugement visuel immédiat.</div>
+    <div class="ex"><div class="jp">この料理はおいしそうだ。</div><div class="ro">kono ryōri wa oishisō da.</div><div class="fr">Ce plat a l'air bon.</div></div>
+    <div class="ex"><div class="jp">雨が降りそうです。</div><div class="ro">ame ga furisō desu.</div><div class="fr">On dirait qu'il va pleuvoir.</div></div>
+  </div>
+
+  <div class="g">
+    <div class="form">〜そうだ <small>(ouï-dire)</small></div>
+    <div class="struct">普通形 ＋ そうだ</div>
+    <div class="mean">« il paraît que / on dit que » — information rapportée.</div>
+    <div class="ex"><div class="jp">天気予報によると明日は雨だそうだ。</div><div class="ro">tenki yohō ni yoru to ashita wa ame da sō da.</div><div class="fr">D'après la météo, il paraît qu'il pleuvra demain.</div></div>
+  </div>
+
+  <div class="g">
+    <div class="form">〜ようだ / 〜みたいだ</div>
+    <div class="struct">普通形 ＋ ようだ（みたいだ＝口語）</div>
+    <div class="mean">« on dirait que / il semble que » — déduction basée sur des indices.</div>
+    <div class="ex"><div class="jp">誰もいないようだ。</div><div class="ro">dare mo inai yō da.</div><div class="fr">On dirait qu'il n'y a personne.</div></div>
+    <div class="ex"><div class="jp">彼は疲れているみたいだ。</div><div class="ro">kare wa tsukarete iru mitai da.</div><div class="fr">Il a l'air fatigué.</div></div>
+  </div>
+
+  <div class="g">
+    <div class="form">〜らしい</div>
+    <div class="struct">普通形 ＋ らしい</div>
+    <div class="mean">« il paraît que » (info entendue) ou « typique de » (名＋らしい).</div>
+    <div class="ex"><div class="jp">来月から値段が上がるらしい。</div><div class="ro">raigetsu kara nedan ga agaru rashii.</div><div class="fr">Il paraît que les prix vont monter le mois prochain.</div></div>
+    <div class="ex"><div class="jp">彼は本当に男らしい。</div><div class="ro">kare wa hontō ni otokorashii.</div><div class="fr">Il est vraiment viril (typiquement masculin).</div></div>
+  </div>
+</div>
+</details>
+
+<!-- ===================== LEÇON 3 ===================== -->
+<details class="lesson">
+<summary><span class="wk">S4</span> Leçon 3 — Voix passive, causative, causative-passive</summary>
+<div class="body">
+
+  <div class="g">
+    <div class="form">受身 — Passif 〜られる</div>
+    <div class="struct">G1：あ段＋れる ／ G2：〜られる ／ する→される</div>
+    <div class="mean">« être + participe » — souvent passif de désagrément (迷惑の受身).</div>
+    <div class="ex"><div class="jp">弟にケーキを食べられた。</div><div class="ro">otōto ni kēki o taberareta.</div><div class="fr">Mon petit frère m'a mangé mon gâteau (à mon dam).</div></div>
+    <div class="ex"><div class="jp">この本は多くの人に読まれている。</div><div class="ro">kono hon wa ōku no hito ni yomarete iru.</div><div class="fr">Ce livre est lu par beaucoup de gens.</div></div>
+  </div>
+
+  <div class="g">
+    <div class="form">使役 — Causatif 〜させる</div>
+    <div class="struct">G1：あ段＋せる ／ G2：〜させる ／ する→させる</div>
+    <div class="mean">« faire / laisser faire ». Personne forcée → に (autorisation) ou を (ordre).</div>
+    <div class="ex"><div class="jp">先生は学生に漢字を書かせた。</div><div class="ro">sensei wa gakusei ni kanji o kakaseta.</div><div class="fr">Le professeur a fait écrire des kanji aux élèves.</div></div>
+    <div class="ex"><div class="jp">子供を公園で遊ばせる。</div><div class="ro">kodomo o kōen de asobaseru.</div><div class="fr">Je laisse les enfants jouer au parc.</div></div>
+  </div>
+
+  <div class="g">
+    <div class="form">使役受身 — Causatif-passif 〜させられる</div>
+    <div class="struct">V使役 ＋ られる（G1：あ段＋される）</div>
+    <div class="mean">« être obligé de » — on subit une action imposée.</div>
+    <div class="ex"><div class="jp">毎日残業させられる。</div><div class="ro">mainichi zangyō saserareru.</div><div class="fr">On m'oblige à faire des heures sup tous les jours.</div></div>
+    <div class="ex"><div class="jp">子供のとき、野菜を食べさせられた。</div><div class="ro">kodomo no toki, yasai o tabesaserareta.</div><div class="fr">Enfant, on me forçait à manger des légumes.</div></div>
+  </div>
+</div>
+</details>
+
+<!-- ===================== LEÇON 4 ===================== -->
+<details class="lesson">
+<summary><span class="wk">S6</span> Leçon 4 — Politesse (敬語) : essentiel</summary>
+<div class="body">
+  <div class="tip">Le keigo apparaît au N3 surtout en compréhension. 3 registres : 尊敬語 (respect, l'autre), 謙譲語 (modestie, soi), 丁寧語 (poli neutre, です/ます).</div>
+  <table>
+    <tr><th>Neutre</th><th>尊敬語 (respect)</th><th>謙譲語 (modeste)</th></tr>
+    <tr><td>する</td><td>なさる</td><td>いたす</td></tr>
+    <tr><td>行く・来る・いる</td><td>いらっしゃる</td><td>参る／伺う</td></tr>
+    <tr><td>言う</td><td>おっしゃる</td><td>申す／申し上げる</td></tr>
+    <tr><td>食べる・飲む</td><td>召し上がる</td><td>いただく</td></tr>
+    <tr><td>見る</td><td>ご覧になる</td><td>拝見する</td></tr>
+    <tr><td>知っている</td><td>ご存じだ</td><td>存じておる</td></tr>
+  </table>
+  <div class="g" style="margin-top:14px">
+    <div class="form">お／ご〜になる ・ お／ご〜する</div>
+    <div class="struct">尊敬：お＋V(ます語幹)＋になる ／ 謙譲：お＋V(ます語幹)＋する</div>
+    <div class="ex"><div class="jp">先生はもうお帰りになりました。</div><div class="ro">sensei wa mō okaeri ni narimashita.</div><div class="fr">Le professeur est déjà rentré. (respect)</div></div>
+    <div class="ex"><div class="jp">私がお持ちします。</div><div class="ro">watashi ga omochi shimasu.</div><div class="fr">Je vais le porter. (modestie)</div></div>
+  </div>
+</div>
+</details>
+
+<!-- ===================== LEÇON 5 ===================== -->
+<details class="lesson">
+<summary><span class="wk">S7</span> Leçon 5 — Explication, déduction logique</summary>
+<div class="body">
+  <div class="g">
+    <div class="form">〜わけだ</div><div class="struct">普通形 ＋ わけだ</div>
+    <div class="mean">« ça explique que / c'est donc pour ça que » — conclusion logique.</div>
+    <div class="ex"><div class="jp">10年も日本にいたのか。道理で日本語が上手なわけだ。</div><div class="ro">jūnen mo nihon ni ita no ka. dōri de nihongo ga jōzu na wake da.</div><div class="fr">Tu es resté 10 ans au Japon ? Pas étonnant que tu parles si bien.</div></div>
+  </div>
+  <div class="g">
+    <div class="form">〜はずだ</div><div class="struct">普通形 ＋ はずだ</div>
+    <div class="mean">« ça devrait / logiquement » — forte attente fondée.</div>
+    <div class="ex"><div class="jp">彼はもう着いているはずだ。</div><div class="ro">kare wa mō tsuite iru hazu da.</div><div class="fr">Il devrait déjà être arrivé.</div></div>
+  </div>
+  <div class="g">
+    <div class="form">〜はずがない</div><div class="struct">普通形 ＋ はずがない</div>
+    <div class="mean">« il est impossible que » — négation logique.</div>
+    <div class="ex"><div class="jp">そんなことがあるはずがない。</div><div class="ro">sonna koto ga aru hazu ga nai.</div><div class="fr">C'est impossible qu'une telle chose arrive.</div></div>
+  </div>
+  <div class="g">
+    <div class="form">〜に違いない</div><div class="struct">普通形 ＋ に違いない</div>
+    <div class="mean">« ça ne fait aucun doute que / sûrement ».</div>
+    <div class="ex"><div class="jp">彼が犯人に違いない。</div><div class="ro">kare ga hannin ni chigainai.</div><div class="fr">C'est sûrement lui le coupable.</div></div>
+  </div>
+  <div class="g">
+    <div class="form">〜かもしれない</div><div class="struct">普通形 ＋ かもしれない</div>
+    <div class="mean">« peut-être / il se peut que » — possibilité faible.</div>
+    <div class="ex"><div class="jp">明日は雪が降るかもしれない。</div><div class="ro">ashita wa yuki ga furu kamoshirenai.</div><div class="fr">Il neigera peut-être demain.</div></div>
+  </div>
+</div>
+</details>
+
+<!-- ===================== LEÇON 6 ===================== -->
+<details class="lesson">
+<summary><span class="wk">S8</span> Leçon 6 — Temps, étapes, simultanéité</summary>
+<div class="body">
+  <div class="g"><div class="form">〜ところだ</div><div class="struct">辞書形＋ところ（vais）／〜ているところ（en train）／〜たところ（viens de）</div>
+    <div class="mean">situer une action dans le temps précis.</div>
+    <div class="ex"><div class="jp">今から出かけるところです。</div><div class="ro">ima kara dekakeru tokoro desu.</div><div class="fr">Je suis sur le point de sortir.</div></div>
+    <div class="ex"><div class="jp">今、食べているところだ。</div><div class="ro">ima, tabete iru tokoro da.</div><div class="fr">Je suis en train de manger, là.</div></div>
+  </div>
+  <div class="g"><div class="form">〜たばかり</div><div class="struct">V(た)＋ばかり</div>
+    <div class="mean">« venir tout juste de » (ressenti subjectif, peu importe le temps réel).</div>
+    <div class="ex"><div class="jp">日本に来たばかりで、まだ慣れていない。</div><div class="ro">nihon ni kita bakari de, mada narete inai.</div><div class="fr">Je viens d'arriver au Japon, je ne suis pas encore habitué.</div></div>
+  </div>
+  <div class="g"><div class="form">〜ながら</div><div class="struct">V(ます語幹)＋ながら</div>
+    <div class="mean">« tout en… » — deux actions simultanées par le même sujet.</div>
+    <div class="ex"><div class="jp">音楽を聞きながら勉強する。</div><div class="ro">ongaku o kikinagara benkyō suru.</div><div class="fr">J'étudie tout en écoutant de la musique.</div></div>
+  </div>
+  <div class="g"><div class="form">〜うちに</div><div class="struct">辞書形／ない形／名＋の ＋うちに</div>
+    <div class="mean">« pendant que / avant que (ça change) ».</div>
+    <div class="ex"><div class="jp">熱いうちに食べてください。</div><div class="ro">atsui uchi ni tabete kudasai.</div><div class="fr">Mangez tant que c'est chaud.</div></div>
+  </div>
+  <div class="g"><div class="form">〜たびに</div><div class="struct">辞書形／名＋の ＋たびに</div>
+    <div class="mean">« chaque fois que ».</div>
+    <div class="ex"><div class="jp">この写真を見るたびに故郷を思い出す。</div><div class="ro">kono shashin o miru tabi ni furusato o omoidasu.</div><div class="fr">Chaque fois que je vois cette photo, je repense à mon pays.</div></div>
+  </div>
+</div>
+</details>
+
+<!-- ===================== LEÇON 7 ===================== -->
+<details class="lesson">
+<summary><span class="wk">S9</span> Leçon 7 — Tendance, nuance, « il vaut mieux »</summary>
+<div class="body">
+  <div class="g"><div class="form">〜ものだ</div><div class="struct">普通形＋ものだ</div>
+    <div class="mean">vérité générale, morale, ou nostalgie (« on a tendance à / c'est ainsi »).</div>
+    <div class="ex"><div class="jp">年を取ると忘れっぽくなるものだ。</div><div class="ro">toshi o toru to wasureppoku naru mono da.</div><div class="fr">En vieillissant, on a tendance à devenir oublieux.</div></div>
+  </div>
+  <div class="g"><div class="form">〜がち</div><div class="struct">V(ます語幹)／名＋がち</div>
+    <div class="mean">« avoir tendance à (souvent négatif) ».</div>
+    <div class="ex"><div class="jp">冬は風邪をひきがちだ。</div><div class="ro">fuyu wa kaze o hikigachi da.</div><div class="fr">En hiver, on attrape facilement froid.</div></div>
+  </div>
+  <div class="g"><div class="form">〜っぽい</div><div class="struct">名／V(ます語幹)＋っぽい</div>
+    <div class="mean">« qui a un air de / facilement ».</div>
+    <div class="ex"><div class="jp">彼は怒りっぽい性格だ。</div><div class="ro">kare wa okorippoi seikaku da.</div><div class="fr">Il a un caractère colérique.</div></div>
+  </div>
+  <div class="g"><div class="form">〜ほうがいい</div><div class="struct">V(た)／ない形＋ほうがいい</div>
+    <div class="mean">« il vaut mieux (faire / ne pas faire) » — conseil.</div>
+    <div class="ex"><div class="jp">早く寝たほうがいいよ。</div><div class="ro">hayaku neta hō ga ii yo.</div><div class="fr">Tu ferais mieux de te coucher tôt.</div></div>
+  </div>
+</div>
+</details>
+
+<!-- ===================== LEÇON 8 ===================== -->
+<details class="lesson">
+<summary><span class="wk">S10</span> Leçon 8 — Cause, objectif, moyen</summary>
+<div class="body">
+  <div class="g"><div class="form">〜ために</div><div class="struct">辞書形／名＋の ＋ために</div>
+    <div class="mean">« afin de / à cause de » (but ou cause).</div>
+    <div class="ex"><div class="jp">健康のために毎朝走っている。</div><div class="ro">kenkō no tame ni maiasa hashitte iru.</div><div class="fr">Je cours chaque matin pour ma santé.</div></div>
+  </div>
+  <div class="g"><div class="form">〜ように</div><div class="struct">辞書形／ない形＋ように</div>
+    <div class="mean">« de sorte que / pour que » (but avec verbe non volontaire/potentiel).</div>
+    <div class="ex"><div class="jp">忘れないようにメモします。</div><div class="ro">wasurenai yō ni memo shimasu.</div><div class="fr">Je prends note pour ne pas oublier.</div></div>
+  </div>
+  <div class="g"><div class="form">〜おかげで / 〜せいで</div><div class="struct">普通形＋おかげで（positif）／せいで（négatif）</div>
+    <div class="mean">« grâce à » / « à cause de (reproche) ».</div>
+    <div class="ex"><div class="jp">先生のおかげで合格できた。</div><div class="ro">sensei no okage de gōkaku dekita.</div><div class="fr">Grâce au professeur, j'ai réussi.</div></div>
+    <div class="ex"><div class="jp">雨のせいで試合が中止になった。</div><div class="ro">ame no sei de shiai ga chūshi ni natta.</div><div class="fr">À cause de la pluie, le match a été annulé.</div></div>
+  </div>
+  <div class="g"><div class="form">〜によって</div><div class="struct">名＋によって</div>
+    <div class="mean">« selon / par le biais de / par (passif) ».</div>
+    <div class="ex"><div class="jp">人によって考え方が違う。</div><div class="ro">hito ni yotte kangaekata ga chigau.</div><div class="fr">Selon les personnes, la façon de penser diffère.</div></div>
+  </div>
+</div>
+</details>
+
+<!-- ===================== LEÇON 9 ===================== -->
+<details class="lesson">
+<summary><span class="wk">S12</span> Leçon 9 — Restriction, addition, opposition</summary>
+<div class="body">
+  <div class="g"><div class="form">〜だけでなく〜も</div><div class="struct">名／普通形＋だけでなく…も</div>
+    <div class="mean">« non seulement… mais aussi ».</div>
+    <div class="ex"><div class="jp">彼は英語だけでなく中国語も話せる。</div><div class="ro">kare wa eigo dake de naku chūgokugo mo hanaseru.</div><div class="fr">Il parle non seulement anglais mais aussi chinois.</div></div>
+  </div>
+  <div class="g"><div class="form">〜ばかりでなく / 〜上に</div><div class="struct">普通形＋上に</div>
+    <div class="mean">« de plus / qui plus est » (ajout dans le même sens).</div>
+    <div class="ex"><div class="jp">この店は安い上においしい。</div><div class="ro">kono mise wa yasui ue ni oishii.</div><div class="fr">Ce restaurant est bon marché et en plus délicieux.</div></div>
+  </div>
+  <div class="g"><div class="form">〜のに</div><div class="struct">普通形＋のに</div>
+    <div class="mean">« bien que / alors que » — opposition avec déception.</div>
+    <div class="ex"><div class="jp">薬を飲んだのに熱が下がらない。</div><div class="ro">kusuri o nonda noni netsu ga sagaranai.</div><div class="fr">J'ai pris un médicament, pourtant la fièvre ne baisse pas.</div></div>
+  </div>
+  <div class="g"><div class="form">〜くせに</div><div class="struct">普通形＋くせに</div>
+    <div class="mean">« alors que (avec reproche/mépris) ».</div>
+    <div class="ex"><div class="jp">知っているくせに教えてくれない。</div><div class="ro">shitte iru kuse ni oshiete kurenai.</div><div class="fr">Il le sait pourtant il ne me le dit pas.</div></div>
+  </div>
+  <div class="g"><div class="form">〜ほど / 〜くらい</div><div class="struct">普通形＋ほど</div>
+    <div class="mean">« au point de / à tel point que ».</div>
+    <div class="ex"><div class="jp">立てないほど疲れた。</div><div class="ro">tatenai hodo tsukareta.</div><div class="fr">J'étais fatigué au point de ne plus pouvoir me lever.</div></div>
+  </div>
+</div>
+</details>
+
+<!-- ===================== LEÇON 10 ===================== -->
+<details class="lesson">
+<summary><span class="wk">S13</span> Leçon 10 — Obligation, permission, interdiction (rappel + N3)</summary>
+<div class="body">
+  <div class="g"><div class="form">〜なければならない / 〜なきゃ</div><div class="struct">ない形（語幹）＋なければならない</div>
+    <div class="mean">« devoir / être obligé de ».</div>
+    <div class="ex"><div class="jp">明日までに払わなければならない。</div><div class="ro">ashita made ni harawanakereba naranai.</div><div class="fr">Je dois payer d'ici demain.</div></div>
+  </div>
+  <div class="g"><div class="form">〜なくてもいい</div><div class="struct">ない形（語幹）＋なくてもいい</div>
+    <div class="mean">« pas besoin de ».</div>
+    <div class="ex"><div class="jp">急がなくてもいいですよ。</div><div class="ro">isoganakute mo ii desu yo.</div><div class="fr">Pas besoin de se presser.</div></div>
+  </div>
+  <div class="g"><div class="form">〜てはいけない / 〜てはならない</div><div class="struct">て形＋はいけない</div>
+    <div class="mean">« il ne faut pas / interdiction ».</div>
+    <div class="ex"><div class="jp">ここで写真を撮ってはいけない。</div><div class="ro">koko de shashin o totte wa ikenai.</div><div class="fr">Il est interdit de prendre des photos ici.</div></div>
+  </div>
+  <div class="g"><div class="form">〜ことになっている</div><div class="struct">辞書形／ない形＋ことになっている</div>
+    <div class="mean">« il est convenu/réglé que » — règle, coutume.</div>
+    <div class="ex"><div class="jp">校内では日本語を話すことになっている。</div><div class="ro">kōnai de wa nihongo o hanasu koto ni natte iru.</div><div class="fr">Dans l'école, la règle est de parler japonais.</div></div>
+  </div>
+</div>
+</details>
+
+<!-- ===================== LEÇON 11 ===================== -->
+<details class="lesson">
+<summary><span class="wk">S14</span> Leçon 11 — Décisions, changements, devenir</summary>
+<div class="body">
+  <div class="g"><div class="form">〜ことにする / 〜ことになる</div><div class="struct">辞書形／ない形＋ことにする（décision perso）／ことになる（décidé par circonstances）</div>
+    <div class="ex"><div class="jp">来月から運動することにした。</div><div class="ro">raigetsu kara undō suru koto ni shita.</div><div class="fr">J'ai décidé de faire du sport dès le mois prochain.</div></div>
+    <div class="ex"><div class="jp">転勤で大阪に住むことになった。</div><div class="ro">tenkin de ōsaka ni sumu koto ni natta.</div><div class="fr">Suite à une mutation, je vais habiter à Osaka.</div></div>
+  </div>
+  <div class="g"><div class="form">〜ようになる</div><div class="struct">辞書形／可能形＋ようになる</div>
+    <div class="mean">« en venir à / arriver à (changement progressif de capacité/habitude) ».</div>
+    <div class="ex"><div class="jp">日本語が話せるようになった。</div><div class="ro">nihongo ga hanaseru yō ni natta.</div><div class="fr">Je suis devenu capable de parler japonais.</div></div>
+  </div>
+  <div class="g"><div class="form">〜ようにする</div><div class="struct">辞書形／ない形＋ようにする</div>
+    <div class="mean">« s'efforcer de / faire en sorte de ».</div>
+    <div class="ex"><div class="jp">毎日野菜を食べるようにしている。</div><div class="ro">mainichi yasai o taberu yō ni shite iru.</div><div class="fr">Je m'efforce de manger des légumes chaque jour.</div></div>
+  </div>
+  <div class="g"><div class="form">〜ていく / 〜てくる</div><div class="struct">て形＋いく（s'éloigne/futur）／くる（se rapproche/passé→présent）</div>
+    <div class="ex"><div class="jp">これから寒くなっていく。</div><div class="ro">kore kara samuku natte iku.</div><div class="fr">Il va faire de plus en plus froid désormais.</div></div>
+    <div class="ex"><div class="jp">だんだん日本語が分かってきた。</div><div class="ro">dandan nihongo ga wakatte kita.</div><div class="fr">J'en suis venu à comprendre le japonais petit à petit.</div></div>
+  </div>
+</div>
+</details>
+
+<!-- ===================== LEÇON 12 ===================== -->
+<details class="lesson">
+<summary><span class="wk">S15</span> Leçon 12 — Expressions clés fréquentes au N3</summary>
+<div class="body">
+  <div class="g"><div class="form">〜とおりに</div><div class="struct">辞書形／た形／名＋の ＋とおりに</div><div class="mean">« comme / conformément à ».</div>
+    <div class="ex"><div class="jp">説明書のとおりに組み立てた。</div><div class="ro">setsumeisho no tōri ni kumitateta.</div><div class="fr">J'ai monté ça selon la notice.</div></div></div>
+  <div class="g"><div class="form">〜まま</div><div class="struct">た形／ない形／名＋の ＋まま</div><div class="mean">« en laissant tel quel / sans changer d'état ».</div>
+    <div class="ex"><div class="jp">電気をつけたまま寝てしまった。</div><div class="ro">denki o tsuketa mama nete shimatta.</div><div class="fr">Je me suis endormi en laissant la lumière allumée.</div></div></div>
+  <div class="g"><div class="form">〜について / 〜に対して</div><div class="struct">名＋について（au sujet de）／に対して（envers, contre）</div>
+    <div class="ex"><div class="jp">環境問題について話し合った。</div><div class="ro">kankyō mondai ni tsuite hanashiatta.</div><div class="fr">Nous avons discuté du problème environnemental.</div></div></div>
+  <div class="g"><div class="form">〜として</div><div class="struct">名＋として</div><div class="mean">« en tant que ».</div>
+    <div class="ex"><div class="jp">医者として働いている。</div><div class="ro">isha to shite hataraite iru.</div><div class="fr">Je travaille en tant que médecin.</div></div></div>
+  <div class="g"><div class="form">〜place : 〜場合は</div><div class="struct">普通形／名＋の ＋場合は</div><div class="mean">« dans le cas où ».</div>
+    <div class="ex"><div class="jp">遅れる場合は連絡してください。</div><div class="ro">okureru baai wa renraku shite kudasai.</div><div class="fr">En cas de retard, prévenez-moi.</div></div></div>
+</div>
+</details>
+
+<div class="tip">📌 Cette grammaire couvre le cœur à fort rendement du N3 (≈ 70 points). Pour la liste exhaustive (~150), complète avec <a href="https://jlptsensei.com/jlpt-n3-grammar-list/" target="_blank">jlptsensei N3 grammar list</a> ou Bunpro N3 — déjà classés du plus au moins fréquent.</div>
+
+<!-- ============== KANJI ============== -->
+<h2 id="kanji">漢字 — Kanji N3 par thèmes</h2>
+<p style="color:var(--muted)">Apprends-les <b>dans des mots</b> (colonne exemples). ~650 kanji au total ; voici des lots à fort rendement.</p>
+
+<details class="lesson" open>
+<summary><span class="wk">S2</span> Lot 1 — Temps & calendrier</summary>
+<div class="body"><table>
+<tr><th>Kanji</th><th>Lecture</th><th>Sens</th><th>Mot exemple</th></tr>
+<tr><td class="k">過</td><td>カ・す(ぎる)</td><td>passer, excès</td><td>過去 (kako) passé</td></tr>
+<tr><td class="k">期</td><td>キ</td><td>période</td><td>期間 (kikan) durée</td></tr>
+<tr><td class="k">未</td><td>ミ</td><td>pas encore</td><td>未来 (mirai) futur</td></tr>
+<tr><td class="k">際</td><td>サイ・きわ</td><td>occasion, bord</td><td>国際 (kokusai) international</td></tr>
+<tr><td class="k">過</td><td>—</td><td>—</td><td>過程 (katei) processus</td></tr>
+<tr><td class="k">続</td><td>ゾク・つづ(く)</td><td>continuer</td><td>続行 (zokkō) poursuite</td></tr>
+</table></div></details>
+
+<details class="lesson">
+<summary><span class="wk">S3</span> Lot 2 — Émotions & esprit</summary>
+<div class="body"><table>
+<tr><th>Kanji</th><th>Lecture</th><th>Sens</th><th>Mot exemple</th></tr>
+<tr><td class="k">感</td><td>カン</td><td>ressentir</td><td>感動 (kandō) émotion</td></tr>
+<tr><td class="k">情</td><td>ジョウ</td><td>sentiment</td><td>感情 (kanjō) sentiment</td></tr>
+<tr><td class="k">怒</td><td>ド・おこ(る)</td><td>colère</td><td>怒る (okoru) se fâcher</td></tr>
+<tr><td class="k">悲</td><td>ヒ・かな(しい)</td><td>tristesse</td><td>悲しい (kanashii) triste</td></tr>
+<tr><td class="k">喜</td><td>キ・よろこ(ぶ)</td><td>joie</td><td>喜ぶ (yorokobu) se réjouir</td></tr>
+<tr><td class="k">恥</td><td>チ・は(ずかしい)</td><td>honte</td><td>恥ずかしい (hazukashii) gêné</td></tr>
+</table></div></details>
+
+<details class="lesson">
+<summary><span class="wk">S6</span> Lot 3 — Travail & société</summary>
+<div class="body"><table>
+<tr><th>Kanji</th><th>Lecture</th><th>Sens</th><th>Mot exemple</th></tr>
+<tr><td class="k">職</td><td>ショク</td><td>emploi</td><td>職業 (shokugyō) profession</td></tr>
+<tr><td class="k">給</td><td>キュウ</td><td>salaire, fournir</td><td>給料 (kyūryō) salaire</td></tr>
+<tr><td class="k">産</td><td>サン・う(む)</td><td>produire</td><td>生産 (seisan) production</td></tr>
+<tr><td class="k">経</td><td>ケイ</td><td>gérer, passer</td><td>経済 (keizai) économie</td></tr>
+<tr><td class="k">済</td><td>サイ・す(む)</td><td>finir, régler</td><td>経済 / 済む (sumu)</td></tr>
+<tr><td class="k">議</td><td>ギ</td><td>débattre</td><td>会議 (kaigi) réunion</td></tr>
+</table></div></details>
+
+<details class="lesson">
+<summary><span class="wk">S8</span> Lot 4 — Nature & science</summary>
+<div class="body"><table>
+<tr><th>Kanji</th><th>Lecture</th><th>Sens</th><th>Mot exemple</th></tr>
+<tr><td class="k">境</td><td>キョウ・さかい</td><td>frontière</td><td>環境 (kankyō) environnement</td></tr>
+<tr><td class="k">温</td><td>オン・あたた(かい)</td><td>chaleur</td><td>温度 (ondo) température</td></tr>
+<tr><td class="k">石</td><td>セキ・いし</td><td>pierre</td><td>石油 (sekiyu) pétrole</td></tr>
+<tr><td class="k">技</td><td>ギ・わざ</td><td>technique</td><td>技術 (gijutsu) technologie</td></tr>
+<tr><td class="k">果</td><td>カ・は(たす)</td><td>résultat, fruit</td><td>結果 (kekka) résultat</td></tr>
+<tr><td class="k">破</td><td>ハ・やぶ(る)</td><td>briser</td><td>破壊 (hakai) destruction</td></tr>
+</table></div></details>
+
+<div class="tip">🗂️ Pour le set complet 650 kanji classés par fréquence : deck Anki « JLPT N3 Kanji » ou Sou Matome 漢字 N3 (6 semaines). Vise ~20 kanji nouveaux/semaine en phase 1–2.</div>
+
+<!-- ============== VOCAB ============== -->
+<h2 id="vocab">語彙 — Vocabulaire par thèmes</h2>
+
+<details class="lesson" open>
+<summary>Thème 1 — Verbes composés (複合動詞) fréquents</summary>
+<div class="body"><table>
+<tr><th>Mot</th><th>Lecture</th><th>Sens</th></tr>
+<tr><td>申し込む</td><td>もうしこむ</td><td>s'inscrire, postuler</td></tr>
+<tr><td>取り消す</td><td>とりけす</td><td>annuler</td></tr>
+<tr><td>引き受ける</td><td>ひきうける</td><td>se charger de</td></tr>
+<tr><td>思い出す</td><td>おもいだす</td><td>se souvenir</td></tr>
+<tr><td>呼びかける</td><td>よびかける</td><td>lancer un appel</td></tr>
+<tr><td>付き合う</td><td>つきあう</td><td>fréquenter, sortir avec</td></tr>
+<tr><td>落ち着く</td><td>おちつく</td><td>se calmer, se poser</td></tr>
+</table></div></details>
+
+<details class="lesson">
+<summary>Thème 2 — Adverbes & connecteurs (très testés)</summary>
+<div class="body"><table>
+<tr><th>Mot</th><th>Sens</th></tr>
+<tr><td>たとえば</td><td>par exemple</td></tr>
+<tr><td>つまり</td><td>autrement dit</td></tr>
+<tr><td>ところで</td><td>au fait (changement de sujet)</td></tr>
+<tr><td>それに</td><td>de plus</td></tr>
+<tr><td>しかも</td><td>qui plus est</td></tr>
+<tr><td>ただし</td><td>toutefois, à condition que</td></tr>
+<tr><td>かえって</td><td>au contraire, plutôt</td></tr>
+<tr><td>さすが</td><td>comme on pouvait s'y attendre</td></tr>
+<tr><td>わざわざ</td><td>exprès, en se donnant la peine</td></tr>
+<tr><td>なかなか〜ない</td><td>avoir du mal à</td></tr>
+</table></div></details>
+
+<details class="lesson">
+<summary>Thème 3 — Katakana courants au N3</summary>
+<div class="body"><table>
+<tr><th>Mot</th><th>Sens</th></tr>
+<tr><td>イメージ</td><td>image, impression</td></tr>
+<tr><td>データ</td><td>données</td></tr>
+<tr><td>チャンス</td><td>occasion</td></tr>
+<tr><td>サービス</td><td>service</td></tr>
+<tr><td>テーマ</td><td>thème</td></tr>
+<tr><td>スケジュール</td><td>emploi du temps</td></tr>
+<tr><td>アドバイス</td><td>conseil</td></tr>
+<tr><td>マナー</td><td>savoir-vivre</td></tr>
+</table></div></details>
+
+<details class="lesson">
+<summary>Thème 4 — Onomatopées (擬態語) fréquentes</summary>
+<div class="body"><table>
+<tr><th>Mot</th><th>Sens</th></tr>
+<tr><td>そろそろ</td><td>bientôt, il est temps de</td></tr>
+<tr><td>ますます</td><td>de plus en plus</td></tr>
+<tr><td>はっきり</td><td>clairement</td></tr>
+<tr><td>ちゃんと</td><td>correctement, comme il faut</td></tr>
+<tr><td>きちんと</td><td>en ordre, proprement</td></tr>
+<tr><td>ぐっすり</td><td>(dormir) profondément</td></tr>
+<tr><td>うっかり</td><td>par inadvertance</td></tr>
+<tr><td>イライラ</td><td>être agacé</td></tr>
+</table></div></details>
+
+<div class="tip">🎯 Objectif vocab : ~3 700 mots. Avec Anki à 50–60 nouveaux/semaine + révisions, tu y arrives en phase 1–3. Priorise les mots des annales et des manuels.</div>
+
+<!-- ============== DOKKAI ============== -->
+<h2 id="dokkai">読解 — Méthode compréhension écrite</h2>
+<div class="lesson" style="padding:16px 18px">
+  <ul>
+    <li><b>Lis la question d'abord</b>, puis cherche l'info dans le texte (surtout pour 情報検索, repérage d'info).</li>
+    <li>Repère les <b>connecteurs</b> (しかし, つまり, だから) : ils signalent où est la réponse.</li>
+    <li>Le 指示語 (こそあど : これ・それ・あれ) renvoie toujours à un mot proche avant — sache à quoi il réfère.</li>
+    <li>Ne traduis pas tout. <b>Vise le sens global</b>, puis zoome sur la phrase utile.</li>
+    <li><b>Chronomètre-toi</b> dès la phase 3 : ~1 min par question. La lecture est une course.</li>
+    <li>Types de questions : 短文 (courts), 中文 (moyens), 長文 (longs), 情報検索 (annonces/pubs).</li>
+  </ul>
+</div>
+
+<!-- ============== CHOUKAI ============== -->
+<h2 id="choukai">聴解 — Méthode compréhension orale</h2>
+<div class="lesson" style="padding:16px 18px">
+  <ul>
+    <li>5 formats : 課題理解 (tâche à faire), 概要理解 (idée générale), 発話表現 (quoi dire), 即時応答 (réponse immédiate).</li>
+    <li><b>Shadowing</b> : répète à voix haute par-dessus l'audio → améliore écoute ET prononciation.</li>
+    <li>Écoute du japonais <b>tous les jours</b>, même passivement (podcast, anime sans sous-titres FR).</li>
+    <li>Pour 即時応答 : entraîne-toi aux réponses naturelles (依頼 demandes, 誘い invitations, 謝罪 excuses).</li>
+    <li>Anticipe : pendant la lecture des choix, devine de quoi va parler l'audio.</li>
+    <li>Ne reste pas bloqué sur un mot inconnu — continue, le sens global suffit souvent.</li>
+  </ul>
+</div>
+
+</div>
+<footer>
+  Cours N3 — contenu de référence à approfondir avec tes manuels. 一緒に頑張ろう！<br>
+  <a href="planning-n3.html">→ Retour au planning 20 semaines</a>
+</footer>
+</body>
+</html>

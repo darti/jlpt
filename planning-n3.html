@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Préparation JLPT N3 — Planning 5 mois</title>
+<style>
+  :root{
+    --bg:#0f1116; --card:#171a21; --card2:#1d212b; --line:#2a2f3a;
+    --txt:#e7e9ee; --muted:#9aa3b2; --accent:#e2466b; --accent2:#3fb6e0;
+    --ok:#3ecf8e; --warn:#f5b942; --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+       background:var(--bg);color:var(--txt);line-height:1.55}
+  header{padding:36px 20px 24px;text-align:center;
+    background:radial-gradient(900px 300px at 50% -40%,rgba(226,70,107,.25),transparent),var(--card)}
+  header h1{margin:0 0 6px;font-size:1.9rem;letter-spacing:.5px}
+  header .jp{color:var(--accent);font-weight:700}
+  header p{margin:4px 0;color:var(--muted)}
+  .wrap{max-width:920px;margin:0 auto;padding:20px}
+  .countdown{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:18px 0 4px}
+  .pill{background:var(--card2);border:1px solid var(--line);border-radius:999px;
+        padding:8px 16px;font-size:.92rem}
+  .pill b{color:var(--accent2)}
+  .bar{height:10px;background:var(--card2);border-radius:999px;overflow:hidden;margin:14px auto;max-width:560px;border:1px solid var(--line)}
+  .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0}
+  h2{margin:34px 0 12px;font-size:1.3rem;border-left:4px solid var(--accent);padding-left:10px}
+  h3{margin:22px 0 8px;font-size:1.05rem;color:var(--accent2)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin:12px 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+  .stat{background:var(--card2);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .stat .n{font-size:1.6rem;font-weight:700;color:var(--accent)}
+  .stat .l{color:var(--muted);font-size:.85rem}
+  ul{margin:8px 0;padding-left:20px}
+  li{margin:4px 0}
+  table{width:100%;border-collapse:collapse;font-size:.92rem}
+  th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600}
+  .phase{display:inline-block;font-size:.72rem;padding:2px 9px;border-radius:999px;font-weight:700}
+  .p1{background:rgba(63,182,224,.15);color:var(--accent2)}
+  .p2{background:rgba(245,185,66,.15);color:var(--warn)}
+  .p3{background:rgba(62,207,142,.15);color:var(--ok)}
+  .p4{background:rgba(226,70,107,.15);color:var(--accent)}
+  label.chk{display:flex;gap:10px;align-items:flex-start;cursor:pointer;padding:5px 0}
+  label.chk input{margin-top:4px;width:17px;height:17px;accent-color:var(--accent);flex:0 0 auto}
+  .week{border:1px solid var(--line);border-radius:var(--radius);margin:10px 0;overflow:hidden;background:var(--card)}
+  .week > summary{cursor:pointer;padding:14px 18px;list-style:none;display:flex;align-items:center;gap:12px;font-weight:600}
+  .week > summary::-webkit-details-marker{display:none}
+  .week[open] > summary{border-bottom:1px solid var(--line)}
+  .week .body{padding:6px 18px 14px}
+  .wk-prog{margin-left:auto;font-size:.8rem;color:var(--muted)}
+  .done summary{opacity:.6}
+  a{color:var(--accent2)}
+  .reset{background:transparent;border:1px solid var(--line);color:var(--muted);
+    border-radius:8px;padding:7px 12px;cursor:pointer;font-size:.85rem}
+  .reset:hover{border-color:var(--accent);color:var(--accent)}
+  .routine{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.93rem}
+  .routine b{color:var(--accent2)}
+  footer{text-align:center;color:var(--muted);font-size:.82rem;padding:30px 20px 50px}
+  .note{font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Préparation <span class="jp">JLPT N3</span> 日本語能力試験</h1>
+  <p>Objectif : session de <b>décembre 2026</b> · plan sur 20 semaines</p>
+  <div class="countdown" id="cd"></div>
+  <div class="bar"><i id="progbar"></i></div>
+  <p class="note" id="progtxt">Progression : 0 %</p>
+  <button class="reset" onclick="resetAll()">↺ Réinitialiser ma progression</button>
+</header>
+
+<div class="wrap">
+
+  <h2>🎯 Ce qu'il faut maîtriser au N3</h2>
+  <div class="grid">
+    <div class="stat"><div class="n">~650</div><div class="l">kanji</div></div>
+    <div class="stat"><div class="n">~3 700</div><div class="l">mots de vocabulaire</div></div>
+    <div class="stat"><div class="n">~150</div><div class="l">points de grammaire</div></div>
+    <div class="stat"><div class="n">95 / 180</div><div class="l">score visé (sécurité)</div></div>
+  </div>
+  <div class="card note">
+    <b>Structure de l'examen :</b> 言語知識 (vocabulaire/kanji 30 min) · 言語知識・読解 (grammaire + compréhension écrite 70 min) · 聴解 (compréhension orale 40 min).
+    Il faut <b>≥ 19/60 par section</b> ET un total <b>≥ 95/180</b>. Ne néglige aucune section.
+  </div>
+
+  <h2>🗓️ Les 4 phases</h2>
+  <div class="card">
+    <table>
+      <tr><th>Phase</th><th>Semaines</th><th>Focus</th><th>But</th></tr>
+      <tr><td><span class="phase p1">Phase 1</span></td><td>1–5</td><td>Fondations</td><td>Réviser N4, démarrer kanji & grammaire N3, routine quotidienne</td></tr>
+      <tr><td><span class="phase p2">Phase 2</span></td><td>6–11</td><td>Construction</td><td>Gros volume vocab/kanji, grammaire N3 complète, écoute</td></tr>
+      <tr><td><span class="phase p3">Phase 3</span></td><td>12–16</td><td>Consolidation</td><td>Compréhension écrite/orale intensive, révisions espacées</td></tr>
+      <tr><td><span class="phase p4">Phase 4</span></td><td>17–20</td><td>Examen blanc</td><td>Tests chronométrés, points faibles, conditions réelles</td></tr>
+    </table>
+  </div>
+
+  <h2>⏰ Routine quotidienne (≈ 60–90 min/jour)</h2>
+  <div class="card routine">
+    <b>15 min</b><span>Anki / flashcards — kanji + vocabulaire (révisions espacées, tous les jours)</span>
+    <b>20 min</b><span>1 à 2 nouveaux points de grammaire + exemples écrits à la main</span>
+    <b>20 min</b><span>Compréhension écrite (lecture courte, article facile, manga annoté)</span>
+    <b>15 min</b><span>Écoute : podcast / vidéo JLPT N3 (même passif dans les transports)</span>
+    <b>+ week-end</b><span>Bilan de la semaine + 1 mini-test + production (journal en japonais)</span>
+  </div>
+  <p class="note">Règle d'or : <b>la régularité bat l'intensité</b>. 60 min/jour valent mieux que 7 h le dimanche.</p>
+
+  <h2>📚 Ressources recommandées</h2>
+  <div class="card">
+    <h3>Manuels</h3>
+    <ul>
+      <li><b>Sou Matome N3</b> (5 volumes : 文法 grammaire, 漢字, 語彙 vocab, 読解 lecture, 聴解 écoute) — rythme « un chapitre par jour ».</li>
+      <li><b>Shin Kanzen Master N3</b> — plus exigeant, idéal phase 2–3 (surtout 文法 et 読解).</li>
+      <li><b>Try! N3</b> — grammaire en contexte, bon pour démarrer.</li>
+    </ul>
+    <h3>Apps & en ligne</h3>
+    <ul>
+      <li><b>Anki</b> (deck « JLPT N3 » / Core), ou <b>Renshuu</b> — pilier des révisions.</li>
+      <li><b>Bunpro</b> — grammaire N3 avec révisions espacées et phrases d'exemple.</li>
+      <li><b>jlptsensei.com</b> — listes de grammaire/vocab et quiz gratuits.</li>
+      <li><b>YouTube</b> : Japanese Ammo with Misa, Nihongo no Mori (N3) ; podcasts <b>Nihongo con Teppei</b>.</li>
+    </ul>
+    <h3>Tests blancs</h3>
+    <ul>
+      <li>Annales officielles JLPT (« 公式問題集 N3 ») — à garder pour la phase 4.</li>
+      <li>Tests en ligne gratuits : <b>jlptsensei</b>, <b>japanesetest4you.com</b>.</li>
+    </ul>
+  </div>
+
+  <h2>✅ Planning semaine par semaine</h2>
+  <p class="note">Coche au fur et à mesure — ta progression est sauvegardée automatiquement dans ce navigateur.</p>
+  <div id="weeks"></div>
+
+  <h2>🧭 Conseils stratégiques</h2>
+  <div class="card">
+    <ul>
+      <li><b>Kanji = vocabulaire :</b> n'apprends pas les kanji isolés, apprends-les dans des mots.</li>
+      <li><b>Grammaire :</b> pour chaque point, écris 2 phrases qui te concernent → mémorisation x3.</li>
+      <li><b>Écoute :</b> c'est la section la plus négligée et souvent la plus faible. Écoute du japonais tous les jours, même en fond.</li>
+      <li><b>Compréhension écrite :</b> entraîne-toi <b>chronométré</b> dès la phase 3, c'est une épreuve de vitesse.</li>
+      <li><b>Anki ne pardonne pas :</b> si tu sautes 1 semaine, les révisions s'accumulent. Fais-le tous les jours, même 5 cartes.</li>
+      <li><b>Inscription :</b> ouvre-toi sur <a href="https://www.jlpt.jp/e/" target="_blank">jlpt.jp</a> — les inscriptions de décembre ouvrent généralement fin août / début septembre. Note-le !</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  Plan généré pour atteindre le N3 en décembre 2026 · がんばって！💪<br>
+  Fichier local — modifie le HTML pour l'adapter à ton rythme.
+</footer>
+
+<script>
+// ---- Date cible : 1er dimanche de décembre 2026 (session JLPT) ----
+const EXAM = new Date('2026-12-06T09:00:00');
+
+// ---- Données des 20 semaines ----
+const WEEKS = [
+  {p:'p1',t:'Mise en route',items:['Installer Anki + deck N3, planifier 15 min/jour','Réviser toute la grammaire N4 (Sou Matome ou notes)','Lister ses points faibles N4 à consolider','Définir un créneau quotidien fixe (même heure)']},
+  {p:'p1',t:'Kanji & rythme',items:['Sou Matome 漢字 N3 : semaine 1','50 nouveaux mots de vocabulaire (Anki)','Grammaire : 5 points N3 (~ば、~たら、~なら...)','1 podcast Nihongo con Teppei / jour']},
+  {p:'p1',t:'Bases grammaire',items:['Sou Matome 漢字 : semaine 2','50 nouveaux mots','Grammaire : 5 points (~ようだ、~そうだ、~らしい)','Lecture facile : 1 texte court (NHK Easy)']},
+  {p:'p1',t:'Volume vocab',items:['Sou Matome 漢字 : semaine 3','60 nouveaux mots','Grammaire : 6 points (passif・causatif rappel)','Écrire 5 phrases avec la grammaire de la semaine']},
+  {p:'p1',t:'Bilan phase 1',items:['Sou Matome 漢字 : semaine 4','Réviser TOUT le vocab des 4 semaines','Mini-quiz grammaire (jlptsensei)','Auto-évaluation : où en suis-je ?']},
+  {p:'p2',t:'Construction 1',items:['Shin Kanzen / Try! 文法 : chapitre 1','60 mots + révisions Anki à jour','Grammaire : 6 points (敬語 keigo intro)','1 écoute N3 par jour (Nihongo no Mori)']},
+  {p:'p2',t:'Construction 2',items:['Kanji N3 : nouveau lot (~30 kanji)','60 mots','Grammaire : 6 points (~わけだ、~はずだ)','Lecture intermédiaire : 1 article/jour']},
+  {p:'p2',t:'Construction 3',items:['Kanji : nouveau lot','60 mots','Grammaire : 6 points (conditionnels avancés)','Tenir un journal : 3 phrases/jour en japonais']},
+  {p:'p2',t:'Construction 4',items:['Kanji : nouveau lot','60 mots','Grammaire : 6 points (~ものだ、~ことだ)','Test d\'écoute chronométré (1 section)']},
+  {p:'p2',t:'Construction 5',items:['Kanji : nouveau lot','60 mots','Grammaire : 6 points','Compréhension écrite : questions chronométrées']},
+  {p:'p2',t:'Bilan phase 2',items:['Réviser tous les kanji vus depuis S1','Mini-test blanc partiel (vocab + grammaire)','Lister les 20 points de grammaire les plus durs','Réajuster le deck Anki (cartes ratées)']},
+  {p:'p3',t:'Consolidation 1',items:['Révisions espacées : kanji + vocab (pas de nouveaux excès)','Grammaire : revoir les points difficiles','読解 : 2 textes longs chronométrés','聴解 : 2 sections par semaine']},
+  {p:'p3',t:'Consolidation 2',items:['40 nouveaux mots (combler les trous)','Grammaire : exercices ciblés points faibles','読解 : 2 textes longs','聴解 : 2 sections + shadowing']},
+  {p:'p3',t:'Consolidation 3',items:['Anki à jour + cartes difficiles en priorité','Grammaire : QCM mixtes N3','読解 : textes avec info à repérer (情報検索)','聴解 : 概要理解 (compréhension globale)']},
+  {p:'p3',t:'Consolidation 4',items:['Vocab : focus expressions/onomatopées fréquentes','Grammaire : révision keigo complet','読解 : 2 textes + gestion du temps','聴解 : 即時応答 (réponses rapides)']},
+  {p:'p3',t:'Bilan phase 3',items:['Premier examen blanc COMPLET (conditions réelles)','Corriger et noter le score par section','Identifier la section la plus faible','Plan d\'attaque pour les 4 dernières semaines']},
+  {p:'p4',t:'Examen blanc 1',items:['Annales officielles : test complet chronométré','Analyse fine des erreurs (pourquoi ?)','Re-réviser la section la plus faible','Anki : maintenir, ne plus surcharger']},
+  {p:'p4',t:'Examen blanc 2',items:['2e test blanc complet chronométré','Travailler la VITESSE en lecture','Révision finale grammaire (fiches récap)','Écoute quotidienne maintenue']},
+  {p:'p4',t:'Derniers réglages',items:['3e test blanc (viser ≥ 95/180)','Revoir uniquement les erreurs récurrentes','Préparer logistique : billet, pièce d\'identité, trajet','Vérifier crayons 2B, gomme, montre']},
+  {p:'p4',t:'Semaine de l\'examen',items:['Révisions légères : fiches + cartes ratées seulement','Écoute + lecture détente, pas de bachotage tardif','Dormir +++ , surtout l\'avant-veille','JOUR J : reste calme, gère ton temps. 頑張って！']},
+];
+
+const PHNAME={p1:'Phase 1',p2:'Phase 2',p3:'Phase 3',p4:'Phase 4'};
+const KEY='jlptN3progress_v1';
+let state=JSON.parse(localStorage.getItem(KEY)||'{}');
+
+function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+
+function render(){
+  const c=document.getElementById('weeks');c.innerHTML='';
+  WEEKS.forEach((w,i)=>{
+    const wk=i+1;
+    const done=w.items.filter((_,j)=>state[wk+'_'+j]).length;
+    const all=done===w.items.length;
+    const d=document.createElement('details');d.className='week'+(all?' done':'');
+    const sum=document.createElement('summary');
+    sum.innerHTML=`<span class="phase ${w.p}">${PHNAME[w.p]}</span> <span>S${wk} — ${w.t}</span> <span class="wk-prog">${done}/${w.items.length}${all?' ✓':''}</span>`;
+    d.appendChild(sum);
+    const body=document.createElement('div');body.className='body';
+    w.items.forEach((it,j)=>{
+      const id=wk+'_'+j;
+      const lab=document.createElement('label');lab.className='chk';
+      const cb=document.createElement('input');cb.type='checkbox';cb.checked=!!state[id];
+      cb.onchange=()=>{state[id]=cb.checked;save();render();updateProg()};
+      lab.appendChild(cb);lab.appendChild(document.createTextNode(it));
+      body.appendChild(lab);
+    });
+    d.appendChild(body);c.appendChild(d);
+  });
+}
+
+function updateProg(){
+  const total=WEEKS.reduce((s,w)=>s+w.items.length,0);
+  const done=Object.values(state).filter(Boolean).length;
+  const pct=Math.round(done/total*100);
+  document.getElementById('progbar').style.width=pct+'%';
+  document.getElementById('progtxt').textContent=`Progression : ${pct} %  (${done}/${total} tâches)`;
+}
+
+function countdown(){
+  const now=new Date();
+  const days=Math.max(0,Math.ceil((EXAM-now)/86400000));
+  const weeks=Math.floor(days/7);
+  document.getElementById('cd').innerHTML=
+    `<span class="pill">⏳ <b>${days}</b> jours restants</span>`+
+    `<span class="pill">≈ <b>${weeks}</b> semaines</span>`+
+    `<span class="pill">📅 Examen : <b>6 déc. 2026</b></span>`;
+}
+
+function resetAll(){
+  if(confirm('Effacer toute la progression cochée ?')){state={};save();render();updateProg()}
+}
+
+render();updateProg();countdown();
+</script>
+</body>
+</html>
