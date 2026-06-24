@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - main
-      - claude/jlpt-n3-prep-bxqvvb
   workflow_dispatch:
 
 permissions:
