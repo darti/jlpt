@@ -24,9 +24,12 @@ Ouvre **`index.html`** dans un navigateur.
 Le workflow `.github/workflows/deploy.yml` publie automatiquement le site à chaque push
 sur `main` ou la branche de préparation.
 
-**Activation (une seule fois) :** dans le dépôt → **Settings → Pages → Build and deployment →
-Source = « GitHub Actions »**. Le site est ensuite servi à l'URL indiquée dans l'onglet *Actions*
-(job *Déployer sur GitHub Pages*).
+**Activation (une seule fois, obligatoire) :** dans le dépôt → **Settings → Pages →
+Build and deployment → Source = « GitHub Actions »**, puis relancer le workflow
+(onglet *Actions* → *Re-run jobs*). L'auto-activation par le workflow est bloquée par les
+permissions du dépôt : sans cette étape manuelle, le déploiement échoue avec
+*« Create/Get Pages site failed »*. Une fois activé, le site est servi à l'URL affichée dans
+le job *Déployer sur GitHub Pages*.
 
 > ⚠️ **« Page privée » :** sur un compte gratuit/Pro, une page issue d'un dépôt privé reste
 > **accessible publiquement** via son URL (juste non indexée). Le contrôle d'accès réservé aux
