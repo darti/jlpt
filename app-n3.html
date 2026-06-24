@@ -18,7 +18,7 @@
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.55}
-  header{padding:24px 20px 16px;text-align:center;background:radial-gradient(900px 280px at 50% -50%,rgba(226,70,107,.22),transparent),var(--card)}
+  header{padding:24px 56px 16px;text-align:center;background:radial-gradient(900px 280px at 50% -50%,rgba(226,70,107,.22),transparent),var(--card)}
   header h1{margin:0 0 4px;font-size:1.45rem}
   header .jp{color:var(--accent)}
   header p{color:var(--muted);margin:3px 0;font-size:.88rem}
@@ -249,7 +249,7 @@ const BANK=[
  {cat:'grammaire',d:2,q:'先生に聞いた___、明日は休みらしい。',o:['ところ','とおり','うちに','ばかり'],a:0,e:'<b>V(た)＋ところ</b> = « en faisant…, il s\'est avéré que » (résultat d\'une action).',g:'先生（せんせい）に « à » · 聞く→聞いた＋ところ « en demandant, il s\'avère que » · 明日（あした）は休み（やすみ）らしい « il paraît que c\'est congé ».'},
  {cat:'grammaire',d:2,q:'雨が降り出さ___うちに帰ろう。',o:['ない','た','る','よう'],a:0,e:'<b>〜ないうちに</b> = « avant que (ça arrive) » : avant qu\'il ne se mette à pleuvoir.',g:'雨（あめ）が « sujet » · 降り出す（ふりだす）→降り出さない＋うちに « avant qu\'il ne commence à pleuvoir » · 帰ろう « rentrons (volitif) ».'},
  {cat:'grammaire',d:2,q:'彼は来る___言っていた。',o:['と','が','に','で'],a:0,e:'<b>〜と言う</b> = citation : rapporter des propos.',g:'彼（かれ）は « thème » · 来る（くる）＋と « particule de citation » · 言う→言っていた « avait dit ».'},
- {cat:'grammaire',d:2,q:'study：勉強すれば___ほど面白くなる。',o:['する','すれば','した','して'],a:0,e:'<b>〜ば〜ほど</b> = « plus… plus… ». 「すればするほど」.',g:'勉強（べんきょう）する→すれば…する＋ほど « plus on étudie, plus… » · 面白い（おもしろい）→面白くなる « devient intéressant ».'},
+ {cat:'grammaire',d:2,q:'勉強すれば___ほど面白くなる。',o:['する','すれば','した','して'],a:0,e:'<b>〜ば〜ほど</b> = « plus… plus… ». 「すればするほど」.',g:'勉強（べんきょう）する→すれば…する＋ほど « plus on étudie, plus… » · 面白い（おもしろい）→面白くなる « devient intéressant ».'},
  {cat:'grammaire',d:2,q:'タバコは体に悪い。___、お金もかかる。',o:['それに','しかし','ところが','つまり'],a:0,e:'<b>それに</b> = « de plus » (ajout dans le même sens).',g:'タバコ « cigarette » は · 体（からだ）に悪い（わるい）« mauvais pour la santé » · それに « de plus » · お金（かね）もかかる « ça coûte aussi de l\'argent ».'},
  {cat:'grammaire',d:3,q:'子供___、よくこんな難しい本が読めるね。',o:['にしては','として','について','によって'],a:0,e:'<b>〜にしては</b> = « pour (un enfant), contrairement à l\'attente ».',g:'子供（こども）« enfant » ＋にしては « pour (contrairement à l\'attente) » · こんな難しい（むずかしい）本（ほん）が読める（よめる）« peut lire un livre si difficile » ＋ね.'},
  {cat:'grammaire',d:3,q:'約束した___、守らなければならない。',o:['以上','うちに','ところ','ばかり'],a:0,e:'<b>〜以上(は)</b> = « du moment que / puisque » (engagement logique).',g:'約束（やくそく）する→約束した＋以上（いじょう）« du moment qu\'on a promis » · 守る（まもる）→守らなければならない « on doit tenir (parole) ».'},
@@ -258,7 +258,7 @@ const BANK=[
  {cat:'grammaire',d:3,q:'年を取る___、記憶力が落ちる。',o:['につれて','によって','にとって','において'],a:0,e:'<b>〜につれて</b> = « au fur et à mesure que » (deux évolutions parallèles).',g:'年（とし）を取る（とる）« vieillir » ＋につれて « à mesure que » · 記憶力（きおくりょく）« mémoire » が落ちる（おちる）« décline ».'},
  {cat:'grammaire',d:3,q:'読め___、この漢字は難しすぎる。',o:['ようがない','がちだ','っぽい','かけだ'],a:0,e:'<b>〜ようがない</b> = « il n\'y a pas moyen de » : impossible à lire.',g:'読む（よむ）→読み（base -masu）＋ようがない « aucun moyen de lire » · この漢字（かんじ）は難しすぎる（むずかしすぎる）« trop difficile ».'},
  {cat:'grammaire',d:2,q:'手紙を書き___で、まだ出していない。',o:['かけ','きり','がち','つつ'],a:0,e:'<b>〜かけ</b> = action commencée mais inachevée : « à moitié écrite ».',g:'手紙（てがみ）« lettre » を · 書く（かく）→書き＋かけ « commencée mais inachevée » ＋で · まだ出す（だす）→出していない « pas encore envoyée ».'},
- {cat:'grammaire',d:2,q:'medicine：薬を飲んだ___、すぐに効いた。',o:['とたん','うちに','ながら','ついでに'],a:0,e:'<b>〜たとたん</b> = « à l\'instant même où » (juste après).',g:'薬（くすり）を飲む→飲んだ＋とたん « à l\'instant où » · すぐに « aussitôt » · 効く（きく）→効いた « a fait effet ».'},
+ {cat:'grammaire',d:2,q:'薬を飲んだ___、すぐに効いた。',o:['とたん','うちに','ながら','ついでに'],a:0,e:'<b>〜たとたん</b> = « à l\'instant même où » (juste après).',g:'薬（くすり）を飲む→飲んだ＋とたん « à l\'instant où » · すぐに « aussitôt » · 効く（きく）→効いた « a fait effet ».'},
  {cat:'grammaire',d:3,q:'買い物の___、郵便局にも寄った。',o:['ついでに','とたんに','うちに','たびに'],a:0,e:'<b>〜ついでに</b> = « en profiter pour / à l\'occasion de ».',g:'買い物（かいもの）« courses » の＋ついでに « en profitant pour » · 郵便局（ゆうびんきょく）« la poste » にも · 寄る（よる）→寄った « suis aussi passé ».'},
  {cat:'grammaire',d:1,q:'みんなで歌を歌っ___しましょう。',o:['たり','ても','ながら','ように'],a:0,e:'<b>〜たり〜たり</b> = énumération non exhaustive d\'actions.',g:'みんなで « tous ensemble » · 歌（うた）を歌う（うたう）→歌ったり « faire des choses comme chanter » ＋しましょう « faisons ».'},
 
@@ -284,17 +284,17 @@ const BANK=[
  {cat:'kanji',d:1,q:'「自由」の読み方は？',o:['じゆう','じゅう','じよう','しゆう'],a:0,e:'<b>自由 = じゆう</b> (liberté).',g:'自（じ « soi-même ») ＋ 由（ゆう « raison/cause ») → liberté. Attention : じゆう (3 mores), pas じゅう.'},
  {cat:'kanji',d:1,q:'「予定」の読み方は？',o:['よてい','ようてい','よじょう','よで'],a:0,e:'<b>予定 = よてい</b> (programme, prévision).',g:'予（よ « à l\'avance ») ＋ 定（てい « fixer ») → programme/prévision.'},
  {cat:'kanji',d:2,q:'「経験」の読み方は？',o:['けいけん','きょうけん','けいげん','けいか'],a:0,e:'<b>経験 = けいけん</b> (expérience).',g:'経（けい « passer par ») ＋ 験（けん « éprouver/test ») → expérience.'},
- {cat:'kanji',d:2,q:'「informations 情報」の読み方は？',o:['じょうほう','せいほう','じょうぼう','じょほう'],a:0,e:'<b>情報 = じょうほう</b> (information).',g:'情（じょう « information/sentiment ») ＋ 報（ほう « rapporter ») → information.'},
+ {cat:'kanji',d:2,q:'「情報」の読み方は？',o:['じょうほう','せいほう','じょうぼう','じょほう'],a:0,e:'<b>情報 = じょうほう</b> (information).',g:'情（じょう « information/sentiment ») ＋ 報（ほう « rapporter ») → information.'},
  {cat:'kanji',d:2,q:'「政治」の読み方は？',o:['せいじ','せいち','しょうじ','せいじゃ'],a:0,e:'<b>政治 = せいじ</b> (politique).',g:'政（せい « gouvernement ») ＋ 治（じ « gouverner ») → politique.'},
  {cat:'kanji',d:2,q:'「専門」の読み方は？',o:['せんもん','せんもう','ぜんもん','せんむ'],a:0,e:'<b>専門 = せんもん</b> (spécialité).',g:'専（せん « exclusif ») ＋ 門（もん « porte/domaine ») → spécialité.'},
  {cat:'kanji',d:3,q:'「複雑」の読み方は？',o:['ふくざつ','ふくそう','ふくしゅう','ぶくざつ'],a:0,e:'<b>複雑 = ふくざつ</b> (compliqué).',g:'複（ふく « multiple ») ＋ 雑（ざつ « mêlé/divers ») → compliqué.'},
  {cat:'kanji',d:3,q:'「観光」の読み方は？',o:['かんこう','かんこ','けんこう','かんごう'],a:0,e:'<b>観光 = かんこう</b> (tourisme).',g:'観（かん « observer ») ＋ 光（こう « lumière/spectacle ») → tourisme.'},
  {cat:'kanji',d:3,q:'「許可」の読み方は？',o:['きょか','こか','きょが','ごか'],a:0,e:'<b>許可 = きょか</b> (autorisation).',g:'許（きょ « permettre ») ＋ 可（か « possible ») → autorisation.'},
- {cat:'kanji',d:1,q:'「practice 練習」の読み方は？',o:['れんしゅう','れんしゅ','れんじゅう','ねんしゅう'],a:0,e:'<b>練習 = れんしゅう</b> (entraînement).',g:'練（れん « entraîner/raffiner ») ＋ 習（しゅう « apprendre ») → entraînement.'},
- {cat:'kanji',d:2,q:'「important 重要」の読み方は？',o:['じゅうよう','ちょうよう','じゅうよ','じゅよう'],a:0,e:'<b>重要 = じゅうよう</b> (important).',g:'重（じゅう « lourd/important ») ＋ 要（よう « essentiel ») → important.'},
- {cat:'kanji',d:3,q:'「increase 増加」の読み方は？',o:['ぞうか','そうか','ぞうが','ましか'],a:0,e:'<b>増加 = ぞうか</b> (augmentation).',g:'増（ぞう « augmenter ») ＋ 加（か « ajouter ») → augmentation.'},
- {cat:'kanji',d:2,q:'「relation 関係」の読み方は？',o:['かんけい','かんき','けんけい','かんけ'],a:0,e:'<b>関係 = かんけい</b> (relation).',g:'関（かん « lien/barrière ») ＋ 係（けい « rapport ») → relation.'},
- {cat:'kanji',d:1,q:'「question 質問」の読み方は？',o:['しつもん','ちつもん','しつぶん','しちもん'],a:0,e:'<b>質問 = しつもん</b> (question).',g:'質（しつ « nature/qualité ») ＋ 問（もん « demander ») → question.'},
+ {cat:'kanji',d:1,q:'「練習」の読み方は？',o:['れんしゅう','れんしゅ','れんじゅう','ねんしゅう'],a:0,e:'<b>練習 = れんしゅう</b> (entraînement).',g:'練（れん « entraîner/raffiner ») ＋ 習（しゅう « apprendre ») → entraînement.'},
+ {cat:'kanji',d:2,q:'「重要」の読み方は？',o:['じゅうよう','ちょうよう','じゅうよ','じゅよう'],a:0,e:'<b>重要 = じゅうよう</b> (important).',g:'重（じゅう « lourd/important ») ＋ 要（よう « essentiel ») → important.'},
+ {cat:'kanji',d:3,q:'「増加」の読み方は？',o:['ぞうか','そうか','ぞうが','ましか'],a:0,e:'<b>増加 = ぞうか</b> (augmentation).',g:'増（ぞう « augmenter ») ＋ 加（か « ajouter ») → augmentation.'},
+ {cat:'kanji',d:2,q:'「関係」の読み方は？',o:['かんけい','かんき','けんけい','かんけ'],a:0,e:'<b>関係 = かんけい</b> (relation).',g:'関（かん « lien/barrière ») ＋ 係（けい « rapport ») → relation.'},
+ {cat:'kanji',d:1,q:'「質問」の読み方は？',o:['しつもん','ちつもん','しつぶん','しちもん'],a:0,e:'<b>質問 = しつもん</b> (question).',g:'質（しつ « nature/qualité ») ＋ 問（もん « demander ») → question.'},
 
  // ===== LECTURE (extension) =====
  {cat:'lecture',d:1,q:'「ご自由にお取りください」＝どうすればいい？',o:['取ってはいけない','自由に取っていい','店員に頼む','お金を払う'],a:1,e:'<b>ご自由に</b> = librement → on peut se servir gratuitement.',g:'ご自由（じゆう）に « librement » · お取り（とり）ください « servez-vous (forme honorifique お＋V＋ください) » → on peut prendre librement.'},
