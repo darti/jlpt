@@ -26,6 +26,8 @@
   header .jp{color:var(--accent);font-weight:700}
   header p{margin:4px 0;color:var(--muted)}
   .wrap{max-width:920px;margin:0 auto;padding:20px}
+  .homebtn{position:fixed;top:10px;left:10px;z-index:60;background:var(--card2);border:1px solid var(--line);color:var(--accent2);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.15rem;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+  .homebtn:active{transform:scale(.92)}
   .countdown{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:18px 0 4px}
   .pill{background:var(--card2);border:1px solid var(--line);border-radius:999px;
         padding:8px 16px;font-size:.92rem}
@@ -69,6 +71,7 @@
 </style>
 </head>
 <body>
+<a href="index.html" class="homebtn" title="Accueil" aria-label="Accueil">🏠</a>
 <header>
   <h1>Préparation <span class="jp">JLPT N3</span> 日本語能力試験</h1>
   <p>Objectif : session de <b>décembre 2026</b> · plan sur 20 semaines</p>

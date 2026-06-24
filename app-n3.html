@@ -23,6 +23,8 @@
   header .jp{color:var(--accent)}
   header p{color:var(--muted);margin:3px 0;font-size:.88rem}
   .wrap{max-width:700px;margin:0 auto;padding:16px}
+  .homebtn{position:fixed;top:10px;left:10px;z-index:60;background:var(--card2);border:1px solid var(--line);color:var(--accent2);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.15rem;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+  .homebtn:active{transform:scale(.92)}
   .cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0}
   .cats button{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:999px;padding:7px 14px;cursor:pointer;font-size:.86rem}
   .cats button.on{background:var(--accent);border-color:var(--accent);color:#fff}
@@ -75,6 +77,7 @@
 </style>
 </head>
 <body>
+<a href="index.html" class="homebtn" title="Accueil" aria-label="Accueil">🏠</a>
 <header>
   <h1>Entraînement adaptatif <span class="jp">JLPT N3</span></h1>
   <p>La difficulté s'ajuste à ton niveau · diagnostics périodiques · probabilité de réussite</p>
@@ -667,18 +670,30 @@ function renderChart(){
 }
 
 /* =================== SÉLECTION ADAPTATIVE =================== */
-function shuffle(a){let s=0;for(let i=a.length-1;i>0;i--){s=(s*9301+49297)%233280;const j=Math.floor(((Math.sin(i*99.7)+1)/2)*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function pickAdaptive(cat,n,exclude){
-  // cible : difficulté la plus proche du niveau de la compétence
+  // cible : difficulté la plus proche du niveau, avec une part d'aléatoire (variété)
   const R=S.skill[cat].R;
   let pool=BANK.map((q,i)=>({...q,id:i})).filter(q=>q.cat===cat&&!exclude.has(q.id));
   pool.forEach(q=>{
     const closeness=-Math.abs(DRATING[q.d]-R);          // plus proche = mieux
     const wrongBoost=S.wrong.includes(q.id)?150:0;        // revoir les erreurs
-    q._w=closeness+wrongBoost+(Math.sin(q.id*12.9)*40);   // bruit déterministe
+    q._w=closeness+wrongBoost+(Math.random()*90);         // bruit aléatoire
   });
   pool.sort((a,b)=>b._w-a._w);
   return pool.slice(0,n);
+}
+// Diagnostic : tirage aléatoire couvrant les 3 niveaux de difficulté, différent à chaque fois
+function pickDiagnostic(cat,n,exclude){
+  const byD={1:[],2:[],3:[]};
+  shuffle(BANK.map((q,i)=>({...q,id:i})).filter(q=>q.cat===cat&&!exclude.has(q.id)))
+    .forEach(q=>byD[q.d].push(q));
+  const out=[]; let d=1;
+  while(out.length<n && (byD[1].length||byD[2].length||byD[3].length)){
+    if(byD[d].length) out.push(byD[d].pop());
+    d=d%3+1;
+  }
+  return out;
 }
 function buildQuiz(mode){
   const ex=new Set();let out=[];
@@ -688,10 +703,14 @@ function buildQuiz(mode){
     if(!out.length){alert('Aucune erreur enregistrée — fais un quiz d\'abord !');return null}
     return shuffle(out).slice(0,10);
   }
-  const cats=mode==='diagnostic'?CATS:[...selectedCats];
-  const per=mode==='diagnostic'?4:Math.ceil(10/cats.length);
+  if(mode==='diagnostic'){
+    CATS.forEach(c=>{pickDiagnostic(c,4,ex).forEach(q=>{ex.add(q.id);out.push(q)})});
+    return shuffle(out).slice(0,15);
+  }
+  const cats=[...selectedCats];
+  const per=Math.ceil(10/cats.length);
   cats.forEach(c=>{pickAdaptive(c,per,ex).forEach(q=>{ex.add(q.id);out.push(q)})});
-  return shuffle(out).slice(0,mode==='diagnostic'?15:10);
+  return shuffle(out).slice(0,10);
 }
 
 /* =================== DÉROULÉ QUIZ =================== */
