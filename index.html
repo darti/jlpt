@@ -128,16 +128,21 @@
 (function(){
   var btn=document.getElementById('installBtn'), deferred=null;
   var standalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
-  var isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
-  if(standalone)return; // déjà installée
-  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferred=e;btn.style.display='block';});
+  if(standalone){btn.style.display='none';return;} // déjà installée
+  var ua=navigator.userAgent;
+  // iPadOS se présente comme un Mac : on le détecte via l'écran tactile
+  var isIOS=/iphone|ipad|ipod/i.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);
+  // Android/Chrome : invite native
+  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferred=e;btn.textContent='📲 Installer l\'application';});
   window.addEventListener('appinstalled',function(){btn.style.display='none';});
-  if(isIOS){ // iOS n'a pas de prompt : on montre les instructions
-    btn.style.display='block';
-    btn.onclick=function(){alert('Pour installer :\n1. Touche le bouton Partager (carré avec flèche ↑)\n2. « Sur l\'écran d\'accueil »\n3. Ajouter');};
-  } else {
-    btn.onclick=async function(){ if(!deferred)return; deferred.prompt(); await deferred.userChoice; deferred=null; btn.style.display='none'; };
-  }
+  // Hors application installée, on montre toujours le bouton (repli manuel pour Safari)
+  btn.style.display='block';
+  if(isIOS)btn.textContent='📲 Ajouter à l\'écran d\'accueil';
+  btn.onclick=function(){
+    if(deferred){deferred.prompt();deferred.userChoice.finally(function(){deferred=null;btn.style.display='none';});return;}
+    if(isIOS){alert('Installer sur iPhone / iPad (Safari) :\n\n1. Touche le bouton Partager  ⬆  (carré avec une flèche)\n2. Fais défiler et choisis « Sur l\'écran d\'accueil »\n3. Touche « Ajouter »\n\n⚠ Doit être ouvert dans Safari — pas Chrome ni un navigateur intégré (Gmail, Instagram…).');}
+    else{alert('Pour installer :\n• Chrome/Edge : menu ⋮ → « Installer l\'application »\n• Safari (Mac) : menu Fichier → « Ajouter au Dock »');}
+  };
 })();
 </script>
 <script>if('serviceWorker'in navigator){let r=false;navigator.serviceWorker.addEventListener('controllerchange',function(){if(r)return;r=true;location.reload();});window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').then(function(g){g&&g.update&&g.update();}).catch(function(){})})}</script>
