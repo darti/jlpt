@@ -115,34 +115,24 @@
 
   <h2>⏰ Routine quotidienne (≈ 60–90 min/jour)</h2>
   <div class="card routine">
-    <b>15 min</b><span>Anki / flashcards — kanji + vocabulaire (révisions espacées, tous les jours)</span>
-    <b>20 min</b><span>1 à 2 nouveaux points de grammaire + exemples écrits à la main</span>
-    <b>20 min</b><span>Compréhension écrite (lecture courte, article facile, manga annoté)</span>
-    <b>15 min</b><span>Écoute : podcast / vidéo JLPT N3 (même passif dans les transports)</span>
-    <b>+ week-end</b><span>Bilan de la semaine + 1 mini-test + production (journal en japonais)</span>
+    <b>15 min</b><span><a href="app-n3.html">Entraînement</a> — un quiz du jour (kanji + vocabulaire), puis « Réviser mes erreurs ».</span>
+    <b>20 min</b><span><a href="cours-n3.html#gram">Cours de grammaire</a> : 1 à 2 nouveaux points + écris 2 phrases à toi avec chacun.</span>
+    <b>20 min</b><span>Compréhension écrite : relis les exemples du cours à voix haute, puis quiz « 読解 » de l'app.</span>
+    <b>15 min</b><span>Écoute : écoute du japonais autour de toi (audio, vidéos sans sous-titres FR), même en passif.</span>
+    <b>+ week-end</b><span>Bilan : un <b>diagnostic complet</b> dans l'app + écris un court journal en japonais.</span>
   </div>
   <p class="note">Règle d'or : <b>la régularité bat l'intensité</b>. 60 min/jour valent mieux que 7 h le dimanche.</p>
 
-  <h2>📚 Ressources recommandées</h2>
+  <h2>📦 Tout est dans l'application</h2>
   <div class="card">
-    <h3>Manuels</h3>
+    <p class="note" style="margin-top:0">Pas besoin de ressource externe : l'app est complète et fonctionne hors ligne.</p>
     <ul>
-      <li><b>Sou Matome N3</b> (5 volumes : 文法 grammaire, 漢字, 語彙 vocab, 読解 lecture, 聴解 écoute) — rythme « un chapitre par jour ».</li>
-      <li><b>Shin Kanzen Master N3</b> — plus exigeant, idéal phase 2–3 (surtout 文法 et 読解).</li>
-      <li><b>Try! N3</b> — grammaire en contexte, bon pour démarrer.</li>
+      <li><b><a href="cours-n3.html">📚 Cours</a></b> — toute la grammaire N3 (~150 points expliqués), kanji par thèmes, vocabulaire, méthodes 読解 et 聴解.</li>
+      <li><b><a href="app-n3.html">🧠 Entraînement adaptatif</a></b> — 200+ questions corrigées avec décomposition, difficulté qui s'ajuste à ton niveau, « Réviser mes erreurs » (révisions espacées intégrées).</li>
+      <li><b><a href="app-n3.html">🩺 Diagnostics</a></b> — tes examens blancs : score estimé /180, probabilité de réussite, courbe de progression.</li>
+      <li><b>🗓️ Ce planning</b> — checklist semaine par semaine, sauvegardée automatiquement.</li>
     </ul>
-    <h3>Apps & en ligne</h3>
-    <ul>
-      <li><b>Anki</b> (deck « JLPT N3 » / Core), ou <b>Renshuu</b> — pilier des révisions.</li>
-      <li><b>Bunpro</b> — grammaire N3 avec révisions espacées et phrases d'exemple.</li>
-      <li><b>jlptsensei.com</b> — listes de grammaire/vocab et quiz gratuits.</li>
-      <li><b>YouTube</b> : Japanese Ammo with Misa, Nihongo no Mori (N3) ; podcasts <b>Nihongo con Teppei</b>.</li>
-    </ul>
-    <h3>Tests blancs</h3>
-    <ul>
-      <li>Annales officielles JLPT (« 公式問題集 N3 ») — à garder pour la phase 4.</li>
-      <li>Tests en ligne gratuits : <b>jlptsensei</b>, <b>japanesetest4you.com</b>.</li>
-    </ul>
+    <p class="note" style="margin-bottom:0">Au quotidien : <b>nouveau</b> dans le Cours → <b>s'entraîner</b> dans l'app → <b>réviser ses erreurs</b>. Un diagnostic par semaine pour mesurer.</p>
   </div>
 
   <h2>✅ Planning semaine par semaine</h2>
@@ -156,8 +146,8 @@
       <li><b>Grammaire :</b> pour chaque point, écris 2 phrases qui te concernent → mémorisation x3.</li>
       <li><b>Écoute :</b> c'est la section la plus négligée et souvent la plus faible. Écoute du japonais tous les jours, même en fond.</li>
       <li><b>Compréhension écrite :</b> entraîne-toi <b>chronométré</b> dès la phase 3, c'est une épreuve de vitesse.</li>
-      <li><b>Anki ne pardonne pas :</b> si tu sautes 1 semaine, les révisions s'accumulent. Fais-le tous les jours, même 5 cartes.</li>
-      <li><b>Inscription :</b> ouvre-toi sur <a href="https://www.jlpt.jp/e/" target="_blank">jlpt.jp</a> — les inscriptions de décembre ouvrent généralement fin août / début septembre. Note-le !</li>
+      <li><b>Révise tes erreurs :</b> reviens chaque jour sur « Réviser mes erreurs » dans l'app — c'est là que se font les progrès.</li>
+      <li><b>Inscription :</b> les inscriptions à la session de décembre ouvrent généralement fin août / début septembre, sur le site officiel du JLPT. Note-le dès maintenant !</li>
     </ul>
   </div>
 
@@ -174,26 +164,26 @@ const EXAM = new Date('2026-12-06T09:00:00');
 
 // ---- Données des 20 semaines ----
 const WEEKS = [
-  {p:'p1',t:'Mise en route',items:['Installer Anki + deck N3, planifier 15 min/jour','Réviser toute la grammaire N4 (Sou Matome ou notes)','Lister ses points faibles N4 à consolider','Définir un créneau quotidien fixe (même heure)']},
-  {p:'p1',t:'Kanji & rythme',items:['Sou Matome 漢字 N3 : semaine 1','50 nouveaux mots de vocabulaire (Anki)','Grammaire : 5 points N3 (~ば、~たら、~なら...)','1 podcast Nihongo con Teppei / jour']},
-  {p:'p1',t:'Bases grammaire',items:['Sou Matome 漢字 : semaine 2','50 nouveaux mots','Grammaire : 5 points (~ようだ、~そうだ、~らしい)','Lecture facile : 1 texte court (NHK Easy)']},
-  {p:'p1',t:'Volume vocab',items:['Sou Matome 漢字 : semaine 3','60 nouveaux mots','Grammaire : 6 points (passif・causatif rappel)','Écrire 5 phrases avec la grammaire de la semaine']},
-  {p:'p1',t:'Bilan phase 1',items:['Sou Matome 漢字 : semaine 4','Réviser TOUT le vocab des 4 semaines','Mini-quiz grammaire (jlptsensei)','Auto-évaluation : où en suis-je ?']},
-  {p:'p2',t:'Construction 1',items:['Shin Kanzen / Try! 文法 : chapitre 1','60 mots + révisions Anki à jour','Grammaire : 6 points (敬語 keigo intro)','1 écoute N3 par jour (Nihongo no Mori)']},
-  {p:'p2',t:'Construction 2',items:['Kanji N3 : nouveau lot (~30 kanji)','60 mots','Grammaire : 6 points (~わけだ、~はずだ)','Lecture intermédiaire : 1 article/jour']},
-  {p:'p2',t:'Construction 3',items:['Kanji : nouveau lot','60 mots','Grammaire : 6 points (conditionnels avancés)','Tenir un journal : 3 phrases/jour en japonais']},
-  {p:'p2',t:'Construction 4',items:['Kanji : nouveau lot','60 mots','Grammaire : 6 points (~ものだ、~ことだ)','Test d\'écoute chronométré (1 section)']},
-  {p:'p2',t:'Construction 5',items:['Kanji : nouveau lot','60 mots','Grammaire : 6 points','Compréhension écrite : questions chronométrées']},
-  {p:'p2',t:'Bilan phase 2',items:['Réviser tous les kanji vus depuis S1','Mini-test blanc partiel (vocab + grammaire)','Lister les 20 points de grammaire les plus durs','Réajuster le deck Anki (cartes ratées)']},
-  {p:'p3',t:'Consolidation 1',items:['Révisions espacées : kanji + vocab (pas de nouveaux excès)','Grammaire : revoir les points difficiles','読解 : 2 textes longs chronométrés','聴解 : 2 sections par semaine']},
-  {p:'p3',t:'Consolidation 2',items:['40 nouveaux mots (combler les trous)','Grammaire : exercices ciblés points faibles','読解 : 2 textes longs','聴解 : 2 sections + shadowing']},
-  {p:'p3',t:'Consolidation 3',items:['Anki à jour + cartes difficiles en priorité','Grammaire : QCM mixtes N3','読解 : textes avec info à repérer (情報検索)','聴解 : 概要理解 (compréhension globale)']},
-  {p:'p3',t:'Consolidation 4',items:['Vocab : focus expressions/onomatopées fréquentes','Grammaire : révision keigo complet','読解 : 2 textes + gestion du temps','聴解 : 即時応答 (réponses rapides)']},
-  {p:'p3',t:'Bilan phase 3',items:['Premier examen blanc COMPLET (conditions réelles)','Corriger et noter le score par section','Identifier la section la plus faible','Plan d\'attaque pour les 4 dernières semaines']},
-  {p:'p4',t:'Examen blanc 1',items:['Annales officielles : test complet chronométré','Analyse fine des erreurs (pourquoi ?)','Re-réviser la section la plus faible','Anki : maintenir, ne plus surcharger']},
-  {p:'p4',t:'Examen blanc 2',items:['2e test blanc complet chronométré','Travailler la VITESSE en lecture','Révision finale grammaire (fiches récap)','Écoute quotidienne maintenue']},
-  {p:'p4',t:'Derniers réglages',items:['3e test blanc (viser ≥ 95/180)','Revoir uniquement les erreurs récurrentes','Préparer logistique : billet, pièce d\'identité, trajet','Vérifier crayons 2B, gomme, montre']},
-  {p:'p4',t:'Semaine de l\'examen',items:['Révisions légères : fiches + cartes ratées seulement','Écoute + lecture détente, pas de bachotage tardif','Dormir +++ , surtout l\'avant-veille','JOUR J : reste calme, gère ton temps. 頑張って！']},
+  {p:'p1',t:'Mise en route',items:['Faire un 1ᵉʳ diagnostic dans l\'app pour situer son niveau','Parcourir le Cours : leçons 1–2 de grammaire','Définir un créneau quotidien fixe (même heure)','Activer la synchro (facultatif) pour suivre sa progression']},
+  {p:'p1',t:'Kanji & rythme',items:['Cours : kanji « Temps » + « Émotions »','Entraînement : 1 quiz Kanji + 1 quiz Vocab / jour','Grammaire (Cours) : 5 points (ば・たら・なら・と)','« Réviser mes erreurs » à chaque fin de journée']},
+  {p:'p1',t:'Bases grammaire',items:['Grammaire : leçons 2–3 (apparence, passif/causatif)','Entraînement : quiz Grammaire ciblé','Écrire 2 phrases à soi avec chaque point vu','Lecture : relire les exemples du cours à voix haute']},
+  {p:'p1',t:'Volume vocab',items:['Cours : vocab (verbes composés, adverbes)','Entraînement : quiz Vocab + Kanji','Grammaire : leçon 4–5','Refaire les questions ratées de la semaine']},
+  {p:'p1',t:'Bilan phase 1',items:['Diagnostic complet : noter score et points faibles','Réviser toutes les erreurs accumulées','Relire les leçons de grammaire 1–5','Auto-évaluation : où en suis-je ?']},
+  {p:'p2',t:'Construction 1',items:['Grammaire : keigo (leçon 4) + leçons 6–7','Entraînement : quiz mixtes','Cours : kanji « Travail & société »','Écoute : du japonais chaque jour, même en passif']},
+  {p:'p2',t:'Construction 2',items:['Grammaire : leçons 8–9 (cause, opposition)','Entraînement : focus catégorie la plus faible','Kanji « Nature & science »','Lecture : 1 texte court / jour']},
+  {p:'p2',t:'Construction 3',items:['Grammaire : leçons 10–11','Entraînement quotidien + révision des erreurs','Vocab : katakana & onomatopées','Tenir un journal : 3 phrases/jour en japonais']},
+  {p:'p2',t:'Construction 4',items:['Grammaire : leçons 12–14 (て-formes, 授受)','Entraînement : quiz Grammaire','Kanji : nouveau lot','1 diagnostic court pour mesurer']},
+  {p:'p2',t:'Construction 5',items:['Grammaire : leçons 15–17','Entraînement : viser >70% par catégorie','Vocab : combler les trous','Compréhension écrite : quiz 読解']},
+  {p:'p2',t:'Bilan phase 2',items:['Diagnostic complet','Lister les points de grammaire encore fragiles','Réviser tous les kanji vus','Repartir des erreurs récurrentes']},
+  {p:'p3',t:'Consolidation 1',items:['Grammaire : leçons 18–20 (révision active)','Entraînement adaptatif quotidien','Lecture (読解) : entraînement chronométré mental','Écoute : shadowing à voix haute']},
+  {p:'p3',t:'Consolidation 2',items:['Grammaire : leçons 21–23','« Réviser mes erreurs » en priorité','Lecture : repérage d\'info (情報検索)','Diagnostic court en milieu de semaine']},
+  {p:'p3',t:'Consolidation 3',items:['Grammaire : leçons 24–26 (jugement, registre)','Entraînement : toutes catégories mélangées','Vocab : expressions fréquentes','聴解 : compréhension globale (概要理解)']},
+  {p:'p3',t:'Consolidation 4',items:['Révision ciblée de la section la plus faible','Entraînement : diminuer le taux d\'erreurs','Relire les méthodes 読解 & 聴解 du Cours','Gérer le temps : réponds plus vite']},
+  {p:'p3',t:'Bilan phase 3',items:['Diagnostic complet en conditions réelles','Noter le score estimé /180 par section','Identifier la section la plus faible','Plan d\'attaque pour les 4 dernières semaines']},
+  {p:'p4',t:'Examen blanc 1',items:['Diagnostic complet chronométré','Analyse fine des erreurs (pourquoi ?)','Re-réviser la section la plus faible','Entretenir les acquis, ne plus surcharger']},
+  {p:'p4',t:'Examen blanc 2',items:['2ᵉ diagnostic complet','Travailler la VITESSE en lecture','Révision finale de la grammaire (Cours)','Écoute quotidienne maintenue']},
+  {p:'p4',t:'Derniers réglages',items:['3ᵉ diagnostic (viser ≥ 95/180)','Revoir uniquement les erreurs récurrentes','Préparer logistique : convocation, pièce d\'identité, trajet','Vérifier crayons 2B, gomme, montre']},
+  {p:'p4',t:'Semaine de l\'examen',items:['Révisions légères : erreurs récurrentes seulement','Écoute + lecture détente, pas de bachotage tardif','Dormir +++ , surtout l\'avant-veille','JOUR J : reste calme, gère ton temps. 頑張って！']},
 ];
 
 const PHNAME={p1:'Phase 1',p2:'Phase 2',p3:'Phase 3',p4:'Phase 4'};
