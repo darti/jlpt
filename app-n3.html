@@ -74,6 +74,8 @@
   #qtext.furi-on rt, ruby.show rt{visibility:visible}
   .furibtn{margin-left:auto;background:var(--card2);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:3px 10px;cursor:pointer;font-size:.74rem}
   .furibtn.on{background:var(--accent2);border-color:var(--accent2);color:#06121a;font-weight:700}
+  .listenbtn{background:#b07bd8;border:none;color:#1a0f24;font-weight:700;font-size:1.05rem;padding:12px 20px;border-radius:12px;cursor:pointer}
+  .listenbtn:active{transform:scale(.96)}
 </style>
 </head>
 <body>
@@ -431,12 +433,28 @@ const BANK=[
  {cat:'grammaire',d:2,q:'これは輸出___に作られた製品だ。',o:['向け','がち','っぽい','げ'],a:0,e:'<b>〜向け</b> = « destiné à ».',g:'輸出（ゆしゅつ）向け « destiné à l\'exportation » · 製品（せいひん）.'},
  {cat:'grammaire',d:1,q:'あれ、鍵をかけた___？',o:['っけ','なら','のに','わけ'],a:0,e:'<b>〜っけ</b> = on cherche à se rappeler « c\'était… déjà ? ».',g:'鍵（かぎ）をかけた＋っけ « j\'ai bien fermé à clé, déjà ? ».'},
  {cat:'grammaire',d:3,q:'彼が手伝ってくれる___、思ってもみなかった。',o:['なんて','ばかり','どころ','こそ'],a:0,e:'<b>〜なんて</b> = surprise « (le fait) que… ».',g:'手伝ってくれる＋なんて « que lui m\'aide… » · 思ってもみなかった « je ne l\'aurais jamais cru ».'},
+
+ // ===== ÉCOUTE (聴解) — lu par la synthèse vocale du navigateur =====
+ {cat:'ecoute',d:1,q:'道を聞きました。どこで曲がりますか。',script:'すみません、駅はどこですか。… まっすぐ行って、二つ目の信号を右に曲がってください。',o:['二つ目の信号を右','一つ目の信号を左','まっすぐ行くだけ','曲がらない'],a:0,e:'« まっすぐ → 二つ目の信号を右 » = aller tout droit puis tourner à droite au 2ᵉ feu.'},
+ {cat:'ecoute',d:1,q:'同僚が先に帰ります。何と答えますか。',script:'お先に失礼します。',o:['お疲れさまでした','いただきます','はじめまして','ごちそうさまでした'],a:0,e:'À « お先に失礼します » (je pars avant vous), on répond « お疲れさまでした ».'},
+ {cat:'ecoute',d:2,q:'会議について正しいのはどれですか。',script:'明日の会議ですが、午後二時から三時に変更になりました。場所は変わりません。',o:['時間が変わった','場所が変わった','中止になった','人数が変わった'],a:0,e:'L\'heure passe de 14 h à 15 h ; le lieu ne change pas.'},
+ {cat:'ecoute',d:2,q:'レポートはどうすればいいですか。',script:'レポートは金曜日までにメールで送ってください。印刷しなくていいです。',o:['金曜までにメールで送る','月曜に持っていく','印刷して手で渡す','送らなくていい'],a:0,e:'金曜までに、メールで envoyer (pas besoin d\'imprimer).'},
+ {cat:'ecoute',d:1,q:'席が空いています。何と言いますか。',script:'すみません、この席、空いていますか。',o:['ええ、どうぞ','いいえ、結構です','また今度','こちらこそ'],a:0,e:'Le siège est libre → « ええ、どうぞ » (oui, je vous en prie).'},
+ {cat:'ecoute',d:2,q:'明日の午後の天気はどうなりますか。',script:'天気予報によると、明日は午前中は雨で、午後から晴れるそうです。',o:['晴れ','雨','雪','一日中くもり'],a:0,e:'Matin : pluie ; après-midi : 晴れる (beau).'},
+ {cat:'ecoute',d:2,q:'まず何をしますか。',script:'では、お名前とご住所をこちらに書いてから、二番の窓口へお願いします。',o:['名前と住所を書く','二番の窓口へ行く','お金を払う','番号札を取る'],a:0,e:'« 〜てから » = d\'abord écrire nom+adresse, ensuite le guichet 2.'},
+ {cat:'ecoute',d:2,q:'声が小さいと言われました。どう答えますか。',script:'すみません、少し声が小さいです。',o:['失礼しました。もう少し大きく話します','ありがとうございます','はい、小さいです','どういたしまして'],a:0,e:'On s\'excuse et on propose de parler plus fort.'},
+ {cat:'ecoute',d:2,q:'電車は今どうなっていますか。',script:'お客様にお知らせします。電車が事故のため遅れており、十五分ほど遅れる見込みです。',o:['十五分ほど遅れる','時間通りに来る','止まってしまった','早く着く'],a:0,e:'見込み = prévision : ~15 min de retard.'},
+ {cat:'ecoute',d:3,q:'お茶を断ります。ていねいに何と言いますか。',script:'お茶でもいかがですか。',o:['いえ、結構です。ありがとうございます','はい、おいしいです','ごめんください','いただきます'],a:0,e:'Refus poli : « 結構です » + remerciement.'},
+ {cat:'ecoute',d:2,q:'エレベーターを降りたら、どう行きますか。',script:'会議室は三階です。エレベーターを降りて、左にまっすぐ行くと、右側にあります。',o:['左にまっすぐ行って右側','右にまっすぐ行って左側','まっすぐ行くだけ','もう一度下に降りる'],a:0,e:'À gauche tout droit, puis c\'est sur la droite.'},
+ {cat:'ecoute',d:3,q:'美術館へ行くにはどうしますか。',script:'このバスは図書館は通りますが、美術館へは行きません。美術館へは次のバスです。',o:['次のバスに乗る','このバスでいい','歩いて行く','タクシーしかない'],a:0,e:'Ce bus ne va pas au musée → prendre le bus suivant.'},
+ {cat:'ecoute',d:1,q:'手伝いを申し出られました。お願いする時は？',script:'重そうですね。手伝いましょうか。',o:['ありがとうございます。お願いします','いいえ、結構です','すみませんでした','おかげさまで'],a:0,e:'Accepter l\'aide : remercier + « お願いします ».'},
+ {cat:'ecoute',d:3,q:'今日はいつから薬を飲みますか。',script:'この薬は一日三回、食後に飲んでください。今日はお昼から始めてください。',o:['今日の昼（食後）から','朝から','夜だけ','明日から'],a:0,e:'3×/jour après les repas, en commençant aujourd\'hui à midi.'},
 ];
 
 /* =================== MODÈLE & ÉTAT =================== */
-const CATS=['grammaire','vocabulaire','kanji','lecture'];
-const LABELS={grammaire:'文法 Grammaire',vocabulaire:'語彙 Vocab',kanji:'漢字 Kanji',lecture:'読解 Lecture'};
-const COLORS={grammaire:'#e2466b',vocabulaire:'#3fb6e0',kanji:'#f5b942',lecture:'#3ecf8e'};
+const CATS=['grammaire','vocabulaire','kanji','lecture','ecoute'];
+const LABELS={grammaire:'文法 Grammaire',vocabulaire:'語彙 Vocab',kanji:'漢字 Kanji',lecture:'読解 Lecture',ecoute:'聴解 Écoute'};
+const COLORS={grammaire:'#e2466b',vocabulaire:'#3fb6e0',kanji:'#f5b942',lecture:'#3ecf8e',ecoute:'#b07bd8'};
 const DRATING={1:1400,2:1600,3:1800};      // difficulté -> rating question
 const PASS_RATING=1600;                      // niveau ~ requis pour le N3
 const EXAM=new Date('2026-12-06T09:00:00');
@@ -448,7 +466,7 @@ let quiz=[],qi=0,sessionRight=0,sessionLog=[],sessionMode='adaptive';
 function blank(){const r={};CATS.forEach(c=>r[c]={R:1450,t:0,r:0});return r}
 function load(){
   const d=JSON.parse(localStorage.getItem(SKEY)||'null');
-  if(d&&d.skill)return d;
+  if(d&&d.skill){CATS.forEach(c=>{if(!d.skill[c])d.skill[c]={R:1450,t:0,r:0}});return d;}
   return {skill:blank(),total:0,right:0,bestStreak:0,streak:0,wrong:[],history:[],lastDiag:null};
 }
 function save(){localStorage.setItem(SKEY,JSON.stringify(S));localStorage.setItem('jlptN3_updatedAt',new Date().toISOString());scheduleAutoPush()}
@@ -578,7 +596,8 @@ function mastery(cat){const R=S.skill[cat].R;return 1/(1+Math.pow(10,(PASS_RATIN
 function sections(){
   const langage=(mastery('vocabulaire')+mastery('kanji'))/2;   // 文字・語彙
   const grammLect=(mastery('grammaire')+mastery('lecture'))/2; // 文法・読解
-  const listening=0.85*((langage+grammLect)/2);                // non testé -> estimation prudente
+  // 聴解 : mesuré si l'utilisateur a fait de l'écoute, sinon estimation prudente
+  const listening=S.skill.ecoute.t>=3 ? mastery('ecoute') : 0.85*((langage+grammLect)/2);
   return {langage,grammLect,listening};
 }
 
@@ -711,7 +730,7 @@ function buildQuiz(mode){
     return shuffle(out).slice(0,10);
   }
   if(mode==='diagnostic'){
-    CATS.forEach(c=>{pickDiagnostic(c,4,ex).forEach(q=>{ex.add(q.id);out.push(q)})});
+    CATS.forEach(c=>{pickDiagnostic(c,3,ex).forEach(q=>{ex.add(q.id);out.push(q)})});
     return shuffle(out).slice(0,15);
   }
   const cats=[...selectedCats];
@@ -753,14 +772,33 @@ function toggleFuri(){
   const on=t.classList.toggle('furi-on');b.classList.toggle('on',on);
 }
 
+/* =================== ÉCOUTE — synthèse vocale (聴解) =================== */
+let curScript='', jaVoice=null;
+function pickVoice(){try{const vs=speechSynthesis.getVoices()||[];jaVoice=vs.find(v=>/ja[-_]?jp/i.test(v.lang))||vs.find(v=>/^ja/i.test(v.lang))||vs.find(v=>/japanese|日本語/i.test(v.name))||null;}catch(e){}}
+if('speechSynthesis'in window){pickVoice();try{speechSynthesis.onvoiceschanged=pickVoice;}catch(e){}}
+function speak(t){
+  if(!('speechSynthesis'in window)){return;}
+  try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='ja-JP';u.rate=0.9;if(jaVoice)u.voice=jaVoice;speechSynthesis.speak(u);}catch(e){}
+}
+function stopSpeak(){try{if('speechSynthesis'in window)speechSynthesis.cancel();}catch(e){}}
+
 function renderQ(){
   const q=quiz[qi];
   document.getElementById('qbar').style.width=(qi/quiz.length*100)+'%';
   document.getElementById('qcat').textContent=LABELS[q.cat];
   const dd=document.getElementById('qdiff');dd.textContent=['','facile','moyen','difficile'][q.d];dd.className='diff d'+q.d;
   document.getElementById('qnum').textContent=`${qi+1}/${quiz.length}${sessionMode==='diagnostic'?' · diagnostic':''}`;
-  const qt=document.getElementById('qtext');qt.classList.remove('furi-on');document.getElementById('furiBtn').classList.remove('on');
-  qt.innerHTML=furi(q.q).replace('___','<span class="blank">？</span>');
+  const qt=document.getElementById('qtext');qt.classList.remove('furi-on');
+  const furiBtn=document.getElementById('furiBtn');furiBtn.classList.remove('on');
+  if(q.cat==='ecoute'&&q.script){
+    furiBtn.style.display='none';curScript=q.script;
+    qt.innerHTML='<div style="font-size:1rem;color:var(--muted);margin-bottom:12px">🎧 '+furi(q.q)+'</div>'+
+      '<button class="listenbtn" onclick="speak(curScript)">🔊 Écouter</button>';
+    setTimeout(()=>speak(q.script),200);
+  }else{
+    furiBtn.style.display='';
+    qt.innerHTML=furi(q.q).replace('___','<span class="blank">？</span>');
+  }
   const opts=document.getElementById('opts');opts.innerHTML='';
   shuffle(q.o.map((t,i)=>({t,i}))).forEach(({t})=>{const b=document.createElement('button');b.className='opt';b.textContent=t;b.onclick=()=>answer(b,q,opts);opts.appendChild(b)});
   const ex=document.getElementById('expl');ex.className='expl';ex.innerHTML='';
@@ -779,6 +817,7 @@ function answer(btn,q,opts){
   sessionLog.push({q:q.q,cat:q.cat,ok,correct:correctTxt,e:q.e});
   const ex=document.getElementById('expl');ex.className='expl show '+(ok?'good':'poor');
   ex.innerHTML=(ok?'✅ <b>Correct !</b> ':'❌ <b>Faux.</b> Réponse : <b>'+correctTxt+'</b>. ')+'<br>'+q.e
+    +(q.cat==='ecoute'&&q.script?'<div style="margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);font-size:.9rem">📜 <b style="color:var(--accent2)">Transcription</b><br>'+furi(q.script)+'</div>':'')
     +(q.g?'<div style="margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);font-size:.86rem;line-height:1.7">📝 <b style="color:var(--accent2)">Décomposition de la phrase</b><br>'+q.g+'</div>':'');
   document.getElementById('next').className='next show';
 }
@@ -829,7 +868,7 @@ function importData(input){
   r.readAsText(file);
 }
 
-function showScreen(id){['home','quiz','result'].forEach(x=>document.getElementById(x).style.display=x===id?'block':'none');window.scrollTo(0,0)}
+function showScreen(id){stopSpeak();['home','quiz','result'].forEach(x=>document.getElementById(x).style.display=x===id?'block':'none');window.scrollTo(0,0)}
 function goHome(){showScreen('home');renderHome();renderCats()}
 function resetAll(){if(confirm('Effacer tout (niveau, historique, erreurs) ?')){S={skill:blank(),total:0,right:0,bestStreak:0,streak:0,wrong:[],history:[],lastDiag:null};save();renderHome();renderCats()}}
 
