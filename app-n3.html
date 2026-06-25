@@ -154,6 +154,7 @@
     <div class="cats" id="cats"></div>
     <button class="start" onclick="start('adaptive')">▶ Quiz adaptatif (10 questions)</button>
     <button class="start ghost" onclick="start('diagnostic')">🩺 Lancer un diagnostic complet (15 q)</button>
+    <button class="start ghost" onclick="start('exam')">📝 Examen blanc complet (chronométré)</button>
     <button class="start ghost" onclick="start('wrong')">↻ Réviser mes erreurs</button>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
       <button class="reset" onclick="exportData()">💾 Exporter (JSON)</button>
@@ -168,7 +169,7 @@
   <div id="quiz" style="display:none">
     <div class="bar"><i id="qbar"></i></div>
     <div class="card">
-      <div class="qmeta"><span class="tag" id="qcat"></span><span class="diff" id="qdiff"></span><span id="qnum"></span><button class="furibtn" id="furiBtn" onclick="toggleFuri()">ふりがな</button></div>
+      <div class="qmeta"><span class="tag" id="qcat"></span><span class="diff" id="qdiff"></span><span id="qnum"></span><span id="examTimer" style="display:none;font-weight:700;color:var(--warn)"></span><button class="furibtn" id="furiBtn" onclick="toggleFuri()">ふりがな</button></div>
       <div class="qtext" id="qtext"></div>
       <div id="opts"></div>
       <div class="expl" id="expl"></div>
@@ -740,7 +741,67 @@ function buildQuiz(mode){
 }
 
 /* =================== DÉROULÉ QUIZ =================== */
-function start(mode){const q=buildQuiz(mode);if(!q)return;sessionMode=mode;quiz=q;qi=0;sessionRight=0;sessionLog=[];showScreen('quiz');renderQ()}
+function start(mode){
+  const q = mode==='exam' ? buildExam() : buildQuiz(mode);
+  if(!q||!q.length)return;
+  sessionMode=mode;quiz=q;qi=0;sessionRight=0;sessionLog=[];
+  showScreen('quiz');
+  if(mode==='exam')startExamTimer(); else stopExamTimer();
+  renderQ();
+}
+
+/* =================== EXAMEN BLANC CHRONOMÉTRÉ =================== */
+const EXAM_SECONDS=1200; // 20 min
+let examTimerId=null, examStart=0;
+function buildExam(){
+  const ex=new Set(),out=[];
+  [['vocabulaire',5],['kanji',5],['grammaire',8],['lecture',5],['ecoute',10]].forEach(([c,n])=>{
+    pickDiagnostic(c,n,ex).forEach(q=>{ex.add(q.id);out.push(q)});
+  });
+  return out; // groupé par section (文字語彙 → 文法読解 → 聴解)
+}
+function startExamTimer(){examStart=Date.now();clearInterval(examTimerId);tickExam();examTimerId=setInterval(tickExam,1000);}
+function stopExamTimer(){clearInterval(examTimerId);examTimerId=null;}
+function tickExam(){
+  const el=document.getElementById('examTimer');if(!el)return;
+  const left=EXAM_SECONDS-Math.floor((Date.now()-examStart)/1000);
+  if(left<=0){el.textContent='⏱ 0:00';stopExamTimer();finish();return;}
+  const mm=Math.floor(left/60),ss=left%60;
+  el.textContent='⏱ '+mm+':'+(ss<10?'0':'')+ss;
+  el.style.color=left<60?'var(--bad)':'var(--warn)';
+}
+function examAnswer(btn,q,opts){
+  const correctTxt=q.o[q.a],ok=btn.textContent===correctTxt;
+  [...opts.children].forEach(b=>b.disabled=true);btn.style.borderColor='var(--accent2)';
+  updateRating(q.cat,q.d,ok);
+  S.total++;if(ok)S.right++;
+  if(!ok){if(!S.wrong.includes(q.id))S.wrong.push(q.id);}else{S.wrong=S.wrong.filter(x=>x!==q.id);}
+  S.wrong=S.wrong.slice(-80);save();
+  sessionLog.push({q:q.q,cat:q.cat,ok,correct:correctTxt,chosen:btn.textContent,e:q.e,script:q.script||''});
+  setTimeout(()=>next(),130);
+}
+function examFinish(){
+  stopExamTimer();stopSpeak();
+  const secMap={vocabulaire:'lang',kanji:'lang',grammaire:'gr',lecture:'gr',ecoute:'list'};
+  const sec={lang:{c:0,t:0},gr:{c:0,t:0},list:{c:0,t:0}};
+  sessionLog.forEach(l=>{const s=secMap[l.cat];sec[s].t++;if(l.ok)sec[s].c++;});
+  const sc=k=>sec[k].t?Math.round(sec[k].c/sec[k].t*60):0;
+  const s1=sc('lang'),s2=sc('gr'),s3=sc('list'),total=s1+s2+s3;
+  const pass=total>=95&&s1>=19&&s2>=19&&s3>=19;
+  S.history.push({mode:'exam',score:total,right:sessionLog.filter(l=>l.ok).length,n:sessionLog.length});
+  S.history=S.history.slice(-40);save();
+  showScreen('result');
+  const rs=document.getElementById('r-score');rs.textContent=total+' / 180';rs.style.color=pass?'var(--ok)':'var(--bad)';
+  document.getElementById('r-msg').textContent=pass?'合格ライン突破 ! (simulation) 🎉':'En dessous du seuil — continue 💪';
+  const rows=[['文字・語彙 (vocab + kanji)',s1],['文法・読解 (grammaire + lecture)',s2],['聴解 (écoute)',s3]];
+  const secHtml=rows.map(([n,v])=>`<div class="row"><div class="name" style="width:auto;flex:1">${n}</div><div class="pct" style="color:${v>=19?'var(--ok)':'var(--bad)'}">${v}/60 ${v>=19?'✓':'⚠'}</div></div>`).join('');
+  document.getElementById('r-delta').innerHTML='<div style="text-align:left">'+secHtml+'</div>'+
+    `<p class="muted">Seuils JLPT : total ≥ 95/180 ET chaque section ≥ 19/60. Verdict : <b style="color:${pass?'var(--ok)':'var(--bad)'}">${pass?'RÉUSSI (simulation)':'À retravailler'}</b>.</p>`;
+  const det=document.getElementById('r-detail');det.innerHTML='<h2 style="font-size:1rem">Correction</h2>';
+  sessionLog.forEach(l=>{const d=document.createElement('div');d.style.cssText='padding:8px 0;border-bottom:1px solid var(--line);font-size:.85rem';
+    const qtext=l.script?('🎧 '+furi(l.script)):furi(l.q).replace('___','＿');
+    d.innerHTML=`${l.ok?'✅':'❌'} <span style="color:${COLORS[l.cat]}">[${LABELS[l.cat]}]</span> ${qtext}<br><span class="muted">Réponse : <b>${l.correct}</b>${l.ok?'':' · ta réponse : '+(l.chosen||'—')} · ${l.e}</span>`;det.appendChild(d)});
+}
 
 /* =================== FURIGANA CLIQUABLES =================== */
 const FURI={
@@ -787,7 +848,9 @@ function renderQ(){
   document.getElementById('qbar').style.width=(qi/quiz.length*100)+'%';
   document.getElementById('qcat').textContent=LABELS[q.cat];
   const dd=document.getElementById('qdiff');dd.textContent=['','facile','moyen','difficile'][q.d];dd.className='diff d'+q.d;
-  document.getElementById('qnum').textContent=`${qi+1}/${quiz.length}${sessionMode==='diagnostic'?' · diagnostic':''}`;
+  const lbl=sessionMode==='diagnostic'?' · diagnostic':sessionMode==='exam'?' · examen blanc':'';
+  document.getElementById('qnum').textContent=`${qi+1}/${quiz.length}${lbl}`;
+  document.getElementById('examTimer').style.display=sessionMode==='exam'?'inline':'none';
   const qt=document.getElementById('qtext');qt.classList.remove('furi-on');
   const furiBtn=document.getElementById('furiBtn');furiBtn.classList.remove('on');
   if(q.cat==='ecoute'&&q.script){
@@ -800,7 +863,7 @@ function renderQ(){
     qt.innerHTML=furi(q.q).replace('___','<span class="blank">？</span>');
   }
   const opts=document.getElementById('opts');opts.innerHTML='';
-  shuffle(q.o.map((t,i)=>({t,i}))).forEach(({t})=>{const b=document.createElement('button');b.className='opt';b.textContent=t;b.onclick=()=>answer(b,q,opts);opts.appendChild(b)});
+  shuffle(q.o.map((t,i)=>({t,i}))).forEach(({t})=>{const b=document.createElement('button');b.className='opt';b.textContent=t;b.onclick=()=>(sessionMode==='exam'?examAnswer(b,q,opts):answer(b,q,opts));opts.appendChild(b)});
   const ex=document.getElementById('expl');ex.className='expl';ex.innerHTML='';
   const nx=document.getElementById('next');nx.className='next';nx.textContent=qi+1<quiz.length?'Suivant →':'Voir le résultat →';
 }
@@ -825,6 +888,7 @@ function answer(btn,q,opts){
 function next(){qi++;qi<quiz.length?renderQ():finish()}
 
 function finish(){
+  if(sessionMode==='exam'){examFinish();return;}
   // enregistrer dans l'historique le score estimé courant
   const m=successModel();
   S.history.push({mode:sessionMode,score:Math.round(m.total),p:Math.round(m.p*100),right:sessionRight,n:quiz.length});
