@@ -39,8 +39,9 @@ servi à l'URL affichée dans le job *Déployer sur GitHub Pages*.
 - **Local :** progression, niveau, erreurs et checklist sont sauvegardés dans le navigateur
   (`localStorage`), partagés entre toutes les pages du site (même origine).
 - **Multi-appareils (☁️ Gist) :** dans l'appli, section *Synchronisation*, colle un
-  **Personal Access Token** GitHub avec la permission **Gists: Read and write** (fine-grained)
-  ou le scope **`gist`** (classic). Au premier usage, un **Gist privé** est créé ; ensuite la
+  **Personal Access Token classic** GitHub avec le scope **`gist`** coché
+  (le plus fiable ; les tokens *fine-grained* échouent souvent en 403 à la création du Gist).
+  Au premier usage, un **Gist privé** est créé ; ensuite la
   progression est **poussée automatiquement** après chaque quiz et **récupérée** au chargement
   (résolution par horodatage, la version la plus récente gagne).
   Le token reste stocké uniquement dans ton navigateur.

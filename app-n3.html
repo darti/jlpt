@@ -125,14 +125,15 @@
       <h2 style="margin-top:0">☁️ Synchronisation multi-appareils</h2>
       <p class="muted" id="syncStatus">Non connecté. Synchronise ta progression entre appareils via un Gist GitHub privé.</p>
       <div id="syncSetup">
-        <input id="ghToken" type="password" placeholder="Personal Access Token (scope: gist)"
+        <input id="ghToken" type="password" placeholder="Token GitHub classic (scope : gist)"
           style="width:100%;padding:10px;border-radius:9px;border:1px solid var(--line);background:var(--card2);color:var(--txt);margin:6px 0">
         <input id="ghGist" type="text" placeholder="Gist ID (laisser vide pour en créer un)"
           style="width:100%;padding:10px;border-radius:9px;border:1px solid var(--line);background:var(--card2);color:var(--txt);margin:6px 0">
         <button class="start ghost" onclick="cloudConnect()">🔗 Connecter & synchroniser</button>
         <p class="muted" style="font-size:.78rem;margin:6px 0 0">
-          Crée un token sur <a href="https://github.com/settings/tokens?type=beta" target="_blank">github.com/settings/tokens</a>
-          (Fine-grained → Account permissions → <b>Gists: Read and write</b>, ou classic avec scope <b>gist</b>).
+          ⚠️ Erreur 403 ? Le token n'a pas le droit « gist ». Le plus fiable :
+          <a href="https://github.com/settings/tokens/new?scopes=gist&description=jlpt-sync" target="_blank">créer un token <b>classic</b></a>
+          et cocher <b>uniquement la case « gist »</b>. (Les tokens fine-grained échouent souvent à créer un Gist.)
           Le token reste stocké dans ce navigateur uniquement.
         </p>
       </div>
@@ -471,7 +472,13 @@ function applyData(payload){
 async function ghFetch(url,opt){
   const c=ghCfg();
   const r=await fetch(url,{...opt,headers:{'Authorization':'Bearer '+c.token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28',...(opt&&opt.headers||{})}});
-  if(!r.ok)throw new Error('GitHub '+r.status+(r.status===401?' (token invalide)':r.status===404?' (Gist introuvable)':''));
+  if(!r.ok){
+    let msg='';try{const j=await r.json();msg=j.message||'';}catch(e){}
+    const hint=r.status===401?' — token invalide ou expiré'
+      :r.status===403?' — le token n\'a pas le droit « gist ». Utilise un token CLASSIC avec le scope gist coché.'
+      :r.status===404?' — Gist introuvable (vérifie l\'ID)':'';
+    throw new Error('GitHub '+r.status+(msg?' : '+msg:'')+hint);
+  }
   return r.json();
 }
 function syncMsg(t,ok){const e=document.getElementById('syncStatus');e.textContent=t;e.style.color=ok===false?'var(--bad)':ok===true?'var(--ok)':'var(--muted)'}
