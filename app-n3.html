@@ -574,6 +574,44 @@ const BANK=[
  {cat:'ecoute',d:3,q:'美術館へ行くにはどうしますか。',script:'このバスは図書館は通りますが、美術館へは行きません。美術館へは次のバスです。',o:['次のバスに乗る','このバスでいい','歩いて行く','タクシーしかない'],a:0,e:'Ce bus ne va pas au musée → prendre le bus suivant.'},
  {cat:'ecoute',d:1,q:'手伝いを申し出られました。お願いする時は？',script:'重そうですね。手伝いましょうか。',o:['ありがとうございます。お願いします','いいえ、結構です','すみませんでした','おかげさまで'],a:0,e:'Accepter l\'aide : remercier + « お願いします ».'},
  {cat:'ecoute',d:3,q:'今日はいつから薬を飲みますか。',script:'この薬は一日三回、食後に飲んでください。今日はお昼から始めてください。',o:['今日の昼（食後）から','朝から','夜だけ','明日から'],a:0,e:'3×/jour après les repas, en commençant aujourd\'hui à midi.'},
+
+ /* ---------- Questions N4 (révision, mélangées au N3) ---------- */
+ {cat:'grammaire',lvl:'N4',d:1,q:'明日は早いので、もう寝___。',o:['なければならない','てはいけない','たことがある','ながら'],a:0,e:'<b>〜なければならない</b> = obligation « devoir ».',g:'明日（あした）は早い（はやい）« demain c\'est tôt » · 寝る（ねる）→寝なければならない « je dois dormir ».'},
+ {cat:'grammaire',lvl:'N4',d:1,q:'ここで写真を撮っ___。',o:['てはいけません','てください','てもいい','ましょう'],a:0,e:'<b>〜てはいけない</b> = interdiction.',g:'写真（しゃしん）を撮る（とる）→撮って＋はいけません « il est interdit de photographier ».'},
+ {cat:'grammaire',lvl:'N4',d:1,q:'日本へ行っ___があります。',o:['たこと','たところ','るつもり','るはず'],a:0,e:'<b>〜たことがある</b> = expérience passée.',g:'行く→行った＋ことがある « j\'ai déjà été (au Japon) ».'},
+ {cat:'grammaire',lvl:'N4',d:1,q:'ピアノを弾く___ができます。',o:['こと','もの','ところ','よう'],a:0,e:'<b>〜ことができる</b> = capacité.',g:'弾く（ひく）＋ことができる « savoir/pouvoir jouer ».'},
+ {cat:'grammaire',lvl:'N4',d:1,q:'休みの日は本を読ん___音楽を聞いたりします。',o:['だり','でも','では','だから'],a:0,e:'<b>〜たり〜たりする</b> = énumération d\'actions.',g:'読む→読んだり · 聞く→聞いたり « tantôt lire, tantôt écouter ».'},
+ {cat:'grammaire',lvl:'N4',d:1,q:'熱があるなら、休んだ___がいいよ。',o:['ほう','こと','よう','ところ'],a:0,e:'<b>〜たほうがいい</b> = conseil.',g:'休む→休んだ＋ほうがいい « mieux vaut te reposer ».'},
+ {cat:'grammaire',lvl:'N4',d:1,q:'夏休みは国へ帰る___です。',o:['つもり','はず','ところ','まま'],a:0,e:'<b>〜つもりだ</b> = intention.',g:'帰る＋つもりだ « j\'ai l\'intention de rentrer ».'},
+ {cat:'grammaire',lvl:'N4',d:2,q:'空が暗い。雨が降る___。',o:['かもしれない','ことにする','ようになる','はずがない'],a:0,e:'<b>〜かもしれない</b> = possibilité « peut-être ».',g:'雨（あめ）が降る（ふる）＋かもしれない « il va peut-être pleuvoir ».'},
+ {cat:'grammaire',lvl:'N4',d:2,q:'彼はもう帰った___です。電気が消えています。',o:['はず','つもり','よう','こと'],a:0,e:'<b>〜はずだ</b> = déduction logique « ça doit être ».',g:'帰った＋はずだ « il doit être déjà parti ».'},
+ {cat:'grammaire',lvl:'N4',d:2,q:'毎日練習して、泳げる___なった。',o:['ように','ことに','そうに','ために'],a:0,e:'<b>〜ようになる</b> = changement d\'état/capacité.',g:'泳げる（およげる）＋ようになった « j\'en suis venu à savoir nager ».'},
+ {cat:'grammaire',lvl:'N4',d:2,q:'毎朝ジョギングする___しています。',o:['ように','ことに','つもりに','ところに'],a:0,e:'<b>〜ようにする</b> = effort conscient.',g:'する＋ようにしている « je m\'efforce de courir chaque matin ».'},
+ {cat:'grammaire',lvl:'N4',d:2,q:'来月から日本語を習う___しました。',o:['ことに','ように','はずに','つもりに'],a:0,e:'<b>〜ことにする</b> = décision personnelle.',g:'習う（ならう）＋ことにした « j\'ai décidé d\'apprendre ».'},
+ {cat:'grammaire',lvl:'N4',d:2,q:'宿題を忘れ___！',o:['てしまった','ておいた','てある','てみた'],a:0,e:'<b>〜てしまう</b> = achèvement / regret.',g:'忘れる（わすれる）→忘れてしまった « j\'ai malheureusement oublié ».'},
+ {cat:'grammaire',lvl:'N4',d:2,q:'お客さんが来る前に、部屋を掃除し___。',o:['ておく','てある','ていく','てくる'],a:0,e:'<b>〜ておく</b> = préparation à l\'avance.',g:'掃除（そうじ）する→しておく « nettoyer d\'avance ».'},
+ {cat:'grammaire',lvl:'N4',d:2,q:'この料理、食べ___ください。おいしいですよ。',o:['てみて','ておいて','てしまって','てあって'],a:0,e:'<b>〜てみる</b> = essayer de faire.',g:'食べる→食べてみて＋ください « essaie de goûter ».'},
+ {cat:'grammaire',lvl:'N4',d:2,q:'弟は母にケーキを食べ___。',o:['られた','させた','てあげた','ておいた'],a:0,e:'<b>〜（ら）れる</b> passif : subir l\'action.',g:'食べる→食べられた « (le gâteau) a été mangé / il s\'est fait manger… » ici « s\'est fait manger par sa mère ».'},
+ {cat:'grammaire',lvl:'N4',d:2,q:'先生は学生に漢字を書___。',o:['かせた','かれた','いてある','いておいた'],a:0,e:'<b>〜（さ）せる</b> causatif : faire faire.',g:'書く→書かせた « a fait écrire les kanji aux élèves ».'},
+ {cat:'grammaire',lvl:'N4',d:2,q:'部屋にきれいな花が飾っ___。',o:['てある','ておく','ていく','てくる'],a:0,e:'<b>〜てある</b> = état résultant d\'une action volontaire.',g:'飾る（かざる）→飾ってある « des fleurs sont (ont été) disposées ».'},
+ {cat:'grammaire',lvl:'N4',d:2,q:'うるさい！静かにし___。',o:['なさい','ましょう','てある','ておく'],a:0,e:'<b>〜なさい</b> = ordre doux (parent/prof).',g:'する→しなさい « tais-toi / sois silencieux ».'},
+ {cat:'grammaire',lvl:'N4',d:2,q:'天気予報___、明日は雪だ。',o:['によると','について','として','にとって'],a:0,e:'<b>〜によると</b> = source d\'information « selon ».',g:'天気予報（てんきよほう）＋によると « selon la météo ».'},
+ {cat:'grammaire',lvl:'N4',d:2,q:'安けれ___安いほど、よく売れる。',o:['ば','たら','なら','と'],a:0,e:'<b>〜ば〜ほど</b> = « plus… plus… ».',g:'安い（やすい）→安ければ安いほど « plus c\'est bon marché, plus ça se vend ».'},
+ {cat:'grammaire',lvl:'N4',d:1,q:'今ちょうど駅に着いた___です。',o:['ところ','つもり','はず','よてい'],a:0,e:'<b>〜たところだ</b> = « venir juste de ».',g:'着く（つく）→着いた＋ところだ « je viens d\'arriver à la gare ».'},
+ {cat:'vocabulaire',lvl:'N4',d:1,q:'電車に間に合わないので、___ましょう。',o:['急ぎ','遊び','謝り','戻り'],a:0,e:'<b>急ぐ (いそぐ)</b> = se dépêcher.',g:'間に合わない（まにあわない）« ne pas être à temps » → 急ぎましょう « dépêchons-nous ».'},
+ {cat:'vocabulaire',lvl:'N4',d:1,q:'約束の時間に___ないでください。',o:['遅れ','遅く','遅い','遅め'],a:0,e:'<b>遅れる (おくれる)</b> = être en retard.',g:'約束（やくそく）の時間（じかん）« l\'heure convenue » → 遅れないで « ne sois pas en retard ».'},
+ {cat:'vocabulaire',lvl:'N4',d:1,q:'この道を真っ直ぐ行くと、左に___が見えます。',o:['港','湖','森','畑'],a:1,e:'<b>湖 (みずうみ)</b> = lac.',g:'真っ直ぐ（まっすぐ）« tout droit » · 左（ひだり）に « à gauche » · 湖（みずうみ）« lac ».'},
+ {cat:'vocabulaire',lvl:'N4',d:1,q:'冬は寒いので、ストーブで部屋を___します。',o:['暖かく','涼しく','明るく','静かに'],a:0,e:'<b>暖かい (あたたかい)</b> = chaud (température).',g:'冬（ふゆ）« hiver » · 部屋（へや）を暖かく « réchauffer la pièce ».'},
+ {cat:'vocabulaire',lvl:'N4',d:1,q:'山田さんはとても___な人で、いつも助けてくれる。',o:['親切','失礼','危険','複雑'],a:0,e:'<b>親切 (しんせつ)</b> = gentil, prévenant.',g:'親切（しんせつ）な人（ひと）« une personne gentille » · 助けて（たすけて）くれる « il m\'aide ».'},
+ {cat:'vocabulaire',lvl:'N4',d:2,q:'試験に___したので、来年もう一度受けます。',o:['失敗','成功','成長','発展'],a:0,e:'<b>失敗 (しっぱい)</b> = échec.',g:'試験（しけん）に失敗（しっぱい）« échouer à l\'examen » → もう一度（いちど）受ける « repasser ».'},
+ {cat:'vocabulaire',lvl:'N4',d:2,q:'駅で財布を拾って、___に届けた。',o:['交番','病院','工場','銀行'],a:0,e:'<b>交番 (こうばん)</b> = poste de police. (拾う＝ramasser)',g:'財布（さいふ）を拾う（ひろう）« ramasser un portefeuille » → 交番（こうばん）に届ける（とどける）« porter au poste ».'},
+ {cat:'vocabulaire',lvl:'N4',d:2,q:'彼の___は医者です。病院で働いています。',o:['職業','趣味','性格','興味'],a:0,e:'<b>職業 (しょくぎょう)</b> = profession.',g:'職業（しょくぎょう）は医者（いしゃ）« sa profession est médecin ».'},
+ {cat:'vocabulaire',lvl:'N4',d:1,q:'日本の___に興味があって、お寺や祭りが好きです。',o:['文化','工業','政治','経済'],a:0,e:'<b>文化 (ぶんか)</b> = culture.',g:'文化（ぶんか）に興味（きょうみ）がある « s\'intéresser à la culture ».'},
+ {cat:'kanji',lvl:'N4',d:1,q:'「映画」の読み方は？',o:['えいが','えいご','えいぎょう','えいきょう'],a:0,e:'<b>映画 (えいが)</b> = film, cinéma.',g:'映（エイ）« projeter » ＋ 画（ガ）« image » → 映画 « film ».'},
+ {cat:'kanji',lvl:'N4',d:1,q:'「親切」の読み方は？',o:['しんせつ','しんぱい','しんせき','おやきり'],a:0,e:'<b>親切 (しんせつ)</b> = gentil.',g:'親（シン・おや）« parent » ＋ 切（セツ・きる）→ 親切 « gentillesse ».'},
+ {cat:'kanji',lvl:'N4',d:1,q:'「practice / 練習」の「習」の訓読みは？',o:['なら(う)','はこ(ぶ)','あつ(まる)','えら(ぶ)'],a:0,e:'<b>習う (ならう)</b> = apprendre.',g:'習（シュウ・なら-う）« apprendre » · ex. 練習（れんしゅう）« entraînement ».'},
+ {cat:'kanji',lvl:'N4',d:2,q:'「世界」の読み方は？',o:['せかい','せいかい','せけん','しゃかい'],a:0,e:'<b>世界 (せかい)</b> = le monde.',g:'世（セ・よ）« monde, génération » ＋ 界（カイ）« limite » → 世界.'},
+ {cat:'kanji',lvl:'N4',d:2,q:'「特別」の読み方は？',o:['とくべつ','とくべち','どくべつ','とくわけ'],a:0,e:'<b>特別 (とくべつ)</b> = spécial.',g:'特（トク）« spécial » ＋ 別（ベツ・わかれる）« séparé » → 特別.'},
 ];
 
 /* =================== MODÈLE & ÉTAT =================== */
@@ -1033,7 +1071,8 @@ function answer(btn,q,opts){
   S.wrong=S.wrong.slice(-80);save();
   sessionLog.push({q:q.q,cat:q.cat,ok,correct:correctTxt,e:q.e});
   const ex=document.getElementById('expl');ex.className='expl show '+(ok?'good':'poor');
-  ex.innerHTML=(ok?'✅ <b>Correct !</b> ':'❌ <b>Faux.</b> Réponse : <b>'+correctTxt+'</b>. ')+'<br>'+q.e
+  const lvlBadge=q.lvl?'<span style="display:inline-block;font-size:.72em;font-weight:700;padding:1px 6px;border-radius:6px;margin-right:6px;vertical-align:middle;background:rgba(154,103,0,.18);color:#c98a00">'+q.lvl+'</span>':'';
+  ex.innerHTML=(ok?'✅ <b>Correct !</b> ':'❌ <b>Faux.</b> Réponse : <b>'+correctTxt+'</b>. ')+'<br>'+lvlBadge+q.e
     +(q.cat==='ecoute'&&q.script?'<div style="margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);font-size:.9rem">📜 <b style="color:var(--accent2)">Transcription</b><br>'+furi(q.script)+'</div>':'')
     +(q.g?'<div style="margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);font-size:.86rem;line-height:1.7">📝 <b style="color:var(--accent2)">Décomposition de la phrase</b><br>'+q.g+'</div>':'');
   document.getElementById('next').className='next show';
