@@ -160,6 +160,13 @@
       </div>
       <p class="muted" id="sessHint" style="margin:8px 0 0">Une session équilibrée, avec plus de questions sur tes points faibles.</p>
     </div>
+    <div class="card" style="margin-top:0;background:linear-gradient(135deg,rgba(226,70,107,.12),rgba(63,182,224,.1));border-color:var(--accent)">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span>📖 <b>Apprendre la grammaire</b> — un point à la fois</span>
+      </div>
+      <p class="muted" id="learnProg" style="margin:8px 0 10px">Leçon → exemple → exercice → correction détaillée. Les points validés reviennent en révision espacée.</p>
+      <button class="start" style="margin:0" onclick="startLearn()">📖 Apprendre / réviser la grammaire</button>
+    </div>
     <div class="cats" id="cats"></div>
     <button class="start" onclick="start('adaptive')">▶ Quiz adaptatif (10 questions)</button>
     <button class="start ghost" onclick="start('diagnostic')">🩺 Lancer un diagnostic complet (15 q)</button>
@@ -196,6 +203,15 @@
       <div id="r-detail" style="text-align:left;margin-top:12px"></div>
       <button class="start" onclick="goHome()">← Accueil & analyse</button>
     </div>
+  </div>
+
+  <!-- APPRENTISSAGE GRAMMAIRE -->
+  <div id="learn" style="display:none">
+    <div class="card">
+      <div id="learnHead" class="muted" style="font-size:.85rem;margin-bottom:12px"></div>
+      <div id="learnBody"></div>
+    </div>
+    <button class="start ghost" onclick="goHome()" style="margin-top:4px">← Accueil</button>
   </div>
 
 </div>
@@ -663,8 +679,8 @@ let quiz=[],qi=0,sessionRight=0,sessionLog=[],sessionMode='adaptive';
 function blank(){const r={};CATS.forEach(c=>r[c]={R:1450,t:0,r:0});return r}
 function load(){
   const d=JSON.parse(localStorage.getItem(SKEY)||'null');
-  if(d&&d.skill){CATS.forEach(c=>{if(!d.skill[c])d.skill[c]={R:1450,t:0,r:0}});return d;}
-  return {skill:blank(),total:0,right:0,bestStreak:0,streak:0,wrong:[],history:[],lastDiag:null};
+  if(d&&d.skill){CATS.forEach(c=>{if(!d.skill[c])d.skill[c]={R:1450,t:0,r:0}});if(!d.gram)d.gram={};return d;}
+  return {skill:blank(),total:0,right:0,bestStreak:0,streak:0,wrong:[],history:[],lastDiag:null,gram:{}};
 }
 function save(){localStorage.setItem(SKEY,JSON.stringify(S));localStorage.setItem('jlptN3_updatedAt',new Date().toISOString());scheduleAutoPush()}
 
@@ -857,6 +873,10 @@ function renderHome(){
     row.innerHTML=`<div class="name">${LABELS[cat]}</div><div class="track"><i style="width:${mst}%;background:${COLORS[cat]}"></i></div>
       <div class="pct">${sk.t?mst+'% · niv '+Math.round(sk.R):'—'}</div>`;box.appendChild(row)});
 
+  // progression apprentissage grammaire
+  const lp=document.getElementById('learnProg');
+  if(lp){const v=gramValidated(),due=gramDueList().length;
+    lp.innerHTML=`Leçon → exemple → exercice → correction. <b>${v}/${GRAMMAR_LESSONS.length}</b> points validés${due?` · <b style="color:var(--accent2)">${due} à réviser</b>`:''}.`;}
   // diag banner
   renderBanner(days);
   // chart
@@ -1159,7 +1179,132 @@ function importData(input){
   r.readAsText(file);
 }
 
-function showScreen(id){stopSpeak();['home','quiz','result'].forEach(x=>document.getElementById(x).style.display=x===id?'block':'none');window.scrollTo(0,0)}
+/* =================== MODE APPRENTISSAGE — GRAMMAIRE PAS À PAS =================== */
+const GRAMMAR_LESSONS=[
+ {k:'〜たら',lvl:'N4',sens:'« quand / si… » — condition ponctuelle suivie d’un résultat (très courant à l’oral).',struct:'V(forme た) ＋ ら',exJp:'駅に着いたら、電話します。',exFr:'Quand j’arriverai à la gare, je t’appellerai.',q:'宝くじが当たっ___、世界中を旅行したい。',o:['たら','なら','ば','ても'],a:0,e:'<b>〜たら</b> exprime « une fois que / si », avec un résultat ponctuel. Ici : « si je gagne au loto, je veux voyager ». 〜なら réagirait à un propos de l’interlocuteur ; 〜ば serait plus général/logique.'},
+ {k:'〜ば',lvl:'N4',sens:'« si… » — condition générale, vérité logique ou naturelle.',struct:'V(forme ば) / い-adj：〜ければ',exJp:'安ければ買います。',exFr:'Si c’est bon marché, j’achète.',q:'このボタンを押せ___、ドアが開きます。',o:['ば','たら','なら','のに'],a:0,e:'<b>〜ば</b> pose une condition générale/logique : « si on appuie, alors la porte s’ouvre ».'},
+ {k:'〜なら',lvl:'N3',sens:'« si c’est le cas de… / dans ce cas » — réagit à ce que dit ou évoque l’interlocuteur.',struct:'名 / V・adj 普通形 ＋ なら',exJp:'日本へ行くなら、京都がいいよ。',exFr:'Si tu vas au Japon, Kyoto, c’est bien.',q:'パソコンのこと___、彼に聞くといいよ。',o:['なら','たら','ば','と'],a:0,e:'<b>〜なら</b> reprend un thème évoqué : « pour ce qui est de l’ordinateur, demande-lui ». Il ne marque pas une condition temporelle comme たら.'},
+ {k:'〜と (条件)',lvl:'N4',sens:'« dès que / à chaque fois que » — conséquence automatique et naturelle.',struct:'V/adj 辞書形 ＋ と',exJp:'春になると、桜が咲く。',exFr:'Quand le printemps arrive, les cerisiers fleurissent.',q:'この道をまっすぐ行く___、駅に出ます。',o:['と','たら','なら','ば'],a:0,e:'<b>〜と</b> indique un enchaînement automatique : « si on va tout droit, on débouche sur la gare ». Pas d’ordre ni de volonté dans la principale.'},
+ {k:'〜なければならない',lvl:'N4',sens:'obligation : « devoir, il faut ».',struct:'V(ない形 → 〜なければ) ＋ ならない',exJp:'明日は早く起きなければならない。',exFr:'Demain je dois me lever tôt.',q:'レポートを金曜日までに出さ___。',o:['なければならない','てもいい','なくてもいい','てはいけない'],a:0,e:'<b>〜なければならない</b> (poli 〜なければなりません, oral 〜なきゃ) = obligation. Ici : « je dois rendre le rapport pour vendredi ».'},
+ {k:'〜てもいい',lvl:'N4',sens:'permission : « on peut / puis-je… ? ».',struct:'V(て形) ＋ もいい',exJp:'ここに座ってもいいですか。',exFr:'Puis-je m’asseoir ici ?',q:'写真を撮っ___ですか。',o:['てもいい','てはいけない','なければならない','たほうがいい'],a:0,e:'<b>〜てもいい</b> demande ou accorde une permission. La réponse négative est souvent 〜てはいけない.'},
+ {k:'〜てはいけない',lvl:'N4',sens:'interdiction : « il ne faut pas / c’est interdit ».',struct:'V(て形) ＋ はいけない',exJp:'ここで写真を撮ってはいけません。',exFr:'Il est interdit de photographier ici.',q:'美術館で大きな声を出し___。',o:['てはいけない','てもいい','なくてもいい','たことがある'],a:0,e:'<b>〜てはいけない</b> = interdiction (règle). Plus fort et impersonnel que 〜ないほうがいい (simple conseil).'},
+ {k:'〜なくてもいい',lvl:'N4',sens:'dispense : « pas besoin de ».',struct:'V(ない形 → 〜なくて) ＋ もいい',exJp:'明日は休みだから、早く起きなくてもいい。',exFr:'Demain c’est congé, pas besoin de se lever tôt.',q:'全部食べ___よ。残してもいいよ。',o:['なくてもいい','てはいけない','なければならない','てしまう'],a:0,e:'<b>〜なくてもいい</b> = absence d’obligation : « tu n’es pas obligé de tout manger ».'},
+ {k:'〜たことがある',lvl:'N4',sens:'expérience vécue : « avoir déjà fait (au moins une fois) ».',struct:'V(た形) ＋ ことがある',exJp:'日本へ行ったことがあります。',exFr:'Je suis déjà allé au Japon.',q:'お寿司を食べ___がありますか。',o:['たこと','るつもり','たところ','るはず'],a:0,e:'<b>〜たことがある</b> = expérience passée (« déjà »). À ne pas confondre avec 〜たところ (« venir juste de »).'},
+ {k:'〜ことができる',lvl:'N4',sens:'capacité / possibilité : « pouvoir, savoir ».',struct:'V(辞書形) ＋ ことができる',exJp:'彼はピアノを弾くことができる。',exFr:'Il sait jouer du piano.',q:'ここでお金を払う___ができます。',o:['こと','もの','ところ','よう'],a:0,e:'<b>〜ことができる</b> = « savoir/pouvoir » (équivaut au potentiel 〜られる). Ici : « on peut payer ici ».'},
+ {k:'〜たほうがいい',lvl:'N4',sens:'conseil : « il vaut mieux (faire) » / « mieux vaut ne pas ».',struct:'V(た形) ＋ ほうがいい（否定：〜ないほうがいい）',exJp:'熱があるなら、休んだほうがいい。',exFr:'Si tu as de la fièvre, mieux vaut te reposer.',q:'危ないから、夜は一人で歩か___ほうがいい。',o:['ない','た','る','なく'],a:0,e:'<b>〜たほうがいい</b> (conseil positif) / <b>〜ないほうがいい</b> (conseil négatif). Ici négatif : « mieux vaut ne pas marcher seul la nuit ».'},
+ {k:'〜ながら',lvl:'N4',sens:'deux actions simultanées du même sujet : « tout en… ».',struct:'V(ます語幹) ＋ ながら',exJp:'音楽を聞きながら勉強する。',exFr:'J’étudie tout en écoutant de la musique.',q:'コーヒーを飲み___、新聞を読む。',o:['ながら','たり','ので','のに'],a:0,e:'<b>〜ながら</b> relie deux actions menées en même temps par la même personne ; l’action principale est la seconde (« lire le journal »).'},
+ {k:'〜つもりだ',lvl:'N4',sens:'intention décidée : « avoir l’intention de ».',struct:'V(辞書形) ＋ つもりだ',exJp:'夏休みは国へ帰るつもりです。',exFr:'Aux vacances d’été, je compte rentrer au pays.',q:'来年、日本語の試験を受ける___です。',o:['つもり','はず','ところ','まま'],a:0,e:'<b>〜つもりだ</b> = projet personnel ferme. 〜（よ）うと思う est moins arrêté ; 〜予定 est un programme planifié.'},
+ {k:'〜（よ）うと思う',lvl:'N4',sens:'projet en formation : « je pense / compte faire ».',struct:'V(意向形) ＋ と思う',exJp:'週末は映画を見ようと思います。',exFr:'Ce week-end, je pense aller voir un film.',q:'今日は早く寝___思う。',o:['ようと','るのと','たいと','ように'],a:0,e:'<b>〜（よ）うと思う</b> exprime une décision en train de se former : 寝よう « (que je) dorme » ＋と思う.'},
+ {k:'〜かもしれない',lvl:'N4',sens:'possibilité incertaine : « peut-être, il se peut que ».',struct:'V/adj 普通形 ＋ かもしれない',exJp:'空が暗い。雨が降るかもしれない。',exFr:'Le ciel est sombre. Il va peut-être pleuvoir.',q:'彼はまだ来ない。道に迷った___。',o:['かもしれない','はずだ','にちがいない','ことだ'],a:0,e:'<b>〜かもしれない</b> = faible probabilité. Plus incertain que 〜はずだ (attente logique) ou 〜にちがいない (quasi-certitude).'},
+ {k:'〜はずだ',lvl:'N3',sens:'déduction logique : « ça doit être / il est censé ».',struct:'V/adj 普通形（名＋の）＋ はずだ',exJp:'彼はもう帰ったはずだ。電気が消えている。',exFr:'Il doit déjà être parti : la lumière est éteinte.',q:'予約したから、席はある___だ。',o:['はず','つもり','よう','ところ'],a:0,e:'<b>〜はずだ</b> = conclusion logique fondée sur un indice. Sa négation 〜はずがない = « il est impossible que ».'},
+ {k:'〜のに',lvl:'N3',sens:'contraste décevant : « bien que / alors que (et pourtant) ».',struct:'V/adj 普通形（な-adj・名＋な）＋ のに',exJp:'薬を飲んだのに、熱が下がらない。',exFr:'Bien que j’aie pris un médicament, la fièvre ne baisse pas.',q:'たくさん練習した___、試合に負けた。',o:['のに','ので','から','ように'],a:0,e:'<b>〜のに</b> souligne un résultat contraire à l’attente, avec une nuance de déception/reproche. 〜ので serait une simple cause.'},
+ {k:'〜ので',lvl:'N4',sens:'cause objective et polie : « comme, parce que ».',struct:'V/adj 普通形（な-adj・名＋な）＋ ので',exJp:'雨が降っているので、傘を持っていきます。',exFr:'Comme il pleut, je prends un parapluie.',q:'今日は体調が悪い___、早く帰ります。',o:['ので','のに','ても','たり'],a:0,e:'<b>〜ので</b> donne une cause de façon douce et objective (plus poli que から). 〜のに exprimerait au contraire une opposition.'},
+ {k:'〜ようになる',lvl:'N4',sens:'changement d’état ou de capacité : « en venir à, finir par ».',struct:'V(辞書形/可能形) ＋ ようになる',exJp:'毎日練習して、泳げるようになった。',exFr:'À force de m’entraîner, j’ai fini par savoir nager.',q:'日本に住んで、納豆が食べられる___なった。',o:['ように','ことに','そうに','ために'],a:0,e:'<b>〜ようになる</b> marque un changement progressif (souvent avec un verbe potentiel) : « j’en suis venu à pouvoir manger du nattō ».'},
+ {k:'〜ことにする',lvl:'N4',sens:'décision personnelle : « décider de ».',struct:'V(辞書形/ない形) ＋ ことにする',exJp:'来月から日本語を習うことにしました。',exFr:'J’ai décidé d’apprendre le japonais le mois prochain.',q:'健康のために、お酒をやめる___した。',o:['ことに','ように','つもりに','はずに'],a:0,e:'<b>〜ことにする</b> = décision prise par soi-même. À distinguer de 〜ことになる (décision venue de l’extérieur).'},
+ {k:'〜ことになる',lvl:'N3',sens:'décision/résultat externe : « il est décidé que, il se trouve que ».',struct:'V(辞書形/ない形) ＋ ことになる',exJp:'来月、大阪へ転勤することになった。',exFr:'Il a été décidé que je sois muté à Osaka le mois prochain.',q:'会議は来週に延期する___なりました。',o:['ことに','ように','つもりに','ものに'],a:0,e:'<b>〜ことになる</b> présente une décision comme venant des circonstances/d’autrui. Oppose 〜ことにする (choix personnel).'},
+ {k:'〜てしまう',lvl:'N4',sens:'achèvement complet ou regret : « finir par, (hélas) ».',struct:'V(て形) ＋ しまう（口語：〜ちゃう）',exJp:'宿題を忘れてしまった。',exFr:'J’ai (malheureusement) oublié mes devoirs.',q:'おもしろくて、一日で全部読ん___。',o:['でしまった','でおいた','である','でみた'],a:0,e:'<b>〜てしまう</b> = achèvement total (« tout lire d’un coup ») ou regret. Ici l’achèvement : « j’ai tout lu en une journée ».'},
+ {k:'〜ておく',lvl:'N4',sens:'préparation préalable : « faire à l’avance, laisser (en l’état) ».',struct:'V(て形) ＋ おく（口語：〜とく）',exJp:'お客さんが来る前に、掃除しておく。',exFr:'Je fais le ménage à l’avance, avant l’arrivée des invités.',q:'明日使うから、資料をコピーし___。',o:['ておく','てある','ていく','てくる'],a:0,e:'<b>〜ておく</b> = action faite en prévision. 〜てある insisterait sur l’état résultant déjà en place.'},
+ {k:'〜てみる',lvl:'N4',sens:'tentative : « essayer de (pour voir) ».',struct:'V(て形) ＋ みる',exJp:'この料理を食べてみてください。',exFr:'Essayez de goûter ce plat.',q:'サイズが心配なら、一度着___ください。',o:['てみて','ておいて','てしまって','てあって'],a:0,e:'<b>〜てみる</b> = faire qqch à titre d’essai pour en voir le résultat : « essayez de l’enfiler une fois ».'},
+ {k:'〜てある',lvl:'N3',sens:'état résultant d’une action volontaire : « être (déjà) …é ».',struct:'V(他動詞の て形) ＋ ある',exJp:'壁に絵が飾ってある。',exFr:'Un tableau est accroché au mur (quelqu’un l’a accroché).',q:'窓が開け___から、涼しいですね。',o:['てある','ておく','ていく','てくる'],a:0,e:'<b>〜てある</b> (verbe transitif) décrit l’état laissé par une action intentionnelle. Distinct de 〜ている (continuité, verbe souvent intransitif).'},
+ {k:'〜てあげる／くれる／もらう',lvl:'N4',sens:'verbes de don/faveur : qui rend service à qui.',struct:'てあげる (moi→autrui) / てくれる (autrui→moi) / てもらう (je reçois le service)',exJp:'母がセーターを買ってくれた。',exFr:'Ma mère m’a acheté un pull (pour moi).',q:'道に迷っている人に、駅まで案内し___。',o:['てあげた','てくれた','てもらった','ておいた'],a:0,e:'<b>〜てあげる</b> = je fais qqch POUR autrui ; <b>〜てくれる</b> = autrui le fait pour MOI ; <b>〜てもらう</b> = je me fais rendre le service. Ici je guide quelqu’un → てあげた.'},
+ {k:'〜（ら）れる (受身)',lvl:'N4',sens:'passif : « être …é » (souvent subir une action).',struct:'Ⅰ群：あ段＋れる / Ⅱ群：〜られる / する→される',exJp:'弟にケーキを食べられた。',exFr:'Mon petit frère m’a mangé mon gâteau (à mon détriment).',q:'電車の中で、足を踏___。',o:['まれた','ませた','んでいた','んである'],a:0,e:'<b>〜（ら）れる</b> = passif. Le « passif de préjudice » exprime un désagrément subi : « on m’a marché sur le pied ».'},
+ {k:'〜（さ）せる (使役)',lvl:'N4',sens:'causatif : « faire faire / laisser faire ».',struct:'Ⅰ群：あ段＋せる / Ⅱ群：〜させる / する→させる',exJp:'先生は学生に漢字を書かせた。',exFr:'Le professeur a fait écrire des kanji aux élèves.',q:'母は妹に部屋を掃除___。',o:['させた','された','させられた','してある'],a:0,e:'<b>〜（さ）せる</b> = causatif : le sujet fait/laisse une autre personne agir ; la personne est marquée par に (ou を).'},
+ {k:'〜（さ）せられる (使役受身)',lvl:'N3',sens:'causatif-passif : « être obligé/forcé de ».',struct:'使役＋受身：〜させられる（Ⅰ群は〜される短縮あり）',exJp:'子供のとき、毎日ピアノを練習させられた。',exFr:'Enfant, on me forçait à répéter le piano tous les jours.',q:'飲み会で、たくさんお酒を飲___。',o:['まされた','ませた','んでいた','んでおいた'],a:0,e:'<b>〜（さ）せられる</b> = subir une obligation imposée par autrui : 飲む→飲ませられる→飲まされる « on m’a fait boire beaucoup ».'},
+ {k:'〜ようだ',lvl:'N3',sens:'conjecture fondée sur des indices : « on dirait que, il semble que ».',struct:'V/adj 普通形（名＋の・な-adj＋な）＋ ようだ',exJp:'道が濡れている。雨が降ったようだ。',exFr:'La route est mouillée. On dirait qu’il a plu.',q:'みんな傘を持っている。午後は雨の___だ。',o:['よう','そう','らし','つもり'],a:0,e:'<b>〜ようだ</b> = déduction personnelle à partir d’indices observés (名＋の：雨のようだ). Plus subjectif/sûr que 〜らしい (ouï-dire).'},
+ {k:'〜そうだ (様態)',lvl:'N3',sens:'apparence immédiate : « avoir l’air de, sembler sur le point de ».',struct:'V(ます語幹)／adj語幹 ＋ そうだ',exJp:'このケーキ、おいしそうだ。',exFr:'Ce gâteau a l’air délicieux.',q:'空が暗い。今にも雨が降り___だ。',o:['そう','よう','らしい','みたい'],a:0,e:'<b>〜そうだ (様態)</b> = jugement visuel immédiat (« sur le point de »). Attention : いい→よさそう, ない→なさそう.'},
+ {k:'〜そうだ (伝聞)',lvl:'N3',sens:'ouï-dire : « on dit que, il paraît que » (information rapportée).',struct:'V/adj 普通形 ＋ そうだ',exJp:'天気予報によると、明日は雪が降るそうだ。',exFr:'D’après la météo, il paraît qu’il neigera demain.',q:'ニュースによると、来週から値段が上がる___だ。',o:['そう','よう','つもり','ところ'],a:0,e:'<b>〜そうだ (伝聞)</b> rapporte une information entendue. Il part de la forme neutre complète (降る→降るそうだ), à la différence du 様態.'},
+ {k:'〜らしい',lvl:'N3',sens:'ouï-dire, ou caractère typique : « il paraît que ; bien digne de ».',struct:'V/adj 普通形（名・な-adj：語幹）＋ らしい',exJp:'田中さんは来月結婚するらしい。',exFr:'Il paraît que M. Tanaka se marie le mois prochain.',q:'今日は春___暖かい日ですね。',o:['らしい','そうな','ような','みたいな'],a:0,e:'<b>〜らしい</b> a deux sens : (1) ouï-dire ; (2) « typique de » (春らしい = bien printanier). Ici sens (2).'},
+ {k:'〜みたいだ',lvl:'N3',sens:'comparaison/conjecture familière : « comme, on dirait ».',struct:'名／V・adj 普通形 ＋ みたいだ',exJp:'あの雲は動物みたいだ。',exFr:'Ce nuage ressemble à un animal.',q:'熱があって、頭が痛い。風邪を引いた___。',o:['みたいだ','ようすだ','つもりだ','ところだ'],a:0,e:'<b>〜みたいだ</b> = équivalent familier de 〜ようだ : comparer (« comme ») ou conjecturer (« on dirait que j’ai attrapé froid »).'},
+ {k:'〜すぎる',lvl:'N4',sens:'excès : « trop ».',struct:'V(ます語幹)／adj語幹 ＋ すぎる',exJp:'昨日は食べすぎてお腹が痛い。',exFr:'Hier j’ai trop mangé, j’ai mal au ventre.',q:'この問題は難し___て、わからない。',o:['すぎ','やすく','にくく','そう'],a:0,e:'<b>〜すぎる</b> = excès (souvent négatif). Les adjectifs perdent leur terminaison : 難しい→難しすぎる, 静か→静かすぎる.'},
+ {k:'〜やすい／〜にくい',lvl:'N4',sens:'facilité ou difficulté à faire : « facile / difficile à… ».',struct:'V(ます語幹) ＋ やすい／にくい',exJp:'この本は字が大きくて読みやすい。',exFr:'Ce livre a de grands caractères, facile à lire.',q:'この薬は苦くて飲み___。',o:['にくい','やすい','すぎる','がたい'],a:0,e:'<b>〜やすい</b> = facile à ; <b>〜にくい</b> = difficile à. Ici : « ce médicament est amer, difficile à avaler ».'},
+ {k:'お〜になる／お〜する',lvl:'N3',sens:'keigo : respect (sonkeigo) vs modestie (kenjōgo).',struct:'尊敬：お＋V(ます語幹)＋になる / 謙譲：お＋V(ます語幹)＋する',exJp:'社長はもうお帰りになりました。',exFr:'Le directeur est déjà parti (forme respectueuse).',q:'重そうですね。私が荷物をお持ち___。',o:['します','になります','されます','いたす'],a:0,e:'<b>お〜する</b> (modestie) pour SES PROPRES actions envers un supérieur : « laissez-moi porter vos bagages ». <b>お〜になる</b> (respect) décrit l’action de la personne respectée.'},
+ {k:'〜たところだ',lvl:'N3',sens:'« venir juste de (faire) » — action achevée à l’instant.',struct:'V(た形) ＋ ところだ',exJp:'今、駅に着いたところです。',exFr:'Je viens juste d’arriver à la gare.',q:'もしもし。ちょうど今、家を出た___です。',o:['ところ','つもり','はず','まま'],a:0,e:'<b>〜たところだ</b> = juste après l’action. À comparer : 〜ているところ (en train de), 〜るところ (sur le point de).'},
+ {k:'〜わけだ',lvl:'N3',sens:'conclusion logique : « ça explique donc que, forcément ».',struct:'V/adj 普通形（な-adj＋な・名＋という）＋ わけだ',exJp:'10年も日本にいたの？道理で上手なわけだ。',exFr:'Tu es resté 10 ans au Japon ? Pas étonnant que tu sois si bon.',q:'エアコンが壊れている。暑い___だ。',o:['わけ','はず','つもり','ところ'],a:0,e:'<b>〜わけだ</b> tire une conclusion naturelle d’une situation (« voilà pourquoi il fait chaud »). Différent de 〜はずだ (attente a priori).'},
+ {k:'〜ばかり',lvl:'N3',sens:'« ne faire que / rien que » — restriction ou excès répété.',struct:'V(て形)＋ばかりいる / 名＋ばかり',exJp:'弟はゲームばかりしている。',exFr:'Mon frère ne fait que jouer aux jeux vidéo.',q:'彼は文句を言って___で、何もしない。',o:['ばかり','だけに','しか','ながら'],a:0,e:'<b>〜てばかりいる</b> = « ne faire que… » (excès). Ici : « il ne fait que se plaindre et n’agit pas ».'},
+ {k:'〜べきだ',lvl:'N3',sens:'devoir moral / recommandation forte : « on devrait, il faut ».',struct:'V(辞書形) ＋ べきだ（する→すべき）',exJp:'約束は守るべきだ。',exFr:'On doit tenir ses promesses.',q:'体に悪いから、たばこはやめる___だ。',o:['べき','はず','つもり','よう'],a:0,e:'<b>〜べきだ</b> = ce qui est juste/souhaitable selon une norme. Plus moral que 〜なければならない (obligation concrète).'},
+ {k:'〜に対して',lvl:'N3',sens:'« envers / à l’égard de », ou contraste « tandis que ».',struct:'名 ＋ に対して',exJp:'お客様に対して、丁寧に話す。',exFr:'On parle poliment envers les clients.',q:'兄は社交的なの___、弟は静かだ。',o:['に対して','について','によって','として'],a:0,e:'<b>〜に対して</b> indique la cible d’une attitude (« envers ») ou un contraste entre deux éléments. Ici, contraste entre les deux frères.'},
+ {k:'〜によって',lvl:'N3',sens:'« selon / par / au moyen de » (variation, agent, moyen).',struct:'名 ＋ によって',exJp:'国によって習慣が違う。',exFr:'Les coutumes diffèrent selon les pays.',q:'この小説は有名な作家___書かれた。',o:['によって','について','に対して','として'],a:0,e:'<b>〜によって</b> a plusieurs valeurs : variation (« selon »), agent du passif (« par »), moyen. Ici, agent : « écrit PAR un auteur célèbre ».'},
+ {k:'〜について',lvl:'N4',sens:'« au sujet de, concernant ».',struct:'名 ＋ について',exJp:'日本の文化について研究している。',exFr:'Je fais des recherches sur la culture japonaise.',q:'この問題___、みんなで話し合った。',o:['について','によって','に対して','にとって'],a:0,e:'<b>〜について</b> introduit le thème dont on parle/écrit. À ne pas confondre avec 〜にとって (« pour, du point de vue de »).'},
+ {k:'〜ても',lvl:'N4',sens:'concession : « même si ».',struct:'V(て形)＋も / い-adj：〜くても / 名・な-adj：〜でも',exJp:'雨が降っても、試合は行われる。',exFr:'Même s’il pleut, le match aura lieu.',q:'いくら呼ん___、彼は返事をしなかった。',o:['でも','だら','ので','のに'],a:0,e:'<b>〜ても</b> = concession (« même si / quoi que »). Avec un interrogatif (いくら…ても) : « on a eu beau appeler… ». 呼ぶ→呼んでも.'},
+];
+const SRS_DAYS=[0,1,3,7,16,35]; // box 0=échec (revient vite) ; 1→35 j selon le palier
+let learnCur=null, learnReview=false;
+function gramRec(k){return S.gram[k]||null}
+function gramValidated(){return GRAMMAR_LESSONS.filter(g=>{const r=S.gram[g.k];return r&&r.box>=1}).length}
+function gramDueList(){const now=Date.now();return GRAMMAR_LESSONS.filter(g=>{const r=S.gram[g.k];return r&&new Date(r.due).getTime()<=now})}
+function gramNewList(){return GRAMMAR_LESSONS.filter(g=>!S.gram[g.k])}
+function lvlBadgeHtml(lvl){return lvl?`<span style="display:inline-block;font-size:.72em;font-weight:700;padding:1px 7px;border-radius:6px;vertical-align:middle;background:${lvl==='N4'?'rgba(154,103,0,.18)':'rgba(31,111,235,.2)'};color:${lvl==='N4'?'#c98a00':'#5b9bff'}">${lvl}</span>`:''}
+function pickLearn(){
+  const due=gramDueList(), nw=gramNewList();
+  if(due.length){due.sort((a,b)=>(S.gram[a.k].box-S.gram[b.k].box)||(new Date(S.gram[a.k].due)-new Date(S.gram[b.k].due)));learnReview=true;return due[0];}
+  if(nw.length){learnReview=false;return nw[0];}
+  const all=[...GRAMMAR_LESSONS].sort((a,b)=>new Date(S.gram[a.k].due)-new Date(S.gram[b.k].due));learnReview=true;return all[0];
+}
+function startLearn(){
+  if(!gramDueList().length&&!gramNewList().length){showScreen('learn');renderLearnHead();renderLearnDone();return;}
+  learnCur=pickLearn();showScreen('learn');renderLearnHead();renderTeach();
+}
+function renderLearnHead(){
+  const v=gramValidated(),tot=GRAMMAR_LESSONS.length,due=gramDueList().length;
+  document.getElementById('learnHead').innerHTML=`✅ Validés : <b>${v}/${tot}</b> &nbsp;·&nbsp; 🔁 À réviser : <b>${due}</b>`;
+}
+function renderTeach(){
+  const g=learnCur;
+  const tag=learnReview?'<span style="color:var(--accent2);font-weight:700">🔁 Révision</span>':'<span style="color:var(--ok);font-weight:700">✨ Nouveau point</span>';
+  document.getElementById('learnBody').innerHTML=`
+   <div style="font-size:.82rem;margin-bottom:8px">${tag}</div>
+   <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">${lvlBadgeHtml(g.lvl)}<div style="font-size:1.5rem;font-weight:800;color:var(--accent2)">${g.k}</div></div>
+   <p style="font-size:1.02rem;margin:.55em 0"><b>${g.sens}</b></p>
+   <div style="font-family:monospace;background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:.9rem">🔧 ${g.struct}</div>
+   <div style="margin-top:13px;background:rgba(62,207,142,.08);border:1px solid var(--ok);border-radius:11px;padding:11px 13px">
+     <div style="font-size:.78rem;color:var(--muted);margin-bottom:4px">例文 — Exemple</div>
+     <div style="font-size:1.08rem">${furi(g.exJp)}</div>
+     <div class="muted" style="margin-top:5px;font-size:.93rem">${g.exFr}</div>
+   </div>
+   <button class="start" onclick="renderExo()" style="margin-top:15px">✏️ Faire l'exercice de vérification →</button>`;
+}
+function renderExo(){
+  const g=learnCur;
+  document.getElementById('learnBody').innerHTML=`
+   <div style="font-size:.82rem;margin-bottom:9px" class="muted">✏️ Exercice — complète la phrase :</div>
+   <div class="qtext" style="margin-top:0">${furi(g.q).replace('___','<span class="blank">？</span>')}</div>
+   <div id="learnOpts"></div><div class="expl" id="learnExpl"></div><div id="learnNext"></div>`;
+  const opts=document.getElementById('learnOpts');
+  shuffle(g.o.map((t,i)=>({t,i}))).forEach(({t})=>{const b=document.createElement('button');b.className='opt';b.textContent=t;b.onclick=()=>learnAnswer(b,opts);opts.appendChild(b)});
+}
+function learnAnswer(btn,opts){
+  const g=learnCur,correct=g.o[g.a],ok=btn.textContent===correct;
+  [...opts.children].forEach(b=>{b.disabled=true;if(b.textContent===correct)b.classList.add('correct')});
+  if(!ok)btn.classList.add('wrong');
+  const r=S.gram[g.k]||{box:0};
+  let box=ok?Math.min(5,(r.box||0)+1):0;        // réussite → palier suivant ; échec → box 0
+  const days=ok?SRS_DAYS[box]:1;                  // échec : revient demain
+  S.gram[g.k]={box,due:new Date(Date.now()+days*864e5).toISOString(),seen:true};
+  updateRating('grammaire',g.lvl==='N4'?1:2,ok);S.total++;if(ok)S.right++;save();
+  const ex=document.getElementById('learnExpl');ex.className='expl show '+(ok?'good':'poor');
+  const status=ok
+    ?`✅ <b>Correct !</b> Point ${box>1?'renforcé':'validé'} ✓ — prochaine révision dans <b>${SRS_DAYS[box]} j</b>.`
+    :`❌ <b>Pas tout à fait.</b> Réponse : <b>${correct}</b>. Ce point reviendra <b>demain</b> en révision.`;
+  ex.innerHTML=status+'<div style="margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);line-height:1.7">'+lvlBadgeHtml(g.lvl)+' '+g.e+'</div>';
+  const more=gramDueList().length||gramNewList().length;
+  document.getElementById('learnNext').innerHTML=`<button class="start" onclick="startLearn()" style="margin-top:13px">${more?'Continuer →':'Terminer ✓'}</button>`;
+  renderLearnHead();
+}
+function renderLearnDone(){
+  const sorted=[...GRAMMAR_LESSONS].filter(g=>S.gram[g.k]).sort((a,b)=>new Date(S.gram[a.k].due)-new Date(S.gram[b.k].due));
+  const next=sorted[0];const when=next?new Date(S.gram[next.k].due):null;
+  document.getElementById('learnBody').innerHTML=`<div style="text-align:center;padding:16px 4px">
+   <div style="font-size:2.1rem">🎉</div>
+   <p><b>Tout est à jour !</b> Tous les points appris sont validés et aucune révision n'est due maintenant.</p>
+   <p class="muted">Prochaine révision : ${when?'le <b>'+when.toLocaleDateString('fr-FR')+'</b> ('+next.k+')':'—'}.</p>
+   <button class="start ghost" onclick="forceReview()" style="margin-top:8px">🔁 Réviser quand même</button></div>`;
+}
+function forceReview(){
+  const sorted=[...GRAMMAR_LESSONS].filter(g=>S.gram[g.k]).sort((a,b)=>new Date(S.gram[a.k].due)-new Date(S.gram[b.k].due));
+  if(!sorted.length)return;learnCur=sorted[0];learnReview=true;renderTeach();
+}
+
+function showScreen(id){stopSpeak();['home','quiz','result','learn'].forEach(x=>document.getElementById(x).style.display=x===id?'block':'none');window.scrollTo(0,0)}
 function goHome(){showScreen('home');renderHome();renderCats()}
 function resetAll(){if(confirm('Effacer tout (niveau, historique, erreurs) ?')){S={skill:blank(),total:0,right:0,bestStreak:0,streak:0,wrong:[],history:[],lastDiag:null};save();renderHome();renderCats()}}
 
