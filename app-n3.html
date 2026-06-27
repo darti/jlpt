@@ -82,14 +82,15 @@
   .tgrid{display:grid;grid-template-columns:1fr;gap:8px}
   .tgrid .start{margin:0}
   .train{background:linear-gradient(135deg,rgba(226,70,107,.12),rgba(63,182,224,.1));border-color:var(--accent)}
-  .dash{display:grid;grid-template-columns:1fr;gap:14px}
-  .dash>.card{margin:0}
+  /* tableau de bord en colonnes (masonry) qui remplit la largeur sur desktop */
+  .masonry{column-gap:16px}
+  .masonry>.card{break-inside:avoid;margin:0 0 16px}
+  /* écrans de quiz/apprentissage : largeur de lecture confortable, centrée */
+  #quiz,#result,#learn{max-width:760px;margin:0 auto}
   @media(min-width:560px){ .tgrid{grid-template-columns:1fr 1fr} .tgrid.three{grid-template-columns:repeat(3,1fr)} }
-  @media(min-width:900px){
-    .wrap{max-width:900px}
-    .dash{grid-template-columns:1fr 1fr}
-    .dash>.card:first-child{grid-row:span 2}
-  }
+  @media(min-width:760px){ .wrap{max-width:96vw;padding:18px} .masonry{columns:2} }
+  @media(min-width:1180px){ .masonry{columns:3} }
+  @media(min-width:1640px){ .masonry{columns:4} }
   @media(max-width:430px){
     header{padding:18px 46px 12px}
     header h1{font-size:1.25rem}
@@ -112,7 +113,7 @@
   <div id="home">
     <div id="diagBanner"></div>
 
-    <div class="dash">
+    <div class="masonry">
     <!-- PROBA DE SUCCÈS -->
     <div class="card">
       <h2 style="margin-top:0">🎯 Probabilité de réussite (déc. 2026)</h2>
@@ -143,7 +144,6 @@
       <div id="chart"></div>
       <p class="muted" id="trend"></p>
     </div>
-    </div><!-- /.dash -->
 
     <!-- CLOUD / SYNCHRO -->
     <div class="card">
@@ -173,8 +173,8 @@
     </div>
 
     <!-- SESSION (unifiée, budget de temps) -->
-    <h2>Session</h2>
-    <div class="card train" style="margin-top:0">
+    <div class="card train">
+      <h2 style="margin-top:0">Session</h2>
       <div class="trow">
         <span>⏱ J'ai</span>
         <input id="sessMin" class="numin" type="number" min="2" max="90" value="15">
@@ -187,8 +187,8 @@
       <p class="muted" id="sessHint" style="margin:10px 0 0">« Apprendre + quiz » : leçons gram·kanji·voca (nouveaux & révisions dues) puis quiz de consolidation. « Quiz équilibré » : QCM ciblé sur tes points faibles. La durée règle le volume.</p>
     </div>
 
-    <h2>Apprendre & réviser</h2>
-    <div class="card" style="margin-top:0">
+    <div class="card">
+      <h2 style="margin-top:0">Apprendre & réviser</h2>
       <p class="muted" id="learnProg" style="margin:0 0 11px">Leçon → exemple → exercice → correction. Les points validés reviennent en révision espacée.</p>
       <div class="tgrid">
         <button class="start ghost" onclick="startLearn()">📖 Grammaire pas à pas</button>
@@ -196,8 +196,8 @@
       </div>
     </div>
 
-    <h2>Tester</h2>
-    <div class="card" style="margin-top:0">
+    <div class="card">
+      <h2 style="margin-top:0">Tester</h2>
       <div class="cats" id="cats"></div>
       <div class="tgrid three">
         <button class="start" onclick="start('adaptive')">▶ Quiz adaptatif</button>
@@ -206,13 +206,16 @@
       </div>
     </div>
 
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
-      <button class="reset" onclick="exportData()">💾 Exporter (JSON)</button>
-      <button class="reset" onclick="document.getElementById('importFile').click()">📂 Importer</button>
-      <button class="reset" onclick="resetAll()">↺ Tout réinitialiser</button>
-      <input id="importFile" type="file" accept="application/json,.json" style="display:none" onchange="importData(this)">
+    <div class="card">
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="reset" onclick="exportData()">💾 Exporter (JSON)</button>
+        <button class="reset" onclick="document.getElementById('importFile').click()">📂 Importer</button>
+        <button class="reset" onclick="resetAll()">↺ Tout réinitialiser</button>
+        <input id="importFile" type="file" accept="application/json,.json" style="display:none" onchange="importData(this)">
+      </div>
+      <p class="muted" style="margin:12px 0 0"><a href="cours-n3.html">📚 Cours</a> · <a href="planning-n3.html">🗓️ Planning</a></p>
     </div>
-    <p class="muted" style="margin-top:16px"><a href="cours-n3.html">📚 Cours</a> · <a href="planning-n3.html">🗓️ Planning</a></p>
+    </div><!-- /.masonry -->
   </div>
 
   <!-- QUIZ -->
