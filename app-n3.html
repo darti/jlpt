@@ -76,6 +76,27 @@
   .furibtn.on{background:var(--accent2);border-color:var(--accent2);color:#06121a;font-weight:700}
   .listenbtn{background:#b07bd8;border:none;color:#1a0f24;font-weight:700;font-size:1.05rem;padding:12px 20px;border-radius:12px;cursor:pointer}
   .listenbtn:active{transform:scale(.96)}
+  /* ---- mise en page responsive ---- */
+  .trow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:11px}
+  .numin{width:68px;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--card2);color:var(--txt);text-align:center;font-size:1rem}
+  .tgrid{display:grid;grid-template-columns:1fr;gap:8px}
+  .tgrid .start{margin:0}
+  .train{background:linear-gradient(135deg,rgba(226,70,107,.12),rgba(63,182,224,.1));border-color:var(--accent)}
+  .dash{display:grid;grid-template-columns:1fr;gap:14px}
+  .dash>.card{margin:0}
+  @media(min-width:560px){ .tgrid{grid-template-columns:1fr 1fr} .tgrid.three{grid-template-columns:repeat(3,1fr)} }
+  @media(min-width:900px){
+    .wrap{max-width:900px}
+    .dash{grid-template-columns:1fr 1fr}
+    .dash>.card:first-child{grid-row:span 2}
+  }
+  @media(max-width:430px){
+    header{padding:18px 46px 12px}
+    header h1{font-size:1.25rem}
+    .card{padding:15px}
+    .qtext{font-size:1.18rem}
+    .row .name{width:96px}
+  }
 </style>
 </head>
 <body>
@@ -91,6 +112,7 @@
   <div id="home">
     <div id="diagBanner"></div>
 
+    <div class="dash">
     <!-- PROBA DE SUCCÈS -->
     <div class="card">
       <h2 style="margin-top:0">🎯 Probabilité de réussite (déc. 2026)</h2>
@@ -121,6 +143,7 @@
       <div id="chart"></div>
       <p class="muted" id="trend"></p>
     </div>
+    </div><!-- /.dash -->
 
     <!-- CLOUD / SYNCHRO -->
     <div class="card">
@@ -149,39 +172,41 @@
       </div>
     </div>
 
-    <!-- LANCER -->
-    <h2>S'entraîner</h2>
-    <div class="card" style="margin-top:0">
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+    <!-- SESSION (unifiée, budget de temps) -->
+    <h2>Session</h2>
+    <div class="card train" style="margin-top:0">
+      <div class="trow">
         <span>⏱ J'ai</span>
-        <input id="sessMin" type="number" min="2" max="90" value="15" style="width:64px;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--card2);color:var(--txt);text-align:center;font-size:1rem">
+        <input id="sessMin" class="numin" type="number" min="2" max="90" value="15">
         <span>min de libre</span>
-        <button class="start" style="flex:1;min-width:160px;margin:0" onclick="startSession()">🎯 Prépare ma session</button>
       </div>
-      <p class="muted" id="sessHint" style="margin:8px 0 0">Une session équilibrée, avec plus de questions sur tes points faibles.</p>
-    </div>
-    <div class="card" style="margin-top:0;background:linear-gradient(135deg,rgba(226,70,107,.12),rgba(63,182,224,.1));border-color:var(--accent)">
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <span>📖 <b>Apprendre la grammaire</b> — un point à la fois</span>
+      <div class="tgrid">
+        <button class="start" onclick="startMixSession()">🧩 Apprendre + quiz</button>
+        <button class="start ghost" onclick="startSession()">🎯 Quiz équilibré</button>
       </div>
-      <p class="muted" id="learnProg" style="margin:8px 0 10px">Leçon → exemple → exercice → correction détaillée. Les points validés reviennent en révision espacée.</p>
-      <button class="start" style="margin:0" onclick="startLearn()">📖 Apprendre / réviser la grammaire</button>
+      <p class="muted" id="sessHint" style="margin:10px 0 0">« Apprendre + quiz » : leçons gram·kanji·voca (nouveaux & révisions dues) puis quiz de consolidation. « Quiz équilibré » : QCM ciblé sur tes points faibles. La durée règle le volume.</p>
     </div>
-    <div class="card" style="margin-top:0;background:linear-gradient(135deg,rgba(245,185,66,.12),rgba(63,182,224,.1));border-color:var(--accent2)">
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <span>🧩 <b>Session</b> — apprends puis teste, en</span>
-        <input id="mixMin" type="number" min="3" max="60" value="12" style="width:60px;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--card2);color:var(--txt);text-align:center;font-size:1rem">
-        <span>min</span>
-        <button class="start" style="flex:1;min-width:160px;margin:0" onclick="startMixSession()">🧩 Lancer la session</button>
+
+    <h2>Apprendre & réviser</h2>
+    <div class="card" style="margin-top:0">
+      <p class="muted" id="learnProg" style="margin:0 0 11px">Leçon → exemple → exercice → correction. Les points validés reviennent en révision espacée.</p>
+      <div class="tgrid">
+        <button class="start ghost" onclick="startLearn()">📖 Grammaire pas à pas</button>
+        <button class="start ghost" onclick="start('wrong')">↻ Réviser mes erreurs</button>
       </div>
-      <p class="muted" style="margin:8px 0 0">Grammaire + kanji + vocabulaire (nouveaux & révisions dues), apprentissage pas à pas, puis un quiz de consolidation. La durée règle le nombre de notions.</p>
     </div>
-    <div class="cats" id="cats"></div>
-    <button class="start" onclick="start('adaptive')">▶ Quiz adaptatif (10 questions)</button>
-    <button class="start ghost" onclick="start('diagnostic')">🩺 Lancer un diagnostic complet (15 q)</button>
-    <button class="start ghost" onclick="start('exam')">📝 Examen blanc complet (chronométré)</button>
-    <button class="start ghost" onclick="start('wrong')">↻ Réviser mes erreurs</button>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+
+    <h2>Tester</h2>
+    <div class="card" style="margin-top:0">
+      <div class="cats" id="cats"></div>
+      <div class="tgrid three">
+        <button class="start" onclick="start('adaptive')">▶ Quiz adaptatif</button>
+        <button class="start ghost" onclick="start('diagnostic')">🩺 Diagnostic</button>
+        <button class="start ghost" onclick="start('exam')">📝 Examen blanc</button>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
       <button class="reset" onclick="exportData()">💾 Exporter (JSON)</button>
       <button class="reset" onclick="document.getElementById('importFile').click()">📂 Importer</button>
       <button class="reset" onclick="resetAll()">↺ Tout réinitialiser</button>
@@ -1390,7 +1415,7 @@ function buildLearnQueue(perCat){
   return shuffle(q);
 }
 function startMixSession(){
-  const min=Math.max(3,Math.min(60,parseInt(document.getElementById('mixMin').value,10)||12));
+  const min=Math.max(3,Math.min(60,parseInt(document.getElementById('sessMin').value,10)||12));
   const learnItems=Math.max(3,Math.min(30,Math.round(min)));   // ~1 notion / min
   const perCat=Math.max(1,Math.ceil(learnItems/3));
   sessionQuizN=Math.max(3,Math.min(18,Math.round(min*0.5)));   // ~moitié du temps en quiz
