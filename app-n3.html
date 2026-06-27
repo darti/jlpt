@@ -167,6 +167,15 @@
       <p class="muted" id="learnProg" style="margin:8px 0 10px">Leçon → exemple → exercice → correction détaillée. Les points validés reviennent en révision espacée.</p>
       <button class="start" style="margin:0" onclick="startLearn()">📖 Apprendre / réviser la grammaire</button>
     </div>
+    <div class="card" style="margin-top:0;background:linear-gradient(135deg,rgba(245,185,66,.12),rgba(63,182,224,.1));border-color:var(--accent2)">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span>🧩 <b>Session</b> — apprends puis teste, en</span>
+        <input id="mixMin" type="number" min="3" max="60" value="12" style="width:60px;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--card2);color:var(--txt);text-align:center;font-size:1rem">
+        <span>min</span>
+        <button class="start" style="flex:1;min-width:160px;margin:0" onclick="startMixSession()">🧩 Lancer la session</button>
+      </div>
+      <p class="muted" style="margin:8px 0 0">Grammaire + kanji + vocabulaire (nouveaux & révisions dues), apprentissage pas à pas, puis un quiz de consolidation. La durée règle le nombre de notions.</p>
+    </div>
     <div class="cats" id="cats"></div>
     <button class="start" onclick="start('adaptive')">▶ Quiz adaptatif (10 questions)</button>
     <button class="start ghost" onclick="start('diagnostic')">🩺 Lancer un diagnostic complet (15 q)</button>
@@ -1227,8 +1236,64 @@ const GRAMMAR_LESSONS=[
  {k:'〜について',lvl:'N4',sens:'« au sujet de, concernant ».',struct:'名 ＋ について',exJp:'日本の文化について研究している。',exFr:'Je fais des recherches sur la culture japonaise.',q:'この問題___、みんなで話し合った。',o:['について','によって','に対して','にとって'],a:0,e:'<b>〜について</b> introduit le thème dont on parle/écrit. À ne pas confondre avec 〜にとって (« pour, du point de vue de »).'},
  {k:'〜ても',lvl:'N4',sens:'concession : « même si ».',struct:'V(て形)＋も / い-adj：〜くても / 名・な-adj：〜でも',exJp:'雨が降っても、試合は行われる。',exFr:'Même s’il pleut, le match aura lieu.',q:'いくら呼ん___、彼は返事をしなかった。',o:['でも','だら','ので','のに'],a:0,e:'<b>〜ても</b> = concession (« même si / quoi que »). Avec un interrogatif (いくら…ても) : « on a eu beau appeler… ». 呼ぶ→呼んでも.'},
 ];
+/* --- Cartes d'apprentissage KANJI --- */
+const KANJI_LESSONS=[
+ {k:'政',lvl:'N3',sens:'politique, gouvernement',struct:'音：セイ・ショウ ／ 訓：まつりごと',exJp:'政治（せいじ）',exFr:'la politique',q:'「政治」の読み方は？',o:['せいじ','せいち','しょうじ','せいぎ'],a:0,e:'<b>政</b> セイ. 政治（せいじ）= politique ; 政府（せいふ）= gouvernement.'},
+ {k:'関',lvl:'N3',sens:'rapport, barrière',struct:'音：カン ／ 訓：せき・かか(わる)',exJp:'関係（かんけい）',exFr:'la relation',q:'「関係」の読み方は？',o:['かんけい','かんけ','げんかい','かんれい'],a:0,e:'<b>関</b> カン. 関係（かんけい）= relation ; 関心（かんしん）= intérêt ; 関わる（かかわる）= être concerné.'},
+ {k:'議',lvl:'N3',sens:'délibérer, débattre',struct:'音：ギ',exJp:'会議（かいぎ）',exFr:'la réunion',q:'「会議」の読み方は？',o:['かいぎ','かいご','えぎ','かいき'],a:0,e:'<b>議</b> ギ. 会議（かいぎ）= réunion ; 議論（ぎろん）= débat.'},
+ {k:'選',lvl:'N3',sens:'choisir',struct:'音：セン ／ 訓：えら(ぶ)',exJp:'選ぶ（えらぶ）',exFr:'choisir',q:'「選ぶ」の訓読みは？',o:['えら(ぶ)','はこ(ぶ)','あそ(ぶ)','むす(ぶ)'],a:0,e:'<b>選</b> セン・えら(ぶ). 選択（せんたく）= choix ; 選ぶ（えらぶ）= choisir.'},
+ {k:'経',lvl:'N3',sens:'passer par, gérer',struct:'音：ケイ・キョウ ／ 訓：へ(る)',exJp:'経済（けいざい）',exFr:'l’économie',q:'「経済」の読み方は？',o:['けいざい','けいさい','きょうざい','けいざ'],a:0,e:'<b>経</b> ケイ. 経済（けいざい）= économie ; 経験（けいけん）= expérience ; 経る（へる）= passer (temps).'},
+ {k:'調',lvl:'N3',sens:'enquêter, ton',struct:'音：チョウ ／ 訓：しら(べる)・ととの(える)',exJp:'調べる（しらべる）',exFr:'vérifier',q:'「調べる」の訓読みは？',o:['しら(べる)','くら(べる)','なら(べる)','た(べる)'],a:0,e:'<b>調</b> チョウ・しら(べる). 調査（ちょうさ）= enquête ; 調べる（しらべる）= vérifier.'},
+ {k:'結',lvl:'N3',sens:'nouer, conclure',struct:'音：ケツ ／ 訓：むす(ぶ)',exJp:'結果（けっか）',exFr:'le résultat',q:'「結果」の読み方は？',o:['けっか','けつか','ゆいか','けっこう'],a:0,e:'<b>結</b> ケツ. 結果（けっか）= résultat ; 結婚（けっこん）= mariage ; 結ぶ（むすぶ）= nouer.'},
+ {k:'必',lvl:'N3',sens:'forcément, indispensable',struct:'音：ヒツ ／ 訓：かなら(ず)',exJp:'必要（ひつよう）',exFr:'nécessaire',q:'「必ず」の訓読みは？',o:['かなら(ず)','のこ(らず)','た(らず)','まも(らず)'],a:0,e:'<b>必</b> ヒツ・かなら(ず). 必要（ひつよう）= nécessaire ; 必ず（かならず）= sans faute.'},
+ {k:'性',lvl:'N3',sens:'nature, caractère, -ité',struct:'音：セイ・ショウ',exJp:'性格（せいかく）',exFr:'le caractère',q:'「性格」の読み方は？',o:['せいかく','せいきゃく','しょうかく','せいか'],a:0,e:'<b>性</b> セイ. 性格（せいかく）= caractère ; 性質（せいしつ）= nature ; 可能性（かのうせい）= possibilité.'},
+ {k:'増',lvl:'N3',sens:'augmenter',struct:'音：ゾウ ／ 訓：ふ(える)・ま(す)',exJp:'増える（ふえる）',exFr:'augmenter',q:'「増える」の訓読みは？',o:['ふ(える)','き(える)','に(える)','も(える)'],a:0,e:'<b>増</b> ゾウ・ふ(える). 増加（ぞうか）= hausse ; 増える（ふえる）= augmenter ↔ 減る（へる）.'},
+ {k:'減',lvl:'N3',sens:'diminuer',struct:'音：ゲン ／ 訓：へ(る)・へ(らす)',exJp:'減る（へる）',exFr:'diminuer',q:'「減る」の訓読みは？',o:['へ(る)','え(る)','ね(る)','で(る)'],a:0,e:'<b>減</b> ゲン・へ(る). 減少（げんしょう）= baisse ; 減る（へる）= diminuer.'},
+ {k:'認',lvl:'N3',sens:'reconnaître, admettre',struct:'音：ニン ／ 訓：みと(める)',exJp:'認める（みとめる）',exFr:'reconnaître',q:'「認める」の訓読みは？',o:['みと(める)','あらた(める)','さだ(める)','すす(める)'],a:0,e:'<b>認</b> ニン・みと(める). 確認（かくにん）= vérification ; 認める（みとめる）= admettre.'},
+ {k:'解',lvl:'N3',sens:'résoudre, défaire',struct:'音：カイ・ゲ ／ 訓：と(く)',exJp:'解決（かいけつ）',exFr:'la résolution',q:'「解決」の読み方は？',o:['かいけつ','かいき','げけつ','かいげつ'],a:0,e:'<b>解</b> カイ・と(く). 解決（かいけつ）= résolution ; 理解（りかい）= compréhension ; 解く（とく）= résoudre.'},
+ {k:'過',lvl:'N3',sens:'passer, excès',struct:'音：カ ／ 訓：す(ぎる)・あやま(ち)',exJp:'過ぎる（すぎる）',exFr:'passer, dépasser',q:'「過ぎる」の訓読みは？',o:['す(ぎる)','に(ぎる)','ふ(せぐ)','と(ぐ)'],a:0,e:'<b>過</b> カ・す(ぎる). 過去（かこ）= passé ; 過ぎる（すぎる）= passer ; 過程（かてい）= processus.'},
+ {k:'規',lvl:'N3',sens:'norme, règle',struct:'音：キ',exJp:'規則（きそく）',exFr:'le règlement',q:'「規則」の読み方は？',o:['きそく','きぞく','ぎそく','きのり'],a:0,e:'<b>規</b> キ. 規則（きそく）= règlement ; 規模（きぼ）= échelle.'},
+ {k:'識',lvl:'N3',sens:'connaissance, discernement',struct:'音：シキ',exJp:'知識（ちしき）',exFr:'les connaissances',q:'「知識」の読み方は？',o:['ちしき','ちしょく','しりしき','ちじき'],a:0,e:'<b>識</b> シキ. 知識（ちしき）= connaissances ; 意識（いしき）= conscience.'},
+ {k:'因',lvl:'N3',sens:'cause',struct:'音：イン ／ 訓：よ(る)',exJp:'原因（げんいん）',exFr:'la cause',q:'「原因」の読み方は？',o:['げんいん','げにん','がんいん','はらいん'],a:0,e:'<b>因</b> イン. 原因（げんいん）= cause ; 原因 ↔ 結果（けっか）.'},
+ {k:'達',lvl:'N3',sens:'atteindre, (pluriel -tachi)',struct:'音：タツ',exJp:'達成（たっせい）',exFr:'l’accomplissement',q:'「達成」の読み方は？',o:['たっせい','たつせい','だっせい','たちなり'],a:0,e:'<b>達</b> タツ. 達成（たっせい）= accomplissement ; 友達（ともだち）= amis ; 配達（はいたつ）= livraison.'},
+ {k:'構',lvl:'N3',sens:'structure, bâtir',struct:'音：コウ ／ 訓：かま(える)',exJp:'構造（こうぞう）',exFr:'la structure',q:'「構造」の読み方は？',o:['こうぞう','こうそう','かまえ','こうづくり'],a:0,e:'<b>構</b> コウ・かま(える). 構造（こうぞう）= structure ; 構成（こうせい）= composition.'},
+ {k:'勝',lvl:'N4',sens:'victoire, gagner',struct:'音：ショウ ／ 訓：か(つ)',exJp:'勝つ（かつ）',exFr:'gagner',q:'「勝つ」の訓読みは？',o:['か(つ)','ま(つ)','た(つ)','も(つ)'],a:0,e:'<b>勝</b> ショウ・か(つ). 勝つ（かつ）= gagner ↔ 負ける（まける）; 勝利（しょうり）= victoire.'},
+];
+/* --- Cartes d'apprentissage VOCABULAIRE --- */
+const VOCAB_LESSONS=[
+ {k:'影響',lvl:'N3',sens:'influence',struct:'読み：えいきょう',exJp:'台風の影響で、電車が遅れた。',exFr:'À cause du typhon, les trains ont eu du retard.',q:'天気は気分に___を与える。',o:['影響','結果','関係','内容'],a:0,e:'<b>影響（えいきょう）</b> = influence. 〜に影響を与える = exercer une influence sur.'},
+ {k:'原因',lvl:'N3',sens:'cause',struct:'読み：げんいん',exJp:'火事の原因はまだ分からない。',exFr:'La cause de l’incendie est encore inconnue.',q:'事故の___を調べる。',o:['原因','結果','影響','目的'],a:0,e:'<b>原因（げんいん）</b> = cause. 原因 ↔ 結果（けっか）.'},
+ {k:'結果',lvl:'N3',sens:'résultat, conséquence',struct:'読み：けっか',exJp:'努力の結果、合格した。',exFr:'Grâce à mes efforts, j’ai réussi.',q:'試験の___が出た。',o:['結果','原因','理由','内容'],a:0,e:'<b>結果（けっか）</b> = résultat, conséquence.'},
+ {k:'理由',lvl:'N3',sens:'raison, motif',struct:'読み：りゆう',exJp:'遅れた理由を説明した。',exFr:'J’ai expliqué la raison de mon retard.',q:'休む___を先生に伝える。',o:['理由','場合','結果','影響'],a:0,e:'<b>理由（りゆう）</b> = raison, motif.'},
+ {k:'状況',lvl:'N3',sens:'situation, circonstances',struct:'読み：じょうきょう',exJp:'今の状況を上司に報告する。',exFr:'Je rapporte la situation actuelle à mon supérieur.',q:'現在の___はとても厳しい。',o:['状況','性格','内容','関係'],a:0,e:'<b>状況（じょうきょう）</b> = situation, circonstances.'},
+ {k:'内容',lvl:'N3',sens:'contenu',struct:'読み：ないよう',exJp:'メールの内容を確認してください。',exFr:'Vérifiez le contenu du mail.',q:'本の___を簡単に説明する。',o:['内容','理由','結果','場合'],a:0,e:'<b>内容（ないよう）</b> = contenu.'},
+ {k:'関係',lvl:'N3',sens:'relation, rapport',struct:'読み：かんけい',exJp:'二人の関係はとてもいい。',exFr:'La relation entre eux est très bonne.',q:'仕事と健康には深い___がある。',o:['関係','影響','状況','内容'],a:0,e:'<b>関係（かんけい）</b> = relation, rapport.'},
+ {k:'程度',lvl:'N3',sens:'degré, niveau',struct:'読み：ていど',exJp:'どの程度日本語が話せますか。',exFr:'À quel point parlez-vous japonais ?',q:'ある___の知識が必要だ。',o:['程度','場合','内容','関係'],a:0,e:'<b>程度（ていど）</b> = degré, niveau.'},
+ {k:'確認',lvl:'N3',sens:'vérification',struct:'読み：かくにん',exJp:'予約を電話で確認した。',exFr:'J’ai confirmé la réservation par téléphone.',q:'出発前に時間を___する。',o:['確認','影響','関係','程度'],a:0,e:'<b>確認（かくにん）</b> する = vérifier, confirmer.'},
+ {k:'連絡',lvl:'N3',sens:'contact, communication',struct:'読み：れんらく',exJp:'着いたら連絡します。',exFr:'Je te contacte une fois arrivé.',q:'遅れる時は早めに___してください。',o:['連絡','確認','報告','相談'],a:0,e:'<b>連絡（れんらく）</b> する = contacter, prévenir.'},
+ {k:'報告',lvl:'N3',sens:'rapport, compte rendu',struct:'読み：ほうこく',exJp:'結果を上司に報告した。',exFr:'J’ai rendu compte du résultat à mon supérieur.',q:'調査の結果を___する。',o:['報告','連絡','確認','準備'],a:0,e:'<b>報告（ほうこく）</b> する = faire un rapport, rendre compte.'},
+ {k:'相談',lvl:'N3',sens:'consultation, conseil',struct:'読み：そうだん',exJp:'将来について先生に相談した。',exFr:'J’ai consulté mon professeur sur mon avenir.',q:'困った時は友達に___する。',o:['相談','報告','連絡','確認'],a:0,e:'<b>相談（そうだん）</b> する = consulter, demander conseil.'},
+ {k:'準備',lvl:'N4',sens:'préparation',struct:'読み：じゅんび',exJp:'旅行の準備をする。',exFr:'Je prépare le voyage.',q:'会議の___がまだ終わっていない。',o:['準備','予定','予約','約束'],a:0,e:'<b>準備（じゅんび）</b> する = préparer.'},
+ {k:'約束',lvl:'N4',sens:'promesse, rendez-vous',struct:'読み：やくそく',exJp:'友達と会う約束をした。',exFr:'J’ai pris rendez-vous avec un ami.',q:'時間を守るのは大切な___だ。',o:['約束','予定','準備','連絡'],a:0,e:'<b>約束（やくそく）</b> = promesse, rendez-vous.'},
+ {k:'予定',lvl:'N4',sens:'prévision, programme',struct:'読み：よてい',exJp:'明日の予定を教えてください。',exFr:'Dis-moi ton programme de demain.',q:'来週の___はまだ決まっていない。',o:['予定','予約','準備','約束'],a:0,e:'<b>予定（よてい）</b> = prévision, programme.'},
+ {k:'経験',lvl:'N3',sens:'expérience (vécue)',struct:'読み：けいけん',exJp:'海外で働いた経験がある。',exFr:'J’ai l’expérience d’avoir travaillé à l’étranger.',q:'これはいい___になった。',o:['経験','記憶','知識','意見'],a:0,e:'<b>経験（けいけん）</b> = expérience vécue.'},
+ {k:'意見',lvl:'N3',sens:'opinion, avis',struct:'読み：いけん',exJp:'会議で自分の意見を言った。',exFr:'J’ai donné mon avis en réunion.',q:'みんなの___を聞きたい。',o:['意見','意味','経験','内容'],a:0,e:'<b>意見（いけん）</b> = opinion, avis.'},
+ {k:'解決',lvl:'N3',sens:'résolution',struct:'読み：かいけつ',exJp:'問題はすぐに解決した。',exFr:'Le problème a été vite résolu.',q:'この件を早く___したい。',o:['解決','確認','報告','準備'],a:0,e:'<b>解決（かいけつ）</b> する = résoudre.'},
+ {k:'増加',lvl:'N3',sens:'augmentation',struct:'読み：ぞうか',exJp:'人口が増加している。',exFr:'La population augmente.',q:'事故の___が問題だ。',o:['増加','減少','変化','発展'],a:0,e:'<b>増加（ぞうか）</b> = augmentation ↔ 減少（げんしょう）.'},
+ {k:'我慢',lvl:'N3',sens:'endurer, se retenir',struct:'読み：がまん',exJp:'痛くても我慢した。',exFr:'Même si ça faisait mal, j’ai supporté.',q:'眠かったが、___して勉強した。',o:['我慢','努力','準備','確認'],a:0,e:'<b>我慢（がまん）</b> する = endurer, se retenir.'},
+];
+GRAMMAR_LESSONS.forEach(g=>{g.cat='grammaire';g.srsKey=g.k});
+KANJI_LESSONS.forEach(g=>{g.cat='kanji';g.srsKey='k:'+g.k});
+VOCAB_LESSONS.forEach(g=>{g.cat='vocabulaire';g.srsKey='v:'+g.k});
+const ALL_LESSONS=[...GRAMMAR_LESSONS,...KANJI_LESSONS,...VOCAB_LESSONS];
+const LEARN_CATS=['grammaire','kanji','vocabulaire'];
+const CAT_JP={grammaire:'文法 Grammaire',kanji:'漢字 Kanji',vocabulaire:'語彙 Vocab'};
+function lDue(list){const now=Date.now();return list.filter(g=>{const r=S.gram[g.srsKey];return r&&new Date(r.due).getTime()<=now})}
+function lNew(list){return list.filter(g=>!S.gram[g.srsKey])}
+function lVal(list){return list.filter(g=>{const r=S.gram[g.srsKey];return r&&r.box>=1}).length}
+
 const SRS_DAYS=[0,1,3,7,16,35]; // box 0=échec (revient vite) ; 1→35 j selon le palier
-let learnCur=null, learnReview=false;
+let learnCur=null, learnReview=false, learnMode='grammar', learnQueue=[], learnQi=0;
 function gramRec(k){return S.gram[k]||null}
 function gramValidated(){return GRAMMAR_LESSONS.filter(g=>{const r=S.gram[g.k];return r&&r.box>=1}).length}
 function gramDueList(){const now=Date.now();return GRAMMAR_LESSONS.filter(g=>{const r=S.gram[g.k];return r&&new Date(r.due).getTime()<=now})}
@@ -1241,32 +1306,41 @@ function pickLearn(){
   const all=[...GRAMMAR_LESSONS].sort((a,b)=>new Date(S.gram[a.k].due)-new Date(S.gram[b.k].due));learnReview=true;return all[0];
 }
 function startLearn(){
+  learnMode='grammar';
   if(!gramDueList().length&&!gramNewList().length){showScreen('learn');renderLearnHead();renderLearnDone();return;}
   learnCur=pickLearn();showScreen('learn');renderLearnHead();renderTeach();
 }
 function renderLearnHead(){
+  if(learnMode==='session'){
+    const cur=Math.min(learnQi+1,learnQueue.length);
+    document.getElementById('learnHead').innerHTML=`🧩 Session — apprentissage <b>${cur}/${learnQueue.length}</b> <span class="muted">(puis ${sessionQuizN} questions de quiz)</span>`;
+    return;
+  }
   const v=gramValidated(),tot=GRAMMAR_LESSONS.length,due=gramDueList().length;
   document.getElementById('learnHead').innerHTML=`✅ Validés : <b>${v}/${tot}</b> &nbsp;·&nbsp; 🔁 À réviser : <b>${due}</b>`;
 }
 function renderTeach(){
   const g=learnCur;
-  const tag=learnReview?'<span style="color:var(--accent2);font-weight:700">🔁 Révision</span>':'<span style="color:var(--ok);font-weight:700">✨ Nouveau point</span>';
+  const rev=(g._review!==undefined)?g._review:learnReview;
+  const tag=rev?'<span style="color:var(--accent2);font-weight:700">🔁 Révision</span>':'<span style="color:var(--ok);font-weight:700">✨ Nouveau</span>';
+  const icon=g.cat==='grammaire'?'🔧':'📖';
   document.getElementById('learnBody').innerHTML=`
-   <div style="font-size:.82rem;margin-bottom:8px">${tag}</div>
-   <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">${lvlBadgeHtml(g.lvl)}<div style="font-size:1.5rem;font-weight:800;color:var(--accent2)">${g.k}</div></div>
+   <div style="display:flex;justify-content:space-between;align-items:center;font-size:.82rem;margin-bottom:8px">${tag}<span class="muted">${CAT_JP[g.cat]||''}</span></div>
+   <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">${lvlBadgeHtml(g.lvl)}<div style="font-size:1.7rem;font-weight:800;color:var(--accent2)">${g.k}</div></div>
    <p style="font-size:1.02rem;margin:.55em 0"><b>${g.sens}</b></p>
-   <div style="font-family:monospace;background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:.9rem">🔧 ${g.struct}</div>
-   <div style="margin-top:13px;background:rgba(62,207,142,.08);border:1px solid var(--ok);border-radius:11px;padding:11px 13px">
-     <div style="font-size:.78rem;color:var(--muted);margin-bottom:4px">例文 — Exemple</div>
+   ${g.struct?`<div style="font-family:monospace;background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:.9rem">${icon} ${g.struct}</div>`:''}
+   ${g.exJp?`<div style="margin-top:13px;background:rgba(62,207,142,.08);border:1px solid var(--ok);border-radius:11px;padding:11px 13px">
+     <div style="font-size:.78rem;color:var(--muted);margin-bottom:4px">例 — Exemple</div>
      <div style="font-size:1.08rem">${furi(g.exJp)}</div>
-     <div class="muted" style="margin-top:5px;font-size:.93rem">${g.exFr}</div>
-   </div>
+     ${g.exFr?`<div class="muted" style="margin-top:5px;font-size:.93rem">${g.exFr}</div>`:''}
+   </div>`:''}
    <button class="start" onclick="renderExo()" style="margin-top:15px">✏️ Faire l'exercice de vérification →</button>`;
 }
 function renderExo(){
   const g=learnCur;
+  const prompt=g.q.includes('___')?'✏️ Exercice — complète la phrase :':'✏️ Exercice — réponds :';
   document.getElementById('learnBody').innerHTML=`
-   <div style="font-size:.82rem;margin-bottom:9px" class="muted">✏️ Exercice — complète la phrase :</div>
+   <div style="font-size:.82rem;margin-bottom:9px" class="muted">${prompt}</div>
    <div class="qtext" style="margin-top:0">${furi(g.q).replace('___','<span class="blank">？</span>')}</div>
    <div id="learnOpts"></div><div class="expl" id="learnExpl"></div><div id="learnNext"></div>`;
   const opts=document.getElementById('learnOpts');
@@ -1276,19 +1350,68 @@ function learnAnswer(btn,opts){
   const g=learnCur,correct=g.o[g.a],ok=btn.textContent===correct;
   [...opts.children].forEach(b=>{b.disabled=true;if(b.textContent===correct)b.classList.add('correct')});
   if(!ok)btn.classList.add('wrong');
-  const r=S.gram[g.k]||{box:0};
+  const r=S.gram[g.srsKey]||{box:0};
   let box=ok?Math.min(5,(r.box||0)+1):0;        // réussite → palier suivant ; échec → box 0
   const days=ok?SRS_DAYS[box]:1;                  // échec : revient demain
-  S.gram[g.k]={box,due:new Date(Date.now()+days*864e5).toISOString(),seen:true};
-  updateRating('grammaire',g.lvl==='N4'?1:2,ok);S.total++;if(ok)S.right++;save();
+  S.gram[g.srsKey]={box,due:new Date(Date.now()+days*864e5).toISOString(),seen:true};
+  updateRating(g.cat,g.lvl==='N4'?1:2,ok);S.total++;if(ok)S.right++;save();
   const ex=document.getElementById('learnExpl');ex.className='expl show '+(ok?'good':'poor');
   const status=ok
     ?`✅ <b>Correct !</b> Point ${box>1?'renforcé':'validé'} ✓ — prochaine révision dans <b>${SRS_DAYS[box]} j</b>.`
     :`❌ <b>Pas tout à fait.</b> Réponse : <b>${correct}</b>. Ce point reviendra <b>demain</b> en révision.`;
   ex.innerHTML=status+'<div style="margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);line-height:1.7">'+lvlBadgeHtml(g.lvl)+' '+g.e+'</div>';
-  const more=gramDueList().length||gramNewList().length;
-  document.getElementById('learnNext').innerHTML=`<button class="start" onclick="startLearn()" style="margin-top:13px">${more?'Continuer →':'Terminer ✓'}</button>`;
+  let btnHtml;
+  if(learnMode==='session'){
+    const last=learnQi>=learnQueue.length-1;
+    btnHtml=`<button class="start" onclick="learnSessionNext()" style="margin-top:13px">${last?'Passer au quiz →':'Suivant →'}</button>`;
+  }else{
+    const more=gramDueList().length||gramNewList().length;
+    btnHtml=`<button class="start" onclick="startLearn()" style="margin-top:13px">${more?'Continuer →':'Terminer ✓'}</button>`;
+  }
+  document.getElementById('learnNext').innerHTML=btnHtml;
   renderLearnHead();
+}
+/* --- Session mixte basée sur un budget de temps : apprentissage (gram+kanji+voca) puis quiz --- */
+let sessionQuizN=6;
+function buildLearnQueue(perCat){
+  const q=[];
+  LEARN_CATS.forEach(cat=>{
+    const list=cat==='grammaire'?GRAMMAR_LESSONS:cat==='kanji'?KANJI_LESSONS:VOCAB_LESSONS;
+    const due=lDue(list).sort((a,b)=>new Date(S.gram[a.srsKey].due)-new Date(S.gram[b.srsKey].due));
+    const nw=lNew(list), picked=[];
+    for(const it of due){if(picked.length>=perCat)break;it._review=true;picked.push(it);}
+    for(const it of nw){if(picked.length>=perCat)break;it._review=false;picked.push(it);}
+    if(picked.length<perCat){
+      const rest=list.filter(x=>!picked.includes(x)).sort((a,b)=>new Date((S.gram[a.srsKey]||{}).due||0)-new Date((S.gram[b.srsKey]||{}).due||0));
+      for(const it of rest){if(picked.length>=perCat)break;it._review=!!S.gram[it.srsKey];picked.push(it);}
+    }
+    q.push(...picked);
+  });
+  return shuffle(q);
+}
+function startMixSession(){
+  const min=Math.max(3,Math.min(60,parseInt(document.getElementById('mixMin').value,10)||12));
+  const learnItems=Math.max(3,Math.min(30,Math.round(min)));   // ~1 notion / min
+  const perCat=Math.max(1,Math.ceil(learnItems/3));
+  sessionQuizN=Math.max(3,Math.min(18,Math.round(min*0.5)));   // ~moitié du temps en quiz
+  learnQueue=buildLearnQueue(perCat);
+  if(!learnQueue.length){alert('Aucune notion disponible.');return;}
+  learnMode='session';learnQi=0;learnCur=learnQueue[0];
+  showScreen('learn');renderLearnHead();renderTeach();
+}
+function learnSessionNext(){
+  learnQi++;
+  if(learnQi<learnQueue.length){learnCur=learnQueue[learnQi];renderLearnHead();renderTeach();return;}
+  startSessionQuiz();
+}
+function startSessionQuiz(){
+  const ex=new Set(),out=[];
+  const per=Math.max(1,Math.ceil(sessionQuizN/LEARN_CATS.length));
+  LEARN_CATS.forEach(c=>{pickAdaptive(c,per,ex).forEach(q=>{ex.add(q.id);out.push(q)})});
+  learnMode='grammar';
+  if(!out.length){goHome();return;}
+  sessionMode='session';quiz=shuffle(out).slice(0,sessionQuizN);qi=0;sessionRight=0;sessionLog=[];
+  stopExamTimer();showScreen('quiz');renderQ();
 }
 function renderLearnDone(){
   const sorted=[...GRAMMAR_LESSONS].filter(g=>S.gram[g.k]).sort((a,b)=>new Date(S.gram[a.k].due)-new Date(S.gram[b.k].due));
