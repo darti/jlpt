@@ -758,7 +758,7 @@ async function cloudConnect(){
   setGhCfg({token,gist});
   syncMsg('Connexion…');
   try{
-    if(gist){await cloudPull(false);syncMsg('Connecté et synchronisé.',true);}
+    if(gist){await cloudPull(true);}   // connexion à un Gist existant = récupération explicite
     else{await cloudCreate();}
     renderSync();
   }catch(e){syncMsg('Échec : '+e.message,false)}
@@ -784,15 +784,24 @@ async function cloudPull(manual){
   const c=ghCfg();if(!c||!c.token||!c.gist)return;
   const j=await ghFetch('https://api.github.com/gists/'+c.gist,{});
   const f=j.files&&j.files[GIST_FILE];
-  if(!f){if(manual)syncMsg('Aucune donnée distante.',false);return}
-  let payload;try{payload=JSON.parse(f.content)}catch(e){return}
-  const localT=localStorage.getItem('jlptN3_updatedAt')||'';
-  if(manual||!localT||(payload.updatedAt||'')>localT){
-    applyData(payload);renderHome();renderCats();
-    if(manual)syncMsg('Récupéré depuis le cloud ⬇️',true);
-    else syncMsg('Synchronisé (données distantes plus récentes).',true);
+  if(!f){syncMsg('Fichier introuvable dans le Gist (vérifie l\'ID).',false);return}
+  // GitHub tronque les gros fichiers : on récupère alors le contenu brut via raw_url
+  let content=f.content;
+  if(f.truncated||!content){try{content=await fetch(f.raw_url,{cache:'no-store'}).then(r=>r.text());}catch(e){}}
+  let payload;
+  try{payload=JSON.parse(content)}catch(e){syncMsg('Données distantes illisibles : '+e.message,false);return}
+  const remoteT=payload.updatedAt||'', localT=localStorage.getItem('jlptN3_updatedAt')||'';
+  // garde-fou : ne pas écraser des données locales plus récentes sans confirmation
+  if(manual && localT && remoteT && localT>remoteT && (S.total>0||Object.keys(S.gram||{}).length>0)){
+    if(!confirm('Tes données locales semblent plus récentes que le Gist.\nRécupérer quand même la version en ligne (cela remplacera le local) ?'))return;
+  }
+  if(manual||!localT||remoteT>localT){
+    if(!applyData(payload)){syncMsg('Le Gist ne contient pas de progression exploitable (format inattendu ou vide).',false);return;}
+    renderSync();renderHome();renderCats();
+    const n=S.total||0, g=Object.keys(S.gram||{}).length;
+    syncMsg('Récupéré depuis le cloud ⬇️ ('+n+' réponses · '+g+' points appris).',true);
   }else{
-    if(manual)syncMsg('Local déjà à jour.',true);
+    if(manual)syncMsg('Local déjà à jour (rien de plus récent en ligne).',true);
   }
 }
 function scheduleAutoPush(){
@@ -828,6 +837,10 @@ window.addEventListener('online',()=>{
   const c=ghCfg();
   if(c&&c.token&&c.gist&&localStorage.getItem('jlptN3_pending')){syncMsg('Connexion rétablie — synchronisation… 🔄');cloudPush(true);}
 });
+// flush de la sauvegarde en attente quand l'app passe en arrière-plan / se ferme
+function flushPush(){const c=ghCfg();if(c&&c.token&&c.gist&&(pushTimer||localStorage.getItem('jlptN3_pending'))){clearTimeout(pushTimer);pushTimer=null;cloudPush(false);}}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')flushPush();});
+window.addEventListener('pagehide',flushPush);
 
 /* Elo : met à jour le rating de la compétence */
 function updateRating(cat,d,correct){
