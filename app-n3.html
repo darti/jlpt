@@ -41,6 +41,9 @@
   .topnav a.active{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
   .navtoggle{background:var(--card2);border:1px solid var(--line);color:var(--accent2);border-radius:999px;min-width:34px;height:32px;cursor:pointer;font-size:.95rem;line-height:1;padding:0 9px}
   .navtoggle:hover{border-color:var(--accent2)}
+  /* icônes monochromes (héritent de la couleur du texte) */
+  .ic{display:inline-block;width:1em;height:1em;vertical-align:-0.14em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+  .ic-f{fill:currentColor;stroke:none}
   ::selection{background:rgba(136,192,208,.32)}
   .cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0}
   .cats button{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:999px;padding:7px 14px;cursor:pointer;font-size:.86rem}
@@ -58,8 +61,13 @@
   .qtext .blank{color:var(--accent);font-weight:700;border-bottom:2px dashed var(--accent);padding:0 14px}
   .opt{display:block;width:100%;text-align:left;background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:11px;padding:12px 15px;margin:8px 0;cursor:pointer;font-size:calc(1.04rem * var(--fs-jp));transition:.12s}
   .opt:hover{border-color:var(--accent2)} .opt.correct{background:rgba(62,207,142,.16);border-color:var(--ok)} .opt.wrong{background:rgba(239,83,101,.15);border-color:var(--bad)} .opt:disabled{cursor:default}
-  .expl{margin-top:14px;padding:13px 15px;border-radius:11px;font-size:.93rem;display:none}
+  .expl{margin-top:14px;padding:15px 17px;border-radius:11px;font-size:.93rem;display:none;line-height:1.65}
   .expl.show{display:block} .expl.good{background:rgba(62,207,142,.1);border:1px solid var(--ok)} .expl.poor{background:rgba(239,83,101,.1);border:1px solid var(--bad)} .expl b{color:var(--accent2)}
+  .expl .ex-head{font-size:1rem;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .expl .ex-rule{margin-top:10px}
+  .expl .ex-blk{margin-top:14px;padding-top:13px;border-top:1px dashed var(--line);font-size:.89rem}
+  .expl .ex-blk .ex-ttl{display:flex;align-items:center;gap:6px;margin-bottom:7px}
+  .expl .ex-li{margin-top:6px}
   .next{margin-top:14px;width:100%;background:transparent;border:1px solid var(--accent2);color:var(--accent2);font-weight:700;padding:12px;border-radius:11px;cursor:pointer;font-size:1rem;display:none}
   .next.show{display:block}
   .bar{height:8px;background:var(--card2);border-radius:999px;overflow:hidden;margin:4px 0 14px;border:1px solid var(--line)}
@@ -142,16 +150,16 @@
 </style>
 </head>
 <body>
-<div id="updateBanner" role="alert"><span>🔄 Nouvelle version disponible.</span><button onclick="applyUpdate()">Recharger</button></div>
+<div id="updateBanner" role="alert"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10a9 9 0 0 1 15-3l3 3"/><path d="M21 14a9 9 0 0 1-15 3l-3-3"/><path d="M21 4v6h-6M3 20v-6h6"/></svg> Nouvelle version disponible.</span><button onclick="applyUpdate()">Recharger</button></div>
 <header>
   <h1>Entraînement adaptatif <span class="jp">JLPT N3</span></h1>
   <p>La difficulté s'ajuste à ton niveau · diagnostics périodiques · probabilité de réussite</p>
 </header>
 <nav class="topnav">
-  <a href="index.html">🏠 Accueil</a>
-  <a href="app-n3.html" class="active">🧠 Entraînement</a>
-  <a href="cours-n3.html">📚 Cours</a>
-  <a href="planning-n3.html">🗓️ Planning</a>
+  <a href="index.html"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"/></svg> Accueil</a>
+  <a href="app-n3.html" class="active"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 8-6-16-3 8H2"/></svg> Entraînement</a>
+  <a href="cours-n3.html"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h7a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22z"/></svg> Cours</a>
+  <a href="planning-n3.html"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg> Planning</a>
   <button class="navtoggle" onclick="toggleTheme()" title="Thème clair / sombre" aria-label="Basculer le thème">☀</button>
 </nav>
 
@@ -164,7 +172,7 @@
     <div class="masonry">
     <!-- PROBA DE SUCCÈS -->
     <div class="card">
-      <h2 style="margin-top:0">🎯 Probabilité de réussite (déc. 2026)</h2>
+      <h2 style="margin-top:0"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6"/></svg> Probabilité de réussite (déc. 2026)</h2>
       <div class="gauge">
         <div class="gnum" id="pNum">—</div>
         <div class="glabel">chance estimée de réussir le N3</div>
@@ -181,30 +189,30 @@
 
     <!-- COMPÉTENCES -->
     <div class="card">
-      <h2 style="margin-top:0">📊 Maîtrise par compétence</h2>
+      <h2 style="margin-top:0"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 20v-6M12 20V8M18 20v-9"/></svg> Maîtrise par compétence</h2>
       <div id="byCat"></div>
       <p class="muted" style="margin-bottom:0">Seuil de réussite N3 ≈ 53 % (95/180), avec ≥ 32 % par section.</p>
     </div>
 
     <!-- PROGRESSION -->
     <div class="card">
-      <h2 style="margin-top:0">📈 Progression (diagnostics)</h2>
+      <h2 style="margin-top:0"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M16 7h5v5"/></svg> Progression (diagnostics)</h2>
       <div id="chart"></div>
       <p class="muted" id="trend"></p>
     </div>
 
     <!-- CLOUD / SYNCHRO -->
     <div class="card">
-      <h2 style="margin-top:0">☁️ Synchronisation multi-appareils</h2>
+      <h2 style="margin-top:0"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.6 1.5A4 4 0 0 0 6.5 19z"/></svg> Synchronisation multi-appareils</h2>
       <p class="muted" id="syncStatus">Non connecté. Synchronise ta progression entre appareils via un Gist GitHub privé.</p>
       <div id="syncSetup">
         <input id="ghToken" type="password" placeholder="Token GitHub classic (scope : gist)"
           style="width:100%;padding:10px;border-radius:9px;border:1px solid var(--line);background:var(--card2);color:var(--txt);margin:6px 0">
         <input id="ghGist" type="text" placeholder="Gist ID (laisser vide : retrouvé ou créé automatiquement)"
           style="width:100%;padding:10px;border-radius:9px;border:1px solid var(--line);background:var(--card2);color:var(--txt);margin:6px 0">
-        <button class="start ghost" onclick="cloudConnect()">🔗 Connecter & synchroniser</button>
+        <button class="start ghost" onclick="cloudConnect()"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></svg> Connecter & synchroniser</button>
         <p class="muted" style="font-size:.78rem;margin:6px 0 0">
-          ⚠️ Erreur 403 ? Le token n'a pas le droit « gist ». Le plus fiable :
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.3 4L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 4a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg> Erreur 403 ? Le token n'a pas le droit « gist ». Le plus fiable :
           <a href="https://github.com/settings/tokens/new?scopes=gist&description=jlpt-sync" target="_blank">créer un token <b>classic</b></a>
           et cocher <b>uniquement la case « gist »</b>. (Les tokens fine-grained échouent souvent à créer un Gist.)
           Le token reste stocké dans ce navigateur uniquement.
@@ -212,8 +220,8 @@
       </div>
       <div id="syncActive" style="display:none">
         <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button class="start ghost" style="margin:4px 0" onclick="cloudPush(true)">⬆️ Envoyer</button>
-          <button class="start ghost" style="margin:4px 0" onclick="cloudPull(true)">⬇️ Récupérer</button>
+          <button class="start ghost" style="margin:4px 0" onclick="cloudPush(true)"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg> Envoyer</button>
+          <button class="start ghost" style="margin:4px 0" onclick="cloudPull(true)"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg> Récupérer</button>
           <button class="reset" onclick="cloudDisconnect()">Déconnecter</button>
         </div>
         <p class="muted" style="font-size:.78rem;margin:6px 0 0" id="gistLink"></p>
@@ -222,7 +230,7 @@
 
     <!-- AFFICHAGE / TAILLE DU TEXTE -->
     <div class="card">
-      <h2 style="margin-top:0">🔠 Taille du texte</h2>
+      <h2 style="margin-top:0"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7V5h16v2M9 19h6M12 5v14"/></svg> Taille du texte</h2>
       <div class="fsrow">
         <div class="lab">Texte japonais <span class="ex" lang="ja">例：日本語</span></div>
         <button onclick="bumpFs('jp',-1)" aria-label="Réduire">A−</button>
@@ -242,45 +250,41 @@
       <p class="muted" style="margin:8px 0 0">Aperçu ci-dessus. Préférence enregistrée et appliquée à tout le site (cours, planning).</p>
     </div>
 
-    <!-- SESSION (unifiée, budget de temps) -->
+    <!-- S'ENTRAÎNER : la boucle quotidienne, réglée par le temps disponible -->
     <div class="card train">
-      <h2 style="margin-top:0">Session</h2>
+      <h2 style="margin-top:0"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 8-6-16-3 8H2"/></svg> S'entraîner</h2>
       <div class="trow">
-        <span>⏱ J'ai</span>
+        <span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> J'ai</span>
         <input id="sessMin" class="numin" type="number" min="2" max="90" value="15">
-        <span>min de libre</span>
+        <span>min</span>
       </div>
       <div class="tgrid">
-        <button class="start" onclick="startMixSession()">🧩 Apprendre + quiz</button>
-        <button class="start ghost" onclick="startSession()">🎯 Quiz équilibré</button>
+        <button class="start" onclick="startMixSession()"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg> Apprendre + quiz</button>
+        <button class="start ghost" onclick="startSession()"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6"/></svg> Quiz rapide</button>
       </div>
-      <p class="muted" id="sessHint" style="margin:10px 0 0">« Apprendre + quiz » : leçons gram·kanji·voca (nouveaux & révisions dues) puis quiz de consolidation. « Quiz équilibré » : QCM ciblé sur tes points faibles. La durée règle le volume.</p>
-    </div>
-
-    <div class="card">
-      <h2 style="margin-top:0">Apprendre & réviser</h2>
-      <p class="muted" id="learnProg" style="margin:0 0 11px">Leçon → exemple → exercice → correction. Les points validés reviennent en révision espacée.</p>
+      <p class="muted" id="sessHint" style="margin:10px 0 13px">« Apprendre + quiz » t'enseigne des notions (gram·kanji·voca, nouvelles &amp; révisions dues) puis te teste. « Quiz rapide » : QCM ciblé sur tes points faibles. La durée règle le volume.</p>
       <div class="tgrid">
-        <button class="start ghost" onclick="startLearn()">📖 Grammaire pas à pas</button>
-        <button class="start ghost" onclick="start('wrong')">↻ Réviser mes erreurs</button>
+        <button class="start ghost" onclick="startLearn()"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h7a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22z"/></svg> Apprendre pas à pas</button>
+        <button class="start ghost" onclick="start('wrong')"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10a9 9 0 0 1 15-3l3 3"/><path d="M21 14a9 9 0 0 1-15 3l-3-3"/><path d="M21 4v6h-6M3 20v-6h6"/></svg> Réviser mes erreurs</button>
       </div>
+      <p class="muted" id="learnProg" style="margin:9px 0 0">Leçon → exemple → exercice → correction. Les points validés reviennent en révision espacée.</p>
     </div>
 
+    <!-- S'ÉVALUER : mesurer le niveau -->
     <div class="card">
-      <h2 style="margin-top:0">Tester</h2>
-      <div class="cats" id="cats"></div>
-      <div class="tgrid three">
-        <button class="start" onclick="start('adaptive')">▶ Quiz adaptatif</button>
-        <button class="start ghost" onclick="start('diagnostic')">🩺 Diagnostic</button>
-        <button class="start ghost" onclick="start('exam')">📝 Examen blanc</button>
+      <h2 style="margin-top:0"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/></svg> S'évaluer</h2>
+      <div class="tgrid">
+        <button class="start ghost" onclick="start('diagnostic')"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6"/></svg> Diagnostic complet</button>
+        <button class="start ghost" onclick="start('exam')"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 13h6M9 17h6"/></svg> Examen blanc</button>
       </div>
+      <p class="muted" style="margin:9px 0 0">Le <b>diagnostic</b> mesure ton niveau par section (à refaire chaque semaine). L'<b>examen blanc</b> simule l'épreuve complète, chronométrée.</p>
     </div>
 
     <div class="card">
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="reset" onclick="exportData()">💾 Exporter (JSON)</button>
-        <button class="reset" onclick="document.getElementById('importFile').click()">📂 Importer</button>
-        <button class="reset" onclick="resetAll()">↺ Tout réinitialiser</button>
+        <button class="reset" onclick="exportData()"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg> Exporter (JSON)</button>
+        <button class="reset" onclick="document.getElementById('importFile').click()"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg> Importer</button>
+        <button class="reset" onclick="resetAll()"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10a9 9 0 0 1 15-3l3 3"/><path d="M21 14a9 9 0 0 1-15 3l-3-3"/><path d="M21 4v6h-6M3 20v-6h6"/></svg> Tout réinitialiser</button>
         <input id="importFile" type="file" accept="application/json,.json" style="display:none" onchange="importData(this)">
       </div>
     </div>
@@ -873,16 +877,16 @@ async function cloudCreate(){
     files:{[GIST_FILE]:{content:JSON.stringify(collectData(),null,2)}}};
   const j=await ghFetch('https://api.github.com/gists',{method:'POST',body:JSON.stringify(body)});
   setGhCfg({...ghCfg(),gist:j.id});
-  syncMsg('Gist privé créé. Progression sauvegardée ☁️',true);renderSync();
+  syncMsg('Gist privé créé. Progression sauvegardée <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.6 1.5A4 4 0 0 0 6.5 19z"/></svg>',true);renderSync();
 }
 async function cloudPush(manual){
   const c=ghCfg();if(!c||!c.token||!c.gist)return;
-  if(navigator.onLine===false){localStorage.setItem('jlptN3_pending','1');syncMsg('Hors ligne — sera synchronisé à la reconnexion 📴',true);return;}
+  if(navigator.onLine===false){localStorage.setItem('jlptN3_pending','1');syncMsg('Hors ligne — sera synchronisé à la reconnexion <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16a4 4 0 0 0-4-6 6 6 0 0 0-9-4M4 6a6 6 0 0 0 3 11h10M2 2l20 20"/></svg>',true);return;}
   try{
     const body={files:{[GIST_FILE]:{content:JSON.stringify(collectData(),null,2)}}};
     await ghFetch('https://api.github.com/gists/'+c.gist,{method:'PATCH',body:JSON.stringify(body)});
     localStorage.removeItem('jlptN3_pending');
-    if(manual)syncMsg('Envoyé vers le cloud ⬆️',true);
+    if(manual)syncMsg('Envoyé vers le cloud <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',true);
   }catch(e){localStorage.setItem('jlptN3_pending','1');syncMsg('Envoi reporté (sera resynchronisé) : '+e.message,false)}
 }
 async function cloudPull(manual){
@@ -905,7 +909,7 @@ async function cloudPull(manual){
     try{var th=localStorage.getItem('jlptN3_theme');document.documentElement.setAttribute('data-theme',th==='light'?'light':'dark');themeIcon();}catch(e){}
     applyFontScale();renderSync();renderHome();renderCats();
     const n=S.total||0, g=Object.keys(S.gram||{}).length;
-    syncMsg('Récupéré depuis le cloud ⬇️ ('+n+' réponses · '+g+' points appris).',true);
+    syncMsg('Récupéré depuis le cloud <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg> ('+n+' réponses · '+g+' points appris).',true);
   }else{
     if(manual)syncMsg('Local déjà à jour (rien de plus récent en ligne).',true);
   }
@@ -916,7 +920,7 @@ function scheduleAutoPush(){
 }
 function copyGist(){
   const c=ghCfg();if(!c||!c.gist)return;
-  const done=()=>syncMsg('ID du Gist copié 📋 : '+c.gist,true);
+  const done=()=>syncMsg('ID du Gist copié <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> : '+c.gist,true);
   const fb=()=>{try{const ta=document.createElement('textarea');ta.value=c.gist;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();document.execCommand('copy');document.body.removeChild(ta);done();}catch(e){syncMsg('Copie impossible — ID : '+c.gist,false);}};
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(c.gist).then(done).catch(fb);}else fb();
 }
@@ -929,8 +933,8 @@ function renderSync(){
   const c=ghCfg(),setup=document.getElementById('syncSetup'),active=document.getElementById('syncActive');
   if(c&&c.token&&c.gist){
     setup.style.display='none';active.style.display='block';
-    document.getElementById('gistLink').innerHTML='Gist : <span class="copychip" onclick="copyGist()" title="Cliquer pour copier l\'ID complet">'+c.gist.slice(0,8)+'… 📋</span> · <a href="https://gist.github.com/'+c.gist+'" target="_blank">ouvrir</a> · sauvegarde auto après chaque quiz.';
-    if(document.getElementById('syncStatus').textContent.startsWith('Non connecté'))syncMsg('Connecté ☁️',true);
+    document.getElementById('gistLink').innerHTML='Gist : <span class="copychip" onclick="copyGist()" title="Cliquer pour copier l\'ID complet">'+c.gist.slice(0,8)+'… <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span> · <a href="https://gist.github.com/'+c.gist+'" target="_blank">ouvrir</a> · sauvegarde auto après chaque quiz.';
+    if(document.getElementById('syncStatus').textContent.startsWith('Non connecté'))syncMsg('Connecté <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.6 1.5A4 4 0 0 0 6.5 19z"/></svg>',true);
   }else{
     setup.style.display='block';active.style.display='none';
   }
@@ -947,7 +951,7 @@ async function cloudInit(){
 // resync automatique dès le retour de la connexion
 window.addEventListener('online',()=>{
   const c=ghCfg();
-  if(c&&c.token&&c.gist&&localStorage.getItem('jlptN3_pending')){syncMsg('Connexion rétablie — synchronisation… 🔄');cloudPush(true);}
+  if(c&&c.token&&c.gist&&localStorage.getItem('jlptN3_pending')){syncMsg('Connexion rétablie — synchronisation… <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10a9 9 0 0 1 15-3l3 3"/><path d="M21 14a9 9 0 0 1-15 3l-3-3"/><path d="M21 4v6h-6M3 20v-6h6"/></svg>');cloudPush(true);}
 });
 // flush de la sauvegarde en attente quand l'app passe en arrière-plan / se ferme
 function flushPush(){const c=ghCfg();if(c&&c.token&&c.gist&&(pushTimer||localStorage.getItem('jlptN3_pending'))){clearTimeout(pushTimer);pushTimer=null;cloudPush(false);}}
@@ -1004,7 +1008,7 @@ function ratingLabel(){
 
 /* =================== ACCUEIL =================== */
 function renderCats(){
-  const c=document.getElementById('cats');c.innerHTML='';
+  const c=document.getElementById('cats');if(!c)return;c.innerHTML='';
   CATS.forEach(cat=>{const b=document.createElement('button');b.textContent=LABELS[cat];b.className=selectedCats.has(cat)?'on':'';
     b.onclick=()=>{selectedCats.has(cat)?selectedCats.delete(cat):selectedCats.add(cat);if(!selectedCats.size)selectedCats.add(cat);renderCats()};c.appendChild(b)});
 }
@@ -1025,8 +1029,8 @@ function renderHome(){
   const sec=m.secScore;let weak=Object.entries({'文字・語彙':sec.langage,'文法・読解':sec.grammLect,'聴解':sec.listening}).sort((a,b)=>a[1]-b[1])[0];
   const adv=document.getElementById('pAdvice');
   if(m.n<5)adv.textContent='';
-  else if(pct>=70)adv.innerHTML=`✅ Bonne trajectoire. Maintiens le rythme et passe un diagnostic chaque semaine. Section la plus juste : <b>${weak[0]}</b>.`;
-  else adv.innerHTML=`📌 Pour augmenter tes chances, vise en priorité <b>${weak[0]}</b> (section la plus faible, ~${Math.round(weak[1])}/60). ${weak[0]==='聴解'?'L\'écoute n\'est pas testée ici : entraîne-la avec des audios (cf. cours).':''}`;
+  else if(pct>=70)adv.innerHTML=`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg> Bonne trajectoire. Maintiens le rythme et passe un diagnostic chaque semaine. Section la plus juste : <b>${weak[0]}</b>.`;
+  else adv.innerHTML=`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg> Pour augmenter tes chances, vise en priorité <b>${weak[0]}</b> (section la plus faible, ~${Math.round(weak[1])}/60). ${weak[0]==='聴解'?'L\'écoute n\'est pas testée ici : entraîne-la avec des audios (cf. cours).':''}`;
 
   // compétences
   const box=document.getElementById('byCat');box.innerHTML='';
@@ -1049,9 +1053,9 @@ function renderBanner(days){
   const b=document.getElementById('diagBanner');
   const last=S.lastDiag?new Date(S.lastDiag):null;
   const daysSince=last?Math.floor((new Date()-last)/864e5):null;
-  if(!last){b.innerHTML=`<div class="banner due">🩺 Fais un <b>premier diagnostic</b> pour calibrer ton niveau et activer le suivi.</div>`;}
-  else if(daysSince>=7){b.innerHTML=`<div class="banner due">⏰ Dernier diagnostic il y a <b>${daysSince} jours</b>. Il est temps d'en refaire un pour mesurer ta progression.</div>`;}
-  else{b.innerHTML=`<div class="banner ok">✅ Diagnostic à jour (il y a ${daysSince} j). Prochain conseillé dans ${7-daysSince} j.</div>`;}
+  if(!last){b.innerHTML=`<div class="banner due"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/></svg> Fais un <b>premier diagnostic</b> pour calibrer ton niveau et activer le suivi.</div>`;}
+  else if(daysSince>=7){b.innerHTML=`<div class="banner due"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Dernier diagnostic il y a <b>${daysSince} jours</b>. Il est temps d'en refaire un pour mesurer ta progression.</div>`;}
+  else{b.innerHTML=`<div class="banner ok"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg> Diagnostic à jour (il y a ${daysSince} j). Prochain conseillé dans ${7-daysSince} j.</div>`;}
 }
 
 function renderChart(){
@@ -1169,9 +1173,9 @@ function stopExamTimer(){clearInterval(examTimerId);examTimerId=null;}
 function tickExam(){
   const el=document.getElementById('examTimer');if(!el)return;
   const left=EXAM_SECONDS-Math.floor((Date.now()-examStart)/1000);
-  if(left<=0){el.textContent='⏱ 0:00';stopExamTimer();finish();return;}
+  if(left<=0){el.textContent='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 0:00';stopExamTimer();finish();return;}
   const mm=Math.floor(left/60),ss=left%60;
-  el.textContent='⏱ '+mm+':'+(ss<10?'0':'')+ss;
+  el.textContent='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> '+mm+':'+(ss<10?'0':'')+ss;
   el.style.color=left<60?'var(--bad)':'var(--warn)';
 }
 function examAnswer(btn,q,opts){
@@ -1196,15 +1200,15 @@ function examFinish(){
   S.history=S.history.slice(-40);save();
   showScreen('result');
   const rs=document.getElementById('r-score');rs.textContent=total+' / 180';rs.style.color=pass?'var(--ok)':'var(--bad)';
-  document.getElementById('r-msg').textContent=pass?'合格ライン突破 ! (simulation) 🎉':'En dessous du seuil — continue 💪';
+  document.getElementById('r-msg').textContent=pass?'合格ライン突破 ! (simulation) <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9 14l-1 8 4-2 4 2-1-8"/></svg>':'En dessous du seuil — continue <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>';
   const rows=[['文字・語彙 (vocab + kanji)',s1],['文法・読解 (grammaire + lecture)',s2],['聴解 (écoute)',s3]];
-  const secHtml=rows.map(([n,v])=>`<div class="row"><div class="name" style="width:auto;flex:1">${n}</div><div class="pct" style="color:${v>=19?'var(--ok)':'var(--bad)'}">${v}/60 ${v>=19?'✓':'⚠'}</div></div>`).join('');
+  const secHtml=rows.map(([n,v])=>`<div class="row"><div class="name" style="width:auto;flex:1">${n}</div><div class="pct" style="color:${v>=19?'var(--ok)':'var(--bad)'}">${v}/60 ${v>=19?'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>':'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.3 4L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 4a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>'}</div></div>`).join('');
   document.getElementById('r-delta').innerHTML='<div style="text-align:left">'+secHtml+'</div>'+
     `<p class="muted">Seuils JLPT : total ≥ 95/180 ET chaque section ≥ 19/60. Verdict : <b style="color:${pass?'var(--ok)':'var(--bad)'}">${pass?'RÉUSSI (simulation)':'À retravailler'}</b>.</p>`;
   const det=document.getElementById('r-detail');det.innerHTML='<h2 style="font-size:1rem">Correction</h2>';
   sessionLog.forEach(l=>{const d=document.createElement('div');d.style.cssText='padding:8px 0;border-bottom:1px solid var(--line);font-size:.85rem';
-    const qtext=l.script?('🎧 '+furi(l.script)):furi(l.q).replace('___','＿');
-    d.innerHTML=`${l.ok?'✅':'❌'} <span style="color:${COLORS[l.cat]}">[${LABELS[l.cat]}]</span> ${qtext}<br><span class="muted">Réponse : <b>${l.correct}</b>${l.ok?'':' · ta réponse : '+(l.chosen||'—')} · ${l.e}</span>`;det.appendChild(d)});
+    const qtext=l.script?('<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18v-5a8 8 0 0 1 16 0v5"/><rect x="2" y="15" width="5" height="6" rx="1.5"/><rect x="17" y="15" width="5" height="6" rx="1.5"/></svg> '+furi(l.script)):furi(l.q).replace('___','＿');
+    d.innerHTML=`${l.ok?'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>':'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>'} <span style="color:${COLORS[l.cat]}">[${LABELS[l.cat]}]</span> ${qtext}<br><span class="muted">Réponse : <b>${l.correct}</b>${l.ok?'':' · ta réponse : '+(l.chosen||'—')} · ${l.e}</span>`;det.appendChild(d)});
 }
 
 /* =================== FURIGANA CLIQUABLES =================== */
@@ -1265,8 +1269,8 @@ function renderQ(){
   const furiBtn=document.getElementById('furiBtn');furiBtn.classList.remove('on');
   if(q.cat==='ecoute'&&q.script){
     furiBtn.style.display='none';curScript=q.script;
-    qt.innerHTML='<div class="listen-q">🎧 '+furi(q.q)+'</div>'+
-      '<button class="listenbtn" onclick="speak(curScript)">🔊 Écouter</button>';
+    qt.innerHTML='<div class="listen-q"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18v-5a8 8 0 0 1 16 0v5"/><rect x="2" y="15" width="5" height="6" rx="1.5"/><rect x="17" y="15" width="5" height="6" rx="1.5"/></svg> '+furi(q.q)+'</div>'+
+      '<button class="listenbtn" onclick="speak(curScript)"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4z"/><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/></svg> Écouter</button>';
     setTimeout(()=>speak(q.script),200);
   }else if(q.passage){
     furiBtn.style.display='';
@@ -1294,9 +1298,13 @@ function answer(btn,q,opts){
   sessionLog.push({q:q.q,cat:q.cat,ok,correct:correctTxt,e:q.e});
   const ex=document.getElementById('expl');ex.className='expl show '+(ok?'good':'poor');
   const lvlBadge=q.lvl?'<span style="display:inline-block;font-size:.72em;font-weight:700;padding:1px 6px;border-radius:6px;margin-right:6px;vertical-align:middle;background:rgba(154,103,0,.18);color:#c98a00">'+q.lvl+'</span>':'';
-  ex.innerHTML=(ok?'✅ <b>Correct !</b> ':'❌ <b>Faux.</b> Réponse : <b>'+correctTxt+'</b>. ')+'<br>'+lvlBadge+q.e
-    +(q.cat==='ecoute'&&q.script?'<div style="margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);font-size:.9rem">📜 <b style="color:var(--accent2)">Transcription</b><br>'+furi(q.script)+'</div>':'')
-    +(q.g?'<div style="margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);font-size:.86rem;line-height:1.7">📝 <b style="color:var(--accent2)">Décomposition de la phrase</b><br>'+q.g+'</div>':'');
+  const okIc='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>';
+  const koIc='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>';
+  const docIc='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 13h6M9 17h6"/></svg>';
+  const head=ok?okIc+' <b>Correct !</b>':koIc+' <b>Faux.</b> &nbsp;Réponse : <b>'+correctTxt+'</b>';
+  const transcript=(q.cat==='ecoute'&&q.script)?'<div class="ex-blk"><div class="ex-ttl">'+docIc+' <b style="color:var(--accent2)">Transcription</b></div>'+furi(q.script)+'</div>':'';
+  const decomp=q.g?'<div class="ex-blk"><div class="ex-ttl">'+docIc+' <b style="color:var(--accent2)">Décomposition</b></div>'+q.g.split(' · ').map(function(p){return '<div class="ex-li">'+p+'</div>'}).join('')+'</div>':'';
+  ex.innerHTML='<div class="ex-head">'+head+'</div><div class="ex-rule">'+lvlBadge+q.e+'</div>'+transcript+decomp;
   document.getElementById('next').className='next show';
 }
 
@@ -1313,7 +1321,7 @@ function finish(){
   showScreen('result');
   document.getElementById('r-score').textContent=`${sessionRight}/${quiz.length}`;
   const pct=Math.round(sessionRight/quiz.length*100);
-  document.getElementById('r-msg').textContent=pct>=80?'素晴らしい！ Excellent 🎉':pct>=50?'いい調子！ Continue 👍':'頑張って！ Revois les explications 📖';
+  document.getElementById('r-msg').textContent=pct>=80?'素晴らしい！ Excellent <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9 14l-1 8 4-2 4 2-1-8"/></svg>':pct>=50?'いい調子！ Continue <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>':'頑張って！ Revois les explications <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h7a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22z"/></svg>';
   // delta de proba
   const diag=S.history.filter(x=>x.mode==='diagnostic');
   let dtxt='';
@@ -1322,7 +1330,7 @@ function finish(){
   document.getElementById('r-delta').innerHTML=dtxt;
   const det=document.getElementById('r-detail');det.innerHTML='<h2 style="font-size:1rem">Récapitulatif</h2>';
   sessionLog.forEach(l=>{const d=document.createElement('div');d.style.cssText='padding:8px 0;border-bottom:1px solid var(--line);font-size:.88rem';
-    d.innerHTML=`${l.ok?'✅':'❌'} <span style="color:${COLORS[l.cat]}">[${LABELS[l.cat]}]</span> ${l.q.replace('___','＿')}<br><span class="muted">→ ${l.correct} · ${l.e}</span>`;det.appendChild(d)});
+    d.innerHTML=`${l.ok?'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>':'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>'} <span style="color:${COLORS[l.cat]}">[${LABELS[l.cat]}]</span> ${l.q.replace('___','＿')}<br><span class="muted">→ ${l.correct} · ${l.e}</span>`;det.appendChild(d)});
 }
 
 /* =================== EXPORT / IMPORT (secours sans token) =================== */
@@ -1340,7 +1348,7 @@ function importData(input){
       if(!payload.store)throw new Error('format invalide');
       if(!confirm('Remplacer la progression actuelle par le fichier importé ?')){input.value='';return}
       applyData(payload);localStorage.setItem('jlptN3_updatedAt',new Date().toISOString());
-      renderHome();renderCats();alert('Import réussi ✅');cloudPush(false);
+      renderHome();renderCats();alert('Import réussi <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>');cloudPush(false);
     }catch(e){alert('Import impossible : '+e.message)}
     input.value='';
   };
@@ -1474,18 +1482,18 @@ function renderLearnHead(){
   if(learnMode==='session'){
     const tot=learnQueue.length, cur=Math.min(learnQi+1,tot);
     setLearnBar(tot?cur/tot*100:0);
-    document.getElementById('learnHead').innerHTML=`🧩 Session — apprentissage <b>${cur}/${tot}</b> <span class="muted">(puis ${sessionQuizN} questions de quiz)</span>`;
+    document.getElementById('learnHead').innerHTML=`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg> Session — apprentissage <b>${cur}/${tot}</b> <span class="muted">(puis ${sessionQuizN} questions de quiz)</span>`;
     return;
   }
   const v=gramValidated(),tot=GRAMMAR_LESSONS.length,due=gramDueList().length;
   setLearnBar(tot?v/tot*100:0);
-  document.getElementById('learnHead').innerHTML=`✅ Validés : <b>${v}/${tot}</b> &nbsp;·&nbsp; 🔁 À réviser : <b>${due}</b>`;
+  document.getElementById('learnHead').innerHTML=`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg> Validés : <b>${v}/${tot}</b> &nbsp;·&nbsp; <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg> À réviser : <b>${due}</b>`;
 }
 function renderTeach(){
   const g=learnCur;
   const rev=(g._review!==undefined)?g._review:learnReview;
-  const tag=rev?'<span style="color:var(--accent2);font-weight:700">🔁 Révision</span>':'<span style="color:var(--ok);font-weight:700">✨ Nouveau</span>';
-  const icon=g.cat==='grammaire'?'🔧':'📖';
+  const tag=rev?'<span style="color:var(--accent2);font-weight:700"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg> Révision</span>':'<span style="color:var(--ok);font-weight:700"><svg class="ic ic-f" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.3 6.8 19l1-5.8L3.6 9.2l5.8-.9z"/></svg> Nouveau</span>';
+  const icon=g.cat==='grammaire'?'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 4a4 4 0 0 0 5 5l-9 9-3 1 1-3z"/><path d="M14.5 4l-3 3 3 3 3-3"/></svg>':'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h7a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22z"/></svg>';
   document.getElementById('learnBody').innerHTML=`
    <div style="display:flex;justify-content:space-between;align-items:center;font-size:.82rem;margin-bottom:8px">${tag}<span class="muted">${CAT_JP[g.cat]||''}</span></div>
    <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">${lvlBadgeHtml(g.lvl)}<div class="jpbig">${g.k}</div></div>
@@ -1496,11 +1504,11 @@ function renderTeach(){
      <div class="jpex">${furi(g.exJp)}</div>
      ${g.exFr?`<div class="muted" style="margin-top:5px;font-size:.93rem">${g.exFr}</div>`:''}
    </div>`:''}
-   <button class="start" onclick="renderExo()" style="margin-top:15px">✏️ Faire l'exercice de vérification →</button>`;
+   <button class="start" onclick="renderExo()" style="margin-top:15px"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2 2 0 0 1 3 3L8 18l-4 1 1-4z"/></svg> Faire l'exercice de vérification →</button>`;
 }
 function renderExo(){
   const g=learnCur;
-  const prompt=g.q.includes('___')?'✏️ Exercice — complète la phrase :':'✏️ Exercice — réponds :';
+  const prompt=g.q.includes('___')?'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2 2 0 0 1 3 3L8 18l-4 1 1-4z"/></svg> Exercice — complète la phrase :':'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2 2 0 0 1 3 3L8 18l-4 1 1-4z"/></svg> Exercice — réponds :';
   document.getElementById('learnBody').innerHTML=`
    <div style="font-size:.82rem;margin-bottom:9px" class="muted">${prompt}</div>
    <div class="qtext" style="margin-top:0">${furi(g.q).replace('___','<span class="blank">？</span>')}</div>
@@ -1519,8 +1527,8 @@ function learnAnswer(btn,opts){
   updateRating(g.cat,g.lvl==='N4'?1:2,ok);S.total++;if(ok)S.right++;save();
   const ex=document.getElementById('learnExpl');ex.className='expl show '+(ok?'good':'poor');
   const status=ok
-    ?`✅ <b>Correct !</b> Point ${box>1?'renforcé':'validé'} ✓ — prochaine révision dans <b>${SRS_DAYS[box]} j</b>.`
-    :`❌ <b>Pas tout à fait.</b> Réponse : <b>${correct}</b>. Ce point reviendra <b>demain</b> en révision.`;
+    ?`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg> <b>Correct !</b> Point ${box>1?'renforcé':'validé'} <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> — prochaine révision dans <b>${SRS_DAYS[box]} j</b>.`
+    :`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg> <b>Pas tout à fait.</b> Réponse : <b>${correct}</b>. Ce point reviendra <b>demain</b> en révision.`;
   ex.innerHTML=status+'<div style="margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);line-height:1.7">'+lvlBadgeHtml(g.lvl)+' '+g.e+'</div>';
   let btnHtml;
   if(learnMode==='session'){
@@ -1528,7 +1536,7 @@ function learnAnswer(btn,opts){
     btnHtml=`<button class="start" onclick="learnSessionNext()" style="margin-top:13px">${last?'Passer au quiz →':'Suivant →'}</button>`;
   }else{
     const more=gramDueList().length||gramNewList().length;
-    btnHtml=`<button class="start" onclick="startLearn()" style="margin-top:13px">${more?'Continuer →':'Terminer ✓'}</button>`;
+    btnHtml=`<button class="start" onclick="startLearn()" style="margin-top:13px">${more?'Continuer →':'Terminer <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>'}</button>`;
   }
   document.getElementById('learnNext').innerHTML=btnHtml;
   renderLearnHead();
@@ -1579,10 +1587,10 @@ function renderLearnDone(){
   const sorted=[...GRAMMAR_LESSONS].filter(g=>S.gram[g.k]).sort((a,b)=>new Date(S.gram[a.k].due)-new Date(S.gram[b.k].due));
   const next=sorted[0];const when=next?new Date(S.gram[next.k].due):null;
   document.getElementById('learnBody').innerHTML=`<div style="text-align:center;padding:16px 4px">
-   <div style="font-size:2.1rem">🎉</div>
+   <div style="font-size:2.1rem"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9 14l-1 8 4-2 4 2-1-8"/></svg></div>
    <p><b>Tout est à jour !</b> Tous les points appris sont validés et aucune révision n'est due maintenant.</p>
    <p class="muted">Prochaine révision : ${when?'le <b>'+when.toLocaleDateString('fr-FR')+'</b> ('+next.k+')':'—'}.</p>
-   <button class="start ghost" onclick="forceReview()" style="margin-top:8px">🔁 Réviser quand même</button></div>`;
+   <button class="start ghost" onclick="forceReview()" style="margin-top:8px"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg> Réviser quand même</button></div>`;
 }
 function forceReview(){
   const sorted=[...GRAMMAR_LESSONS].filter(g=>S.gram[g.k]).sort((a,b)=>new Date(S.gram[a.k].due)-new Date(S.gram[b.k].due));
@@ -1619,7 +1627,10 @@ applyFontScale();renderCats();renderHome();cloudInit();
 }</script>
 <script>
 function toggleTheme(){var r=document.documentElement,n=r.getAttribute('data-theme')==='light'?'dark':'light';r.setAttribute('data-theme',n);try{localStorage.setItem('jlptN3_theme',n);localStorage.setItem('jlptN3_updatedAt',new Date().toISOString());}catch(e){}themeIcon();}
-function themeIcon(){var l=document.documentElement.getAttribute('data-theme')==='light',e=document.querySelector('.navtoggle');if(e)e.textContent=l?'☾':'☀';}
+function themeIcon(){var l=document.documentElement.getAttribute('data-theme')==='light',e=document.querySelector('.navtoggle');if(!e)return;
+  e.innerHTML=l
+    ?'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="currentColor" stroke="none"/></svg>'
+    :'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>';}
 themeIcon();
 </script>
 </body>
