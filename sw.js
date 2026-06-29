@@ -3,7 +3,7 @@
    - pages HTML : network-first (toujours la dernière version en ligne, repli cache hors ligne) ;
    - autres ressources same-origin (icônes, manifest) : cache-first avec mise à jour ;
    - tout le cross-origin (api.github.com, etc.) : réseau direct. */
-const CACHE = 'jlpt-n3-v15';
+const CACHE = 'jlpt-n3-v16';
 const SHELL = [
   './',
   'index.html',
@@ -17,7 +17,14 @@ const SHELL = [
 ];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
+  // on n'active PAS tout de suite : la page affiche un bandeau « Nouvelle version »
+  // et appelle skipWaiting au clic de l'utilisateur (voir message ci-dessous).
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)));
+});
+
+// la page demande l'activation immédiate quand l'utilisateur clique « Recharger »
+self.addEventListener('message', e => {
+  if (e.data && e.data.type === 'SKIP_WAITING') self.skipWaiting();
 });
 
 self.addEventListener('activate', e => {
