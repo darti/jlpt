@@ -108,6 +108,11 @@
   .numin{width:60px;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--card2);color:var(--txt);text-align:center;font-size:1rem}
   .chip{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:999px;padding:6px 13px;cursor:pointer;font-size:.9rem;font-weight:600}
   .chip.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+  /* mini-dictionnaire : double-clic sur un mot */
+  #defPop{position:fixed;z-index:95;max-width:280px;background:var(--card);border:1px solid var(--accent2);border-radius:11px;padding:10px 13px 11px;box-shadow:0 8px 24px rgba(0,0,0,.5);font-size:.92rem;display:none}
+  #defPop .w{font-size:1.2rem;font-weight:700}
+  #defPop .r{color:var(--accent2);font-size:.85rem;margin:1px 0 5px}
+  #defPop .x{float:right;color:var(--muted);cursor:pointer;margin:-2px -4px 0 8px;font-size:.95rem}
   .tgrid{display:grid;grid-template-columns:1fr;gap:8px}
   .tgrid .start{margin:0}
   .train{background:linear-gradient(135deg,rgba(226,70,107,.12),rgba(63,182,224,.1));border-color:var(--accent)}
@@ -153,6 +158,7 @@
 </head>
 <body>
 <div id="updateBanner" role="alert"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10a9 9 0 0 1 15-3l3 3"/><path d="M21 14a9 9 0 0 1-15 3l-3-3"/><path d="M21 4v6h-6M3 20v-6h6"/></svg> Nouvelle version disponible.</span><button onclick="applyUpdate()">Recharger</button></div>
+<div id="defPop"></div>
 <header>
   <h1>Entraînement adaptatif <span class="jp">JLPT N3</span></h1>
   <p>La difficulté s'ajuste à ton niveau · diagnostics périodiques · probabilité de réussite</p>
@@ -176,6 +182,7 @@
     <!-- ACTION — s'entraîner : la boucle quotidienne, calibrée sur le temps dispo -->
     <div class="card train">
       <h2 style="margin-top:0"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 8-6-16-3 8H2"/></svg> S'entraîner</h2>
+      <div id="resumeBox"></div>
       <p class="muted" id="learnProg" style="margin:0 0 13px">Prépare-toi pour le N3, une micro-session à la fois.</p>
       <div class="trow" style="gap:7px">
         <span class="muted">J'ai</span>
@@ -816,6 +823,38 @@ function bumpFs(which,dir){
   applyFontScale();scheduleAutoPush();
 }
 
+/* =================== REPRISE DE SESSION =================== */
+const RESUME='jlptN3_resume';
+function saveResume(o){try{o.t=Date.now();localStorage.setItem(RESUME,JSON.stringify(o));}catch(e){}}
+function clearResume(){try{localStorage.removeItem(RESUME);}catch(e){}}
+function getResume(){try{const r=JSON.parse(localStorage.getItem(RESUME)||'null');if(!r)return null;if(Date.now()-(r.t||0)>2*864e5){clearResume();return null;}return r;}catch(e){return null;}}
+function resumeSession(){
+  const r=getResume();if(!r)return;
+  if(r.kind==='quiz'){
+    const q=(r.ids||[]).map(i=>({...BANK[i],id:i})).filter(x=>x&&x.cat);
+    if(!q.length){clearResume();renderHome();return;}
+    sessionMode=r.mode||'session';quiz=q;qi=Math.min(r.qi||0,q.length-1);
+    sessionRight=r.right||0;sessionLog=r.log||[];learnMode='grammar';
+    stopExamTimer();showScreen('quiz');renderQ();
+  }else if(r.kind==='learnsession'){
+    const queue=(r.keys||[]).map(k=>ALL_LESSONS.find(g=>g.srsKey===k)).filter(Boolean);
+    if(!queue.length){clearResume();renderHome();return;}
+    learnQueue=queue;learnQi=Math.min(r.qi||0,queue.length-1);sessionQuizN=r.quizN||6;
+    learnMode='session';learnCur=learnQueue[learnQi];
+    showScreen('learn');renderLearnHead();renderTeach();
+  }
+}
+function renderResume(){
+  const rb=document.getElementById('resumeBox');if(!rb)return;
+  const r=getResume();
+  if(!r){rb.innerHTML='';return;}
+  const play='<svg class="ic ic-f" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg>';
+  let pos='',label='';
+  if(r.kind==='quiz'){const n=(r.ids||[]).length;pos=Math.min((r.qi||0)+1,n)+'/'+n;label='quiz';}
+  else{const n=(r.keys||[]).length;pos=Math.min((r.qi||0)+1,n)+'/'+n;label='apprentissage';}
+  rb.innerHTML='<button class="start" onclick="resumeSession()" style="margin:0 0 11px">'+play+' Reprendre ma session <span style="opacity:.85;font-weight:400">('+pos+' · '+label+')</span></button>';
+}
+
 /* =================== PRÉRÉGLAGES DE DURÉE =================== */
 function setMin(n){const i=document.getElementById('sessMin');if(i)i.value=n;syncMinChips();}
 function syncMinChips(){const el=document.getElementById('sessMin');if(!el)return;const v=parseInt(el.value,10);['5','10','15'].forEach(function(m){const c=document.getElementById('ch'+m);if(c)c.classList.toggle('on',String(v)===m);});}
@@ -1052,6 +1091,7 @@ function renderHome(){
     lp.innerHTML = due
       ? `<b style="color:var(--accent2)">${due} notion${due>1?'s':''} à réviser maintenant</b> · ${v}/${tot} apprises.`
       : (v>0 ? `${v}/${tot} notions apprises · rien à réviser pour l'instant.` : `Apprends et révise gram·kanji·voca en quelques minutes.`);}
+  renderResume();
   syncMinChips();
   // diag banner
   renderBanner(days);
@@ -1199,7 +1239,7 @@ function examAnswer(btn,q,opts){
   setTimeout(()=>next(),130);
 }
 function examFinish(){
-  stopExamTimer();stopSpeak();
+  clearResume();stopExamTimer();stopSpeak();
   const secMap={vocabulaire:'lang',kanji:'lang',grammaire:'gr',lecture:'gr',ecoute:'list'};
   const sec={lang:{c:0,t:0},gr:{c:0,t:0},list:{c:0,t:0}};
   sessionLog.forEach(l=>{const s=secMap[l.cat];sec[s].t++;if(l.ok)sec[s].c++;});
@@ -1269,6 +1309,7 @@ function stopSpeak(){try{if('speechSynthesis'in window)speechSynthesis.cancel();
 
 function renderQ(){
   const q=quiz[qi];
+  if(sessionMode!=='exam')saveResume({kind:'quiz',mode:sessionMode,ids:quiz.map(x=>x.id),qi:qi,right:sessionRight,log:sessionLog});
   document.getElementById('qbar').style.width=(qi/quiz.length*100)+'%';
   document.getElementById('qcat').textContent=LABELS[q.cat];
   const dd=document.getElementById('qdiff');dd.textContent=['','facile','moyen','difficile'][q.d];dd.className='diff d'+q.d;
@@ -1322,6 +1363,7 @@ function next(){qi++;qi<quiz.length?renderQ():finish()}
 
 function finish(){
   if(sessionMode==='exam'){examFinish();return;}
+  clearResume();
   // enregistrer dans l'historique le score estimé courant
   const m=successModel();
   S.history.push({mode:sessionMode,score:Math.round(m.total),p:Math.round(m.p*100),right:sessionRight,n:quiz.length});
@@ -1501,6 +1543,7 @@ function renderLearnHead(){
 }
 function renderTeach(){
   const g=learnCur;
+  if(learnMode==='session')saveResume({kind:'learnsession',keys:learnQueue.map(x=>x.srsKey),qi:learnQi,quizN:sessionQuizN});
   const rev=(g._review!==undefined)?g._review:learnReview;
   const tag=rev?'<span style="color:var(--accent2);font-weight:700"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg> Révision</span>':'<span style="color:var(--ok);font-weight:700"><svg class="ic ic-f" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.3 6.8 19l1-5.8L3.6 9.2l5.8-.9z"/></svg> Nouveau</span>';
   const icon=g.cat==='grammaire'?'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 4a4 4 0 0 0 5 5l-9 9-3 1 1-3z"/><path d="M14.5 4l-3 3 3 3 3-3"/></svg>':'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h7a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22z"/></svg>';
@@ -1607,11 +1650,45 @@ function forceReview(){
   if(!sorted.length)return;learnCur=sorted[0];learnReview=true;renderTeach();
 }
 
+/* =================== MINI-DICTIONNAIRE (double-clic sur un mot) =================== */
+const DEF={};
+function buildDefs(){
+  VOCAB_LESSONS.forEach(v=>{DEF[v.k]={r:(v.struct||'').replace(/^読み：/,''),m:v.sens};});
+  KANJI_LESSONS.forEach(v=>{if(!DEF[v.k])DEF[v.k]={r:v.struct||'',m:v.sens};});
+  // extrait « mot（lecture）« sens » » des décompositions de phrases
+  const re=/([一-鿿々ぁ-んァ-ンー]{1,12})（([ぁ-んァ-ンー・、]{1,14})）\s*«\s*([^»]{1,40}?)\s*»/g;
+  BANK.forEach(q=>{if(!q.g)return;let m;re.lastIndex=0;while((m=re.exec(q.g))){const w=m[1];if(!DEF[w])DEF[w]={r:m[2],m:m[3].trim()};}});
+}
+function lookupDef(sel){
+  sel=(sel||'').replace(/[\s。、！？「」（）()]/g,'').trim();
+  if(!sel||sel.length>14)return null;
+  if(DEF[sel])return Object.assign({w:sel},DEF[sel]);
+  if(FURI[sel])return {w:sel,r:FURI[sel]};
+  for(let L=Math.min(sel.length,12);L>=1;L--){const sub=sel.slice(0,L);
+    if(DEF[sub])return Object.assign({w:sub},DEF[sub]);
+    if(FURI[sub])return {w:sub,r:FURI[sub]};}
+  return null;
+}
+function hideDef(){const p=document.getElementById('defPop');if(p)p.style.display='none';}
+function showDef(e){
+  const sel=window.getSelection?String(window.getSelection()):'';
+  const d=lookupDef(sel);const pop=document.getElementById('defPop');if(!pop)return;
+  if(!d){return;}
+  pop.innerHTML='<span class="x" onclick="hideDef()">✕</span><div class="w">'+furi(d.w)+'</div>'+(d.r?'<div class="r">'+d.r+'</div>':'')+'<div class="m">'+(d.m||'lecture seule')+'</div>';
+  pop.style.display='block';
+  const px=(e&&e.clientX)||window.innerWidth/2, py=(e&&e.clientY)||120;
+  pop.style.left=Math.max(8,Math.min(px-20,window.innerWidth-pop.offsetWidth-12))+'px';
+  pop.style.top=Math.min(py+16,window.innerHeight-pop.offsetHeight-12)+'px';
+}
+document.addEventListener('dblclick',showDef);
+document.addEventListener('click',function(e){const p=document.getElementById('defPop');if(p&&p.style.display==='block'&&!p.contains(e.target))hideDef();});
+window.addEventListener('scroll',hideDef,true);
+
 function showScreen(id){stopSpeak();['home','quiz','result','learn'].forEach(x=>document.getElementById(x).style.display=x===id?'block':'none');window.scrollTo(0,0)}
 function goHome(){showScreen('home');renderHome();renderCats()}
 function resetAll(){if(confirm('Effacer tout (niveau, historique, erreurs) ?')){S={skill:blank(),total:0,right:0,bestStreak:0,streak:0,wrong:[],history:[],lastDiag:null};save();renderHome();renderCats()}}
 
-applyFontScale();renderCats();renderHome();cloudInit();
+buildDefs();applyFontScale();renderCats();renderHome();cloudInit();
 </script>
 <script>if('serviceWorker'in navigator){
   var reloaded=false, waitingWorker=null;
