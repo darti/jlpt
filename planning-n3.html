@@ -88,7 +88,13 @@
   .week[open] > summary{border-bottom:1px solid var(--line)}
   .week .body{padding:6px 18px 14px}
   .wk-prog{margin-left:auto;font-size:.8rem;color:var(--muted)}
+  .wk-date{font-size:.78rem;color:var(--muted);font-weight:500}
   .done summary{opacity:.6}
+  .week.now{border-color:var(--accent2);box-shadow:0 0 0 1px var(--accent2),0 6px 22px var(--glow)}
+  .week.now > summary{background:var(--card2)}
+  .nowtag{display:inline-block;font-size:.68rem;font-weight:700;background:var(--accent);color:var(--on-accent);border-radius:999px;padding:2px 8px;margin-left:6px}
+  #thisweek{margin:14px auto 0;max-width:560px;background:var(--card2);border:1px solid var(--accent2);border-radius:12px;padding:10px 14px;font-size:.9rem}
+  #thisweek b{color:var(--accent2)}
   a{color:var(--accent2)}
   .reset{background:transparent;border:1px solid var(--line);color:var(--muted);
     border-radius:8px;padding:7px 12px;cursor:pointer;font-size:.85rem}
@@ -106,6 +112,7 @@
   <div class="countdown" id="cd"></div>
   <div class="bar"><i id="progbar"></i></div>
   <p class="note" id="progtxt">Progression : 0 %</p>
+  <div id="thisweek"></div>
   <button class="reset" onclick="resetAll()">↺ Réinitialiser ma progression</button>
 </header>
 <nav class="topnav">
@@ -156,7 +163,7 @@
     <p class="note" style="margin-top:0">Pas besoin de ressource externe : l'app est complète et fonctionne hors ligne.</p>
     <ul>
       <li><b><a href="cours-n3.html"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h7a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22z"/></svg> Cours</a></b> — toute la grammaire N3 (~150 points expliqués), kanji par thèmes, vocabulaire, méthodes 読解 et 聴解.</li>
-      <li><b><a href="app-n3.html"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 8-6-16-3 8H2"/></svg> Entraînement adaptatif</a></b> — 200+ questions corrigées avec décomposition, difficulté qui s'ajuste à ton niveau, « Réviser mes erreurs » (révisions espacées intégrées).</li>
+      <li><b><a href="app-n3.html"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 8-6-16-3 8H2"/></svg> Entraînement adaptatif</a></b> — 470+ questions corrigées (grammaire, vocabulaire, kanji, 読解 et 聴解 avec audio) ; difficulté qui s'ajuste à ton niveau ; « Réviser mes erreurs » (révisions espacées intégrées).</li>
       <li><b><a href="app-n3.html"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/></svg> Diagnostics</a></b> — tes examens blancs : score estimé /180, probabilité de réussite, courbe de progression.</li>
       <li><b><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg> Ce planning</b> — checklist semaine par semaine, sauvegardée automatiquement.</li>
     </ul>
@@ -190,6 +197,19 @@
 // ---- Date cible : 1er dimanche de décembre 2026 (session JLPT) ----
 const EXAM = new Date('2026-12-06T09:00:00');
 
+// ---- Ancrage calendaire du plan : la dernière semaine = la semaine de l'examen ----
+const MONTHS=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+function mondayOf(d){const x=new Date(d);x.setHours(0,0,0,0);const wd=(x.getDay()+6)%7;x.setDate(x.getDate()-wd);return x;}
+function addDays(d,n){const x=new Date(d);x.setDate(x.getDate()+n);return x;}
+function fmt(d){return d.getDate()+' '+MONTHS[d.getMonth()];}
+// planStart = lundi de la 1ʳᵉ semaine, calé pour que la semaine N tombe sur la semaine de l'examen
+function planStartMonday(nWeeks){return addDays(mondayOf(EXAM),-(nWeeks-1)*7);}
+// index de la semaine courante (0-based) ; -1 si avant le début (échauffement), >=nWeeks si terminé
+function currentWeekIdx(nWeeks){
+  const start=planStartMonday(nWeeks), now=mondayOf(new Date());
+  return Math.round((now-start)/(7*864e5));
+}
+
 // ---- Données des 20 semaines ----
 const WEEKS = [
   {p:'p1',t:'Mise en route',items:['Faire un 1ᵉʳ diagnostic dans l\'app pour situer son niveau','Parcourir le Cours : leçons 1–2 de grammaire','Définir un créneau quotidien fixe (même heure)','Activer la synchro (facultatif) pour suivre sa progression']},
@@ -222,13 +242,18 @@ function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 
 function render(){
   const c=document.getElementById('weeks');c.innerHTML='';
+  const N=WEEKS.length, start=planStartMonday(N), cur=currentWeekIdx(N);
   WEEKS.forEach((w,i)=>{
     const wk=i+1;
+    const mon=addDays(start,i*7), sun=addDays(mon,6);
+    const dates=fmt(mon)+' → '+fmt(sun);
+    const isNow=(i===cur);
     const done=w.items.filter((_,j)=>state[wk+'_'+j]).length;
     const all=done===w.items.length;
-    const d=document.createElement('details');d.className='week'+(all?' done':'');
+    const d=document.createElement('details');d.className='week'+(all?' done':'')+(isNow?' now':'');
+    if(isNow)d.open=true;
     const sum=document.createElement('summary');
-    sum.innerHTML=`<span class="phase ${w.p}">${PHNAME[w.p]}</span> <span>S${wk} — ${w.t}</span> <span class="wk-prog">${done}/${w.items.length}${all?' <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>':''}</span>`;
+    sum.innerHTML=`<span class="phase ${w.p}">${PHNAME[w.p]}</span> <span>S${wk} — ${w.t}${isNow?'<span class="nowtag">cette semaine</span>':''}<br><span class="wk-date">${dates}</span></span> <span class="wk-prog">${done}/${w.items.length}${all?' <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>':''}</span>`;
     d.appendChild(sum);
     const body=document.createElement('div');body.className='body';
     w.items.forEach((it,j)=>{
@@ -261,11 +286,25 @@ function countdown(){
     `<span class="pill"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg> Examen : <b>6 déc. 2026</b></span>`;
 }
 
+function thisWeek(){
+  const el=document.getElementById('thisweek');if(!el)return;
+  const N=WEEKS.length, cur=currentWeekIdx(N), start=planStartMonday(N);
+  if(cur<0){
+    const d=fmt(start);
+    el.innerHTML=`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3v4M3 5h4M6 17v4M4 19h4M13 3l2.5 6.5L22 12l-6.5 2.5L13 21l-2.5-6.5L4 12l6.5-2.5z"/></svg> Le plan intensif (20 semaines) démarre le <b>lundi ${d}</b> — d'ici là, <b>calibre-toi</b> : un diagnostic dans l'app et quelques notions de grammaire par jour.`;
+  }else if(cur>=N){
+    el.innerHTML=`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12l3 3 5-6"/><circle cx="12" cy="12" r="9"/></svg> Plan terminé — place aux <b>examens blancs</b> et au repos avant le jour J. 頑張って！`;
+  }else{
+    const w=WEEKS[cur];
+    el.innerHTML=`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Cette semaine : <b>S${cur+1} — ${w.t}</b> (${PHNAME[w.p]}). Ouvre-la ci-dessous et coche au fur et à mesure.`;
+  }
+}
+
 function resetAll(){
   if(confirm('Effacer toute la progression cochée ?')){state={};save();render();updateProg()}
 }
 
-render();updateProg();countdown();
+render();updateProg();countdown();thisWeek();
 </script>
 <div id="updateBanner" role="alert"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10a9 9 0 0 1 15-3l3 3"/><path d="M21 14a9 9 0 0 1-15 3l-3-3"/><path d="M21 4v6h-6M3 20v-6h6"/></svg> Nouvelle version disponible.</span><button onclick="applyUpdate()">Recharger</button></div>
 <script>if('serviceWorker'in navigator){
