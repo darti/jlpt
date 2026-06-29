@@ -197,13 +197,18 @@
 // ---- Date cible : 1er dimanche de décembre 2026 (session JLPT) ----
 const EXAM = new Date('2026-12-06T09:00:00');
 
-// ---- Ancrage calendaire du plan : la dernière semaine = la semaine de l'examen ----
+// ---- Ancrage calendaire du plan : démarrage la semaine de la 1ʳᵉ ouverture, puis figé ----
 const MONTHS=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
 function mondayOf(d){const x=new Date(d);x.setHours(0,0,0,0);const wd=(x.getDay()+6)%7;x.setDate(x.getDate()-wd);return x;}
 function addDays(d,n){const x=new Date(d);x.setDate(x.getDate()+n);return x;}
 function fmt(d){return d.getDate()+' '+MONTHS[d.getMonth()];}
-// planStart = lundi de la 1ʳᵉ semaine, calé pour que la semaine N tombe sur la semaine de l'examen
-function planStartMonday(nWeeks){return addDays(mondayOf(EXAM),-(nWeeks-1)*7);}
+// planStart = lundi de la semaine où l'on commence ; mémorisé pour rester stable d'une fois sur l'autre
+const PSKEY='jlptN3_planStart';
+function planStartMonday(nWeeks){
+  let s=localStorage.getItem(PSKEY);
+  if(!s){s=mondayOf(new Date()).toISOString().slice(0,10);try{localStorage.setItem(PSKEY,s);}catch(e){}}
+  return new Date(s+'T00:00:00');
+}
 // index de la semaine courante (0-based) ; -1 si avant le début (échauffement), >=nWeeks si terminé
 function currentWeekIdx(nWeeks){
   const start=planStartMonday(nWeeks), now=mondayOf(new Date());
