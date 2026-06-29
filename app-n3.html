@@ -178,7 +178,7 @@
       <div id="syncSetup">
         <input id="ghToken" type="password" placeholder="Token GitHub classic (scope : gist)"
           style="width:100%;padding:10px;border-radius:9px;border:1px solid var(--line);background:var(--card2);color:var(--txt);margin:6px 0">
-        <input id="ghGist" type="text" placeholder="Gist ID (laisser vide pour en créer un)"
+        <input id="ghGist" type="text" placeholder="Gist ID (laisser vide : retrouvé ou créé automatiquement)"
           style="width:100%;padding:10px;border-radius:9px;border:1px solid var(--line);background:var(--card2);color:var(--txt);margin:6px 0">
         <button class="start ghost" onclick="cloudConnect()">🔗 Connecter & synchroniser</button>
         <p class="muted" style="font-size:.78rem;margin:6px 0 0">
@@ -825,10 +825,27 @@ async function cloudConnect(){
   setGhCfg({token,gist});
   syncMsg('Connexion…');
   try{
-    if(gist){await cloudPull(true);}   // connexion à un Gist existant = récupération explicite
-    else{await cloudCreate();}
+    if(gist){await cloudPull(true);}   // ID fourni = récupération explicite
+    else{
+      // pas d'ID : on cherche un Gist existant contenant notre fichier de progression
+      syncMsg('Recherche d\'un Gist existant…');
+      const found=await findExistingGist();
+      if(found){setGhCfg({token,gist:found});await cloudPull(true);}
+      else{await cloudCreate();}
+    }
     renderSync();
   }catch(e){syncMsg('Échec : '+e.message,false)}
+}
+async function findExistingGist(){
+  // parcourt les Gists de l'utilisateur (token) et renvoie l'ID du 1er contenant notre fichier
+  for(let page=1;page<=5;page++){
+    const list=await ghFetch('https://api.github.com/gists?per_page=100&page='+page,{});
+    if(!Array.isArray(list)||!list.length)return null;
+    const hit=list.find(g=>g.files&&g.files[GIST_FILE]);
+    if(hit)return hit.id;
+    if(list.length<100)return null;
+  }
+  return null;
 }
 async function cloudCreate(){
   const body={description:'JLPT N3 — progression (sauvegarde auto)',public:false,
