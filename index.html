@@ -5,20 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JLPT N3 — Préparation</title>
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#0f1116">
+<meta name="theme-color" content="#14161b">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="JLPT N3">
 <link rel="apple-touch-icon" href="icon-180.png">
 <style>
-  :root{--bg:#0f1116;--card:#171a21;--line:#2a2f3a;--txt:#e7e9ee;--muted:#9aa3b2;--accent:#e2466b;--accent2:#3fb6e0}
+  :root{--bg:#14161b;--card:#1b1e25;--card2:#22262f;--line:#2c313b;--txt:#e7e9ee;--muted:#98a0ad;--accent:#cf7589;--accent2:#6fa8bd;--ok:#74bd9b;--warn:#dcb066;--bad:#d6818a;--radius:16px}
   *{box-sizing:border-box}
   body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6}
-  .wrap{max-width:680px;margin:0 auto;padding:40px 20px}
-  h1{text-align:center;font-size:2rem;margin:0 0 4px}
+  header{padding:26px 20px 14px;text-align:center;background:radial-gradient(900px 280px at 50% -50%,rgba(207,117,137,.13),transparent),var(--card)}
+  header h1{margin:0 0 4px;font-size:1.7rem}
+  header .sub{color:var(--muted);margin:3px 0 0;font-size:.9rem}
+  .topnav{position:sticky;top:0;z-index:40;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:9px 12px;background:rgba(15,17,22,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topnav a{color:var(--muted);text-decoration:none;font-size:.86rem;font-weight:600;padding:6px 13px;border:1px solid var(--line);border-radius:999px;white-space:nowrap}
+  .topnav a:hover{color:var(--accent2);border-color:var(--accent2)}
+  .topnav a.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  ::selection{background:rgba(207,117,137,.26)}
+  .wrap{max-width:680px;margin:0 auto;padding:26px 20px 40px}
   .jp{color:var(--accent)}
-  p.sub{text-align:center;color:var(--muted);margin:0 0 28px}
+  #updateBanner{position:fixed;left:12px;right:12px;bottom:12px;z-index:90;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;border-radius:12px;padding:11px 14px;display:none;align-items:center;gap:12px;box-shadow:0 6px 20px rgba(0,0,0,.45);font-size:.92rem;max-width:560px;margin:0 auto}
+  #updateBanner button{margin-left:auto;background:#fff;color:#11151c;border:none;border-radius:8px;padding:8px 15px;font-weight:700;cursor:pointer;white-space:nowrap}
   a.card{display:block;text-decoration:none;color:var(--txt);background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:14px 0;transition:.15s}
   a.card:hover{border-color:var(--accent2);transform:translateY(-2px)}
   a.card h2{margin:0 0 6px;font-size:1.2rem}
@@ -34,7 +42,7 @@
   .stat .b{background:var(--card2,#1d212b);border:1px solid var(--line);border-radius:10px;padding:9px 4px}
   .stat .n{font-size:1.25rem;font-weight:700}
   .stat .l{font-size:.68rem;color:var(--muted)}
-  .seg{height:12px;border-radius:999px;background:linear-gradient(90deg,#ef5365,#f5b942,#3ecf8e);position:relative;margin:8px 0;border:1px solid var(--line)}
+  .seg{height:12px;border-radius:999px;background:linear-gradient(90deg,#d6818a,#dcb066,#74bd9b);position:relative;margin:8px 0;border:1px solid var(--line)}
   .seg>.mk{position:absolute;top:-4px;width:3px;height:20px;background:#fff;border-radius:2px;transform:translateX(-50%);box-shadow:0 0 5px #000}
   .row{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:.8rem}
   .row .name{width:96px;color:var(--muted)}
@@ -49,7 +57,7 @@
   #iosGuide ol{margin:0;padding-left:20px}
   #iosGuide li{margin:8px 0;font-size:.95rem}
   #iosGuide .share{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border:2px solid var(--accent2);border-radius:7px;color:var(--accent2);vertical-align:-7px;margin:0 2px}
-  #iosGuide .warn{background:rgba(245,185,66,.12);border:1px solid var(--warn,#f5b942);border-radius:9px;padding:10px;font-size:.86rem;margin:12px 0 0}
+  #iosGuide .warn{background:rgba(245,185,66,.12);border:1px solid var(--warn,#dcb066);border-radius:9px;padding:10px;font-size:.86rem;margin:12px 0 0}
   #iosGuide .btns{display:flex;gap:8px;margin-top:16px}
   #iosGuide button{flex:1;border:none;border-radius:10px;padding:11px;font-weight:700;cursor:pointer;font-size:.95rem}
   #iosGuide .copy{background:var(--accent2);color:#06121a}
@@ -57,10 +65,18 @@
 </style>
 </head>
 <body>
-<div class="wrap">
+<div id="updateBanner" role="alert"><span>🔄 Nouvelle version disponible.</span><button onclick="applyUpdate()">Recharger</button></div>
+<header>
   <h1>Préparation <span class="jp">JLPT N3</span> 🎌</h1>
   <p class="sub">Objectif : session de décembre 2026 · 5 mois de préparation</p>
-
+</header>
+<nav class="topnav">
+  <a href="index.html" class="active">🏠 Accueil</a>
+  <a href="app-n3.html">🧠 Entraînement</a>
+  <a href="cours-n3.html">📚 Cours</a>
+  <a href="planning-n3.html">🗓️ Planning</a>
+</nav>
+<div class="wrap">
   <button id="installBtn">📲 Installer l'application</button>
 
   <div id="iosGuide">
@@ -111,7 +127,7 @@
 (function(){
   const CATS=['grammaire','vocabulaire','kanji','lecture'];
   const LABELS={grammaire:'Grammaire',vocabulaire:'Vocab',kanji:'Kanji',lecture:'Lecture'};
-  const COLORS={grammaire:'#e2466b',vocabulaire:'#3fb6e0',kanji:'#f5b942',lecture:'#3ecf8e'};
+  const COLORS={grammaire:'#cf7589',vocabulaire:'#6fa8bd',kanji:'#dcb066',lecture:'#74bd9b'};
   const PASS=1600, EXAM=new Date('2026-12-06T09:00:00');
   const body=document.getElementById('dashBody');
   let S=null; try{S=JSON.parse(localStorage.getItem('jlptN3adapt_v2')||'null')}catch(e){}
@@ -135,7 +151,7 @@
   const pct=Math.round(p*100);
   const avg=CATS.reduce((a,c)=>a+S.skill[c].R,0)/CATS.length;
   const lvl=avg<1400?'N4-':avg<1520?'N4+':avg<1620?'N3-':avg<1720?'N3':'N3+';
-  const pColor=pct>=70?'#3ecf8e':pct>=40?'#f5b942':'#ef5365';
+  const pColor=pct>=70?'#74bd9b':pct>=40?'#dcb066':'#d6818a';
 
   let rows='';
   CATS.forEach(c=>{const m=Math.round(mastery(c)*100);
@@ -144,9 +160,9 @@
   body.innerHTML=`
     <div class="stat">
       <div class="b"><div class="n" style="color:${pColor}">${S.total<5?'?':pct+'%'}</div><div class="l">réussite estimée</div></div>
-      <div class="b"><div class="n" style="color:#3fb6e0">${S.total<5?'—':Math.round(total)+'/180'}</div><div class="l">score estimé</div></div>
-      <div class="b"><div class="n" style="color:#f5b942">${lvl}</div><div class="l">niveau</div></div>
-      <div class="b"><div class="n" style="color:#3ecf8e">${days}</div><div class="l">jours restants</div></div>
+      <div class="b"><div class="n" style="color:#6fa8bd">${S.total<5?'—':Math.round(total)+'/180'}</div><div class="l">score estimé</div></div>
+      <div class="b"><div class="n" style="color:#dcb066">${lvl}</div><div class="l">niveau</div></div>
+      <div class="b"><div class="n" style="color:#74bd9b">${days}</div><div class="l">jours restants</div></div>
     </div>
     <div class="seg"><div class="mk" style="left:${Math.max(1,Math.min(99,pct))}%"></div></div>
     ${rows}
@@ -186,6 +202,25 @@
   };
 })();
 </script>
-<script>if('serviceWorker'in navigator){let r=false;navigator.serviceWorker.addEventListener('controllerchange',function(){if(r)return;r=true;location.reload();});window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').then(function(g){g&&g.update&&g.update();}).catch(function(){})})}</script>
+<script>if('serviceWorker'in navigator){
+  var reloaded=false, waitingWorker=null;
+  navigator.serviceWorker.addEventListener('controllerchange',function(){if(reloaded)return;reloaded=true;location.reload();});
+  function showUpdateBanner(w){waitingWorker=w;var b=document.getElementById('updateBanner');if(b)b.style.display='flex';}
+  window.applyUpdate=function(){var b=document.getElementById('updateBanner');if(b)b.style.display='none';if(waitingWorker){waitingWorker.postMessage({type:'SKIP_WAITING'});}else{location.reload();}};
+  function swUpd(){navigator.serviceWorker.getRegistration().then(function(g){g&&g.update&&g.update();}).catch(function(){})}
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('sw.js').then(function(reg){
+      if(reg.waiting && navigator.serviceWorker.controller) showUpdateBanner(reg.waiting);
+      reg.addEventListener('updatefound',function(){
+        var nw=reg.installing; if(!nw)return;
+        nw.addEventListener('statechange',function(){
+          if(nw.state==='installed' && navigator.serviceWorker.controller) showUpdateBanner(reg.waiting||nw);
+        });
+      });
+      reg.update&&reg.update();
+    }).catch(function(){});
+  });
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')swUpd();});
+}</script>
 </body>
 </html>

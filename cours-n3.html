@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cours JLPT N3 — Grammaire, Kanji, Vocabulaire</title>
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#0f1116">
+<meta name="theme-color" content="#14161b">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -13,9 +13,10 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <style>
   :root{
-    --bg:#0f1116;--card:#171a21;--card2:#1d212b;--line:#2a2f3a;
-    --txt:#e7e9ee;--muted:#9aa3b2;--accent:#e2466b;--accent2:#3fb6e0;--ok:#3ecf8e;--warn:#f5b942;
-    --fs-ui:1;--fs-jp:1;
+    /* palette « zen » : tons doux et naturels */
+    --bg:#14161b;--card:#1b1e25;--card2:#22262f;--line:#2c313b;
+    --txt:#e7e9ee;--muted:#98a0ad;--accent:#cf7589;--accent2:#6fa8bd;--ok:#74bd9b;--warn:#dcb066;--bad:#d6818a;
+    --radius:16px;--fs-ui:1;--fs-jp:1;
   }
   *{box-sizing:border-box}
   html{font-size:calc(16px * var(--fs-ui))}   /* taille réglée dans l'app (Entraînement) */
@@ -23,15 +24,21 @@
   #updateBanner button{margin-left:auto;background:#fff;color:#11151c;border:none;border-radius:8px;padding:8px 15px;font-weight:700;cursor:pointer;white-space:nowrap}
   #updateBanner button:active{transform:scale(.96)}
   body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6}
-  header{padding:34px 20px 22px;text-align:center;background:radial-gradient(900px 300px at 50% -40%,rgba(63,182,224,.22),transparent),var(--card)}
-  header h1{margin:0 0 4px;font-size:1.7rem}
-  header .jp{color:var(--accent2)}
-  header p{color:var(--muted);margin:4px 0}
+  header{padding:24px 20px 14px;text-align:center;background:radial-gradient(900px 280px at 50% -50%,rgba(207,117,137,.13),transparent),var(--card)}
+  header h1{margin:0 0 4px;font-size:1.5rem}
+  header .jp{color:var(--accent)}
+  header p{color:var(--muted);margin:3px 0;font-size:.88rem}
   .wrap{max-width:900px;margin:0 auto;padding:18px}
-  nav{position:sticky;top:0;z-index:5;background:rgba(15,17,22,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 14px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-  nav a{color:var(--muted);text-decoration:none;font-size:.85rem;padding:5px 11px;border:1px solid var(--line);border-radius:999px}
-  nav a:hover{color:var(--accent2);border-color:var(--accent2)}
-  h2{margin:36px 0 12px;font-size:1.4rem;border-left:4px solid var(--accent2);padding-left:11px;scroll-margin-top:60px}
+  /* navigation globale harmonisée */
+  .topnav{position:sticky;top:0;z-index:40;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:9px 12px;background:rgba(15,17,22,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topnav a{color:var(--muted);text-decoration:none;font-size:.86rem;font-weight:600;padding:6px 13px;border:1px solid var(--line);border-radius:999px;white-space:nowrap}
+  .topnav a:hover{color:var(--accent2);border-color:var(--accent2)}
+  .topnav a.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .subnav{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:8px 12px;border-bottom:1px solid var(--line)}
+  .subnav a{color:var(--muted);text-decoration:none;font-size:.8rem;padding:4px 10px;border:1px solid var(--line);border-radius:999px}
+  .subnav a:hover{color:var(--accent2);border-color:var(--accent2)}
+  ::selection{background:rgba(207,117,137,.26)}
+  h2{margin:36px 0 12px;font-size:1.3rem;border-left:4px solid var(--accent);padding-left:11px;scroll-margin-top:96px}
   h3{margin:24px 0 8px;color:var(--warn);font-size:1.05rem}
   .lesson{background:var(--card);border:1px solid var(--line);border-radius:13px;margin:14px 0;overflow:hidden}
   .lesson>summary{cursor:pointer;padding:14px 18px;font-weight:600;list-style:none;display:flex;gap:10px;align-items:center}
@@ -73,14 +80,18 @@ td.lv.N4{color:#9a6700}
   <h1>Cours <span class="jp">JLPT N3</span> — Leçons & Contenu</h1>
   <p>Grammaire expliquée · Kanji · Vocabulaire — aligné sur le planning 20 semaines</p>
 </header>
-<nav>
+<nav class="topnav">
   <a href="index.html">🏠 Accueil</a>
+  <a href="app-n3.html">🧠 Entraînement</a>
+  <a href="cours-n3.html" class="active">📚 Cours</a>
+  <a href="planning-n3.html">🗓️ Planning</a>
+</nav>
+<nav class="subnav">
   <a href="#gram">文法 Grammaire</a>
   <a href="#kanji">漢字 Kanji</a>
   <a href="#vocab">語彙 Vocabulaire</a>
   <a href="#dokkai">読解 Lecture</a>
   <a href="#choukai">聴解 Écoute</a>
-  <a href="planning-n3.html">🗓️ Planning</a>
 </nav>
 
 <div class="wrap">

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JLPT N3 — Entraînement adaptatif</title>
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#0f1116">
+<meta name="theme-color" content="#14161b">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -13,20 +13,25 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <style>
   :root{
-    --bg:#0f1116;--card:#171a21;--card2:#1d212b;--line:#2a2f3a;
-    --txt:#e7e9ee;--muted:#9aa3b2;--accent:#e2466b;--accent2:#3fb6e0;--ok:#3ecf8e;--bad:#ef5365;--warn:#f5b942;
-    --fs-ui:1;--fs-jp:1;   /* échelles de police : interface & texte japonais */
+    /* palette « zen » : tons doux et naturels */
+    --bg:#14161b;--card:#1b1e25;--card2:#22262f;--line:#2c313b;
+    --txt:#e7e9ee;--muted:#98a0ad;--accent:#cf7589;--accent2:#6fa8bd;--ok:#74bd9b;--bad:#d6818a;--warn:#dcb066;
+    --radius:16px;--fs-ui:1;--fs-jp:1;   /* échelles de police : interface & texte japonais */
   }
   *{box-sizing:border-box}
   html{font-size:calc(16px * var(--fs-ui))}            /* taille « autre / interface » (rem) */
   body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.55}
-  header{padding:24px 56px 16px;text-align:center;background:radial-gradient(900px 280px at 50% -50%,rgba(226,70,107,.22),transparent),var(--card)}
-  header h1{margin:0 0 4px;font-size:1.45rem}
+  header{padding:24px 20px 14px;text-align:center;background:radial-gradient(900px 280px at 50% -50%,rgba(207,117,137,.13),transparent),var(--card)}
+  header h1{margin:0 0 4px;font-size:1.5rem}
   header .jp{color:var(--accent)}
   header p{color:var(--muted);margin:3px 0;font-size:.88rem}
   .wrap{max-width:700px;margin:0 auto;padding:16px}
-  .homebtn{position:fixed;top:10px;left:10px;z-index:60;background:var(--card2);border:1px solid var(--line);color:var(--accent2);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.15rem;box-shadow:0 2px 8px rgba(0,0,0,.4)}
-  .homebtn:active{transform:scale(.92)}
+  /* navigation globale harmonisée (présente sur toutes les pages) */
+  .topnav{position:sticky;top:0;z-index:40;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:9px 12px;background:rgba(15,17,22,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topnav a{color:var(--muted);text-decoration:none;font-size:.86rem;font-weight:600;padding:6px 13px;border:1px solid var(--line);border-radius:999px;white-space:nowrap}
+  .topnav a:hover{color:var(--accent2);border-color:var(--accent2)}
+  .topnav a.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  ::selection{background:rgba(207,117,137,.26)}
   .cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0}
   .cats button{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:999px;padding:7px 14px;cursor:pointer;font-size:.86rem}
   .cats button.on{background:var(--accent);border-color:var(--accent);color:#fff}
@@ -77,7 +82,7 @@
   #qtext.furi-on rt, ruby.show rt{visibility:visible}
   .furibtn{margin-left:auto;background:var(--card2);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:3px 10px;cursor:pointer;font-size:.74rem}
   .furibtn.on{background:var(--accent2);border-color:var(--accent2);color:#06121a;font-weight:700}
-  .listenbtn{background:#b07bd8;border:none;color:#1a0f24;font-weight:700;font-size:1.05rem;padding:12px 20px;border-radius:12px;cursor:pointer}
+  .listenbtn{background:#a98cc9;border:none;color:#1a0f24;font-weight:700;font-size:1.05rem;padding:12px 20px;border-radius:12px;cursor:pointer}
   .listenbtn:active{transform:scale(.96)}
   /* ---- mise en page responsive ---- */
   .trow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:11px}
@@ -95,7 +100,7 @@
   @media(min-width:1180px){ .masonry{columns:3} }
   @media(min-width:1640px){ .masonry{columns:4} }
   @media(max-width:430px){
-    header{padding:18px 46px 12px}
+    header{padding:16px 14px 12px}
     header h1{font-size:1.25rem}
     .card{padding:15px}
     .qtext{font-size:calc(1.18rem * var(--fs-jp))}
@@ -126,12 +131,17 @@
 </style>
 </head>
 <body>
-<a href="index.html" class="homebtn" title="Accueil" aria-label="Accueil">🏠</a>
 <div id="updateBanner" role="alert"><span>🔄 Nouvelle version disponible.</span><button onclick="applyUpdate()">Recharger</button></div>
 <header>
   <h1>Entraînement adaptatif <span class="jp">JLPT N3</span></h1>
   <p>La difficulté s'ajuste à ton niveau · diagnostics périodiques · probabilité de réussite</p>
 </header>
+<nav class="topnav">
+  <a href="index.html">🏠 Accueil</a>
+  <a href="app-n3.html" class="active">🧠 Entraînement</a>
+  <a href="cours-n3.html">📚 Cours</a>
+  <a href="planning-n3.html">🗓️ Planning</a>
+</nav>
 
 <div class="wrap">
 
@@ -261,7 +271,6 @@
         <button class="reset" onclick="resetAll()">↺ Tout réinitialiser</button>
         <input id="importFile" type="file" accept="application/json,.json" style="display:none" onchange="importData(this)">
       </div>
-      <p class="muted" style="margin:12px 0 0"><a href="cours-n3.html">📚 Cours</a> · <a href="planning-n3.html">🗓️ Planning</a></p>
     </div>
     </div><!-- /.masonry -->
   </div>
@@ -753,7 +762,7 @@ const BANK=[
 /* =================== MODÈLE & ÉTAT =================== */
 const CATS=['grammaire','vocabulaire','kanji','lecture','ecoute'];
 const LABELS={grammaire:'文法 Grammaire',vocabulaire:'語彙 Vocab',kanji:'漢字 Kanji',lecture:'読解 Lecture',ecoute:'聴解 Écoute'};
-const COLORS={grammaire:'#e2466b',vocabulaire:'#3fb6e0',kanji:'#f5b942',lecture:'#3ecf8e',ecoute:'#b07bd8'};
+const COLORS={grammaire:'#cf7589',vocabulaire:'#6fa8bd',kanji:'#dcb066',lecture:'#74bd9b',ecoute:'#a98cc9'};
 const DRATING={1:1400,2:1600,3:1800};      // difficulté -> rating question
 const PASS_RATING=1600;                      // niveau ~ requis pour le N3
 const EXAM=new Date('2026-12-06T09:00:00');
@@ -1043,8 +1052,8 @@ function renderChart(){
   let dots=xs.map((x,i)=>`<circle cx="${x.toFixed(1)}" cy="${ys[i].toFixed(1)}" r="3.5" fill="${COLORS.grammaire}"/>`).join('');
   const y95=H-pad-(95/180)*(H-2*pad);
   el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%">
-    <line x1="${pad}" y1="${y95}" x2="${W-pad}" y2="${y95}" stroke="#3ecf8e" stroke-dasharray="4 4" opacity=".6"/>
-    <text x="${W-pad}" y="${y95-4}" text-anchor="end" fill="#3ecf8e">seuil 95</text>
+    <line x1="${pad}" y1="${y95}" x2="${W-pad}" y2="${y95}" stroke="#74bd9b" stroke-dasharray="4 4" opacity=".6"/>
+    <text x="${W-pad}" y="${y95-4}" text-anchor="end" fill="#74bd9b">seuil 95</text>
     <path d="${path}" fill="none" stroke="${COLORS.grammaire}" stroke-width="2.5"/>${dots}
     <text x="${pad}" y="${H-6}">1er</text><text x="${W-pad}" y="${H-6}" text-anchor="end">récent</text>
   </svg>`;

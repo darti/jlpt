@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Préparation JLPT N3 — Planning 5 mois</title>
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#0f1116">
+<meta name="theme-color" content="#14161b">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -13,9 +13,10 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <style>
   :root{
-    --bg:#0f1116; --card:#171a21; --card2:#1d212b; --line:#2a2f3a;
-    --txt:#e7e9ee; --muted:#9aa3b2; --accent:#e2466b; --accent2:#3fb6e0;
-    --ok:#3ecf8e; --warn:#f5b942; --radius:14px;
+    /* palette « zen » : tons doux et naturels */
+    --bg:#14161b; --card:#1b1e25; --card2:#22262f; --line:#2c313b;
+    --txt:#e7e9ee; --muted:#98a0ad; --accent:#cf7589; --accent2:#6fa8bd;
+    --ok:#74bd9b; --warn:#dcb066; --bad:#d6818a; --radius:16px;
     --fs-ui:1; --fs-jp:1;
   }
   *{box-sizing:border-box}
@@ -25,14 +26,18 @@
   #updateBanner button:active{transform:scale(.96)}
   body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
        background:var(--bg);color:var(--txt);line-height:1.55}
-  header{padding:36px 56px 24px;text-align:center;
-    background:radial-gradient(900px 300px at 50% -40%,rgba(226,70,107,.25),transparent),var(--card)}
-  header h1{margin:0 0 6px;font-size:1.9rem;letter-spacing:.5px}
+  header{padding:24px 20px 14px;text-align:center;
+    background:radial-gradient(900px 280px at 50% -50%,rgba(207,117,137,.13),transparent),var(--card)}
+  header h1{margin:0 0 4px;font-size:1.5rem}
   header .jp{color:var(--accent);font-weight:700}
-  header p{margin:4px 0;color:var(--muted)}
+  header p{margin:3px 0;color:var(--muted);font-size:.88rem}
   .wrap{max-width:920px;margin:0 auto;padding:20px}
-  .homebtn{position:fixed;top:10px;left:10px;z-index:60;background:var(--card2);border:1px solid var(--line);color:var(--accent2);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.15rem;box-shadow:0 2px 8px rgba(0,0,0,.4)}
-  .homebtn:active{transform:scale(.92)}
+  /* navigation globale harmonisée */
+  .topnav{position:sticky;top:0;z-index:40;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:9px 12px;background:rgba(15,17,22,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topnav a{color:var(--muted);text-decoration:none;font-size:.86rem;font-weight:600;padding:6px 13px;border:1px solid var(--line);border-radius:999px;white-space:nowrap}
+  .topnav a:hover{color:var(--accent2);border-color:var(--accent2)}
+  .topnav a.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  ::selection{background:rgba(207,117,137,.26)}
   .countdown{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:18px 0 4px}
   .pill{background:var(--card2);border:1px solid var(--line);border-radius:999px;
         padding:8px 16px;font-size:.92rem}
@@ -54,8 +59,7 @@
     .wrap{padding:14px}
     table{font-size:.78rem}
     th,td{padding:6px 4px}
-    .homebtn{width:34px;height:34px;font-size:1rem}
-    header{padding:30px 46px 20px}
+    header{padding:18px 14px 12px}
   }
   th{color:var(--muted);font-weight:600}
   .phase{display:inline-block;font-size:.72rem;padding:2px 9px;border-radius:999px;font-weight:700}
@@ -83,7 +87,6 @@
 </style>
 </head>
 <body>
-<a href="index.html" class="homebtn" title="Accueil" aria-label="Accueil">🏠</a>
 <header>
   <h1>Préparation <span class="jp">JLPT N3</span> 日本語能力試験</h1>
   <p>Objectif : session de <b>décembre 2026</b> · plan sur 20 semaines</p>
@@ -92,6 +95,12 @@
   <p class="note" id="progtxt">Progression : 0 %</p>
   <button class="reset" onclick="resetAll()">↺ Réinitialiser ma progression</button>
 </header>
+<nav class="topnav">
+  <a href="index.html">🏠 Accueil</a>
+  <a href="app-n3.html">🧠 Entraînement</a>
+  <a href="cours-n3.html">📚 Cours</a>
+  <a href="planning-n3.html" class="active">🗓️ Planning</a>
+</nav>
 
 <div class="wrap">
 
