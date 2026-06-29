@@ -105,7 +105,9 @@
   .listenbtn:active{transform:scale(.96)}
   /* ---- mise en page responsive ---- */
   .trow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:11px}
-  .numin{width:68px;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--card2);color:var(--txt);text-align:center;font-size:1rem}
+  .numin{width:60px;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--card2);color:var(--txt);text-align:center;font-size:1rem}
+  .chip{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:999px;padding:6px 13px;cursor:pointer;font-size:.9rem;font-weight:600}
+  .chip.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
   .tgrid{display:grid;grid-template-columns:1fr;gap:8px}
   .tgrid .start{margin:0}
   .train{background:linear-gradient(135deg,rgba(226,70,107,.12),rgba(63,182,224,.1));border-color:var(--accent)}
@@ -170,6 +172,37 @@
     <div id="diagBanner"></div>
 
     <div class="masonry">
+
+    <!-- ACTION — s'entraîner : la boucle quotidienne, calibrée sur le temps dispo -->
+    <div class="card train">
+      <h2 style="margin-top:0"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 8-6-16-3 8H2"/></svg> S'entraîner</h2>
+      <p class="muted" id="learnProg" style="margin:0 0 13px">Prépare-toi pour le N3, une micro-session à la fois.</p>
+      <div class="trow" style="gap:7px">
+        <span class="muted">J'ai</span>
+        <button type="button" class="chip" id="ch5" onclick="setMin(5)">5</button>
+        <button type="button" class="chip" id="ch10" onclick="setMin(10)">10</button>
+        <button type="button" class="chip" id="ch15" onclick="setMin(15)">15</button>
+        <input id="sessMin" class="numin" type="number" min="2" max="90" value="5" oninput="syncMinChips()">
+        <span class="muted">min</span>
+      </div>
+      <button class="start" onclick="startMixSession()" style="font-size:1.06rem;padding:15px"><svg class="ic ic-f" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg> Démarrer ma session</button>
+      <p class="muted" id="sessHint" style="margin:10px 0 13px">On révise d'abord ce qui est <b>dû</b>, on apprend quelques notions, puis un mini-quiz — ajusté à ton temps.</p>
+      <div class="tgrid">
+        <button class="start ghost" onclick="startSession()"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6"/></svg> Quiz rapide</button>
+        <button class="start ghost" onclick="startLearn()"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h7a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22z"/></svg> Apprendre (grammaire)</button>
+      </div>
+      <button class="start ghost" onclick="start('wrong')" style="margin-top:8px"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10a9 9 0 0 1 15-3l3 3"/><path d="M21 14a9 9 0 0 1-15 3l-3-3"/><path d="M21 4v6h-6M3 20v-6h6"/></svg> Réviser mes erreurs</button>
+    </div>
+
+    <!-- ACTION — s'évaluer -->
+    <div class="card">
+      <h2 style="margin-top:0"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/></svg> S'évaluer</h2>
+      <div class="tgrid">
+        <button class="start ghost" onclick="start('diagnostic')"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6"/></svg> Diagnostic complet</button>
+        <button class="start ghost" onclick="start('exam')"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 13h6M9 17h6"/></svg> Examen blanc</button>
+      </div>
+      <p class="muted" style="margin:9px 0 0">Le <b>diagnostic</b> mesure ton niveau par section (à refaire chaque semaine). L'<b>examen blanc</b> simule l'épreuve complète, chronométrée.</p>
+    </div>
     <!-- PROBA DE SUCCÈS -->
     <div class="card">
       <h2 style="margin-top:0"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6"/></svg> Probabilité de réussite (déc. 2026)</h2>
@@ -248,36 +281,6 @@
         <div class="pui">Aperçu interface — menus, boutons, explications.</div>
       </div>
       <p class="muted" style="margin:8px 0 0">Aperçu ci-dessus. Préférence enregistrée et appliquée à tout le site (cours, planning).</p>
-    </div>
-
-    <!-- S'ENTRAÎNER : la boucle quotidienne, réglée par le temps disponible -->
-    <div class="card train">
-      <h2 style="margin-top:0"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 8-6-16-3 8H2"/></svg> S'entraîner</h2>
-      <div class="trow">
-        <span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> J'ai</span>
-        <input id="sessMin" class="numin" type="number" min="2" max="90" value="15">
-        <span>min</span>
-      </div>
-      <div class="tgrid">
-        <button class="start" onclick="startMixSession()"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg> Apprendre + quiz</button>
-        <button class="start ghost" onclick="startSession()"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6"/></svg> Quiz rapide</button>
-      </div>
-      <p class="muted" id="sessHint" style="margin:10px 0 13px">« Apprendre + quiz » t'enseigne des notions (gram·kanji·voca, nouvelles &amp; révisions dues) puis te teste. « Quiz rapide » : QCM ciblé sur tes points faibles. La durée règle le volume.</p>
-      <div class="tgrid">
-        <button class="start ghost" onclick="startLearn()"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h7a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22z"/></svg> Apprendre pas à pas</button>
-        <button class="start ghost" onclick="start('wrong')"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10a9 9 0 0 1 15-3l3 3"/><path d="M21 14a9 9 0 0 1-15 3l-3-3"/><path d="M21 4v6h-6M3 20v-6h6"/></svg> Réviser mes erreurs</button>
-      </div>
-      <p class="muted" id="learnProg" style="margin:9px 0 0">Leçon → exemple → exercice → correction. Les points validés reviennent en révision espacée.</p>
-    </div>
-
-    <!-- S'ÉVALUER : mesurer le niveau -->
-    <div class="card">
-      <h2 style="margin-top:0"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/></svg> S'évaluer</h2>
-      <div class="tgrid">
-        <button class="start ghost" onclick="start('diagnostic')"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6"/></svg> Diagnostic complet</button>
-        <button class="start ghost" onclick="start('exam')"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 13h6M9 17h6"/></svg> Examen blanc</button>
-      </div>
-      <p class="muted" style="margin:9px 0 0">Le <b>diagnostic</b> mesure ton niveau par section (à refaire chaque semaine). L'<b>examen blanc</b> simule l'épreuve complète, chronométrée.</p>
     </div>
 
     <div class="card">
@@ -813,6 +816,10 @@ function bumpFs(which,dir){
   applyFontScale();scheduleAutoPush();
 }
 
+/* =================== PRÉRÉGLAGES DE DURÉE =================== */
+function setMin(n){const i=document.getElementById('sessMin');if(i)i.value=n;syncMinChips();}
+function syncMinChips(){const el=document.getElementById('sessMin');if(!el)return;const v=parseInt(el.value,10);['5','10','15'].forEach(function(m){const c=document.getElementById('ch'+m);if(c)c.classList.toggle('on',String(v)===m);});}
+
 /* =================== SYNCHRO GITHUB GIST =================== */
 const GH_CFG='jlptN3_gh', GIST_FILE='jlpt-n3-progress.json';
 let pushTimer=null;
@@ -1039,10 +1046,13 @@ function renderHome(){
     row.innerHTML=`<div class="name">${LABELS[cat]}</div><div class="track"><i style="width:${mst}%;background:${COLORS[cat]}"></i></div>
       <div class="pct">${sk.t?mst+'% · niv '+Math.round(sk.R):'—'}</div>`;box.appendChild(row)});
 
-  // progression apprentissage grammaire
+  // progression d'apprentissage (grammaire + kanji + vocabulaire)
   const lp=document.getElementById('learnProg');
-  if(lp){const v=gramValidated(),due=gramDueList().length;
-    lp.innerHTML=`Leçon → exemple → exercice → correction. <b>${v}/${GRAMMAR_LESSONS.length}</b> points validés${due?` · <b style="color:var(--accent2)">${due} à réviser</b>`:''}.`;}
+  if(lp){const tot=ALL_LESSONS.length,v=lVal(ALL_LESSONS),due=lDue(ALL_LESSONS).length;
+    lp.innerHTML = due
+      ? `<b style="color:var(--accent2)">${due} notion${due>1?'s':''} à réviser maintenant</b> · ${v}/${tot} apprises.`
+      : (v>0 ? `${v}/${tot} notions apprises · rien à réviser pour l'instant.` : `Apprends et révise gram·kanji·voca en quelques minutes.`);}
+  syncMinChips();
   // diag banner
   renderBanner(days);
   // chart
