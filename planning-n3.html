@@ -16,8 +16,10 @@
     --bg:#0f1116; --card:#171a21; --card2:#1d212b; --line:#2a2f3a;
     --txt:#e7e9ee; --muted:#9aa3b2; --accent:#e2466b; --accent2:#3fb6e0;
     --ok:#3ecf8e; --warn:#f5b942; --radius:14px;
+    --fs-ui:1; --fs-jp:1;
   }
   *{box-sizing:border-box}
+  html{font-size:calc(16px * var(--fs-ui))}   /* taille réglée dans l'app (Entraînement) */
   body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
        background:var(--bg);color:var(--txt);line-height:1.55}
   header{padding:36px 56px 24px;text-align:center;
@@ -240,5 +242,14 @@ function resetAll(){
 render();updateProg();countdown();
 </script>
 <script>if('serviceWorker'in navigator){let r=false;navigator.serviceWorker.addEventListener('controllerchange',function(){if(r)return;r=true;location.reload();});window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').then(function(g){g&&g.update&&g.update();}).catch(function(){})})}</script>
+<script>
+/* applique la taille de police choisie dans l'app (localStorage partagé) */
+(function(){try{
+  var clamp=function(v){v=parseFloat(v);return v>=0.7&&v<=2?v:1};
+  var r=document.documentElement;
+  r.style.setProperty('--fs-ui',clamp(localStorage.getItem('jlptN3_fsUi')));
+  r.style.setProperty('--fs-jp',clamp(localStorage.getItem('jlptN3_fsJp')));
+}catch(e){}})();
+</script>
 </body>
 </html>
