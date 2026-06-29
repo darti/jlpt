@@ -11,31 +11,42 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="JLPT N3">
 <link rel="apple-touch-icon" href="icon-180.png">
+<script>(function(){try{var t=localStorage.getItem('jlptN3_theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){}})();</script>
 <style>
   :root{
-    /* palette « zen » : tons doux et naturels */
-    --bg:#14161b;--card:#1b1e25;--card2:#22262f;--line:#2c313b;
-    --txt:#e7e9ee;--muted:#98a0ad;--accent:#cf7589;--accent2:#6fa8bd;--ok:#74bd9b;--bad:#d6818a;--warn:#dcb066;
+    /* Thème Nord — Polar Night (sombre, par défaut) · accents Frost */
+    --bg:#2e3440;--card:#3b4252;--card2:#434c5e;--line:#4c566a;
+    --txt:#eceff4;--muted:#a7b0c0;--accent:#5e81ac;--accent2:#88c0d0;--ok:#a3be8c;--bad:#bf616a;--warn:#ebcb8b;
+    --on-accent:#eceff4;--navbg:rgba(46,52,64,.9);--glow:rgba(94,129,172,.18);
     --radius:16px;--fs-ui:1;--fs-jp:1;   /* échelles de police : interface & texte japonais */
+  }
+  :root[data-theme="light"]{
+    /* Nord — Snow Storm (clair) */
+    --bg:#eceff4;--card:#ffffff;--card2:#e5e9f0;--line:#d8dee9;
+    --txt:#2e3440;--muted:#4c566a;--accent:#5e81ac;--accent2:#5e81ac;--ok:#5e8c4f;--bad:#b04a52;--warn:#a9882f;
+    --on-accent:#ffffff;--navbg:rgba(236,239,244,.9);--glow:rgba(94,129,172,.10);
   }
   *{box-sizing:border-box}
   html{font-size:calc(16px * var(--fs-ui))}            /* taille « autre / interface » (rem) */
   body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.55}
-  header{padding:24px 20px 14px;text-align:center;background:radial-gradient(900px 280px at 50% -50%,rgba(207,117,137,.13),transparent),var(--card)}
+  header{padding:24px 20px 14px;text-align:center;background:radial-gradient(900px 280px at 50% -50%,var(--glow),transparent),var(--card)}
   header h1{margin:0 0 4px;font-size:1.5rem}
   header .jp{color:var(--accent)}
   header p{color:var(--muted);margin:3px 0;font-size:.88rem}
   .wrap{max-width:700px;margin:0 auto;padding:16px}
   /* navigation globale harmonisée (présente sur toutes les pages) */
-  .topnav{position:sticky;top:0;z-index:40;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:9px 12px;background:rgba(15,17,22,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topnav{position:sticky;top:0;z-index:40;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:9px 12px;background:var(--navbg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
   .topnav a{color:var(--muted);text-decoration:none;font-size:.86rem;font-weight:600;padding:6px 13px;border:1px solid var(--line);border-radius:999px;white-space:nowrap}
   .topnav a:hover{color:var(--accent2);border-color:var(--accent2)}
-  .topnav a.active{background:var(--accent);border-color:var(--accent);color:#fff}
-  ::selection{background:rgba(207,117,137,.26)}
+  .topnav a.active{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+  .navtoggle{background:var(--card2);border:1px solid var(--line);color:var(--accent2);border-radius:999px;min-width:34px;height:32px;cursor:pointer;font-size:.95rem;line-height:1;padding:0 9px}
+  .navtoggle:hover{border-color:var(--accent2)}
+  ::selection{background:rgba(136,192,208,.32)}
   .cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0}
   .cats button{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:999px;padding:7px 14px;cursor:pointer;font-size:.86rem}
-  .cats button.on{background:var(--accent);border-color:var(--accent);color:#fff}
-  .start{display:block;width:100%;margin:8px 0;background:linear-gradient(90deg,var(--accent),var(--accent2));border:none;color:#fff;font-weight:700;font-size:1.02rem;padding:13px;border-radius:12px;cursor:pointer}
+  .cats button.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+  .start{display:block;width:100%;margin:8px 0;background:var(--accent);border:none;color:#fff;font-weight:700;font-size:1.02rem;padding:13px;border-radius:12px;cursor:pointer}
+  .start:hover{filter:brightness(1.08)}
   .ghost{background:var(--card2);color:var(--txt)}
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin:14px 0}
   .qmeta{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.8rem;margin-bottom:10px;gap:8px}
@@ -49,7 +60,7 @@
   .opt:hover{border-color:var(--accent2)} .opt.correct{background:rgba(62,207,142,.16);border-color:var(--ok)} .opt.wrong{background:rgba(239,83,101,.15);border-color:var(--bad)} .opt:disabled{cursor:default}
   .expl{margin-top:14px;padding:13px 15px;border-radius:11px;font-size:.93rem;display:none}
   .expl.show{display:block} .expl.good{background:rgba(62,207,142,.1);border:1px solid var(--ok)} .expl.poor{background:rgba(239,83,101,.1);border:1px solid var(--bad)} .expl b{color:var(--accent2)}
-  .next{margin-top:14px;width:100%;background:var(--accent2);border:none;color:#06121a;font-weight:700;padding:12px;border-radius:11px;cursor:pointer;font-size:1rem;display:none}
+  .next{margin-top:14px;width:100%;background:transparent;border:1px solid var(--accent2);color:var(--accent2);font-weight:700;padding:12px;border-radius:11px;cursor:pointer;font-size:1rem;display:none}
   .next.show{display:block}
   .bar{height:8px;background:var(--card2);border-radius:999px;overflow:hidden;margin:4px 0 14px;border:1px solid var(--line)}
   .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:.3s}
@@ -82,7 +93,7 @@
   #qtext.furi-on rt, ruby.show rt{visibility:visible}
   .furibtn{margin-left:auto;background:var(--card2);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:3px 10px;cursor:pointer;font-size:.74rem}
   .furibtn.on{background:var(--accent2);border-color:var(--accent2);color:#06121a;font-weight:700}
-  .listenbtn{background:#a98cc9;border:none;color:#1a0f24;font-weight:700;font-size:1.05rem;padding:12px 20px;border-radius:12px;cursor:pointer}
+  .listenbtn{background:#b48ead;border:none;color:#2e3440;font-weight:700;font-size:1.05rem;padding:12px 20px;border-radius:12px;cursor:pointer}
   .listenbtn:active{transform:scale(.96)}
   /* ---- mise en page responsive ---- */
   .trow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:11px}
@@ -125,7 +136,7 @@
   .copychip{cursor:pointer;color:var(--accent2);border-bottom:1px dashed var(--accent2);white-space:nowrap}
   .copychip:active{opacity:.6}
   /* bandeau « nouvelle version disponible » */
-  #updateBanner{position:fixed;left:12px;right:12px;bottom:12px;z-index:90;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;border-radius:12px;padding:11px 14px;display:none;align-items:center;gap:12px;box-shadow:0 6px 20px rgba(0,0,0,.45);font-size:.92rem;max-width:560px;margin:0 auto}
+  #updateBanner{position:fixed;left:12px;right:12px;bottom:12px;z-index:90;background:var(--accent);color:#fff;border-radius:12px;padding:11px 14px;display:none;align-items:center;gap:12px;box-shadow:0 6px 20px rgba(0,0,0,.45);font-size:.92rem;max-width:560px;margin:0 auto}
   #updateBanner button{margin-left:auto;background:#fff;color:#11151c;border:none;border-radius:8px;padding:8px 15px;font-weight:700;cursor:pointer;white-space:nowrap}
   #updateBanner button:active{transform:scale(.96)}
 </style>
@@ -141,6 +152,7 @@
   <a href="app-n3.html" class="active">🧠 Entraînement</a>
   <a href="cours-n3.html">📚 Cours</a>
   <a href="planning-n3.html">🗓️ Planning</a>
+  <button class="navtoggle" onclick="toggleTheme()" title="Thème clair / sombre" aria-label="Basculer le thème">☀</button>
 </nav>
 
 <div class="wrap">
@@ -762,7 +774,7 @@ const BANK=[
 /* =================== MODÈLE & ÉTAT =================== */
 const CATS=['grammaire','vocabulaire','kanji','lecture','ecoute'];
 const LABELS={grammaire:'文法 Grammaire',vocabulaire:'語彙 Vocab',kanji:'漢字 Kanji',lecture:'読解 Lecture',ecoute:'聴解 Écoute'};
-const COLORS={grammaire:'#cf7589',vocabulaire:'#6fa8bd',kanji:'#dcb066',lecture:'#74bd9b',ecoute:'#a98cc9'};
+const COLORS={grammaire:'#81a1c1',vocabulaire:'#88c0d0',kanji:'#ebcb8b',lecture:'#a3be8c',ecoute:'#b48ead'};
 const DRATING={1:1400,2:1600,3:1800};      // difficulté -> rating question
 const PASS_RATING=1600;                      // niveau ~ requis pour le N3
 const EXAM=new Date('2026-12-06T09:00:00');
@@ -890,6 +902,7 @@ async function cloudPull(manual){
   }
   if(manual||!localT||remoteT>localT){
     if(!applyData(payload)){syncMsg('Le Gist ne contient pas de progression exploitable (format inattendu ou vide).',false);return;}
+    try{var th=localStorage.getItem('jlptN3_theme');document.documentElement.setAttribute('data-theme',th==='light'?'light':'dark');themeIcon();}catch(e){}
     applyFontScale();renderSync();renderHome();renderCats();
     const n=S.total||0, g=Object.keys(S.gram||{}).length;
     syncMsg('Récupéré depuis le cloud ⬇️ ('+n+' réponses · '+g+' points appris).',true);
@@ -1052,8 +1065,8 @@ function renderChart(){
   let dots=xs.map((x,i)=>`<circle cx="${x.toFixed(1)}" cy="${ys[i].toFixed(1)}" r="3.5" fill="${COLORS.grammaire}"/>`).join('');
   const y95=H-pad-(95/180)*(H-2*pad);
   el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%">
-    <line x1="${pad}" y1="${y95}" x2="${W-pad}" y2="${y95}" stroke="#74bd9b" stroke-dasharray="4 4" opacity=".6"/>
-    <text x="${W-pad}" y="${y95-4}" text-anchor="end" fill="#74bd9b">seuil 95</text>
+    <line x1="${pad}" y1="${y95}" x2="${W-pad}" y2="${y95}" stroke="#a3be8c" stroke-dasharray="4 4" opacity=".6"/>
+    <text x="${W-pad}" y="${y95-4}" text-anchor="end" fill="#a3be8c">seuil 95</text>
     <path d="${path}" fill="none" stroke="${COLORS.grammaire}" stroke-width="2.5"/>${dots}
     <text x="${pad}" y="${H-6}">1er</text><text x="${W-pad}" y="${H-6}" text-anchor="end">récent</text>
   </svg>`;
@@ -1604,5 +1617,10 @@ applyFontScale();renderCats();renderHome();cloudInit();
   /* iOS : revérifie une nouvelle version au retour au premier plan */
   document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')swUpd();});
 }</script>
+<script>
+function toggleTheme(){var r=document.documentElement,n=r.getAttribute('data-theme')==='light'?'dark':'light';r.setAttribute('data-theme',n);try{localStorage.setItem('jlptN3_theme',n);localStorage.setItem('jlptN3_updatedAt',new Date().toISOString());}catch(e){}themeIcon();}
+function themeIcon(){var l=document.documentElement.getAttribute('data-theme')==='light',e=document.querySelector('.navtoggle');if(e)e.textContent=l?'☾':'☀';}
+themeIcon();
+</script>
 </body>
 </html>
