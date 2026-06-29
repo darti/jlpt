@@ -107,6 +107,18 @@
   .fsrow button{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:8px;width:38px;height:38px;cursor:pointer;font-weight:700;font-size:1rem}
   .fsrow button:active{transform:scale(.94)}
   .fsrow .v{width:50px;text-align:center;font-variant-numeric:tabular-nums}
+  /* boost japonais étendu : exemples, lecture longue, question */
+  .jpex{font-size:calc(1.08rem * var(--fs-jp))}
+  .jppass{font-size:calc(.95rem * var(--fs-jp));line-height:1.95;text-align:left;background:var(--card2);border:1px solid var(--line);border-radius:11px;padding:13px 15px;margin-bottom:12px;max-height:44vh;overflow:auto}
+  .jpq{font-size:calc(1.08rem * var(--fs-jp))}
+  .listen-q{font-size:calc(1rem * var(--fs-jp));color:var(--muted);margin-bottom:12px}
+  /* aperçu de taille de police */
+  .fspreview{margin-top:11px;padding:10px 12px;border:1px dashed var(--line);border-radius:9px;background:var(--card2)}
+  .fspreview rt{visibility:visible}
+  .fspreview .pjp{font-size:calc(1.2rem * var(--fs-jp));line-height:1.75}
+  .fspreview .pui{font-size:.9rem;color:var(--muted);margin-top:6px}
+  .copychip{cursor:pointer;color:var(--accent2);border-bottom:1px dashed var(--accent2);white-space:nowrap}
+  .copychip:active{opacity:.6}
 </style>
 </head>
 <body>
@@ -196,7 +208,11 @@
         <span class="v" id="fsUiVal">100%</span>
         <button onclick="bumpFs('ui',1)" aria-label="Agrandir">A＋</button>
       </div>
-      <p class="muted" style="margin:8px 0 0">Préférence enregistrée et appliquée à tout le site (cours, planning).</p>
+      <div class="fspreview" aria-hidden="true">
+        <div class="pjp"><ruby>例文<rt>れいぶん</rt></ruby>：<ruby>日本語<rt>にほんご</rt></ruby>の<ruby>文章<rt>ぶんしょう</rt></ruby>を<ruby>読<rt>よ</rt></ruby>む。</div>
+        <div class="pui">Aperçu interface — menus, boutons, explications.</div>
+      </div>
+      <p class="muted" style="margin:8px 0 0">Aperçu ci-dessus. Préférence enregistrée et appliquée à tout le site (cours, planning).</p>
     </div>
 
     <!-- SESSION (unifiée, budget de temps) -->
@@ -854,6 +870,12 @@ function scheduleAutoPush(){
   const c=ghCfg();if(!c||!c.token||!c.gist)return;
   clearTimeout(pushTimer);pushTimer=setTimeout(()=>cloudPush(false),1500);
 }
+function copyGist(){
+  const c=ghCfg();if(!c||!c.gist)return;
+  const done=()=>syncMsg('ID du Gist copié 📋 : '+c.gist,true);
+  const fb=()=>{try{const ta=document.createElement('textarea');ta.value=c.gist;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();document.execCommand('copy');document.body.removeChild(ta);done();}catch(e){syncMsg('Copie impossible — ID : '+c.gist,false);}};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(c.gist).then(done).catch(fb);}else fb();
+}
 function cloudDisconnect(){
   if(confirm('Déconnecter la synchro ? (les données locales sont conservées)')){
     localStorage.removeItem(GH_CFG);renderSync();syncMsg('Déconnecté. Données conservées localement.');
@@ -863,7 +885,7 @@ function renderSync(){
   const c=ghCfg(),setup=document.getElementById('syncSetup'),active=document.getElementById('syncActive');
   if(c&&c.token&&c.gist){
     setup.style.display='none';active.style.display='block';
-    document.getElementById('gistLink').innerHTML='Gist : <a href="https://gist.github.com/'+c.gist+'" target="_blank">'+c.gist.slice(0,8)+'…</a> · sauvegarde auto après chaque quiz.';
+    document.getElementById('gistLink').innerHTML='Gist : <span class="copychip" onclick="copyGist()" title="Cliquer pour copier l\'ID complet">'+c.gist.slice(0,8)+'… 📋</span> · <a href="https://gist.github.com/'+c.gist+'" target="_blank">ouvrir</a> · sauvegarde auto après chaque quiz.';
     if(document.getElementById('syncStatus').textContent.startsWith('Non connecté'))syncMsg('Connecté ☁️',true);
   }else{
     setup.style.display='block';active.style.display='none';
@@ -1199,13 +1221,13 @@ function renderQ(){
   const furiBtn=document.getElementById('furiBtn');furiBtn.classList.remove('on');
   if(q.cat==='ecoute'&&q.script){
     furiBtn.style.display='none';curScript=q.script;
-    qt.innerHTML='<div style="font-size:1rem;color:var(--muted);margin-bottom:12px">🎧 '+furi(q.q)+'</div>'+
+    qt.innerHTML='<div class="listen-q">🎧 '+furi(q.q)+'</div>'+
       '<button class="listenbtn" onclick="speak(curScript)">🔊 Écouter</button>';
     setTimeout(()=>speak(q.script),200);
   }else if(q.passage){
     furiBtn.style.display='';
-    qt.innerHTML='<div style="font-size:.92rem;line-height:1.95;text-align:left;background:var(--card2);border:1px solid var(--line);border-radius:11px;padding:13px 15px;margin-bottom:12px;max-height:44vh;overflow:auto">'+furi(q.passage)+'</div>'+
-      '<div style="font-size:1.05rem">'+furi(q.q)+'</div>';
+    qt.innerHTML='<div class="jppass">'+furi(q.passage)+'</div>'+
+      '<div class="jpq">'+furi(q.q)+'</div>';
   }else{
     furiBtn.style.display='';
     qt.innerHTML=furi(q.q).replace('___','<span class="blank">？</span>');
@@ -1427,7 +1449,7 @@ function renderTeach(){
    ${g.struct?`<div style="font-family:monospace;background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:.9rem">${icon} ${g.struct}</div>`:''}
    ${g.exJp?`<div style="margin-top:13px;background:rgba(62,207,142,.08);border:1px solid var(--ok);border-radius:11px;padding:11px 13px">
      <div style="font-size:.78rem;color:var(--muted);margin-bottom:4px">例 — Exemple</div>
-     <div style="font-size:1.08rem">${furi(g.exJp)}</div>
+     <div class="jpex">${furi(g.exJp)}</div>
      ${g.exFr?`<div class="muted" style="margin-top:5px;font-size:.93rem">${g.exFr}</div>`:''}
    </div>`:''}
    <button class="start" onclick="renderExo()" style="margin-top:15px">✏️ Faire l'exercice de vérification →</button>`;
@@ -1529,6 +1551,13 @@ function resetAll(){if(confirm('Effacer tout (niveau, historique, erreurs) ?')){
 
 applyFontScale();renderCats();renderHome();cloudInit();
 </script>
-<script>if('serviceWorker'in navigator){let r=false;navigator.serviceWorker.addEventListener('controllerchange',function(){if(r)return;r=true;location.reload();});window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').then(function(g){g&&g.update&&g.update();}).catch(function(){})})}</script>
+<script>if('serviceWorker'in navigator){
+  let r=false;
+  navigator.serviceWorker.addEventListener('controllerchange',function(){if(r)return;r=true;location.reload();});
+  function swUpd(){navigator.serviceWorker.getRegistration().then(function(g){g&&g.update&&g.update();}).catch(function(){})}
+  window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').then(function(g){g&&g.update&&g.update();}).catch(function(){})});
+  /* iOS : vérifie une nouvelle version quand on rouvre / repasse l'app au premier plan */
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')swUpd();});
+}</script>
 </body>
 </html>
