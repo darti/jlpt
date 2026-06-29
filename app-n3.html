@@ -182,6 +182,7 @@
     <!-- ACTION — s'entraîner : la boucle quotidienne, calibrée sur le temps dispo -->
     <div class="card train">
       <h2 style="margin-top:0"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 8-6-16-3 8H2"/></svg> S'entraîner</h2>
+      <div id="streakBox"></div>
       <div id="resumeBox"></div>
       <p class="muted" id="learnProg" style="margin:0 0 13px">Prépare-toi pour le N3, une micro-session à la fois.</p>
       <div class="trow" style="gap:7px">
@@ -782,7 +783,86 @@ const BANK=[
  {cat:'grammaire',lvl:'N4',d:3,q:'社長はもう___になりましたか。',o:['お帰り','帰り','ご帰り','お帰る'],a:0,e:'<b>お〜になる</b> = respect (sonkeigo).',g:'帰る→お帰りになる « est-il déjà parti ? (forme respectueuse) ».'},
  {cat:'grammaire',lvl:'N4',d:3,q:'重そうですね。私が荷物をお持ち___。',o:['します','になります','されます','いたす'],a:0,e:'<b>お〜する</b> = modestie (kenjōgo).',g:'持つ→お持ちします « laissez-moi porter vos bagages ».'},
  {cat:'grammaire',lvl:'N4',d:2,q:'「坊っちゃん」___小説を読んだことがありますか。',o:['という','といって','によって','について'],a:0,e:'<b>〜という</b> = « (un livre) appelé… ».',g:'「坊っちゃん」という小説（しょうせつ）« un roman intitulé Botchan ».'},
- {cat:'grammaire',lvl:'N4',d:2,q:'今日の授業では、日本の歴史___話します。',o:['について','によって','にとって','として'],a:0,e:'<b>〜について</b> = « au sujet de ».',g:'歴史（れきし）＋について « parler de l\'histoire du Japon ».'},
+ {cat:'grammaire',lvl:'N4',d:2,q:'今日の授業では、日本の歴史___話します。',o:['について','によって','にとって','として'],a:0,e:'<b>〜について</b> = « au sujet de ».',g:'歴史（れきし）＋について « parler de l\'histoire du Japon ».'},,
+ // === AJOUT 2026-06 : 読解 (compréhension écrite) ===
+{cat:'lecture',d:3,passage:'先週、家族で温泉に旅行に行った。電車で行く予定だったが、当日は朝から大雨で、電車が止まってしまった。仕方なく車で出発したが、道がとても込んでいて、着いたのは予定より三時間も遅かった。それでも、夜の温泉はとても気持ちがよく、疲れがすっかり取れた。次に行くときは、天気をよく調べてから出かけたいと思う。',q:'筆者が予定より遅く着いたのはなぜですか。',o:['雨で電車が止まり、車の道も込んでいたから','温泉でゆっくりしすぎたから','朝早く出発できなかったから','家族の準備が遅かったから'],a:0,e:'<b>電車が止まった</b>ため車に変え、さらに<b>道が込んでいた</b>ことで三時間遅れた、と述べている。'},
+{cat:'lecture',d:3,passage:'先週、家族で温泉に旅行に行った。電車で行く予定だったが、当日は朝から大雨で、電車が止まってしまった。仕方なく車で出発したが、道がとても込んでいて、着いたのは予定より三時間も遅かった。それでも、夜の温泉はとても気持ちがよく、疲れがすっかり取れた。次に行くときは、天気をよく調べてから出かけたいと思う。',q:'筆者は次の旅行でどうしたいと考えていますか。',o:['車ではなく電車で行きたい','出発前に天気をよく調べたい','もっと早く起きたい','温泉に長くいたい'],a:1,e:'最後の文で<b>天気をよく調べてから出かけたい</b>と述べている。'},
+{cat:'lecture',d:2,passage:'お客様各位　いつもご利用ありがとうございます。当店は店内の工事のため、七月一日から七月五日まで休業させていただきます。なお、七月六日からは新しくなった店内で営業を再開いたします。ご不便をおかけしますが、よろしくお願いいたします。インターネットでのご注文は休業中もご利用いただけます。',q:'この店は休業中、どんなサービスが使えますか。',o:['店内での買い物','電話での注文','インターネットでの注文','商品の配達'],a:2,e:'最後の文に<b>インターネットでのご注文は休業中もご利用いただけます</b>とある。'},
+{cat:'lecture',d:2,passage:'お客様各位　いつもご利用ありがとうございます。当店は店内の工事のため、七月一日から七月五日まで休業させていただきます。なお、七月六日からは新しくなった店内で営業を再開いたします。ご不便をおかけしますが、よろしくお願いいたします。インターネットでのご注文は休業中もご利用いただけます。',q:'店が再び開くのはいつですか。',o:['七月一日','七月五日','七月六日','七月十日'],a:2,e:'<b>七月六日からは…営業を再開いたします</b>とあるので、再開は七月六日。'},
+{cat:'lecture',d:3,passage:'田中さんへ　明日の会議の資料ですが、人数が増えたので、二十部ではなく三十部用意してください。それから、会議室は三階から五階に変わりました。エアコンの調子が悪いので、上着を持って来たほうがいいかもしれません。準備をよろしくお願いします。何か分からないことがあれば、私の携帯に連絡してください。　佐藤',q:'田中さんは資料を何部用意しますか。',o:['十部','二十部','三十部','五十部'],a:2,e:'<b>二十部ではなく三十部</b>用意するよう書かれている。'},
+{cat:'lecture',d:3,passage:'田中さんへ　明日の会議の資料ですが、人数が増えたので、二十部ではなく三十部用意してください。それから、会議室は三階から五階に変わりました。エアコンの調子が悪いので、上着を持って来たほうがいいかもしれません。準備をよろしくお願いします。何か分からないことがあれば、私の携帯に連絡してください。　佐藤',q:'上着を持って来たほうがいい理由は何ですか。',o:['外が寒いから','エアコンの調子が悪いから','会議が長いから','五階は暗いから'],a:1,e:'<b>エアコンの調子が悪い</b>ため、上着を持って来たほうがいいと書かれている。'},
+{cat:'lecture',d:3,passage:'私は去年から週に二回、近くのジムに通っている。最初は体を動かすのがつらくて、行きたくない日も多かった。しかし、同じ時間に通う友人ができてから、楽しく続けられるようになった。一人だと休んでしまうが、待っている人がいると思うと、自然と足が向く。健康のためだけでなく、人とのつながりも大切だと感じている。',q:'筆者が運動を楽しく続けられるようになったのはなぜですか。',o:['体が強くなったから','一緒に通う友人ができたから','ジムが近いから','回数を減らしたから'],a:1,e:'<b>同じ時間に通う友人ができてから</b>楽しく続けられるようになったと述べている。'},
+{cat:'lecture',d:3,passage:'私は去年から週に二回、近くのジムに通っている。最初は体を動かすのがつらくて、行きたくない日も多かった。しかし、同じ時間に通う友人ができてから、楽しく続けられるようになった。一人だと休んでしまうが、待っている人がいると思うと、自然と足が向く。健康のためだけでなく、人とのつながりも大切だと感じている。',q:'この文章で筆者が一番言いたいことは何ですか。',o:['運動は一人でするべきだ','人とのつながりも大切だ','ジムは高い','週二回では足りない'],a:1,e:'最後の文で<b>人とのつながりも大切だ</b>と感じていると述べており、これが主題。'},
+{cat:'lecture',d:1,q:'「ただいま満席です」＝店の様子は？',o:['空いている','席がいっぱい','閉まっている','安い'],a:1,e:'<b>満席（まんせき）</b> = toutes les places sont occupées.',g:'満席（まんせき）« complet / toutes les places prises » → il n\'y a plus de place libre.'},
+{cat:'lecture',d:2,q:'「お会計はあちらでお願いします」＝何をする？',o:['注文する','料理を待つ','お金を払う','席を選ぶ'],a:2,e:'<b>お会計（おかいけい）</b> = le paiement / l\'addition.',g:'お会計（おかいけい）« l\'addition » ＋あちらで « là-bas » → on va payer à cet endroit.'},
+{cat:'lecture',d:2,q:'「電源を切ってください」＝どうする？',o:['音を大きくする','電気を消す','窓を開ける','声を出す'],a:1,e:'<b>電源を切る（でんげんをきる）</b> = éteindre l\'appareil.',g:'電源（でんげん）« alimentation / courant » ＋切る（きる）« couper » → éteindre l\'appareil.'},
+{cat:'lecture',d:2,q:'「雨が降りそうだ」＝話し手の予想は？',o:['もう降っている','降るかもしれない','晴れている','雪が降る'],a:1,e:'<b>〜そうだ</b> (apparence) = il semble que / on dirait qu\'il va pleuvoir.',g:'降る（ふる）« tomber (pluie) » ＋〜そうだ « avoir l\'air de » → il va sans doute pleuvoir bientôt.'},
+{cat:'lecture',d:3,q:'「この薬は食後に飲んでください」＝いつ飲む？',o:['食事の前','食事の後','寝る前','起きてすぐ'],a:1,e:'<b>食後（しょくご）</b> = après le repas.',g:'食後（しょくご）« après le repas » ＋飲む（のむ）« prendre (médicament) » → on le prend après avoir mangé.'},
+{cat:'lecture',d:2,q:'「立入禁止」＝この場所は？',o:['入ってもよい','入ってはいけない','写真が撮れる','休める'],a:1,e:'<b>立入禁止（たちいりきんし）</b> = entrée interdite.',g:'立入（たちいり）« le fait d\'entrer » ＋禁止（きんし）« interdiction » → il est interdit d\'entrer.'},
+{cat:'lecture',d:3,q:'「遅れる場合は必ず連絡してください」＝遅れそうな時は？',o:['黙って待つ','急いで来る','連絡する','休む'],a:2,e:'<b>必ず連絡してください</b> = il faut absolument prévenir.',g:'遅れる（おくれる）« être en retard » ＋必ず（かならず）« absolument » ＋連絡（れんらく）« contact » → prévenir sans faute.'},
+{cat:'lecture',d:2,q:'「席を譲りましょう」＝どうする？',o:['席に座る','席を代わってあげる','席を増やす','席を予約する'],a:1,e:'<b>席を譲る（せきをゆずる）</b> = céder sa place.',g:'席（せき）« place / siège » ＋譲る（ゆずる）« céder » → laisser sa place à quelqu\'un.'},
+{cat:'lecture',d:3,q:'「準備が整い次第、始めます」＝いつ始める？',o:['今すぐ','準備ができたらすぐ','明日','終わってから'],a:1,e:'<b>〜次第（しだい）</b> = dès que / aussitôt que.',g:'準備（じゅんび）« préparation » ＋整う（ととのう）« être prêt » ＋〜次第 « dès que » → dès que c\'est prêt.'},
+{cat:'lecture',d:2,q:'「品切れ中です」＝その商品は？',o:['安くなっている','今ない','新しい','人気がない'],a:1,e:'<b>品切れ（しなぎれ）</b> = en rupture de stock.',g:'品（しな）« article / marchandise » ＋切れ（ぎれ）« épuisé » → le produit n\'est plus disponible.'},
+ // === AJOUT 2026-06 : 聴解 (compréhension orale, TTS) ===
+{cat:'ecoute',d:1,q:'女の人は何を買いますか。',script:'いらっしゃいませ。… りんごを三つと、牛乳を一本ください。… かしこまりました。',o:['りんご三つと牛乳一本','りんご一つと牛乳三本','りんご三つだけ','牛乳一本だけ'],a:0,e:'« りんごを三つと、牛乳を一本 » = trois pommes et une bouteille de lait. <b>三つ</b> = 3 unités, <b>一本</b> = 1 bouteille.'},
+{cat:'ecoute',d:1,q:'男の人は何時に起きますか。',script:'毎朝何時に起きますか。… いつもは七時ですが、明日は六時半に起きます。',o:['六時半','七時','七時半','六時'],a:0,e:'« 明日は六時半に起きます » = demain il se lève à <b>6h30</b>. 七時 est l\'heure habituelle, pas demain.'},
+{cat:'ecoute',d:1,q:'今日の天気はどうですか。',script:'今日の天気をお伝えします。… 午前中は晴れますが、午後から雨が降るでしょう。',o:['午後から雨','一日中晴れ','一日中雨','午前中だけ雨'],a:0,e:'« 午前中は晴れ… 午後から雨 » = le matin beau, <b>pluie à partir de l\'après-midi</b>.'},
+{cat:'ecoute',d:1,q:'男の人はどこへ行きますか。',script:'すみません、トイレはどこですか。… あちらの階段を上って、右側にありますよ。',o:['階段を上って右','階段を上って左','階段を下りて右','まっすぐ進む'],a:0,e:'« 階段を上って、右側 » = monter l\'escalier, à <b>droite</b>.'},
+{cat:'ecoute',d:1,q:'女の人は何を注文しますか。',script:'ご注文は？… コーヒーを一つと、ケーキを一つお願いします。… 以上でよろしいですか。… はい。',o:['コーヒーとケーキ','コーヒー二つ','ケーキ二つ','紅茶とケーキ'],a:0,e:'« コーヒーを一つと、ケーキを一つ » = un café et un gâteau.'},
+{cat:'ecoute',d:1,q:'電車は何番線から出ますか。',script:'まもなく、三番線に電車が参ります。… 大阪行きの電車は、三番線からの発車です。',o:['三番線','一番線','二番線','四番線'],a:0,e:'« 三番線からの発車 » = départ <b>quai n°3</b>. 大阪行き = à destination d\'Osaka.'},
+{cat:'ecoute',d:2,q:'男の人はこのあと何をしますか。',script:'会議の資料、もうできた？… すみません、まだコピーが終わっていません。… じゃあ、先に部屋の準備をしてくれる？コピーは私がやるから。… はい、わかりました。',o:['部屋の準備をする','資料をコピーする','会議を始める','資料を作る'],a:0,e:'L\'homme n\'a pas fini les copies ; le chef dit « 先に部屋の準備をして » et « コピーは私がやる ». Donc il va <b>préparer la salle</b>.'},
+{cat:'ecoute',d:2,q:'待ち合わせの場所はどこに変わりましたか。',script:'もしもし、明日の件だけど、駅前のカフェじゃなくて、図書館の入り口で待ち合わせにしよう。… 時間は同じ十時でいい？… うん、大丈夫。',o:['図書館の入り口','駅前のカフェ','図書館の中','駅の改札'],a:0,e:'« カフェじゃなくて、図書館の入り口で » = pas le café mais <b>l\'entrée de la bibliothèque</b>. L\'heure (10h) ne change pas.'},
+{cat:'ecoute',d:2,q:'店は何時に閉まりますか。',script:'本日はご来店ありがとうございます。… 当店は午後八時に閉店いたしますが、本日は特別に九時まで営業しております。',o:['九時','八時','七時','十時'],a:0,e:'« 本日は特別に九時まで » = aujourd\'hui exceptionnellement <b>jusqu\'à 21h</b>. 八時 est l\'horaire habituel.'},
+{cat:'ecoute',d:2,q:'女の人はどの電車に乗りますか。',script:'すみません、横浜に行きたいんですが。… 各駅停車だと時間がかかりますよ。次の急行に乗ったほうが早いです。… じゃあ、そうします。',o:['急行','各駅停車','特急','普通電車'],a:0,e:'« 次の急行に乗ったほうが早い »、puis « そうします » = elle suit le conseil et prend l\'<b>express (急行)</b>.'},
+{cat:'ecoute',d:2,q:'男の人は天気が悪いので何を持っていきますか。',script:'明日、山に登る予定なんだ。… 天気予報では午後から雨だって。傘より、レインコートのほうがいいよ。両手が使えるから。… そうだね、そうするよ。',o:['レインコート','傘','帽子','水筒'],a:0,e:'« 傘より、レインコートのほうがいい » et « そうするよ » = il choisit l\'<b>imperméable</b> car les mains restent libres.'},
+{cat:'ecoute',d:2,q:'会議は何曜日に変わりましたか。',script:'来週の会議のことですが、水曜日は社長が出張で出られないそうです。… それでは、木曜日に変更しましょう。みなさんに連絡してください。… 承知しました。',o:['木曜日','水曜日','火曜日','金曜日'],a:0,e:'« 水曜日は…出られない… 木曜日に変更しましょう » = réunion déplacée au <b>jeudi</b>.'},
+{cat:'ecoute',d:2,q:'女の人は男の人に何を頼みましたか。',script:'田中さん、ちょっとお願いがあるんですが。… この書類を山田部長に渡してもらえますか。私、これから外出するので。… わかりました、お預かりします。',o:['書類を部長に渡す','書類をコピーする','部長に電話する','外出する'],a:0,e:'« この書類を山田部長に渡してもらえますか » = elle demande de <b>remettre les documents au chef Yamada</b>.'},
+{cat:'ecoute',d:2,q:'電話の用件は何ですか。',script:'もしもし、佐藤です。明日の三時の予約ですが、急に都合が悪くなってしまって。… 申し訳ないですが、四時に変更していただけますか。',o:['予約の時間を変えたい','予約を取り消したい','予約の日を変えたい','人数を変えたい'],a:0,e:'« 三時の予約… 四時に変更していただけますか » = il veut <b>changer l\'heure</b> du rendez-vous (15h → 16h).'},
+{cat:'ecoute',d:3,q:'女の人は結局どの色を買いますか。',script:'このセーター、青と赤、どっちがいいかな。… 青も似合うけど、赤は持ってる服に合わせにくいかも。… そうね、でも今日は明るい色がほしい気分だから、やっぱり赤にする。',o:['赤','青','どちらも買わない','両方買う'],a:0,e:'Malgré le conseil, elle conclut « やっぱり赤にする » = finalement le <b>rouge</b>, car elle veut une couleur vive aujourd\'hui.'},
+{cat:'ecoute',d:3,q:'男の人はどうして遅れますか。',script:'もしもし、本当にごめん。電車が事故で止まってて、まだ駅にいるんだ。… バスで行こうと思ったけど、道も混んでるみたいで。… たぶん三十分くらい遅れそう。',o:['電車が止まっているから','寝坊したから','道に迷ったから','忘れ物をしたから'],a:0,e:'« 電車が事故で止まってて » = le train est <b>arrêté à cause d\'un accident</b>. Le bus et le trafic sont mentionnés mais la cause initiale est le train.'},
+{cat:'ecoute',d:3,q:'お知らせによると、明日できないことは何ですか。',script:'ご利用のお客様にお知らせします。… 明日は工事のため、二階のエレベーターがご利用いただけません。階段または三階のエレベーターをご利用ください。',o:['二階のエレベーターを使うこと','階段を使うこと','三階のエレベーターを使うこと','買い物をすること'],a:0,e:'« 二階のエレベーターがご利用いただけません » = on ne peut pas utiliser l\'<b>ascenseur du 2e étage</b> ; escaliers et ascenseur du 3e restent possibles.'},
+{cat:'ecoute',d:3,q:'二人は週末に何をすることにしましたか。',script:'週末、映画を見に行かない？… いいね。でも天気が良かったら、海に行きたいな。… じゃあ、晴れたら海、雨だったら映画にしよう。… 週末は晴れるみたいだよ。… よし、決まりだね。',o:['海に行く','映画を見る','家にいる','買い物に行く'],a:0,e:'Règle : « 晴れたら海、雨だったら映画 », puis « 週末は晴れるみたい » → comme il fera beau, ils vont à la <b>mer</b>.'},
+ // === AJOUT 2026-06 : 語彙 par thème (travail/santé/voyage/école/argent/météo) ===
+// 仕事・職場
+{cat:'vocabulaire',d:2,q:'明日までにこの書類を___してください。',o:['提出','成功','成長','想像'],a:0,e:'<b>提出</b>（ていしゅつ）= soumettre, remettre (un document).',g:'明日（あした）までに « avant demain » · この書類（しょるい）« ce document » · 提出（ていしゅつ）« soumettre » してください « veuillez ».'},
+{cat:'vocabulaire',d:2,q:'部長に新しい計画を___するつもりだ。',o:['提案','遠慮','緊張','感謝'],a:0,e:'<b>提案</b>（ていあん）= proposer, faire une proposition.',g:'部長（ぶちょう）に « au chef de service » · 新（あたら）しい計画（けいかく）« nouveau plan » · 提案（ていあん）« proposer » するつもりだ « avoir l\'intention de ».'},
+{cat:'vocabulaire',d:2,q:'彼は仕事が早くて、とても___な社員だ。',o:['有能','退屈','面倒','邪魔'],a:0,e:'<b>有能</b>（ゆうのう）= compétent, capable.',g:'彼（かれ）は仕事（しごと）が早（はや）くて « il travaille vite et » · とても « très » · 有能（ゆうのう）« compétent » な社員（しゃいん）« employé ».'},
+{cat:'vocabulaire',d:3,q:'会議の資料を___するのを忘れていた。',o:['準備','延期','解決','報告'],a:0,e:'<b>準備</b>（じゅんび）= préparer.',g:'会議（かいぎ）の資料（しりょう）« documents de réunion » · 準備（じゅんび）« préparer » するのを忘（わす）れていた « avoir oublié de ».'},
+// 病院・健康
+{cat:'vocabulaire',d:2,q:'熱が高いので、病院で___をしてもらった。',o:['検査','運動','旅行','調査'],a:0,e:'<b>検査</b>（けんさ）= examen (médical), test.',g:'熱（ねつ）が高（たか）いので « comme la fièvre est élevée » · 病院（びょういん）で « à l\'hôpital » · 検査（けんさ）« examen » をしてもらった « se faire faire ».'},
+{cat:'vocabulaire',d:2,q:'薬を飲んだら、頭痛が少し___なった。',o:['楽に','派手に','静かに','正直に'],a:0,e:'<b>楽</b>（らく）に = soulagé, moins pénible.',g:'薬（くすり）を飲（の）んだら « après avoir pris le médicament » · 頭痛（ずつう）« mal de tête » · 少（すこ）し楽（らく）に « un peu soulagé » なった « devenir ».'},
+{cat:'vocabulaire',d:3,q:'医者に、もっと野菜を食べるように___された。',o:['注意','満足','感心','遠慮'],a:0,e:'<b>注意</b>（ちゅうい）= avertir, recommander (mettre en garde).',g:'医者（いしゃ）に « par le médecin » · もっと野菜（やさい）を食（た）べるように « de manger plus de légumes » · 注意（ちゅうい）« mise en garde » された « être ».'},
+{cat:'vocabulaire',d:2,q:'風邪を___ように、手をよく洗いましょう。',o:['ひかない','降らない','流れない','割れない'],a:0,e:'<b>ひかない</b> = ne pas attraper (un rhume), de 引く.',g:'風邪（かぜ）を引（ひ）かないように « pour ne pas attraper froid » · 手（て）をよく洗（あら）いましょう « lavons-nous bien les mains ».'},
+// 旅行・交通
+{cat:'vocabulaire',d:2,q:'電車が遅れたので、約束の時間に___した。',o:['遅刻','出発','到着','予約'],a:0,e:'<b>遅刻</b>（ちこく）= être en retard.',g:'電車（でんしゃ）が遅（おく）れたので « comme le train a eu du retard » · 約束（やくそく）の時間（じかん）に « à l\'heure du rendez-vous » · 遅刻（ちこく）« être en retard » した.'},
+{cat:'vocabulaire',d:2,q:'旅行の前にホテルを___しておいた。',o:['予約','案内','利用','確認'],a:0,e:'<b>予約</b>（よやく）= réserver.',g:'旅行（りょこう）の前（まえ）に « avant le voyage » · ホテル « hôtel » · 予約（よやく）« réserver » しておいた « avoir fait à l\'avance ».'},
+{cat:'vocabulaire',d:3,q:'道が___いて、目的地まで二時間もかかった。',o:['混んで','空いて','晴れて','並んで'],a:0,e:'<b>混んで</b>（こんで）= être encombré, bondé (de 混む).',g:'道（みち）が混（こ）んでいて « la route étant encombrée » · 目的地（もくてきち）まで « jusqu\'à destination » · 二時間（にじかん）もかかった « a pris deux heures ».'},
+{cat:'vocabulaire',d:2,q:'空港で荷物を___するのに時間がかかった。',o:['受け取る','見送る','乗り換える','追いかける'],a:0,e:'<b>受け取る</b>（うけとる）= récupérer, recevoir.',g:'空港（くうこう）で « à l\'aéroport » · 荷物（にもつ）« bagages » · 受（う）け取（と）る « récupérer » のに時間（じかん）がかかった « a pris du temps ».'},
+// 学校・勉強
+{cat:'vocabulaire',d:2,q:'試験に合格するために、毎日___している。',o:['復習','想像','返事','失敗'],a:0,e:'<b>復習</b>（ふくしゅう）= réviser.',g:'試験（しけん）に合格（ごうかく）するために « pour réussir l\'examen » · 毎日（まいにち）« chaque jour » · 復習（ふくしゅう）« réviser » している.'},
+{cat:'vocabulaire',d:3,q:'先生の説明はとても___で、よく分かった。',o:['丁寧','適当','下手','迷惑'],a:0,e:'<b>丁寧</b>（ていねい）= soigné, attentionné, clair.',g:'先生（せんせい）の説明（せつめい）« explication du professeur » · とても丁寧（ていねい）« très soigné » で · よく分（わ）かった « bien compris ».'},
+{cat:'vocabulaire',d:2,q:'この問題は難しくて、答えが___なかった。',o:['分から','聞こえ','見え','似てい'],a:0,e:'<b>分から</b>（わから）ない = ne pas comprendre (de 分かる).',g:'この問題（もんだい）は難（むずか）しくて « ce problème étant difficile » · 答（こた）え « réponse » · 分（わ）からなかった « n\'ai pas compris ».'},
+{cat:'vocabulaire',d:2,q:'レポートの___が明日に近づいている。',o:['締め切り','机','黒板','成績'],a:0,e:'<b>締め切り</b>（しめきり）= date limite, échéance.',g:'レポート « rapport » · 締（し）め切（き）り « date limite » · 明日（あした）に近（ちか）づいている « approche de demain ».'},
+// 買い物・お金
+{cat:'vocabulaire',d:2,q:'このセーターは安かったので、つい___しまった。',o:['買って','売って','貸して','返して'],a:0,e:'<b>買って</b>（かって）= acheter (de 買う).',g:'このセーター « ce pull » · 安（やす）かったので « comme c\'était bon marché » · つい « malgré soi » · 買（か）ってしまった « avoir fini par acheter ».'},
+{cat:'vocabulaire',d:3,q:'店員にもう少し___できないかと聞いた。',o:['値引き','貯金','請求','支払い'],a:0,e:'<b>値引き</b>（ねびき）= rabais, réduction de prix.',g:'店員（てんいん）に « au vendeur » · もう少（すこ）し « un peu plus » · 値引（ねび）き « rabais » できないかと聞（き）いた « ai demandé si possible ».'},
+{cat:'vocabulaire',d:2,q:'毎月、少しずつお金を___している。',o:['貯金','請求','計算','交換'],a:0,e:'<b>貯金</b>（ちょきん）= économiser, épargner.',g:'毎月（まいつき）« chaque mois » · 少（すこ）しずつ « petit à petit » · お金（かね）を貯金（ちょきん）« épargner » している.'},
+{cat:'vocabulaire',d:2,q:'レジでお金を払って、___をもらった。',o:['レシート','メニュー','カレンダー','スケジュール'],a:0,e:'<b>レシート</b> = ticket de caisse, reçu.',g:'レジで « à la caisse » · お金（かね）を払（はら）って « après avoir payé » · レシート « reçu » をもらった « ai reçu ».'},
+// 天気・自然
+{cat:'vocabulaire',d:2,q:'空が暗くなってきたので、雨が___そうだ。',o:['降り','晴れ','吹き','流れ'],a:0,e:'<b>降り</b>（ふり）そうだ = il va probablement pleuvoir (de 降る).',g:'空（そら）が暗（くら）くなってきた « le ciel s\'est assombri » · 雨（あめ）が降（ふ）りそうだ « il semble que la pluie va tomber ».'},
+{cat:'vocabulaire',d:3,q:'台風が___して、電車が止まってしまった。',o:['接近','成長','発展','参加'],a:0,e:'<b>接近</b>（せっきん）= s\'approcher (typhon, etc.).',g:'台風（たいふう）が接近（せっきん）« le typhon s\'approche » して · 電車（でんしゃ）が止（と）まってしまった « les trains se sont arrêtés ».'},
+{cat:'vocabulaire',d:2,q:'今日はとても___で、洗濯物がよく乾いた。',o:['天気','景色','自然','空気'],a:0,e:'<b>天気</b>（てんき）= beau temps (ici, ensoleillé).',g:'今日（きょう）はとても天気（てんき）« il fait très beau » で · 洗濯物（せんたくもの）« linge » · よく乾（かわ）いた « a bien séché ».'},
+{cat:'vocabulaire',d:2,q:'山の上から見た___はとても美しかった。',o:['景色','天気','気温','湿気'],a:0,e:'<b>景色</b>（けしき）= paysage, vue.',g:'山（やま）の上（うえ）から « du haut de la montagne » · 見（み）た景色（けしき）« la vue qu\'on a vue » · とても美（うつく）しかった « était très belle ».'},,
+ // === AJOUT 2026-06 : couverture quiz des points de grammaire (〜ば/〜と/様態・伝聞そうだ/みたいだ/尊敬語/〜ばかり/〜によって) ===
+{cat:'grammaire',d:1,q:'春に___、桜が咲く。',o:['なれば','なるなら','なっても','なりつつ'],a:0,e:'<b>〜ば</b> = condition générale / vérité naturelle : « quand vient le printemps, les cerisiers fleurissent ».',g:'春（はる）« printemps » · に « marque le moment » · なる→なれば « si/quand cela devient » · 桜（さくら）« cerisier » · 咲く（さく）« fleurir ».'},
+ {cat:'grammaire',d:2,q:'このボタンを押す___、電気がつきます。',o:['と','たら','なら','ても'],a:0,e:'<b>〜と</b> (条件) = conséquence automatique/inévitable : « dès qu’on appuie, la lumière s’allume ».',g:'ボタンを押す（おす）« appuyer sur le bouton » ＋と « à chaque fois que / dès que » · 電気（でんき）がつく « la lumière s’allume ».'},
+ {cat:'grammaire',d:2,q:'空が暗い。雨が降る___だ。',o:['よう','そう','らしい','みたい'],a:0,e:'<b>〜ようだ</b> = supposition fondée sur une observation directe : « on dirait qu’il va pleuvoir ».',g:'空（そら）が暗い（くらい）« le ciel est sombre » · 雨（あめ）が降る（ふる）« pleuvoir » ＋ようだ « il semble que (jugement basé sur indices) ».'},
+ {cat:'grammaire',d:2,q:'このケーキ、おいし___ですね。',o:['そう','よう','らしい','みたい'],a:0,e:'<b>〜そうだ (様態)</b> = apparence immédiate (avant de goûter) : い-adj perd 〜い ＋そう. « Ce gâteau a l’air bon ».',g:'ケーキ « gâteau » · おいしい→おいし ＋そう « avoir l’air… » (impression visuelle).'},
+ {cat:'grammaire',d:2,q:'天気予報によると、明日は雨が降る___だ。',o:['そう','よう','みたい','はず'],a:0,e:'<b>〜そうだ (伝聞)</b> = rapporter une information (普通形＋そうだ). « D’après la météo, il pleuvra demain ».',g:'天気予報（てんきよほう）によると « d’après la météo » · 雨が降る « il pleut » ＋そうだ « on dit que (ouï-dire) ».'},
+ {cat:'grammaire',d:2,q:'彼は疲れている___。元気がない。',o:['みたいだ','そうに','ように','らしく'],a:0,e:'<b>〜みたいだ</b> = « on dirait que… » (équivalent oral/familier de ようだ).',g:'彼（かれ）は疲れる（つかれる）→疲れている « être fatigué » ＋みたいだ « on dirait que » · 元気（げんき）がない « manquer d’énergie ».'},
+ {cat:'grammaire',d:3,q:'先生は何時に___ますか。',o:['お帰りになり','お帰りし','帰らせ','帰られし'],a:0,e:'<b>お〜になる</b> = honorifique (尊敬語) pour l’action d’autrui : « À quelle heure le professeur rentre-t-il ? »',g:'先生（せんせい）« professeur » · 帰る（かえる）→お帰りになる « rentrer (forme respectueuse) ». お〜する serait au contraire modeste (謙譲語, pour soi-même).'},
+ {cat:'grammaire',d:2,q:'食べた___なのに、もうお腹がすいた。',o:['ばかり','だけ','まま','ながら'],a:0,e:'<b>V(た)＋ばかり</b> = « venir juste de… » : « je viens à peine de manger et j’ai déjà faim ».',g:'食べる→食べた « avoir mangé » ＋ばかり « venir juste de » · なのに « et pourtant » · お腹（なか）がすく « avoir faim ».'},
+ {cat:'grammaire',d:3,q:'この建物は有名な建築家___設計された。',o:['によって','について','にとって','として'],a:0,e:'<b>〜によって</b> = complément d’agent au passif (« par ») ou moyen/cause selon le contexte.',g:'建物（たてもの）« bâtiment » · 有名（ゆうめい）な建築家（けんちくか）« architecte célèbre » ＋によって « par » · 設計（せっけい）される « être conçu (passif) ».'},
 ];
 
 /* =================== MODÈLE & ÉTAT =================== */
@@ -853,6 +933,42 @@ function renderResume(){
   if(r.kind==='quiz'){const n=(r.ids||[]).length;pos=Math.min((r.qi||0)+1,n)+'/'+n;label='quiz';}
   else{const n=(r.keys||[]).length;pos=Math.min((r.qi||0)+1,n)+'/'+n;label='apprentissage';}
   rb.innerHTML='<button class="start" onclick="resumeSession()" style="margin:0 0 11px">'+play+' Reprendre ma session <span style="opacity:.85;font-weight:400">('+pos+' · '+label+')</span></button>';
+}
+
+/* =================== RÉGULARITÉ (série de jours + objectif quotidien) =================== */
+function todayKey(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function dayDiff(a,b){if(!a||!b)return 99;const da=new Date(a+'T00:00:00'),db=new Date(b+'T00:00:00');return Math.round((db-da)/864e5);}
+function liveStreak(){if(!S.dlast)return 0;const diff=dayDiff(S.dlast,todayKey());return(diff===0||diff===1)?(S.dstreak||0):0;}
+// appelée à chaque action d'étude (quiz, examen, apprentissage) : tient la série et le compteur du jour à jour
+function bumpDaily(){
+  const t=todayKey();
+  if(S.dtoday!==t){
+    if(S.dlast){const diff=dayDiff(S.dlast,t);S.dstreak=(diff===1)?(S.dstreak||0)+1:1;}
+    else S.dstreak=1;
+    S.dlast=t;S.dtoday=t;S.dcount=0;
+    S.dbest=Math.max(S.dbest||0,S.dstreak);
+  }
+  S.dcount=(S.dcount||0)+1;
+  S.dbest=Math.max(S.dbest||0,S.dstreak||1);
+}
+function renderStreak(){
+  const sb=document.getElementById('streakBox');if(!sb)return;
+  const st=liveStreak();
+  const goal=S.dgoal||10;
+  const done=(S.dtoday===todayKey())?(S.dcount||0):0;
+  const pctg=Math.min(100,Math.round(done/goal*100));
+  const met=done>=goal;
+  const flame='<svg class="ic ic-f" viewBox="0 0 24 24" aria-hidden="true" style="color:'+(st>0?'#d08770':'var(--muted)')+'"><path d="M12 2c1 4-2 5-2 8a2 2 0 0 0 4 0c0-1 0-1 0-1 2 2 3 4 3 6a5 5 0 0 1-10 0c0-4 5-6 5-13z"/></svg>';
+  const dayTxt=st>0?'<b style="font-size:1.15em">'+st+'</b> jour'+(st>1?'s':'')+' d\'affilée':'Commence ta série aujourd\'hui';
+  const goalTxt=met?'<b style="color:var(--ok)">Objectif du jour atteint ✓</b>':done+'/'+goal+' aujourd\'hui';
+  const best=(S.dbest||0)>1?'<span class="muted" style="font-size:.82em"> · record '+S.dbest+' j</span>':'';
+  sb.innerHTML='<div style="display:flex;align-items:center;gap:9px;margin:0 0 9px;padding:9px 11px;background:var(--card2);border-radius:12px">'
+    +flame
+    +'<div style="flex:1;min-width:0">'
+    +'<div style="font-size:.92em">'+dayTxt+best+'</div>'
+    +'<div class="track" style="margin:5px 0 3px"><i style="width:'+pctg+'%;background:'+(met?'var(--ok)':'var(--accent2)')+'"></i></div>'
+    +'<div class="muted" style="font-size:.8em">'+goalTxt+'</div>'
+    +'</div></div>';
 }
 
 /* =================== PRÉRÉGLAGES DE DURÉE =================== */
@@ -1091,6 +1207,7 @@ function renderHome(){
     lp.innerHTML = due
       ? `<b style="color:var(--accent2)">${due} notion${due>1?'s':''} à réviser maintenant</b> · ${v}/${tot} apprises.`
       : (v>0 ? `${v}/${tot} notions apprises · rien à réviser pour l'instant.` : `Apprends et révise gram·kanji·voca en quelques minutes.`);}
+  renderStreak();
   renderResume();
   syncMinChips();
   // diag banner
@@ -1231,7 +1348,7 @@ function tickExam(){
 function examAnswer(btn,q,opts){
   const correctTxt=q.o[q.a],ok=btn.textContent===correctTxt;
   [...opts.children].forEach(b=>b.disabled=true);btn.style.borderColor='var(--accent2)';
-  updateRating(q.cat,q.d,ok);
+  updateRating(q.cat,q.d,ok);bumpDaily();
   S.total++;if(ok)S.right++;
   if(!ok){if(!S.wrong.includes(q.id))S.wrong.push(q.id);}else{S.wrong=S.wrong.filter(x=>x!==q.id);}
   S.wrong=S.wrong.slice(-80);save();
@@ -1342,7 +1459,7 @@ function answer(btn,q,opts){
   [...opts.children].forEach(b=>{b.disabled=true;if(b.textContent===correctTxt)b.classList.add('correct')});
   if(!ok)btn.classList.add('wrong');
   // mise à jour modèle
-  updateRating(q.cat,q.d,ok);
+  updateRating(q.cat,q.d,ok);bumpDaily();
   S.total++;if(ok){S.right++;sessionRight++;S.streak++;S.bestStreak=Math.max(S.bestStreak,S.streak)}else{S.streak=0;if(!S.wrong.includes(q.id))S.wrong.push(q.id)}
   if(ok)S.wrong=S.wrong.filter(x=>x!==q.id);
   S.wrong=S.wrong.slice(-80);save();
@@ -1577,7 +1694,7 @@ function learnAnswer(btn,opts){
   let box=ok?Math.min(5,(r.box||0)+1):0;        // réussite → palier suivant ; échec → box 0
   const days=ok?SRS_DAYS[box]:1;                  // échec : revient demain
   S.gram[g.srsKey]={box,due:new Date(Date.now()+days*864e5).toISOString(),seen:true};
-  updateRating(g.cat,g.lvl==='N4'?1:2,ok);S.total++;if(ok)S.right++;save();
+  updateRating(g.cat,g.lvl==='N4'?1:2,ok);bumpDaily();S.total++;if(ok)S.right++;save();
   const ex=document.getElementById('learnExpl');ex.className='expl show '+(ok?'good':'poor');
   const status=ok
     ?`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg> <b>Correct !</b> Point ${box>1?'renforcé':'validé'} <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> — prochaine révision dans <b>${SRS_DAYS[box]} j</b>.`
