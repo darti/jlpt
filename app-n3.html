@@ -15,8 +15,10 @@
   :root{
     --bg:#0f1116;--card:#171a21;--card2:#1d212b;--line:#2a2f3a;
     --txt:#e7e9ee;--muted:#9aa3b2;--accent:#e2466b;--accent2:#3fb6e0;--ok:#3ecf8e;--bad:#ef5365;--warn:#f5b942;
+    --fs-ui:1;--fs-jp:1;   /* échelles de police : interface & texte japonais */
   }
   *{box-sizing:border-box}
+  html{font-size:calc(16px * var(--fs-ui))}            /* taille « autre / interface » (rem) */
   body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.55}
   header{padding:24px 56px 16px;text-align:center;background:radial-gradient(900px 280px at 50% -50%,rgba(226,70,107,.22),transparent),var(--card)}
   header h1{margin:0 0 4px;font-size:1.45rem}
@@ -35,9 +37,10 @@
   .tag{background:var(--card2);border:1px solid var(--line);padding:2px 9px;border-radius:999px}
   .diff{font-size:.72rem;padding:2px 8px;border-radius:999px;font-weight:700}
   .d1{background:rgba(62,207,142,.16);color:var(--ok)} .d2{background:rgba(245,185,66,.16);color:var(--warn)} .d3{background:rgba(239,83,101,.16);color:var(--bad)}
-  .qtext{font-size:1.3rem;margin:6px 0 16px;line-height:1.7}
+  .qtext{font-size:calc(1.3rem * var(--fs-jp));margin:6px 0 16px;line-height:1.7}
+  .jpbig{font-size:calc(1.7rem * var(--fs-jp));font-weight:800;color:var(--accent2)}
   .qtext .blank{color:var(--accent);font-weight:700;border-bottom:2px dashed var(--accent);padding:0 14px}
-  .opt{display:block;width:100%;text-align:left;background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:11px;padding:12px 15px;margin:8px 0;cursor:pointer;font-size:1.04rem;transition:.12s}
+  .opt{display:block;width:100%;text-align:left;background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:11px;padding:12px 15px;margin:8px 0;cursor:pointer;font-size:calc(1.04rem * var(--fs-jp));transition:.12s}
   .opt:hover{border-color:var(--accent2)} .opt.correct{background:rgba(62,207,142,.16);border-color:var(--ok)} .opt.wrong{background:rgba(239,83,101,.15);border-color:var(--bad)} .opt:disabled{cursor:default}
   .expl{margin-top:14px;padding:13px 15px;border-radius:11px;font-size:.93rem;display:none}
   .expl.show{display:block} .expl.good{background:rgba(62,207,142,.1);border:1px solid var(--ok)} .expl.poor{background:rgba(239,83,101,.1);border:1px solid var(--bad)} .expl b{color:var(--accent2)}
@@ -95,9 +98,15 @@
     header{padding:18px 46px 12px}
     header h1{font-size:1.25rem}
     .card{padding:15px}
-    .qtext{font-size:1.18rem}
+    .qtext{font-size:calc(1.18rem * var(--fs-jp))}
     .row .name{width:96px}
   }
+  .fsrow{display:flex;align-items:center;gap:10px;margin:9px 0}
+  .fsrow>.lab{flex:1;font-size:.92rem}
+  .fsrow>.lab .ex{color:var(--muted);font-size:.8rem}
+  .fsrow button{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:8px;width:38px;height:38px;cursor:pointer;font-weight:700;font-size:1rem}
+  .fsrow button:active{transform:scale(.94)}
+  .fsrow .v{width:50px;text-align:center;font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
@@ -170,6 +179,24 @@
         </div>
         <p class="muted" style="font-size:.78rem;margin:6px 0 0" id="gistLink"></p>
       </div>
+    </div>
+
+    <!-- AFFICHAGE / TAILLE DU TEXTE -->
+    <div class="card">
+      <h2 style="margin-top:0">🔠 Taille du texte</h2>
+      <div class="fsrow">
+        <div class="lab">Texte japonais <span class="ex" lang="ja">例：日本語</span></div>
+        <button onclick="bumpFs('jp',-1)" aria-label="Réduire">A−</button>
+        <span class="v" id="fsJpVal">100%</span>
+        <button onclick="bumpFs('jp',1)" aria-label="Agrandir">A＋</button>
+      </div>
+      <div class="fsrow">
+        <div class="lab">Texte interface <span class="ex">ex : menus</span></div>
+        <button onclick="bumpFs('ui',-1)" aria-label="Réduire">A−</button>
+        <span class="v" id="fsUiVal">100%</span>
+        <button onclick="bumpFs('ui',1)" aria-label="Agrandir">A＋</button>
+      </div>
+      <p class="muted" style="margin:8px 0 0">Préférence enregistrée et appliquée à tout le site (cours, planning).</p>
     </div>
 
     <!-- SESSION (unifiée, budget de temps) -->
@@ -721,6 +748,24 @@ function load(){
 }
 function save(){localStorage.setItem(SKEY,JSON.stringify(S));localStorage.setItem('jlptN3_updatedAt',new Date().toISOString());scheduleAutoPush()}
 
+/* =================== TAILLE DU TEXTE (japonais / interface) =================== */
+function getFs(k){const v=parseFloat(localStorage.getItem('jlptN3_fs'+k));return v>=0.7&&v<=2?v:1}
+function applyFontScale(){
+  const ui=getFs('Ui'),jp=getFs('Jp'),r=document.documentElement;
+  r.style.setProperty('--fs-ui',ui);r.style.setProperty('--fs-jp',jp);
+  const u=document.getElementById('fsUiVal'),j=document.getElementById('fsJpVal');
+  if(u)u.textContent=Math.round(ui*100)+'%';
+  if(j)j.textContent=Math.round(jp*100)+'%';
+}
+function bumpFs(which,dir){
+  const key=which==='jp'?'Jp':'Ui';
+  let v=Math.round((getFs(key)+dir*0.1)*10)/10;
+  v=Math.max(0.8,Math.min(1.8,v));
+  localStorage.setItem('jlptN3_fs'+key,v);
+  localStorage.setItem('jlptN3_updatedAt',new Date().toISOString());
+  applyFontScale();scheduleAutoPush();
+}
+
 /* =================== SYNCHRO GITHUB GIST =================== */
 const GH_CFG='jlptN3_gh', GIST_FILE='jlpt-n3-progress.json';
 let pushTimer=null;
@@ -797,7 +842,7 @@ async function cloudPull(manual){
   }
   if(manual||!localT||remoteT>localT){
     if(!applyData(payload)){syncMsg('Le Gist ne contient pas de progression exploitable (format inattendu ou vide).',false);return;}
-    renderSync();renderHome();renderCats();
+    applyFontScale();renderSync();renderHome();renderCats();
     const n=S.total||0, g=Object.keys(S.gram||{}).length;
     syncMsg('Récupéré depuis le cloud ⬇️ ('+n+' réponses · '+g+' points appris).',true);
   }else{
@@ -1102,7 +1147,9 @@ const FURI={
  // composés (2 kanji+)
  '丁寧':'ていねい','三日':'みっか','上手':'じょうず','中止':'ちゅうし','予定':'よてい','予約':'よやく','事実':'じじつ','二度':'にど','京都':'きょうと','今年':'ことし','仕事':'しごと','会議':'かいぎ','何時':'なんじ','健康':'けんこう','先生':'せんせい','割引':'わりびき','努力':'どりょく','勉強':'べんきょう','動作':'どうさ','去年':'きょねん','合格':'ごうかく','商品':'しょうひん','問題':'もんだい','国際':'こくさい','場合':'ばあい','場所':'ばしょ','場面':'ばめん','増加':'ぞうか','変更':'へんこう','大事':'だいじ','大切':'たいせつ','失敗':'しっぱい','失礼':'しつれい','子供':'こども','学生':'がくせい','定員':'ていいん','宿題':'しゅくだい','専門':'せんもん','工事':'こうじ','広告':'こうこく','彼女':'かのじょ','心配':'しんぱい','情報':'じょうほう','意味':'いみ','意見':'いけん','感情':'かんじょう','成功':'せいこう','我慢':'がまん','手紙':'てがみ','技術':'ぎじゅつ','招待':'しょうたい','掲示':'けいじ','改善':'かいぜん','政治':'せいじ','文化':'ぶんか','旅行':'りょこう','日本':'にほん','明日':'あした','昨夜':'さくや','時間':'じかん','書類':'しょるい','未来':'みらい','来週':'らいしゅう','東京':'とうきょう','案内':'あんない','次第':'しだい','気持':'きも','準備':'じゅんび','漢字':'かんじ','無料':'むりょう','状況':'じょうきょう','現在':'げんざい','環境':'かんきょう','生産':'せいさん','発展':'はってん','短文':'たんぶん','確実':'かくじつ','確認':'かくにん','筆者':'ひっしゃ','約束':'やくそく','経済':'けいざい','経験':'けいけん','結果':'けっか','結論':'けつろん','給料':'きゅうりょう','練習':'れんしゅう','自由':'じゆう','複数':'ふくすう','複雑':'ふくざつ','観光':'かんこう','解決':'かいけつ','計画':'けいかく','許可':'きょか','証拠':'しょうこ','試合':'しあい','試験':'しけん','説明':'せつめい','財布':'さいふ','責任':'せきにん','貿易':'ぼうえき','質問':'しつもん','辞書':'じしょ','近所':'きんじょ','連絡':'れんらく','遅刻':'ちこく','道理':'どうり','遠慮':'えんりょ','部屋':'へや','重要':'じゅうよう','関係':'かんけい','雨天':'うてん','電気':'でんき','電話':'でんわ','電車':'でんしゃ','面白':'おもしろ','音楽':'おんがく','食後':'しょくご','記憶':'きおく','郵便':'ゆうびん','先着':'せんちゃく','本日':'ほんじつ','使用':'しよう','在庫':'ざいこ','毎日':'まいにち','毎朝':'まいあさ','残業':'ざんぎょう','注意':'ちゅうい','以外':'いがい',
  // kanji simples (radicaux de verbes/adjectifs, sans okurigana)
- '下':'さ','体':'からだ','休':'やす','傘':'かさ','元':'もと','先':'さき','入':'はい','分':'わ','切':'き','前':'まえ','効':'き','危':'あぶ','取':'と','合':'あ','向':'む','周':'まわ','問':'と','守':'まも','家':'いえ','寄':'よ','少':'すこ','帰':'かえ','年':'とし','店':'みせ','弟':'おとうと','彼':'かれ','後':'あと','得':'え','思':'おも','悪':'わる','感':'かん','戻':'もど','手':'て','扱':'あつか','教':'おし','整':'ととの','新':'あたら','方':'かた','早':'はや','時':'じ','暑':'あつ','暗':'くら','書':'か','服':'ふく','本':'ほん','来':'く','歌':'うた','決':'き','混':'こ','物':'もの','申':'もう','疲':'つか','眠':'ねむ','知':'し','窓':'まど','立':'た','笑':'わら','答':'こた','終':'お','締':'し','聞':'き','落':'お','薬':'くすり','見':'み','覧':'らん','解':'と','言':'い','認':'みと','読':'よ','誰':'だれ','謝':'あやま','買':'か','転':'ころ','込':'こ','近':'ちか','遅':'おく','遊':'あそ','道':'みち','達':'たっ','金':'かね','長':'なが','開':'あ','降':'ふ','限':'かぎ','難':'むずか','雨':'あめ','願':'ねが','食':'た','飲':'の','高':'たか','会':'あ','力':'りょく','順':'じゅん','中':'ちゅう','走':'はし'
+ '下':'さ','体':'からだ','休':'やす','傘':'かさ','元':'もと','先':'さき','入':'はい','分':'わ','切':'き','前':'まえ','効':'き','危':'あぶ','取':'と','合':'あ','向':'む','周':'まわ','問':'と','守':'まも','家':'いえ','寄':'よ','少':'すこ','帰':'かえ','年':'とし','店':'みせ','弟':'おとうと','彼':'かれ','後':'あと','得':'え','思':'おも','悪':'わる','感':'かん','戻':'もど','手':'て','扱':'あつか','教':'おし','整':'ととの','新':'あたら','方':'かた','早':'はや','時':'じ','暑':'あつ','暗':'くら','書':'か','服':'ふく','本':'ほん','来':'く','歌':'うた','決':'き','混':'こ','物':'もの','申':'もう','疲':'つか','眠':'ねむ','知':'し','窓':'まど','立':'た','笑':'わら','答':'こた','終':'お','締':'し','聞':'き','落':'お','薬':'くすり','見':'み','覧':'らん','解':'と','言':'い','認':'みと','読':'よ','誰':'だれ','謝':'あやま','買':'か','転':'ころ','込':'こ','近':'ちか','遅':'おく','遊':'あそ','道':'みち','達':'たっ','金':'かね','長':'なが','開':'あ','降':'ふ','限':'かぎ','難':'むずか','雨':'あめ','願':'ねが','食':'た','飲':'の','高':'たか','会':'あ','力':'りょく','順':'じゅん','中':'ちゅう','走':'はし',
+ // kanji simples supplémentaires (lecture la plus courante / radical de verbe)
+ '行':'い','出':'で','何':'なに','話':'はな','今':'いま','駅':'えき','熱':'ねつ','着':'き','人':'ひと','私':'わたし','母':'はは','大':'おお','調':'しら','空':'そら','持':'も','増':'ふ','作':'つく','撮':'と','字':'じ','寝':'ね','安':'やす','好':'す','忘':'わす','日':'ひ','習':'なら','痛':'いた','妹':'いもうと','歩':'ある','酒':'さけ','勝':'か','重':'おも','消':'け','雪':'ゆき','国':'くに','起':'お','迷':'まよ','使':'つか','件':'けん','泣':'な','越':'こ','急':'いそ','多':'おお','小':'ちい','呼':'よ','飯':'はん','庭':'にわ','考':'かんが','与':'あた','間':'あいだ','席':'せき','声':'こえ','弾':'ひ','泳':'およ','客':'きゃく','飾':'かざ','静':'しず','直':'なお','寒':'さむ','働':'はたら','座':'すわ','雲':'くも','腹':'はら','苦':'くる','春':'はる','選':'えら','減':'へ','過':'す','信':'しん','外':'そと','触':'さわ','赤':'あか','量':'りょう','細':'こま','欲':'ほ','甘':'あま','嬉':'うれ','喜':'よろこ','逃':'に','任':'まか','鳴':'な','訪':'たず','従':'したが','嫌':'きら','泥':'どろ','鍵':'かぎ','列':'れつ','青':'あお','強':'つよ','風':'かぜ','木':'き','火':'ひ','紙':'かみ','育':'そだ','楽':'たの','町':'まち','色':'いろ','一':'いち','誘':'さそ','辺':'へん','昔':'むかし','詳':'くわ','続':'つづ','最':'もっと','返':'かえ','曲':'ま','正':'ただ','茶':'ちゃ','断':'ことわ','花':'はな','売':'う','真':'ま','左':'ひだり','冬':'ふゆ','助':'たす','拾':'ひろ','届':'とど','寺':'てら','祭':'まつ','吸':'す','晴':'は','歳':'さい','秋':'あき','止':'と','坊':'ぼう','宝':'たから','当':'あ','押':'お','桜':'さくら','咲':'さ','残':'のこ','払':'はら','夜':'よる','受':'う','負':'ま','住':'す','壁':'かべ','絵':'え','涼':'すず','足':'あし','踏':'ふ','濡':'ぬ','上':'うえ','暖':'あたた','頭':'あたま','引':'ひ','壊':'こわ','対':'たい','兄':'あに','違':'ちが','必':'かなら','伝':'つた','厳':'きび','深':'ふか','困':'こま'
 };
 function furi(s){
   let out='',i=0;
@@ -1367,7 +1414,7 @@ function renderTeach(){
   const icon=g.cat==='grammaire'?'🔧':'📖';
   document.getElementById('learnBody').innerHTML=`
    <div style="display:flex;justify-content:space-between;align-items:center;font-size:.82rem;margin-bottom:8px">${tag}<span class="muted">${CAT_JP[g.cat]||''}</span></div>
-   <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">${lvlBadgeHtml(g.lvl)}<div style="font-size:1.7rem;font-weight:800;color:var(--accent2)">${g.k}</div></div>
+   <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">${lvlBadgeHtml(g.lvl)}<div class="jpbig">${g.k}</div></div>
    <p style="font-size:1.02rem;margin:.55em 0"><b>${g.sens}</b></p>
    ${g.struct?`<div style="font-family:monospace;background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:.9rem">${icon} ${g.struct}</div>`:''}
    ${g.exJp?`<div style="margin-top:13px;background:rgba(62,207,142,.08);border:1px solid var(--ok);border-radius:11px;padding:11px 13px">
@@ -1472,7 +1519,7 @@ function showScreen(id){stopSpeak();['home','quiz','result','learn'].forEach(x=>
 function goHome(){showScreen('home');renderHome();renderCats()}
 function resetAll(){if(confirm('Effacer tout (niveau, historique, erreurs) ?')){S={skill:blank(),total:0,right:0,bestStreak:0,streak:0,wrong:[],history:[],lastDiag:null};save();renderHome();renderCats()}}
 
-renderCats();renderHome();cloudInit();
+applyFontScale();renderCats();renderHome();cloudInit();
 </script>
 <script>if('serviceWorker'in navigator){let r=false;navigator.serviceWorker.addEventListener('controllerchange',function(){if(r)return;r=true;location.reload();});window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').then(function(g){g&&g.update&&g.update();}).catch(function(){})})}</script>
 </body>

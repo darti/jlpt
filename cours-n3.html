@@ -15,8 +15,10 @@
   :root{
     --bg:#0f1116;--card:#171a21;--card2:#1d212b;--line:#2a2f3a;
     --txt:#e7e9ee;--muted:#9aa3b2;--accent:#e2466b;--accent2:#3fb6e0;--ok:#3ecf8e;--warn:#f5b942;
+    --fs-ui:1;--fs-jp:1;
   }
   *{box-sizing:border-box}
+  html{font-size:calc(16px * var(--fs-ui))}   /* taille réglée dans l'app (Entraînement) */
   body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6}
   header{padding:34px 20px 22px;text-align:center;background:radial-gradient(900px 300px at 50% -40%,rgba(63,182,224,.22),transparent),var(--card)}
   header h1{margin:0 0 4px;font-size:1.7rem}
@@ -36,11 +38,11 @@
   .wk{font-size:.72rem;background:rgba(63,182,224,.15);color:var(--accent2);padding:2px 9px;border-radius:999px;font-weight:700}
   .g{border-bottom:1px solid var(--line);padding:14px 0}
   .g:last-child{border-bottom:none}
-  .g .form{font-size:1.15rem;font-weight:700;color:var(--accent)}
+  .g .form{font-size:calc(1.15rem * var(--fs-jp));font-weight:700;color:var(--accent)}
   .g .mean{color:var(--txt);margin:3px 0 2px}
   .g .struct{font-size:.85rem;color:var(--muted);font-family:ui-monospace,monospace;background:var(--card2);display:inline-block;padding:2px 8px;border-radius:6px;margin:4px 0}
   .ex{margin:7px 0 3px;padding-left:12px;border-left:2px solid var(--line)}
-  .ex .jp{font-size:1.05rem}
+  .ex .jp{font-size:calc(1.05rem * var(--fs-jp))}
   .ex .ro{color:var(--accent2);font-size:.82rem}
   .ex .fr{color:var(--muted);font-size:.9rem;font-style:italic}
   table{width:100%;border-collapse:collapse;font-size:.95rem;table-layout:fixed}
@@ -53,7 +55,7 @@
     nav a{font-size:.78rem;padding:4px 8px}
   }
   th{color:var(--muted);font-weight:600}
-  .k{font-size:1.3rem;font-weight:700;color:var(--accent2)}
+  .k{font-size:calc(1.3rem * var(--fs-jp));font-weight:700;color:var(--accent2)}
   .tip{background:var(--card2);border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:9px;padding:10px 14px;margin:12px 0;font-size:.9rem}
   footer{text-align:center;color:var(--muted);font-size:.82rem;padding:30px 20px 50px}
   a{color:var(--accent2)}
@@ -2396,5 +2398,14 @@ td.lv.N4{color:#9a6700}
   <a href="planning-n3.html">→ Retour au planning 20 semaines</a>
 </footer>
 <script>if('serviceWorker'in navigator){let r=false;navigator.serviceWorker.addEventListener('controllerchange',function(){if(r)return;r=true;location.reload();});window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').then(function(g){g&&g.update&&g.update();}).catch(function(){})})}</script>
+<script>
+/* applique la taille de police choisie dans l'app (même origine, localStorage partagé) */
+(function(){try{
+  var clamp=function(v){v=parseFloat(v);return v>=0.7&&v<=2?v:1};
+  var r=document.documentElement;
+  r.style.setProperty('--fs-ui',clamp(localStorage.getItem('jlptN3_fsUi')));
+  r.style.setProperty('--fs-jp',clamp(localStorage.getItem('jlptN3_fsJp')));
+}catch(e){}})();
+</script>
 </body>
 </html>
