@@ -28,7 +28,7 @@
   }
   *{box-sizing:border-box}
   html{font-size:calc(16px * var(--fs-ui))}            /* taille « autre / interface » (rem) */
-  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.55}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.55;-webkit-touch-callout:none}
   header{padding:24px 20px 14px;text-align:center;background:radial-gradient(900px 280px at 50% -50%,var(--glow),transparent),var(--card)}
   header h1{margin:0 0 4px;font-size:1.5rem}
   header .jp{color:var(--accent)}
@@ -311,6 +311,7 @@
       <div id="opts"></div>
       <div class="expl" id="expl"></div>
       <button class="next" id="next" onclick="next()">Suivant →</button>
+      <p class="muted" style="text-align:center;font-size:.78rem;margin:12px 0 0">💡 Appui long (mobile) ou double-clic (ordinateur) sur un mot japonais pour sa définition.</p>
     </div>
   </div>
 
@@ -1787,18 +1788,58 @@ function lookupDef(sel){
   return null;
 }
 function hideDef(){const p=document.getElementById('defPop');if(p)p.style.display='none';}
-function showDef(e){
-  const sel=window.getSelection?String(window.getSelection()):'';
-  const d=lookupDef(sel);const pop=document.getElementById('defPop');if(!pop)return;
-  if(!d){return;}
+function defAt(px,py,word){
+  const d=lookupDef(word);const pop=document.getElementById('defPop');if(!pop||!d)return false;
   pop.innerHTML='<span class="x" onclick="hideDef()">✕</span><div class="w">'+furi(d.w)+'</div>'+(d.r?'<div class="r">'+d.r+'</div>':'')+'<div class="m">'+(d.m||'lecture seule')+'</div>';
   pop.style.display='block';
-  const px=(e&&e.clientX)||window.innerWidth/2, py=(e&&e.clientY)||120;
   pop.style.left=Math.max(8,Math.min(px-20,window.innerWidth-pop.offsetWidth-12))+'px';
   pop.style.top=Math.min(py+16,window.innerHeight-pop.offsetHeight-12)+'px';
+  return true;
 }
+function showDef(e){
+  const sel=window.getSelection?String(window.getSelection()):'';
+  defAt((e&&e.clientX)||window.innerWidth/2,(e&&e.clientY)||120,sel);
+}
+// mot japonais situé sous un point de l'écran (pour l'appui long tactile)
+function wordAtPoint(x,y){
+  let range=null;
+  if(document.caretRangeFromPoint)range=document.caretRangeFromPoint(x,y);
+  else if(document.caretPositionFromPoint){const p=document.caretPositionFromPoint(x,y);if(p){range=document.createRange();range.setStart(p.offsetNode,p.offset);range.collapse(true);}}
+  if(!range)return'';
+  const node=range.startContainer;if(!node||node.nodeType!==3)return'';
+  const t=node.textContent;let i=range.startOffset;
+  const isJ=c=>/[一-鿿々〆ヶぁ-んァ-ンー]/.test(c||'');
+  if(i>=t.length)i=t.length-1;
+  if(i<0)return'';
+  if(!isJ(t[i])){if(i>0&&isJ(t[i-1]))i--;else return'';}
+  // on ancre au caractère pressé et on étend vers la droite : lookupDef prend le plus long mot connu à partir de là
+  let e=i;
+  while(e<t.length-1&&isJ(t[e+1]))e++;
+  return t.slice(i,e+1);
+}
+// appui long (≈450 ms) = définition sur mobile ; double-clic conservé pour desktop
+let _lpT=null,_lpX=0,_lpY=0,_lpGuard=false;
+function _lpClear(){if(_lpT){clearTimeout(_lpT);_lpT=null;}}
+document.addEventListener('touchstart',function(e){
+  if(!e.touches||e.touches.length!==1){_lpClear();return;}
+  const t=e.touches[0];_lpX=t.clientX;_lpY=t.clientY;_lpClear();
+  _lpT=setTimeout(function(){
+    _lpT=null;
+    let w=wordAtPoint(_lpX,_lpY);
+    if(!w&&window.getSelection)w=String(window.getSelection());
+    if(w&&defAt(_lpX,_lpY,w)){_lpGuard=true;setTimeout(function(){_lpGuard=false;},700);}
+  },450);
+},{passive:true});
+document.addEventListener('touchmove',function(e){
+  if(!_lpT||!e.touches[0])return;const t=e.touches[0];
+  if(Math.abs(t.clientX-_lpX)>10||Math.abs(t.clientY-_lpY)>10)_lpClear();
+},{passive:true});
+document.addEventListener('touchend',function(e){
+  _lpClear();
+  if(_lpGuard&&e.cancelable)e.preventDefault();   // évite le clic fantôme qui refermerait la bulle
+},{passive:false});
 document.addEventListener('dblclick',showDef);
-document.addEventListener('click',function(e){const p=document.getElementById('defPop');if(p&&p.style.display==='block'&&!p.contains(e.target))hideDef();});
+document.addEventListener('click',function(e){if(_lpGuard)return;const p=document.getElementById('defPop');if(p&&p.style.display==='block'&&!p.contains(e.target))hideDef();});
 window.addEventListener('scroll',hideDef,true);
 
 function showScreen(id){stopSpeak();['home','quiz','result','learn'].forEach(x=>document.getElementById(x).style.display=x===id?'block':'none');window.scrollTo(0,0)}
