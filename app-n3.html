@@ -841,7 +841,7 @@ async function ghFetch(url,opt){
   }
   return r.json();
 }
-function syncMsg(t,ok){const e=document.getElementById('syncStatus');e.textContent=t;e.style.color=ok===false?'var(--bad)':ok===true?'var(--ok)':'var(--muted)'}
+function syncMsg(t,ok){const e=document.getElementById('syncStatus');e.innerHTML=t;e.style.color=ok===false?'var(--bad)':ok===true?'var(--ok)':'var(--muted)'}
 
 async function cloudConnect(){
   const token=document.getElementById('ghToken').value.trim();
@@ -1173,9 +1173,9 @@ function stopExamTimer(){clearInterval(examTimerId);examTimerId=null;}
 function tickExam(){
   const el=document.getElementById('examTimer');if(!el)return;
   const left=EXAM_SECONDS-Math.floor((Date.now()-examStart)/1000);
-  if(left<=0){el.textContent='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 0:00';stopExamTimer();finish();return;}
+  if(left<=0){el.innerHTML='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 0:00';stopExamTimer();finish();return;}
   const mm=Math.floor(left/60),ss=left%60;
-  el.textContent='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> '+mm+':'+(ss<10?'0':'')+ss;
+  el.innerHTML='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> '+mm+':'+(ss<10?'0':'')+ss;
   el.style.color=left<60?'var(--bad)':'var(--warn)';
 }
 function examAnswer(btn,q,opts){
@@ -1200,7 +1200,7 @@ function examFinish(){
   S.history=S.history.slice(-40);save();
   showScreen('result');
   const rs=document.getElementById('r-score');rs.textContent=total+' / 180';rs.style.color=pass?'var(--ok)':'var(--bad)';
-  document.getElementById('r-msg').textContent=pass?'合格ライン突破 ! (simulation) <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9 14l-1 8 4-2 4 2-1-8"/></svg>':'En dessous du seuil — continue <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>';
+  document.getElementById('r-msg').innerHTML=pass?'合格ライン突破 ! (simulation) <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9 14l-1 8 4-2 4 2-1-8"/></svg>':'En dessous du seuil — continue <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>';
   const rows=[['文字・語彙 (vocab + kanji)',s1],['文法・読解 (grammaire + lecture)',s2],['聴解 (écoute)',s3]];
   const secHtml=rows.map(([n,v])=>`<div class="row"><div class="name" style="width:auto;flex:1">${n}</div><div class="pct" style="color:${v>=19?'var(--ok)':'var(--bad)'}">${v}/60 ${v>=19?'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>':'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.3 4L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 4a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>'}</div></div>`).join('');
   document.getElementById('r-delta').innerHTML='<div style="text-align:left">'+secHtml+'</div>'+
@@ -1321,7 +1321,7 @@ function finish(){
   showScreen('result');
   document.getElementById('r-score').textContent=`${sessionRight}/${quiz.length}`;
   const pct=Math.round(sessionRight/quiz.length*100);
-  document.getElementById('r-msg').textContent=pct>=80?'素晴らしい！ Excellent <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9 14l-1 8 4-2 4 2-1-8"/></svg>':pct>=50?'いい調子！ Continue <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>':'頑張って！ Revois les explications <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h7a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22z"/></svg>';
+  document.getElementById('r-msg').innerHTML=pct>=80?'素晴らしい！ Excellent <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9 14l-1 8 4-2 4 2-1-8"/></svg>':pct>=50?'いい調子！ Continue <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>':'頑張って！ Revois les explications <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h7a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22z"/></svg>';
   // delta de proba
   const diag=S.history.filter(x=>x.mode==='diagnostic');
   let dtxt='';

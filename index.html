@@ -26,6 +26,8 @@
   .topnav a.active{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
   .navtoggle{background:var(--card2);border:1px solid var(--line);color:var(--accent2);border-radius:999px;min-width:34px;height:32px;cursor:pointer;font-size:.95rem;line-height:1;padding:0 9px}
   .navtoggle:hover{border-color:var(--accent2)}
+  .ic{display:inline-block;width:1em;height:1em;vertical-align:-0.14em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+  .ic-f{fill:currentColor;stroke:none}
   ::selection{background:rgba(136,192,208,.32)}
   .wrap{max-width:680px;margin:0 auto;padding:26px 20px 40px}
   .jp{color:var(--accent)}
@@ -69,16 +71,16 @@
 </style>
 </head>
 <body>
-<div id="updateBanner" role="alert"><span>🔄 Nouvelle version disponible.</span><button onclick="applyUpdate()">Recharger</button></div>
+<div id="updateBanner" role="alert"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10a9 9 0 0 1 15-3l3 3"/><path d="M21 14a9 9 0 0 1-15 3l-3-3"/><path d="M21 4v6h-6M3 20v-6h6"/></svg> Nouvelle version disponible.</span><button onclick="applyUpdate()">Recharger</button></div>
 <header>
-  <h1>Préparation <span class="jp">JLPT N3</span> 🎌</h1>
+  <h1>Préparation <span class="jp">JLPT N3</span></h1>
   <p class="sub">Objectif : session de décembre 2026 · 5 mois de préparation</p>
 </header>
 <nav class="topnav">
-  <a href="index.html" class="active">🏠 Accueil</a>
-  <a href="app-n3.html">🧠 Entraînement</a>
-  <a href="cours-n3.html">📚 Cours</a>
-  <a href="planning-n3.html">🗓️ Planning</a>
+  <a href="index.html" class="active"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"/></svg> Accueil</a>
+  <a href="app-n3.html"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 8-6-16-3 8H2"/></svg> Entraînement</a>
+  <a href="cours-n3.html"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h7a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22z"/></svg> Cours</a>
+  <a href="planning-n3.html"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg> Planning</a>
   <button class="navtoggle" onclick="toggleTheme()" title="Thème clair / sombre" aria-label="Basculer le thème">☀</button>
 </nav>
 <div class="wrap">
@@ -87,7 +89,7 @@
   <div id="iosGuide">
     <div class="box">
       <h3>📲 Ajouter à l'écran d'accueil</h3>
-      <div id="iosWarn" class="warn" style="display:none">⚠️ Cette page n'est pas ouverte dans <b>Safari</b>. L'ajout à l'écran d'accueil n'existe que dans Safari. Copie le lien et colle-le dans Safari.</div>
+      <div id="iosWarn" class="warn" style="display:none"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.3 4L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 4a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg> Cette page n'est pas ouverte dans <b>Safari</b>. L'ajout à l'écran d'accueil n'existe que dans Safari. Copie le lien et colle-le dans Safari.</div>
       <ol>
         <li>Ouvre la page dans <b>Safari</b> (pas Chrome ni un navigateur intégré).</li>
         <li>Touche le bouton <b>Partager</b> <span class="share">↑</span> (barre du bas).</li>
@@ -102,29 +104,29 @@
   </div>
 
   <a class="dash" href="app-n3.html" id="dash">
-    <div class="top"><h2>📊 Mon tableau de bord</h2><span class="see">Analyse complète →</span></div>
+    <div class="top"><h2><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 20v-6M12 20V8M18 20v-9"/></svg> Mon tableau de bord</h2><span class="see">Analyse complète →</span></div>
     <div id="dashBody"></div>
   </a>
 
   <a class="card" href="app-n3.html">
-    <div class="emoji">🧠</div>
+    <div class="emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 8-6-16-3 8H2"/></svg></div>
     <h2>Entraînement adaptatif</h2>
     <p>Exercices corrigés qui s'ajustent à ton niveau, diagnostics périodiques, courbe de progression et probabilité de réussite estimée.</p>
   </a>
 
   <a class="card" href="cours-n3.html">
-    <div class="emoji">📚</div>
+    <div class="emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h7a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22z"/></svg></div>
     <h2>Cours & contenu</h2>
     <p>Grammaire N3 expliquée (formation + exemples traduits), kanji par thèmes, vocabulaire, méthodes lecture & écoute.</p>
   </a>
 
   <a class="card" href="planning-n3.html">
-    <div class="emoji">🗓️</div>
+    <div class="emoji"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
     <h2>Planning 20 semaines</h2>
     <p>Plan jour par jour en 4 phases, checklist sauvegardée, compte à rebours et ressources recommandées.</p>
   </a>
 
-  <footer>頑張ってください！ — Bon courage 💪</footer>
+  <footer>頑張ってください！ — Bon courage <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></footer>
 </div>
 
 <script>
@@ -229,7 +231,7 @@
 }</script>
 <script>
 function toggleTheme(){var r=document.documentElement,n=r.getAttribute('data-theme')==='light'?'dark':'light';r.setAttribute('data-theme',n);try{localStorage.setItem('jlptN3_theme',n);localStorage.setItem('jlptN3_updatedAt',new Date().toISOString());}catch(e){}themeIcon();}
-function themeIcon(){var l=document.documentElement.getAttribute('data-theme')==='light',e=document.querySelector('.navtoggle');if(e)e.textContent=l?'☾':'☀';}
+function themeIcon(){var l=document.documentElement.getAttribute('data-theme')==='light',e=document.querySelector('.navtoggle');if(!e)return;e.innerHTML=l?'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="currentColor" stroke="none"/></svg>':'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>';}
 themeIcon();
 </script>
 </body>
