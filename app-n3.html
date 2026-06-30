@@ -1497,7 +1497,10 @@ function answer(btn,q,opts){
   const head=ok?okIc+' <b>Correct !</b>':koIc+' <b>Faux.</b> &nbsp;Réponse : <b>'+correctTxt+'</b>';
   const transcript=(q.cat==='ecoute'&&q.script)?'<div class="ex-blk"><div class="ex-ttl">'+docIc+' <b style="color:var(--accent2)">Transcription</b></div>'+jpBlock(q.script)+'</div>':'';
   const decomp=q.g?'<div class="ex-blk"><div class="ex-ttl">'+docIc+' <b style="color:var(--accent2)">Décomposition</b></div>'+q.g.split(' · ').map(function(p){return '<div class="ex-li">'+p+'</div>'}).join('')+'</div>':'';
-  ex.innerHTML='<div class="ex-head">'+head+'</div><div class="ex-rule">'+aerate(q.e,lvlBadge)+'</div>'+transcript+decomp;
+  // en cas d'erreur : pourquoi chaque réponse convient ou non
+  const yes='<span style="color:var(--ok);font-weight:800">✓</span>',no='<span style="color:var(--bad);font-weight:800">✗</span>';
+  const whyAll=(!ok&&Array.isArray(q.od)&&q.od.length===q.o.length)?'<div class="ex-blk"><div class="ex-ttl">'+docIc+' <b style="color:var(--accent2)">Pourquoi chaque réponse</b></div>'+q.o.map(function(opt,i){return '<div class="ex-li">'+(i===q.a?yes:no)+' <b>'+opt+'</b> — '+q.od[i]+'</div>'}).join('')+'</div>':'';
+  ex.innerHTML='<div class="ex-head">'+head+'</div><div class="ex-rule">'+aerate(q.e,lvlBadge)+'</div>'+whyAll+transcript+decomp;
   document.getElementById('next').className='next show';
 }
 
