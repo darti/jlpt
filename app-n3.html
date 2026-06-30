@@ -311,7 +311,7 @@
       <div id="opts"></div>
       <div class="expl" id="expl"></div>
       <button class="next" id="next" onclick="next()">Suivant →</button>
-      <p class="muted" style="text-align:center;font-size:.78rem;margin:12px 0 0">💡 Appui long (mobile) ou double-clic (ordinateur) sur un mot japonais pour sa définition.</p>
+      <p class="muted" style="text-align:center;font-size:.78rem;margin:12px 0 0">💡 Touche un mot japonais (hors réponses) pour sa lecture et sa définition.</p>
     </div>
   </div>
 
@@ -1788,34 +1788,51 @@ function lookupDef(sel){
   return null;
 }
 function hideDef(){const p=document.getElementById('defPop');if(p)p.style.display='none';}
-function defAt(px,py,word){
-  const d=lookupDef(word);const pop=document.getElementById('defPop');if(!pop||!d)return false;
+function defShow(px,py,d){
+  const pop=document.getElementById('defPop');if(!pop||!d)return false;
   pop.innerHTML='<span class="x" onclick="hideDef()">✕</span><div class="w">'+furi(d.w)+'</div>'+(d.r?'<div class="r">'+d.r+'</div>':'')+'<div class="m">'+(d.m||'lecture seule')+'</div>';
   pop.style.display='block';
   pop.style.left=Math.max(8,Math.min(px-20,window.innerWidth-pop.offsetWidth-12))+'px';
   pop.style.top=Math.min(py+16,window.innerHeight-pop.offsetHeight-12)+'px';
   return true;
 }
+function defAt(px,py,word){const d=lookupDef(word);return d?defShow(px,py,d):false;}
 function showDef(e){
   const sel=window.getSelection?String(window.getSelection()):'';
   defAt((e&&e.clientX)||window.innerWidth/2,(e&&e.clientY)||120,sel);
 }
-// mot japonais situé sous un point de l'écran (pour l'appui long tactile)
-function wordAtPoint(x,y){
+// suite continue de caractères japonais sous un point + index du caractère touché
+function jpRunAt(x,y){
   let range=null;
   if(document.caretRangeFromPoint)range=document.caretRangeFromPoint(x,y);
   else if(document.caretPositionFromPoint){const p=document.caretPositionFromPoint(x,y);if(p){range=document.createRange();range.setStart(p.offsetNode,p.offset);range.collapse(true);}}
-  if(!range)return'';
-  const node=range.startContainer;if(!node||node.nodeType!==3)return'';
+  if(!range)return null;
+  let node=range.startContainer;
+  // si on touche la lecture (rt) d'un ruby, repartir du kanji de base
+  if(node&&node.nodeType===3&&node.parentNode&&node.parentNode.nodeName==='RT'){
+    const ruby=node.parentNode.parentNode;
+    if(ruby){const base=[].slice.call(ruby.childNodes).filter(n=>n.nodeName!=='RT').map(n=>n.textContent).join('');
+      if(/[一-鿿]/.test(base))return {run:base,rel:0};}
+  }
+  if(!node||node.nodeType!==3)return null;
   const t=node.textContent;let i=range.startOffset;
   const isJ=c=>/[一-鿿々〆ヶぁ-んァ-ンー]/.test(c||'');
   if(i>=t.length)i=t.length-1;
-  if(i<0)return'';
-  if(!isJ(t[i])){if(i>0&&isJ(t[i-1]))i--;else return'';}
-  // on ancre au caractère pressé et on étend vers la droite : lookupDef prend le plus long mot connu à partir de là
-  let e=i;
-  while(e<t.length-1&&isJ(t[e+1]))e++;
-  return t.slice(i,e+1);
+  if(i<0)return null;
+  if(!isJ(t[i])){if(i>0&&isJ(t[i-1]))i--;else return null;}
+  let s=i,e=i;while(s>0&&isJ(t[s-1]))s--;while(e<t.length-1&&isJ(t[e+1]))e++;
+  return {run:t.slice(s,e+1),rel:i-s};
+}
+// définition du mot connu le plus long qui COUVRE le caractère touché (gère 影[響], 勉[強] au milieu d'une phrase)
+function defAtPoint(x,y){
+  const r=jpRunAt(x,y);if(!r)return false;
+  const run=r.run,rel=r.rel;
+  for(let st=0;st<=rel&&st<run.length;st++){
+    const d=lookupDef(run.slice(st,st+14));
+    if(d&&(st+d.w.length)>rel)return defShow(x,y,d);
+  }
+  const d2=lookupDef(run);
+  return d2?defShow(x,y,d2):false;
 }
 // appui long (≈450 ms) = définition sur mobile ; double-clic conservé pour desktop
 let _lpT=null,_lpX=0,_lpY=0,_lpGuard=false;
@@ -1825,9 +1842,9 @@ document.addEventListener('touchstart',function(e){
   const t=e.touches[0];_lpX=t.clientX;_lpY=t.clientY;_lpClear();
   _lpT=setTimeout(function(){
     _lpT=null;
-    let w=wordAtPoint(_lpX,_lpY);
-    if(!w&&window.getSelection)w=String(window.getSelection());
-    if(w&&defAt(_lpX,_lpY,w)){_lpGuard=true;setTimeout(function(){_lpGuard=false;},700);}
+    let ok=defAtPoint(_lpX,_lpY);
+    if(!ok&&window.getSelection)ok=defAt(_lpX,_lpY,String(window.getSelection()));
+    if(ok){_lpGuard=true;setTimeout(function(){_lpGuard=false;},700);}
   },450);
 },{passive:true});
 document.addEventListener('touchmove',function(e){
@@ -1839,7 +1856,17 @@ document.addEventListener('touchend',function(e){
   if(_lpGuard&&e.cancelable)e.preventDefault();   // évite le clic fantôme qui refermerait la bulle
 },{passive:false});
 document.addEventListener('dblclick',showDef);
-document.addEventListener('click',function(e){if(_lpGuard)return;const p=document.getElementById('defPop');if(p&&p.style.display==='block'&&!p.contains(e.target))hideDef();});
+// clic/tap simple sur un mot japonais (hors boutons) = lecture + définition ; pratique sur mobile
+document.addEventListener('click',function(e){
+  if(_lpGuard)return;
+  const pop=document.getElementById('defPop');
+  if(pop&&pop.contains(e.target))return;            // clic dans la bulle
+  if(e.target.closest&&e.target.closest('button,a,input,textarea,select,label,.opt,.chip,.start,.navtoggle,.furibtn,.listenbtn,.topnav')){
+    if(pop&&pop.style.display==='block')hideDef();return;
+  }
+  if(defAtPoint(e.clientX,e.clientY))return;          // mot reconnu → définition
+  if(pop&&pop.style.display==='block')hideDef();
+});
 window.addEventListener('scroll',hideDef,true);
 
 function showScreen(id){stopSpeak();['home','quiz','result','learn'].forEach(x=>document.getElementById(x).style.display=x===id?'block':'none');window.scrollTo(0,0)}
