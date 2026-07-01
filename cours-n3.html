@@ -88,6 +88,15 @@ td.lv.N4{color:#9a6700}
 .g .ex .an{margin-top:7px;padding-top:7px;border-top:1px dashed var(--line);font-size:.85rem;color:var(--muted);line-height:1.55}
 .g .ex .an .anl{margin-top:4px}
 .g .ex .an .anl:first-child{margin-top:0}
+.g .ex .vbreak{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;align-items:stretch}
+.g .ex .tok{display:flex;flex-direction:column;gap:3px;align-items:center;padding:5px 9px;border-radius:11px;border:1px solid;max-width:100%}
+.g .ex .tok .tok-jp{font-size:1rem;line-height:1.5;text-align:center;white-space:nowrap}
+.g .ex .tok .tok-jp rt{visibility:visible;font-size:.5em;color:var(--muted)}
+.g .ex .tok .tok-g{font-size:.7rem;color:var(--muted);text-align:center;line-height:1.3}
+.tok-noun{background:rgba(136,192,208,.13);border-color:rgba(136,192,208,.5)}
+.tok-part{background:rgba(180,142,173,.18);border-color:rgba(180,142,173,.6)}
+.tok-verb{background:rgba(129,161,193,.17);border-color:rgba(129,161,193,.6)}
+.tok-adj{background:rgba(235,203,139,.15);border-color:rgba(235,203,139,.55)}
 </style>
 </head>
 <body>
@@ -2577,6 +2586,34 @@ themeIcon();
   window.addEventListener('scroll',hide,true);
   try{document.body.style.webkitTouchCallout='none';}catch(e){}
   if(document.readyState!=='loading')build();else document.addEventListener('DOMContentLoaded',build);
+})();
+</script>
+<script>
+(function(){
+  function visualBreak(str){
+    var parts=String(str).split(" · ");
+    var pills=parts.map(function(seg){
+      seg=(seg||"").trim();if(!seg)return "";
+      var gloss="",jp=seg;var mg=seg.match(/«\s*([^»]*?)\s*»/);
+      if(mg){gloss=mg[1];jp=seg.slice(0,mg.index);}
+      jp=jp.replace(/^[→\s]+/,"").replace(/[。、・\s→]+$/,"").trim();
+      if(!jp)return "";
+      var jpPlain=jp.replace(/（[^）]*）/g,"").replace(/[（）]/g,"");
+      var role="noun";
+      if(/[→＋]/.test(jp))role="verb";
+      else if(/^[はがをにへでとやかもねよのばらず・／\/〜～]+$/.test(jpPlain))role="part";
+      else if(/adjectif|い-adj|な-adj/i.test(gloss))role="adj";
+      else if(/particule|th[eè]me|\bCOD\b|sujet|direction|marque|emphase/i.test(gloss)&&jpPlain.length<=3)role="part";
+      var jpHtml=jp.replace(/([一-鿿々]+)（([ぁ-んァ-ンー・]+)）/g,"<ruby>$1<rt>$2</rt></ruby>");
+      return "<span class=\"tok tok-"+role+"\"><span class=\"tok-jp\">"+jpHtml+"</span>"+(gloss?"<span class=\"tok-g\">"+gloss+"</span>":"")+"</span>";
+    }).join("");
+    return "<div class=\"vbreak\">"+pills+"</div>";
+  }
+  document.querySelectorAll(".an").forEach(function(an){
+    var segs=[].slice.call(an.querySelectorAll(".anl")).map(function(d){return d.textContent;});
+    if(!segs.length)return;
+    an.innerHTML=visualBreak(segs.join(" · "));
+  });
 })();
 </script>
 </body>
