@@ -58,11 +58,12 @@
   .d1{background:rgba(62,207,142,.16);color:var(--ok)} .d2{background:rgba(245,185,66,.16);color:var(--warn)} .d3{background:rgba(239,83,101,.16);color:var(--bad)}
   .qtext{font-size:calc(1.3rem * var(--fs-jp));margin:6px 0 16px;line-height:1.7}
   .jpbig{font-size:calc(1.7rem * var(--fs-jp));font-weight:800;color:var(--accent2)}
+  .jpbig.kanjibig{font-size:calc(3.4rem * var(--fs-jp));font-weight:400;line-height:1.05}
   .qtext .blank{color:var(--accent);font-weight:700;border-bottom:2px dashed var(--accent);padding:0 14px}
   .opt{display:block;width:100%;text-align:left;background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:11px;padding:12px 15px;margin:8px 0;cursor:pointer;font-size:calc(1.04rem * var(--fs-jp));transition:.12s}
   .opt:hover{border-color:var(--accent2)} .opt.correct{background:rgba(62,207,142,.16);border-color:var(--ok)} .opt.wrong{background:rgba(239,83,101,.15);border-color:var(--bad)} .opt:disabled{cursor:default}
   .expl{margin-top:14px;padding:15px 17px;border-radius:11px;font-size:.93rem;display:none;line-height:1.65}
-  .expl.show{display:block} .expl.good{background:rgba(62,207,142,.1);border:1px solid var(--ok)} .expl.poor{background:rgba(239,83,101,.1);border:1px solid var(--bad)} .expl b{color:var(--accent2)}
+  .expl.show{display:block} .expl.good{background:transparent;border:1px solid var(--ok);box-shadow:inset 0 0 30px -16px rgba(163,190,140,.75)} .expl.poor{background:transparent;border:1px solid var(--bad);box-shadow:inset 0 0 30px -16px rgba(191,97,106,.75)} .expl b{color:var(--accent2)}
   .expl .ex-head{font-size:1rem;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
   .expl .ex-rule{margin-top:10px}
   .expl .ex-blk{margin-top:14px;padding-top:13px;border-top:1px dashed var(--line);font-size:.89rem}
@@ -75,14 +76,16 @@
   /* analyse visuelle : jetons colorés par rôle grammatical */
   .vbreak{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px;align-items:stretch}
   .tok{display:flex;flex-direction:column;gap:3px;align-items:center;justify-content:flex-start;
-       padding:6px 10px 6px;border-radius:12px;border:1px solid;max-width:100%}
-  .tok .tok-jp{font-size:calc(1.02rem * var(--fs-jp));line-height:1.55;text-align:center;white-space:nowrap}
+       padding:6px 11px 6px;border-radius:12px;border:1.5px solid;max-width:100%;box-sizing:border-box;min-width:0}
+  .tok .tok-jp{font-size:calc(1.02rem * var(--fs-jp));line-height:1.55;text-align:center;white-space:normal;overflow-wrap:anywhere}
   .tok .tok-jp rt{visibility:visible;font-size:.5em;color:var(--muted);font-weight:400}
   .tok .tok-g{font-size:.72rem;color:var(--muted);text-align:center;line-height:1.3}
-  .tok-noun{background:rgba(136,192,208,.13);border-color:rgba(136,192,208,.5)}
-  .tok-part{background:rgba(180,142,173,.18);border-color:rgba(180,142,173,.6)}
-  .tok-verb{background:rgba(129,161,193,.17);border-color:rgba(129,161,193,.6)}
-  .tok-adj{background:rgba(235,203,139,.15);border-color:rgba(235,203,139,.55)}
+  .tok-noun{background:rgba(136,192,208,.30);border-color:#88c0d0}
+  .tok-part{background:rgba(180,142,173,.36);border-color:#b48ead}
+  .tok-verb{background:rgba(129,161,193,.34);border-color:#81a1c1}
+  .tok-adj{background:rgba(235,203,139,.32);border-color:#ebcb8b}
+  .tok-note{background:rgba(76,86,106,.28);border-color:var(--line);justify-content:center}
+  .tok-note .tok-g{font-size:.78rem;font-style:italic}
   .vbleg{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;font-size:.72rem;color:var(--muted)}
   .vbleg span{display:inline-flex;align-items:center;gap:5px}
   .vbleg i{width:11px;height:11px;border-radius:3px;display:inline-block;border:1px solid}
@@ -1498,6 +1501,10 @@ function visualBreak(str){
     if(mg){gloss=mg[1];jp=seg.slice(0,mg.index);}
     jp=jp.replace(/^[→\s]+/,'').replace(/[。、・\s→]+$/,'').trim();
     if(!jp)return '';
+    // segment purement explicatif (pas un mot japonais) → petite note, pas un gros jeton
+    if(!/[一-鿿ぁ-んァ-ンー々]/.test(jp)||(!gloss&&/[A-Za-zÀ-ÿ]{2,}/.test(jp)&&!/[一-鿿]/.test(jp))){
+      return '<span class="tok tok-note"><span class="tok-g">'+(gloss||jp)+'</span></span>';
+    }
     const jpPlain=jp.replace(/（[^）]*）/g,'').replace(/[（）]/g,'');
     let role='noun';
     if(/[→＋]/.test(jp))role='verb';
@@ -1736,10 +1743,10 @@ function renderTeach(){
   const icon=g.cat==='grammaire'?'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 4a4 4 0 0 0 5 5l-9 9-3 1 1-3z"/><path d="M14.5 4l-3 3 3 3 3-3"/></svg>':'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h7a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22z"/></svg>';
   document.getElementById('learnBody').innerHTML=`
    <div style="display:flex;justify-content:space-between;align-items:center;font-size:.82rem;margin-bottom:8px">${tag}<span class="muted">${CAT_JP[g.cat]||''}</span></div>
-   <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">${lvlBadgeHtml(g.lvl)}<div class="jpbig">${g.k}</div></div>
+   <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">${lvlBadgeHtml(g.lvl)}<div class="jpbig${g.cat==='kanji'?' kanjibig':''}">${g.k}</div></div>
    <p style="font-size:1.02rem;margin:.55em 0"><b>${g.sens}</b></p>
    ${g.struct?`<div style="font-family:monospace;background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:.9rem">${icon} ${g.struct}</div>`:''}
-   ${g.exJp?`<div style="margin-top:13px;background:rgba(62,207,142,.08);border:1px solid var(--ok);border-radius:11px;padding:11px 13px">
+   ${g.exJp?`<div style="margin-top:13px;background:transparent;border:1px solid var(--ok);box-shadow:inset 0 0 30px -16px rgba(163,190,140,.75);border-radius:11px;padding:11px 13px">
      <div style="font-size:.78rem;color:var(--muted);margin-bottom:4px">例 — Exemple</div>
      <div class="jpex">${furi(g.exJp)}</div>
      ${g.exFr?`<div class="muted" style="margin-top:5px;font-size:.93rem">${g.exFr}</div>`:''}
