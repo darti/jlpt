@@ -89,14 +89,16 @@ td.lv.N4{color:#9a6700}
 .g .ex .an .anl{margin-top:4px}
 .g .ex .an .anl:first-child{margin-top:0}
 .g .ex .vbreak{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;align-items:stretch}
-.g .ex .tok{display:flex;flex-direction:column;gap:3px;align-items:center;padding:5px 9px;border-radius:11px;border:1px solid;max-width:100%}
-.g .ex .tok .tok-jp{font-size:1rem;line-height:1.5;text-align:center;white-space:nowrap}
+.g .ex .tok{display:flex;flex-direction:column;gap:3px;align-items:center;padding:5px 10px;border-radius:11px;border:1.5px solid;max-width:100%;box-sizing:border-box;min-width:0}
+.g .ex .tok .tok-jp{font-size:1rem;line-height:1.5;text-align:center;white-space:normal;overflow-wrap:anywhere}
 .g .ex .tok .tok-jp rt{visibility:visible;font-size:.5em;color:var(--muted)}
 .g .ex .tok .tok-g{font-size:.7rem;color:var(--muted);text-align:center;line-height:1.3}
-.tok-noun{background:rgba(136,192,208,.13);border-color:rgba(136,192,208,.5)}
-.tok-part{background:rgba(180,142,173,.18);border-color:rgba(180,142,173,.6)}
-.tok-verb{background:rgba(129,161,193,.17);border-color:rgba(129,161,193,.6)}
-.tok-adj{background:rgba(235,203,139,.15);border-color:rgba(235,203,139,.55)}
+.tok-noun{background:rgba(136,192,208,.30);border-color:#88c0d0}
+.tok-part{background:rgba(180,142,173,.36);border-color:#b48ead}
+.tok-verb{background:rgba(129,161,193,.34);border-color:#81a1c1}
+.tok-adj{background:rgba(235,203,139,.32);border-color:#ebcb8b}
+.g .ex .tok-note{background:rgba(76,86,106,.28);border-color:var(--line);justify-content:center}
+.g .ex .tok-note .tok-g{font-style:italic;font-size:.76rem}
 </style>
 </head>
 <body>
@@ -2598,6 +2600,7 @@ themeIcon();
       if(mg){gloss=mg[1];jp=seg.slice(0,mg.index);}
       jp=jp.replace(/^[→\s]+/,"").replace(/[。、・\s→]+$/,"").trim();
       if(!jp)return "";
+      if(!/[一-鿿ぁ-んァ-ンー々]/.test(jp)||(!gloss&&/[A-Za-zÀ-ÿ]{2,}/.test(jp)&&!/[一-鿿]/.test(jp))){return "<span class=\"tok tok-note\"><span class=\"tok-g\">"+(gloss||jp)+"</span></span>";}
       var jpPlain=jp.replace(/（[^）]*）/g,"").replace(/[（）]/g,"");
       var role="noun";
       if(/[→＋]/.test(jp))role="verb";
