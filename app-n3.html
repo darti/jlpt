@@ -72,6 +72,20 @@
   .expl .iline:first-child{margin-top:0}
   .jline{margin-top:7px}
   .jline:first-child{margin-top:0}
+  /* analyse visuelle : jetons colorés par rôle grammatical */
+  .vbreak{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px;align-items:stretch}
+  .tok{display:flex;flex-direction:column;gap:3px;align-items:center;justify-content:flex-start;
+       padding:6px 10px 6px;border-radius:12px;border:1px solid;max-width:100%}
+  .tok .tok-jp{font-size:calc(1.02rem * var(--fs-jp));line-height:1.55;text-align:center;white-space:nowrap}
+  .tok .tok-jp rt{visibility:visible;font-size:.5em;color:var(--muted);font-weight:400}
+  .tok .tok-g{font-size:.72rem;color:var(--muted);text-align:center;line-height:1.3}
+  .tok-noun{background:rgba(136,192,208,.13);border-color:rgba(136,192,208,.5)}
+  .tok-part{background:rgba(180,142,173,.18);border-color:rgba(180,142,173,.6)}
+  .tok-verb{background:rgba(129,161,193,.17);border-color:rgba(129,161,193,.6)}
+  .tok-adj{background:rgba(235,203,139,.15);border-color:rgba(235,203,139,.55)}
+  .vbleg{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;font-size:.72rem;color:var(--muted)}
+  .vbleg span{display:inline-flex;align-items:center;gap:5px}
+  .vbleg i{width:11px;height:11px;border-radius:3px;display:inline-block;border:1px solid}
   .next{margin-top:14px;width:100%;background:transparent;border:1px solid var(--accent2);color:var(--accent2);font-weight:700;padding:12px;border-radius:11px;cursor:pointer;font-size:1rem;display:none}
   .next.show{display:block}
   .bar{height:8px;background:var(--card2);border-radius:999px;overflow:hidden;margin:4px 0 14px;border:1px solid var(--line)}
@@ -1473,6 +1487,34 @@ function aerate(html,prefix){
   if(prefix)lines[0]=prefix+' '+lines[0];
   return lines.map(l=>'<div class="iline">'+l+'</div>').join('');
 }
+// analyse visuelle : transforme une décomposition « mot（lecture）« sens » · … » en jetons colorés par rôle
+function visualBreak(str){
+  if(!str)return '';
+  const parts=String(str).split(' · ');
+  let hasPart=false,hasVerb=false,hasNoun=false,hasAdj=false;
+  const pills=parts.map(function(seg){
+    seg=seg.trim();if(!seg)return '';
+    let gloss='',jp=seg;const mg=seg.match(/«\s*([^»]*?)\s*»/);
+    if(mg){gloss=mg[1];jp=seg.slice(0,mg.index);}
+    jp=jp.replace(/^[→\s]+/,'').replace(/[。、・\s→]+$/,'').trim();
+    if(!jp)return '';
+    const jpPlain=jp.replace(/（[^）]*）/g,'').replace(/[（）]/g,'');
+    let role='noun';
+    if(/[→＋]/.test(jp))role='verb';
+    else if(/^[はがをにへでとやかもねよのばらでもへ〜～ずば・／\/]+$/.test(jpPlain))role='part';
+    else if(/adjectif|い-adj|な-adj/i.test(gloss))role='adj';
+    else if(/particule|th[eè]me|\bCOD\b|sujet|direction|marque|emphase/i.test(gloss)&&jpPlain.length<=3)role='part';
+    if(role==='part')hasPart=true;else if(role==='verb')hasVerb=true;else if(role==='adj')hasAdj=true;else hasNoun=true;
+    const jpHtml=jp.replace(/([一-鿿々]+)（([ぁ-んァ-ンー・]+)）/g,'<ruby>$1<rt>$2</rt></ruby>');
+    return '<span class="tok tok-'+role+'"><span class="tok-jp">'+jpHtml+'</span>'+(gloss?'<span class="tok-g">'+gloss+'</span>':'')+'</span>';
+  }).join('');
+  const leg=[];
+  if(hasNoun)leg.push('<span><i class="tok-noun"></i>nom / groupe</span>');
+  if(hasPart)leg.push('<span><i class="tok-part"></i>particule</span>');
+  if(hasVerb)leg.push('<span><i class="tok-verb"></i>verbe / forme</span>');
+  if(hasAdj)leg.push('<span><i class="tok-adj"></i>adjectif</span>');
+  return '<div class="vbreak">'+pills+'</div>'+(leg.length>1?'<div class="vbleg">'+leg.join('')+'</div>':'');
+}
 // texte japonais long : une phrase par ligne (coupe après 。！？)
 function jpBlock(text){
   return furi(text).replace(/([。！？]+[」』）)]*)/g,'$1')
@@ -1496,7 +1538,7 @@ function answer(btn,q,opts){
   const docIc='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 13h6M9 17h6"/></svg>';
   const head=ok?okIc+' <b>Correct !</b>':koIc+' <b>Faux.</b> &nbsp;Réponse : <b>'+correctTxt+'</b>';
   const transcript=(q.cat==='ecoute'&&q.script)?'<div class="ex-blk"><div class="ex-ttl">'+docIc+' <b style="color:var(--accent2)">Transcription</b></div>'+jpBlock(q.script)+'</div>':'';
-  const decomp=q.g?'<div class="ex-blk"><div class="ex-ttl">'+docIc+' <b style="color:var(--accent2)">Décomposition</b></div>'+q.g.split(' · ').map(function(p){return '<div class="ex-li">'+p+'</div>'}).join('')+'</div>':'';
+  const decomp=q.g?'<div class="ex-blk"><div class="ex-ttl">'+docIc+' <b style="color:var(--accent2)">Analyse de la phrase</b></div>'+visualBreak(q.g)+'</div>':'';
   // en cas d'erreur : pourquoi chaque réponse convient ou non
   const yes='<span style="color:var(--ok);font-weight:800">✓</span>',no='<span style="color:var(--bad);font-weight:800">✗</span>';
   const whyAll=(!ok&&Array.isArray(q.od)&&q.od.length===q.o.length)?'<div class="ex-blk"><div class="ex-ttl">'+docIc+' <b style="color:var(--accent2)">Pourquoi chaque réponse</b></div>'+q.o.map(function(opt,i){return '<div class="ex-li">'+(i===q.a?yes:no)+' <b>'+opt+'</b> — '+q.od[i]+'</div>'}).join('')+'</div>':'';
@@ -1701,7 +1743,7 @@ function renderTeach(){
      <div style="font-size:.78rem;color:var(--muted);margin-bottom:4px">例 — Exemple</div>
      <div class="jpex">${furi(g.exJp)}</div>
      ${g.exFr?`<div class="muted" style="margin-top:5px;font-size:.93rem">${g.exFr}</div>`:''}
-     ${g.exG?`<div style="margin-top:9px;padding-top:9px;border-top:1px dashed var(--line)"><div style="font-size:.74rem;color:var(--accent2);font-weight:700;margin-bottom:4px">分析 — Analyse grammaticale</div>${g.exG.split(' · ').map(p=>'<div style="margin-top:5px;line-height:1.6">'+p+'</div>').join('')}</div>`:''}
+     ${g.exG?`<div style="margin-top:9px;padding-top:9px;border-top:1px dashed var(--line)"><div style="font-size:.74rem;color:var(--accent2);font-weight:700;margin-bottom:4px">分析 — Analyse de la phrase</div>${visualBreak(g.exG)}</div>`:''}
    </div>`:''}
    <button class="start" onclick="renderExo()" style="margin-top:15px"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2 2 0 0 1 3 3L8 18l-4 1 1-4z"/></svg> Faire l'exercice de vérification →</button>`;
 }
