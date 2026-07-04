@@ -126,7 +126,7 @@
     <p>Plan jour par jour en 4 phases, checklist sauvegardée, compte à rebours et ressources recommandées.</p>
   </a>
 
-  <footer>頑張ってください！ — Bon courage <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg><br><span id="verLabel" style="font-size:.78rem;opacity:.7">version —</span></footer>
+  <footer>頑張ってください！ — Bon courage <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg><br><span style="display:inline-flex;align-items:center;gap:9px;margin-top:6px"><span id="verLabel" style="font-size:.78rem;opacity:.7">version —</span><button id="forceBtn" onclick="forceRefresh()" style="font-size:.75rem;color:var(--accent2);background:transparent;border:1px solid var(--line);border-radius:999px;padding:4px 11px;cursor:pointer">↻ Forcer la mise à jour</button></span></footer>
 </div>
 
 <script>
@@ -237,6 +237,16 @@ themeIcon();
 <script src="dict.js"></script>
 <script>(function(){function run(){if(typeof initDefs==="function")initDefs({singleTap:false});}if(document.readyState!=="loading")run();else document.addEventListener("DOMContentLoaded",run);})();</script>
 <script>
+/* force la récupération de la dernière version : désinscrit le SW, vide les caches, recharge */
+window.forceRefresh=function(){
+  var b=document.getElementById('forceBtn');if(b){b.disabled=true;b.textContent='Mise à jour…';}
+  var tasks=[];
+  try{
+    if('serviceWorker'in navigator){tasks.push(navigator.serviceWorker.getRegistrations().then(function(rs){return Promise.all(rs.map(function(r){return r.unregister();}));}));}
+    if(window.caches&&caches.keys){tasks.push(caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k);}));}));}
+  }catch(e){}
+  Promise.all(tasks).catch(function(){}).then(function(){setTimeout(function(){location.reload();},200);});
+};
 /* numéro de version = nom du cache du service worker actif (source unique) */
 (function(){
   var el=document.getElementById('verLabel');if(!el)return;
