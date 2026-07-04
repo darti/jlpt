@@ -3,7 +3,7 @@
    - pages HTML : network-first (toujours la dernière version en ligne, repli cache hors ligne) ;
    - autres ressources same-origin (icônes, manifest) : cache-first avec mise à jour ;
    - tout le cross-origin (api.github.com, etc.) : réseau direct. */
-const CACHE = 'jlpt-n3-v47';
+const CACHE = 'jlpt-n3-v48';
 const SHELL = [
   './',
   'index.html',
@@ -26,6 +26,8 @@ self.addEventListener('install', e => {
 // la page demande l'activation immédiate quand l'utilisateur clique « Recharger »
 self.addEventListener('message', e => {
   if (e.data && e.data.type === 'SKIP_WAITING') self.skipWaiting();
+  // la page demande le numéro de version (= nom du cache)
+  if (e.data && e.data.type === 'VERSION' && e.ports && e.ports[0]) e.ports[0].postMessage(CACHE);
 });
 
 self.addEventListener('activate', e => {
