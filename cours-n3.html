@@ -2497,12 +2497,13 @@ td.lv.N4{color:#9a6700}
 <script>if('serviceWorker'in navigator){
   var reloaded=false, waitingWorker=null;
   navigator.serviceWorker.addEventListener('controllerchange',function(){if(reloaded)return;reloaded=true;location.reload();});
+  function applyWaiting(w){if(w){waitingWorker=w;try{w.postMessage({type:'SKIP_WAITING'});}catch(e){}}}
   function showUpdateBanner(w){waitingWorker=w;var b=document.getElementById('updateBanner');if(b)b.style.display='flex';}
   window.applyUpdate=function(){var b=document.getElementById('updateBanner');if(b)b.style.display='none';if(waitingWorker){waitingWorker.postMessage({type:'SKIP_WAITING'});}else{location.reload();}};
-  function swUpd(){navigator.serviceWorker.getRegistration().then(function(g){g&&g.update&&g.update();}).catch(function(){})}
+  function swUpd(){navigator.serviceWorker.getRegistration().then(function(reg){if(!reg)return;if(reg.waiting){applyWaiting(reg.waiting);return;}reg.update&&reg.update();}).catch(function(){})}
   window.addEventListener('load',function(){
     navigator.serviceWorker.register('sw.js').then(function(reg){
-      if(reg.waiting && navigator.serviceWorker.controller) showUpdateBanner(reg.waiting);
+      if(reg.waiting && navigator.serviceWorker.controller) applyWaiting(reg.waiting);
       reg.addEventListener('updatefound',function(){
         var nw=reg.installing; if(!nw)return;
         nw.addEventListener('statechange',function(){
