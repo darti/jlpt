@@ -126,7 +126,7 @@
     <p>Plan jour par jour en 4 phases, checklist sauvegardée, compte à rebours et ressources recommandées.</p>
   </a>
 
-  <footer>頑張ってください！ — Bon courage <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></footer>
+  <footer>頑張ってください！ — Bon courage <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg><br><span id="verLabel" style="font-size:.78rem;opacity:.7">version —</span></footer>
 </div>
 
 <script>
@@ -236,5 +236,18 @@ themeIcon();
 </script>
 <script src="dict.js"></script>
 <script>(function(){function run(){if(typeof initDefs==="function")initDefs({singleTap:false});}if(document.readyState!=="loading")run();else document.addEventListener("DOMContentLoaded",run);})();</script>
+<script>
+/* numéro de version = nom du cache du service worker actif (source unique) */
+(function(){
+  var el=document.getElementById('verLabel');if(!el)return;
+  function setVer(v){el.textContent='version '+v;}
+  if(window.caches&&caches.keys){
+    caches.keys().then(function(keys){
+      var vs=keys.map(function(k){var m=/^jlpt-n3-(v\d+)$/.exec(k);return m?parseInt(m[1].slice(1),10):null;}).filter(function(x){return x!=null;});
+      if(vs.length)setVer('v'+Math.max.apply(null,vs));
+    }).catch(function(){});
+  }
+})();
+</script>
 </body>
 </html>
