@@ -2530,6 +2530,7 @@ function themeIcon(){var l=document.documentElement.getAttribute('data-theme')==
 themeIcon();
 </script>
 <script src="dict.js"></script>
+<script>(function(){try{if(typeof window.furi==='function'){sessionStorage.removeItem('jlptRecover');return;}if(sessionStorage.getItem('jlptRecover'))return;sessionStorage.setItem('jlptRecover','1');}catch(e){}var d=function(){location.reload();};try{if('serviceWorker'in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){return Promise.all(rs.map(function(r){return r.unregister();}));}).catch(function(){});}if(window.caches&&caches.keys){caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k);}));}).then(d,d);}else d();}catch(e){d();}})();</script>
 <script>
 (function(){
   function run(){
