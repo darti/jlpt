@@ -236,7 +236,25 @@ function themeIcon(){var l=document.documentElement.getAttribute('data-theme')==
 themeIcon();
 </script>
 <script src="dict.js"></script>
-<script>(function(){try{if(typeof window.furi==='function'){sessionStorage.removeItem('jlptRecover');return;}if(sessionStorage.getItem('jlptRecover'))return;sessionStorage.setItem('jlptRecover','1');}catch(e){}var d=function(){location.reload();};try{if('serviceWorker'in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){return Promise.all(rs.map(function(r){return r.unregister();}));}).catch(function(){});}if(window.caches&&caches.keys){caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k);}));}).then(d,d);}else d();}catch(e){d();}})();</script>
+<script>(function(){
+  if(typeof window.JLPT_DICT!=='undefined'){try{sessionStorage.removeItem('jlptRecover');}catch(e){}return;}
+  /* dict.js absent : (1) stubs de secours pour ne JAMAIS afficher une page vide */
+  if(typeof window.furi!=='function'){
+    window.furi=function(s){return s==null?'':String(s);};
+    window.jpBlock=function(t){return '<div class="jline">'+(t==null?'':String(t))+'</div>';};
+    window.aerate=function(h,p){return (p?p+' ':'')+(h==null?'':String(h));};
+    window.visualBreak=function(s){if(!s)return '';return '<div class="vbreak">'+String(s).split(' · ').map(function(x){x=x.trim();return x?'<span class="tok tok-noun"><span class="tok-jp">'+x+'</span></span>':'';}).join('')+'</div>';};
+    window.lookupDef=function(){return null;};window.defAt=function(){return false;};window.defAtPoint=function(){return false;};window.showDef=function(){};window.hideDef=function(){};window.initDefs=function(){};
+  }
+  /* (2) tentative de réparation : vider les caches et recharger une fois */
+  try{if(sessionStorage.getItem('jlptRecover'))return;sessionStorage.setItem('jlptRecover','1');}catch(e){return;}
+  var d=function(){location.reload();};
+  try{
+    if('serviceWorker'in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){return Promise.all(rs.map(function(r){return r.unregister();}));}).catch(function(){});}
+    if(window.caches&&caches.keys){caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k);}));}).then(d,d);}
+    else d();
+  }catch(e){d();}
+})();</script>
 <script>(function(){function run(){if(typeof initDefs==="function")initDefs({singleTap:false});}if(document.readyState!=="loading")run();else document.addEventListener("DOMContentLoaded",run);})();</script>
 <script>
 /* force la récupération de la dernière version : désinscrit le SW, vide les caches, recharge */
@@ -253,12 +271,26 @@ window.forceRefresh=function(){
 (function(){
   var el=document.getElementById('verLabel');if(!el)return;
   function setVer(v){el.textContent='version '+v;}
-  if(window.caches&&caches.keys){
+  // 1) meilleure source : on demande directement au service worker actif son nom de cache
+  function askSW(){
+    if(!('serviceWorker'in navigator))return;
+    navigator.serviceWorker.ready.then(function(reg){
+      var w=(navigator.serviceWorker.controller)||reg.active;if(!w)return;
+      var ch=new MessageChannel();
+      ch.port1.onmessage=function(ev){var m=/v(\d+)/.exec(ev.data||'');if(m)setVer('v'+m[1]);};
+      w.postMessage({type:'VERSION'},[ch.port2]);
+    }).catch(function(){});
+  }
+  // 2) repli immédiat : on lit le nom du cache le plus récent
+  function scanCaches(){
+    if(!(window.caches&&caches.keys))return;
     caches.keys().then(function(keys){
       var vs=keys.map(function(k){var m=/^jlpt-n3-(v\d+)$/.exec(k);return m?parseInt(m[1].slice(1),10):null;}).filter(function(x){return x!=null;});
       if(vs.length)setVer('v'+Math.max.apply(null,vs));
     }).catch(function(){});
   }
+  scanCaches();askSW();
+  if('serviceWorker'in navigator){navigator.serviceWorker.addEventListener('controllerchange',askSW);}
 })();
 </script>
 </body>
