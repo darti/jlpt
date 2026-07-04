@@ -3,7 +3,7 @@
    - pages HTML : network-first (toujours la dernière version en ligne, repli cache hors ligne) ;
    - autres ressources same-origin (icônes, manifest) : cache-first avec mise à jour ;
    - tout le cross-origin (api.github.com, etc.) : réseau direct. */
-const CACHE = 'jlpt-n3-v45';
+const CACHE = 'jlpt-n3-v46';
 const SHELL = [
   './',
   'index.html',
@@ -39,8 +39,10 @@ self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
   const isHTML = req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html');
+  // dict.js est critique et doit rester synchronisé avec le HTML (network-first aussi)
+  const netFirst = isHTML || new URL(req.url).pathname.endsWith('dict.js');
 
-  if (isHTML) {
+  if (netFirst) {
     // network-first : on tente le réseau, on met à jour le cache, sinon on sert le cache.
     e.respondWith(
       fetch(req).then(res => {
