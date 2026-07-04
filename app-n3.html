@@ -362,6 +362,7 @@
 </div>
 <footer>Modèle d'estimation à but pédagogique — plus tu réponds, plus il devient précis. 練習あるのみ！</footer>
 
+<script src="dict.js"></script>
 <script>
 /* =================== BANQUE (cat, d=difficulté 1-3) =================== */
 const BANK=[
@@ -1401,40 +1402,7 @@ function examFinish(){
     d.innerHTML=`${l.ok?'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>':'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>'} <span style="color:${COLORS[l.cat]}">[${LABELS[l.cat]}]</span> ${qtext}<br><span class="muted">Réponse : <b>${l.correct}</b>${l.ok?'':' · ta réponse : '+(l.chosen||'—')} · ${l.e}</span>`;det.appendChild(d)});
 }
 
-/* =================== FURIGANA CLIQUABLES =================== */
-const FURI={
- // mots longs / composés spéciaux d'abord
- '関係者以外立入禁止':'かんけいしゃいがいたちいりきんし','日本語':'にほんご','使用後':'しようご',
- // composés (2 kanji+)
- '丁寧':'ていねい','三日':'みっか','上手':'じょうず','中止':'ちゅうし','予定':'よてい','予約':'よやく','事実':'じじつ','二度':'にど','京都':'きょうと','今年':'ことし','仕事':'しごと','会議':'かいぎ','何時':'なんじ','健康':'けんこう','先生':'せんせい','割引':'わりびき','努力':'どりょく','勉強':'べんきょう','動作':'どうさ','去年':'きょねん','合格':'ごうかく','商品':'しょうひん','問題':'もんだい','国際':'こくさい','場合':'ばあい','場所':'ばしょ','場面':'ばめん','増加':'ぞうか','変更':'へんこう','大事':'だいじ','大切':'たいせつ','失敗':'しっぱい','失礼':'しつれい','子供':'こども','学生':'がくせい','定員':'ていいん','宿題':'しゅくだい','専門':'せんもん','工事':'こうじ','広告':'こうこく','彼女':'かのじょ','心配':'しんぱい','情報':'じょうほう','意味':'いみ','意見':'いけん','感情':'かんじょう','成功':'せいこう','我慢':'がまん','手紙':'てがみ','技術':'ぎじゅつ','招待':'しょうたい','掲示':'けいじ','改善':'かいぜん','政治':'せいじ','文化':'ぶんか','旅行':'りょこう','日本':'にほん','明日':'あした','昨夜':'さくや','時間':'じかん','書類':'しょるい','未来':'みらい','来週':'らいしゅう','東京':'とうきょう','案内':'あんない','次第':'しだい','気持':'きも','準備':'じゅんび','漢字':'かんじ','無料':'むりょう','状況':'じょうきょう','現在':'げんざい','環境':'かんきょう','生産':'せいさん','発展':'はってん','短文':'たんぶん','確実':'かくじつ','確認':'かくにん','筆者':'ひっしゃ','約束':'やくそく','経済':'けいざい','経験':'けいけん','結果':'けっか','結論':'けつろん','給料':'きゅうりょう','練習':'れんしゅう','自由':'じゆう','複数':'ふくすう','複雑':'ふくざつ','観光':'かんこう','解決':'かいけつ','計画':'けいかく','許可':'きょか','証拠':'しょうこ','試合':'しあい','試験':'しけん','説明':'せつめい','財布':'さいふ','責任':'せきにん','貿易':'ぼうえき','質問':'しつもん','辞書':'じしょ','近所':'きんじょ','連絡':'れんらく','遅刻':'ちこく','道理':'どうり','遠慮':'えんりょ','部屋':'へや','重要':'じゅうよう','関係':'かんけい','雨天':'うてん','電気':'でんき','電話':'でんわ','電車':'でんしゃ','面白':'おもしろ','音楽':'おんがく','食後':'しょくご','記憶':'きおく','郵便':'ゆうびん','先着':'せんちゃく','本日':'ほんじつ','使用':'しよう','在庫':'ざいこ','毎日':'まいにち','毎朝':'まいあさ','残業':'ざんぎょう','注意':'ちゅうい','以外':'いがい',
- // kanji simples (radicaux de verbes/adjectifs, sans okurigana)
- '下':'さ','体':'からだ','休':'やす','傘':'かさ','元':'もと','先':'さき','入':'はい','分':'わ','切':'き','前':'まえ','効':'き','危':'あぶ','取':'と','合':'あ','向':'む','周':'まわ','問':'と','守':'まも','家':'いえ','寄':'よ','少':'すこ','帰':'かえ','年':'とし','店':'みせ','弟':'おとうと','彼':'かれ','後':'あと','得':'え','思':'おも','悪':'わる','感':'かん','戻':'もど','手':'て','扱':'あつか','教':'おし','整':'ととの','新':'あたら','方':'かた','早':'はや','時':'じ','暑':'あつ','暗':'くら','書':'か','服':'ふく','本':'ほん','来':'く','歌':'うた','決':'き','混':'こ','物':'もの','申':'もう','疲':'つか','眠':'ねむ','知':'し','窓':'まど','立':'た','笑':'わら','答':'こた','終':'お','締':'し','聞':'き','落':'お','薬':'くすり','見':'み','覧':'らん','解':'と','言':'い','認':'みと','読':'よ','誰':'だれ','謝':'あやま','買':'か','転':'ころ','込':'こ','近':'ちか','遅':'おく','遊':'あそ','道':'みち','達':'たっ','金':'かね','長':'なが','開':'あ','降':'ふ','限':'かぎ','難':'むずか','雨':'あめ','願':'ねが','食':'た','飲':'の','高':'たか','会':'あ','力':'りょく','順':'じゅん','中':'ちゅう','走':'はし',
- // kanji simples supplémentaires (lecture la plus courante / radical de verbe)
- '行':'い','出':'で','何':'なに','話':'はな','今':'いま','駅':'えき','熱':'ねつ','着':'き','人':'ひと','私':'わたし','母':'はは','大':'おお','調':'しら','空':'そら','持':'も','増':'ふ','作':'つく','撮':'と','字':'じ','寝':'ね','安':'やす','好':'す','忘':'わす','日':'ひ','習':'なら','痛':'いた','妹':'いもうと','歩':'ある','酒':'さけ','勝':'か','重':'おも','消':'け','雪':'ゆき','国':'くに','起':'お','迷':'まよ','使':'つか','件':'けん','泣':'な','越':'こ','急':'いそ','多':'おお','小':'ちい','呼':'よ','飯':'はん','庭':'にわ','考':'かんが','与':'あた','間':'あいだ','席':'せき','声':'こえ','弾':'ひ','泳':'およ','客':'きゃく','飾':'かざ','静':'しず','直':'なお','寒':'さむ','働':'はたら','座':'すわ','雲':'くも','腹':'はら','苦':'くる','春':'はる','選':'えら','減':'へ','過':'す','信':'しん','外':'そと','触':'さわ','赤':'あか','量':'りょう','細':'こま','欲':'ほ','甘':'あま','嬉':'うれ','喜':'よろこ','逃':'に','任':'まか','鳴':'な','訪':'たず','従':'したが','嫌':'きら','泥':'どろ','鍵':'かぎ','列':'れつ','青':'あお','強':'つよ','風':'かぜ','木':'き','火':'ひ','紙':'かみ','育':'そだ','楽':'たの','町':'まち','色':'いろ','一':'いち','誘':'さそ','辺':'へん','昔':'むかし','詳':'くわ','続':'つづ','最':'もっと','返':'かえ','曲':'ま','正':'ただ','茶':'ちゃ','断':'ことわ','花':'はな','売':'う','真':'ま','左':'ひだり','冬':'ふゆ','助':'たす','拾':'ひろ','届':'とど','寺':'てら','祭':'まつ','吸':'す','晴':'は','歳':'さい','秋':'あき','止':'と','坊':'ぼう','宝':'たから','当':'あ','押':'お','桜':'さくら','咲':'さ','残':'のこ','払':'はら','夜':'よる','受':'う','負':'ま','住':'す','壁':'かべ','絵':'え','涼':'すず','足':'あし','踏':'ふ','濡':'ぬ','上':'うえ','暖':'あたた','頭':'あたま','引':'ひ','壊':'こわ','対':'たい','兄':'あに','違':'ちが','必':'かなら','伝':'つた','厳':'きび','深':'ふか','困':'こま',
- // singles supplémentaires
- '通':'とお','変':'へん','横':'よこ','打':'う','訳':'わけ','同':'おな','二':'に','目':'め','右':'みぎ','次':'つぎ','昼':'ひる','始':'はじ','送':'おく','訓':'くん','音':'おと',
- // composés (mots à plusieurs kanji) — lecture correcte de l'ensemble
- '今日':'きょう','手伝':'てつだ','最近':'さいきん','最後':'さいご','来年':'らいねん','大好':'だいす','間違':'まちが','入国':'にゅうこく','教育':'きょういく','出席':'しゅっせき','減少':'げんしょう','体重':'たいじゅう','切手':'きって','読書':'どくしょ','年間':'ねんかん','一人':'ひとり','新聞':'しんぶん','体調':'たいちょう','一日':'いちにち','作家':'さっか','在庫':'ざいこ','友達':'ともだち','田中':'たなか','山田':'やまだ','運動':'うんどう','天気予報':'てんきよほう','天気':'てんき','水曜日':'すいようび','月曜日':'げつようび','火曜日':'かようび','金曜日':'きんようび','日曜日':'にちようび','午後':'ごご','午前':'ごぜん','写真':'しゃしん','事故':'じこ','必要':'ひつよう','料理':'りょうり','美術館':'びじゅつかん','来月':'らいげつ','無理':'むり','返却':'へんきゃく','都合':'つごう','自転車':'じてんしゃ','昨日':'きのう','返事':'へんじ','社長':'しゃちょう','上司':'じょうし','荷物':'にもつ','方法':'ほうほう','規則':'きそく','報告':'ほうこく','理由':'りゆう','休館':'きゅうかん','通勤':'つうきん','掃除':'そうじ','映画':'えいが','知識':'ちしき','原因':'げんいん','習慣':'しゅうかん','図書館':'としょかん','気分':'きぶん','期待':'きたい','世界中':'せかいじゅう','世界':'せかい','製品':'せいひん','研究':'けんきゅう','信号':'しんごう','頑張':'がんば','人口':'じんこう','自分':'じぶん','資料':'しりょう','一番':'いちばん','火事':'かじ','夏休':'なつやす','週末':'しゅうまつ','大阪':'おおさか','転勤':'てんきん','台風':'たいふう','動物':'どうぶつ','小説':'しょうせつ','性格':'せいかく','達成':'たっせい','構造':'こうぞう','客様':'きゃくさま','毎晩':'まいばん','三十分':'さんじゅっぷん','十五分':'じゅうごふん','三回':'さんかい','三階':'さんがい','三時':'さんじ','二番':'にばん','最初':'さいしょ','館内':'かんない','入口':'いりぐち','出口':'でぐち','窓口':'まどぐち','貸出期間':'かしだしきかん','延長':'えんちょう','利用':'りよう','郵便局':'ゆうびんきょく','弁当':'べんとう','機械':'きかい','元気':'げんき','失望':'しつぼう','苦労':'くろう','終電':'しゅうでん','警察':'けいさつ','能力':'のうりょく','全社員':'ぜんしゃいん','社員':'しゃいん','参加':'さんか','携帯':'けいたい','命令':'めいれい','個人':'こじん','輸出':'ゆしゅつ','表現':'ひょうげん','想像':'そうぞう','発見':'はっけん','完成':'かんせい','欠席':'けっせき','成長':'せいちょう','印象':'いんしょう','提出':'ていしゅつ','募集':'ぼしゅう','禁止':'きんし','緊張':'きんちょう','普通':'ふつう','突然':'とつぜん','結局':'けっきょく','職場':'しょくば','父親':'ちちおや','人気':'にんき','道具':'どうぐ','大勢':'おおぜい','移動':'いどう','進歩':'しんぽ','速度':'そくど','労働':'ろうどう','回転':'かいてん','社会':'しゃかい','権利':'けんり','協力':'きょうりょく','比較':'ひかく','価格':'かかく','選択':'せんたく','決定':'けってい','反対':'はんたい','追加':'ついか','野菜':'やさい','残念':'ざんねん','申請':'しんせい','時計':'とけい','用事':'ようじ','地方':'ちほう','果物':'くだもの','今週':'こんしゅう','農業':'のうぎょう','本文':'ほんぶん','同僚':'どうりょう','医者':'いしゃ','病院':'びょういん','興味':'きょうみ','親切':'しんせつ','特別':'とくべつ','手帳':'てちょう','誕生日':'たんじょうび','作文':'さくぶん','授業':'じゅぎょう','歴史':'れきし','寿司':'すし','納豆':'なっとう','延期':'えんき','値段':'ねだん','風邪':'かぜ','文句':'もんく','社交的':'しゃこうてき','有名':'ゆうめい','簡単':'かんたん','調査':'ちょうさ','影響':'えいきょう','内容':'ないよう','二人':'ふたり','将来':'しょうらい','相談':'そうだん','海外':'かいがい','印刷':'いんさつ','名前':'なまえ','住所':'じゅうしょ','会議室':'かいぎしつ','右側':'みぎがわ','全部':'ぜんぶ','一度':'いちど','出発':'しゅっぱつ','程度':'ていど','結婚':'けっこん'
-,
-"食べた":"たべた","食べられた":"たべられた","食べさせた":"たべさせた","食べそうだ":"たべそうだ","申し込む":"もうしこむ","取り消す":"とりけす","落ち着く":"おちつく","付き合う":"つきあう","悲しい":"かなしい","恥ずかしい":"はずかしい","楽しい":"たのしい","取り消し":"とりけし","思い出し":"おもいだし","引き受け":"ひきうけ","呼びかけ":"よびかけ","引き受けて":"ひきうけて","取り消して":"とりけして","申し込んで":"もうしこんで","落ち着いて":"おちついて","呼びかける":"よびかける","明後日":"あさって","行われる":"おこなわれる","行われない":"おこなわれない","延期だけ":"えんきだけ","時間変更":"じかんへんこう","食事の前":"しょくじのまえ","先に帰るとき":"さきにかえるとき","謝るとき":"あやまるとき","店に入るとき":"みせにはいるとき","空の様子":"そらのようす","友達の話":"ともだちのはなし","自分が見る":"じぶんがみる","相手が見る":"あいてがみる","一緒に見る":"いっしょにみる","誰も見ない":"だれもみない","絶対行かない":"ぜったいいかない","行く可能性がある":"いくかのうせいがある","もう行った":"もういった","行きたくない":"いきたくない","以上":"いじょう","間に合わなかった":"まにあわなかった","役に立った":"やくにたった","気がついた":"きがついた","気をつけた":"きをつけた","役に立つ":"やくにたつ","間に合う":"まにあう","気にする":"きにする","気をつけて":"きをつけて","気にして":"きにして","気がして":"きがして","気が済んで":"きがすんで","賛成":"さんせい","守る":"まもる","破る":"やぶる","直す":"なおす","割る":"わる","提案":"ていあん","気が利く":"きがきく","気がつく":"きがつく","気が済む":"きがすむ","一致":"いっち","整える":"ととのえる","曲げる":"まげる","迷惑":"めいわく","安全":"あんぜん","見事":"みごと","余計":"よけい","正確":"せいかく","取ってはいけない":"とってはいけない","自由に取っていい":"じゆうにとっていい","店員に頼む":"てんいんにたのむ","お金を払う":"おかねをはらう","入れる":"いれる","入れない":"いれない","予約だけ":"よやくだけ","店員のみ":"てんいんのみ","遅れるとき":"おくれるとき","早く着くとき":"はやくつくとき","来ないとき":"こないとき","吸ってもいい":"すってもいい","吸わないで":"すわないで","灰皿あり":"はいざらあり","外で吸う":"そとですう","買える":"かえる","売り切れ":"うりきれ","割引中":"わりびきちゅう","新発売":"しんはつばい","仕方なくした":"しかたなくした","喜んでした":"よろこんでした","間違えてした":"まちがえてした","無駄だった":"むだだった","報われた":"むくわれた","足りなかった":"たりなかった","関係ない":"かんけいない","必ず来る":"かならずくる","来ないかもしれない":"こないかもしれない","もう来た":"もうきた","来てほしい":"きてほしい","早く行く":"はやくいく","遅く行く":"おそくいく","予約する":"よやくする","高い":"たかい","0円":"れいえん","未定":"みてい","に対して":"にたいして","に比べて":"にくらべて","落としてしまった":"おとしてしまった","落としておいた":"おとしておいた","落としてある":"おとしてある","落としていく":"おとしていく","明確":"めいかく","曖昧":"あいまい","退屈":"たいくつ","不安":"ふあん","慎重":"しんちょう","適当":"てきとう","単純":"たんじゅん","ほぼ終わった":"ほぼおわった","少し終わった":"すこしおわった","全然終わっていない":"ぜんぜんおわっていない","やっと始めた":"やっとはじめた","参考に":"さんこうに","無視":"むし","持っていく":"もっていく","置いておく":"おいておく","忘れる":"わすれる","楽しむ":"たのしむ","怒る":"おこる","消した":"けした","閉めた":"しめた","開けた":"あけた","とても似ている":"とてもにている","全然違う":"ぜんぜんちがう","少し大きい":"すこしおおきい","反対だ":"はんたいだ","遅れない":"おくれない","急がない":"いそがない","忘れない":"わすれない","約速":"やくそく","役束":"やくそく","約則":"やくそく","経検":"けいけん","径験":"けいけん","経険":"けいけん","必配":"ひっぱい","心輩":"しんぱい","心酉":"しんゆう","案全":"あんぜん","安金":"あんきん","安然":"あんぜん","便利":"べんり","使利":"しり","便理":"べんり","弁利":"べんり","注異":"ちゅうい","駐意":"ちゅうい","註意":"ちゅうい","生活":"せいかつ","性活":"せいかつ","生括":"せいかつ","生汚":"せいお","3時":"さんじ","10時":"じゅうじ","変更なし":"へんこうなし","実施":"じっし","室内で実施":"しつないでじっし","関係者だけ":"かんけいしゃだけ","誰でも":"だれでも","客だけ":"きゃくだけ","子供だけ":"こどもだけ","元の場所に戻す":"もとのばしょにもどす","捨てる":"すてる","洗う":"あらう","食事の後":"しょくじのあと","寝る前":"ねるまえ","朝だけ":"あさだけ","定員になったら":"ていいんになったら","電話で":"でんわで","直接行く":"ちょくせついく","今日まで":"きょうまで","明日まで":"あしたまで","来週まで":"らいしゅうまで","面白いと感じている":"おもしろいとかんじている","変わらない":"かわらない","準備ができたら":"じゅんびができたら","すぐ今":"すぐいま","お座り":"おすわり","座らせ":"すわらせ","座られ":"すわられ","お座って":"おすわって","出した":"だした","終わった":"おわった","直した":"なおした","続けた":"つづけた","気味":"きみ","向き":"むき","に関して":"にかんして","に応じて":"におうじて","に反して":"にはんして","を通じて":"をつうじて","際に":"さいに","最中に":"さいちゅうに","末に":"すえに","かと思うと":"かとおもうと","ざるを得ない":"ざるをえない","に決まっている":"にきまっている","に過ぎない":"にすぎない","に違いない":"にちがいない","に限る":"にかぎる","向け":"むけ","教肉":"きょうにく","数育":"すういく","教郁":"きょういく","研空":"けんくう","石究":"せききゅう","研宄":"けんきゅう","慣れて":"なれて","似て":"にて","困って":"こまって","余って":"あまって","並んで":"ならんで","渡って":"わたって","倒れて":"たおれて","割れて":"われて","渡る":"わたる","倒れる":"たおれる","預ける":"あずける","貯める":"ためる","片付ける":"かたづける","包む":"つつむ","払う":"はらう","余る":"あまる","貯めて":"ためて","払って":"はらって","足り":"たり","慣れ":"なれ","似":"に","余り":"あまり","役立つ":"やくだつ","似合う":"にあう","片付く":"かたづく","片付け":"かたづけ","預け":"あずけ","包み":"つつみ","確かめる":"たしかめる","余った":"あまった","足りた":"たりた","困った":"こまった","慣れた":"なれた","当然":"とうぜん","偶然":"ぐうぜん","運働":"うんどう","連動":"れんどう","運道":"うんどう","世会":"せかい","生界":"せいかい","世解":"せかい","方放":"ほうほう","放法":"ほうほう","万法":"まんぽう","理油":"りゆ","里由":"りゆう","理田":"りでん","目的":"もくてき","木的":"もくてき","日的":"にちてき","目敵":"もくてき","結課":"けっか","詰果":"きつか","結菓":"けっか","増えて":"ふえて","減って":"へって","比べて":"くらべて","選んで":"えらんで","減った":"へった","増えた":"ふえた","続いた":"つづいた","戻った":"もどった","配って":"くばって","含んで":"ふくんで","断って":"ことわって","戻して":"もどして","決める":"きめる","集める":"あつめる","配る":"くばる","含む":"ふくむ","育てて":"そだてて","戻って":"もどって","進んだ":"すすんだ","配った":"くばった","変える":"かえる","比べる":"くらべる","含める":"ふくめる","断る":"ことわる","続ける":"つづける","戻す":"もどす","育てる":"そだてる","戻る":"もどる","断った":"ことわった","選んだ":"えらんだ","含んだ":"ふくんだ","過ごす":"すごす","十分":"じゅうぶん","詳しい":"くわしい","親しい":"したしい","珍しい":"めずらしい","得意":"とくい","苦手":"にがて","厳しい":"きびしい","必ず":"かならず","特に":"とくに","実は":"じつは","締め切り":"しめきり","時間を短く決めたから":"じかんをみじかくきめたから","面白い本を選んだから":"おもしろいほんをえらんだから","友達と一緒に読んだから":"ともだちといっしょによんだから","長い時間読んだから":"ながいじかんよんだから","毎日少しずつ続けることが大切だ":"まいにちすこしずつつづけることがたいせつだ","一度にたくさん読むほうがよい":"いちどにたくさんよむほうがよい","読む時間は関係ない":"よむじかんはかんけいない","読書より勉強を優先すべきだ":"どくしょよりべんきょうをゆうせんすべきだ","入口横の返却ポストに入れる":"いりぐちよこのへんきゃくぽすとにいれる","受付の人に直接渡す":"うけつけのひとにちょくせつわたす","工事が終わるまで待つ":"こうじがおわるまでまつ","メールで連絡する":"めーるでれんらくする","インターネットで予約する":"いんたーねっとでよやくする","館内で本を読む":"かんないでほんをよむ","新しい本を借りる":"あたらしいほんをかりる","イベントに参加する":"いべんとにさんかする","打ち合わせを水曜に変えること":"うちあわせをすいようにかえること","打ち合わせを中止すること":"うちあわせをちゅうしすること","資料を送ること":"しりょうをおくること","火曜の朝に集まること":"かようのあさにあつまること","都合のよい日をいくつか伝える":"つごうのよいひをいくつかつたえる","返事をしなくてよい":"へんじをしなくてよい","火曜日に行う":"かようびにおこなう","打ち合わせをやめる":"うちあわせをやめる","電車で通勤する":"でんしゃでつうきんする","自転車で通勤する":"じてんしゃでつうきんする","歩いて通勤する":"あるいてつうきんする","会社を休む":"かいしゃをやすむ","混まず、運動にもなるから":"こまずうんどうにもなるから","お金がかからないから":"おかねがかからないから","速くて便利だから":"はやくてべんりだから","会社が勧めているから":"かいしゃがすすめているから","二つ目の信号を右":"ふたつめのしんごうをみぎ","一つ目の信号を左":"ひとつめのしんごうをひだり","まっすぐ行くだけ":"まっすぐいくだけ","曲がらない":"まがらない","お疲れさまでした":"おつかれさまでした","時間が変わった":"じかんがかわった","場所が変わった":"ばしょがかわった","中止になった":"ちゅうしになった","人数が変わった":"にんずうがかわった","金曜までにメールで送る":"きんようまでにめーるでおくる","月曜に持っていく":"げつようにもっていく","印刷して手で渡す":"いんさつしててでわたす","送らなくていい":"おくらなくていい","いいえ、結構です":"いいえけっこうです","また今度":"またこんど","晴れ":"はれ","一日中くもり":"いちにちじゅうくもり","名前と住所を書く":"なまえとじゅうしょをかく","二番の窓口へ行く":"にばんのまどぐちへいく","番号札を取る":"ばんごうふだをとる","失礼しました。もう少し大きく話します":"しつれいしましたもうすこしおおきくはなします","はい、小さいです":"はいちいさいです","十五分ほど遅れる":"じゅうごふんほどおくれる","時間通りに来る":"じかんどおりにくる","止まってしまった":"とまってしまった","早く着く":"はやくつく","いえ、結構です。ありがとうございます":"いえけっこうですありがとうございます","左にまっすぐ行って右側":"ひだりにまっすぐいってみぎがわ","右にまっすぐ行って左側":"みぎにまっすぐいってひだりがわ","もう一度下に降りる":"もういちどしたにおりる","次のバスに乗る":"つぎのばすにのる","歩いて行く":"あるいていく","ありがとうございます。お願いします":"ありがとうございますおねがいします","今日の昼（食後）から":"きょうのひるしょくごから","朝から":"あさから","夜だけ":"よるだけ","明日から":"あしたから","急ぎ":"いそぎ","遊び":"あそび","謝り":"あやまり","戻り":"もどり","遅れ":"おくれ","遅く":"おそく","遅い":"おそい","遅め":"おそめ","港":"みなと","湖":"みずうみ","森":"もり","畑":"はたけ","暖かく":"あたたかく","涼しく":"すずしく","明るく":"あかるく","静かに":"しずかに","危険":"きけん","交番":"こうばん","工場":"こうじょう","銀行":"ぎんこう","職業":"しょくぎょう","趣味":"しゅみ","工業":"こうぎょう","者":"もの","所":"ところ","始めた":"はじめた","終わっ":"おわっ","始め":"はじめ","続け":"つづけ","続けて":"つづけて","始めて":"はじめて","終わって":"おわって","お帰り":"おかえり","帰り":"かえり","ご帰り":"ごかえり","お帰る":"おかえる","雨で電車が止まり、車の道も込んでいたから":"あめででんしゃがとまりくるまのみちもこんでいたから","温泉でゆっくりしすぎたから":"おんせんでゆっくりしすぎたから","朝早く出発できなかったから":"あさはやくしゅっぱつできなかったから","家族の準備が遅かったから":"かぞくのじゅんびがおそかったから","車ではなく電車で行きたい":"くるまではなくでんしゃでいきたい","出発前に天気をよく調べたい":"しゅっぱつまえにてんきをよくしらべたい","もっと早く起きたい":"もっとはやくおきたい","温泉に長くいたい":"おんせんにながくいたい","店内での買い物":"てんないでのかいもの","電話での注文":"でんわでのちゅうもん","インターネットでの注文":"いんたーねっとでのちゅうもん","商品の配達":"しょうひんのはいたつ","七月一日":"しちがつついたち","七月五日":"しちがついつか","七月六日":"しちがつむいか","七月十日":"しちがつとおか","十部":"じゅうぶ","二十部":"にじゅうぶ","三十部":"さんじゅうぶ","五十部":"ごじゅうぶ","外が寒いから":"そとがさむいから","エアコンの調子が悪いから":"えあこんのちょうしがわるいから","会議が長いから":"かいぎがながいから","五階は暗いから":"ごかいはくらいから","体が強くなったから":"からだがつよくなったから","一緒に通う友人ができたから":"いっしょにかようゆうじんができたから","ジムが近いから":"じむがちかいから","回数を減らしたから":"かいすうをへらしたから","運動は一人でするべきだ":"うんどうはひとりですべきだ","人とのつながりも大切だ":"ひととのつながりもたいせつだ","ジムは高い":"じむはたかい","週二回では足りない":"しゅうにかいではたりない","空いている":"あいている","席がいっぱい":"せきがいっぱい","閉まっている":"しまっている","安い":"やすい","注文する":"ちゅうもんする","料理を待つ":"りょうりをまつ","席を選ぶ":"せきをえらぶ","音を大きくする":"おとをおおきくする","電気を消す":"でんきをけす","窓を開ける":"まどをあける","声を出す":"こえをだす","もう降っている":"もうふっている","降るかもしれない":"ふるかもしれない","晴れている":"はれている","雪が降る":"ゆきがふる","起きてすぐ":"おきてすぐ","入ってもよい":"はいってもよい","入ってはいけない":"はいってはいけない","写真が撮れる":"しゃしんがとれる","休める":"やすめる","黙って待つ":"だまってまつ","急いで来る":"いそいでくる","連絡する":"れんらくする","休む":"やすむ","席に座る":"せきにすわる","席を代わってあげる":"せきをかわってあげる","席を増やす":"せきをふやす","席を予約する":"せきをよやくする","今すぐ":"いますぐ","準備ができたらすぐ":"じゅんびができたらすぐ","終わってから":"おわってから","安くなっている":"やすくなっている","今ない":"いまない","新しい":"あたらしい","人気がない":"にんきがない","りんご三つと牛乳一本":"りんごみっつとぎゅうにゅういっぽん","りんご一つと牛乳三本":"りんごひとつとぎゅうにゅうさんぼん","りんご三つだけ":"りんごみっつだけ","牛乳一本だけ":"ぎゅうにゅういっぽんだけ","六時半":"ろくじはん","七時":"しちじ","七時半":"しちじはん","六時":"ろくじ","午後から雨":"ごごからあめ","一日中晴れ":"いちにちじゅうはれ","一日中雨":"いちにちじゅうあめ","午前中だけ雨":"ごぜんちゅうだけあめ","階段を上って右":"かいだんをのぼってみぎ","階段を上って左":"かいだんをのぼってひだり","階段を下りて右":"かいだんをおりてみぎ","まっすぐ進む":"まっすぐすすむ","コーヒー二つ":"こーひーふたつ","ケーキ二つ":"けーきふたつ","紅茶とケーキ":"こうちゃとけーき","三番線":"さんばんせん","一番線":"いちばんせん","二番線":"にばんせん","四番線":"よんばんせん","部屋の準備をする":"へやのじゅんびをする","資料をコピーする":"しりょうをこぴーする","会議を始める":"かいぎをはじめる","資料を作る":"しりょうをつくる","図書館の入り口":"としょかんのいりぐち","駅前のカフェ":"えきまえのかふぇ","図書館の中":"としょかんのなか","駅の改札":"えきのかいさつ","九時":"くじ","八時":"はちじ","十時":"じゅうじ","急行":"きゅうこう","各駅停車":"かくえきていしゃ","特急":"とっきゅう","普通電車":"ふつうでんしゃ","帽子":"ぼうし","水筒":"すいとう","木曜日":"もくようび","書類を部長に渡す":"しょるいをぶちょうにわたす","書類をコピーする":"しょるいをこぴーする","部長に電話する":"ぶちょうにでんわする","外出する":"がいしゅつする","予約の時間を変えたい":"よやくのじかんをかえたい","予約を取り消したい":"よやくをとりけしたい","予約の日を変えたい":"よやくのひをかえたい","人数を変えたい":"にんずうをかえたい","どちらも買わない":"どちらもかわない","両方買う":"りょうほうかう","電車が止まっているから":"でんしゃがとまっているから","寝坊したから":"ねぼうしたから","道に迷ったから":"みちにまよったから","忘れ物をしたから":"わすれものをしたから","二階のエレベーターを使うこと":"にかいのえれべーたーをつかうこと","階段を使うこと":"かいだんをつかうこと","三階のエレベーターを使うこと":"さんがいのえれべーたーをつかうこと","買い物をすること":"かいものをすること","海に行く":"うみにいく","映画を見る":"えいがをみる","家にいる":"いえにいる","買い物に行く":"かいものにいく","感謝":"かんしゃ","有能":"ゆうのう","面倒":"めんどう","邪魔":"じゃま","検査":"けんさ","楽に":"らくに","派手に":"はでに","正直に":"しょうじきに","満足":"まんぞく","感心":"かんしん","降らない":"ふらない","流れない":"ながれない","割れない":"われない","到着":"とうちゃく","混んで":"こんで","空いて":"あいて","晴れて":"はれて","受け取る":"うけとる","見送る":"みおくる","乗り換える":"のりかえる","追いかける":"おいかける","復習":"ふくしゅう","下手":"へた","分から":"わから","聞こえ":"きこえ","見え":"みえ","似てい":"にてい","机":"つくえ","黒板":"こくばん","成績":"せいせき","買って":"かって","売って":"うって","貸して":"かして","返して":"かえして","値引き":"ねびき","貯金":"ちょきん","請求":"せいきゅう","支払い":"しはらい","計算":"けいさん","交換":"こうかん","降り":"おり","吹き":"ふき","流れ":"ながれ","接近":"せっきん","景色":"けしき","自然":"しぜん","空気":"くうき","気温":"きおん","湿気":"しっけ","お帰りになり":"おかえりになり","お帰りし":"おかえりし","帰らせ":"かえらせ","帰られし":"かえられし"
-};
-const GLOSS={"関係者以外立入禁止":"accès interdit au public (panneau)","日本語":"langue japonaise","使用後":"après usage","丁寧":"poli, soigné","三日":"trois jours ; le 3","上手":"habile, doué","中止":"annulation, interruption","予定":"programme, prévision","予約":"réservation","事実":"fait, réalité","二度":"deux fois","京都":"Kyoto","今年":"cette année","仕事":"travail, emploi","会議":"réunion, conférence","何時":"quelle heure","健康":"santé","先生":"professeur ; maître","割引":"réduction, rabais","努力":"effort","勉強":"étude, apprentissage","動作":"mouvement, geste","去年":"l'an dernier","合格":"réussite (examen)","商品":"marchandise, article","問題":"problème, question","国際":"international","場合":"cas, situation","場所":"lieu, endroit","場面":"scène, situation","増加":"augmentation","変更":"changement, modification","大事":"important, précieux","大切":"important, précieux","失敗":"échec, erreur","失礼":"impolitesse ; excusez-moi","子供":"enfant","学生":"étudiant, élève","定員":"effectif, capacité (places)","宿題":"devoirs (scolaires)","専門":"spécialité, domaine","工事":"travaux, chantier","広告":"publicité, annonce","彼女":"elle ; petite amie","心配":"inquiétude, souci","情報":"information, renseignement","意味":"sens, signification","意見":"avis, opinion","感情":"sentiment, émotion","成功":"succès, réussite","我慢":"patience, endurance","手紙":"lettre (courrier)","技術":"technique, technologie","招待":"invitation","掲示":"affichage, avis","改善":"amélioration","政治":"politique","文化":"culture","旅行":"voyage","日本":"Japon","明日":"demain","昨夜":"la nuit dernière, hier soir","時間":"temps, heure","書類":"document, papiers","未来":"avenir, futur","来週":"la semaine prochaine","東京":"Tokyo","案内":"guide, accompagnement","次第":"selon, dès que","気持":"sensation, sentiment","準備":"préparation","漢字":"caractère chinois, kanji","無料":"gratuit","状況":"situation, circonstances","現在":"actuellement, présent","環境":"environnement","生産":"production","発展":"développement, essor","短文":"phrase courte","確実":"certain, sûr","確認":"vérification, confirmation","筆者":"auteur (d'un texte)","約束":"promesse, rendez-vous","経済":"économie","経験":"expérience","結果":"résultat","結論":"conclusion","給料":"salaire","練習":"exercice, entraînement","自由":"liberté ; libre","複数":"pluriel, plusieurs","複雑":"compliqué, complexe","観光":"tourisme","解決":"résolution, solution","計画":"plan, projet","許可":"autorisation, permission","証拠":"preuve","試合":"match, compétition","試験":"examen, épreuve","説明":"explication","財布":"portefeuille, porte-monnaie","責任":"responsabilité","貿易":"commerce extérieur","質問":"question","辞書":"dictionnaire","近所":"voisinage, quartier","連絡":"contact, communication","遅刻":"retard (arrivée)","道理":"raison, logique","遠慮":"réserve, retenue","部屋":"chambre, pièce","重要":"important, essentiel","関係":"relation, rapport","雨天":"temps pluvieux","電気":"électricité ; lumière","電話":"téléphone","電車":"train, métro","面白":"intéressant, amusant","音楽":"musique","食後":"après le repas","記憶":"mémoire, souvenir","郵便":"courrier, poste","先着":"premier arrivé","本日":"aujourd'hui (formel)","使用":"utilisation, emploi","在庫":"stock","毎日":"chaque jour","毎朝":"chaque matin","残業":"heures supplémentaires","注意":"attention, prudence","以外":"sauf, en dehors de","下":"baisser ; descendre","体":"corps","休":"se reposer","傘":"parapluie","元":"origine ; à l'origine","先":"avant ; pointe ; devant","入":"entrer","分":"comprendre ; diviser","切":"couper","前":"avant, devant","効":"être efficace, agir","危":"dangereux","取":"prendre, saisir","合":"correspondre, s'accorder","向":"se tourner vers, faire face","周":"tour, alentours","問":"interroger, questionner","守":"protéger, respecter","家":"maison","寄":"s'approcher, passer (chez)","少":"peu, un peu","帰":"rentrer, revenir","年":"année ; âge","店":"magasin, boutique","弟":"frère cadet","彼":"il ; petit ami","後":"après ; derrière","得":"obtenir, gagner","思":"penser, croire","悪":"mauvais","感":"ressentir, sentir","戻":"revenir, rendre","手":"main","扱":"manier, traiter","教":"enseigner, apprendre","整":"ranger, ordonner","新":"nouveau, neuf","方":"façon ; personne ; direction","早":"tôt, rapide","時":"heure ; moment","暑":"chaud (climat)","暗":"sombre, obscur","書":"écrire","服":"vêtements","本":"livre","来":"venir","歌":"chanson ; chanter","決":"décider","混":"être bondé ; mélanger","物":"chose, objet","申":"dire (humble)","疲":"être fatigué","眠":"dormir ; avoir sommeil","知":"savoir, connaître","窓":"fenêtre","立":"se lever, se tenir debout","笑":"rire, sourire","答":"répondre","終":"finir, se terminer","締":"fermer, serrer","聞":"écouter, entendre ; demander","落":"tomber, faire tomber","薬":"médicament","見":"voir, regarder","覧":"regarder (honorifique)","解":"résoudre ; comprendre","言":"dire","認":"reconnaître, admettre","読":"lire","誰":"qui","謝":"s'excuser, remercier","買":"acheter","転":"rouler, tomber","込":"être plein, inclus","近":"proche, près","遅":"tard, lent ; être en retard","遊":"jouer, s'amuser","道":"chemin, route","達":"atteindre ; pluriel (suffixe)","金":"argent ; or","長":"long ; chef","開":"ouvrir, s'ouvrir","降":"tomber (pluie) ; descendre","限":"limiter, se limiter","難":"difficile","雨":"pluie","願":"souhaiter, demander","食":"manger","飲":"boire","高":"haut, cher","会":"rencontrer, voir","力":"force, puissance","順":"ordre ; à tour de rôle","中":"milieu ; en cours","走":"courir","行":"aller","出":"sortir, partir","何":"quoi, que","話":"parler ; histoire","今":"maintenant","駅":"gare, station","熱":"fièvre ; chaleur","着":"porter (vêtement) ; arriver","人":"personne, gens","私":"je, moi","母":"mère","大":"grand","調":"vérifier, examiner","空":"ciel ; vide","持":"tenir, avoir","増":"augmenter","作":"fabriquer, faire","撮":"photographier, filmer","字":"caractère, lettre","寝":"se coucher, dormir","安":"bon marché ; tranquille","好":"aimer ; agréable","忘":"oublier","日":"jour ; soleil","習":"apprendre, étudier","痛":"douloureux, avoir mal","妹":"sœur cadette","歩":"marcher","酒":"alcool, saké","勝":"gagner, vaincre","重":"lourd ; important","消":"effacer, éteindre","雪":"neige","国":"pays","起":"se lever ; se produire","迷":"hésiter, se perdre","使":"utiliser, employer","件":"affaire, sujet (compteur)","泣":"pleurer","越":"franchir, dépasser","急":"se dépêcher ; urgent","多":"nombreux, beaucoup","小":"petit","呼":"appeler","飯":"riz cuit, repas","庭":"jardin","考":"réfléchir, penser","与":"donner, accorder","間":"intervalle ; entre, pendant","席":"place, siège","声":"voix","弾":"jouer (instrument)","泳":"nager","客":"client, invité","飾":"décorer, orner","静":"calme, silencieux","直":"réparer, corriger","寒":"froid (climat)","働":"travailler","座":"s'asseoir","雲":"nuage","腹":"ventre","苦":"pénible, amer ; souffrir","春":"printemps","選":"choisir, élire","減":"diminuer, réduire","過":"passer, dépasser","信":"croire, avoir confiance","外":"dehors, extérieur","触":"toucher","赤":"rouge","量":"quantité","細":"fin, menu ; détaillé","欲":"vouloir, désirer","甘":"sucré ; doux","嬉":"heureux, content","喜":"se réjouir","逃":"s'enfuir, fuir","任":"confier, charger","鳴":"sonner, retentir","訪":"rendre visite","従":"obéir, suivre","嫌":"détester","泥":"boue","鍵":"clé ; serrure","列":"rangée, file","青":"bleu","強":"fort","風":"vent","木":"arbre ; bois","火":"feu","紙":"papier","育":"élever, éduquer","楽":"agréable, amusant","町":"ville, quartier","色":"couleur","一":"un ; premier","誘":"inviter, convier","辺":"environs, alentours","昔":"autrefois, jadis","詳":"détaillé, précis","続":"continuer, durer","最":"le plus, extrêmement","返":"rendre, rembourser","曲":"tourner ; courber","正":"correct, juste","茶":"thé","断":"refuser ; prévenir","花":"fleur","売":"vendre","真":"vrai, véritable","左":"gauche","冬":"hiver","助":"aider, secourir","拾":"ramasser","届":"parvenir ; livrer","寺":"temple","祭":"fête, festival","吸":"aspirer ; fumer","晴":"s'éclaircir (temps)","歳":"ans (âge)","秋":"automne","止":"s'arrêter ; arrêter","坊":"bonze ; petit garçon","宝":"trésor","当":"toucher ; deviner juste","押":"pousser, appuyer","桜":"cerisier ; fleur de cerisier","咲":"fleurir, éclore","残":"rester ; laisser","払":"payer","夜":"nuit, soir","受":"recevoir ; passer (examen)","負":"perdre, être vaincu","住":"habiter, résider","壁":"mur","絵":"dessin, peinture","涼":"frais (température)","足":"pied, jambe","踏":"marcher sur, fouler","濡":"se mouiller","上":"haut, dessus","暖":"chaud, doux (température)","頭":"tête","引":"tirer","壊":"casser, briser","対":"face à, envers ; paire","兄":"grand frère","違":"être différent ; se tromper","必":"forcément, sans faute","伝":"transmettre, communiquer","厳":"strict, sévère","深":"profond","困":"être embarrassé, ennuyé","通":"passer ; fréquenter","変":"étrange ; changement","横":"côté ; horizontal","打":"frapper, taper","訳":"raison ; sens","同":"même, identique","二":"deux","目":"œil ; regard","右":"droite","次":"suivant, prochain","昼":"midi ; journée","始":"commencer","送":"envoyer ; raccompagner","訓":"lecture japonaise (kanji)","音":"son, bruit","今日":"aujourd'hui","手伝":"aider, donner un coup de main","最近":"récemment, dernièrement","最後":"dernier, fin","来年":"l'année prochaine","大好":"adorer, aimer beaucoup","間違":"se tromper ; erreur","入国":"entrée dans un pays","教育":"éducation, enseignement","出席":"présence, participation","減少":"diminution, baisse","体重":"poids (corporel)","切手":"timbre","読書":"lecture","年間":"durée en années","一人":"une personne ; seul","新聞":"journal","体調":"état de santé, forme","一日":"un jour ; le 1er","作家":"écrivain, auteur","友達":"ami","田中":"Tanaka (nom)","山田":"Yamada (nom)","運動":"exercice, sport ; mouvement","天気予報":"météo, bulletin météo","天気":"temps, météo","水曜日":"mercredi","月曜日":"lundi","火曜日":"mardi","金曜日":"vendredi","日曜日":"dimanche","午後":"après-midi","午前":"matin, avant-midi","写真":"photo","事故":"accident","必要":"nécessaire, besoin","料理":"cuisine, plat","美術館":"musée d'art","来月":"le mois prochain","無理":"impossible ; excessif","返却":"restitution, retour","都合":"disponibilité, convenance","自転車":"vélo, bicyclette","昨日":"hier","返事":"réponse","社長":"président, directeur (entreprise)","上司":"supérieur, chef","荷物":"bagages, colis","方法":"méthode, moyen","規則":"règle, règlement","報告":"rapport, compte rendu","理由":"raison, motif","休館":"fermeture (établissement)","通勤":"trajet domicile-travail","掃除":"ménage, nettoyage","映画":"film, cinéma","知識":"connaissance, savoir","原因":"cause, origine","習慣":"habitude, coutume","図書館":"bibliothèque","気分":"humeur, état d'esprit","期待":"attente, espoir","世界中":"le monde entier","世界":"monde","製品":"produit, article","研究":"recherche, étude","信号":"feu de circulation ; signal","頑張":"faire de son mieux, persévérer","人口":"population","自分":"soi-même","資料":"documents, données","一番":"le plus, numéro un","火事":"incendie","夏休":"vacances d'été","週末":"week-end","大阪":"Osaka","転勤":"mutation (professionnelle)","台風":"typhon","動物":"animal","小説":"roman","性格":"caractère, personnalité","達成":"accomplissement, réalisation","構造":"structure","客様":"client, hôte (poli)","毎晩":"chaque soir","三十分":"trente minutes","十五分":"quinze minutes","三回":"trois fois","三階":"troisième étage","三時":"trois heures","二番":"numéro deux, deuxième","最初":"le premier, le début","館内":"intérieur du bâtiment","入口":"entrée","出口":"sortie","窓口":"guichet","貸出期間":"durée de prêt","延長":"prolongation","利用":"utilisation, usage","郵便局":"bureau de poste","弁当":"bentô, panier-repas","機械":"machine","元気":"en forme, plein d'énergie","失望":"déception","苦労":"peine, difficultés","終電":"dernier train","警察":"police","能力":"capacité, aptitude","全社員":"tous les employés","社員":"employé (d'entreprise)","参加":"participation","携帯":"téléphone portable","命令":"ordre, commandement","個人":"individu, particulier","輸出":"exportation","表現":"expression","想像":"imagination","発見":"découverte","完成":"achèvement, réalisation","欠席":"absence","成長":"croissance, développement","印象":"impression","提出":"soumission, dépôt","募集":"recrutement, appel à candidatures","禁止":"interdiction","緊張":"tension, nervosité","普通":"ordinaire, normal","突然":"soudain, brusquement","結局":"finalement, en fin de compte","職場":"lieu de travail","父親":"père","人気":"popularité","道具":"outil, instrument","大勢":"grand nombre de personnes","移動":"déplacement","進歩":"progrès","速度":"vitesse","労働":"travail, labeur","回転":"rotation","社会":"société","権利":"droit (prérogative)","協力":"coopération","比較":"comparaison","価格":"prix","選択":"choix, sélection","決定":"décision","反対":"opposition, contraire","追加":"ajout, supplément","野菜":"légume","残念":"dommage, regrettable","申請":"demande, requête (officielle)","時計":"montre, horloge","用事":"affaire à régler, course","地方":"région, province","果物":"fruit","今週":"cette semaine","農業":"agriculture","本文":"texte principal, corps du texte","同僚":"collègue","医者":"médecin","病院":"hôpital","興味":"intérêt, curiosité","親切":"gentil, aimable","特別":"spécial, particulier","手帳":"carnet, agenda","誕生日":"anniversaire","作文":"rédaction, composition","授業":"cours, classe","歴史":"histoire","寿司":"sushi","納豆":"nattô (soja fermenté)","延期":"report, ajournement","値段":"prix","風邪":"rhume","文句":"plainte, reproche","社交的":"sociable","有名":"célèbre, connu","簡単":"simple, facile","調査":"enquête, recherche","影響":"influence, effet","内容":"contenu","二人":"deux personnes ; couple","将来":"avenir, futur","相談":"consultation, discussion","海外":"étranger, outre-mer","印刷":"impression (imprimerie)","名前":"nom","住所":"adresse","会議室":"salle de réunion","右側":"côté droit","全部":"tout, en totalité","一度":"une fois","出発":"départ","程度":"degré, niveau","結婚":"mariage"};
-function furi(s){
-  let out='',i=0;
-  while(i<s.length){
-    const c=s[i];
-    if(/[一-鿿]/.test(c)){
-      let m=null;
-      for(let L=Math.min(12,s.length-i);L>=1;L--){
-        const sub=s.substr(i,L);
-        if(/^[一-鿿]+$/.test(sub)&&FURI[sub]){m=sub;break;}
-      }
-      if(m){out+=`<ruby onclick="this.classList.toggle('show')">${m}<rt>${FURI[m]}</rt></ruby>`;i+=m.length;}
-      else{out+=c;i++;}
-    }else{out+=c;i++;}
-  }
-  return out;
-}
+/* furigana/lecture partagés → dict.js */
 function toggleFuri(){
   const t=document.getElementById('qtext'),b=document.getElementById('furiBtn');
   const on=t.classList.toggle('furi-on');b.classList.toggle('on',on);
@@ -1480,57 +1448,7 @@ function renderQ(){
   const nx=document.getElementById('next');nx.className='next';nx.textContent=qi+1<quiz.length?'Suivant →':'Voir le résultat →';
 }
 
-// aère une explication : une information par ligne (coupe sur ; · 。 et fins de phrase)
-function aerate(html,prefix){
-  if(!html)return prefix||'';
-  const lines=String(html)
-    .replace(/\s*;\s*/g,'')
-    .replace(/\s+·\s+/g,'')
-    .replace(/。\s*/g,'。')
-    .replace(/\.\s+(?=[«"“A-ZÉÈÀÇ0-9一-鿿ぁ-んァ-ン])/g,'.')
-    .split('').map(x=>x.trim()).filter(Boolean);
-  if(!lines.length)return prefix||'';
-  if(prefix)lines[0]=prefix+' '+lines[0];
-  return lines.map(l=>'<div class="iline">'+l+'</div>').join('');
-}
-// analyse visuelle : transforme une décomposition « mot（lecture）« sens » · … » en jetons colorés par rôle
-function visualBreak(str){
-  if(!str)return '';
-  const parts=String(str).split(' · ');
-  let hasPart=false,hasVerb=false,hasNoun=false,hasAdj=false;
-  const pills=parts.map(function(seg){
-    seg=seg.trim();if(!seg)return '';
-    let gloss='',jp=seg;const mg=seg.match(/«\s*([^»]*?)\s*»/);
-    if(mg){gloss=mg[1];jp=seg.slice(0,mg.index);}
-    jp=jp.replace(/^[→\s]+/,'').replace(/[。、・\s→]+$/,'').replace(/（[^）]*$/,'').trim();
-    if(!jp)return '';
-    // segment purement explicatif (pas un mot japonais) → petite note, pas un gros jeton
-    if(!/[一-鿿ぁ-んァ-ンー々]/.test(jp)||(!gloss&&/[A-Za-zÀ-ÿ]{2,}/.test(jp)&&!/[一-鿿]/.test(jp))){
-      return '<span class="tok tok-note"><span class="tok-g">'+(gloss||jp)+'</span></span>';
-    }
-    const jpPlain=jp.replace(/（[^）]*）/g,'').replace(/[（）]/g,'');
-    let role='noun';
-    if(/[→＋]/.test(jp))role='verb';
-    else if(/^[はがをにへでとやかもねよのばらでもへ〜～ずば・／\/]+$/.test(jpPlain))role='part';
-    else if(/adjectif|い-adj|な-adj/i.test(gloss))role='adj';
-    else if(/particule|th[eè]me|\bCOD\b|sujet|direction|marque|emphase/i.test(gloss)&&jpPlain.length<=3)role='part';
-    if(role==='part')hasPart=true;else if(role==='verb')hasVerb=true;else if(role==='adj')hasAdj=true;else hasNoun=true;
-    const jpHtml=jp.replace(/([一-鿿々]+)（([ぁ-んァ-ンー・]+)）/g,'<ruby>$1<rt>$2</rt></ruby>');
-    return '<span class="tok tok-'+role+'"><span class="tok-jp">'+jpHtml+'</span>'+(gloss?'<span class="tok-g">'+gloss+'</span>':'')+'</span>';
-  }).join('');
-  const leg=[];
-  if(hasNoun)leg.push('<span><i class="tok-noun"></i>nom / groupe</span>');
-  if(hasPart)leg.push('<span><i class="tok-part"></i>particule</span>');
-  if(hasVerb)leg.push('<span><i class="tok-verb"></i>verbe / forme</span>');
-  if(hasAdj)leg.push('<span><i class="tok-adj"></i>adjectif</span>');
-  return '<div class="vbreak">'+pills+'</div>'+(leg.length>1?'<div class="vbleg">'+leg.join('')+'</div>':'');
-}
-// texte japonais long : une phrase par ligne (coupe après 。！？)
-function jpBlock(text){
-  return furi(text).replace(/([。！？]+[」』）)]*)/g,'$1')
-    .split('').map(x=>x.trim()).filter(Boolean)
-    .map(l=>'<div class="jline">'+l+'</div>').join('');
-}
+/* aération & analyse visuelle partagées → dict.js */
 function answer(btn,q,opts){
   const correctTxt=q.o[q.a],ok=btn.textContent===correctTxt;
   [...opts.children].forEach(b=>{b.disabled=true;if(b.textContent===correctTxt)b.classList.add('correct')});
@@ -1849,113 +1767,14 @@ function forceReview(){
 }
 
 /* =================== MINI-DICTIONNAIRE (double-clic sur un mot) =================== */
-const DEF={};
-function buildDefs(){
-  VOCAB_LESSONS.forEach(v=>{DEF[v.k]={r:(v.struct||'').replace(/^読み：/,''),m:v.sens};});
-  KANJI_LESSONS.forEach(v=>{if(!DEF[v.k])DEF[v.k]={r:v.struct||'',m:v.sens};});
-  // extrait « mot（lecture）« sens » » des décompositions de phrases
-  const re=/([一-鿿々ぁ-んァ-ンー]{1,12})（([ぁ-んァ-ンー・、]{1,14})）\s*«\s*([^»]{1,40}?)\s*»/g;
-  BANK.forEach(q=>{if(!q.g)return;let m;re.lastIndex=0;while((m=re.exec(q.g))){const w=m[1];if(!DEF[w])DEF[w]={r:m[2],m:m[3].trim()};}});
-  // glossaire vérifié (lecture FURI + sens français) — fait autorité pour les mots courants
-  Object.keys(GLOSS).forEach(w=>{const r=FURI[w]||(DEF[w]&&DEF[w].r)||'';DEF[w]={r:r,m:GLOSS[w]};});
-}
-function lookupDef(sel){
-  sel=(sel||'').replace(/[\s。、！？「」（）()]/g,'').trim();
-  if(!sel||sel.length>14)return null;
-  if(DEF[sel])return Object.assign({w:sel},DEF[sel]);
-  if(FURI[sel])return {w:sel,r:FURI[sel]};
-  for(let L=Math.min(sel.length,12);L>=1;L--){const sub=sel.slice(0,L);
-    if(DEF[sub])return Object.assign({w:sub},DEF[sub]);
-    if(FURI[sub])return {w:sub,r:FURI[sub]};}
-  return null;
-}
-function hideDef(){const p=document.getElementById('defPop');if(p)p.style.display='none';}
-function defShow(px,py,d){
-  const pop=document.getElementById('defPop');if(!pop||!d)return false;
-  pop.innerHTML='<span class="x" onclick="hideDef()">✕</span><div class="w">'+furi(d.w)+'</div>'+(d.r?'<div class="r">'+d.r+'</div>':'')+'<div class="m">'+(d.m||'lecture seule')+'</div>';
-  pop.style.display='block';
-  pop.style.left=Math.max(8,Math.min(px-20,window.innerWidth-pop.offsetWidth-12))+'px';
-  pop.style.top=Math.min(py+16,window.innerHeight-pop.offsetHeight-12)+'px';
-  return true;
-}
-function defAt(px,py,word){const d=lookupDef(word);return d?defShow(px,py,d):false;}
-function showDef(e){
-  const sel=window.getSelection?String(window.getSelection()):'';
-  defAt((e&&e.clientX)||window.innerWidth/2,(e&&e.clientY)||120,sel);
-}
-// suite continue de caractères japonais sous un point + index du caractère touché
-function jpRunAt(x,y){
-  let range=null;
-  if(document.caretRangeFromPoint)range=document.caretRangeFromPoint(x,y);
-  else if(document.caretPositionFromPoint){const p=document.caretPositionFromPoint(x,y);if(p){range=document.createRange();range.setStart(p.offsetNode,p.offset);range.collapse(true);}}
-  if(!range)return null;
-  let node=range.startContainer;
-  // si on touche la lecture (rt) d'un ruby, repartir du kanji de base
-  if(node&&node.nodeType===3&&node.parentNode&&node.parentNode.nodeName==='RT'){
-    const ruby=node.parentNode.parentNode;
-    if(ruby){const base=[].slice.call(ruby.childNodes).filter(n=>n.nodeName!=='RT').map(n=>n.textContent).join('');
-      if(/[一-鿿]/.test(base))return {run:base,rel:0};}
-  }
-  if(!node||node.nodeType!==3)return null;
-  const t=node.textContent;let i=range.startOffset;
-  const isJ=c=>/[一-鿿々〆ヶぁ-んァ-ンー]/.test(c||'');
-  if(i>=t.length)i=t.length-1;
-  if(i<0)return null;
-  if(!isJ(t[i])){if(i>0&&isJ(t[i-1]))i--;else return null;}
-  let s=i,e=i;while(s>0&&isJ(t[s-1]))s--;while(e<t.length-1&&isJ(t[e+1]))e++;
-  return {run:t.slice(s,e+1),rel:i-s};
-}
-// définition du mot connu le plus long qui COUVRE le caractère touché (gère 影[響], 勉[強] au milieu d'une phrase)
-function defAtPoint(x,y){
-  const r=jpRunAt(x,y);if(!r)return false;
-  const run=r.run,rel=r.rel;
-  for(let st=0;st<=rel&&st<run.length;st++){
-    const d=lookupDef(run.slice(st,st+14));
-    if(d&&(st+d.w.length)>rel)return defShow(x,y,d);
-  }
-  const d2=lookupDef(run);
-  return d2?defShow(x,y,d2):false;
-}
-// appui long (≈450 ms) = définition sur mobile ; double-clic conservé pour desktop
-let _lpT=null,_lpX=0,_lpY=0,_lpGuard=false;
-function _lpClear(){if(_lpT){clearTimeout(_lpT);_lpT=null;}}
-document.addEventListener('touchstart',function(e){
-  if(!e.touches||e.touches.length!==1){_lpClear();return;}
-  const t=e.touches[0];_lpX=t.clientX;_lpY=t.clientY;_lpClear();
-  _lpT=setTimeout(function(){
-    _lpT=null;
-    let ok=defAtPoint(_lpX,_lpY);
-    if(!ok&&window.getSelection)ok=defAt(_lpX,_lpY,String(window.getSelection()));
-    if(ok){_lpGuard=true;setTimeout(function(){_lpGuard=false;},700);}
-  },450);
-},{passive:true});
-document.addEventListener('touchmove',function(e){
-  if(!_lpT||!e.touches[0])return;const t=e.touches[0];
-  if(Math.abs(t.clientX-_lpX)>10||Math.abs(t.clientY-_lpY)>10)_lpClear();
-},{passive:true});
-document.addEventListener('touchend',function(e){
-  _lpClear();
-  if(_lpGuard&&e.cancelable)e.preventDefault();   // évite le clic fantôme qui refermerait la bulle
-},{passive:false});
-document.addEventListener('dblclick',showDef);
-// clic/tap simple sur un mot japonais (hors boutons) = lecture + définition ; pratique sur mobile
-document.addEventListener('click',function(e){
-  if(_lpGuard)return;
-  const pop=document.getElementById('defPop');
-  if(pop&&pop.contains(e.target))return;            // clic dans la bulle
-  if(e.target.closest&&e.target.closest('button,a,input,textarea,select,label,.opt,.chip,.start,.navtoggle,.furibtn,.listenbtn,.topnav')){
-    if(pop&&pop.style.display==='block')hideDef();return;
-  }
-  if(defAtPoint(e.clientX,e.clientY))return;          // mot reconnu → définition
-  if(pop&&pop.style.display==='block')hideDef();
-});
-window.addEventListener('scroll',hideDef,true);
+/* dictionnaire, lookup & bulle de définition → dict.js */
+
 
 function showScreen(id){stopSpeak();['home','quiz','result','learn'].forEach(x=>document.getElementById(x).style.display=x===id?'block':'none');window.scrollTo(0,0)}
 function goHome(){showScreen('home');renderHome();renderCats()}
 function resetAll(){if(confirm('Effacer tout (niveau, historique, erreurs) ?')){S={skill:blank(),total:0,right:0,bestStreak:0,streak:0,wrong:[],history:[],lastDiag:null};save();renderHome();renderCats()}}
 
-buildDefs();applyFontScale();renderCats();renderHome();cloudInit();
+initDefs({singleTap:true});applyFontScale();renderCats();renderHome();cloudInit();
 </script>
 <script>if('serviceWorker'in navigator){
   var reloaded=false, waitingWorker=null;
