@@ -42,18 +42,39 @@
   }
 
   // ---------- analyse visuelle : jetons colorés par rôle ----------
+  // Les particules doivent former leur PROPRE bloc : on détache les particules
+  // collées en tête/queue d'un jeton nominal (ex. « の原因は » → の · 原因 · は).
+  var PARTGLOSS={'は':'thème','が':'sujet','を':'COD','に':'à / lieu','へ':'direction','で':'moyen / lieu','と':'et / avec','も':'aussi','の':'de','から':'depuis','まで':'jusqu’à','より':'que (comp.)','ね':'n’est-ce pas','よ':'emphase','か':'question'};
+  function _pg(p){ return PARTGLOSS[p]||'particule'; }
+  function splitParticles(jp,gloss){
+    var out=[], lead='のはがをにへでとも';
+    // particules de tête (seulement si un kanji suit IMMÉDIATEMENT → évite もう, など…)
+    while(jp.length>1 && lead.indexOf(jp.charAt(0))>=0 && /^[一-鿿]/.test(jp.slice(1))){ out.push({jp:jp.charAt(0),gloss:_pg(jp.charAt(0)),role:'part'}); jp=jp.slice(1); }
+    // particules de queue (collées après un kanji ou une parenthèse de lecture)
+    var TRAIL=['からは','までは','には','では','とは','へは','のは','をば','から','まで','より','は','が','を','に','へ','で','と','も','の','ね','よ','か'], trail=[], m=null;
+    for(var i=0;i<TRAIL.length;i++){ var p=TRAIL[i]; if(jp.length>p.length && jp.slice(-p.length)===p){ var b=jp.charAt(jp.length-p.length-1); if(b==='）'||/[一-鿿]/.test(b)){ m=p; break; } } }
+    if(m){
+      if(m==='から'||m==='まで'||m==='より') trail=[{jp:m,gloss:_pg(m),role:'part'}];
+      else trail=m.split('').map(function(c){return {jp:c,gloss:_pg(c),role:'part'};});
+      jp=jp.slice(0,jp.length-m.length);
+    }
+    var g2=gloss.replace(/\s*\((?:th[eè]me|sujet|COD|objet|compl[eé]ment|lieu|temps|direction|moyen)[^)]*\)\s*$/i,'').trim();
+    out.push({jp:jp,gloss:g2||gloss,role:'noun'});
+    return out.concat(trail);
+  }
   function visualBreak(str,opts){
     if(!str) return '';
     var parts=String(str).split(' · ');
     var hasPart=false,hasVerb=false,hasNoun=false,hasAdj=false;
-    var pills=parts.map(function(seg){
-      seg=seg.trim(); if(!seg) return '';
+    var pills='';
+    parts.forEach(function(seg){
+      seg=seg.trim(); if(!seg) return;
       var gloss='',jp=seg,mg=seg.match(/«\s*([^»]*?)\s*»/);
       if(mg){ gloss=mg[1]; jp=seg.slice(0,mg.index); }
       jp=jp.replace(/^[→\s]+/,'').replace(/[。、・\s→]+$/,'').replace(/（[^）]*$/,'').trim();
-      if(!jp) return '';
+      if(!jp) return;
       if(!/[一-鿿ぁ-んァ-ンー々]/.test(jp) || (!gloss && /[A-Za-zÀ-ÿ]{2,}/.test(jp) && !/[一-鿿]/.test(jp))){
-        return '<span class="tok tok-note"><span class="tok-g">'+(gloss||jp)+'</span></span>';
+        pills+='<span class="tok tok-note"><span class="tok-g">'+(gloss||jp)+'</span></span>'; return;
       }
       var jpPlain=jp.replace(/（[^）]*）/g,'').replace(/[（）]/g,'');
       var role='noun';
@@ -61,10 +82,14 @@
       else if(/^[はがをにへでとやかもねよのばらでもへ〜～ずば・／\/]+$/.test(jpPlain)) role='part';
       else if(/adjectif|い-adj|な-adj/i.test(gloss)) role='adj';
       else if(/particule|th[eè]me|\bCOD\b|sujet|direction|marque|emphase/i.test(gloss) && jpPlain.length<=3) role='part';
-      if(role==='part')hasPart=true; else if(role==='verb')hasVerb=true; else if(role==='adj')hasAdj=true; else hasNoun=true;
-      var jpHtml=jp.replace(/([一-鿿々]+)（([ぁ-んァ-ンー・]+)）/g,'<ruby>$1<rt>$2</rt></ruby>');
-      return '<span class="tok tok-'+role+'"><span class="tok-jp">'+jpHtml+'</span>'+(gloss?'<span class="tok-g">'+gloss+'</span>':'')+'</span>';
-    }).join('');
+      var toks=(role==='noun'&&/[一-鿿]/.test(jpPlain))?splitParticles(jp,gloss):[{jp:jp,gloss:gloss,role:role}];
+      toks.forEach(function(t){
+        if(!t.jp) return;
+        if(t.role==='part')hasPart=true; else if(t.role==='verb')hasVerb=true; else if(t.role==='adj')hasAdj=true; else hasNoun=true;
+        var jpHtml=t.jp.replace(/([一-鿿々]+)（([ぁ-んァ-ンー・]+)）/g,'<ruby>$1<rt>$2</rt></ruby>');
+        pills+='<span class="tok tok-'+t.role+'"><span class="tok-jp">'+jpHtml+'</span>'+(t.gloss?'<span class="tok-g">'+t.gloss+'</span>':'')+'</span>';
+      });
+    });
     var leg=[];
     if(hasNoun)leg.push('<span><i class="tok-noun"></i>nom / groupe</span>');
     if(hasPart)leg.push('<span><i class="tok-part"></i>particule</span>');
@@ -97,7 +122,7 @@
   function ensurePopup(){
     if(!document.getElementById('jlpt-defpop-css')){
       var st=document.createElement('style'); st.id='jlpt-defpop-css';
-      st.textContent='#defPop{position:fixed;z-index:95;max-width:280px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius,18px);padding:12px 15px 13px;box-shadow:var(--elev-pop,0 24px 64px rgba(18,27,54,.55));-webkit-backdrop-filter:var(--glass,blur(16px) saturate(140%));backdrop-filter:var(--glass,blur(16px) saturate(140%));font-size:.92rem;display:none;line-height:1.5}#defPop .w{font-size:1.2rem;font-weight:700}#defPop .r{color:var(--accent2);font-size:.85rem;margin:1px 0 5px}#defPop .m{color:var(--txt)}#defPop .x{float:right;color:var(--muted);cursor:pointer;margin:-2px -4px 0 8px;font-size:.95rem}';
+      st.textContent='#defPop{position:fixed;z-index:95;max-width:280px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius,18px);padding:12px 15px 13px;box-shadow:var(--elev-pop,0 24px 64px rgba(18,27,54,.55));-webkit-backdrop-filter:var(--glass,blur(16px) saturate(140%));backdrop-filter:var(--glass,blur(16px) saturate(140%));font-size:.92rem;display:none;line-height:1.5}#defPop .w{font-size:1.2rem;font-weight:700}#defPop .r{color:var(--accent2);font-size:.85rem;margin:1px 0 5px}#defPop .m{color:var(--txt)}#defPop .x{float:right;color:var(--muted);cursor:pointer;margin:-2px -4px 0 8px;font-size:.95rem}#defPop .sp{background:transparent;border:none;color:var(--accent2);cursor:pointer;vertical-align:-3px;padding:0 2px}#defPop .sp:active{transform:scale(.9)}';
       (document.head||document.documentElement).appendChild(st);
     }
     var pop=document.getElementById('defPop');
@@ -105,9 +130,17 @@
     return pop;
   }
   function hideDef(){ var p=document.getElementById('defPop'); if(p)p.style.display='none'; }
+  // ---------- prononciation (TTS, ja-JP) ----------
+  var _jaVoice=null;
+  function _pickVoice(){ try{ var vs=(window.speechSynthesis&&speechSynthesis.getVoices())||[]; _jaVoice=vs.filter(function(v){return /ja[-_]?jp/i.test(v.lang);})[0]||vs.filter(function(v){return /^ja/i.test(v.lang);})[0]||vs.filter(function(v){return /japanese|日本語/i.test(v.name);})[0]||null; }catch(e){} }
+  if('speechSynthesis'in window){ _pickVoice(); try{ speechSynthesis.onvoiceschanged=_pickVoice; }catch(e){} }
+  function speakJa(t){ if(!t||!('speechSynthesis'in window)) return; try{ speechSynthesis.cancel(); var u=new SpeechSynthesisUtterance(String(t)); u.lang='ja-JP'; u.rate=0.9; if(_jaVoice)u.voice=_jaVoice; speechSynthesis.speak(u); }catch(e){} }
+  function jlptSay(){ var p=document.getElementById('defPop'); if(p&&p.dataset&&p.dataset.say) speakJa(p.dataset.say); }
+  var _SPK=('speechSynthesis'in window)?'<button class="sp" onclick="jlptSay()" title="Prononcer" aria-label="Prononcer"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z"/><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/></svg></button>':'';
   function defShow(px,py,d){
     var pop=ensurePopup(); if(!d) return false;
-    pop.innerHTML='<span class="x" onclick="hideDef()">✕</span><div class="w">'+furi(d.w)+'</div>'+(d.r?'<div class="r">'+d.r+'</div>':'')+'<div class="m">'+(d.m||'lecture seule')+'</div>';
+    pop.innerHTML='<span class="x" onclick="hideDef()">✕</span><div class="w">'+furi(d.w)+' '+_SPK+'</div>'+(d.r?'<div class="r">'+d.r+'</div>':'')+'<div class="m">'+(d.m||'lecture seule')+'</div>';
+    try{ pop.dataset.say=(d.r||d.w); }catch(e){}
     pop.style.display='block';
     pop.style.left=Math.max(8,Math.min(px-20,window.innerWidth-pop.offsetWidth-12))+'px';
     pop.style.top=Math.min(py+16,window.innerHeight-pop.offsetHeight-12)+'px';
@@ -188,4 +221,5 @@
   window.furi=furi; window.aerate=aerate; window.visualBreak=visualBreak; window.jpBlock=jpBlock;
   window.lookupDef=lookupDef; window.hideDef=hideDef; window.defShow=defShow; window.defAt=defAt;
   window.showDef=showDef; window.defAtPoint=defAtPoint; window.initDefs=initDefs;
+  window.speakJa=speakJa; window.jlptSay=jlptSay;
 })();
