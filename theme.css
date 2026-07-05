@@ -3,7 +3,7 @@
    Source UNIQUE des thèmes, partagée par toutes les pages.
 
    Architecture à deux niveaux :
-     1. primitifs   — palette Nord brute + échelles (indépendants du thème)
+     1. primitifs   — palettes brutes + échelles (indépendants du thème)
      2. sémantiques — rôles de l'interface (--bg, --card, --accent…)
    Un thème = un mapping « sémantique → primitif ».
    Ajouter un thème = un nouveau bloc :root[data-theme="…"] qui
@@ -19,9 +19,20 @@
   --nord11:#bf616a; --nord12:#d08770; --nord13:#ebcb8b; --nord14:#a3be8c; --nord15:#b48ead; /* Aurora */
 
   /* Palette Nord — canaux R,V,B (pour composer des rgba/alpha) */
-  --nord0-rgb:46,52,64; --nord1-rgb:59,66,82; --nord2-rgb:67,76,94;
-  --nord5-rgb:229,233,240; --nord6-rgb:236,239,244; --nord10-rgb:94,129,172;
-  --white-rgb:255,255,255;
+  --nord0-rgb:46,52,64;   --nord1-rgb:59,66,82;    --nord2-rgb:67,76,94;    --nord3-rgb:76,86,106;
+  --nord4-rgb:216,222,233;--nord5-rgb:229,233,240; --nord6-rgb:236,239,244;
+  --nord7-rgb:143,188,187;--nord8-rgb:136,192,208; --nord9-rgb:129,161,193; --nord10-rgb:94,129,172;
+  --nord11-rgb:191,97,106;--nord12-rgb:208,135,112;--nord13-rgb:235,203,139;--nord14-rgb:163,190,140;--nord15-rgb:180,142,173;
+
+  /* Palette « vive » (hors Nord) — statuts saturés, dégradés, niveaux */
+  --c-green:#3ecf8e;  --c-green-rgb:62,207,142;
+  --c-yellow:#f5b942; --c-yellow-rgb:245,185,66;
+  --c-red:#ef5365;    --c-red-rgb:239,83,101;
+  --c-cyan:#3fb6e0;   --c-cyan-rgb:63,182,224;
+  --c-pink:#e2466b;   --c-pink-rgb:226,70,107;
+  --c-blue:#1f6feb;   --c-blue-rgb:31,111,235;
+  --c-amber:#9a6700;  --c-amber-rgb:154,103,0;
+  --c-white:#fff;     --c-black:#000; --c-black-rgb:0,0,0; --white-rgb:255,255,255;
 
   /* Échelle d'espacement */
   --space-1:6px; --space-2:10px; --space-3:14px; --space-4:18px; --space-5:22px; --space-6:26px;
@@ -32,6 +43,42 @@
 
   /* Échelles de police — réglées par l'utilisateur (JS écrase en inline) */
   --fs-ui:1; --fs-jp:1;
+
+  /* ---- Sémantiques COMMUNES (identiques dans tous les thèmes) ---- */
+  /* Premier plan sur surfaces vives (pastilles, boutons colorés) */
+  --on-vivid:var(--c-white);
+  --on-vivid-soft:rgba(var(--white-rgb),.85);
+  --on-vivid-mute:rgba(var(--white-rgb),.78);
+  /* Sélection de texte */
+  --sel:rgba(var(--nord8-rgb),.32);
+  /* Rôles grammaticaux — pastilles d'analyse */
+  --role-noun:#3f97a8; --role-part:#b05a9a; --role-verb:var(--nord10); --role-adj:#cf8144;
+  --role-note:rgba(var(--nord3-rgb),.35);
+  /* Teintes de statut — puces, options (fond translucide) */
+  --tint-ok:rgba(var(--c-green-rgb),.16);
+  --tint-warn:rgba(var(--c-yellow-rgb),.16);
+  --tint-bad:rgba(var(--c-red-rgb),.16);
+  --tint-cyan:rgba(var(--c-cyan-rgb),.15);
+  --tint-pink:rgba(var(--c-pink-rgb),.15);
+  /* Lavis — bannières, grandes zones */
+  --wash-ok:rgba(var(--c-green-rgb),.11);
+  --wash-warn:rgba(var(--c-yellow-rgb),.12);
+  /* Halos — encadrés de corrigé */
+  --glow-ok:rgba(var(--nord14-rgb),.9);
+  --glow-bad:rgba(var(--nord11-rgb),.9);
+  /* Niveaux JLPT (texte fort · texte clair · fond de badge) */
+  --lvl-n3:var(--c-blue);  --lvl-n3-soft:#5b9bff; --lvl-n3-bg:rgba(var(--c-blue-rgb),.2);
+  --lvl-n4:var(--c-amber); --lvl-n4-soft:#c98a00; --lvl-n4-bg:rgba(var(--c-amber-rgb),.18);
+  /* Encres sombres sur fonds clairs/vifs */
+  --ink-strong:#11151c; --ink-accent2:#06121a;
+  /* Voile plein écran (modale iOS) */
+  --scrim:rgba(var(--c-black-rgb),.75);
+  /* Ombres portées & dégradés */
+  --shadow-btn:0 6px 18px rgba(var(--nord10-rgb),.28);
+  --shadow-drop:0 6px 20px rgba(var(--c-black-rgb),.45);
+  --grad-train:linear-gradient(135deg,rgba(var(--c-pink-rgb),.12),rgba(var(--c-cyan-rgb),.1));
+  --grad-gauge:linear-gradient(90deg,var(--bad),var(--warn),var(--ok));
+  --grad-bar:linear-gradient(90deg,var(--accent),var(--accent2));
 }
 
 /* ---------- 2. Sémantiques — thème sombre (défaut) ---------- */
@@ -65,7 +112,7 @@
   --accent:var(--nord10);
   --accent2:var(--nord10);
   --ok:#5e8c4f; --warn:#a9882f; --bad:#b04a52;   /* Aurora assombri pour le contraste sur clair */
-  --on-accent:#fff;
+  --on-accent:var(--c-white);
   --navbg:rgba(var(--nord6-rgb),.6);
   --glow:rgba(var(--nord10-rgb),.14);
   --shadow-rgb:96,150,225;

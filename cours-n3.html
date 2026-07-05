@@ -16,8 +16,8 @@
 <style>
   *{box-sizing:border-box}
   html{font-size:calc(16px * var(--fs-ui))}   /* taille réglée dans l'app (Entraînement) */
-  #updateBanner{position:fixed;left:12px;right:12px;bottom:12px;z-index:90;background:var(--accent);color:#fff;border-radius:12px;padding:11px 14px;display:none;align-items:center;gap:12px;box-shadow:0 6px 20px rgba(0,0,0,.45);font-size:.92rem;max-width:560px;margin:0 auto}
-  #updateBanner button{margin-left:auto;background:#fff;color:#11151c;border:none;border-radius:8px;padding:8px 15px;font-weight:700;cursor:pointer;white-space:nowrap}
+  #updateBanner{position:fixed;left:12px;right:12px;bottom:12px;z-index:90;background:var(--accent);color:var(--on-vivid);border-radius:12px;padding:11px 14px;display:none;align-items:center;gap:12px;box-shadow:var(--shadow-drop);font-size:.92rem;max-width:560px;margin:0 auto}
+  #updateBanner button{margin-left:auto;background:var(--on-vivid);color:var(--ink-strong);border:none;border-radius:8px;padding:8px 15px;font-weight:700;cursor:pointer;white-space:nowrap}
   #updateBanner button:active{transform:scale(.96)}
   body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6}
   header{padding:24px 20px 14px;text-align:center;background:radial-gradient(900px 280px at 50% -50%,var(--glow),transparent),var(--card)}
@@ -37,7 +37,7 @@
   .subnav{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:8px 12px;border-bottom:1px solid var(--line)}
   .subnav a{color:var(--muted);text-decoration:none;font-size:.8rem;padding:4px 10px;border:1px solid var(--line);border-radius:999px}
   .subnav a:hover{color:var(--accent2);border-color:var(--accent2)}
-  ::selection{background:rgba(136,192,208,.32)}
+  ::selection{background:var(--sel)}
   h2{margin:36px 0 12px;font-size:1.3rem;border-left:4px solid var(--accent);padding-left:11px;scroll-margin-top:96px}
   h3{margin:24px 0 8px;color:var(--warn);font-size:1.05rem}
   .lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin:18px 0;overflow:hidden;box-shadow:var(--elev);-webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass)}
@@ -45,7 +45,7 @@
   .lesson>summary::-webkit-details-marker{display:none}
   .lesson[open]>summary{border-bottom:1px solid var(--line)}
   .lesson .body{padding:8px 18px 16px}
-  .wk{font-size:.72rem;background:rgba(63,182,224,.15);color:var(--accent2);padding:2px 9px;border-radius:999px;font-weight:700}
+  .wk{font-size:.72rem;background:var(--tint-cyan);color:var(--accent2);padding:2px 9px;border-radius:999px;font-weight:700}
   .g{border-bottom:1px solid var(--line);padding:14px 0}
   .g:last-child{border-bottom:none}
   .g .form{font-size:calc(1.15rem * var(--fs-jp));font-weight:700;color:var(--accent)}
@@ -71,21 +71,21 @@
   footer{text-align:center;color:var(--muted);font-size:.82rem;padding:30px 20px 50px}
   a{color:var(--accent2)}
 td.lv{font-weight:700;text-align:center;font-size:.8em}
-td.lv.N3{color:#1f6feb}
-td.lv.N4{color:#9a6700}
+td.lv.N3{color:var(--lvl-n3)}
+td.lv.N4{color:var(--lvl-n4)}
 .g .ex .an{margin-top:7px;padding-top:7px;border-top:1px dashed var(--line);font-size:.85rem;color:var(--muted);line-height:1.55}
 .g .ex .an .anl{margin-top:4px}
 .g .ex .an .anl:first-child{margin-top:0}
 .g .ex .vbreak{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;align-items:stretch}
-.g .ex .tok{display:flex;flex-direction:column;gap:3px;align-items:center;color:#fff;padding:5px 10px;border-radius:11px;border:none;max-width:100%;box-sizing:border-box;min-width:0}
+.g .ex .tok{display:flex;flex-direction:column;gap:3px;align-items:center;color:var(--on-vivid);padding:5px 10px;border-radius:11px;border:none;max-width:100%;box-sizing:border-box;min-width:0}
 .g .ex .tok .tok-jp{font-size:1rem;line-height:1.5;text-align:center;white-space:normal;overflow-wrap:anywhere}
-.g .ex .tok .tok-jp rt{visibility:visible;font-size:.5em;color:rgba(255,255,255,.78)}
-.g .ex .tok .tok-g{font-size:.7rem;color:rgba(255,255,255,.85);text-align:center;line-height:1.3}
-.tok-noun{background:#3f97a8}
-.tok-part{background:#b05a9a}
-.tok-verb{background:#5e81ac}
-.tok-adj{background:#cf8144}
-.g .ex .tok-note{background:rgba(76,86,106,.35);color:var(--muted);justify-content:center}
+.g .ex .tok .tok-jp rt{visibility:visible;font-size:.5em;color:var(--on-vivid-mute)}
+.g .ex .tok .tok-g{font-size:.7rem;color:var(--on-vivid-soft);text-align:center;line-height:1.3}
+.tok-noun{background:var(--role-noun)}
+.tok-part{background:var(--role-part)}
+.tok-verb{background:var(--role-verb)}
+.tok-adj{background:var(--role-adj)}
+.g .ex .tok-note{background:var(--role-note);color:var(--muted);justify-content:center}
 .g .ex .tok-note .tok-g{font-style:italic;font-size:.76rem;color:var(--muted)}
 </style>
 </head>

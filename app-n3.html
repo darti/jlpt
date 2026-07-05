@@ -32,26 +32,26 @@
   /* icônes monochromes (héritent de la couleur du texte) */
   .ic{display:inline-block;width:1em;height:1em;vertical-align:-0.14em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
   .ic-f{fill:currentColor;stroke:none}
-  ::selection{background:rgba(136,192,208,.32)}
+  ::selection{background:var(--sel)}
   .cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0}
   .cats button{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:999px;padding:7px 14px;cursor:pointer;font-size:.86rem}
   .cats button.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
-  .start{display:block;width:100%;margin:8px 0;background:var(--accent);border:none;color:#fff;font-weight:700;font-size:1.02rem;padding:14px;border-radius:16px;cursor:pointer;box-shadow:0 6px 18px rgba(94,129,172,.28)}
+  .start{display:block;width:100%;margin:8px 0;background:var(--accent);border:none;color:var(--on-vivid);font-weight:700;font-size:1.02rem;padding:14px;border-radius:16px;cursor:pointer;box-shadow:var(--shadow-btn)}
   .start:hover{filter:brightness(1.08)}
   .ghost{background:var(--card2);color:var(--txt)}
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin:18px 0;box-shadow:var(--elev);-webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass)}
   .qmeta{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.8rem;margin-bottom:10px;gap:8px}
   .tag{background:var(--card2);border:1px solid var(--line);padding:2px 9px;border-radius:999px}
   .diff{font-size:.72rem;padding:2px 8px;border-radius:999px;font-weight:700}
-  .d1{background:rgba(62,207,142,.16);color:var(--ok)} .d2{background:rgba(245,185,66,.16);color:var(--warn)} .d3{background:rgba(239,83,101,.16);color:var(--bad)}
+  .d1{background:var(--tint-ok);color:var(--ok)} .d2{background:var(--tint-warn);color:var(--warn)} .d3{background:var(--tint-bad);color:var(--bad)}
   .qtext{font-size:calc(1.3rem * var(--fs-jp));margin:6px 0 16px;line-height:1.7}
   .jpbig{font-size:calc(1.7rem * var(--fs-jp));font-weight:800;color:var(--accent2)}
   .jpbig.kanjibig{font-size:calc(3.4rem * var(--fs-jp));font-weight:400;line-height:1.05}
   .qtext .blank{color:var(--accent);font-weight:700;border-bottom:2px dashed var(--accent);padding:0 14px}
   .opt{display:block;width:100%;text-align:left;background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:14px;padding:13px 16px;margin:9px 0;cursor:pointer;font-size:calc(1.04rem * var(--fs-jp));transition:.12s}
-  .opt:hover{border-color:var(--accent2)} .opt.correct{background:rgba(62,207,142,.16);border-color:var(--ok)} .opt.wrong{background:rgba(239,83,101,.15);border-color:var(--bad)} .opt:disabled{cursor:default}
+  .opt:hover{border-color:var(--accent2)} .opt.correct{background:var(--tint-ok);border-color:var(--ok)} .opt.wrong{background:var(--tint-bad);border-color:var(--bad)} .opt:disabled{cursor:default}
   .expl{margin-top:14px;padding:15px 17px;border-radius:11px;font-size:1.02rem;display:none;line-height:1.68}
-  .expl.show{display:block} .expl.good{background:transparent;border:1px solid var(--ok);box-shadow:inset 0 0 22px -15px rgba(163,190,140,.9)} .expl.poor{background:transparent;border:1px solid var(--bad);box-shadow:inset 0 0 22px -15px rgba(191,97,106,.9)} .expl b{color:var(--accent2)}
+  .expl.show{display:block} .expl.good{background:transparent;border:1px solid var(--ok);box-shadow:inset 0 0 22px -15px var(--glow-ok)} .expl.poor{background:transparent;border:1px solid var(--bad);box-shadow:inset 0 0 22px -15px var(--glow-bad)} .expl b{color:var(--accent2)}
   .expl .ex-head{font-size:1rem;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
   .expl .ex-rule{margin-top:10px}
   .expl .ex-blk{margin-top:14px;padding-top:13px;border-top:1px dashed var(--line);font-size:.96rem}
@@ -64,16 +64,16 @@
   .jline:first-child{margin-top:0}
   /* analyse visuelle : jetons colorés par rôle grammatical */
   .vbreak{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px;align-items:stretch}
-  .tok{display:flex;flex-direction:column;gap:3px;align-items:center;justify-content:flex-start;color:#fff;
+  .tok{display:flex;flex-direction:column;gap:3px;align-items:center;justify-content:flex-start;color:var(--on-vivid);
        padding:6px 11px 6px;border-radius:12px;border:none;max-width:100%;box-sizing:border-box;min-width:0}
   .tok .tok-jp{font-size:calc(1.02rem * var(--fs-jp));line-height:1.55;text-align:center;white-space:normal;overflow-wrap:anywhere}
-  .tok .tok-jp rt{visibility:visible;font-size:.5em;color:rgba(255,255,255,.78);font-weight:400}
-  .tok .tok-g{font-size:.72rem;color:rgba(255,255,255,.85);text-align:center;line-height:1.3}
-  .tok-noun{background:#3f97a8}
-  .tok-part{background:#b05a9a}
-  .tok-verb{background:#5e81ac}
-  .tok-adj{background:#cf8144}
-  .tok-note{background:rgba(76,86,106,.35);color:var(--muted);justify-content:center}
+  .tok .tok-jp rt{visibility:visible;font-size:.5em;color:var(--on-vivid-mute);font-weight:400}
+  .tok .tok-g{font-size:.72rem;color:var(--on-vivid-soft);text-align:center;line-height:1.3}
+  .tok-noun{background:var(--role-noun)}
+  .tok-part{background:var(--role-part)}
+  .tok-verb{background:var(--role-verb)}
+  .tok-adj{background:var(--role-adj)}
+  .tok-note{background:var(--role-note);color:var(--muted);justify-content:center}
   .tok-note .tok-g{font-size:.78rem;font-style:italic;color:var(--muted)}
   .vbleg{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;font-size:.72rem;color:var(--muted)}
   .vbleg span{display:inline-flex;align-items:center;gap:5px}
@@ -81,14 +81,14 @@
   .next{margin-top:14px;width:100%;background:transparent;border:1px solid var(--accent2);color:var(--accent2);font-weight:700;padding:12px;border-radius:11px;cursor:pointer;font-size:1rem;display:none}
   .next.show{display:block}
   .bar{height:8px;background:var(--card2);border-radius:999px;overflow:hidden;margin:4px 0 14px;border:1px solid var(--line)}
-  .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:.3s}
+  .bar>i{display:block;height:100%;background:var(--grad-bar);width:0;transition:.3s}
   /* proba gauge */
   .gauge{position:relative;text-align:center;padding:8px 0}
   .gnum{font-size:2.8rem;font-weight:800;line-height:1}
   .glabel{color:var(--muted);font-size:.82rem}
   .conf{font-size:.78rem;color:var(--muted);margin-top:4px}
-  .seg{height:16px;border-radius:999px;background:linear-gradient(90deg,var(--bad),var(--warn),var(--ok));position:relative;margin:14px 0 6px;border:1px solid var(--line)}
-  .seg>.mk{position:absolute;top:-5px;width:4px;height:26px;background:#fff;border-radius:2px;transform:translateX(-50%);box-shadow:0 0 6px #000}
+  .seg{height:16px;border-radius:999px;background:var(--grad-gauge);position:relative;margin:14px 0 6px;border:1px solid var(--line)}
+  .seg>.mk{position:absolute;top:-5px;width:4px;height:26px;background:var(--on-vivid);border-radius:2px;transform:translateX(-50%);box-shadow:0 0 6px var(--c-black)}
   .row{display:flex;align-items:center;gap:10px;margin:8px 0}
   .row .name{width:130px;font-size:.86rem}
   .row .track{flex:1;height:13px;background:var(--card2);border-radius:999px;overflow:hidden;border:1px solid var(--line)}
@@ -99,7 +99,7 @@
   .stat .n{font-size:1.4rem;font-weight:700} .stat .l{font-size:.74rem;color:var(--muted)}
   .muted{color:var(--muted);font-size:.86rem}
   .banner{border-radius:12px;padding:12px 15px;margin:10px 0;font-size:.9rem;display:flex;gap:10px;align-items:center}
-  .banner.due{background:rgba(245,185,66,.12);border:1px solid var(--warn)} .banner.ok{background:rgba(62,207,142,.1);border:1px solid var(--ok)}
+  .banner.due{background:var(--wash-warn);border:1px solid var(--warn)} .banner.ok{background:var(--wash-ok);border:1px solid var(--ok)}
   .reset{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:7px 12px;cursor:pointer;font-size:.8rem}
   .reset:hover{border-color:var(--accent);color:var(--accent)}
   h2{font-size:1.1rem;border-left:4px solid var(--accent);padding-left:10px;margin:22px 0 8px}
@@ -110,8 +110,8 @@
   rt{visibility:hidden;color:var(--accent2);font-size:.5em;font-weight:400;user-select:none}
   #qtext.furi-on rt, ruby.show rt{visibility:visible}
   .furibtn{margin-left:auto;background:var(--card2);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:3px 10px;cursor:pointer;font-size:.74rem}
-  .furibtn.on{background:var(--accent2);border-color:var(--accent2);color:#06121a;font-weight:700}
-  .listenbtn{background:#b48ead;border:none;color:#2e3440;font-weight:700;font-size:1.05rem;padding:12px 20px;border-radius:12px;cursor:pointer}
+  .furibtn.on{background:var(--accent2);border-color:var(--accent2);color:var(--ink-accent2);font-weight:700}
+  .listenbtn{background:var(--nord15);border:none;color:var(--nord0);font-weight:700;font-size:1.05rem;padding:12px 20px;border-radius:12px;cursor:pointer}
   .listenbtn:active{transform:scale(.96)}
   /* ---- mise en page responsive ---- */
   .trow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:11px}
@@ -125,7 +125,7 @@
   #defPop .x{float:right;color:var(--muted);cursor:pointer;margin:-2px -4px 0 8px;font-size:.95rem}
   .tgrid{display:grid;grid-template-columns:1fr;gap:8px}
   .tgrid .start{margin:0}
-  .train{background:linear-gradient(135deg,rgba(226,70,107,.12),rgba(63,182,224,.1));border-color:var(--accent)}
+  .train{background:var(--grad-train);border-color:var(--accent)}
   /* tableau de bord en colonnes (masonry) qui remplit la largeur sur desktop */
   .masonry{column-gap:16px}
   .masonry>.card{break-inside:avoid;margin:0 0 16px}
@@ -161,8 +161,8 @@
   .copychip{cursor:pointer;color:var(--accent2);border-bottom:1px dashed var(--accent2);white-space:nowrap}
   .copychip:active{opacity:.6}
   /* bandeau « nouvelle version disponible » */
-  #updateBanner{position:fixed;left:12px;right:12px;bottom:12px;z-index:90;background:var(--accent);color:#fff;border-radius:12px;padding:11px 14px;display:none;align-items:center;gap:12px;box-shadow:0 6px 20px rgba(0,0,0,.45);font-size:.92rem;max-width:560px;margin:0 auto}
-  #updateBanner button{margin-left:auto;background:#fff;color:#11151c;border:none;border-radius:8px;padding:8px 15px;font-weight:700;cursor:pointer;white-space:nowrap}
+  #updateBanner{position:fixed;left:12px;right:12px;bottom:12px;z-index:90;background:var(--accent);color:var(--on-vivid);border-radius:12px;padding:11px 14px;display:none;align-items:center;gap:12px;box-shadow:var(--shadow-drop);font-size:.92rem;max-width:560px;margin:0 auto}
+  #updateBanner button{margin-left:auto;background:var(--on-vivid);color:var(--ink-strong);border:none;border-radius:8px;padding:8px 15px;font-weight:700;cursor:pointer;white-space:nowrap}
   #updateBanner button:active{transform:scale(.96)}
 </style>
 </head>
@@ -899,7 +899,10 @@ const BANK=[
 /* =================== MODÈLE & ÉTAT =================== */
 const CATS=['grammaire','vocabulaire','kanji','lecture','ecoute'];
 const LABELS={grammaire:'文法 Grammaire',vocabulaire:'語彙 Vocab',kanji:'漢字 Kanji',lecture:'読解 Lecture',ecoute:'聴解 Écoute'};
-const COLORS={grammaire:'#81a1c1',vocabulaire:'#88c0d0',kanji:'#ebcb8b',lecture:'#a3be8c',ecoute:'#b48ead'};
+/* Lit un token CSS (theme.css) pour l'utiliser dans une valeur JS/SVG (attributs
+   fill/stroke qui n'acceptent pas var()) ; repli sur la valeur littérale. */
+function cssvar(n,f){try{var v=getComputedStyle(document.documentElement).getPropertyValue(n).trim();return v||f;}catch(e){return f;}}
+const COLORS={grammaire:cssvar('--nord9','#81a1c1'),vocabulaire:cssvar('--nord8','#88c0d0'),kanji:cssvar('--nord13','#ebcb8b'),lecture:cssvar('--nord14','#a3be8c'),ecoute:cssvar('--nord15','#b48ead')};
 const DRATING={1:1400,2:1600,3:1800};      // difficulté -> rating question
 const PASS_RATING=1600;                      // niveau ~ requis pour le N3
 const EXAM=new Date('2026-12-06T09:00:00');
@@ -989,7 +992,7 @@ function renderStreak(){
   const done=(S.dtoday===todayKey())?(S.dcount||0):0;
   const pctg=Math.min(100,Math.round(done/goal*100));
   const met=done>=goal;
-  const flame='<svg class="ic ic-f" viewBox="0 0 24 24" aria-hidden="true" style="color:'+(st>0?'#d08770':'var(--muted)')+'"><path d="M12 2c1 4-2 5-2 8a2 2 0 0 0 4 0c0-1 0-1 0-1 2 2 3 4 3 6a5 5 0 0 1-10 0c0-4 5-6 5-13z"/></svg>';
+  const flame='<svg class="ic ic-f" viewBox="0 0 24 24" aria-hidden="true" style="color:'+(st>0?'var(--nord12)':'var(--muted)')+'"><path d="M12 2c1 4-2 5-2 8a2 2 0 0 0 4 0c0-1 0-1 0-1 2 2 3 4 3 6a5 5 0 0 1-10 0c0-4 5-6 5-13z"/></svg>';
   const dayTxt=st>0?'<b style="font-size:1.15em">'+st+'</b> jour'+(st>1?'s':'')+' d\'affilée':'Commence ta série aujourd\'hui';
   const goalTxt=met?'<b style="color:var(--ok)">Objectif du jour atteint ✓</b>':done+'/'+goal+' aujourd\'hui';
   const best=(S.dbest||0)>1?'<span class="muted" style="font-size:.82em"> · record '+S.dbest+' j</span>':'';
@@ -1267,8 +1270,8 @@ function renderChart(){
   let dots=xs.map((x,i)=>`<circle cx="${x.toFixed(1)}" cy="${ys[i].toFixed(1)}" r="3.5" fill="${COLORS.grammaire}"/>`).join('');
   const y95=H-pad-(95/180)*(H-2*pad);
   el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%">
-    <line x1="${pad}" y1="${y95}" x2="${W-pad}" y2="${y95}" stroke="#a3be8c" stroke-dasharray="4 4" opacity=".6"/>
-    <text x="${W-pad}" y="${y95-4}" text-anchor="end" fill="#a3be8c">seuil 95</text>
+    <line x1="${pad}" y1="${y95}" x2="${W-pad}" y2="${y95}" stroke="${cssvar('--nord14','#a3be8c')}" stroke-dasharray="4 4" opacity=".6"/>
+    <text x="${W-pad}" y="${y95-4}" text-anchor="end" fill="${cssvar('--nord14','#a3be8c')}">seuil 95</text>
     <path d="${path}" fill="none" stroke="${COLORS.grammaire}" stroke-width="2.5"/>${dots}
     <text x="${pad}" y="${H-6}">1er</text><text x="${W-pad}" y="${H-6}" text-anchor="end">récent</text>
   </svg>`;
@@ -1467,7 +1470,7 @@ function answer(btn,q,opts){
   S.wrong=S.wrong.slice(-80);save();
   sessionLog.push({q:q.q,cat:q.cat,ok,correct:correctTxt,e:q.e});
   const ex=document.getElementById('expl');ex.className='expl show '+(ok?'good':'poor');
-  const lvlBadge=q.lvl?'<span style="display:inline-block;font-size:.72em;font-weight:700;padding:1px 6px;border-radius:6px;margin-right:6px;vertical-align:middle;background:rgba(154,103,0,.18);color:#c98a00">'+q.lvl+'</span>':'';
+  const lvlBadge=q.lvl?'<span style="display:inline-block;font-size:.72em;font-weight:700;padding:1px 6px;border-radius:6px;margin-right:6px;vertical-align:middle;background:var(--lvl-n4-bg);color:var(--lvl-n4-soft)">'+q.lvl+'</span>':'';
   const okIc='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>';
   const koIc='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>';
   const docIc='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 13h6M9 17h6"/></svg>';
@@ -1639,7 +1642,7 @@ function gramRec(k){return S.gram[k]||null}
 function gramValidated(){return GRAMMAR_LESSONS.filter(g=>{const r=S.gram[g.k];return r&&r.box>=1}).length}
 function gramDueList(){const now=Date.now();return GRAMMAR_LESSONS.filter(g=>{const r=S.gram[g.k];return r&&new Date(r.due).getTime()<=now})}
 function gramNewList(){return GRAMMAR_LESSONS.filter(g=>!S.gram[g.k])}
-function lvlBadgeHtml(lvl){return lvl?`<span style="display:inline-block;font-size:.72em;font-weight:700;padding:1px 7px;border-radius:6px;vertical-align:middle;background:${lvl==='N4'?'rgba(154,103,0,.18)':'rgba(31,111,235,.2)'};color:${lvl==='N4'?'#c98a00':'#5b9bff'}">${lvl}</span>`:''}
+function lvlBadgeHtml(lvl){return lvl?`<span style="display:inline-block;font-size:.72em;font-weight:700;padding:1px 7px;border-radius:6px;vertical-align:middle;background:${lvl==='N4'?'var(--lvl-n4-bg)':'var(--lvl-n3-bg)'};color:${lvl==='N4'?'var(--lvl-n4-soft)':'var(--lvl-n3-soft)'}">${lvl}</span>`:''}
 function pickLearn(){
   const due=gramDueList(), nw=gramNewList();
   if(due.length){due.sort((a,b)=>(S.gram[a.k].box-S.gram[b.k].box)||(new Date(S.gram[a.k].due)-new Date(S.gram[b.k].due)));learnReview=true;return due[0];}
@@ -1674,7 +1677,7 @@ function renderTeach(){
    <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap${g.cat==='kanji'?';justify-content:center':''}">${lvlBadgeHtml(g.lvl)}<div class="jpbig${g.cat==='kanji'?' kanjibig':''}">${g.k}</div></div>
    <p style="font-size:1.02rem;margin:.55em 0${g.cat==='kanji'?';text-align:center':''}"><b>${g.sens}</b></p>
    ${g.struct?`<div style="font-family:monospace;background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:.9rem">${icon} ${g.struct}</div>`:''}
-   ${g.exJp?`<div style="margin-top:13px;background:transparent;border:1px solid var(--ok);box-shadow:inset 0 0 22px -15px rgba(163,190,140,.9);border-radius:11px;padding:11px 13px">
+   ${g.exJp?`<div style="margin-top:13px;background:transparent;border:1px solid var(--ok);box-shadow:inset 0 0 22px -15px var(--glow-ok);border-radius:11px;padding:11px 13px">
      <div style="font-size:.78rem;color:var(--muted);margin-bottom:4px">例 — Exemple</div>
      <div class="jpex">${furi(g.exJp)}</div>
      ${g.exFr?`<div class="muted" style="margin-top:5px;font-size:.93rem">${g.exFr}</div>`:''}

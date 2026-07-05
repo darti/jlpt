@@ -27,11 +27,11 @@
   .navtoggle:hover{border-color:var(--accent2)}
   .ic{display:inline-block;width:1em;height:1em;vertical-align:-0.14em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
   .ic-f{fill:currentColor;stroke:none}
-  ::selection{background:rgba(136,192,208,.32)}
+  ::selection{background:var(--sel)}
   .wrap{max-width:680px;margin:0 auto;padding:26px 20px 40px}
   .jp{color:var(--accent)}
-  #updateBanner{position:fixed;left:12px;right:12px;bottom:12px;z-index:90;background:var(--accent);color:#fff;border-radius:12px;padding:11px 14px;display:none;align-items:center;gap:12px;box-shadow:0 6px 20px rgba(0,0,0,.45);font-size:.92rem;max-width:560px;margin:0 auto}
-  #updateBanner button{margin-left:auto;background:#fff;color:#11151c;border:none;border-radius:8px;padding:8px 15px;font-weight:700;cursor:pointer;white-space:nowrap}
+  #updateBanner{position:fixed;left:12px;right:12px;bottom:12px;z-index:90;background:var(--accent);color:var(--on-vivid);border-radius:12px;padding:11px 14px;display:none;align-items:center;gap:12px;box-shadow:var(--shadow-drop);font-size:.92rem;max-width:560px;margin:0 auto}
+  #updateBanner button{margin-left:auto;background:var(--on-vivid);color:var(--ink-strong);border:none;border-radius:8px;padding:8px 15px;font-weight:700;cursor:pointer;white-space:nowrap}
   a.card{display:block;text-decoration:none;color:var(--txt);background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;margin:18px 0;transition:.15s;box-shadow:var(--elev);-webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass)}
   a.card:hover{border-color:var(--accent2);transform:translateY(-2px);box-shadow:var(--elev-pop)}
   a.card h2{margin:0 0 6px;font-size:1.2rem}
@@ -44,29 +44,29 @@
   .dash .top h2{margin:0;font-size:1.05rem}
   .dash .see{color:var(--accent2);font-size:.82rem}
   .stat{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;margin:12px 0 6px}
-  .stat .b{background:var(--card2,#1d212b);border:1px solid var(--line);border-radius:10px;padding:9px 4px}
+  .stat .b{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:9px 4px}
   .stat .n{font-size:1.25rem;font-weight:700}
   .stat .l{font-size:.68rem;color:var(--muted)}
-  .seg{height:12px;border-radius:999px;background:linear-gradient(90deg,#bf616a,#ebcb8b,#a3be8c);position:relative;margin:8px 0;border:1px solid var(--line)}
-  .seg>.mk{position:absolute;top:-4px;width:3px;height:20px;background:#fff;border-radius:2px;transform:translateX(-50%);box-shadow:0 0 5px #000}
+  .seg{height:12px;border-radius:999px;background:var(--grad-gauge);position:relative;margin:8px 0;border:1px solid var(--line)}
+  .seg>.mk{position:absolute;top:-4px;width:3px;height:20px;background:var(--on-vivid);border-radius:2px;transform:translateX(-50%);box-shadow:0 0 5px var(--c-black)}
   .row{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:.8rem}
   .row .name{width:96px;color:var(--muted)}
   .row .track{flex:1;height:9px;background:var(--card2);border-radius:999px;overflow:hidden;border:1px solid var(--line)}
   .row .track>i{display:block;height:100%}
   .empty{color:var(--muted);font-size:.9rem;margin:6px 0 0}
-  #installBtn{display:none;width:100%;margin:0 0 18px;background:var(--accent);color:#fff;border:none;border-radius:12px;padding:12px;font-weight:700;font-size:1rem;cursor:pointer}
-  #iosGuide{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:50;align-items:center;justify-content:center;padding:20px}
+  #installBtn{display:none;width:100%;margin:0 0 18px;background:var(--accent);color:var(--on-vivid);border:none;border-radius:12px;padding:12px;font-weight:700;font-size:1rem;cursor:pointer}
+  #iosGuide{display:none;position:fixed;inset:0;background:var(--scrim);z-index:50;align-items:center;justify-content:center;padding:20px}
   #iosGuide.show{display:flex}
   #iosGuide .box{background:var(--card);border:1px solid var(--line);border-radius:16px;max-width:360px;width:100%;padding:22px}
   #iosGuide h3{margin:0 0 12px;font-size:1.15rem}
   #iosGuide ol{margin:0;padding-left:20px}
   #iosGuide li{margin:8px 0;font-size:.95rem}
   #iosGuide .share{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border:2px solid var(--accent2);border-radius:7px;color:var(--accent2);vertical-align:-7px;margin:0 2px}
-  #iosGuide .warn{background:rgba(245,185,66,.12);border:1px solid var(--warn,#ebcb8b);border-radius:9px;padding:10px;font-size:.86rem;margin:12px 0 0}
+  #iosGuide .warn{background:var(--wash-warn);border:1px solid var(--warn);border-radius:9px;padding:10px;font-size:.86rem;margin:12px 0 0}
   #iosGuide .btns{display:flex;gap:8px;margin-top:16px}
   #iosGuide button{flex:1;border:none;border-radius:10px;padding:11px;font-weight:700;cursor:pointer;font-size:.95rem}
-  #iosGuide .copy{background:var(--accent);color:#fff}
-  #iosGuide .close{background:var(--card2,#1d212b);color:var(--txt);border:1px solid var(--line)}
+  #iosGuide .copy{background:var(--accent);color:var(--on-vivid)}
+  #iosGuide .close{background:var(--card2);color:var(--txt);border:1px solid var(--line)}
 </style>
 </head>
 <body>
@@ -133,7 +133,7 @@
 (function(){
   const CATS=['grammaire','vocabulaire','kanji','lecture'];
   const LABELS={grammaire:'Grammaire',vocabulaire:'Vocab',kanji:'Kanji',lecture:'Lecture'};
-  const COLORS={grammaire:'#81a1c1',vocabulaire:'#88c0d0',kanji:'#ebcb8b',lecture:'#a3be8c'};
+  const COLORS={grammaire:'var(--nord9)',vocabulaire:'var(--nord8)',kanji:'var(--nord13)',lecture:'var(--nord14)'};
   const PASS=1600, EXAM=new Date('2026-12-06T09:00:00');
   const body=document.getElementById('dashBody');
   let S=null; try{S=JSON.parse(localStorage.getItem('jlptN3adapt_v2')||'null')}catch(e){}
@@ -157,7 +157,7 @@
   const pct=Math.round(p*100);
   const avg=CATS.reduce((a,c)=>a+S.skill[c].R,0)/CATS.length;
   const lvl=avg<1400?'N4-':avg<1520?'N4+':avg<1620?'N3-':avg<1720?'N3':'N3+';
-  const pColor=pct>=70?'#a3be8c':pct>=40?'#ebcb8b':'#bf616a';
+  const pColor=pct>=70?'var(--nord14)':pct>=40?'var(--nord13)':'var(--nord11)';
 
   let rows='';
   CATS.forEach(c=>{const m=Math.round(mastery(c)*100);
@@ -166,9 +166,9 @@
   body.innerHTML=`
     <div class="stat">
       <div class="b"><div class="n" style="color:${pColor}">${S.total<5?'?':pct+'%'}</div><div class="l">réussite estimée</div></div>
-      <div class="b"><div class="n" style="color:#88c0d0">${S.total<5?'—':Math.round(total)+'/180'}</div><div class="l">score estimé</div></div>
-      <div class="b"><div class="n" style="color:#ebcb8b">${lvl}</div><div class="l">niveau</div></div>
-      <div class="b"><div class="n" style="color:#a3be8c">${days}</div><div class="l">jours restants</div></div>
+      <div class="b"><div class="n" style="color:var(--nord8)">${S.total<5?'—':Math.round(total)+'/180'}</div><div class="l">score estimé</div></div>
+      <div class="b"><div class="n" style="color:var(--nord13)">${lvl}</div><div class="l">niveau</div></div>
+      <div class="b"><div class="n" style="color:var(--nord14)">${days}</div><div class="l">jours restants</div></div>
     </div>
     <div class="seg"><div class="mk" style="left:${Math.max(1,Math.min(99,pct))}%"></div></div>
     ${rows}
