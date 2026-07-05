@@ -99,6 +99,11 @@
   --shadow-rgb:18,27,54;
   --elev:0 12px 34px rgba(var(--shadow-rgb),.46),0 3px 12px rgba(var(--shadow-rgb),.30),0 1px 0 rgba(var(--nord6-rgb),.06) inset;
   --elev-pop:0 24px 64px rgba(var(--shadow-rgb),.55),0 1px 0 rgba(var(--nord6-rgb),.05) inset;
+  /* Aurores boréales — halos de fond (floutés par le verre) */
+  --aurora-1:rgba(var(--nord10-rgb),.42);
+  --aurora-2:rgba(var(--nord15-rgb),.28);
+  --aurora-3:rgba(var(--nord14-rgb),.22);
+  --aurora-4:rgba(var(--nord8-rgb),.30);
 }
 
 /* ---------- 3. Sémantiques — thème clair ---------- */
@@ -118,4 +123,32 @@
   --shadow-rgb:96,150,225;
   --elev:0 10px 30px rgba(var(--shadow-rgb),.20),0 2px 10px rgba(var(--shadow-rgb),.12);
   --elev-pop:0 24px 64px rgba(var(--shadow-rgb),.24);
+  /* Aurores boréales — plus discrètes sur fond clair */
+  --aurora-1:rgba(var(--nord10-rgb),.22);
+  --aurora-2:rgba(var(--nord15-rgb),.17);
+  --aurora-3:rgba(var(--nord14-rgb),.17);
+  --aurora-4:rgba(var(--nord8-rgb),.24);
 }
+
+/* ---------- 4. Effet « aurores boréales » (fond partagé) ----------
+   Halos de couleur diffus peints DERRIÈRE le contenu ; le verre dépoli
+   des cartes (backdrop-filter) les floute → profondeur Nord Frost.
+   Pseudo-élément position:fixed z-index:-1 : peint au-dessus du fond
+   opaque (--bg) mais sous le contenu. Il n'est jamais ancêtre d'un
+   élément position:fixed, donc n'interfère pas avec eux. */
+body::before{
+  content:"";
+  position:fixed; inset:-20%; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(38% 44% at 12% 8%,  var(--aurora-1), transparent 72%),
+    radial-gradient(42% 46% at 88% 12%, var(--aurora-2), transparent 72%),
+    radial-gradient(48% 52% at 78% 88%, var(--aurora-3), transparent 72%),
+    radial-gradient(44% 50% at 18% 92%, var(--aurora-4), transparent 72%);
+  filter:saturate(120%);
+  animation:aurora-drift 42s ease-in-out infinite alternate;
+}
+@keyframes aurora-drift{
+  from{transform:translate3d(-2%,-1%,0) scale(1.02) rotate(-1deg);}
+  to  {transform:translate3d(2%,2%,0)   scale(1.08) rotate(1.5deg);}
+}
+@media (prefers-reduced-motion:reduce){ body::before{animation:none;} }
