@@ -1,0 +1,30 @@
+name: Validation du contenu
+
+# Vérifie la source de vérité du contenu à chaque push / PR :
+#  - data/dict.json respecte les règles (pas de niveau JLPT comme définition,
+#    pas de clé dupliquée, champs r/m présents…) ;
+#  - dict.js (généré) est bien synchronisé avec data/dict.json.
+# Ne bloque pas le déploiement (workflow séparé) mais signale toute régression.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Valider data/dict.json
+        run: node tools/validate.mjs
+
+      - name: Vérifier la synchro dict.js ↔ data/dict.json
+        run: node tools/sync-dict.mjs --check
