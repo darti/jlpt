@@ -88,8 +88,8 @@
 :root,
 :root[data-theme="dark"]{
   --bg:var(--nord0);
-  --card:rgba(var(--nord1-rgb),.60);
-  --card2:rgba(var(--nord2-rgb),.54);
+  --card:rgba(var(--nord1-rgb),.48);
+  --card2:rgba(var(--nord2-rgb),.44);
   --line:rgba(var(--nord6-rgb),.07);
   --txt:var(--nord6);
   --muted:rgba(var(--nord6-rgb),.62);
@@ -105,17 +105,17 @@
   --elev:0 8px 20px rgba(var(--shadow-rgb),.30),0 2px 6px rgba(var(--shadow-rgb),.20),0 1px 0 rgba(var(--nord6-rgb),.05) inset;
   --elev-pop:0 30px 78px rgba(var(--shadow-rgb),.58),0 1px 0 rgba(var(--nord6-rgb),.05) inset;
   /* Aurores boréales — champ lumineux turquoise → vert → magenta */
-  --aurora-1:rgba(var(--nord7-rgb),.50);   /* turquoise (haut-gauche) */
-  --aurora-2:rgba(var(--nord14-rgb),.52);  /* vert (centre-bas, dominant) */
-  --aurora-3:rgba(var(--nord15-rgb),.48);  /* rose/magenta (bas-droite) */
-  --aurora-4:rgba(var(--nord8-rgb),.38);   /* cyan (droite) */
+  --aurora-1:rgba(var(--nord7-rgb),.56);   /* turquoise (haut-gauche) */
+  --aurora-2:rgba(var(--nord14-rgb),.58);  /* vert (centre-bas, dominant) */
+  --aurora-3:rgba(var(--nord15-rgb),.54);  /* rose/magenta (bas-droite) */
+  --aurora-4:rgba(var(--nord8-rgb),.42);   /* cyan (droite) */
 }
 
 /* ---------- 3. Sémantiques — thème clair ---------- */
 :root[data-theme="light"]{
   --bg:var(--nord6);
-  --card:rgba(var(--white-rgb),.62);
-  --card2:rgba(var(--nord5-rgb),.66);
+  --card:rgba(var(--white-rgb),.55);
+  --card2:rgba(var(--nord5-rgb),.60);
   --line:rgba(var(--nord0-rgb),.08);
   --txt:var(--nord0);
   --muted:rgba(var(--nord0-rgb),.62);
@@ -145,10 +145,10 @@ body::before{
   content:"";
   position:fixed; inset:-20%; z-index:-1; pointer-events:none;
   background:
-    radial-gradient(52% 56% at 10% 14%,  var(--aurora-1), transparent 66%),  /* turquoise haut-gauche */
-    radial-gradient(60% 58% at 44% 82%,  var(--aurora-2), transparent 64%),  /* vert centre-bas */
-    radial-gradient(56% 58% at 90% 80%,  var(--aurora-3), transparent 62%),  /* magenta bas-droite */
-    radial-gradient(48% 54% at 104% 42%, var(--aurora-4), transparent 60%);  /* cyan droite */
+    radial-gradient(70% 74% at 12% 16%,  var(--aurora-1), transparent 74%),  /* turquoise haut-gauche */
+    radial-gradient(76% 72% at 46% 86%,  var(--aurora-2), transparent 72%),  /* vert centre-bas */
+    radial-gradient(72% 72% at 92% 78%,  var(--aurora-3), transparent 70%),  /* magenta bas-droite */
+    radial-gradient(60% 66% at 104% 40%, var(--aurora-4), transparent 66%);  /* cyan droite */
   filter:saturate(140%);
   animation:aurora-drift 42s ease-in-out infinite alternate;
 }
