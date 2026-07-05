@@ -77,8 +77,9 @@
   --shadow-btn:0 6px 18px rgba(var(--nord10-rgb),.28);
   --shadow-drop:0 6px 20px rgba(var(--c-black-rgb),.45);
   --grad-train:linear-gradient(135deg,rgba(var(--c-cyan-rgb),.14),rgba(var(--nord10-rgb),.10));
-  /* Barre d'accent verticale à gauche des cartes (inset → respecte l'arrondi) */
-  --card-bar:inset 3px 0 0 0 var(--accent2);
+  /* Barre d'accent verticale à gauche des cartes — désactivée (no-op).
+     Remettre `inset 3px 0 0 0 var(--accent2)` pour la réactiver. */
+  --card-bar:0 0 transparent;
   --grad-gauge:linear-gradient(90deg,var(--bad),var(--warn),var(--ok));
   --grad-bar:linear-gradient(90deg,var(--accent),var(--accent2));
 }
