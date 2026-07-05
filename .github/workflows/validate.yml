@@ -23,8 +23,11 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Valider data/dict.json
+      - name: Valider tout le contenu (data/*.json)
         run: node tools/validate.mjs
 
       - name: Vérifier la synchro dict.js ↔ data/dict.json
         run: node tools/sync-dict.mjs --check
+
+      - name: Vérifier la synchro app-n3.html ↔ data/{bank,grammar,kanji,vocab}.json
+        run: node tools/sync-content.mjs --check
