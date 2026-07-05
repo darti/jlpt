@@ -46,6 +46,8 @@
   // collées en tête/queue d'un jeton nominal (ex. « の原因は » → の · 原因 · は).
   var PARTGLOSS={'は':'thème','が':'sujet','を':'COD','に':'à / lieu','へ':'direction','で':'moyen / lieu','と':'et / avec','も':'aussi','の':'de','から':'depuis','まで':'jusqu’à','より':'que (comp.)','ね':'n’est-ce pas','よ':'emphase','か':'question'};
   function _pg(p){ return PARTGLOSS[p]||'particule'; }
+  // adverbes fréquents (détection par forme, sûre) — colorés distinctement
+  var ADV={'とても':1,'まだ':1,'もう':1,'ずっと':1,'よく':1,'また':1,'すぐ':1,'すぐに':1,'ちょっと':1,'たくさん':1,'あまり':1,'いつも':1,'きっと':1,'たぶん':1,'ほとんど':1,'かなり':1,'やはり':1,'やっぱり':1,'ぜひ':1,'もっと':1,'少し':1,'すこし':1,'けっこう':1,'だいたい':1,'しっかり':1,'はっきり':1,'ゆっくり':1,'だんだん':1,'どんどん':1,'なかなか':1,'わざわざ':1,'ますます':1};
   function splitParticles(jp,gloss){
     var out=[], lead='のはがをにへでとも';
     // particules de tête (seulement si un kanji suit IMMÉDIATEMENT → évite もう, など…)
@@ -65,7 +67,7 @@
   function visualBreak(str,opts){
     if(!str) return '';
     var parts=String(str).split(' · ');
-    var hasPart=false,hasVerb=false,hasNoun=false,hasAdj=false;
+    var hasPart=false,hasVerb=false,hasNoun=false,hasAdj=false,hasAdjNa=false,hasAdv=false;
     var pills='';
     parts.forEach(function(seg){
       seg=seg.trim(); if(!seg) return;
@@ -80,12 +82,14 @@
       var role='noun';
       if(/[→＋]/.test(jp)) role='verb';
       else if(/^[はがをにへでとやかもねよのばらでもへ〜～ずば・／\/]+$/.test(jpPlain)) role='part';
-      else if(/adjectif|い-adj|な-adj/i.test(gloss)) role='adj';
+      else if(ADV[jpPlain]===1) role='adv';
+      else if((jpPlain.length>=3 && jpPlain.charAt(jpPlain.length-1)==='的' && jpPlain!=='目的') || /な-?adj|adjectif nominal/i.test(gloss)) role='adjna';
+      else if(/しい$/.test(jpPlain) || /\bい-?adj|adjectif/i.test(gloss)) role='adj';
       else if(/particule|th[eè]me|\bCOD\b|sujet|direction|marque|emphase/i.test(gloss) && jpPlain.length<=3 && !/[一-鿿]/.test(jpPlain)) role='part';
       var toks=(role==='noun'&&/[一-鿿]/.test(jpPlain))?splitParticles(jp,gloss):[{jp:jp,gloss:gloss,role:role}];
       toks.forEach(function(t){
         if(!t.jp) return;
-        if(t.role==='part')hasPart=true; else if(t.role==='verb')hasVerb=true; else if(t.role==='adj')hasAdj=true; else hasNoun=true;
+        if(t.role==='part')hasPart=true; else if(t.role==='verb')hasVerb=true; else if(t.role==='adj')hasAdj=true; else if(t.role==='adjna')hasAdjNa=true; else if(t.role==='adv')hasAdv=true; else hasNoun=true;
         var jpHtml=t.jp.replace(/([一-鿿々]+)（([ぁ-んァ-ンー・]+)）/g,'<ruby>$1<rt>$2</rt></ruby>');
         pills+='<span class="tok tok-'+t.role+'"><span class="tok-jp">'+jpHtml+'</span>'+(t.gloss?'<span class="tok-g">'+t.gloss+'</span>':'')+'</span>';
       });
@@ -94,7 +98,9 @@
     if(hasNoun)leg.push('<span><i class="tok-noun"></i>nom / groupe</span>');
     if(hasPart)leg.push('<span><i class="tok-part"></i>particule</span>');
     if(hasVerb)leg.push('<span><i class="tok-verb"></i>verbe / forme</span>');
-    if(hasAdj)leg.push('<span><i class="tok-adj"></i>adjectif</span>');
+    if(hasAdj)leg.push('<span><i class="tok-adj"></i>adjectif い</span>');
+    if(hasAdjNa)leg.push('<span><i class="tok-adjna"></i>adjectif な</span>');
+    if(hasAdv)leg.push('<span><i class="tok-adv"></i>adverbe</span>');
     var showLeg = !(opts&&opts.legend===false);
     return '<div class="vbreak">'+pills+'</div>'+(showLeg&&leg.length>1?'<div class="vbleg">'+leg.join('')+'</div>':'');
   }

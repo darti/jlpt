@@ -53,6 +53,7 @@
   --sel:rgba(var(--nord8-rgb),.32);
   /* Rôles grammaticaux — pastilles d'analyse */
   --role-noun:#3f97a8; --role-part:#b05a9a; --role-verb:var(--nord10); --role-adj:#cf8144;
+  --role-adjna:#7d6bc0; --role-adv:#6a9e4f;   /* adjectif な (violet) · adverbe (vert) */
   --role-note:rgba(var(--nord3-rgb),.35);
   /* Teintes de statut — puces, options (fond translucide) */
   --tint-ok:rgba(var(--c-green-rgb),.16);
