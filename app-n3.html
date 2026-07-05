@@ -1482,11 +1482,7 @@ function answer(btn,q,opts){
   // en cas d'erreur : pourquoi chaque réponse convient ou non
   const yes='<span style="color:var(--ok);font-weight:800">✓</span>',no='<span style="color:var(--bad);font-weight:800">✗</span>';
   const whyAll=(!ok&&Array.isArray(q.od)&&q.od.length===q.o.length)?'<div class="ex-blk"><div class="ex-ttl">'+docIc+' <b style="color:var(--accent2)">Pourquoi chaque réponse</b></div>'+q.o.map(function(opt,i){return '<div class="ex-li furia">'+(i===q.a?yes:no)+' <b>'+furi(opt)+'</b> — '+furi(q.od[i])+'</div>'}).join('')+'</div>':'';
-  var defs='';
-  if((q.cat==='vocabulaire'||q.cat==='kanji')&&Array.isArray(q.o)&&window.lookupDef){
-    var _di=q.o.map(function(opt,i){var d=lookupDef(opt);if(!d)return '';return '<div class="ex-li furia">'+(i===q.a?yes:no)+' <b>'+furi(opt)+'</b> — '+(d.m||'lecture seule')+'</div>';}).filter(Boolean).join('');
-    if(_di) defs='<div class="ex-blk"><div class="ex-ttl">'+docIc+' <b style="color:var(--accent2)">Définitions des réponses</b></div>'+_di+'</div>';
-  }
+  var defs=(q.cat==='vocabulaire'||q.cat==='kanji')?buildDefsBlock(q):'';
   ex.innerHTML='<div class="ex-head">'+head+'</div><div class="ex-rule">'+aerate(q.e,lvlBadge)+'</div>'+whyAll+defs+transcript+decomp;
   document.getElementById('next').className='next show';
 }
@@ -1650,6 +1646,18 @@ function gramValidated(){return GRAMMAR_LESSONS.filter(g=>{const r=S.gram[g.k];r
 function gramDueList(){const now=Date.now();return GRAMMAR_LESSONS.filter(g=>{const r=S.gram[g.k];return r&&new Date(r.due).getTime()<=now})}
 function gramNewList(){return GRAMMAR_LESSONS.filter(g=>!S.gram[g.k])}
 function lvlBadgeHtml(lvl){return lvl?`<span style="display:inline-block;font-size:.72em;font-weight:700;padding:1px 7px;border-radius:6px;vertical-align:middle;background:${lvl==='N4'?'var(--lvl-n4-bg)':'var(--lvl-n3-bg)'};color:${lvl==='N4'?'var(--lvl-n4-soft)':'var(--lvl-n3-soft)'}">${lvl}</span>`:''}
+// Bloc « définitions » d'un corrigé : soit chaque option (mots du dico),
+// soit — pour un quiz de lecture — le sens du mot lu entre 「 」.
+function buildDefsBlock(q){
+  if(!window.lookupDef) return '';
+  const yes='<span style="color:var(--ok);font-weight:800">✓</span>',no='<span style="color:var(--bad);font-weight:800">✗</span>';
+  const doc='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>';
+  let rows=[],title='Définitions des réponses';
+  if(Array.isArray(q.o))q.o.forEach(function(opt,i){var d=lookupDef(opt);if(d)rows.push('<div class="ex-li furia">'+(i===q.a?yes:no)+' <b>'+furi(opt)+'</b> — '+(d.m||'lecture seule')+'</div>');});
+  if(!rows.length){var m=String(q.q||'').match(/「([^」]+)」/);if(m){var d=lookupDef(m[1]);if(d){rows.push('<div class="ex-li furia"><b>'+furi(m[1])+'</b> — '+(d.m||'lecture seule')+'</div>');title='Sens du mot';}}}
+  if(!rows.length) return '';
+  return '<div class="ex-blk"><div class="ex-ttl">'+doc+' <b style="color:var(--accent2)">'+title+'</b></div>'+rows.join('')+'</div>';
+}
 function pickLearn(){
   const due=gramDueList(), nw=gramNewList();
   if(due.length){due.sort((a,b)=>(S.gram[a.k].box-S.gram[b.k].box)||(new Date(S.gram[a.k].due)-new Date(S.gram[b.k].due)));learnReview=true;return due[0];}
@@ -1724,13 +1732,8 @@ function learnAnswer(btn,opts){
     ?`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg> <b>Correct !</b> Point ${box>1?'renforcé':'validé'} <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> — prochaine révision dans <b>${SRS_DAYS[box]} j</b>.`
     :`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg> <b>Pas tout à fait.</b> Réponse : <b>${correct}</b>. Ce point reviendra <b>demain</b> en révision.`;
   var _dic='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>';
-  var _yes='<span style="color:var(--ok);font-weight:800">✓</span>',_no='<span style="color:var(--bad);font-weight:800">✗</span>';
   var decompL=g.g?'<div class="ex-blk"><div class="ex-ttl">'+_dic+' <b style="color:var(--accent2)">Analyse de la phrase</b></div>'+visualBreak(g.g)+'</div>':'';
-  var defsL='';
-  if((g.cat==='vocabulaire'||g.cat==='kanji')&&Array.isArray(g.o)&&window.lookupDef){
-    var _dl=g.o.map(function(opt,i){var d=lookupDef(opt);if(!d)return '';return '<div class="ex-li furia">'+(i===g.a?_yes:_no)+' <b>'+furi(opt)+'</b> — '+(d.m||'lecture seule')+'</div>';}).filter(Boolean).join('');
-    if(_dl) defsL='<div class="ex-blk"><div class="ex-ttl">'+_dic+' <b style="color:var(--accent2)">Définitions des réponses</b></div>'+_dl+'</div>';
-  }
+  var defsL=(g.cat==='vocabulaire'||g.cat==='kanji')?buildDefsBlock(g):'';
   ex.innerHTML=status+'<div style="margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);line-height:1.7">'+aerate(g.e,lvlBadgeHtml(g.lvl))+'</div>'+defsL+decompL;
   let btnHtml;
   if(learnMode==='session'){

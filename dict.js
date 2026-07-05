@@ -107,13 +107,14 @@
   }
 
   // ---------- lookup ----------
+  function _cleanM(m){ return /^\s*N[1-5]\s*$/.test(m||'') ? '' : m; }  // un niveau JLPT n'est pas une définition
   function lookupDef(sel){
     sel=(sel||'').replace(/[\s。、！？「」（）()]/g,'').trim();
     if(!sel || sel.length>14) return null;
-    if(DICT[sel]) return {w:sel, r:DICT[sel].r, m:DICT[sel].m};
+    if(DICT[sel]) return {w:sel, r:DICT[sel].r, m:_cleanM(DICT[sel].m)};
     for(var L=Math.min(sel.length,12); L>=1; L--){
       var sub=sel.slice(0,L);
-      if(DICT[sub]) return {w:sub, r:DICT[sub].r, m:DICT[sub].m};
+      if(DICT[sub]) return {w:sub, r:DICT[sub].r, m:_cleanM(DICT[sub].m)};
     }
     return null;
   }
