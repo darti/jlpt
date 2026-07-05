@@ -1045,8 +1045,8 @@ function buildDefsBlock(q){
   const yes='<span style="color:var(--ok);font-weight:800">✓</span>',no='<span style="color:var(--bad);font-weight:800">✗</span>';
   const doc='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>';
   let rows=[],title='Définitions des réponses';
-  if(Array.isArray(q.o))q.o.forEach(function(opt,i){var d=lookupDef(opt);if(d)rows.push('<div class="ex-li furia">'+(i===q.a?yes:no)+' <b>'+furi(opt)+'</b> — '+(d.m||'lecture seule')+'</div>');});
-  if(!rows.length){var m=String(q.q||'').match(/「([^」]+)」/);if(m){var d=lookupDef(m[1]);if(d){rows.push('<div class="ex-li furia"><b>'+furi(m[1])+'</b> — '+(d.m||'lecture seule')+'</div>');title='Sens du mot';}}}
+  if(Array.isArray(q.o))q.o.forEach(function(opt,i){var d=lookupDef(opt);if(d&&d.m)rows.push('<div class="ex-li furia">'+(i===q.a?yes:no)+' <b>'+furi(opt)+'</b> — '+d.m+'</div>');});
+  if(!rows.length){var m=String(q.q||'').match(/「([^」]+)」/);if(m){var d=lookupDef(m[1]);if(d&&d.m){rows.push('<div class="ex-li furia"><b>'+furi(m[1])+'</b> — '+d.m+'</div>');title='Sens du mot';}}}
   if(!rows.length) return '';
   return '<div class="ex-blk"><div class="ex-ttl">'+doc+' <b style="color:var(--accent2)">'+title+'</b></div>'+rows.join('')+'</div>';
 }
