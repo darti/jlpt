@@ -54,6 +54,8 @@
   table td:first-child{font-size:calc(.95rem * var(--fs-jp))}   /* mot/forme japonais en 1re colonne */
   .ex{margin:7px 0 3px;padding-left:12px;border-left:2px solid var(--line)}
   .ex .jp{font-size:calc(1.05rem * var(--fs-jp))}
+  .spk-sm{width:26px;height:26px;vertical-align:middle;margin-left:5px;background:var(--card2);border:1px solid var(--line);color:var(--accent2);border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .spk-sm:hover{border-color:var(--accent2)} .spk-sm:active{transform:scale(.92)} .spk-sm .ic{width:.95em;height:.95em}
   .ex .ro{color:var(--accent2);font-size:.82rem}
   .ex .fr{color:var(--muted);font-size:.9rem;font-style:italic}
   table{width:100%;border-collapse:collapse;font-size:.95rem;table-layout:fixed}
@@ -2549,6 +2551,18 @@ themeIcon();
       if(!segs.length||typeof visualBreak!=="function")return;
       an.innerHTML=visualBreak(segs.join(" · "),{legend:false});
     });
+    // lecture TTS de la phrase complète : un bouton haut-parleur par exemple
+    if(typeof speakJa==="function"){
+      var SPK='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4z"/><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/></svg>';
+      document.querySelectorAll(".ex > .jp").forEach(function(jp){
+        if(jp.querySelector(".spk-sm"))return;
+        var s=jp.textContent.trim();if(!s)return;
+        var b=document.createElement("button");
+        b.className="spk-sm";b.title="Écouter la phrase";b.setAttribute("aria-label","Écouter la phrase");
+        b.innerHTML=SPK;b.onclick=function(){speakJa(s);};
+        jp.appendChild(b);
+      });
+    }
   }
   if(document.readyState!=="loading")run();else document.addEventListener("DOMContentLoaded",run);
 })();

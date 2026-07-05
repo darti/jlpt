@@ -64,6 +64,14 @@
     out.push({jp:jp,gloss:g2||gloss,role:'noun'});
     return out.concat(trail);
   }
+  // particule collée en tête d'un VERBE (ex. になる, をする) → à détacher.
+  // Sûr : les adverbes (もう, など) ne sont pas des verbes, donc non concernés.
+  function splitVerbLead(jp,gloss){
+    var out=[], lead='にを';
+    while(jp.length>2 && lead.indexOf(jp.charAt(0))>=0){ out.push({jp:jp.charAt(0),gloss:_pg(jp.charAt(0)),role:'part'}); jp=jp.slice(1); }
+    out.push({jp:jp,gloss:gloss,role:'verb'});
+    return out;
+  }
   function visualBreak(str,opts){
     if(!str) return '';
     var parts=String(str).split(' · ');
@@ -86,7 +94,7 @@
       else if((jpPlain.length>=3 && jpPlain.charAt(jpPlain.length-1)==='的' && jpPlain!=='目的') || /な-?adj|adjectif nominal/i.test(gloss)) role='adjna';
       else if(/しい$/.test(jpPlain) || /\bい-?adj|adjectif/i.test(gloss)) role='adj';
       else if(/particule|th[eè]me|\bCOD\b|sujet|direction|marque|emphase/i.test(gloss) && jpPlain.length<=3 && !/[一-鿿]/.test(jpPlain)) role='part';
-      var toks=(role==='noun'&&/[一-鿿]/.test(jpPlain))?splitParticles(jp,gloss):[{jp:jp,gloss:gloss,role:role}];
+      var toks=(role==='noun'&&/[一-鿿]/.test(jpPlain))?splitParticles(jp,gloss):(role==='verb'?splitVerbLead(jp,gloss):[{jp:jp,gloss:gloss,role:role}]);
       toks.forEach(function(t){
         if(!t.jp) return;
         if(t.role==='part')hasPart=true; else if(t.role==='verb')hasVerb=true; else if(t.role==='adj')hasAdj=true; else if(t.role==='adjna')hasAdjNa=true; else if(t.role==='adv')hasAdv=true; else hasNoun=true;
