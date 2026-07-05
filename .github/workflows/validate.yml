@@ -31,3 +31,6 @@ jobs:
 
       - name: Vérifier la synchro app-n3.html ↔ data/{bank,grammar,kanji,vocab}.json
         run: node tools/sync-content.mjs --check
+
+      - name: Vérifier la synchro cours-n3.html ↔ data/examples.json
+        run: node tools/sync-examples.mjs --check
