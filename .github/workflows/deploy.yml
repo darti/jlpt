@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://darti.github.io/jlpt/
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -48,6 +48,28 @@ jobs:
         with:
           path: _site
 
-      - name: Déployer sur GitHub Pages
-        id: deployment
+      # L'API Pages renvoie parfois « Deployment failed, try again later »
+      # (incident transitoire côté GitHub). On réessaie jusqu'à 3 fois.
+      - name: Déployer sur GitHub Pages (essai 1)
+        id: dep1
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+
+      - name: Pause avant réessai
+        if: steps.dep1.outcome == 'failure'
+        run: sleep 15
+
+      - name: Déployer sur GitHub Pages (essai 2)
+        id: dep2
+        if: steps.dep1.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+
+      - name: Pause avant dernier essai
+        if: steps.dep1.outcome == 'failure' && steps.dep2.outcome == 'failure'
+        run: sleep 25
+
+      - name: Déployer sur GitHub Pages (essai 3)
+        id: dep3
+        if: steps.dep1.outcome == 'failure' && steps.dep2.outcome == 'failure'
         uses: actions/deploy-pages@v4
