@@ -88,8 +88,8 @@
 :root,
 :root[data-theme="dark"]{
   --bg:var(--nord0);
-  --card:rgba(var(--nord1-rgb),.85);
-  --card2:rgba(var(--nord2-rgb),.82);
+  --card:rgba(var(--nord1-rgb),.78);
+  --card2:rgba(var(--nord2-rgb),.74);
   --line:rgba(var(--nord6-rgb),.07);
   --txt:var(--nord6);
   --muted:rgba(var(--nord6-rgb),.62);
@@ -114,8 +114,8 @@
 /* ---------- 3. Sémantiques — thème clair ---------- */
 :root[data-theme="light"]{
   --bg:var(--nord6);
-  --card:rgba(var(--white-rgb),.82);
-  --card2:rgba(var(--nord5-rgb),.85);
+  --card:rgba(var(--white-rgb),.76);
+  --card2:rgba(var(--nord5-rgb),.78);
   --line:rgba(var(--nord0-rgb),.08);
   --txt:var(--nord0);
   --muted:rgba(var(--nord0-rgb),.62);
