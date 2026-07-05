@@ -104,11 +104,11 @@
      au-dessus de l'aurore sans former de boîte sombre. */
   --elev:0 8px 20px rgba(var(--shadow-rgb),.30),0 2px 6px rgba(var(--shadow-rgb),.20),0 1px 0 rgba(var(--nord6-rgb),.05) inset;
   --elev-pop:0 30px 78px rgba(var(--shadow-rgb),.58),0 1px 0 rgba(var(--nord6-rgb),.05) inset;
-  /* Aurores boréales — dégradé turquoise → vert → rose (floutées par le verre) */
-  --aurora-1:rgba(var(--nord7-rgb),.44);   /* turquoise (haut-gauche) */
-  --aurora-2:rgba(var(--nord14-rgb),.40);  /* vert (bas-centre) */
-  --aurora-3:rgba(var(--nord15-rgb),.40);  /* rose/magenta (bas-droite) */
-  --aurora-4:rgba(var(--nord8-rgb),.34);   /* cyan (droite) */
+  /* Aurores boréales — champ lumineux turquoise → vert → magenta */
+  --aurora-1:rgba(var(--nord7-rgb),.60);   /* turquoise (haut-gauche) */
+  --aurora-2:rgba(var(--nord14-rgb),.62);  /* vert vif (centre-bas, dominant) */
+  --aurora-3:rgba(var(--nord15-rgb),.58);  /* rose/magenta (bas-droite) */
+  --aurora-4:rgba(var(--nord8-rgb),.44);   /* cyan (droite) */
 }
 
 /* ---------- 3. Sémantiques — thème clair ---------- */
@@ -145,11 +145,11 @@ body::before{
   content:"";
   position:fixed; inset:-20%; z-index:-1; pointer-events:none;
   background:
-    radial-gradient(55% 60% at 8% 12%,   var(--aurora-1), transparent 68%),  /* turquoise haut-gauche */
-    radial-gradient(62% 66% at 55% 108%, var(--aurora-2), transparent 70%),  /* vert bas-centre */
-    radial-gradient(56% 60% at 100% 92%, var(--aurora-3), transparent 66%),  /* rose bas-droite */
-    radial-gradient(46% 56% at 108% 34%, var(--aurora-4), transparent 62%);  /* cyan droite */
-  filter:saturate(135%);
+    radial-gradient(52% 56% at 10% 14%,  var(--aurora-1), transparent 66%),  /* turquoise haut-gauche */
+    radial-gradient(60% 58% at 44% 82%,  var(--aurora-2), transparent 64%),  /* vert centre-bas */
+    radial-gradient(56% 58% at 90% 80%,  var(--aurora-3), transparent 62%),  /* magenta bas-droite */
+    radial-gradient(48% 54% at 104% 42%, var(--aurora-4), transparent 60%);  /* cyan droite */
+  filter:saturate(150%);
   animation:aurora-drift 42s ease-in-out infinite alternate;
 }
 @keyframes aurora-drift{
