@@ -105,10 +105,10 @@
   --elev:0 8px 20px rgba(var(--shadow-rgb),.30),0 2px 6px rgba(var(--shadow-rgb),.20),0 1px 0 rgba(var(--nord6-rgb),.05) inset;
   --elev-pop:0 30px 78px rgba(var(--shadow-rgb),.58),0 1px 0 rgba(var(--nord6-rgb),.05) inset;
   /* Aurores boréales — champ lumineux turquoise → vert → magenta */
-  --aurora-1:rgba(var(--nord7-rgb),.60);   /* turquoise (haut-gauche) */
-  --aurora-2:rgba(var(--nord14-rgb),.62);  /* vert vif (centre-bas, dominant) */
-  --aurora-3:rgba(var(--nord15-rgb),.58);  /* rose/magenta (bas-droite) */
-  --aurora-4:rgba(var(--nord8-rgb),.44);   /* cyan (droite) */
+  --aurora-1:rgba(var(--nord7-rgb),.50);   /* turquoise (haut-gauche) */
+  --aurora-2:rgba(var(--nord14-rgb),.52);  /* vert (centre-bas, dominant) */
+  --aurora-3:rgba(var(--nord15-rgb),.48);  /* rose/magenta (bas-droite) */
+  --aurora-4:rgba(var(--nord8-rgb),.38);   /* cyan (droite) */
 }
 
 /* ---------- 3. Sémantiques — thème clair ---------- */
@@ -149,7 +149,7 @@ body::before{
     radial-gradient(60% 58% at 44% 82%,  var(--aurora-2), transparent 64%),  /* vert centre-bas */
     radial-gradient(56% 58% at 90% 80%,  var(--aurora-3), transparent 62%),  /* magenta bas-droite */
     radial-gradient(48% 54% at 104% 42%, var(--aurora-4), transparent 60%);  /* cyan droite */
-  filter:saturate(150%);
+  filter:saturate(140%);
   animation:aurora-drift 42s ease-in-out infinite alternate;
 }
 @keyframes aurora-drift{
