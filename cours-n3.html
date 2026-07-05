@@ -14,17 +14,22 @@
 <script>(function(){try{var t=localStorage.getItem('jlptN3_theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){}})();</script>
 <style>
   :root{
-    /* Thème Nord — Polar Night (sombre, par défaut) · accents Frost */
-    --bg:#2e3440;--card:#3b4252;--card2:#434c5e;--line:#4c566a;
-    --txt:#eceff4;--muted:#a7b0c0;--accent:#5e81ac;--accent2:#88c0d0;--ok:#a3be8c;--warn:#ebcb8b;--bad:#bf616a;
-    --on-accent:#eceff4;--navbg:rgba(46,52,64,.9);--glow:rgba(94,129,172,.18);
-    --radius:16px;--fs-ui:1;--fs-jp:1;
+    /* Nord Frost — Polar Night translucide, verre dépoli (sombre, par défaut) */
+    --bg:#2e3440;--card:rgba(59,66,82,.72);--card2:rgba(67,76,94,.60);--line:rgba(236,239,244,.06);
+    --txt:#eceff4;--muted:rgba(236,239,244,.60);--accent:#5e81ac;--accent2:#88c0d0;--ok:#a3be8c;--warn:#ebcb8b;--bad:#bf616a;
+    --on-accent:#eceff4;--navbg:rgba(46,52,64,.55);--glow:rgba(94,129,172,.20);
+    --radius:18px;--fs-ui:1;--fs-jp:1;
+    --glass:blur(16px) saturate(140%);
+    --elev:0 12px 34px rgba(18,27,54,.46),0 3px 12px rgba(18,27,54,.30),0 1px 0 rgba(236,239,244,.06) inset;
+    --elev-pop:0 24px 64px rgba(18,27,54,.55),0 1px 0 rgba(236,239,244,.05) inset;
   }
   :root[data-theme="light"]{
-    /* Nord — Snow Storm (clair) */
-    --bg:#eceff4;--card:#ffffff;--card2:#e5e9f0;--line:#d8dee9;
-    --txt:#2e3440;--muted:#4c566a;--accent:#5e81ac;--accent2:#5e81ac;--ok:#5e8c4f;--warn:#a9882f;--bad:#b04a52;
-    --on-accent:#ffffff;--navbg:rgba(236,239,244,.9);--glow:rgba(94,129,172,.10);
+    /* Nord Frost — Snow Storm translucide (clair) */
+    --bg:#eceff4;--card:rgba(255,255,255,.66);--card2:rgba(229,233,240,.72);--line:rgba(46,52,64,.06);
+    --txt:#2e3440;--muted:rgba(46,52,64,.58);--accent:#5e81ac;--accent2:#5e81ac;--ok:#5e8c4f;--warn:#a9882f;--bad:#b04a52;
+    --on-accent:#ffffff;--navbg:rgba(236,239,244,.6);--glow:rgba(94,129,172,.14);
+    --elev:0 10px 30px rgba(96,150,225,.20),0 2px 10px rgba(96,150,225,.12);
+    --elev-pop:0 24px 64px rgba(96,150,225,.24);
   }
   *{box-sizing:border-box}
   html{font-size:calc(16px * var(--fs-ui))}   /* taille réglée dans l'app (Entraînement) */
@@ -52,7 +57,7 @@
   ::selection{background:rgba(136,192,208,.32)}
   h2{margin:36px 0 12px;font-size:1.3rem;border-left:4px solid var(--accent);padding-left:11px;scroll-margin-top:96px}
   h3{margin:24px 0 8px;color:var(--warn);font-size:1.05rem}
-  .lesson{background:var(--card);border:1px solid var(--line);border-radius:13px;margin:14px 0;overflow:hidden}
+  .lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin:18px 0;overflow:hidden;box-shadow:var(--elev);-webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass)}
   .lesson>summary{cursor:pointer;padding:14px 18px;font-weight:600;list-style:none;display:flex;gap:10px;align-items:center}
   .lesson>summary::-webkit-details-marker{display:none}
   .lesson[open]>summary{border-bottom:1px solid var(--line)}
