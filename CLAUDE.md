@@ -41,13 +41,19 @@ contenu en **japonais**. **Runtime & outils : `bun` exclusivement — jamais `no
 ## Migration en cours
 
 Portage incrémental (strangler) vers **React + TypeScript, bundlé par Bun**,
-page par page en commençant par `index.html`. Système de styles : **tokens CSS /
-Tailwind v4 repris de `~/Projects/darticorp/oku-theory/oku-ui`** (tokens
-sémantiques `@theme`, thèmes via `[data-theme]`). Voir
-`docs/superpowers/specs/` pour le design. Tant qu'une page n'est pas portée,
-elle reste en vanilla et doit continuer de fonctionner.
+page par page, en commençant par `index.html` (tranche tableau de bord, en cours).
+Travail sur la branche **`react-bun-migration`** ; `main` reste déployable.
+
+- **Styles** : tokens CSS / Tailwind v4 repris de `~/Projects/darticorp/oku-theory/oku-ui`,
+  **vendorisés** dans `src/styles/` (`tailwind.css` = tokens `@theme` + shims ;
+  `themes.css` = look Nord en `[data-theme]`). CSS compilé par **`@tailwindcss/cli`**
+  (PAS `bun-plugin-tailwind` — incompatible avec le bundler runtime de Bun).
+- **Docs** : design `docs/superpowers/specs/2026-07-10-react-bun-migration-design.md` ;
+  plan `docs/superpowers/plans/2026-07-10-dashboard-react-bun-slice.md`.
+- Tant qu'une page n'est pas portée, elle reste en vanilla et doit fonctionner.
 
     bun install
-    bun --hot ./index.html                        # dev (HMR)
-    bun build ./index.html --minify --outdir=_site # build prod
-    bun test                                       # tests (TDD, *.test.ts)
+    bun run dev        # Tailwind CLI (watch) + serveur HTML Bun (HMR)
+    bun run build      # CSS minifié + bun build ./index.html → _site/
+    bun test           # tests TDD (*.test.ts, côte à côte)
+    bun run typecheck  # tsc --noEmit
