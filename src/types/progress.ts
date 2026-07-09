@@ -1,6 +1,8 @@
-export type Skill = "grammaire" | "vocabulaire" | "kanji" | "lecture";
-export const SKILLS: Skill[] = ["grammaire", "vocabulaire", "kanji", "lecture"];
+export type Skill = "grammaire" | "vocabulaire" | "kanji" | "lecture" | "ecoute";
+export const SKILLS: Skill[] = ["grammaire", "vocabulaire", "kanji", "lecture", "ecoute"];
+/** The 4 skills shown as dashboard bars — matches the legacy display (no `ecoute` bar). */
+export const BAR_SKILLS: Skill[] = ["grammaire", "vocabulaire", "kanji", "lecture"];
 export interface Progress {
   total: number;
-  skill: Record<Skill, { R: number }>;
+  skill: Partial<Record<Skill, { R: number; t: number }>>;
 }

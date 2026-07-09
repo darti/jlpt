@@ -6,7 +6,9 @@ import type { Progress } from "./types/progress.ts";
 
 const flat = (R: number): Progress => ({
   total: 60,
-  skill: { grammaire: { R }, vocabulaire: { R }, kanji: { R }, lecture: { R } },
+  skill: {
+    grammaire: { R, t: 60 }, vocabulaire: { R, t: 60 }, kanji: { R, t: 60 }, lecture: { R, t: 60 },
+  },
 });
 
 test("AppView composes shell + dashboard", () => {

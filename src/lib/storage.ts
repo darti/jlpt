@@ -1,19 +1,16 @@
 import type { Progress } from "../types/progress.ts";
-import { SKILLS } from "../types/progress.ts";
 
 const PROGRESS_KEY = "jlptN3adapt_v2";
 
+// Lenient on purpose: progress.js's skR/skT default missing skills to R=1450/t=0,
+// so individual skills need NOT be present here — only `total` (number) and `skill`
+// (object) are required for the blob to be usable.
 function isProgress(v: unknown): v is Progress {
   if (typeof v !== "object" || v === null) return false;
   const o = v as Record<string, unknown>;
   if (typeof o.total !== "number") return false;
-  const s = o.skill as Record<string, unknown> | undefined;
-  if (typeof s !== "object" || s === null) return false;
-  if (SKILLS.length === 0) return false;
-  return SKILLS.every((c) => {
-    const e = s[c] as Record<string, unknown> | undefined;
-    return typeof e === "object" && e !== null && typeof e.R === "number";
-  });
+  const s = o.skill;
+  return typeof s === "object" && s !== null;
 }
 
 export function readProgress(store: Pick<Storage, "getItem"> = globalThis.localStorage): Progress | null {

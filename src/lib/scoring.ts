@@ -1,24 +1,59 @@
 import type { Progress, Skill } from "../types/progress.ts";
-import { SKILLS } from "../types/progress.ts";
+import { BAR_SKILLS, SKILLS } from "../types/progress.ts";
 
 export const PASS_RATING = 1600;
 export const EXAM_DATE = new Date("2026-12-06T09:00:00");
 const MS_PER_DAY = 864e5;
 
-/** Elo→probability mastery for one rating (0..1). */
-export function mastery(rating: number): number {
-  return 1 / (1 + Math.pow(10, (PASS_RATING - rating) / 400));
+function skR(p: Progress, c: Skill): number {
+  return p.skill[c]?.R ?? 1450;
+}
+function skT(p: Progress, c: Skill): number {
+  return p.skill[c]?.t ?? 0;
+}
+
+/** Elo→probability mastery for one skill (0..1). */
+export function masteryOf(p: Progress, c: Skill): number {
+  return 1 / (1 + Math.pow(10, (PASS_RATING - skR(p, c)) / 400));
 }
 
 export function daysUntilExam(now: Date): number {
   return Math.max(0, Math.ceil((EXAM_DATE.getTime() - now.getTime()) / MS_PER_DAY));
 }
 
-function level(avgRating: number): string {
-  return avgRating < 1400 ? "N4-"
-    : avgRating < 1520 ? "N4+"
-    : avgRating < 1620 ? "N3-"
-    : avgRating < 1720 ? "N3" : "N3+";
+function sections(p: Progress) {
+  const langage = (masteryOf(p, "vocabulaire") + masteryOf(p, "kanji")) / 2;
+  const grammLect = (masteryOf(p, "grammaire") + masteryOf(p, "lecture")) / 2;
+  const listening = skT(p, "ecoute") >= 3 ? masteryOf(p, "ecoute") : 0.85 * ((langage + grammLect) / 2);
+  return { langage, grammLect, listening };
+}
+
+function successModel(p: Progress) {
+  const s = sections(p);
+  const secScore = { langage: s.langage * 60, grammLect: s.grammLect * 60, listening: s.listening * 60 };
+  const total = secScore.langage + secScore.grammLect + secScore.listening;
+  const pSec = (v: number) => 1 / (1 + Math.exp(-(v - 22) / 4));
+  const pTotal = 1 / (1 + Math.exp(-(total - 95) / 12));
+  let prob = pTotal * pSec(secScore.langage) * pSec(secScore.grammLect) * pSec(secScore.listening);
+  const n = p.total || 0;
+  const conf = Math.min(1, n / 60);
+  prob = conf * prob + (1 - conf) * 0.5 * pTotal;
+  return { p: prob, total, conf, n };
+}
+
+function ratingLabel(p: Progress): string {
+  const avg = SKILLS.reduce((a, c) => a + skR(p, c), 0) / SKILLS.length;
+  return avg < 1400 ? "N4-"
+    : avg < 1520 ? "N4+"
+    : avg < 1620 ? "N3-"
+    : avg < 1720 ? "N3" : "N3+";
+}
+
+export type PassTier = "ok" | "warn" | "bad";
+
+/** Risk color tier for the pass-% figure — mirrors legacy `pct>=70/40` thresholds. */
+export function passTier(passPct: number): PassTier {
+  return passPct >= 70 ? "ok" : passPct >= 40 ? "warn" : "bad";
 }
 
 export interface DashboardModel {
@@ -28,35 +63,24 @@ export interface DashboardModel {
   level: string;
   days: number;
   confidence: number;
-  skillMastery: Record<Skill, number>;
+  barMastery: Record<Skill, number>;
   hasEnough: boolean;
 }
 
 export function dashboardModel(p: Progress, now: Date): DashboardModel {
-  const m = (c: Skill) => mastery(p.skill[c].R);
-  const lang = (m("vocabulaire") + m("kanji")) / 2;
-  const gram = (m("grammaire") + m("lecture")) / 2;
-  const list = 0.85 * ((lang + gram) / 2);
-  const sec = { lang: lang * 60, gram: gram * 60, list: list * 60 };
-  const sectionTotal = sec.lang + sec.gram + sec.list;
-
-  const pSec = (v: number) => 1 / (1 + Math.exp(-(v - 22) / 4));
-  const pTot = 1 / (1 + Math.exp(-(sectionTotal - 95) / 12));
-  const confidence = Math.min(1, p.total / 60);
-  let prob = pTot * pSec(sec.lang) * pSec(sec.gram) * pSec(sec.list);
-  prob = confidence * prob + (1 - confidence) * 0.5 * pTot;
-
-  const avg = SKILLS.reduce((a, c) => a + p.skill[c].R, 0) / SKILLS.length;
-  const skillMastery = Object.fromEntries(SKILLS.map((c) => [c, m(c)])) as Record<Skill, number>;
+  const s = successModel(p);
+  const barMastery = Object.fromEntries(
+    BAR_SKILLS.map((c) => [c, Math.round(masteryOf(p, c) * 100)]),
+  ) as Record<Skill, number>;
 
   return {
     answers: p.total,
-    passPct: Math.round(prob * 100),
-    sectionTotal: Math.round(sectionTotal),
-    level: level(avg),
+    passPct: Math.round(s.p * 100),
+    sectionTotal: Math.round(s.total),
+    level: ratingLabel(p),
     days: daysUntilExam(now),
-    confidence,
-    skillMastery,
+    confidence: s.conf,
+    barMastery,
     hasEnough: p.total >= 5,
   };
 }
