@@ -34,11 +34,15 @@ jobs:
         # L'auto-activation (enablement) est impossible : le GITHUB_TOKEN n'a pas le droit de créer le site Pages ici.
         uses: actions/configure-pages@v5
 
-      - name: Préparer l'artefact du site
-        # On ne publie que les fichiers statiques (pas .git ni .github).
+      - name: Installer Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Construire (Bun) + préparer l'artefact
         run: |
-          mkdir -p _site
-          cp index.html app-n3.html cours-n3.html planning-n3.html _site/
+          bun install --frozen-lockfile
+          bun run build          # génère _site/index.html (React) + assets hashés
+          # Pages encore en vanilla : copiées telles quelles
+          cp app-n3.html cours-n3.html planning-n3.html _site/
           cp theme.css progress.js dict.js vocab-data.js _site/
           cp manifest.webmanifest sw.js icon-180.png icon-192.png icon-512.png _site/
           cp README.md _site/ 2>/dev/null || true
