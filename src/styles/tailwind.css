@@ -1,0 +1,197 @@
+@import "tailwindcss";
+@import "./themes.css";
+@source "../";
+@source "../../index.html";
+
+/* Palette + typography + shadow tokens, exposed as Tailwind v4 utilities.
+ *
+ *   bg-bg / bg-panel / bg-panel-2 / bg-surface / bg-surface-2
+ *   border-line / border-line-soft / border-line-hi
+ *   text-fg / text-fg-dim / text-fg-soft / text-fg-muted
+ *   text-accent / bg-accent / border-accent / outline-accent
+ *   bg-danger-bg / text-danger-fg / border-danger-line
+ *   text-card / text-meta / text-pill          (typography sizes)
+ *   shadow-toast / shadow-fab                   (transient surfaces)
+ *   font-sans (Inter) / font-mono (JetBrains Mono)
+ *
+ * Status/priority/tag accents (used by the mobile UI):
+ *   bg-status-potential / -active / -completed / -failed
+ *   text-status-potential / -active / -completed / -failed
+ *   bg-prio-high / -medium / -low
+ *   bg-tag-sync-bg / text-tag-sync-fg  (and rm/grpc/test/adr/infra/docs)
+ *
+ * Z-index scale (centralized so layers are deterministic):
+ *   z-fab (60) / z-toast (70) / z-drawer (80) / z-sheet (110)
+ *
+ * Component styling lives in JSX; this file only defines tokens and the
+ * unavoidable root/body reset that has to run before React mounts. */
+@theme {
+  --color-bg: #0a0a0b;
+  --color-panel: #16181d;
+  --color-panel-2: #1c1f26;
+  --color-surface: #121214;
+  --color-surface-2: #17171a;
+  --color-line: #262a33;
+  --color-line-soft: rgba(255, 255, 255, 0.08);
+  --color-line-hi: rgba(255, 255, 255, 0.14);
+  --color-fg: #ececee;
+  --color-fg-dim: #8b919c;
+  --color-fg-soft: rgba(235, 235, 245, 0.6);
+  --color-fg-muted: rgba(235, 235, 245, 0.38);
+  --color-fg-on-accent: #0a0a0b;
+  --color-chip: rgba(255, 255, 255, 0.12);
+  --color-accent: #7aa2ff;
+  /* Hover variant of `accent`. Derived via color-mix toward `--color-fg` so
+   * each theme moves *away* from its own surface luminance: on dark themes
+   * `fg` is near-white → hover brightens; on light themes `fg` is
+   * near-black → hover darkens. Mixing toward a constant like `white`
+   * would fade hover into the page background on light themes. CSS
+   * variables resolve at element time, so overriding `--color-accent` or
+   * `--color-fg` in a `[data-theme="…"]` block automatically retints this. */
+  --color-accent-hi: color-mix(in oklch, var(--color-accent) 86%, var(--color-fg));
+  --color-danger-bg: #2a1a1a;
+  --color-danger-line: #713030;
+  --color-danger-fg: #f87171;
+
+  --color-status-potential: #a78bfa;
+  --color-status-active: #60a5fa;
+  --color-status-completed: #34d399;
+  --color-status-failed: #f87171;
+
+  --color-prio-high: #f59e0b;
+  --color-prio-medium: #6b7280;
+  --color-prio-low: #9ca3af;
+
+  --color-skill-grammaire: #81a1c1;
+  --color-skill-vocabulaire: #88c0d0;
+  --color-skill-kanji: #ebcb8b;
+  --color-skill-lecture: #a3be8c;
+
+  --color-tag-sync-bg: rgba(96, 165, 250, 0.14);
+  --color-tag-sync-fg: #93c5fd;
+  --color-tag-rm-bg: rgba(167, 139, 250, 0.14);
+  --color-tag-rm-fg: #c4b5fd;
+  --color-tag-grpc-bg: rgba(52, 211, 153, 0.14);
+  --color-tag-grpc-fg: #6ee7b7;
+  --color-tag-test-bg: rgba(245, 158, 11, 0.14);
+  --color-tag-test-fg: #fcd34d;
+  --color-tag-adr-bg: rgba(244, 114, 182, 0.14);
+  --color-tag-adr-fg: #f9a8d4;
+  --color-tag-infra-bg: rgba(148, 163, 184, 0.18);
+  --color-tag-infra-fg: #cbd5e1;
+  --color-tag-docs-bg: rgba(20, 184, 166, 0.14);
+  --color-tag-docs-fg: #5eead4;
+
+  --text-card: calc(13px * var(--ts));
+  --text-meta: calc(11px * var(--ts));
+  --text-pill: calc(12px * var(--ts));
+
+  /* Shape tokens — emitted per-theme so radius/spacing are themeable.
+   * Defaults equal Tailwind v4's built-ins, so non-Nord themes are unchanged. */
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --spacing: 0.25rem;
+
+  --shadow-toast: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-fab: 0 8px 24px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.08) inset;
+  --shadow-drawer: 0 12px 32px rgba(0, 0, 0, 0.45);
+  /* Surface elevation — transparent by default (invisible), themed by Nord Frost.
+   * Deliberately NOT in Tailwind's `--shadow-*` namespace: Tailwind v4 inlines
+   * `--shadow-*` token values into `.shadow-*` utilities at build time, so a
+   * per-`[data-theme]` override would be ignored. These live under `--elevation-*`
+   * and are read via the custom `@utility shadow-card/surface/pop/hover` shims
+   * below (same var()-at-element-time pattern as `surface-blur`).
+   * `--elevation-hover` is the one non-transparent default: the raised tier a
+   * card lifts to on pointer hover, so the effect shows on every theme. Keep
+   * this value in sync with `default-dark`'s `elevation.hover` (a Bun test in
+   * theme-css-sync.test.ts locks the var *name* into both files). */
+  --elevation-card: 0 0 transparent;
+  --elevation-surface: 0 0 transparent;
+  --elevation-pop: 0 0 transparent;
+  --elevation-hover: 0 8px 22px rgba(0, 0, 0, 0.38), 0 2px 6px rgba(0, 0, 0, 0.26), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+
+  /* Backdrop filter for frosted surfaces — `none` is a true no-op. */
+  --effect-backdrop: none;
+  /* Aurora atmosphere opacity (0..1). `0` disables it — the layer isn't even
+   * rendered (see the <Aurora/> component). Nord Frost raises it to paint soft
+   * blobs of the theme's own status/accent colors behind the frosted glass. */
+  --effect-aurora: 0;
+
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Centralized z-index scale. Keep this ordered:
+   *   FAB < Toast < Drawer < Sheet (sheet covers everything intentionally on mobile). */
+  --z-fab: 60;
+  --z-toast: 70;
+  --z-drawer: 80;
+  --z-sheet: 110;
+}
+
+/* Named z-index utilities. Tailwind v4 only auto-generates utilities for the
+ * `color`/`font`/`text`/etc. namespaces, so the `--z-*` tokens above need
+ * explicit `@utility` shims to become Tailwind classes. */
+@utility z-fab    { z-index: var(--z-fab); }
+@utility z-toast  { z-index: var(--z-toast); }
+@utility z-drawer { z-index: var(--z-drawer); }
+@utility z-sheet  { z-index: var(--z-sheet); }
+
+/* Frosted-glass surfaces: read the themeable backdrop filter. `none` default
+ * means zero compositing cost on themes that don't opt in. */
+@utility surface-blur {
+  -webkit-backdrop-filter: var(--effect-backdrop, none);
+  backdrop-filter: var(--effect-backdrop, none);
+}
+
+/* Themeable surface elevation. Tailwind's `shadow-*` namespace inlines token
+ * values at build time, so these read `var(--elevation-*)` at element time
+ * instead — letting a `[data-theme]` override actually re-tint the shadow.
+ * Transparent fallback keeps non-Nord themes flat. */
+@utility shadow-card    { box-shadow: var(--elevation-card, 0 0 transparent); }
+@utility shadow-surface { box-shadow: var(--elevation-surface, 0 0 transparent); }
+@utility shadow-pop     { box-shadow: var(--elevation-pop, 0 0 transparent); }
+@utility shadow-hover   { box-shadow: var(--elevation-hover, 0 0 transparent); }
+
+/* Hide native scrollbars on a still-scrollable element. Used by the top tab
+ * strip, where `overflow-x-auto` makes the browser compute `overflow-y` to
+ * `auto` too (per the CSS overflow spec), so the active-tab underline's 1px
+ * bottom overflow renders a stray vertical scrollbar thumb. Horizontal
+ * scrolling on narrow viewports still works — only the bar is hidden. */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Root reset: tokens, color-scheme, and overflow-x defence in depth.
+ * `overflow-x: hidden` (not `clip`) for Safari < 16 support and to keep
+ * `position: sticky` working on descendants — we still rely on
+ * `<DragOverlay>` as the primary fix; this only catches edge cases.
+ * Body's background+color need to be set before React paints — both are
+ * paint-blocking concerns, not component styling. */
+@layer base {
+  :root {
+    color-scheme: dark;
+    overflow-x: hidden;
+    /* Typography scale — multiplier consumed by `text-[calc(Npx*var(--ts))]`
+     * arbitrary values across the (responsive) shell. Tailwind inlines px
+     * sizes literally, so this var is the only handle that makes them
+     * react to viewport without per-class breakpoint variants. Bumped to
+     * 1.3 below the `md` breakpoint (768px) since 11–13px reads too small
+     * on a phone. */
+    --ts: 1;
+  }
+  @media (max-width: 767px) {
+    :root {
+      --ts: 1.3;
+    }
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+  }
+}

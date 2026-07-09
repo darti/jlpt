@@ -1,0 +1,51 @@
+/* jlpt Nord Frost look, expressed as oku semantic tokens.
+   Dark is the default (:root); light overrides via [data-theme="light"].
+   Values copied from the legacy theme.css semantic layer. */
+:root,
+:root[data-theme="dark"] {
+  --color-bg: #2e3440;                        /* nord0 */
+  --color-panel: rgba(59, 66, 82, 0.48);      /* nord1 .48 */
+  --color-panel-2: rgba(67, 76, 94, 0.44);    /* nord2 .44 */
+  --color-surface: rgba(59, 66, 82, 0.48);
+  --color-surface-2: rgba(67, 76, 94, 0.44);
+  --color-line: rgba(236, 239, 244, 0.07);    /* nord6 .07 */
+  --color-line-soft: rgba(236, 239, 244, 0.07);
+  --color-line-hi: rgba(236, 239, 244, 0.14);
+  --color-fg: #eceff4;                         /* nord6 */
+  --color-fg-dim: rgba(236, 239, 244, 0.62);
+  --color-fg-soft: rgba(236, 239, 244, 0.62);
+  --color-fg-muted: rgba(236, 239, 244, 0.45);
+  --color-fg-on-accent: #eceff4;
+  --color-accent: #88c0d0;                     /* nord8 (accent2 / bright) */
+  --color-accent-hi: #8fbcbb;                  /* nord7 */
+  --color-status-completed: #a3be8c;           /* nord14 = ok */
+  --color-status-failed: #bf616a;              /* nord11 = bad */
+  --color-prio-high: #ebcb8b;                  /* nord13 = warn */
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --color-bg: #eceff4;                         /* nord6 */
+  --color-panel: rgba(255, 255, 255, 0.55);
+  --color-panel-2: rgba(229, 233, 240, 0.60);  /* nord5 .60 */
+  --color-surface: rgba(255, 255, 255, 0.55);
+  --color-surface-2: rgba(229, 233, 240, 0.60);
+  --color-line: rgba(46, 52, 64, 0.08);        /* nord0 .08 */
+  --color-line-soft: rgba(46, 52, 64, 0.08);
+  --color-line-hi: rgba(46, 52, 64, 0.14);
+  --color-fg: #2e3440;                          /* nord0 */
+  --color-fg-dim: rgba(46, 52, 64, 0.62);
+  --color-fg-soft: rgba(46, 52, 64, 0.62);
+  --color-fg-muted: rgba(46, 52, 64, 0.45);
+  --color-fg-on-accent: #ffffff;
+  --color-accent: #5e81ac;                      /* nord10 */
+  --color-accent-hi: #5e81ac;
+  --color-status-completed: #5e8c4f;            /* darkened for light contrast */
+  --color-status-failed: #b04a52;
+  --color-prio-high: #a9882f;
+  --color-skill-grammaire: #5e81ac;
+  --color-skill-vocabulaire: #5e81ac;
+  --color-skill-kanji: #a9882f;
+  --color-skill-lecture: #5e8c4f;
+  color-scheme: light;
+}

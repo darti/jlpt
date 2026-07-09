@@ -1,0 +1,24 @@
+{
+  "name": "jlpt-n3",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "css": "bunx @tailwindcss/cli -i src/styles/tailwind.css -o src/styles/styles.gen.css",
+    "dev": "bun run scripts/dev.ts",
+    "build": "bun run css -- --minify && bun build ./index.html --minify --outdir=_site",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.4",
+    "tailwindcss": "^4.2.4",
+    "@types/bun": "latest",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.7.0"
+  }
+}
