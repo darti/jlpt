@@ -11,6 +11,6 @@ const css = Bun.spawn(
   ["bunx", "@tailwindcss/cli", "-i", "src/styles/tailwind.css", "-o", "src/styles/styles.gen.css", "--watch=always"],
   { stdout: "inherit", stderr: "inherit" },
 );
-const app = Bun.spawn(["bun", "./index.html"], { stdout: "inherit", stderr: "inherit" });
+const app = Bun.spawn(["bun", "--port=5000", "./index.html"], { stdout: "inherit", stderr: "inherit" });
 process.on("SIGINT", () => { css.kill(); app.kill(); process.exit(0); });
 await Promise.race([css.exited, app.exited]);
