@@ -11,6 +11,7 @@ const SHELL = [
   'cours-n3.html',
   'planning-n3.html',
   'theme.css',
+  'progress.js',
   'dict.js',
   'vocab-data.js',
   'manifest.webmanifest',
