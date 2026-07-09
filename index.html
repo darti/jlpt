@@ -128,40 +128,32 @@
   <footer>頑張ってください！ — Bon courage <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg><br><span style="display:inline-flex;align-items:center;gap:9px;margin-top:6px"><span id="verLabel" style="font-size:.78rem;opacity:.7">version —</span><button id="forceBtn" onclick="forceRefresh()" style="font-size:.75rem;color:var(--accent2);background:transparent;border:1px solid var(--line);border-radius:999px;padding:4px 11px;cursor:pointer">↻ Forcer la mise à jour</button></span></footer>
 </div>
 
+<script src="progress.js"></script>
 <script>
-/* Lit la progression sauvegardée par l'appli (même origine) et affiche un résumé. */
+/* Lit la progression sauvegardée par l'appli (même origine) et affiche un résumé.
+   Tous les chiffres viennent du module partagé JLPTProgress (progress.js) : la
+   page d'accueil et l'app affichent donc STRICTEMENT les mêmes valeurs. */
 (function(){
   const CATS=['grammaire','vocabulaire','kanji','lecture'];
   const LABELS={grammaire:'Grammaire',vocabulaire:'Vocab',kanji:'Kanji',lecture:'Lecture'};
   const COLORS={grammaire:'var(--nord9)',vocabulaire:'var(--nord8)',kanji:'var(--nord13)',lecture:'var(--nord14)'};
-  const PASS=1600, EXAM=new Date('2026-12-06T09:00:00');
   const body=document.getElementById('dashBody');
   let S=null; try{S=JSON.parse(localStorage.getItem('jlptN3adapt_v2')||'null')}catch(e){}
-  const days=Math.max(0,Math.ceil((EXAM-new Date())/864e5));
+  const days=JLPTProgress.daysToExam();
 
   if(!S||!S.skill||!S.total){
     body.innerHTML='<p class="empty">Aucune donnée pour l\'instant — lance un quiz dans l\'entraînement adaptatif pour générer ton analyse. ('+days+' jours avant l\'examen)</p>';
     return;
   }
-  const mastery=c=>1/(1+Math.pow(10,(PASS-S.skill[c].R)/400));
-  const lang=(mastery('vocabulaire')+mastery('kanji'))/2;
-  const gram=(mastery('grammaire')+mastery('lecture'))/2;
-  const list=0.85*((lang+gram)/2);
-  const sec={lang:lang*60,gram:gram*60,list:list*60};
-  const total=sec.lang+sec.gram+sec.list;
-  const pSec=v=>1/(1+Math.exp(-(v-22)/4));
-  const pTot=1/(1+Math.exp(-(total-95)/12));
-  const conf=Math.min(1,S.total/60);
-  let p=pTot*pSec(sec.lang)*pSec(sec.gram)*pSec(sec.list);
-  p=conf*p+(1-conf)*0.5*pTot;
-  const pct=Math.round(p*100);
-  const avg=CATS.reduce((a,c)=>a+S.skill[c].R,0)/CATS.length;
-  const lvl=avg<1400?'N4-':avg<1520?'N4+':avg<1620?'N3-':avg<1720?'N3':'N3+';
+  const m=JLPTProgress.successModel(S);
+  const total=m.total, conf=m.conf;
+  const pct=Math.round(m.p*100);
+  const lvl=JLPTProgress.ratingLabel(S);
   const pColor=pct>=70?'var(--nord14)':pct>=40?'var(--nord13)':'var(--nord11)';
 
   let rows='';
-  CATS.forEach(c=>{const m=Math.round(mastery(c)*100);
-    rows+=`<div class="row"><span class="name">${LABELS[c]}</span><div class="track"><i style="width:${m}%;background:${COLORS[c]}"></i></div><span style="width:34px;text-align:right;color:var(--muted)">${m}%</span></div>`;});
+  CATS.forEach(c=>{const mc=Math.round(JLPTProgress.mastery(S,c)*100);
+    rows+=`<div class="row"><span class="name">${LABELS[c]}</span><div class="track"><i style="width:${mc}%;background:${COLORS[c]}"></i></div><span style="width:34px;text-align:right;color:var(--muted)">${mc}%</span></div>`;});
 
   body.innerHTML=`
     <div class="stat">

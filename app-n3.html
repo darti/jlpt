@@ -358,6 +358,7 @@
 </div>
 <footer>Modèle d'estimation à but pédagogique — plus tu réponds, plus il devient précis. 練習あるのみ！</footer>
 
+<script src="progress.js"></script>
 <script src="dict.js"></script>
 <script src="vocab-data.js"></script>
 <script>(function(){
@@ -651,43 +652,13 @@ function updateRating(cat,d,correct){
   sk.t++; if(correct)sk.r++;
 }
 
-/* maîtrise d'une compétence = proba de réussir une question de niveau N3 */
-function mastery(cat){const R=S.skill[cat].R;return 1/(1+Math.pow(10,(PASS_RATING-R)/400))}
-
-/* sections de l'examen */
-function sections(){
-  const langage=(mastery('vocabulaire')+mastery('kanji'))/2;   // 文字・語彙
-  const grammLect=(mastery('grammaire')+mastery('lecture'))/2; // 文法・読解
-  // 聴解 : mesuré si l'utilisateur a fait de l'écoute, sinon estimation prudente
-  const listening=S.skill.ecoute.t>=3 ? mastery('ecoute') : 0.85*((langage+grammLect)/2);
-  return {langage,grammLect,listening};
-}
-
-/* probabilité de réussite globale + score estimé /180 */
-function successModel(){
-  const s=sections();
-  const secScore={langage:s.langage*60,grammLect:s.grammLect*60,listening:s.listening*60};
-  const total=secScore.langage+secScore.grammLect+secScore.listening;
-  // chaque section doit dépasser ~19/60, et total >= 95/180
-  const pSec=v=>1/(1+Math.exp(-(v-22)/4));          // proba section >= seuil
-  const pTotal=1/(1+Math.exp(-(total-95)/12));
-  let p=pTotal*pSec(secScore.langage)*pSec(secScore.grammLect)*pSec(secScore.listening);
-  // confiance : faible si peu de données
-  const n=S.total;
-  const conf=Math.min(1,n/60);
-  // sans données, on tire vers une base prudente de 50%
-  p=conf*p+(1-conf)*0.5*pTotal;
-  return {p,total,secScore,conf,n};
-}
-
-function ratingLabel(){
-  const avg=CATS.reduce((a,c)=>a+S.skill[c].R,0)/CATS.length;
-  if(avg<1400)return 'N4-';
-  if(avg<1520)return 'N4+';
-  if(avg<1620)return 'N3-';
-  if(avg<1720)return 'N3';
-  return 'N3+';
-}
+/* Modèle de progression : délègue au module partagé progress.js pour que la
+   page d'accueil (index.html) et cette app affichent EXACTEMENT les mêmes
+   chiffres (source unique de vérité). */
+function mastery(cat){return JLPTProgress.mastery(S,cat)}
+function sections(){return JLPTProgress.sections(S)}
+function successModel(){return JLPTProgress.successModel(S)}
+function ratingLabel(){return JLPTProgress.ratingLabel(S)}
 
 /* =================== ACCUEIL =================== */
 function renderCats(){
