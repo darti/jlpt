@@ -1,18 +1,19 @@
 // Dev server for the strangler migration.
-//   • bundles the React index.html (with HMR) — the migrated page
-//   • serves the still-vanilla pages (app-n3/cours/planning) + shared assets
-//     straight from disk, so navigating to /app-n3.html works in dev exactly as
+//   • bundles the React entries index.html / quiz.html / app-n3.html (with HMR)
+//   • serves the still-vanilla pages (cours/planning) + shared assets
+//     straight from disk, so navigating to them works in dev exactly as
 //     it does in the GitHub Pages deploy.
 // The Tailwind CLI compiles the token CSS separately — bun-plugin-tailwind is
 // incompatible with Bun's runtime bundler, so the CLI is the working path.
 import index from "../index.html";
 import quiz from "../quiz.html";
+import appn3 from "../app-n3.html";
 
 // The still-vanilla files served statically. EXACT allowlist so no user-controlled
 // path ever reaches the filesystem (no traversal, no dotfile/.git/.env exposure).
 // Grows as pages migrate — the same ledger as the deploy `cp` list.
 const STATIC_FILES = new Set([
-  "/app-n3.html", "/cours-n3.html", "/planning-n3.html",
+  "/cours-n3.html", "/planning-n3.html",
   "/progress.js", "/dict.js", "/vocab-data.js", "/theme.css",
   "/sw.js", "/manifest.webmanifest",
   "/icon-180.png", "/icon-192.png", "/icon-512.png",
@@ -38,7 +39,7 @@ const css = Bun.spawn(
 const server = Bun.serve({
   port: Number(process.env.PORT) || 3030, // override via PORT if macOS AirPlay squats :5000
   development: true, // HMR for the bundled React route
-  routes: { "/": index, "/index.html": index, "/quiz.html": quiz },
+  routes: { "/": index, "/index.html": index, "/quiz.html": quiz, "/app-n3.html": appn3 },
   async fetch(req) {
     const path = new URL(req.url).pathname;
     if (STATIC_FILES.has(path)) {

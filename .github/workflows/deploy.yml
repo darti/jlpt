@@ -40,9 +40,9 @@ jobs:
       - name: Construire (Bun) + préparer l'artefact
         run: |
           bun install --frozen-lockfile
-          bun run build          # génère _site/index.html + _site/quiz.html (React) + assets hashés
-          # Pages encore en vanilla : copiées telles quelles
-          cp app-n3.html cours-n3.html planning-n3.html _site/
+          bun run build          # génère _site/index.html + _site/quiz.html + _site/app-n3.html (React) + chunks hashés (dont ECharts, lazy)
+          # Pages encore en vanilla : copiées telles quelles (app-n3.html est désormais buildé par bun, ne PAS le copier)
+          cp cours-n3.html planning-n3.html _site/
           cp theme.css progress.js dict.js vocab-data.js _site/
           cp manifest.webmanifest sw.js icon-180.png icon-192.png icon-512.png _site/
           cp README.md _site/ 2>/dev/null || true
