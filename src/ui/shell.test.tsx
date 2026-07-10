@@ -28,11 +28,19 @@ test("TopNav theme toggle button renders with correct emoji for light theme", ()
 });
 
 test("Footer renders encouragement message", () => {
-  expect(renderToStaticMarkup(<Footer onForceRefresh={() => {}} />)).toContain("頑張ってください！");
+  expect(renderToStaticMarkup(<Footer onForceRefresh={() => {}} version="—" />)).toContain("頑張ってください！");
 });
 
 test("Footer renders force refresh button", () => {
-  expect(renderToStaticMarkup(<Footer onForceRefresh={() => {}} />)).toContain("Forcer la mise à jour");
+  expect(renderToStaticMarkup(<Footer onForceRefresh={() => {}} version="—" />)).toContain("Forcer la mise à jour");
+});
+
+test("Footer shows a placeholder version before it resolves", () => {
+  expect(renderToStaticMarkup(<Footer onForceRefresh={() => {}} version="—" />)).toContain("version —");
+});
+
+test("Footer shows the resolved version string", () => {
+  expect(renderToStaticMarkup(<Footer onForceRefresh={() => {}} version="v80" />)).toContain("version v80");
 });
 
 test("UpdateBanner renders nothing when hidden", () => {

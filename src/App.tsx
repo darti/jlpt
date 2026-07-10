@@ -4,25 +4,29 @@ import { Footer } from "./ui/Footer.tsx";
 import { UpdateBanner } from "./ui/UpdateBanner.tsx";
 import { Dashboard } from "./features/dashboard/Dashboard.tsx";
 import { useProgress } from "./features/dashboard/useProgress.ts";
+import { InstallPrompt } from "./features/pwa/InstallPrompt.tsx";
 import { useTheme } from "./hooks/useTheme.ts";
 import { useServiceWorker } from "./hooks/usePwa.ts";
 import { dashboardModel, daysUntilExam, type DashboardModel } from "./lib/scoring.ts";
 import type { ThemeName } from "./lib/theme.ts";
 
-/** Pure, prop-driven view — unit-testable without globals. */
+/** Pure, prop-driven view — unit-testable without globals. `InstallPrompt` reads
+ * its own browser state from `useInstallPrompt` (guarded for SSR), so it can be
+ * dropped in here without threading install-related props through this view. */
 export function AppView(props: {
   theme: ThemeName; onToggleTheme: () => void;
   updateReady: boolean; onApplyUpdate: () => void; onForceRefresh: () => void;
-  model: DashboardModel | null; days: number;
+  model: DashboardModel | null; days: number; version: string;
 }) {
   return (
     <>
       <Header />
       <TopNav theme={props.theme} onToggleTheme={props.onToggleTheme} />
       <div className="max-w-[680px] mx-auto px-5 pt-6 pb-10">
+        <InstallPrompt />
         <Dashboard model={props.model} days={props.days} />
       </div>
-      <Footer onForceRefresh={props.onForceRefresh} />
+      <Footer onForceRefresh={props.onForceRefresh} version={props.version} />
       <UpdateBanner show={props.updateReady} onApply={props.onApplyUpdate} />
     </>
   );
@@ -30,7 +34,7 @@ export function AppView(props: {
 
 export default function App() {
   const { theme, toggle } = useTheme();
-  const { updateReady, apply, forceRefresh } = useServiceWorker();
+  const { updateReady, apply, forceRefresh, version } = useServiceWorker();
   const progress = useProgress();
   const now = new Date();
   const model = progress ? dashboardModel(progress, now) : null;
@@ -38,7 +42,7 @@ export default function App() {
     <AppView
       theme={theme} onToggleTheme={toggle}
       updateReady={updateReady} onApplyUpdate={apply} onForceRefresh={forceRefresh}
-      model={model} days={daysUntilExam(now)}
+      model={model} days={daysUntilExam(now)} version={version}
     />
   );
 }

@@ -16,9 +16,30 @@ test("AppView composes shell + dashboard", () => {
   const html = renderToStaticMarkup(
     <AppView theme="dark" onToggleTheme={() => {}} updateReady={false}
              onApplyUpdate={() => {}} onForceRefresh={() => {}}
-             model={model} days={model.days} />,
+             model={model} days={model.days} version="v80" />,
   );
   expect(html).toContain("JLPT N3");
   expect(html).toContain("app-n3.html");
   expect(html).toContain("17%");
+});
+
+test("AppView renders the install prompt without throwing under SSR (no window/navigator DOM)", () => {
+  const model = dashboardModel(flat(1600), new Date("2026-07-10T00:00:00"));
+  const html = renderToStaticMarkup(
+    <AppView theme="dark" onToggleTheme={() => {}} updateReady={false}
+             onApplyUpdate={() => {}} onForceRefresh={() => {}}
+             model={model} days={model.days} version="v80" />,
+  );
+  expect(html).toContain("Installer");
+  expect(html).toContain("application");
+});
+
+test("AppView threads the resolved version into the footer", () => {
+  const model = dashboardModel(flat(1600), new Date("2026-07-10T00:00:00"));
+  const html = renderToStaticMarkup(
+    <AppView theme="dark" onToggleTheme={() => {}} updateReady={false}
+             onApplyUpdate={() => {}} onForceRefresh={() => {}}
+             model={model} days={model.days} version="v80" />,
+  );
+  expect(html).toContain("version v80");
 });
