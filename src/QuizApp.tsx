@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "./ui/Header.tsx";
 import { TopNav } from "./ui/TopNav.tsx";
 import { QuizHome } from "./features/quiz/QuizHome.tsx";
@@ -38,7 +38,13 @@ export function QuizAppView(props: {
   const { question } = props;
   const onSpeak = () => {
     if (!question) return;
-    speak(question.cat === "ecoute" ? question.q : sentenceFromG(question.g ?? question.q));
+    // Écoute: the visible prompt (`q.q`) is not what's spoken — the listenable
+    // dialogue is `q.script`, when present (legacy app-n3.html:915-919 displays
+    // `q.q` but speaks `q.script`).
+    const speakText = question.cat === "ecoute"
+      ? (typeof question.script === "string" && question.script ? question.script : question.q)
+      : sentenceFromG(question.g ?? question.q);
+    speak(speakText);
   };
 
   return (
@@ -86,6 +92,12 @@ export default function QuizApp() {
   const { theme, toggle } = useTheme();
   const quiz = useQuiz();
   const [resumeDismissed, setResumeDismissed] = useState(false);
+
+  // Wires dict.js's delegation-based tap-to-define (quiz.html loads dict.js) —
+  // one call covers dynamically-rendered questions, incl. vocab/kanji defs.
+  useEffect(() => {
+    (window as unknown as { initDefs?: (o: { singleTap: boolean }) => void }).initDefs?.({ singleTap: true });
+  }, []);
 
   return (
     <QuizAppView

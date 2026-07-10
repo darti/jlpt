@@ -18,6 +18,9 @@ export interface ResumeState {
   t: number;
 }
 
+// Deliberately separate from vanilla `app-n3`'s `jlptN3_resume` key so the two
+// apps never clobber each other's in-progress session — within-app resume
+// still round-trips.
 const RESUME_KEY = "jlptN3quiz_resume";
 const RESUME_MAX_AGE_MS = 2 * 864e5; // 2 days — mirrors legacy getResume()
 const PUSH_DEBOUNCE_MS = 1500;

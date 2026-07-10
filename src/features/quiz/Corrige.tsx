@@ -20,6 +20,8 @@ export function Corrige({ question, correct }: { question: Question; correct: bo
   const correctAnswer = question.o[question.a];
   const od = question.od;
   const hasOd = od !== undefined && od.length === question.o.length;
+  const script = typeof question.script === "string" ? question.script : "";
+  const hasScript = question.cat === "ecoute" && script.length > 0;
 
   return (
     <div className="bg-panel border border-line rounded-xl p-5 shadow-card surface-blur">
@@ -34,6 +36,15 @@ export function Corrige({ question, correct }: { question: Question; correct: bo
       </p>
       {question.e && (
         <div className="text-fg text-sm mb-3 leading-relaxed" dangerouslySetInnerHTML={{ __html: question.e }} />
+      )}
+      {hasScript && (
+        <div className="mb-3">
+          <p className="text-accent text-sm font-bold mb-1">Transcription</p>
+          <div
+            className="text-fg-dim text-sm leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: furiOrPlain(script) }}
+          />
+        </div>
       )}
       {question.g && (
         <div className="mb-3">

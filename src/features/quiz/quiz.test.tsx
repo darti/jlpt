@@ -20,6 +20,14 @@ test("Corrige shows the explanation and per-option analysis", () => {
   expect(html).toContain("帰ったら");
 });
 
+test("Corrige shows the transcript for an écoute question with a script", () => {
+  const ecouteQ: Question = { id: 1, cat: "ecoute", d: 1, q: "何と言っていますか。",
+    script: "すみません、駅はどこですか。", o: ["A", "B", "C", "D"], a: 0 };
+  const html = renderToStaticMarkup(<Corrige question={ecouteQ} correct={true} />);
+  expect(html).toContain("Transcription");
+  expect(html).toContain("すみません、駅はどこですか。");
+});
+
 test("Results shows the session score", () => {
   const html = renderToStaticMarkup(<Results count={10} right={7} onRestart={() => {}} />);
   expect(html).toContain("7");
