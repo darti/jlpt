@@ -40,46 +40,22 @@ export function readRawProgress(
 /** Merge `patch` onto the current blob (deep-merge `skill`), preserving every
  *  other field the vanilla app owns (gram/streak/history/…). Never throws.
  *  Best-effort: silently ignores storage errors (read/write failures, JSON parse errors).
- *  Only quiz-managed fields (total, right, skill) are merged; others are ignored. */
+ *  Every field the caller patches is written; vanilla-app fields not present in the
+ *  patch are preserved because `cur` is spread first. */
 export function writeProgress(
   patch: Record<string, unknown>,
   store: Pick<Storage, "getItem" | "setItem"> = globalThis.localStorage,
 ): void {
   try {
     const cur = readRawProgress(store) ?? {};
-    // Only permit quiz-managed fields; build safe patch to preserve vanilla app fields
-    const safePatch: Record<string, unknown> = {};
-    const PERMITTED = new Set(["total", "right", "skill"]);
-    for (const key of PERMITTED) {
-      if (key in patch) {
-        safePatch[key] = patch[key];
-      }
-    }
-    // Validate skill patch: must be a plain object (not array, not null)
-    if (
-      "skill" in safePatch &&
-      (safePatch.skill === null ||
-        typeof safePatch.skill !== "object" ||
-        Array.isArray(safePatch.skill))
-    ) {
-      delete safePatch.skill; // invalid skill type: skip it entirely
-    }
-    const next: Record<string, unknown> = { ...cur, ...safePatch };
-    // Deep-merge skill: validate it's a plain object (not array, not null)
-    const patchSkill = patch.skill;
-    if (
-      patchSkill !== null &&
-      patchSkill !== undefined &&
-      typeof patchSkill === "object" &&
-      !Array.isArray(patchSkill)
-    ) {
-      const curSkill = cur.skill;
-      const baseSkill = (
-        typeof curSkill === "object" && curSkill !== null && !Array.isArray(curSkill)
-          ? curSkill
-          : {}
-      ) as Record<string, unknown>;
-      next.skill = { ...baseSkill, ...patchSkill };
+    const next: Record<string, unknown> = { ...cur, ...patch }; // write ANY patched field
+    if (patch.skill && typeof patch.skill === "object" && !Array.isArray(patch.skill)) {
+      const curSkill = (
+        typeof cur.skill === "object" && cur.skill !== null && !Array.isArray(cur.skill)
+      )
+        ? (cur.skill as Record<string, unknown>)
+        : {};
+      next.skill = { ...curSkill, ...(patch.skill as Record<string, unknown>) };
     }
     store.setItem(PROGRESS_KEY, JSON.stringify(next));
     store.setItem(UPDATED_KEY, new Date().toISOString());

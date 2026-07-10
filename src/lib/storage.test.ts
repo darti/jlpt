@@ -57,6 +57,24 @@ test("writeProgress merges onto the existing blob, preserving unmanaged fields (
   expect(typeof store._get("jlptN3_updatedAt")).toBe("string");
 });
 
+test("writeProgress writes quiz fields beyond total/right/skill (wrong, streak) while preserving unmanaged fields", () => {
+  const store = memStore({
+    jlptN3adapt_v2: JSON.stringify({
+      total: 3, right: 1, streak: 2, gram: { "点A": { box: 3 } },
+      history: [{ date: "2025-01-01", count: 5 }],
+      skill: { grammaire: { R: 1500, t: 3, r: 1 }, kanji: { R: 1450, t: 0, r: 0 } },
+    }),
+  });
+  writeProgress({ wrong: [5, 9], streak: 3, skill: { grammaire: { R: 1520, t: 4, r: 2 } } }, store);
+  const out = JSON.parse(store._get("jlptN3adapt_v2") as string);
+  expect(out.wrong).toEqual([5, 9]);            // quiz field, no longer dropped
+  expect(out.streak).toBe(3);                   // quiz field, no longer dropped
+  expect(out.skill.grammaire).toEqual({ R: 1520, t: 4, r: 2 }); // merged skill
+  expect(out.skill.kanji).toEqual({ R: 1450, t: 0, r: 0 });     // other skill preserved
+  expect(out.gram).toEqual({ "点A": { box: 3 } }); // preserved (vanilla SRS, unmanaged field)
+  expect(out.history).toEqual([{ date: "2025-01-01", count: 5 }]); // preserved (unmanaged field)
+});
+
 test("writeProgress on empty store creates a blob", () => {
   const store = memStore();
   writeProgress({ total: 1, skill: { grammaire: { R: 1450, t: 1, r: 0 } } }, store);
@@ -72,28 +90,28 @@ test("writeProgress sets jlptN3_updatedAt timestamp", () => {
   expect(timestamp >= beforeTime && timestamp <= afterTime).toBe(true);
 });
 
-test("writeProgress ignores array skill patches (treats as non-object)", () => {
+test("writeProgress with an array skill patch overwrites skill (generic merge, caller's responsibility)", () => {
   const store = memStore({
     jlptN3adapt_v2: JSON.stringify({
       total: 1, skill: { grammaire: { R: 1500 } },
     }),
   });
-  // Pass skill as array (invalid type) - should be ignored
+  // skill as array skips the object deep-merge guard, so the generic patch spread wins.
   writeProgress({ skill: [{ R: 1600 }] as unknown as Record<string, unknown> }, store);
   const out = JSON.parse(store._get("jlptN3adapt_v2") as string);
-  expect(out.skill.grammaire).toEqual({ R: 1500 }); // unchanged
+  expect(out.skill).toEqual([{ R: 1600 }]);
 });
 
-test("writeProgress handles null skill patch safely (ignores it)", () => {
+test("writeProgress with a null skill patch overwrites skill with null (generic merge, caller's responsibility)", () => {
   const store = memStore({
     jlptN3adapt_v2: JSON.stringify({
       total: 1, skill: { grammaire: { R: 1500 } },
     }),
   });
-  // skill: null is invalid - should be ignored
+  // skill: null skips the object deep-merge guard, so the generic patch spread wins.
   writeProgress({ skill: null as unknown as Record<string, unknown> }, store);
   const out = JSON.parse(store._get("jlptN3adapt_v2") as string);
-  expect(out.skill.grammaire).toEqual({ R: 1500 }); // unchanged (null was ignored)
+  expect(out.skill).toBeNull();
 });
 
 test("writeProgress never throws on corrupted store", () => {
