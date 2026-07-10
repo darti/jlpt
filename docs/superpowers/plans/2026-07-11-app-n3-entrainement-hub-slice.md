@@ -117,11 +117,11 @@ export function applyFontScale(
 
 **Files:** Create `src/lib/datajson.ts`, `src/lib/datajson.test.ts`.
 **Interfaces:** Consumes `collectData`/`applyData` from `src/lib/gist.ts` (reuse — do NOT reimplement). Produces:
-- `exportJson(store?): string` — `JSON.stringify(collectData(store), null, 2)` (the `{app,updatedAt,store}` backup shape).
-- `importJson(json: string, store?, confirmFn?): boolean` — parse; require `payload.store`; `confirmFn` gate; `applyData(store, payload)`; bump `updatedAt`; returns applied?
-- `resetProgress(store?): void` — write a fresh blank `jlptN3adapt_v2` blob (does NOT touch theme/gist/fontscale keys).
+- `exportJson(store?): string` — `JSON.stringify(collectData(store, nowIso), null, 2)`. **NOTE (C1):** `collectData` (gist.ts:88) intentionally EXCLUDES `jlptN3_gh` (the GitHub token) — backups must never carry the token. The export is `{app, updatedAt, store}` over `jlptN3*` keys minus the token.
+- `importJson(json: string, store?, confirmFn?): boolean` — parse; require `payload.store` is an object; `confirmFn` gate; **strip `jlptN3_gh` from `payload.store` before applying (M1 — never let an untrusted file inject a GitHub-token config)**; `applyData(store, payload)`; bump `updatedAt`; returns applied?
+- `resetProgress(store?): void` — write a fresh blank `jlptN3adapt_v2` blob **matching the legacy `load()` default EXACTLY** (M3): `{ skill: blankSkills(), total:0, right:0, bestStreak:0, streak:0, wrong:[], history:[], lastDiag:null, gram:{} }` — note `gram:{}` (vanilla SRS state) MUST be included or reset would wipe/desync it. Does NOT touch theme/gist/fontscale keys.
 
-> Read `src/lib/gist.ts` to confirm the exact `collectData`/`applyData` signatures before wiring.
+> Read `src/lib/gist.ts` to confirm the exact `collectData`/`applyData` signatures before wiring. Verified: `collectData(store, nowIso)`, `applyData(store, payload)`, and `collectData` excludes `jlptN3_gh`.
 
 - [ ] **Step 1: Write the failing test `src/lib/datajson.test.ts`**
 
@@ -137,12 +137,21 @@ function memStore(init: Record<string, string> = {}) {
            key: (i: number) => [...m.keys()][i] ?? null, get length() { return m.size; }, _dump: () => Object.fromEntries(m) };
 }
 
-test("exportJson round-trips through importJson, preserving progress keys", () => {
-  const src = memStore({ jlptN3adapt_v2: JSON.stringify({ total: 7, skill: {} }), jlptN3_theme: "dark", jlptN3_gh: "SECRET" });
+test("exportJson round-trips progress but NEVER carries the GitHub token (C1)", () => {
+  const src = memStore({ jlptN3adapt_v2: JSON.stringify({ total: 7, skill: {} }), jlptN3_theme: "dark", jlptN3_gh: JSON.stringify({ token: "SECRET" }) });
   const json = exportJson(src);
+  expect(json).not.toContain("SECRET");            // token excluded by design (collectData)
   const dst = memStore();
   expect(importJson(json, dst, () => true)).toBe(true);
-  expect(JSON.parse(dst._get?.("jlptN3adapt_v2") ?? (dst as any).getItem("jlptN3adapt_v2")).total).toBe(7);
+  expect(JSON.parse((dst as any).getItem("jlptN3adapt_v2")).total).toBe(7);
+});
+
+test("importJson strips a jlptN3_gh injected into a hostile file (M1)", () => {
+  const hostile = JSON.stringify({ app: "jlpt-n3", store: { jlptN3adapt_v2: JSON.stringify({ total: 3, skill: {} }), jlptN3_gh: JSON.stringify({ token: "STOLEN" }) } });
+  const dst = memStore();
+  expect(importJson(hostile, dst, () => true)).toBe(true);
+  expect((dst as any).getItem("jlptN3_gh")).toBeNull();   // token NOT imported
+  expect(JSON.parse((dst as any).getItem("jlptN3adapt_v2")).total).toBe(3); // progress imported
 });
 
 test("importJson returns false (no write) when confirm declines", () => {
@@ -163,6 +172,7 @@ test("resetProgress writes a blank progress blob, leaves theme/gist untouched", 
   const blob = JSON.parse((s as any).getItem("jlptN3adapt_v2"));
   expect(blob.total).toBe(0);
   expect(blob.skill.kanji).toEqual({ R: 1450, t: 0, r: 0 });
+  expect(blob.gram).toEqual({});                    // M3: gram preserved in blank shape
   expect((s as any).getItem("jlptN3_theme")).toBe("light");
   expect((s as any).getItem("jlptN3_gh")).toBe("keep");
 });
@@ -187,17 +197,21 @@ export function exportJson(store: Store = globalThis.localStorage): string {
 export function importJson(json: string, store: Store = globalThis.localStorage, confirmFn: () => boolean = () => true): boolean {
   let payload: { store?: Record<string, string> };
   try { payload = JSON.parse(json); } catch { return false; }
-  if (!payload || typeof payload.store !== "object") return false;
+  if (!payload || typeof payload.store !== "object" || payload.store === null) return false;
   if (!confirmFn()) return false;
   try {
-    applyData(store as Storage, payload as { store: Record<string, string> });
+    // M1: never import a GitHub-token config from an untrusted file.
+    const safe = { ...payload, store: { ...payload.store } };
+    delete (safe.store as Record<string, string>).jlptN3_gh;
+    applyData(store as Storage, safe as { store: Record<string, string> });
     store.setItem(UPDATED_KEY, new Date().toISOString());
     return true;
   } catch { return false; }
 }
 
 export function resetProgress(store: Store = globalThis.localStorage): void {
-  const blank = { skill: blankSkills(), total: 0, right: 0, bestStreak: 0, streak: 0, wrong: [], history: [], lastDiag: null };
+  // M3: mirror legacy load() default EXACTLY, incl. gram:{} (vanilla SRS state).
+  const blank = { skill: blankSkills(), total: 0, right: 0, bestStreak: 0, streak: 0, wrong: [], history: [], lastDiag: null, gram: {} };
   try { store.setItem(PROGRESS_KEY, JSON.stringify(blank)); store.setItem(UPDATED_KEY, new Date().toISOString()); } catch { /* best-effort */ }
 }
 ```
@@ -222,10 +236,10 @@ import { parseSessionParams } from "./useQuiz.ts";
 
 test("parses ?min=15", () => { expect(parseSessionParams("?min=15")).toEqual({ min: 15, resume: false }); });
 test("parses ?resume=1", () => { expect(parseSessionParams("?resume=1")).toEqual({ resume: true }); });
-test("ignores junk / clamps absurd min", () => {
+test("ignores junk / clamps absurd min to 45 (allocate caps a session at 45 questions)", () => {
   expect(parseSessionParams("")).toEqual({ resume: false });
   expect(parseSessionParams("?min=abc")).toEqual({ resume: false });
-  expect(parseSessionParams("?min=999").min).toBe(60); // clamp to a sane max
+  expect(parseSessionParams("?min=999").min).toBe(45); // M4: allocate() caps total at 45 (round(min*1.5)); ≥30 min already yields 45
 });
 ```
 
@@ -239,18 +253,37 @@ export function parseSessionParams(search: string): { min?: number; resume: bool
   const p = new URLSearchParams(search);
   if (p.get("resume") === "1") return { resume: true };
   const raw = Number(p.get("min"));
-  if (Number.isFinite(raw) && raw > 0) return { min: Math.min(60, Math.max(1, Math.round(raw))), resume: false };
+  if (Number.isFinite(raw) && raw > 0) return { min: Math.min(45, Math.max(1, Math.round(raw))), resume: false };
   return { resume: false };
 }
 ```
 
-Then in `useQuiz`'s mount effect (browser-only, after the resume state is read), add:
+**C3 — fix the auto-start/auto-resume wiring (real React bugs in the earlier sketch):**
+1. **`start` must take the minutes explicitly** so it doesn't depend on pending `minutes` state. Change its signature to `start(minArg?: number)` and use `const min = minArg ?? minutes;` inside (feed `allocate(masteryOf, min)`). Then a `?min=15` auto-start calls `start(15)` directly — no stale-closure bug.
+2. **Auto-resume must NOT depend on the async `resume` state** (it's `null` at mount, set by a later effect). Drive it off `readResumeState()` directly.
+
+A dedicated one-shot mount effect (separate from the resume-state effect), guarded and consume-once:
 ```ts
-const params = parseSessionParams(typeof window !== "undefined" ? window.location.search : "");
-if (params.resume && /* a valid resume exists */) { resumeNow(); }
-else if (params.min) { setMinutes(params.min); start(/* using params.min */); }
+const didAutoRef = useRef(false);
+useEffect(() => {
+  if (didAutoRef.current || typeof window === "undefined") return;
+  didAutoRef.current = true;
+  const params = parseSessionParams(window.location.search);
+  if (params.resume && readResumeState()) { resumeNow(); }
+  else if (params.min) { setMinutes(params.min); void start(params.min); }
+}, []); // run once; uses readResumeState() + start(min) directly, not the `resume`/`minutes` state
 ```
-(Wire it so `?min` auto-starts a session of that length with all categories selected, and `?resume=1` auto-resumes when a valid `jlptN3quiz_resume` is present; no param → unchanged `home` phase. Keep it in the existing mount effect, SSR-guarded.)
+`?min` auto-starts a session of that length (all categories, the default selection); `?resume=1` auto-resumes only when a valid `jlptN3quiz_resume` exists; no param → unchanged `home` phase.
+
+**C2 — record session history so the ProgressChart has a real data source.** The shipped React quiz never writes `history`, and diagnostics are deferred, so the chart would be permanently empty. In `useQuiz`'s finish path (where the session transitions to `results` — see the `next()` end-of-session branch), append a history entry mirroring legacy `finish()` (app-n3.html:971), via `writeProgress`:
+```ts
+// on session finish, after the last writeProgress:
+const raw = readRawProgress() ?? {};
+const score = dashboardModel(asProgress(raw), new Date()).sectionTotal; // estimated /180 at session end
+const prevHist = Array.isArray(raw.history) ? (raw.history as unknown[]) : [];
+writeProgress({ history: [...prevHist, { mode: "session", score, right: rightRef.current, n: questions.length }].slice(-40) });
+```
+(Import `dashboardModel` from `scoring.ts`; reuse the file's existing `asProgress`/`readRawProgress`. This gives `ProgressChart` real per-session scores.)
 
 - [ ] **Step 4: Run — verify GREEN + full suite** — `bun test` (parser passes; existing quiz tests still green — the auto-start path only triggers with a param, never in `renderToStaticMarkup`).
 - [ ] **Step 5: Commit** — `git add src/features/quiz/useQuiz.ts src/features/quiz/sessionParams.test.ts && git commit -m "Quiz : useQuiz lit ?min (démarrage direct) et ?resume (reprise auto)"`
@@ -259,10 +292,22 @@ else if (params.min) { setMinutes(params.min); start(/* using params.min */); }
 
 ## Task 4: ProgressChart (ECharts) — **load the dataviz skill first**
 
-**Files:** `bun add echarts`; create `src/features/entrainement/ProgressChart.tsx`, `src/features/entrainement/ProgressChart.test.tsx`.
-**Interfaces:** `ProgressChart({ scores: number[] })` — `scores` = diagnostic scores /180 in order. Renders an ECharts line chart (x = diagnostic index, y = 0–180) with a « seuil 95 » markLine; **empty-state** (« Au moins 2 diagnostics… ») when `scores.length < 2`.
+**Files:** `bun add echarts`; create `src/lib/history.ts` (+ test), `src/features/entrainement/ProgressChart.tsx`, `src/features/entrainement/ProgressChart.test.tsx`.
+**Interfaces:** `readSessionScores(store?): number[]` (pure — reads raw `jlptN3adapt_v2.history`, returns each entry's numeric `score` in order); `ProgressChart({ scores: number[] })` — `scores` = **session** scores /180 in order (fed from `readSessionScores`; source is the history the quiz now writes — Task 3 C2). Renders a line chart (x = session index, y = 0–180) with a « seuil 95 » markLine; **empty-state** (« Au moins 2 diagnostics… ») when `scores.length < 2`.
 
-- [ ] **Step 1: Install ECharts (tree-shaken usage)** — `bun add echarts`
+- [ ] **Step 0: `readSessionScores` (TDD)** — create `src/lib/history.ts`:
+```ts
+import { readRawProgress } from "./storage.ts";
+/** Session scores /180 over time, from the raw blob's history. */
+export function readSessionScores(store: Pick<Storage, "getItem"> = globalThis.localStorage): number[] {
+  const raw = readRawProgress(store as Storage);
+  const hist = raw && Array.isArray((raw as { history?: unknown }).history) ? (raw as { history: unknown[] }).history : [];
+  return hist.map((h) => (h && typeof (h as { score?: unknown }).score === "number" ? (h as { score: number }).score : NaN)).filter((n) => Number.isFinite(n));
+}
+```
+Test (`src/lib/history.test.ts`): a store with `history:[{score:80},{score:110}]` → `[80,110]`; missing/empty history → `[]`; non-numeric scores filtered.
+
+- [ ] **Step 1: Install ECharts** — `bun add echarts`. **Budget (M2):** after the build, check the ECharts chunk gzipped size; target **< ~180 KB**. If exceeded, reconsider a lighter option (uPlot / inline SVG) for a single line chart — note it in the report either way.
 
 - [ ] **Step 2: Load the dataviz skill** before writing chart code (palette, axes, legend, accessibility). Apply its guidance to the config below.
 
@@ -290,14 +335,9 @@ test("renders a chart container when there is data (no throw under SSR)", () => 
 
 ```tsx
 import { useEffect, useRef } from "react";
-import * as echarts from "echarts/core";
-import { LineChart } from "echarts/charts";
-import { GridComponent, MarkLineComponent, TooltipComponent } from "echarts/components";
-import { SVGRenderer } from "echarts/renderers";
-echarts.use([LineChart, GridComponent, MarkLineComponent, TooltipComponent, SVGRenderer]);
 
+// cssVar is only ever called inside the effect (browser), so `document` is defined there (m1).
 function cssVar(name: string, fallback: string): string {
-  if (typeof getComputedStyle === "undefined") return fallback;
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
 }
 
@@ -305,24 +345,40 @@ export function ProgressChart({ scores }: { scores: number[] }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (scores.length < 2 || !ref.current) return;
-    const chart = echarts.init(ref.current, undefined, { renderer: "svg" });
-    const accent = cssVar("--color-accent", "#88c0d0");
-    const ok = cssVar("--color-status-completed", "#a3be8c");
-    chart.setOption({
-      grid: { left: 36, right: 12, top: 12, bottom: 24 },
-      tooltip: { trigger: "axis" },
-      xAxis: { type: "category", data: scores.map((_, i) => (i === 0 ? "1er" : i === scores.length - 1 ? "récent" : String(i + 1))) },
-      yAxis: { type: "value", min: 0, max: 180 },
-      series: [{
-        type: "line", data: scores, smooth: true, symbolSize: 7,
-        lineStyle: { color: accent, width: 2.5 }, itemStyle: { color: accent },
-        markLine: { silent: true, symbol: "none", lineStyle: { color: ok, type: "dashed" },
-          data: [{ yAxis: 95, label: { formatter: "seuil 95", color: ok } }] },
-      }],
-    });
-    const onResize = () => chart.resize();
-    window.addEventListener("resize", onResize);
-    return () => { window.removeEventListener("resize", onResize); chart.dispose(); };
+    let chart: { resize: () => void; dispose: () => void } | null = null;
+    let onResize: (() => void) | null = null;
+    let disposed = false;
+    // Dynamic import → ECharts is a separate runtime-cached chunk (keeps the app-n3
+    // bundle small; M2). If it can't load (offline first visit, chunk uncached) the
+    // delta summary below still renders — graceful degradation.
+    (async () => {
+      try {
+        const echarts = await import("echarts/core");
+        const { LineChart } = await import("echarts/charts");
+        const { GridComponent, MarkLineComponent, TooltipComponent } = await import("echarts/components");
+        const { SVGRenderer } = await import("echarts/renderers");
+        echarts.use([LineChart, GridComponent, MarkLineComponent, TooltipComponent, SVGRenderer]);
+        if (disposed || !ref.current) return;
+        chart = echarts.init(ref.current, undefined, { renderer: "svg" });
+        const accent = cssVar("--color-accent", "#88c0d0");
+        const ok = cssVar("--color-status-completed", "#a3be8c");
+        chart.setOption({
+          grid: { left: 36, right: 12, top: 12, bottom: 24 },
+          tooltip: { trigger: "axis" },
+          xAxis: { type: "category", data: scores.map((_, i) => (i === 0 ? "1er" : i === scores.length - 1 ? "récent" : String(i + 1))) },
+          yAxis: { type: "value", min: 0, max: 180 },
+          series: [{
+            type: "line", data: scores, smooth: true, symbolSize: 7,
+            lineStyle: { color: accent, width: 2.5 }, itemStyle: { color: accent },
+            markLine: { silent: true, symbol: "none", lineStyle: { color: ok, type: "dashed" },
+              data: [{ yAxis: 95, label: { formatter: "seuil 95", color: ok } }] },
+          }],
+        });
+        onResize = () => chart?.resize();
+        window.addEventListener("resize", onResize);
+      } catch { /* ECharts chunk unavailable (offline) → summary-only fallback */ }
+    })();
+    return () => { disposed = true; if (onResize) window.removeEventListener("resize", onResize); chart?.dispose(); };
   }, [scores]);
 
   if (scores.length < 2) {
@@ -347,8 +403,18 @@ export function ProgressChart({ scores }: { scores: number[] }) {
 
 ## Task 5: SessionLauncher + ResumeBanner (hub)
 
-**Files:** Create `src/features/entrainement/SessionLauncher.tsx`, `ResumeBanner.tsx`, `entrainement.test.tsx`.
-**Interfaces:** `SessionLauncher()` — «J'ai [xx] minutes» chips (5/10/15) + free input, «Démarrer ma session» → sets `window.location.href = "quiz.html?min=" + minutes`. `ResumeBanner()` — reads `jlptN3quiz_resume`; if a valid session exists, «Reprendre ma session» (+ progress `qi+1`/`ids.length`) → `quiz.html?resume=1`; else renders nothing.
+**Files:** Create `src/features/entrainement/nav.ts` (+ test), `SessionLauncher.tsx`, `ResumeBanner.tsx`, `entrainement.test.tsx`.
+**Interfaces:** **Pure helpers (M5 — the real logic, unit-tested without a DOM):** `sessionHref(minutes: number): string` = `"quiz.html?min=" + clamp(minutes)`; `resumeHref(): string` = `"quiz.html?resume=1"`. `SessionLauncher()` — «J'ai [xx] minutes» chips (5/10/15) + free input, «Démarrer ma session» → `window.location.href = sessionHref(minutes)`. `ResumeBanner()` — reads `jlptN3quiz_resume`; if a valid session exists, «Reprendre ma session» (+ progress `qi+1`/`ids.length`) → `window.location.href = resumeHref()`; else renders nothing.
+
+- [ ] **Step 0: `nav.ts` (TDD)** — pure href builders:
+```ts
+export function sessionHref(minutes: number): string {
+  const m = Math.min(45, Math.max(1, Math.round(minutes) || 10));
+  return "quiz.html?min=" + m;
+}
+export function resumeHref(): string { return "quiz.html?resume=1"; }
+```
+Test (`nav.test.ts`): `sessionHref(15) === "quiz.html?min=15"`; `sessionHref(999) === "quiz.html?min=45"`; `sessionHref(NaN) === "quiz.html?min=10"`; `resumeHref() === "quiz.html?resume=1"`.
 
 - [ ] **Step 1: Write the failing smoke test `src/features/entrainement/entrainement.test.tsx`**
 
@@ -397,7 +463,7 @@ test("Settings renders font-scale, theme, and data controls", () => {
 ## Task 7: EntrainementHome + EntrainementApp + app-n3.html shell
 
 **Files:** Create `src/features/entrainement/EntrainementHome.tsx`, `src/EntrainementApp.tsx`, `src/entries/app-n3.tsx`, `src/EntrainementApp.test.tsx`; **replace** `app-n3.html` with a thin shell.
-**Interfaces:** `EntrainementApp` composes the shell (`Header`/`TopNav`) + `EntrainementHome`. `EntrainementHome` = progress overview (jauge + stats via `dashboardModel(progress, now)`) + `ProgressChart` (scores from `S.history.filter(mode==='diagnostic').map(p=>p.score)`) + `ResumeBanner` + `SessionLauncher` + deferred stubs («Diagnostic»/«Apprendre»/«Réviser les erreurs» → «bientôt disponible») + `Settings` + the reused `SyncSection`. `EntrainementApp` also runs a mount effect: `applyFontScale()` and `window.initDefs?.({ singleTap: true })`.
+**Interfaces:** `EntrainementApp` composes the shell (`Header`/`TopNav`) + `EntrainementHome`. `EntrainementHome` = progress overview (jauge + stats via `dashboardModel(progress, now)`) + `ProgressChart` (scores from `readSessionScores()` — Task 4; NOT from a non-existent typed `history` field) + `ResumeBanner` + `SessionLauncher` + deferred stubs («Diagnostic»/«Apprendre»/«Réviser les erreurs» → «bientôt disponible») + `Settings` + the reused `SyncSection`. `EntrainementApp` also runs a mount effect: `applyFontScale()` and `window.initDefs?.({ singleTap: true })`.
 
 - [ ] **Step 1: Replace `app-n3.html`** with the thin shell (mirror `quiz.html`):
 
@@ -408,6 +474,11 @@ test("Settings renders font-scale, theme, and data controls", () => {
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Entraînement — JLPT N3</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#2e3440">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JLPT N3">
+<link rel="apple-touch-icon" href="icon-180.png">
 <script>(function(){try{var t=localStorage.getItem('jlptN3_theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){}})();</script>
 <script src="dict.js"></script>
 </head>
@@ -441,5 +512,22 @@ test("Settings renders font-scale, theme, and data controls", () => {
 
 **1. Spec coverage:** progress overview (Task 7 via scoring.ts); ECharts chart + empty-state (Task 4); session launcher «J'ai xx min» + resume → quiz.html (Tasks 3/5); settings font/theme/export/import/reset (Tasks 1/2/6); Gist SyncSection reused (Task 7); app-n3.html replaced + deferred stubs (Tasks 7/8); ECharts bundled tree-shaken + dataviz (Task 4); links preserved (shell keeps the URL). ✓
 **2. Placeholders:** Tasks 1–4 carry complete code + tests; Tasks 5–7 carry complete tests + precise behavior specs (UI porting from `app-n3.html`, cited); Task 8 concrete edits. The `datajson.ts` step flags verifying `gist.ts` signatures. No silent TODOs.
-**3. Type consistency:** `readFs`/`bumpFs`/`applyFontScale` (T1) used in Settings (T6); `exportJson`/`importJson`/`resetProgress` (T2) in Settings (T6); `parseSessionParams` (T3) in useQuiz; `ProgressChart({scores})` (T4) in EntrainementHome (T7) fed from `S.history`; `dashboardModel`/`masteryOf` (scoring.ts) reused. Font keys `jlptN3_fsUi/Jp`, resume key `jlptN3quiz_resume` consistent throughout.
+**3. Type consistency:** `readFs`/`bumpFs`/`applyFontScale` (T1) used in Settings (T6); `exportJson`/`importJson`/`resetProgress` (T2) in Settings (T6); `parseSessionParams` (T3) in useQuiz; `ProgressChart({scores})` (T4) in EntrainementHome (T7) fed from `readSessionScores()` (T4, reading the session history the quiz writes in T3 — not a non-existent typed `history` field); `dashboardModel`/`masteryOf` (scoring.ts) reused. Font keys `jlptN3_fsUi/Jp`, resume key `jlptN3quiz_resume` consistent throughout.
 **4. Ambiguity:** the `datajson`↔`gist.ts` signature coupling is the one spot needing a read of `gist.ts` first (flagged in Task 2); the chart's exact ECharts styling is deferred to the dataviz skill (Task 4 Step 2), bounded by the empty-state + markLine tests.
+
+---
+
+## Risques / différé (suite à la revue auto)
+
+Les points ci-dessous sont **assumés hors périmètre de cette tranche** ; ils sont notés pour la tranche diagnostic/SRS afin qu'aucune décision implicite ne se perde.
+
+- **D1 — Réconciliation `history`/`lastDiag` au portage diagnostic.** Le graphe trace ici les **scores de session** (`readSessionScores`, `mode:"session"`), pas les diagnostics (`mode:"diagnostic"`), qui n'existent pas encore en React. Quand la tranche diagnostic sera portée depuis `git show <commit>:app-n3.html`, il faudra : (a) réécrire `ProgressChart` pour filtrer/superposer `diagnostic` vs `session` (le legacy filtrait `mode==='diagnostic'`), et (b) restaurer l'écriture de `lastDiag` + l'entrée `history{mode:'diagnostic',score,p,right,n}` que le quiz React n'émet pas. La forme de l'entrée `history` reste **compatible legacy** (mêmes clés) pour ne pas casser la lecture vanilla ni la sync Gist.
+- **D2 — Clés de reprise séparées.** La reprise du hub lit `jlptN3quiz_resume` (écrit par le quiz React). Le SRS/diagnostic vanilla utilisaient d'autres clés de session ; à leur portage, documenter/segmenter l'espace de clés `jlptN3*` pour éviter qu'une reprise de quiz et une reprise de diagnostic se marchent dessus.
+- **D3 — Poids ECharts à revérifier.** Le budget viré ici (<~180 Ko gz, `echarts/core` + LineChart + Grid/MarkLine/Tooltip + SVGRenderer, import dynamique) est mesuré à Task 4 Step 6. Si une tranche future ajoute d'autres types de graphe (barres, heatmap), re-mesurer : chaque `echarts.use([...])` supplémentaire alourdit le chunk. Le SW runtime-cache les chunks hashés — purger l'ancien au bump `CACHE` (m3).
+- **D4 — Handoff hub → quiz non couvert e2e.** Les helpers `sessionHref`/`resumeHref` (T5) et la lecture `?min`/`?resume` (T3) sont testés **des deux côtés séparément** (unit sur les builders, unit sur `parseSessionParams`), mais aucun test ne parcourt le trajet complet hub→`quiz.html`→session démarrée. Vérification manuelle au Task 8 Step 6 (navigateur, contrôleur). Un vrai e2e (Playwright/bun) est différé — noté pour quand une tranche introduira un harnais e2e.
+
+### Notes mineures pour l'implémenteur (non bloquantes)
+
+- **m2 — asymétrie `readFs` vs `bumpFs`.** `readFs` lit sans re-borner (valeur déjà en storage) ; `bumpFs` borne 0.8–1.8. C'est le comportement legacy fidèle — **ne pas** ajouter de clamp dans `readFs` (une valeur legacy hors bornes doit rester lisible telle quelle).
+- **m3 — chunks ECharts périmés dans le SW.** Au bump `CACHE` (v82→v83, Task 8), les anciens chunks hashés restent en runtime-cache jusqu'à éviction. Acceptable (URL hashées, jamais servies périmées) ; ne pas précacher les chunks ECharts.
+- **m4 — imports en double dans `entrainement.test.tsx`.** Tasks 5 et 6 étendent le **même** fichier ; l'implémenteur de Task 6 doit **ajouter** son import `Settings` sans redéclarer `test`/`expect`/`renderToStaticMarkup` déjà importés par Task 5.
