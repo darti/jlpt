@@ -10,13 +10,10 @@ import EntrainementApp from "./EntrainementApp.tsx";
 
 let container: HTMLDivElement;
 let root: Root;
-let initDefsCalls: unknown[];
 
 beforeEach(() => {
   localStorage.clear();
   document.documentElement.style.removeProperty("--fs-ui");
-  initDefsCalls = [];
-  (window as unknown as { initDefs: (o: unknown) => void }).initDefs = (o) => { initDefsCalls.push(o); };
   // Seed a realistic returning-user state: progress + a 2-session history + font scale + resume.
   localStorage.setItem("jlptN3adapt_v2", JSON.stringify({
     total: 60,
@@ -44,10 +41,9 @@ test("EntrainementApp mounts live without throwing and renders the whole hub", (
   expect(text).toContain("%");                   // Dashboard progress stats rendered from seeded progress
 });
 
-test("mount effect applies the persisted font scale and wires initDefs", () => {
+test("mount effect applies the persisted font scale", () => {
   act(() => { root.render(<EntrainementApp />); });
   expect(document.documentElement.style.getPropertyValue("--fs-ui")).toBe("1.2");
-  expect(initDefsCalls).toEqual([{ singleTap: true }]);
 });
 
 test("resume banner appears when a valid quiz session is stored", () => {

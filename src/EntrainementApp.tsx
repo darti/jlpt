@@ -53,12 +53,12 @@ export default function EntrainementApp() {
     setScores(readSessionScores());
   }, [refreshProgress]);
 
-  // Mount: read the session-score series, apply the persisted font scale, and wire
-  // dict.js tap-to-define (app-n3.html loads dict.js). All browser access in the effect.
+  // Mount: read the session-score series and apply the persisted font scale. (No
+  // dict.js/tap-to-define here — the hub has no Japanese content; that belongs to the
+  // quiz, which will load dict data from JSON at runtime.)
   useEffect(() => {
     setScores(readSessionScores());
     applyFontScale();
-    (window as unknown as { initDefs?: (o: { singleTap: boolean }) => void }).initDefs?.({ singleTap: true });
   }, []);
 
   const now = new Date();
