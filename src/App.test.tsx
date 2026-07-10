@@ -16,7 +16,7 @@ test("AppView composes shell + dashboard", () => {
   const html = renderToStaticMarkup(
     <AppView theme="dark" onToggleTheme={() => {}} updateReady={false}
              onApplyUpdate={() => {}} onForceRefresh={() => {}}
-             model={model} days={model.days} version="v80" />,
+             model={model} days={model.days} version="v80" onProgressChanged={() => {}} />,
   );
   expect(html).toContain("JLPT N3");
   expect(html).toContain("app-n3.html");
@@ -28,7 +28,7 @@ test("AppView renders the install prompt without throwing under SSR (no window/n
   const html = renderToStaticMarkup(
     <AppView theme="dark" onToggleTheme={() => {}} updateReady={false}
              onApplyUpdate={() => {}} onForceRefresh={() => {}}
-             model={model} days={model.days} version="v80" />,
+             model={model} days={model.days} version="v80" onProgressChanged={() => {}} />,
   );
   expect(html).toContain("Installer");
   expect(html).toContain("application");
@@ -39,7 +39,19 @@ test("AppView threads the resolved version into the footer", () => {
   const html = renderToStaticMarkup(
     <AppView theme="dark" onToggleTheme={() => {}} updateReady={false}
              onApplyUpdate={() => {}} onForceRefresh={() => {}}
-             model={model} days={model.days} version="v80" />,
+             model={model} days={model.days} version="v80" onProgressChanged={() => {}} />,
   );
   expect(html).toContain("version v80");
+});
+
+test("AppView renders the Gist sync section without throwing under SSR (no window/localStorage/fetch)", () => {
+  const model = dashboardModel(flat(1600), new Date("2026-07-10T00:00:00"));
+  const html = renderToStaticMarkup(
+    <AppView theme="dark" onToggleTheme={() => {}} updateReady={false}
+             onApplyUpdate={() => {}} onForceRefresh={() => {}}
+             model={model} days={model.days} version="v80" onProgressChanged={() => {}} />,
+  );
+  expect(html).toContain("Synchronisation multi-appareils");
+  expect(html).toContain("Token GitHub classic");
+  expect(html).toContain("Connecter");
 });
