@@ -107,6 +107,11 @@ export function useGistSync(onProgressChanged: () => void) {
     }
   }, [doPull]);
 
+  /** Surfaces a background push failure, mirroring legacy `cloudPush`'s catch (shown regardless of `manual`). */
+  const showPushFailure = useCallback((message: string) => {
+    setStatus(`Envoi reporté (sera resynchronisé) : ${message}`); setTone("bad");
+  }, []);
+
   const copyId = useCallback(() => {
     if (!gistId) return;
     const succeed = () => { setStatus(`ID du Gist copié : ${gistId}`); setTone("ok"); };
@@ -136,6 +141,9 @@ export function useGistSync(onProgressChanged: () => void) {
     syncCfgState();
     const cfg = readCfg(deps.store);
     if (!cfg || !cfg.token || !cfg.gist) return;
+    // Mirrors legacy `renderSync()`'s "Connecté" upgrade (called from `cloudInit` before the pull):
+    // a valid config means we're connected, regardless of what the pull below finds.
+    setStatus("Connecté"); setTone("ok");
     (async () => {
       try {
         await doPull(false);
@@ -143,7 +151,10 @@ export function useGistSync(onProgressChanged: () => void) {
         setStatus(`Synchro indisponible : ${errorMessage(e)}`); setTone("bad");
         return;
       }
-      if (hasPending(deps.store)) await cloudPush(deps, false);
+      if (hasPending(deps.store)) {
+        const result = await cloudPush(deps, false);
+        if (result.kind === "failed") showPushFailure(result.message);
+      }
     })();
     // Runs once on mount, mirroring legacy's cloudInit.
   }, []);
@@ -158,13 +169,17 @@ export function useGistSync(onProgressChanged: () => void) {
         setStatus("Connexion rétablie — synchronisation…"); setTone("neutral");
         cloudPush(deps, true).then((result) => {
           if (result.kind === "pushed") { setStatus("Envoyé vers le cloud."); setTone("ok"); }
-          else if (result.kind === "failed") { setStatus(`Envoi reporté (sera resynchronisé) : ${result.message}`); setTone("bad"); }
+          else if (result.kind === "failed") showPushFailure(result.message);
         });
       }
     };
     const flushPending = () => {
       const cfg = readCfg(deps.store);
-      if (cfg?.token && cfg.gist && hasPending(deps.store)) void cloudPush(deps, false);
+      if (cfg?.token && cfg.gist && hasPending(deps.store)) {
+        void cloudPush(deps, false).then((result) => {
+          if (result.kind === "failed") showPushFailure(result.message);
+        });
+      }
     };
     const onVisibilityChange = () => { if (document.visibilityState === "hidden") flushPending(); };
 
