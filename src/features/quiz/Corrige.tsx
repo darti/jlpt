@@ -1,0 +1,60 @@
+import type { Question } from "../../types/quiz.ts";
+
+/** Same SSR-safe furigana guard as `QuestionCard` — see there for rationale. */
+declare const furi: ((s: string) => string) | undefined;
+function furiOrPlain(text: string): string {
+  return typeof furi === "function" ? furi(text) : text;
+}
+
+/** Port of the legacy corrigé block from `answer()` (app-n3.html:937-957):
+ * correct/incorrect banner, rule explanation, grammar decomposition, and the
+ * per-option analysis (`od`). Does not receive `chosen` — only `correct`. */
+export function Corrige({ question, correct }: { question: Question; correct: boolean }) {
+  const correctAnswer = question.o[question.a];
+  const od = question.od;
+  const hasOd = od !== undefined && od.length === question.o.length;
+
+  return (
+    <div className="bg-panel border border-line rounded-xl p-5 shadow-card surface-blur">
+      <p className={`text-lg font-bold mb-3 ${correct ? "text-status-completed" : "text-status-failed"}`}>
+        {correct ? (
+          "Correct !"
+        ) : (
+          <>
+            Faux. Réponse : <b dangerouslySetInnerHTML={{ __html: furiOrPlain(correctAnswer) }} />
+          </>
+        )}
+      </p>
+      {question.e && (
+        <div className="text-fg text-sm mb-3 leading-relaxed" dangerouslySetInnerHTML={{ __html: question.e }} />
+      )}
+      {question.g && (
+        <div className="mb-3">
+          <p className="text-accent text-sm font-bold mb-1">Analyse de la phrase</p>
+          <div
+            className="text-fg-dim text-sm leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: furiOrPlain(question.g) }}
+          />
+        </div>
+      )}
+      {hasOd && (
+        <div>
+          <p className="text-accent text-sm font-bold mb-1">Pourquoi chaque réponse</p>
+          <ul className="list-none p-0 m-0 flex flex-col gap-1">
+            {question.o.map((opt, i) => (
+              <li
+                key={i}
+                className={`text-sm ${i === question.a ? "text-status-completed" : "text-fg-dim"}`}
+              >
+                <span aria-hidden="true">{i === question.a ? "✓" : "✗"}</span>{" "}
+                <b dangerouslySetInnerHTML={{ __html: furiOrPlain(opt) }} />
+                {" — "}
+                <span dangerouslySetInnerHTML={{ __html: furiOrPlain(od[i]) }} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
