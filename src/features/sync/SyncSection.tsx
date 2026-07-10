@@ -22,7 +22,7 @@ export function SyncSection({ onProgressChanged }: { onProgressChanged: () => vo
   const [gist, setGist] = useState("");
 
   return (
-    <div className="bg-panel border border-line rounded-xl px-6 py-5 mb-6">
+    <div className="bg-panel border border-line rounded-xl px-6 py-5 mb-6 shadow-card surface-blur">
       <h2 className="mt-0 text-lg text-fg">Synchronisation multi-appareils</h2>
       <p className={`text-sm m-0 mb-3 ${TONE_CLASS[tone]}`}>{status}</p>
 

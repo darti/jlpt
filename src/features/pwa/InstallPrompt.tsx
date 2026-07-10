@@ -16,7 +16,7 @@ export function IosGuideModal({
       className="fixed inset-0 bg-black/50 z-drawer flex items-center justify-center p-5"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div className="bg-panel border border-line rounded-2xl max-w-[360px] w-full p-5">
+      <div className="bg-panel border border-line rounded-2xl max-w-[360px] w-full p-5 shadow-pop surface-blur">
         <h3 className="mt-0 mb-3 text-lg text-fg">📲 Ajouter à l'écran d'accueil</h3>
         {nonSafariIOS && (
           <div className="bg-danger-bg border border-danger-line text-danger-fg rounded-lg px-3 py-2.5 text-sm mb-3">

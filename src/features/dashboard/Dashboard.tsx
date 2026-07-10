@@ -17,7 +17,7 @@ const TIER_COLOR = {
 export function Dashboard({ model, days }: { model: DashboardModel | null; days: number }) {
   if (!model || model.answers === 0) {
     return (
-      <div className="bg-panel border border-line rounded-xl px-6 py-5 mb-6">
+      <div className="bg-panel border border-line rounded-xl px-6 py-5 mb-6 shadow-card surface-blur">
         <p className="text-fg-dim text-sm m-0">
           Aucune donnée pour l'instant — lance un quiz dans l'entraînement adaptatif
           pour générer ton analyse. ({days} jours avant l'examen)
@@ -29,7 +29,7 @@ export function Dashboard({ model, days }: { model: DashboardModel | null; days:
   const score = model.hasEnough ? `${model.sectionTotal}/180` : "—";
   const pctColor = TIER_COLOR[passTier(model.passPct)];
   return (
-    <div className="bg-panel border border-line rounded-xl px-6 py-5 mb-6">
+    <div className="bg-panel border border-line rounded-xl px-6 py-5 mb-6 shadow-card surface-blur">
       <div className="grid grid-cols-2 gap-2 text-center mb-3">
         <div className="bg-surface-2 border border-line rounded-lg py-2 px-1">
           <div className={`text-xl font-bold ${pctColor}`}>{pct}</div>

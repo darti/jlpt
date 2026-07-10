@@ -26,6 +26,14 @@
   --aurora-2: rgba(163, 190, 140, 0.58);       /* nord14 */
   --aurora-3: rgba(180, 142, 173, 0.54);       /* nord15 */
   --aurora-4: rgba(136, 192, 208, 0.42);       /* nord8 */
+  /* Formes Nord Frost — rayons repris de theme.css (sm 12 / base 18 / lg 22) */
+  --radius-lg: 0.75rem;                        /* 12px — petits éléments */
+  --radius-xl: 1.125rem;                       /* 18px — rayon des cartes */
+  --radius-2xl: 1.375rem;                      /* 22px — grandes surfaces */
+  /* Verre dépoli + élévations douces (spec Nord Frost, thème sombre) */
+  --effect-backdrop: blur(16px) saturate(140%);
+  --elevation-card: 0 8px 20px rgba(18, 27, 54, 0.30), 0 2px 6px rgba(18, 27, 54, 0.20), 0 1px 0 rgba(236, 239, 244, 0.05) inset;
+  --elevation-pop: 0 30px 78px rgba(18, 27, 54, 0.58), 0 1px 0 rgba(236, 239, 244, 0.05) inset;
   color-scheme: dark;
 }
 
@@ -57,6 +65,9 @@
   --aurora-2: rgba(163, 190, 140, 0.22);
   --aurora-3: rgba(180, 142, 173, 0.22);
   --aurora-4: rgba(136, 192, 208, 0.24);
+  /* Élévations plus discrètes sur fond clair (theme.css assombri) */
+  --elevation-card: 0 8px 20px rgba(96, 150, 225, 0.15), 0 2px 6px rgba(96, 150, 225, 0.10);
+  --elevation-pop: 0 28px 72px rgba(96, 150, 225, 0.26);
   color-scheme: light;
 }
 
