@@ -228,6 +228,13 @@ export function useQuiz() {
       setPhase("question");
       setAnswered(false);
       setChosen(null);
+
+      setResume((prev) => {
+        if (!prev) return prev;
+        const next: ResumeState = { ...prev, qi: ni, right: rightRef.current };
+        persistResumeState(next);
+        return next;
+      });
     }
   }, [index, questions.length]);
 
@@ -274,6 +281,7 @@ export function useQuiz() {
     question: questions[index] ?? null,
     index,
     count: questions.length,
+    right: rightRef.current,
     selected,
     minutes,
     resume,
