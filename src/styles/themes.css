@@ -21,6 +21,11 @@
   --color-status-completed: #a3be8c;           /* nord14 = ok */
   --color-status-failed: #bf616a;              /* nord11 = bad */
   --color-prio-high: #ebcb8b;                  /* nord13 = warn */
+  /* Aurores boréales (Nord Frost) — turquoise → vert → magenta → cyan */
+  --aurora-1: rgba(143, 188, 187, 0.56);       /* nord7 */
+  --aurora-2: rgba(163, 190, 140, 0.58);       /* nord14 */
+  --aurora-3: rgba(180, 142, 173, 0.54);       /* nord15 */
+  --aurora-4: rgba(136, 192, 208, 0.42);       /* nord8 */
   color-scheme: dark;
 }
 
@@ -47,5 +52,35 @@
   --color-skill-vocabulaire: #5e81ac;
   --color-skill-kanji: #a9882f;
   --color-skill-lecture: #5e8c4f;
+  /* Aurores plus discrètes sur fond clair */
+  --aurora-1: rgba(143, 188, 187, 0.26);
+  --aurora-2: rgba(163, 190, 140, 0.22);
+  --aurora-3: rgba(180, 142, 173, 0.22);
+  --aurora-4: rgba(136, 192, 208, 0.24);
   color-scheme: light;
+}
+
+/* ---------- Effet « aurores boréales » (fond partagé, repris de theme.css) ----------
+   Halos de couleur diffus peints DERRIÈRE le contenu ; les surfaces translucides
+   (--color-panel) les laissent transparaître → profondeur Nord Frost. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(70% 74% at 12% 16%,  var(--aurora-1), transparent 74%),
+    radial-gradient(76% 72% at 46% 86%,  var(--aurora-2), transparent 72%),
+    radial-gradient(72% 72% at 92% 78%,  var(--aurora-3), transparent 70%),
+    radial-gradient(60% 66% at 104% 40%, var(--aurora-4), transparent 66%);
+  filter: saturate(140%);
+  animation: aurora-drift 42s ease-in-out infinite alternate;
+}
+@keyframes aurora-drift {
+  from { transform: translate3d(-2%, -1%, 0) scale(1.02) rotate(-1deg); }
+  to   { transform: translate3d(2%, 2%, 0)   scale(1.08) rotate(1.5deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body::before { animation: none; }
 }
