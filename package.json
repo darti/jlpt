@@ -15,11 +15,12 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@happy-dom/global-registrator": "^20.10.6",
     "@tailwindcss/cli": "^4.2.4",
-    "tailwindcss": "^4.2.4",
     "@types/bun": "latest",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "tailwindcss": "^4.2.4",
     "typescript": "^5.7.0"
   }
 }

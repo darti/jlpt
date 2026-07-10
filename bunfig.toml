@@ -1,0 +1,3 @@
+[test]
+# happy-dom globals for tests that mount live React components and drive DOM effects.
+preload = ["./happydom.ts"]

@@ -459,6 +459,8 @@ test("Settings renders font-scale, theme, and data controls", () => {
 
 - [ ] **Step 2: Run — verify RED**, then **Step 3: implement** `Settings.tsx` (font ± calls `bumpFs("Ui"/"Jp", ±1)` then `applyFontScale()`; « Exporter » downloads `exportJson()` as `jlpt-n3-backup.json`; « Importer » reads a file → `importJson(text, undefined, () => confirm("Remplacer la progression actuelle ?"))`; « Réinitialiser » → `if (confirm("Effacer tout ?")) resetProgress()`; theme toggle uses the passed `onToggleTheme`). French labels per legacy. **Step 4: GREEN**, **Step 5: commit** `git add src/features/entrainement/Settings.tsx src/features/entrainement/entrainement.test.tsx && git commit -m "Hub : réglages (police, thème, export/import/réinitialisation)"`.
 
+> **Added during Task 6 (pre-commit review gate, user-approved):** the SSR smoke test alone didn't satisfy the review — the side-effecting handlers needed behavioral coverage. Introduced the project's **first DOM test infra**: devDep `@happy-dom/global-registrator` + `happydom.ts` preloaded via `bunfig.toml [test]`, and `Settings.handlers.test.tsx` (createRoot + `act`) asserting: font A+/A− persists `jlptN3_fs{Ui,Jp}` + applies `--fs-{ui,jp}` live; `Réinitialiser`/`Importer` are confirm-gated (declined ⇒ no write). Verified all pre-existing tests stay green under the global DOM (no blast radius). Also hardened the import call site (named `confirmReplace` + comment) and applied a11y/anchor/DRY minors.
+
 ---
 
 ## Task 7: EntrainementHome + EntrainementApp + app-n3.html shell
