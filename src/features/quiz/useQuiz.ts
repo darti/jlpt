@@ -1,0 +1,290 @@
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { SKILLS, type Progress, type Skill } from "../../types/progress.ts";
+import type { Question, SkillState } from "../../types/quiz.ts";
+import { updateRating } from "../../lib/elo.ts";
+import { allocate, loadCategory, pickAdaptive, shuffle } from "../../lib/bank.ts";
+import { readRawProgress, writeProgress } from "../../lib/storage.ts";
+import { masteryOf } from "../../lib/scoring.ts";
+import { cloudPush, type GistDeps } from "../../lib/gist.ts";
+
+export type Phase = "home" | "question" | "corrige" | "results";
+
+/** Shape persisted at `jlptN3quiz_resume` — port of legacy `saveResume`/`getResume` (app-n3.html:430-446). */
+export interface ResumeState {
+  kind: "quiz";
+  ids: number[];
+  qi: number;
+  right: number;
+  t: number;
+}
+
+const RESUME_KEY = "jlptN3quiz_resume";
+const RESUME_MAX_AGE_MS = 2 * 864e5; // 2 days — mirrors legacy getResume()
+const PUSH_DEBOUNCE_MS = 1500;
+
+function numField(raw: Record<string, unknown> | null, key: string): number {
+  const v = raw?.[key];
+  return typeof v === "number" ? v : 0;
+}
+
+/** Builds the minimal `Progress`-shaped view of the raw blob that `scoring.ts#masteryOf` reads. */
+function asProgress(raw: Record<string, unknown> | null): Progress {
+  const skillRaw = raw?.skill;
+  const skill =
+    skillRaw && typeof skillRaw === "object" && !Array.isArray(skillRaw)
+      ? (skillRaw as Progress["skill"])
+      : {};
+  return { total: numField(raw, "total"), skill };
+}
+
+/** Full `{R,t,r}` skill state for one category from the raw blob — defaults to a blank skill (R:1450). */
+function skillStateOf(raw: Record<string, unknown> | null, cat: Skill): SkillState {
+  const skillRaw = raw?.skill;
+  const skill = skillRaw && typeof skillRaw === "object" && !Array.isArray(skillRaw)
+    ? (skillRaw as Record<string, unknown>)
+    : {};
+  const s = skill[cat];
+  if (s && typeof s === "object") {
+    const o = s as Record<string, unknown>;
+    return {
+      R: typeof o.R === "number" ? o.R : 1450,
+      t: typeof o.t === "number" ? o.t : 0,
+      r: typeof o.r === "number" ? o.r : 0,
+    };
+  }
+  return { R: 1450, t: 0, r: 0 };
+}
+
+function asWrong(raw: Record<string, unknown> | null): number[] {
+  return Array.isArray(raw?.wrong) ? (raw.wrong as number[]) : [];
+}
+
+function readResumeState(): ResumeState | null {
+  try {
+    const raw = localStorage.getItem(RESUME_KEY);
+    if (!raw) return null;
+    const r = JSON.parse(raw) as ResumeState;
+    if (!r || r.kind !== "quiz" || !Array.isArray(r.ids)) return null;
+    if (typeof r.t !== "number" || Date.now() - r.t > RESUME_MAX_AGE_MS) {
+      localStorage.removeItem(RESUME_KEY);
+      return null;
+    }
+    return r;
+  } catch {
+    return null;
+  }
+}
+
+function persistResumeState(r: ResumeState): void {
+  try {
+    localStorage.setItem(RESUME_KEY, JSON.stringify({ ...r, t: Date.now() }));
+  } catch { /* best-effort, mirrors legacy saveResume */ }
+}
+
+function clearResumeState(): void {
+  try { localStorage.removeItem(RESUME_KEY); } catch { /* best-effort */ }
+}
+
+/**
+ * Session state machine for the adaptive quiz — a thin orchestrator over the tested
+ * `elo`/`bank`/`storage`/`scoring`/`gist` libs. Port of legacy `buildSession`/`renderQ`/
+ * `answer`/`next`/`finish`/resume (app-n3.html: buildSession 786, pickAdaptive 742,
+ * answer 937, next/finish 963-990, saveResume/getResume/resumeSession 430-447).
+ * All browser access (`localStorage`, `fetch`, `setTimeout`) stays inside effects/handlers.
+ */
+export function useQuiz() {
+  const [phase, setPhase] = useState<Phase>("home");
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [index, setIndex] = useState(0);
+  const [selected, setSelected] = useState<Set<Skill>>(() => new Set(SKILLS));
+  const [minutes, setMinutesState] = useState(10);
+  const [resume, setResume] = useState<ResumeState | null>(null);
+  const [answered, setAnswered] = useState(false);
+  const [chosen, setChosen] = useState<number | null>(null);
+
+  const rightRef = useRef(0);
+  const bankIndexRef = useRef<Record<number, Skill> | null>(null);
+  const bankIndexPromiseRef = useRef<Promise<Record<number, Skill> | null> | null>(null);
+  const pushTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const gistDeps = useMemo<GistDeps>(
+    () => ({ store: globalThis.localStorage, fetchImpl: globalThis.fetch }),
+    [],
+  );
+
+  const schedulePush = useCallback(() => {
+    if (pushTimerRef.current) clearTimeout(pushTimerRef.current);
+    pushTimerRef.current = setTimeout(() => { void cloudPush(gistDeps, false); }, PUSH_DEBOUNCE_MS);
+  }, [gistDeps]);
+
+  const ensureBankIndex = useCallback((): Promise<Record<number, Skill> | null> => {
+    if (bankIndexRef.current) return Promise.resolve(bankIndexRef.current);
+    if (!bankIndexPromiseRef.current) {
+      bankIndexPromiseRef.current = fetch("data/bank-index.json")
+        .then((r) => r.json() as Promise<Record<number, Skill>>)
+        .then((idx) => { bankIndexRef.current = idx; return idx; })
+        .catch(() => { bankIndexPromiseRef.current = null; return null; }); // allow a retry on the next call
+    }
+    return bankIndexPromiseRef.current;
+  }, []);
+
+  // On mount: surface a resumable session banner (if any, <2 days old) and prefetch the
+  // id→category index resumeNow() needs to rebuild questions.
+  useEffect(() => {
+    setResume(readResumeState());
+    void ensureBankIndex();
+  }, [ensureBankIndex]);
+
+  // Flush the pending debounced push on unmount.
+  useEffect(() => () => {
+    if (pushTimerRef.current) clearTimeout(pushTimerRef.current);
+  }, []);
+
+  const toggleCat = useCallback((c: Skill) => {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(c)) next.delete(c); else next.add(c);
+      if (next.size === 0) next.add(c); // never allow an empty selection (mirrors legacy renderCats)
+      return next;
+    });
+  }, []);
+
+  const setMinutes = useCallback((m: number) => setMinutesState(m), []);
+
+  const start = useCallback(async () => {
+    const raw = readRawProgress();
+    const progress = asProgress(raw);
+    const wrong = asWrong(raw);
+    const { total, alloc } = allocate((c) => masteryOf(progress, c), minutes);
+
+    const exclude = new Set<number>();
+    const picked: Question[] = [];
+    for (const cat of SKILLS) {
+      if (!selected.has(cat)) continue;
+      const n = alloc[cat];
+      if (!n) continue;
+      const pool = await loadCategory(cat);
+      const R = skillStateOf(raw, cat).R;
+      const picks = pickAdaptive(pool, R, exclude, wrong).slice(0, n);
+      for (const q of picks) exclude.add(q.id);
+      picked.push(...picks);
+    }
+
+    const session = shuffle(picked).slice(0, total);
+    if (!session.length) return;
+
+    rightRef.current = 0;
+    setQuestions(session);
+    setIndex(0);
+    setAnswered(false);
+    setChosen(null);
+    setPhase("question");
+
+    const r: ResumeState = { kind: "quiz", ids: session.map((q) => q.id), qi: 0, right: 0, t: Date.now() };
+    persistResumeState(r);
+    setResume(r);
+  }, [selected, minutes]);
+
+  const choose = useCallback((i: number) => {
+    const q = questions[index];
+    if (!q || answered) return;
+    const correct = i === q.a;
+
+    setChosen(i);
+    setAnswered(true);
+    setPhase("corrige");
+
+    const raw = readRawProgress();
+    const curWrong = asWrong(raw);
+    const nextSkill = updateRating(skillStateOf(raw, q.cat), q.d, correct);
+    const withoutId = curWrong.filter((id) => id !== q.id);
+    const nextWrong = (correct ? withoutId : [...withoutId, q.id]).slice(-80);
+
+    writeProgress({
+      skill: { [q.cat]: nextSkill },
+      total: numField(raw, "total") + 1,
+      right: numField(raw, "right") + (correct ? 1 : 0),
+      wrong: nextWrong,
+    });
+    schedulePush();
+
+    rightRef.current += correct ? 1 : 0;
+    setResume((prev) => {
+      if (!prev) return prev;
+      const next: ResumeState = { ...prev, qi: index, right: rightRef.current };
+      persistResumeState(next);
+      return next;
+    });
+  }, [questions, index, answered, schedulePush]);
+
+  const next = useCallback(() => {
+    const ni = index + 1;
+    if (ni >= questions.length) {
+      setPhase("results");
+      clearResumeState();
+      setResume(null);
+    } else {
+      setIndex(ni);
+      setPhase("question");
+      setAnswered(false);
+      setChosen(null);
+    }
+  }, [index, questions.length]);
+
+  const restart = useCallback(() => {
+    setPhase("home");
+    setQuestions([]);
+    setIndex(0);
+    setAnswered(false);
+    setChosen(null);
+  }, []);
+
+  const resumeNow = useCallback(async () => {
+    const r = resume;
+    if (!r) return;
+    const idx = await ensureBankIndex();
+    if (!idx) return;
+
+    const catsNeeded = new Set<Skill>();
+    for (const id of r.ids) {
+      const cat = idx[id];
+      if (cat) catsNeeded.add(cat);
+    }
+    const pools = await Promise.all([...catsNeeded].map((c) => loadCategory(c)));
+    const byId = new Map<number, Question>();
+    for (const pool of pools) for (const q of pool) byId.set(q.id, q);
+
+    const rebuilt = r.ids.map((id) => byId.get(id)).filter((q): q is Question => q !== undefined);
+    if (!rebuilt.length) {
+      clearResumeState();
+      setResume(null);
+      return;
+    }
+
+    rightRef.current = r.right;
+    setQuestions(rebuilt);
+    setIndex(Math.min(r.qi, rebuilt.length - 1));
+    setAnswered(false);
+    setChosen(null);
+    setPhase("question");
+  }, [resume, ensureBankIndex]);
+
+  return {
+    phase,
+    question: questions[index] ?? null,
+    index,
+    count: questions.length,
+    selected,
+    minutes,
+    resume,
+    answered,
+    chosen,
+    start,
+    choose,
+    next,
+    restart,
+    toggleCat,
+    setMinutes,
+    resumeNow,
+  };
+}
