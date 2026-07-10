@@ -71,7 +71,10 @@ function asWrong(raw: Record<string, unknown> | null): number[] {
   return Array.isArray(raw?.wrong) ? (raw.wrong as number[]) : [];
 }
 
-function readResumeState(): ResumeState | null {
+/** Reads + validates the persisted `jlptN3quiz_resume` session (clears it if >2 days
+ *  old). Exported so the Entraînement hub's ResumeBanner reuses the exact same
+ *  key + staleness rule instead of duplicating it. */
+export function readResumeState(): ResumeState | null {
   try {
     const raw = localStorage.getItem(RESUME_KEY);
     if (!raw) return null;
