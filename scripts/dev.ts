@@ -6,6 +6,7 @@
 // The Tailwind CLI compiles the token CSS separately — bun-plugin-tailwind is
 // incompatible with Bun's runtime bundler, so the CLI is the working path.
 import index from "../index.html";
+import quiz from "../quiz.html";
 
 // The still-vanilla files served statically. EXACT allowlist so no user-controlled
 // path ever reaches the filesystem (no traversal, no dotfile/.git/.env exposure).
@@ -15,6 +16,11 @@ const STATIC_FILES = new Set([
   "/progress.js", "/dict.js", "/vocab-data.js", "/theme.css",
   "/sw.js", "/manifest.webmanifest",
   "/icon-180.png", "/icon-192.png", "/icon-512.png",
+  // Quiz question banks — quiz.html fetches these at "data/bank-${cat}.json"
+  // (relative), which resolves to these same absolute pathnames at runtime.
+  "/data/bank-grammaire.json", "/data/bank-vocabulaire.json",
+  "/data/bank-kanji.json", "/data/bank-lecture.json", "/data/bank-ecoute.json",
+  "/data/bank-index.json",
 ]);
 
 // One-shot CSS build so styles.gen.css exists before the first request…
@@ -32,7 +38,7 @@ const css = Bun.spawn(
 const server = Bun.serve({
   port: Number(process.env.PORT) || 5000, // override via PORT if macOS AirPlay squats :5000
   development: true, // HMR for the bundled React route
-  routes: { "/": index, "/index.html": index },
+  routes: { "/": index, "/index.html": index, "/quiz.html": quiz },
   async fetch(req) {
     const path = new URL(req.url).pathname;
     if (STATIC_FILES.has(path)) {
