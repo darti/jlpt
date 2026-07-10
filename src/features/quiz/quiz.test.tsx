@@ -15,7 +15,7 @@ test("QuestionCard renders the stem and all options", () => {
 });
 
 test("Corrige shows the explanation and per-option analysis", () => {
-  const html = renderToStaticMarkup(<Corrige question={q} correct={true} />);
+  const html = renderToStaticMarkup(<Corrige question={q} correct={false} />);
   expect(html).toContain("quand/dès que");
   expect(html).toContain("帰ったら");
 });

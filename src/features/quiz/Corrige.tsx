@@ -6,6 +6,13 @@ function furiOrPlain(text: string): string {
   return typeof furi === "function" ? furi(text) : text;
 }
 
+/** `window.visualBreak` (dict.js:75/236) renders `q.g`'s `·`-separated decomposition as
+ * colored role-tagged token pills + legend — legacy `app-n3.html:954`. SSR-guarded like `furi`. */
+declare const visualBreak: ((s: string) => string) | undefined;
+function visualBreakOrPlain(text: string): string {
+  return typeof visualBreak === "function" ? visualBreak(text) : furiOrPlain(text);
+}
+
 /** Port of the legacy corrigé block from `answer()` (app-n3.html:937-957):
  * correct/incorrect banner, rule explanation, grammar decomposition, and the
  * per-option analysis (`od`). Does not receive `chosen` — only `correct`. */
@@ -33,11 +40,11 @@ export function Corrige({ question, correct }: { question: Question; correct: bo
           <p className="text-accent text-sm font-bold mb-1">Analyse de la phrase</p>
           <div
             className="text-fg-dim text-sm leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: furiOrPlain(question.g) }}
+            dangerouslySetInnerHTML={{ __html: visualBreakOrPlain(question.g) }}
           />
         </div>
       )}
-      {hasOd && (
+      {!correct && hasOd && (
         <div>
           <p className="text-accent text-sm font-bold mb-1">Pourquoi chaque réponse</p>
           <ul className="list-none p-0 m-0 flex flex-col gap-1">
