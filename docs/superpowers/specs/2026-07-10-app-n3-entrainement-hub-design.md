@@ -24,12 +24,17 @@ reprise, les **réglages**, et des **boutons de lancement** — « Commencer » 
 - **Graphe de progression (ECharts)** : courbe des scores de **diagnostic** /180
   dans le temps + ligne « seuil 95 », état vide (« ≥2 diagnostics ») tant que la
   tranche diagnostic n'existe pas.
-- Streak quotidien + bannière de reprise (affichage).
+- **Lanceur de session** : « J'ai [xx] minutes » (sélecteur — chips 5/10/15 +
+  saisie libre) + « Démarrer ma session » → ouvre `quiz.html?min=xx` ; le quiz
+  démarre **directement** une session de xx minutes (toutes catégories).
+- **Reprendre ma session** : si une session quiz interrompue existe
+  (`jlptN3quiz_resume`), bannière « Reprendre ma session » (avec l'avancement,
+  ex. 5/15) → `quiz.html?resume=1` (reprise automatique).
+- Streak quotidien (affichage).
 - **Réglages** : échelle de police (`jlptN3_fsUi`/`jlptN3_fsJp` → `--fs-ui`/`--fs-jp`),
   thème (réutilise `useTheme`), **export / import / réinitialisation** du blob.
 - Section **Synchronisation** (réutilise `SyncSection` déjà portée).
-- Boutons de lancement : « Commencer » → `quiz.html` ; Diagnostic / Apprendre /
-  Réviser les erreurs → stubs « bientôt ».
+- Autres modes : Diagnostic / Apprendre / Réviser les erreurs → stubs « bientôt ».
 - **Remplacement d'`app-n3.html`** par la coquille React.
 
 **Hors tranche (différé) :** examens diagnostiques, mode SRS « Apprendre ». Leur
@@ -58,6 +63,7 @@ depuis l'historique git** (`app-n3.html` avant ce commit) pour leurs tranches.
 | Bascule | **Remplacer `app-n3.html`** par le hub React ; modes différés = stubs « bientôt » |
 | Graphe | **ECharts** (bundlé, tree-shaken) ; courbe des scores diagnostic /180 + seuil 95 ; état vide |
 | Code vanilla diagnostic/SRS | **Retiré** de l'arbre ; récupérable via git pour les tranches futures |
+| Lancement de session | Sur le hub : « J'ai xx minutes → Démarrer » + « Reprendre ma session » ; `quiz.html` exécute (lit `?min`/`?resume`) |
 
 ## 5. Architecture
 
@@ -77,9 +83,13 @@ depuis l'historique git** (`app-n3.html` avant ce commit) pour leurs tranches.
   seuil 95 + delta d'évolution ; **état vide** si <2 points ; init/dispose dans un
   `useEffect` (navigateur seulement — SSR-safe, `renderToStaticMarkup` ne touche pas au DOM).
 - `src/features/entrainement/Settings.tsx` — réglages (police ±, thème, export/import/reset).
+- `src/features/entrainement/SessionLauncher.tsx` — « J'ai [xx] minutes » (chips + saisie)
+  + « Démarrer ma session » → navigue vers `quiz.html?min=xx`.
+- `src/features/entrainement/ResumeBanner.tsx` — lit `jlptN3quiz_resume` ; si présent,
+  « Reprendre ma session » (+ avancement) → `quiz.html?resume=1`.
 - `src/features/entrainement/EntrainementHome.tsx` — composition : vue de progression
-  (jauge + stats via `dashboardModel`) + `ProgressChart` + streak/reprise + lanceurs
-  (« Commencer » → `quiz.html`, autres → stubs) + `Settings` + `SyncSection`.
+  (jauge + stats via `dashboardModel`) + `ProgressChart` + `ResumeBanner` +
+  `SessionLauncher` + lanceurs différés (stubs « bientôt ») + `Settings` + `SyncSection`.
 - `src/EntrainementApp.tsx` (`EntrainementAppView` pur + wiring), `src/entries/app-n3.tsx`.
 - `app-n3.html` → **coquille fine** (comme `index.html`/`quiz.html`) : `<div id=root>` +
   script pré-peinture thème + `<script src="dict.js">` + `<script src=./src/entries/app-n3.tsx>`.
@@ -117,6 +127,18 @@ Utiliser la **skill dataviz** au moment de construire le graphe (couleurs, axes,
   porter depuis l'historique git (`git show <commit>:app-n3.html`) à leurs tranches.
 - `quiz.html` : retirer/ajuster son lien retour vers `app-n3.html` (pointe désormais
   le hub React — OK). `index.html` topnav → `app-n3.html` (hub React) — OK.
+
+### 8bis. Passage hub → quiz (paramètres de session)
+
+Le hub choisit les paramètres, `quiz.html` exécute. Petite extension de `quiz.html`
+(déjà en prod sur `main`) dans cette tranche :
+- `quiz.html?min=xx` : au montage, `useQuiz` lit `?min` (`URLSearchParams`), et si
+  présent **démarre directement** une session de `xx` minutes (toutes catégories) —
+  saute l'écran `QuizHome`.
+- `quiz.html?resume=1` : au montage, si un `jlptN3quiz_resume` valide existe,
+  **reprend automatiquement** (`resumeNow`) au lieu d'afficher seulement la bannière.
+- Sans paramètre : comportement actuel inchangé (écran `QuizHome`).
+Ces lectures se font dans un effet (navigateur), SSR-safe.
 
 ## 9. Build / dev / déploiement / SW
 

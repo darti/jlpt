@@ -36,7 +36,7 @@ const css = Bun.spawn(
 );
 
 const server = Bun.serve({
-  port: Number(process.env.PORT) || 5000, // override via PORT if macOS AirPlay squats :5000
+  port: Number(process.env.PORT) || 3030, // override via PORT if macOS AirPlay squats :5000
   development: true, // HMR for the bundled React route
   routes: { "/": index, "/index.html": index, "/quiz.html": quiz },
   async fetch(req) {
