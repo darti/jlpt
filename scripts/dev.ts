@@ -50,5 +50,22 @@ const server = Bun.serve({
 });
 
 console.log(`dev: ${server.url} — index.html bundled (HMR); vanilla pages served static`);
-process.on("SIGINT", () => { css.kill(); server.stop(true); process.exit(0); });
+
+// Tear down the spawned CSS watcher AND the server on *every* stop path — not
+// only a terminal Ctrl-C. Ctrl-C sends SIGINT to the whole process group, so the
+// watcher dies on its own; but an IDE "stop task", a bare `kill` (SIGTERM) or a
+// closed terminal (SIGHUP) signals only this process, and Bun.spawn children are
+// not tied to the parent's lifetime — without this the watcher orphans to PID 1
+// and keeps running (they pile up across dev sessions). SIGKILL the watcher: it
+// only rebuilds a build artifact, has nothing to flush, and its own graceful
+// handler can hang once our stdio is gone.
+let shuttingDown = false;
+function shutdown() {
+  if (shuttingDown) return;
+  shuttingDown = true;
+  css.kill("SIGKILL");
+  server.stop(true);
+  process.exit(0);
+}
+for (const signal of ["SIGINT", "SIGTERM", "SIGHUP"] as const) process.on(signal, shutdown);
 await css.exited;
