@@ -1,57 +1,19 @@
 import { test, expect } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
-import { AppView } from "./App.tsx";
+import { DashboardView } from "./App.tsx";
 import { dashboardModel } from "./lib/scoring.ts";
 import type { Progress } from "./types/progress.ts";
 
 const flat = (R: number): Progress => ({
   total: 60,
-  skill: {
-    grammaire: { R, t: 60 }, vocabulaire: { R, t: 60 }, kanji: { R, t: 60 }, lecture: { R, t: 60 },
-  },
+  skill: { grammaire: { R, t: 60 }, vocabulaire: { R, t: 60 }, kanji: { R, t: 60 }, lecture: { R, t: 60 } },
 });
 
-test("AppView composes shell + dashboard", () => {
+test("DashboardView renders the dashboard stats + install/sync sections (no shell)", () => {
   const model = dashboardModel(flat(1600), new Date("2026-07-10T00:00:00"));
-  const html = renderToStaticMarkup(
-    <AppView theme="dark" onToggleTheme={() => {}} updateReady={false}
-             onApplyUpdate={() => {}} onForceRefresh={() => {}}
-             model={model} days={model.days} version="v80" onProgressChanged={() => {}} />,
-  );
-  expect(html).toContain("JLPT N3");
-  expect(html).toContain("app-n3.html");
-  expect(html).toContain("17%");
-});
-
-test("AppView renders the install prompt without throwing under SSR (no window/navigator DOM)", () => {
-  const model = dashboardModel(flat(1600), new Date("2026-07-10T00:00:00"));
-  const html = renderToStaticMarkup(
-    <AppView theme="dark" onToggleTheme={() => {}} updateReady={false}
-             onApplyUpdate={() => {}} onForceRefresh={() => {}}
-             model={model} days={model.days} version="v80" onProgressChanged={() => {}} />,
-  );
-  expect(html).toContain("Installer");
-  expect(html).toContain("application");
-});
-
-test("AppView threads the resolved version into the footer", () => {
-  const model = dashboardModel(flat(1600), new Date("2026-07-10T00:00:00"));
-  const html = renderToStaticMarkup(
-    <AppView theme="dark" onToggleTheme={() => {}} updateReady={false}
-             onApplyUpdate={() => {}} onForceRefresh={() => {}}
-             model={model} days={model.days} version="v80" onProgressChanged={() => {}} />,
-  );
-  expect(html).toContain("version v80");
-});
-
-test("AppView renders the Gist sync section without throwing under SSR (no window/localStorage/fetch)", () => {
-  const model = dashboardModel(flat(1600), new Date("2026-07-10T00:00:00"));
-  const html = renderToStaticMarkup(
-    <AppView theme="dark" onToggleTheme={() => {}} updateReady={false}
-             onApplyUpdate={() => {}} onForceRefresh={() => {}}
-             model={model} days={model.days} version="v80" onProgressChanged={() => {}} />,
-  );
-  expect(html).toContain("Synchronisation multi-appareils");
-  expect(html).toContain("Token GitHub classic");
-  expect(html).toContain("Connecter");
+  const html = renderToStaticMarkup(<DashboardView model={model} days={model.days} onProgressChanged={() => {}} />);
+  expect(html).toContain("17%");                              // stat
+  expect(html).toContain("Installer");                        // InstallPrompt
+  expect(html).toContain("Synchronisation multi-appareils");  // SyncSection
+  expect(html).not.toContain("Accueil");                      // shell moved to AppShell
 });

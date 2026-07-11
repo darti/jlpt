@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { SKILLS, type Progress, type Skill } from "../../types/progress.ts";
 import type { Question, SkillState } from "../../types/quiz.ts";
 import { updateRating } from "../../lib/elo.ts";
@@ -122,6 +123,7 @@ export function useQuiz() {
   const bankIndexPromiseRef = useRef<Promise<Record<number, Skill> | null> | null>(null);
   const pushTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const didAutoRef = useRef(false);
+  const [searchParams] = useSearchParams();
 
   const gistDeps = useMemo<GistDeps>(
     () => ({ store: globalThis.localStorage, fetchImpl: globalThis.fetch }),
@@ -303,18 +305,18 @@ export function useQuiz() {
     setPhase("question");
   }, [resume, ensureBankIndex]);
 
-  // One-shot hub → quiz handoff: `?min=N` auto-starts a session of that length,
-  // `?resume=1` auto-resumes an existing quiz. Read from localStorage/URL directly,
-  // never from the async `resume`/`minutes` state (null/stale at mount — C3). Guarded
-  // so it fires exactly once; SSR-safe (no `window` → no-op under renderToStaticMarkup).
+  // One-shot hub → quiz handoff: `?min=N` (router search) auto-starts a session of that
+  // length, `?resume=1` auto-resumes an existing quiz. Read from the router + localStorage
+  // directly, never from the async `resume`/`minutes` state (null/stale at mount — C3).
+  // Guarded so it fires exactly once.
   useEffect(() => {
-    if (didAutoRef.current || typeof window === "undefined") return;
+    if (didAutoRef.current) return;
     didAutoRef.current = true;
-    const params = parseSessionParams(window.location.search);
+    const params = parseSessionParams("?" + searchParams.toString());
     const saved = readResumeState();
     if (params.resume && saved) { void resumeNow(saved); }
     else if (params.min) { setMinutes(params.min); void start(params.min); }
-  }, [resumeNow, start, setMinutes]);
+  }, [resumeNow, start, setMinutes, searchParams]);
 
   return {
     phase,

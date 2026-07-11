@@ -1,27 +1,34 @@
-import type { ThemeName } from "../lib/theme.ts";
+import { NavLink } from "react-router-dom";
+import { useThemeContext } from "../hooks/useThemeContext.tsx";
 
-const LINKS = [
-  { href: "index.html", label: "Accueil", active: true },
-  { href: "app-n3.html", label: "Entraînement", active: false },
-  { href: "cours-n3.html", label: "Cours", active: false },
-  { href: "planning-n3.html", label: "Planning", active: false },
+const ROUTES = [
+  { to: "/", label: "Accueil", end: true },
+  { to: "/entrainement", label: "Entraînement" },
+  { to: "/quiz", label: "Quiz" },
 ];
+// Still-vanilla pages (ported in later slices) — plain external links for now.
+const EXTERNAL = [
+  { href: "cours-n3.html", label: "Cours" },
+  { href: "planning-n3.html", label: "Planning" },
+];
+const ON = "text-fg font-semibold text-sm";
+const OFF = "text-fg-dim font-semibold text-sm";
 
-export function TopNav({ theme, onToggleTheme }: { theme: ThemeName; onToggleTheme: () => void }) {
+export function TopNav() {
+  const { theme, toggle } = useThemeContext();
   return (
     <nav className="sticky top-0 z-10 flex gap-4 flex-wrap justify-center items-center px-3 py-2.5">
-      {LINKS.map((l) => (
-        <a
-          key={l.href}
-          href={l.href}
-          className={l.active ? "text-fg font-semibold text-sm" : "text-fg-dim font-semibold text-sm"}
-        >
-          {l.label}
-        </a>
+      {ROUTES.map((r) => (
+        <NavLink key={r.to} to={r.to} end={r.end} className={({ isActive }) => (isActive ? ON : OFF)}>
+          {r.label}
+        </NavLink>
+      ))}
+      {EXTERNAL.map((e) => (
+        <a key={e.href} href={e.href} className={OFF}>{e.label}</a>
       ))}
       <button
         type="button"
-        onClick={onToggleTheme}
+        onClick={toggle}
         aria-label="Basculer le thème"
         className="text-fg-dim rounded-full min-w-8 h-8 cursor-pointer border-none bg-transparent"
       >

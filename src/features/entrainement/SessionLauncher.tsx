@@ -1,14 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { sessionHref } from "./nav.ts";
 
 const DURATIONS = [5, 10, 15];
 
-/** «J'ai xx minutes» — picks a session length (chips 5/10/15 + free input) and hands
- *  off to the quiz engine via quiz.html?min=N. Navigation happens in the click handler
- *  (SSR-safe: no `window` touched during render). */
+/** «J'ai xx minutes» — picks a session length (chips 5/10/15 + free input) and hands off
+ *  to the quiz route via `/quiz?min=N` (in-app navigation, no full reload). */
 export function SessionLauncher() {
   const [minutes, setMinutes] = useState(10);
-  const go = () => { window.location.href = sessionHref(minutes); };
+  const navigate = useNavigate();
+  const go = () => { navigate(sessionHref(minutes)); };
 
   return (
     <div className="bg-panel border border-line rounded-xl p-5 shadow-card surface-blur">

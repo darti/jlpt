@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { readResumeState, type ResumeState } from "../quiz/useQuiz.ts";
 import { resumeHref } from "./nav.ts";
 
@@ -18,12 +19,12 @@ export function ResumeBanner() {
       <p className="text-fg text-sm m-0">
         Session en cours <span className="text-fg-dim">({pos} · {resume.right} bonne(s) réponse(s))</span>
       </p>
-      <a
-        href={resumeHref()}
+      <Link
+        to={resumeHref()}
         className="bg-accent text-fg-on-accent no-underline rounded-lg px-3 py-2 text-sm font-bold shrink-0"
       >
         Reprendre ma session
-      </a>
+      </Link>
     </div>
   );
 }

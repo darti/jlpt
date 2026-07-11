@@ -1,30 +1,43 @@
 import { test, expect } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
+import { MemoryRouter } from "react-router-dom";
 import { Header } from "./Header.tsx";
 import { TopNav } from "./TopNav.tsx";
 import { Footer } from "./Footer.tsx";
 import { UpdateBanner } from "./UpdateBanner.tsx";
+import { ThemeContext } from "../hooks/useThemeContext.tsx";
+
+function nav(theme: "light" | "dark") {
+  // MemoryRouter renders NavLink hrefs as paths (/quiz); production HashRouter adds the `#`.
+  return renderToStaticMarkup(
+    <MemoryRouter>
+      <ThemeContext.Provider value={{ theme, toggle: () => {} }}>
+        <TopNav />
+      </ThemeContext.Provider>
+    </MemoryRouter>,
+  );
+}
 
 test("Header shows the French title", () => {
   expect(renderToStaticMarkup(<Header />)).toContain("JLPT N3");
 });
 
-test("TopNav links to the still-vanilla pages", () => {
-  const html = renderToStaticMarkup(<TopNav theme="dark" onToggleTheme={() => {}} />);
-  expect(html).toContain("app-n3.html");
-  expect(html).toContain("cours-n3.html");
-  expect(html).toContain("planning-n3.html");
+test("TopNav renders internal router links + external vanilla links", () => {
+  const html = nav("dark");
+  expect(html).toContain('href="/quiz"');           // NavLink → router route
+  expect(html).toContain('href="/entrainement"');
+  expect(html).toContain('href="cours-n3.html"');    // still-vanilla external
+  expect(html).toContain("Planning");
 });
 
 test("TopNav theme toggle button renders with correct emoji for dark theme", () => {
-  const html = renderToStaticMarkup(<TopNav theme="dark" onToggleTheme={() => {}} />);
+  const html = nav("dark");
   expect(html).toContain("☀");
   expect(html).toContain("Basculer le thème");
 });
 
 test("TopNav theme toggle button renders with correct emoji for light theme", () => {
-  const html = renderToStaticMarkup(<TopNav theme="light" onToggleTheme={() => {}} />);
-  expect(html).toContain("☾");
+  expect(nav("light")).toContain("☾");
 });
 
 test("Footer renders encouragement message", () => {
