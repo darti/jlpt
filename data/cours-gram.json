@@ -1,6 +1,10 @@
 {
  "id": "gram",
  "title": "文法 — Grammaire N3 par leçons",
+ "intro": [
+  "Chaque point : <b>forme</b>, sens, <span style=\"font-family:monospace\">construction</span>, et 2 exemples (japonais · lecture · français). Déplie une leçon.",
+  "Avec les 26 leçons ci-dessus, tu couvres l'ensemble de la grammaire N3 (~150 points). Pour t'entraîner avec des QCM corrigés et des révisions espacées, va dans l' Entraînement adaptatif (catégorie Grammaire) puis « Réviser mes erreurs ». La grammaire se teste vite en lecture : révise régulièrement."
+ ],
  "lessons": [
   {
    "title": "Aide-mémoire grammaire N3 + N4 mélangés — 148 points (93 N3 · 55 N4)",
@@ -3472,9 +3476,5 @@
     }
    ]
   }
- ],
- "prose": [
-  "<p style=\"color:var(--muted)\">Chaque point : <b>forme</b>, sens, <span style=\"font-family:monospace\">construction</span>, et 2 exemples (japonais · lecture · français). Déplie une leçon.</p>",
-  "<div class=\"tip\"><svg class=\"ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z\"></path></svg> Avec les 26 leçons ci-dessus, tu couvres l'ensemble de la grammaire N3 (~150 points). Pour t'entraîner avec des QCM corrigés et des révisions espacées, va dans l'<a href=\"app-n3.html\"><svg class=\"ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M22 12h-4l-3 8-6-16-3 8H2\"></path></svg> Entraînement adaptatif</a> (catégorie Grammaire) puis « Réviser mes erreurs ». La grammaire se teste vite en lecture : révise régulièrement.</div>"
  ]
 }

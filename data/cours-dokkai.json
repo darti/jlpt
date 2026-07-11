@@ -1,7 +1,12 @@
 {
  "id": "dokkai",
  "title": "読解 — Méthode compréhension écrite",
- "prose": [
-  "<div class=\"lesson\" style=\"padding:16px 18px\">\n  <ul>\n    <li><b>Lis la question d'abord</b>, puis cherche l'info dans le texte (surtout pour 情報検索, repérage d'info).</li>\n    <li>Repère les <b>connecteurs</b> (しかし, つまり, だから) : ils signalent où est la réponse.</li>\n    <li>Le 指示語 (こそあど : これ・それ・あれ) renvoie toujours à un mot proche avant — sache à quoi il réfère.</li>\n    <li>Ne traduis pas tout. <b>Vise le sens global</b>, puis zoome sur la phrase utile.</li>\n    <li><b>Chronomètre-toi</b> dès la phase 3 : ~1 min par question. La lecture est une course.</li>\n    <li>Types de questions : 短文 (courts), 中文 (moyens), 長文 (longs), 情報検索 (annonces/pubs).</li>\n  </ul>\n</div>"
+ "tips": [
+  "<b>Lis la question d'abord</b>, puis cherche l'info dans le texte (surtout pour 情報検索, repérage d'info).",
+  "Repère les <b>connecteurs</b> (しかし, つまり, だから) : ils signalent où est la réponse.",
+  "Le 指示語 (こそあど : これ・それ・あれ) renvoie toujours à un mot proche avant — sache à quoi il réfère.",
+  "Ne traduis pas tout. <b>Vise le sens global</b>, puis zoome sur la phrase utile.",
+  "<b>Chronomètre-toi</b> dès la phase 3 : ~1 min par question. La lecture est une course.",
+  "Types de questions : 短文 (courts), 中文 (moyens), 長文 (longs), 情報検索 (annonces/pubs)."
  ]
 }

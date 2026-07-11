@@ -1,6 +1,10 @@
 {
  "id": "kanji",
  "title": "漢字 — Kanji N3 par thèmes",
+ "intro": [
+  "Apprends-les <b>dans des mots</b> (colonne exemples). ~650 kanji au total ; voici des lots à fort rendement.",
+  "Le N3 demande ~650 kanji au total. Apprends-les dans des mots (colonne exemples), entraîne-toi avec les quiz Kanji de l'app et reviens sur « Réviser mes erreurs ». Vise ~20 kanji nouveaux/semaine en phase 1–2."
+ ],
  "lessons": [
   {
    "title": "Kanji N3 + N4 mélangés — 524 caractères (388 N3 · 136 N4)",
@@ -3703,9 +3707,5 @@
     ]
    }
   }
- ],
- "prose": [
-  "<p style=\"color:var(--muted)\">Apprends-les <b>dans des mots</b> (colonne exemples). ~650 kanji au total ; voici des lots à fort rendement.</p>",
-  "<div class=\"tip\"><svg class=\"ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3l9 5-9 5-9-5z\"></path><path d=\"M3 13l9 5 9-5\"></path></svg> Le N3 demande ~650 kanji au total. Apprends-les <b>dans des mots</b> (colonne exemples), entraîne-toi avec les quiz <b>Kanji</b> de l'app et reviens sur « Réviser mes erreurs ». Vise ~20 kanji nouveaux/semaine en phase 1–2.</div>"
  ]
 }

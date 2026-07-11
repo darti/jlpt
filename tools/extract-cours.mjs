@@ -79,16 +79,21 @@ for (const h2 of h2s) {
   const id = h2.id || txt(h2).split(" ")[0];
   const title = txt(h2);
   const lessons = [];
-  const prose = [];
+  const intro = [];   // section intro paragraphs (inline markup only)
+  const tips = [];    // bullet-list method tips (読解/聴解)
   for (let n = h2.nextElementSibling; n && n.tagName !== "H2"; n = n.nextElementSibling) {
-    if (n.tagName === "DETAILS" && n.classList.contains("lesson")) lessons.push(extractLesson(n));
-    else if (["P", "DIV", "UL", "OL", "TABLE"].includes(n.tagName)) prose.push(n.outerHTML.trim());
+    if (n.tagName === "DETAILS" && n.classList.contains("lesson")) { lessons.push(extractLesson(n)); continue; }
+    const ul = n.tagName === "UL" ? n : n.querySelector("ul");
+    if (ul) { tips.push(...[...ul.children].filter((c) => c.tagName === "LI").map((li) => li.innerHTML.trim())); continue; }
+    if (n.tagName === "P") { const h = n.innerHTML.trim(); if (h) intro.push(h); continue; }
+    const t = txt(n); if (t) intro.push(t); // fallback: plain text, never raw block HTML
   }
   const out = { id, title };
+  if (intro.length) out.intro = intro;
   if (lessons.length) out.lessons = lessons;
-  if (prose.length) out.prose = prose;
+  if (tips.length) out.tips = tips;
   const file = `data/cours-${id}.json`;
   writeFileSync(file, JSON.stringify(out, null, 1));
-  summary.push(`${file}: ${lessons.length} leçons${prose.length ? `, ${prose.length} blocs prose` : ""}`);
+  summary.push(`${file}: ${lessons.length} leçons${tips.length ? `, ${tips.length} astuces` : ""}${intro.length ? `, ${intro.length} intro` : ""}`);
 }
 console.log(summary.join("\n"));
