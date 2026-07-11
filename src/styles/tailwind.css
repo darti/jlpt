@@ -197,16 +197,34 @@
 
   /* Furigana: hidden by default; revealed per-word on tap (`.show`, toggled by dict
      `furi()`'s inline onclick) or globally via `[data-furi="on"]` on the root.
-     `display: none` (not `visibility: hidden`): a hidden `<rt>` must leave layout
-     entirely. `visibility: hidden` keeps the annotation box in flow, so the ruby is
-     sized to the wider reading (きゃく over 客) and spreads the base kanji apart —
-     the odd intra-word gaps. Trade-off: revealing a word grows that line's height. */
-  ruby rt { display: none; }
+     The `<rt>` is absolutely positioned — out of flow — so revealing furigana shifts
+     NOTHING: it never widens the base kanji (no intra-word gaps) and never grows the
+     line box (no vertical reflow). A `visibility` toggle swaps the ink in and out of
+     the reserved slot above each word, which stays put whether shown or hidden.
+     Needs `line-height ≥ ~1.8` on the text so the annotation clears the line above. */
+  ruby { position: relative; }
+  ruby rt {
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    transform: translateX(-50%);
+    margin-bottom: -0.15em;
+    font-size: 0.55em;
+    font-weight: 400;
+    line-height: 1;
+    white-space: nowrap;
+    visibility: hidden;
+  }
   ruby.show rt,
-  :root[data-furi="on"] ruby rt { display: revert; }
+  :root[data-furi="on"] ruby rt { visibility: visible; }
 
   /* Data-embedded emphasis (`<b>`/`<strong>` inside question explanations, rendered via
      dangerouslySetInnerHTML) at a medium weight — full bold on kanji reads poorly. The UI's
      own emphasis uses the Tailwind `font-bold` class on other elements, so it's untouched. */
   b, strong { font-weight: 500; }
+
+  /* Spinner for the « Forcer la mise à jour » busy state. The vendored Tailwind subset
+     doesn't compile `animate-spin`, so the keyframes + utility are defined explicitly here. */
+  @keyframes jlpt-spin { to { transform: rotate(360deg); } }
+  .jlpt-spin { display: inline-block; animation: jlpt-spin 0.8s linear infinite; }
 }
