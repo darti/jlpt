@@ -61,22 +61,8 @@ for (const [file, kind] of [['bank', 'quiz'], ['grammar', 'leçon'], ['kanji', '
   info.push(file + '.json : ' + arr.length + ' objets');
 }
 
-// ---------- phrases d'exemple (cours) ----------
-(function validateExamples() {
-  const f = load('data/examples.json'); if (!f) return;
-  let arr;
-  try { arr = JSON.parse(f.raw); } catch (e) { errors.push('data/examples.json : JSON invalide — ' + e.message); return; }
-  if (!Array.isArray(arr)) { errors.push('data/examples.json : doit être un tableau'); return; }
-  arr.forEach((o, i) => {
-    const at = 'examples[' + i + ']';
-    if (o == null || typeof o !== 'object') { errors.push(at + ' : élément vide/non-objet'); return; }
-    if (typeof o.jp !== 'string' || o.jp === '') errors.push(at + ' : jp manquant');
-    if (typeof o.fr !== 'string' || o.fr === '') errors.push(at + ' : fr (traduction) manquant');
-    if (!Array.isArray(o.an)) errors.push(at + ' : an doit être un tableau');
-    else if (o.an.some(x => typeof x !== 'string')) errors.push(at + ' : ligne d\'analyse non-string');
-  });
-  info.push('examples.json : ' + arr.length + ' exemples');
-})();
+// (data/examples.json supprimé : les exemples du cours vivent maintenant inline dans
+//  data/cours-gram.json — extraits de cours-n3.html avant sa suppression, tranche SPA.)
 
 // ---------- rapport ----------
 info.forEach(l => console.log('  · ' + l));

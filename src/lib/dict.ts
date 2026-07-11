@@ -5,10 +5,10 @@
  * fetched from `data/dict.json` at runtime via `setupDict()` (migration principle:
  * data from JSON, not bundled), so this module bundles only the ~logic; (2) the
  * definition-popup CSS uses the oku design tokens (`--color-*`) instead of the
- * vanilla `theme.css` vars. Behaviour is otherwise faithful to `dict.js:8-240`.
+ * vanilla `theme.css` vars. Behaviour is otherwise faithful to the original.
  *
- * The vanilla pages (cours-n3/planning-n3) keep using `dict.js` as-is; this is the
- * React-side twin during the strangler migration (deleted once those pages port).
+ * The strangler migration is complete: the vanilla `dict.js`/pages are gone, so this
+ * module is now the sole furigana + tap-to-define implementation for the app.
  */
 
 export interface DictEntry { r?: string; m?: string }

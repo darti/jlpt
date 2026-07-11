@@ -18,7 +18,7 @@ test("returns null on malformed JSON", () => {
   expect(readProgress(fake("{not json"))).toBeNull();
 });
 
-test("returns the blob even with incomplete skill data (progress.js defaults missing skills)", () => {
+test("returns the blob even with incomplete skill data (legacy format defaults missing skills)", () => {
   const raw = JSON.stringify({ total: 5, skill: { grammaire: { R: 1600 } } });
   const p = readProgress(fake(raw));
   expect(p?.total).toBe(5);

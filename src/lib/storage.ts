@@ -3,7 +3,7 @@ import type { Progress } from "../types/progress.ts";
 const PROGRESS_KEY = "jlptN3adapt_v2";
 const UPDATED_KEY = "jlptN3_updatedAt";
 
-// Lenient on purpose: progress.js's skR/skT default missing skills to R=1450/t=0,
+// Lenient on purpose: the legacy blob format defaults missing skills to R=1450/t=0,
 // so individual skills need NOT be present here — only `total` (number) and `skill`
 // (object) are required for the blob to be usable.
 function isProgress(v: unknown): v is Progress {

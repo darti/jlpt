@@ -1,7 +1,7 @@
-// Dev server for the strangler migration.
-//   • bundles the single React SPA entry index.html (HashRouter, with HMR)
-//   • serves the redirect stubs (quiz/app-n3.html) + still-vanilla pages (cours/planning)
-//     + shared assets straight from disk, exactly as the GitHub Pages deploy does.
+// Dev server for the (now-complete) React SPA.
+//   • bundles the single entry index.html (HashRouter, with HMR)
+//   • serves the redirect stubs (quiz/app-n3.html), the SW/manifest/icons, and the
+//     runtime data/*.json straight from disk, exactly as the GitHub Pages deploy does.
 // The Tailwind CLI compiles the token CSS separately — bun-plugin-tailwind is
 // incompatible with Bun's runtime bundler, so the CLI is the working path.
 import index from "../index.html";
@@ -12,8 +12,6 @@ import index from "../index.html";
 const STATIC_FILES = new Set([
   // quiz.html / app-n3.html are now tiny redirect stubs → the SPA hash routes.
   "/quiz.html", "/app-n3.html",
-  "/cours-n3.html",
-  "/progress.js", "/dict.js", "/theme.css",
   "/sw.js", "/manifest.webmanifest",
   "/icon-180.png", "/icon-192.png", "/icon-512.png",
   // Quiz question banks — quiz.html fetches these at "data/bank-${cat}.json"

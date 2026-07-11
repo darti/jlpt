@@ -3,15 +3,12 @@
    - pages HTML : network-first (toujours la dernière version en ligne, repli cache hors ligne) ;
    - autres ressources same-origin (icônes, manifest) : cache-first avec mise à jour ;
    - tout le cross-origin (api.github.com, etc.) : réseau direct. */
-const CACHE = 'jlpt-n3-v87';
+const CACHE = 'jlpt-n3-v88';
 const SHELL = [
   './',
   'index.html',
   'quiz.html',
   'app-n3.html',
-  'cours-n3.html',
-  'theme.css',
-  'dict.js',
   'manifest.webmanifest',
   'icon-180.png',
   'icon-192.png',

@@ -1,16 +1,18 @@
 # JLPT N3 — Préparation (déc. 2026)
 
-Application web autonome (HTML/JS, sans dépendance) pour préparer le JLPT N3 en 5 mois.
-Ouvre **`index.html`** dans un navigateur.
+Application web (React + TypeScript, bundlée par Bun ; PWA installable, 100 % locale) pour
+préparer le JLPT N3 en 5 mois. Single-page app à routage par hash — ouvre **`index.html`**.
+Les anciennes URL `app-n3.html` / `quiz.html` restent des redirections vers les routes hash.
 
 ## Contenu
 
-| Fichier | Description |
+| Route | Description |
 |---|---|
-| `index.html` | Page d'accueil reliant les 3 modules |
-| `app-n3.html` | **Entraînement adaptatif** : QCM corrigés, difficulté ajustée au niveau (modèle type Elo par compétence), diagnostics périodiques, courbe de progression, **probabilité de réussite** et score estimé /180 |
-| `cours-n3.html` | **Cours** : grammaire N3 (formation + sens + exemples traduits), kanji par thèmes, vocabulaire, méthodes lecture (読解) & écoute (聴解) |
-| `planning-n3.html` | **Planning 20 semaines** en 4 phases, checklist sauvegardée, compte à rebours, ressources |
+| `#/` | Tableau de bord : progression et accès aux modules |
+| `#/entrainement` | **Hub d'entraînement** : lanceur de session, reprise, statistiques |
+| `#/quiz` | **Entraînement adaptatif** : QCM corrigés, difficulté ajustée au niveau (modèle type Elo par compétence), diagnostics périodiques, courbe de progression, **probabilité de réussite** et score estimé /180 |
+| `#/cours` | **Cours** : grammaire N3 (formation + sens + exemples traduits), kanji par thèmes, vocabulaire, méthodes lecture (読解) & écoute (聴解) |
+| `#/planning` | **Planning 20 semaines** en 4 phases, checklist sauvegardée, compte à rebours, ressources |
 
 ## Fonctionnement
 

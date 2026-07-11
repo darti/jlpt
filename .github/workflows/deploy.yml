@@ -41,9 +41,8 @@ jobs:
         run: |
           bun install --frozen-lockfile
           bun run build          # génère _site/index.html (SPA HashRouter) + chunks hashés (ECharts lazy)
-          # Stubs de redirection (quiz/app-n3.html → routes hash) + pages encore vanilla : copiées telles quelles
-          cp quiz.html app-n3.html cours-n3.html _site/
-          cp theme.css progress.js dict.js _site/
+          # Stubs de redirection (quiz/app-n3.html → routes hash) — anciennes URL/bookmarks
+          cp quiz.html app-n3.html _site/
           cp manifest.webmanifest sw.js icon-180.png icon-192.png icon-512.png _site/
           cp README.md _site/ 2>/dev/null || true
           # Banque de questions du quiz : fetchée en relatif (data/bank-*.json), donc

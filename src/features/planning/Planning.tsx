@@ -104,7 +104,7 @@ export function Planning() {
         <h2 className={H2}>Routine quotidienne (≈ 60–90 min/jour)</h2>
         <div className={`${CARD} mt-3 grid grid-cols-[auto_1fr] gap-x-3.5 gap-y-1.5 text-sm`}>
           <b className="text-accent">15 min</b><span className="text-fg-dim"><Link to="/entrainement" className="text-accent">Entraînement</Link> — un quiz du jour (kanji + vocabulaire), puis « Réviser mes erreurs ».</span>
-          <b className="text-accent">20 min</b><span className="text-fg-dim"><a href="cours-n3.html#gram" className="text-accent">Cours de grammaire</a> : 1 à 2 nouveaux points + écris 2 phrases à toi avec chacun.</span>
+          <b className="text-accent">20 min</b><span className="text-fg-dim"><Link to="/cours" className="text-accent">Cours de grammaire</Link> : 1 à 2 nouveaux points + écris 2 phrases à toi avec chacun.</span>
           <b className="text-accent">20 min</b><span className="text-fg-dim">Compréhension écrite : relis les exemples du cours à voix haute, puis quiz « 読解 » de l'app.</span>
           <b className="text-accent">15 min</b><span className="text-fg-dim">Écoute : écoute du japonais autour de toi (audio, vidéos sans sous-titres FR), même en passif.</span>
           <b className="text-accent">+ week-end</b><span className="text-fg-dim">Bilan : un <b className="text-fg">diagnostic complet</b> dans l'app + écris un court journal en japonais.</span>

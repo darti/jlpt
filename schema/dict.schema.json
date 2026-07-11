@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Dictionnaire JLPT (data/dict.json)",
-  "description": "Source de vérité des lectures et définitions. dict.js en est généré (tools/sync-dict.mjs). Documentation ; l'application effective des règles est dans tools/validate.mjs.",
+  "description": "Source de vérité des lectures et définitions, chargée au runtime par src/lib/dict.ts (fetch data/dict.json). Documentation ; l'application effective des règles est dans tools/validate.mjs.",
   "type": "object",
   "propertyNames": { "maxLength": 14 },
   "additionalProperties": {

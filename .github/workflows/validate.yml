@@ -1,9 +1,9 @@
 name: Validation du contenu
 
-# Vérifie la source de vérité du contenu à chaque push / PR :
+# Vérifie la source de vérité du contenu (data/*.json) à chaque push / PR :
 #  - data/dict.json respecte les règles (pas de niveau JLPT comme définition,
 #    pas de clé dupliquée, champs r/m présents…) ;
-#  - dict.js (généré) est bien synchronisé avec data/dict.json.
+#  - bank/grammar/kanji/vocab.json : structure, bornes, options valides.
 # Ne bloque pas le déploiement (workflow séparé) mais signale toute régression.
 
 on:
@@ -26,12 +26,6 @@ jobs:
       - name: Valider tout le contenu (data/*.json)
         run: node tools/validate.mjs
 
-      - name: Vérifier la synchro dict.js ↔ data/dict.json
-        run: node tools/sync-dict.mjs --check
-
-      # (app-n3.html est désormais une coquille React — le contenu BANK n'y est plus
-      #  inliné ; le quiz React charge data/bank-*.json au runtime. sync-content.mjs et
-      #  vocab-data.js ont été supprimés → check retiré. Voir tranche hub Entraînement.)
-
-      - name: Vérifier la synchro cours-n3.html ↔ data/examples.json
-        run: node tools/sync-examples.mjs --check
+      # Migration SPA terminée : dict.js/cours-n3.html/examples.json + leurs sync-*.mjs
+      # ont été supprimés (le runtime React charge data/dict.json et data/cours-*.json
+      # directement). Seule la validation des sources data/*.json reste pertinente.
