@@ -9,6 +9,7 @@ import { useTheme } from "./hooks/useTheme.ts";
 import { useServiceWorker } from "./hooks/usePwa.ts";
 import { setupDict } from "./lib/dict.ts";
 import { applyFontScale } from "./lib/fontscale.ts";
+import { applyFuri } from "./lib/furigana.ts";
 
 /** Single shared layout for every route: shell chrome + theme/SW state (once) + a
  *  one-time dict-data load + persisted font scale. Route content renders in `<Outlet/>`. */
@@ -19,6 +20,7 @@ export function AppShell() {
   useEffect(() => {
     void setupDict();       // expose window.furi/visualBreak/initDefs + load data/dict.json
     applyFontScale();       // apply persisted --fs-ui/--fs-jp
+    applyFuri();            // apply persisted global furigana visibility (data-furi)
   }, []);
 
   return (

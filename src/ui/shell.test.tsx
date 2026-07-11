@@ -28,6 +28,7 @@ test("TopNav renders internal router links + external vanilla links", () => {
   expect(html).toContain('href="/entrainement"');
   expect(html).toContain('href="cours-n3.html"');    // still-vanilla external
   expect(html).toContain("Planning");
+  expect(html).toContain("ふ");                        // global furigana toggle
 });
 
 test("TopNav theme toggle button renders with correct emoji for dark theme", () => {

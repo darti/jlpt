@@ -194,4 +194,11 @@
     color: var(--color-fg);
     font-family: var(--font-sans);
   }
+
+  /* Furigana: hidden by default; revealed per-word on tap (`.show`, toggled by dict
+     `furi()`'s inline onclick) or globally via `[data-furi="on"]` on the root.
+     `visibility` (not `display`) reserves the line so revealing never shifts layout. */
+  ruby rt { visibility: hidden; }
+  ruby.show rt,
+  :root[data-furi="on"] ruby rt { visibility: visible; }
 }

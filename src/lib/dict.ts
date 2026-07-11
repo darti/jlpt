@@ -247,6 +247,9 @@ export function initDefs(opts?: { singleTap?: boolean }): void {
 export async function setupDict(url = "data/dict.json"): Promise<void> {
   const w = window as unknown as Record<string, unknown>;
   w.furi = furi; w.visualBreak = visualBreak; w.initDefs = initDefs; w.hideDef = hideDef; w.jlptSay = jlptSay;
+  // Attach tap-to-define gestures app-wide. NOT singleTap: a single tap toggles a word's
+  // furigana (the ruby's inline onclick); the definition popup is long-press / double-click.
+  initDefs();
   if ("speechSynthesis" in window) { _pickVoice(); try { speechSynthesis.onvoiceschanged = _pickVoice; } catch { /* ignore */ } }
   try {
     const res = await fetch(url);
