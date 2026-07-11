@@ -9,20 +9,20 @@ contenu en **japonais**. **Runtime & outils : `bun` exclusivement — jamais `no
 - **Source de vérité = `data/*.json`** (bank, vocab, kanji, grammar, dict, examples).
 - Ces données sont **inlinées** dans les fichiers livrés entre marqueurs
   `/*NOM-START*/ … /*NOM-END*/` par les scripts `tools/sync-*.mjs`.
-  → **Ne jamais éditer les tableaux inlinés à la main** (`BANK` dans `app-n3.html`,
-    `DICT` dans `dict.js`, blocs `.ex` de `cours-n3.html`, `vocab-data.js`).
-    Éditer `data/*.json` puis relancer le sync. La CI vérifie avec `--check`.
+  → **Ne jamais éditer les tableaux inlinés à la main** (`DICT` dans `dict.js`,
+    blocs `.ex` de `cours-n3.html`). Éditer `data/*.json` puis relancer le sync.
+    La CI vérifie avec `--check`. (Le quiz React charge `data/bank-*.json` et
+    `data/dict.json` au runtime — plus d'inline BANK/vocab.)
 - Pages autonomes multi-entrées : `index.html` (tableau de bord), `app-n3.html`
   (moteur adaptatif type Elo, ~3,2 Mo car BANK inliné), `cours-n3.html` (cours),
   `planning-n3.html` (planning 20 semaines).
 - Runtime partagé : `theme.css` (tokens Nord + thème clair/sombre via `[data-theme]`),
-  `dict.js` (furigana + définition au tap). Vocab externalisé dans `vocab-data.js`.
+  `dict.js` (furigana + définition au tap, pages vanilla ; le quiz React porte
+  cette logique dans `src/lib/dict.ts` + fetch `data/dict.json`).
 
 ## Commandes (bun uniquement)
 
     bun tools/validate.mjs            # valide toutes les data/*.json (exit 1 si KO)
-    bun tools/sync-content.mjs        # ré-inline bank/grammar/kanji → app-n3.html + vocab-data.js
-    bun tools/sync-content.mjs --check
     bun tools/sync-dict.mjs           # ré-inline data/dict.json → dict.js  (--check en CI)
     bun tools/sync-examples.mjs       # ré-inline data/examples.json → cours-n3.html (--extract, --check)
     bunx serve .                      # servir en local (http, requis pour SW + fetch)

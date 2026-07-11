@@ -31,7 +31,7 @@ jobs:
 
       # (app-n3.html est désormais une coquille React — le contenu BANK n'y est plus
       #  inliné ; le quiz React charge data/bank-*.json au runtime. sync-content.mjs et
-      #  vocab-data.js sont obsolètes → check retiré. Voir tranche hub Entraînement.)
+      #  vocab-data.js ont été supprimés → check retiré. Voir tranche hub Entraînement.)
 
       - name: Vérifier la synchro cours-n3.html ↔ data/examples.json
         run: node tools/sync-examples.mjs --check

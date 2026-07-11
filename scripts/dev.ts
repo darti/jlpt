@@ -14,7 +14,7 @@ import appn3 from "../app-n3.html";
 // Grows as pages migrate — the same ledger as the deploy `cp` list.
 const STATIC_FILES = new Set([
   "/cours-n3.html", "/planning-n3.html",
-  "/progress.js", "/dict.js", "/vocab-data.js", "/theme.css",
+  "/progress.js", "/dict.js", "/theme.css",
   "/sw.js", "/manifest.webmanifest",
   "/icon-180.png", "/icon-192.png", "/icon-512.png",
   // Quiz question banks — quiz.html fetches these at "data/bank-${cat}.json"
