@@ -68,17 +68,17 @@ export function QuizAppView(props: {
           <QuestionCard question={question} chosen={null} answered={false} onChoose={props.onChoose} onSpeak={onSpeak} />
         )}
         {props.phase === "corrige" && question && (
-          <>
+          <div className="flex flex-col gap-4">
             <QuestionCard question={question} chosen={props.chosen} answered={true} onChoose={() => {}} onSpeak={onSpeak} />
             <Corrige question={question} correct={props.chosen != null && props.chosen === question.a} />
             <button
               type="button"
               onClick={props.onNext}
-              className="mt-4 w-full bg-accent text-fg-on-accent border-none rounded-xl px-4 py-3 font-bold text-base cursor-pointer"
+              className="w-full bg-accent text-fg-on-accent border-none rounded-xl px-4 py-3 font-bold text-base cursor-pointer"
             >
               Suivant
             </button>
-          </>
+          </div>
         )}
         {props.phase === "results" && (
           <Results count={props.count} right={props.right} onRestart={props.onRestart} />
