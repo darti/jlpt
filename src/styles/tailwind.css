@@ -201,4 +201,9 @@
   ruby rt { visibility: hidden; }
   ruby.show rt,
   :root[data-furi="on"] ruby rt { visibility: visible; }
+
+  /* Data-embedded emphasis (`<b>`/`<strong>` inside question explanations, rendered via
+     dangerouslySetInnerHTML) at a medium weight — full bold on kanji reads poorly. The UI's
+     own emphasis uses the Tailwind `font-bold` class on other elements, so it's untouched. */
+  b, strong { font-weight: 500; }
 }

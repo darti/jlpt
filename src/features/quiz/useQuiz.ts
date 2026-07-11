@@ -276,7 +276,9 @@ export function useQuiz() {
   // `explicit` lets the URL handoff (?resume=1) resume from the value read straight out
   // of localStorage at mount, when the async `resume` state is still null (C3.2).
   const resumeNow = useCallback(async (explicit?: ResumeState) => {
-    const r = explicit ?? resume;
+    // `explicit` is only honored when it's a real ResumeState — resumeNow is also wired as
+    // an onClick handler (quiz ResumeBanner), which would otherwise pass a click event here.
+    const r = explicit && Array.isArray(explicit.ids) ? explicit : resume;
     if (!r) return;
     const idx = await ensureBankIndex();
     if (!idx) return;

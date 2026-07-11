@@ -30,7 +30,7 @@ export function Corrige({ question, correct }: { question: Question; correct: bo
           "Correct !"
         ) : (
           <>
-            Faux. Réponse : <b dangerouslySetInnerHTML={{ __html: furiOrPlain(correctAnswer) }} />
+            Faux. Réponse : <span className="text-fg" dangerouslySetInnerHTML={{ __html: furiOrPlain(correctAnswer) }} />
           </>
         )}
       </p>
@@ -65,7 +65,7 @@ export function Corrige({ question, correct }: { question: Question; correct: bo
                 className={`text-sm ${i === question.a ? "text-status-completed" : "text-fg-dim"}`}
               >
                 <span aria-hidden="true">{i === question.a ? "✓" : "✗"}</span>{" "}
-                <b dangerouslySetInnerHTML={{ __html: furiOrPlain(opt) }} />
+                <span dangerouslySetInnerHTML={{ __html: furiOrPlain(opt) }} />
                 {" — "}
                 <span dangerouslySetInnerHTML={{ __html: furiOrPlain(od[i]) }} />
               </li>

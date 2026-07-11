@@ -21,7 +21,7 @@ export function ResumeBanner({
       <div className="flex gap-2 shrink-0">
         <button
           type="button"
-          onClick={onResume}
+          onClick={() => onResume()}
           className="bg-accent text-fg-on-accent border-none rounded-lg px-3 py-2 text-sm font-bold cursor-pointer"
         >
           Reprendre la session
