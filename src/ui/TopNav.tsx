@@ -7,11 +7,8 @@ const ROUTES = [
   { to: "/", label: "Accueil", end: true },
   { to: "/entrainement", label: "Entraînement" },
   { to: "/quiz", label: "Quiz" },
+  { to: "/cours", label: "Cours" },
   { to: "/planning", label: "Planning" },
-];
-// Still-vanilla pages (ported in later slices) — plain external links for now.
-const EXTERNAL = [
-  { href: "cours-n3.html", label: "Cours" },
 ];
 const ON = "text-fg font-semibold text-sm";
 const OFF = "text-fg-dim font-semibold text-sm";
@@ -26,9 +23,6 @@ export function TopNav() {
         <NavLink key={r.to} to={r.to} end={r.end} className={({ isActive }) => (isActive ? ON : OFF)}>
           {r.label}
         </NavLink>
-      ))}
-      {EXTERNAL.map((e) => (
-        <a key={e.href} href={e.href} className={OFF}>{e.label}</a>
       ))}
       <button
         type="button"

@@ -24,6 +24,9 @@ const STATIC_FILES = new Set([
   // Dictionnaire (furigana / définition au tap) — le quiz React le fetch au runtime
   // via src/lib/dict.ts (les données ne sont plus inlinées dans le bundle).
   "/data/dict.json",
+  // Contenu du cours (route /cours) — fetché au runtime par src/features/cours.
+  "/data/cours-gram.json", "/data/cours-kanji.json", "/data/cours-vocab.json",
+  "/data/cours-dokkai.json", "/data/cours-choukai.json",
 ]);
 
 // One-shot CSS build so styles.gen.css exists before the first request…

@@ -6,6 +6,7 @@ import App from "../App.tsx";
 import QuizApp from "../QuizApp.tsx";
 import EntrainementApp from "../EntrainementApp.tsx";
 import { Planning } from "../features/planning/Planning.tsx";
+import { Cours } from "../features/cours/Cours.tsx";
 import "../styles/styles.gen.css";
 
 const root = document.getElementById("root");
@@ -18,6 +19,7 @@ if (root) createRoot(root).render(
           <Route path="quiz" element={<QuizApp />} />
           <Route path="entrainement" element={<EntrainementApp />} />
           <Route path="planning" element={<Planning />} />
+          <Route path="cours" element={<Cours />} />
           <Route path="*" element={<App />} />
         </Route>
       </Routes>
