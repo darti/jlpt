@@ -1,0 +1,3711 @@
+{
+ "id": "kanji",
+ "title": "漢字 — Kanji N3 par thèmes",
+ "lessons": [
+  {
+   "title": "Kanji N3 + N4 mélangés — 524 caractères (388 N3 · 136 N4)",
+   "tag": "漢",
+   "intro": [
+    "N3 et N4 réunis et triés par <b>lecture</b> (ordre gojūon あ→ん), pour une révision continue des deux paliers. La colonne <b>Niv.</b> indique le niveau de chaque kanji."
+   ],
+   "lessons": [
+    {
+     "title": "Kanji N3 + N4 — lot 1/9 (ordre gojūon)",
+     "tag": "漢",
+     "table": {
+      "headers": [
+       "Kanji",
+       "Niv.",
+       "Lecture",
+       "Sens"
+      ],
+      "rows": [
+       [
+        "愛",
+        "N3",
+        "アイ",
+        "amour, affection"
+       ],
+       [
+        "悪",
+        "N3",
+        "アク・わる(い)",
+        "mal, mauvais"
+       ],
+       [
+        "案",
+        "N3",
+        "アン",
+        "idée, proposition"
+       ],
+       [
+        "暗",
+        "N4",
+        "アン・くら(い)",
+        "sombre, obscur"
+       ],
+       [
+        "安",
+        "N4",
+        "アン・やす(い)",
+        "tranquille, bon marché"
+       ],
+       [
+        "医",
+        "N4",
+        "イ",
+        "médecine"
+       ],
+       [
+        "意",
+        "N4",
+        "イ",
+        "pensée, intention"
+       ],
+       [
+        "以",
+        "N3",
+        "イ",
+        "à partir de, au moyen de"
+       ],
+       [
+        "胃",
+        "N3",
+        "イ",
+        "estomac"
+       ],
+       [
+        "育",
+        "N3",
+        "イク・そだ(てる)",
+        "élever, éduquer"
+       ],
+       [
+        "員",
+        "N3",
+        "イン",
+        "membre, employé"
+       ],
+       [
+        "院",
+        "N3",
+        "イン",
+        "institution, hôpital"
+       ],
+       [
+        "印",
+        "N3",
+        "イン・しるし",
+        "sceau, marque"
+       ],
+       [
+        "飲",
+        "N4",
+        "イン・の(む)",
+        "boire"
+       ],
+       [
+        "因",
+        "N3",
+        "イン・よ(る)",
+        "cause"
+       ],
+       [
+        "囲",
+        "N3",
+        "イ・かこ(む)",
+        "entourer"
+       ],
+       [
+        "位",
+        "N3",
+        "イ・くらい",
+        "rang, position"
+       ],
+       [
+        "運",
+        "N4",
+        "ウン・はこ(ぶ)",
+        "transporter, chance"
+       ],
+       [
+        "英",
+        "N4",
+        "エイ",
+        "Angleterre, talent"
+       ],
+       [
+        "営",
+        "N3",
+        "エイ・いとな(む)",
+        "gérer, exploiter"
+       ],
+       [
+        "泳",
+        "N3",
+        "エイ・およ(ぐ)",
+        "nager"
+       ],
+       [
+        "影",
+        "N3",
+        "エイ・かげ",
+        "ombre, image"
+       ],
+       [
+        "栄",
+        "N4",
+        "エイ・さか(える)",
+        "prospérer, gloire"
+       ],
+       [
+        "駅",
+        "N4",
+        "エキ",
+        "gare"
+       ],
+       [
+        "益",
+        "N3",
+        "エキ・ヤク",
+        "bénéfice, profit"
+       ],
+       [
+        "央",
+        "N3",
+        "オウ",
+        "centre"
+       ],
+       [
+        "横",
+        "N3",
+        "オウ・よこ",
+        "côté, horizontal"
+       ],
+       [
+        "億",
+        "N3",
+        "オク",
+        "cent millions"
+       ],
+       [
+        "屋",
+        "N3",
+        "オク・や",
+        "toit, magasin"
+       ],
+       [
+        "温",
+        "N4",
+        "オン・あたた(かい)",
+        "chaud, température"
+       ],
+       [
+        "課",
+        "N3",
+        "カ",
+        "section, imposer"
+       ],
+       [
+        "貨",
+        "N3",
+        "カ",
+        "marchandise, monnaie"
+       ],
+       [
+        "界",
+        "N4",
+        "カイ",
+        "monde, limite"
+       ],
+       [
+        "階",
+        "N4",
+        "カイ",
+        "étage"
+       ],
+       [
+        "改",
+        "N3",
+        "カイ・あらた(める)",
+        "réformer, modifier"
+       ],
+       [
+        "解",
+        "N3",
+        "カイ・ゲ・と(く)",
+        "résoudre, défaire"
+       ],
+       [
+        "開",
+        "N4",
+        "カイ・ひら(く)・あ(ける)",
+        "ouvrir"
+       ],
+       [
+        "回",
+        "N3",
+        "カイ・まわ(る)",
+        "tourner, fois"
+       ],
+       [
+        "較",
+        "N3",
+        "カク",
+        "comparer"
+       ],
+       [
+        "拡",
+        "N3",
+        "カク",
+        "élargir, étendre"
+       ],
+       [
+        "各",
+        "N3",
+        "カク",
+        "chaque, divers"
+       ],
+       [
+        "覚",
+        "N3",
+        "カク・おぼ(える)・さ(める)",
+        "mémoriser, se réveiller"
+       ],
+       [
+        "確",
+        "N3",
+        "カク・たし(か)",
+        "certain, vérifier"
+       ],
+       [
+        "割",
+        "N3",
+        "カツ・わ(る)",
+        "diviser, proportion, rôle"
+       ],
+       [
+        "漢",
+        "N4",
+        "カン",
+        "Chine, kanji"
+       ],
+       [
+        "館",
+        "N4",
+        "カン",
+        "bâtiment, hall"
+       ],
+       [
+        "感",
+        "N3",
+        "カン",
+        "ressentir, sensation"
+       ],
+       [
+        "観",
+        "N3",
+        "カン",
+        "observer, point de vue"
+       ],
+       [
+        "完",
+        "N3",
+        "カン",
+        "achèvement, complet"
+       ],
+       [
+        "官",
+        "N3",
+        "カン",
+        "fonctionnaire, organe"
+       ],
+       [
+        "管",
+        "N3",
+        "カン・くだ",
+        "tuyau, gérer"
+       ],
+       [
+        "寒",
+        "N4",
+        "カン・さむ(い)",
+        "froid"
+       ],
+       [
+        "関",
+        "N3",
+        "カン・せき",
+        "rapport, barrière"
+       ],
+       [
+        "加",
+        "N3",
+        "カ・くわ(える)",
+        "ajouter"
+       ],
+       [
+        "化",
+        "N3",
+        "カ・ケ・ば(ける)",
+        "transformer, -isation"
+       ],
+       [
+        "荷",
+        "N4",
+        "カ・に",
+        "bagage, charge"
+       ],
+       [
+        "果",
+        "N3",
+        "カ・は(たす)",
+        "fruit, résultat"
+       ],
+       [
+        "害",
+        "N3",
+        "ガイ",
+        "dommage, nuisance"
+       ],
+       [
+        "額",
+        "N3",
+        "ガク・ひたい",
+        "montant, front"
+       ],
+       [
+        "岸",
+        "N4",
+        "ガン・きし",
+        "rivage, berge"
+       ]
+      ]
+     }
+    },
+    {
+     "title": "Kanji N3 + N4 — lot 2/9 (ordre gojūon)",
+     "tag": "漢",
+     "table": {
+      "headers": [
+       "Kanji",
+       "Niv.",
+       "Lecture",
+       "Sens"
+      ],
+      "rows": [
+       [
+        "願",
+        "N3",
+        "ガン・ねが(う)",
+        "souhaiter, prier"
+       ],
+       [
+        "含",
+        "N3",
+        "ガン・ふく(む)",
+        "contenir, inclure"
+       ],
+       [
+        "芽",
+        "N3",
+        "ガ・め",
+        "bourgeon, germe"
+       ],
+       [
+        "規",
+        "N3",
+        "キ",
+        "norme, règle"
+       ],
+       [
+        "紀",
+        "N3",
+        "キ",
+        "ère, chronique"
+       ],
+       [
+        "希",
+        "N3",
+        "キ",
+        "rare, espoir"
+       ],
+       [
+        "客",
+        "N4",
+        "キャク・カク",
+        "client, invité"
+       ],
+       [
+        "級",
+        "N4",
+        "キュウ",
+        "classe, rang"
+       ],
+       [
+        "急",
+        "N4",
+        "キュウ・いそ(ぐ)",
+        "urgent, se presser"
+       ],
+       [
+        "究",
+        "N4",
+        "キュウ・きわ(める)",
+        "étudier à fond"
+       ],
+       [
+        "吸",
+        "N3",
+        "キュウ・す(う)",
+        "aspirer, inhaler"
+       ],
+       [
+        "救",
+        "N3",
+        "キュウ・すく(う)",
+        "sauver, secourir"
+       ],
+       [
+        "球",
+        "N4",
+        "キュウ・たま",
+        "balle, sphère"
+       ],
+       [
+        "泣",
+        "N3",
+        "キュウ・な(く)",
+        "pleurer"
+       ],
+       [
+        "宮",
+        "N4",
+        "キュウ・みや",
+        "palais, sanctuaire"
+       ],
+       [
+        "求",
+        "N3",
+        "キュウ・もと(める)",
+        "demander, rechercher"
+       ],
+       [
+        "況",
+        "N3",
+        "キョウ",
+        "situation, état"
+       ],
+       [
+        "鏡",
+        "N3",
+        "キョウ・かがみ",
+        "miroir"
+       ],
+       [
+        "競",
+        "N3",
+        "キョウ・きそ(う)",
+        "rivaliser, concourir"
+       ],
+       [
+        "供",
+        "N3",
+        "キョウ・そな(える)・とも",
+        "offrir, accompagner"
+       ],
+       [
+        "共",
+        "N3",
+        "キョウ・とも",
+        "commun, ensemble"
+       ],
+       [
+        "橋",
+        "N4",
+        "キョウ・はし",
+        "pont"
+       ],
+       [
+        "響",
+        "N3",
+        "キョウ・ひび(く)",
+        "résonner, retentir"
+       ],
+       [
+        "局",
+        "N4",
+        "キョク",
+        "bureau, station"
+       ],
+       [
+        "極",
+        "N3",
+        "キョク・きわ(める)",
+        "extrême, pôle"
+       ],
+       [
+        "曲",
+        "N4",
+        "キョク・ま(がる)",
+        "courber, morceau"
+       ],
+       [
+        "居",
+        "N3",
+        "キョ・い(る)",
+        "résider, être"
+       ],
+       [
+        "去",
+        "N4",
+        "キョ・コ・さ(る)",
+        "partir, passé"
+       ],
+       [
+        "許",
+        "N3",
+        "キョ・ゆる(す)",
+        "permettre, pardonner"
+       ],
+       [
+        "危",
+        "N3",
+        "キ・あぶ(ない)",
+        "danger"
+       ],
+       [
+        "器",
+        "N3",
+        "キ・うつわ",
+        "récipient, instrument"
+       ],
+       [
+        "起",
+        "N4",
+        "キ・お(きる)",
+        "se lever, se produire"
+       ],
+       [
+        "期",
+        "N3",
+        "キ・ゴ",
+        "période, terme"
+       ],
+       [
+        "記",
+        "N3",
+        "キ・しる(す)",
+        "noter, inscrire"
+       ],
+       [
+        "机",
+        "N3",
+        "キ・つくえ",
+        "bureau (table)"
+       ],
+       [
+        "機",
+        "N3",
+        "キ・はた",
+        "machine, occasion"
+       ],
+       [
+        "基",
+        "N3",
+        "キ・もと・もとい",
+        "base, fondement"
+       ],
+       [
+        "寄",
+        "N3",
+        "キ・よ(る)",
+        "s'approcher, faire don"
+       ],
+       [
+        "議",
+        "N3",
+        "ギ",
+        "délibérer, débattre"
+       ],
+       [
+        "義",
+        "N3",
+        "ギ",
+        "sens, justice, devoir"
+       ],
+       [
+        "業",
+        "N3",
+        "ギョウ・ゴウ・わざ",
+        "travail, industrie"
+       ],
+       [
+        "銀",
+        "N3",
+        "ギン",
+        "argent (métal)"
+       ],
+       [
+        "区",
+        "N4",
+        "ク",
+        "arrondissement"
+       ],
+       [
+        "句",
+        "N3",
+        "ク",
+        "phrase, vers"
+       ],
+       [
+        "君",
+        "N3",
+        "クン・きみ",
+        "tu (familier), -kun"
+       ],
+       [
+        "苦",
+        "N3",
+        "ク・くる(しい)・にが(い)",
+        "souffrance, amer"
+       ],
+       [
+        "具",
+        "N3",
+        "グ",
+        "outil, ingrédient"
+       ],
+       [
+        "偶",
+        "N3",
+        "グウ",
+        "par hasard, pair"
+       ],
+       [
+        "郡",
+        "N3",
+        "グン",
+        "district, arrondissement"
+       ],
+       [
+        "軍",
+        "N3",
+        "グン",
+        "armée, militaire"
+       ],
+       [
+        "群",
+        "N3",
+        "グン・む(れ)",
+        "groupe, foule"
+       ],
+       [
+        "警",
+        "N3",
+        "ケイ",
+        "avertir, police"
+       ],
+       [
+        "景",
+        "N3",
+        "ケイ",
+        "paysage, vue"
+       ],
+       [
+        "係",
+        "N3",
+        "ケイ・かか(る)",
+        "lien, responsable"
+       ],
+       [
+        "型",
+        "N3",
+        "ケイ・かた",
+        "modèle, type"
+       ],
+       [
+        "軽",
+        "N4",
+        "ケイ・かる(い)",
+        "léger"
+       ],
+       [
+        "経",
+        "N3",
+        "ケイ・キョウ・へ(る)",
+        "passer par, gérer"
+       ],
+       [
+        "形",
+        "N3",
+        "ケイ・ギョウ・かたち",
+        "forme"
+       ],
+       [
+        "欠",
+        "N3",
+        "ケツ・か(ける)",
+        "manquer, absence"
+       ],
+       [
+        "決",
+        "N3",
+        "ケツ・き(める)",
+        "décider"
+       ]
+      ]
+     }
+    },
+    {
+     "title": "Kanji N3 + N4 — lot 3/9 (ordre gojūon)",
+     "tag": "漢",
+     "table": {
+      "headers": [
+       "Kanji",
+       "Niv.",
+       "Lecture",
+       "Sens"
+      ],
+      "rows": [
+       [
+        "血",
+        "N3",
+        "ケツ・ち",
+        "sang"
+       ],
+       [
+        "結",
+        "N3",
+        "ケツ・むす(ぶ)",
+        "nouer, conclure"
+       ],
+       [
+        "県",
+        "N4",
+        "ケン",
+        "préfecture"
+       ],
+       [
+        "件",
+        "N3",
+        "ケン",
+        "affaire, (compteur)"
+       ],
+       [
+        "検",
+        "N3",
+        "ケン",
+        "examiner, vérifier"
+       ],
+       [
+        "券",
+        "N3",
+        "ケン",
+        "billet, coupon"
+       ],
+       [
+        "険",
+        "N3",
+        "ケン・けわ(しい)",
+        "dangereux, escarpé"
+       ],
+       [
+        "権",
+        "N3",
+        "ケン・ゴン",
+        "droit, pouvoir"
+       ],
+       [
+        "健",
+        "N3",
+        "ケン・すこ(やか)",
+        "sain, vigoureux"
+       ],
+       [
+        "研",
+        "N3",
+        "ケン・と(ぐ)",
+        "étudier, polir"
+       ],
+       [
+        "芸",
+        "N3",
+        "ゲイ",
+        "art, talent"
+       ],
+       [
+        "現",
+        "N3",
+        "ゲン・あらわ(れる)",
+        "apparaître, actuel"
+       ],
+       [
+        "限",
+        "N3",
+        "ゲン・かぎ(る)",
+        "limiter"
+       ],
+       [
+        "個",
+        "N3",
+        "コ",
+        "individuel, (compteur)"
+       ],
+       [
+        "庫",
+        "N3",
+        "コ",
+        "entrepôt, dépôt"
+       ],
+       [
+        "込",
+        "N3",
+        "こ(む)",
+        "être bondé, inclure"
+       ],
+       [
+        "功",
+        "N3",
+        "コウ",
+        "mérite, exploit"
+       ],
+       [
+        "康",
+        "N3",
+        "コウ",
+        "paix, santé"
+       ],
+       [
+        "航",
+        "N3",
+        "コウ",
+        "navigation"
+       ],
+       [
+        "鉱",
+        "N3",
+        "コウ",
+        "minerai"
+       ],
+       [
+        "講",
+        "N3",
+        "コウ",
+        "conférence, cours"
+       ],
+       [
+        "構",
+        "N3",
+        "コウ・かま(える)",
+        "structure, bâtir"
+       ],
+       [
+        "効",
+        "N3",
+        "コウ・き(く)",
+        "effet, efficace"
+       ],
+       [
+        "興",
+        "N3",
+        "コウ・キョウ・おこ(る)",
+        "prospérer, intérêt"
+       ],
+       [
+        "好",
+        "N3",
+        "コウ・この(む)・す(き)",
+        "aimer, préférer"
+       ],
+       [
+        "幸",
+        "N4",
+        "コウ・しあわ(せ)",
+        "bonheur"
+       ],
+       [
+        "攻",
+        "N3",
+        "コウ・せ(める)",
+        "attaquer"
+       ],
+       [
+        "港",
+        "N3",
+        "コウ・みなと",
+        "port"
+       ],
+       [
+        "向",
+        "N3",
+        "コウ・む(く)",
+        "direction, se tourner"
+       ],
+       [
+        "告",
+        "N3",
+        "コク・つ(げる)",
+        "annoncer, informer"
+       ],
+       [
+        "骨",
+        "N3",
+        "コツ・ほね",
+        "os"
+       ],
+       [
+        "婚",
+        "N3",
+        "コン",
+        "mariage"
+       ],
+       [
+        "根",
+        "N4",
+        "コン・ね",
+        "racine"
+       ],
+       [
+        "混",
+        "N3",
+        "コン・ま(じる)",
+        "mélanger"
+       ],
+       [
+        "固",
+        "N3",
+        "コ・かた(い)",
+        "dur, solide"
+       ],
+       [
+        "湖",
+        "N3",
+        "コ・みずうみ",
+        "lac"
+       ],
+       [
+        "護",
+        "N3",
+        "ゴ",
+        "protéger"
+       ],
+       [
+        "号",
+        "N4",
+        "ゴウ",
+        "numéro, signal"
+       ],
+       [
+        "互",
+        "N3",
+        "ゴ・たが(い)",
+        "mutuel, réciproque"
+       ],
+       [
+        "査",
+        "N3",
+        "サ",
+        "enquêter, inspecter"
+       ],
+       [
+        "妻",
+        "N3",
+        "サイ・つま",
+        "épouse"
+       ],
+       [
+        "採",
+        "N3",
+        "サイ・と(る)",
+        "recueillir, adopter"
+       ],
+       [
+        "菜",
+        "N3",
+        "サイ・な",
+        "légume, plat"
+       ],
+       [
+        "細",
+        "N4",
+        "サイ・ほそ(い)・こま(かい)",
+        "fin, détaillé"
+       ],
+       [
+        "祭",
+        "N4",
+        "サイ・まつ(り)",
+        "fête, festival"
+       ],
+       [
+        "最",
+        "N3",
+        "サイ・もっと(も)",
+        "le plus"
+       ],
+       [
+        "災",
+        "N3",
+        "サイ・わざわ(い)",
+        "catastrophe, fléau"
+       ],
+       [
+        "昨",
+        "N3",
+        "サク",
+        "hier, précédent"
+       ],
+       [
+        "察",
+        "N3",
+        "サツ",
+        "observer, deviner"
+       ],
+       [
+        "賛",
+        "N3",
+        "サン",
+        "approuver, soutenir"
+       ],
+       [
+        "酸",
+        "N3",
+        "サン・す(い)",
+        "acide"
+       ],
+       [
+        "散",
+        "N3",
+        "サン・ち(る)",
+        "se disperser"
+       ],
+       [
+        "差",
+        "N3",
+        "サ・さ(す)",
+        "différence, écart"
+       ],
+       [
+        "在",
+        "N3",
+        "ザイ・あ(る)",
+        "se trouver, exister"
+       ],
+       [
+        "財",
+        "N3",
+        "ザイ・サイ",
+        "richesse, biens"
+       ],
+       [
+        "罪",
+        "N3",
+        "ザイ・つみ",
+        "crime, faute"
+       ],
+       [
+        "雑",
+        "N3",
+        "ザツ・ゾウ",
+        "mélange, désordre"
+       ],
+       [
+        "残",
+        "N3",
+        "ザン・のこ(る)",
+        "rester, restes"
+       ],
+       [
+        "詩",
+        "N4",
+        "シ",
+        "poème"
+       ],
+       [
+        "視",
+        "N3",
+        "シ",
+        "regarder, vue"
+       ]
+      ]
+     }
+    },
+    {
+     "title": "Kanji N3 + N4 — lot 4/9 (ordre gojūon)",
+     "tag": "漢",
+     "table": {
+      "headers": [
+       "Kanji",
+       "Niv.",
+       "Lecture",
+       "Sens"
+      ],
+      "rows": [
+       [
+        "資",
+        "N3",
+        "シ",
+        "capital, ressources"
+       ],
+       [
+        "史",
+        "N3",
+        "シ",
+        "histoire"
+       ],
+       [
+        "司",
+        "N3",
+        "シ",
+        "administrer, fonction"
+       ],
+       [
+        "詞",
+        "N3",
+        "シ",
+        "mot, paroles"
+       ],
+       [
+        "誌",
+        "N3",
+        "シ",
+        "revue, magazine"
+       ],
+       [
+        "識",
+        "N3",
+        "シキ",
+        "connaissance, discernement"
+       ],
+       [
+        "式",
+        "N3",
+        "シキ",
+        "cérémonie, formule"
+       ],
+       [
+        "織",
+        "N3",
+        "シキ・ショク・お(る)",
+        "tisser"
+       ],
+       [
+        "質",
+        "N3",
+        "シツ・シチ",
+        "qualité, nature"
+       ],
+       [
+        "舎",
+        "N3",
+        "シャ",
+        "pavillon, dortoir"
+       ],
+       [
+        "釈",
+        "N3",
+        "シャク",
+        "explication, interprétation"
+       ],
+       [
+        "謝",
+        "N3",
+        "シャ・あやま(る)",
+        "remercier, s'excuser"
+       ],
+       [
+        "写",
+        "N4",
+        "シャ・うつ(す)",
+        "copier, photographier"
+       ],
+       [
+        "者",
+        "N4",
+        "シャ・もの",
+        "personne"
+       ],
+       [
+        "集",
+        "N4",
+        "シュウ・あつ(める)",
+        "rassembler"
+       ],
+       [
+        "終",
+        "N4",
+        "シュウ・お(わる)",
+        "finir"
+       ],
+       [
+        "収",
+        "N3",
+        "シュウ・おさ(める)",
+        "percevoir, ranger"
+       ],
+       [
+        "州",
+        "N4",
+        "シュウ・す",
+        "province, état"
+       ],
+       [
+        "習",
+        "N4",
+        "シュウ・なら(う)",
+        "apprendre"
+       ],
+       [
+        "拾",
+        "N4",
+        "シュウ・ひろ(う)",
+        "ramasser"
+       ],
+       [
+        "祝",
+        "N3",
+        "シュク・いわ(う)",
+        "célébrer, féliciter"
+       ],
+       [
+        "縮",
+        "N3",
+        "シュク・ちぢ(む)",
+        "réduire, contracter"
+       ],
+       [
+        "宿",
+        "N3",
+        "シュク・やど",
+        "auberge, loger"
+       ],
+       [
+        "酒",
+        "N4",
+        "シュ・さけ",
+        "alcool, saké"
+       ],
+       [
+        "守",
+        "N3",
+        "シュ・ス・まも(る)",
+        "protéger, respecter"
+       ],
+       [
+        "種",
+        "N3",
+        "シュ・たね",
+        "espèce, graine"
+       ],
+       [
+        "取",
+        "N3",
+        "シュ・と(る)",
+        "prendre, saisir"
+       ],
+       [
+        "主",
+        "N4",
+        "シュ・ぬし",
+        "maître, principal"
+       ],
+       [
+        "署",
+        "N3",
+        "ショ",
+        "poste, bureau"
+       ],
+       [
+        "諸",
+        "N3",
+        "ショ",
+        "divers, plusieurs"
+       ],
+       [
+        "昭",
+        "N4",
+        "ショウ",
+        "clair, ère Shōwa"
+       ],
+       [
+        "章",
+        "N4",
+        "ショウ",
+        "chapitre, insigne"
+       ],
+       [
+        "証",
+        "N3",
+        "ショウ",
+        "preuve, certificat"
+       ],
+       [
+        "賞",
+        "N3",
+        "ショウ",
+        "prix, récompense"
+       ],
+       [
+        "商",
+        "N4",
+        "ショウ・あきな(う)",
+        "commerce"
+       ],
+       [
+        "勝",
+        "N3",
+        "ショウ・か(つ)",
+        "victoire, gagner"
+       ],
+       [
+        "消",
+        "N4",
+        "ショウ・き(える)・け(す)",
+        "éteindre, disparaître"
+       ],
+       [
+        "傷",
+        "N3",
+        "ショウ・きず",
+        "blessure"
+       ],
+       [
+        "象",
+        "N3",
+        "ショウ・ゾウ",
+        "phénomène, image"
+       ],
+       [
+        "招",
+        "N3",
+        "ショウ・まね(く)",
+        "inviter"
+       ],
+       [
+        "笑",
+        "N3",
+        "ショウ・わら(う)",
+        "rire, sourire"
+       ],
+       [
+        "植",
+        "N3",
+        "ショク・う(える)",
+        "planter"
+       ],
+       [
+        "触",
+        "N3",
+        "ショク・ふ(れる)・さわ(る)",
+        "toucher"
+       ],
+       [
+        "暑",
+        "N4",
+        "ショ・あつ(い)",
+        "chaud (temps)"
+       ],
+       [
+        "所",
+        "N3",
+        "ショ・ところ",
+        "lieu, endroit"
+       ],
+       [
+        "初",
+        "N3",
+        "ショ・はじ(め)・はつ",
+        "début, premier"
+       ],
+       [
+        "信",
+        "N3",
+        "シン",
+        "croire, confiance"
+       ],
+       [
+        "神",
+        "N3",
+        "シン・かみ",
+        "dieu, divin"
+       ],
+       [
+        "臣",
+        "N3",
+        "シン・ジン",
+        "vassal, ministre"
+       ],
+       [
+        "進",
+        "N3",
+        "シン・すす(む)",
+        "avancer"
+       ],
+       [
+        "寝",
+        "N3",
+        "シン・ね(る)",
+        "dormir, se coucher"
+       ],
+       [
+        "針",
+        "N3",
+        "シン・はり",
+        "aiguille"
+       ],
+       [
+        "深",
+        "N3",
+        "シン・ふか(い)",
+        "profond"
+       ],
+       [
+        "震",
+        "N3",
+        "シン・ふる(える)",
+        "trembler, séisme"
+       ],
+       [
+        "真",
+        "N3",
+        "シン・ま",
+        "vrai, pur"
+       ],
+       [
+        "身",
+        "N4",
+        "シン・み",
+        "corps, soi"
+       ],
+       [
+        "申",
+        "N3",
+        "シン・もう(す)",
+        "dire (modeste)"
+       ],
+       [
+        "試",
+        "N3",
+        "シ・こころ(みる)・ため(す)",
+        "essayer, test"
+       ],
+       [
+        "支",
+        "N3",
+        "シ・ささ(える)",
+        "soutenir, payer"
+       ],
+       [
+        "死",
+        "N4",
+        "シ・し(ぬ)",
+        "mort, mourir"
+       ]
+      ]
+     }
+    },
+    {
+     "title": "Kanji N3 + N4 — lot 5/9 (ordre gojūon)",
+     "tag": "漢",
+     "table": {
+      "headers": [
+       "Kanji",
+       "Niv.",
+       "Lecture",
+       "Sens"
+      ],
+      "rows": [
+       [
+        "使",
+        "N4",
+        "シ・つか(う)",
+        "utiliser"
+       ],
+       [
+        "仕",
+        "N4",
+        "シ・つか(える)",
+        "servir, travail"
+       ],
+       [
+        "歯",
+        "N4",
+        "シ・は",
+        "dent"
+       ],
+       [
+        "始",
+        "N4",
+        "シ・はじ(める)",
+        "commencer"
+       ],
+       [
+        "指",
+        "N3",
+        "シ・ゆび・さ(す)",
+        "doigt, montrer"
+       ],
+       [
+        "実",
+        "N3",
+        "ジツ・み・みの(る)",
+        "réel, fruit"
+       ],
+       [
+        "住",
+        "N4",
+        "ジュウ・す(む)",
+        "habiter"
+       ],
+       [
+        "重",
+        "N4",
+        "ジュウ・チョウ・おも(い)",
+        "lourd, important"
+       ],
+       [
+        "術",
+        "N3",
+        "ジュツ",
+        "technique, art"
+       ],
+       [
+        "述",
+        "N3",
+        "ジュツ・の(べる)",
+        "énoncer, exposer"
+       ],
+       [
+        "純",
+        "N3",
+        "ジュン",
+        "pur"
+       ],
+       [
+        "準",
+        "N3",
+        "ジュン",
+        "niveau, norme"
+       ],
+       [
+        "順",
+        "N3",
+        "ジュン",
+        "ordre, tour"
+       ],
+       [
+        "受",
+        "N3",
+        "ジュ・う(ける)",
+        "recevoir"
+       ],
+       [
+        "序",
+        "N3",
+        "ジョ",
+        "ordre, préface"
+       ],
+       [
+        "状",
+        "N3",
+        "ジョウ",
+        "état, condition"
+       ],
+       [
+        "城",
+        "N3",
+        "ジョウ・しろ",
+        "château"
+       ],
+       [
+        "常",
+        "N3",
+        "ジョウ・つね",
+        "ordinaire, constant"
+       ],
+       [
+        "情",
+        "N3",
+        "ジョウ・なさ(け)",
+        "sentiment, situation"
+       ],
+       [
+        "乗",
+        "N4",
+        "ジョウ・の(る)",
+        "monter (véhicule)"
+       ],
+       [
+        "蒸",
+        "N3",
+        "ジョウ・む(す)",
+        "vapeur, étuver"
+       ],
+       [
+        "除",
+        "N3",
+        "ジョ・ジ・のぞ(く)",
+        "exclure, retirer"
+       ],
+       [
+        "助",
+        "N3",
+        "ジョ・たす(ける)",
+        "aider, secourir"
+       ],
+       [
+        "仁",
+        "N3",
+        "ジン",
+        "bienveillance, humanité"
+       ],
+       [
+        "事",
+        "N4",
+        "ジ・こと",
+        "affaire, chose"
+       ],
+       [
+        "示",
+        "N3",
+        "ジ・しめ(す)",
+        "montrer, indiquer"
+       ],
+       [
+        "次",
+        "N4",
+        "ジ・シ・つぎ",
+        "suivant, ordre"
+       ],
+       [
+        "治",
+        "N3",
+        "ジ・チ・おさ(める)",
+        "gouverner, soigner"
+       ],
+       [
+        "児",
+        "N3",
+        "ジ・ニ",
+        "enfant"
+       ],
+       [
+        "似",
+        "N3",
+        "ジ・に(る)",
+        "ressembler"
+       ],
+       [
+        "持",
+        "N4",
+        "ジ・も(つ)",
+        "tenir, posséder"
+       ],
+       [
+        "辞",
+        "N3",
+        "ジ・や(める)",
+        "démissionner, mot"
+       ],
+       [
+        "推",
+        "N3",
+        "スイ・お(す)",
+        "présumer, pousser"
+       ],
+       [
+        "垂",
+        "N3",
+        "スイ・た(れる)",
+        "pendre, suspendre"
+       ],
+       [
+        "数",
+        "N3",
+        "スウ・かず・かぞ(える)",
+        "nombre, compter"
+       ],
+       [
+        "寸",
+        "N3",
+        "スン",
+        "unité de longueur"
+       ],
+       [
+        "政",
+        "N3",
+        "セイ",
+        "politique, gouvernement"
+       ],
+       [
+        "制",
+        "N3",
+        "セイ",
+        "système, contrôler"
+       ],
+       [
+        "製",
+        "N3",
+        "セイ",
+        "fabriquer"
+       ],
+       [
+        "姓",
+        "N3",
+        "セイ",
+        "nom de famille"
+       ],
+       [
+        "精",
+        "N3",
+        "セイ",
+        "esprit, raffiné"
+       ],
+       [
+        "聖",
+        "N3",
+        "セイ",
+        "saint, sacré"
+       ],
+       [
+        "清",
+        "N3",
+        "セイ・きよ(い)",
+        "pur, propre"
+       ],
+       [
+        "性",
+        "N3",
+        "セイ・ショウ",
+        "nature, caractère, sexe"
+       ],
+       [
+        "整",
+        "N4",
+        "セイ・ととの(える)",
+        "ranger, ajuster"
+       ],
+       [
+        "成",
+        "N3",
+        "セイ・な(る)",
+        "devenir, accomplir"
+       ],
+       [
+        "晴",
+        "N3",
+        "セイ・は(れる)",
+        "beau temps"
+       ],
+       [
+        "星",
+        "N3",
+        "セイ・ほし",
+        "étoile"
+       ],
+       [
+        "盛",
+        "N3",
+        "セイ・も(る)・さか(ん)",
+        "prospère, servir"
+       ],
+       [
+        "績",
+        "N3",
+        "セキ",
+        "exploits, résultats"
+       ],
+       [
+        "責",
+        "N3",
+        "セキ・せ(める)",
+        "responsabilité, blâmer"
+       ],
+       [
+        "昔",
+        "N4",
+        "セキ・むかし",
+        "autrefois"
+       ],
+       [
+        "接",
+        "N3",
+        "セツ・つ(ぐ)",
+        "contact, joindre"
+       ],
+       [
+        "節",
+        "N3",
+        "セツ・ふし",
+        "nœud, saison, économiser"
+       ],
+       [
+        "設",
+        "N3",
+        "セツ・もう(ける)",
+        "installer, établir"
+       ],
+       [
+        "選",
+        "N3",
+        "セン・えら(ぶ)",
+        "choisir"
+       ],
+       [
+        "銭",
+        "N3",
+        "セン・ぜに",
+        "argent, sen"
+       ],
+       [
+        "戦",
+        "N3",
+        "セン・たたか(う)",
+        "guerre, combattre"
+       ],
+       [
+        "世",
+        "N4",
+        "セ・セイ・よ",
+        "monde, génération"
+       ],
+       [
+        "是",
+        "N3",
+        "ゼ",
+        "correct, justice"
+       ]
+      ]
+     }
+    },
+    {
+     "title": "Kanji N3 + N4 — lot 6/9 (ordre gojūon)",
+     "tag": "漢",
+     "table": {
+      "headers": [
+       "Kanji",
+       "Niv.",
+       "Lecture",
+       "Sens"
+      ],
+      "rows": [
+       [
+        "税",
+        "N3",
+        "ゼイ",
+        "impôt, taxe"
+       ],
+       [
+        "舌",
+        "N3",
+        "ゼツ・した",
+        "langue"
+       ],
+       [
+        "絶",
+        "N3",
+        "ゼツ・た(える)",
+        "couper, extrême"
+       ],
+       [
+        "然",
+        "N3",
+        "ゼン・ネン",
+        "ainsi, naturel"
+       ],
+       [
+        "全",
+        "N3",
+        "ゼン・まった(く)",
+        "entier, tout"
+       ],
+       [
+        "善",
+        "N3",
+        "ゼン・よ(い)",
+        "bien, vertu"
+       ],
+       [
+        "祖",
+        "N3",
+        "ソ",
+        "ancêtre"
+       ],
+       [
+        "総",
+        "N3",
+        "ソウ",
+        "total, général"
+       ],
+       [
+        "層",
+        "N3",
+        "ソウ",
+        "couche, strate"
+       ],
+       [
+        "相",
+        "N3",
+        "ソウ・あい",
+        "mutuel, aspect, ministre"
+       ],
+       [
+        "操",
+        "N3",
+        "ソウ・あやつ(る)",
+        "manœuvrer"
+       ],
+       [
+        "争",
+        "N3",
+        "ソウ・あらそ(う)",
+        "lutter, disputer"
+       ],
+       [
+        "送",
+        "N4",
+        "ソウ・おく(る)",
+        "envoyer"
+       ],
+       [
+        "装",
+        "N3",
+        "ソウ・ショウ",
+        "équiper, costume"
+       ],
+       [
+        "想",
+        "N3",
+        "ソウ・ソ",
+        "penser, imaginer"
+       ],
+       [
+        "則",
+        "N3",
+        "ソク",
+        "règle, loi"
+       ],
+       [
+        "息",
+        "N4",
+        "ソク・いき",
+        "souffle, fils"
+       ],
+       [
+        "測",
+        "N3",
+        "ソク・はか(る)",
+        "mesurer"
+       ],
+       [
+        "速",
+        "N4",
+        "ソク・はや(い)",
+        "rapide"
+       ],
+       [
+        "率",
+        "N3",
+        "ソツ・リツ",
+        "taux, conduire"
+       ],
+       [
+        "損",
+        "N3",
+        "ソン・そこ(なう)",
+        "perte, endommager"
+       ],
+       [
+        "存",
+        "N3",
+        "ソン・ゾン",
+        "exister"
+       ],
+       [
+        "尊",
+        "N3",
+        "ソン・たっと(い)",
+        "respecter, noble"
+       ],
+       [
+        "素",
+        "N3",
+        "ソ・ス",
+        "élément, simple"
+       ],
+       [
+        "像",
+        "N3",
+        "ゾウ",
+        "image, statue"
+       ],
+       [
+        "臓",
+        "N3",
+        "ゾウ",
+        "organe, viscère"
+       ],
+       [
+        "蔵",
+        "N3",
+        "ゾウ・くら",
+        "entrepôt, réserve"
+       ],
+       [
+        "造",
+        "N3",
+        "ゾウ・つく(る)",
+        "construire, fabriquer"
+       ],
+       [
+        "族",
+        "N4",
+        "ゾク",
+        "tribu, famille"
+       ],
+       [
+        "続",
+        "N3",
+        "ゾク・つづ(く)",
+        "continuer"
+       ],
+       [
+        "態",
+        "N3",
+        "タイ",
+        "état, attitude"
+       ],
+       [
+        "隊",
+        "N3",
+        "タイ",
+        "troupe, escadron"
+       ],
+       [
+        "帯",
+        "N3",
+        "タイ・お(びる)・おび",
+        "ceinture, porter"
+       ],
+       [
+        "退",
+        "N3",
+        "タイ・しりぞ(く)",
+        "reculer, se retirer"
+       ],
+       [
+        "対",
+        "N3",
+        "タイ・ツイ",
+        "face à, opposé"
+       ],
+       [
+        "待",
+        "N4",
+        "タイ・ま(つ)",
+        "attendre"
+       ],
+       [
+        "達",
+        "N3",
+        "タツ",
+        "atteindre, -tachi (pluriel)"
+       ],
+       [
+        "単",
+        "N3",
+        "タン",
+        "simple, seul"
+       ],
+       [
+        "探",
+        "N3",
+        "タン・さが(す)",
+        "chercher, explorer"
+       ],
+       [
+        "炭",
+        "N4",
+        "タン・すみ",
+        "charbon"
+       ],
+       [
+        "担",
+        "N3",
+        "タン・にな(う)",
+        "porter, se charger de"
+       ],
+       [
+        "短",
+        "N4",
+        "タン・みじか(い)",
+        "court"
+       ],
+       [
+        "他",
+        "N4",
+        "タ・ほか",
+        "autre"
+       ],
+       [
+        "第",
+        "N4",
+        "ダイ",
+        "ordinal (n°)"
+       ],
+       [
+        "題",
+        "N3",
+        "ダイ",
+        "sujet, problème"
+       ],
+       [
+        "代",
+        "N4",
+        "ダイ・タイ・か(わる)",
+        "génération, remplacer"
+       ],
+       [
+        "談",
+        "N4",
+        "ダン",
+        "conversation"
+       ],
+       [
+        "段",
+        "N3",
+        "ダン",
+        "échelon, niveau"
+       ],
+       [
+        "暖",
+        "N3",
+        "ダン・あたた(かい)",
+        "chaud (température)"
+       ],
+       [
+        "断",
+        "N3",
+        "ダン・た(つ)・ことわ(る)",
+        "trancher, refuser"
+       ],
+       [
+        "弾",
+        "N3",
+        "ダン・ひ(く)",
+        "tirer, jouer (instrument)"
+       ],
+       [
+        "打",
+        "N4",
+        "ダ・う(つ)",
+        "frapper"
+       ],
+       [
+        "築",
+        "N3",
+        "チク・きず(く)",
+        "bâtir"
+       ],
+       [
+        "着",
+        "N4",
+        "チャク・き(る)・つ(く)",
+        "porter, arriver"
+       ],
+       [
+        "忠",
+        "N3",
+        "チュウ",
+        "loyauté, fidélité"
+       ],
+       [
+        "注",
+        "N4",
+        "チュウ・そそ(ぐ)",
+        "verser, attention"
+       ],
+       [
+        "仲",
+        "N3",
+        "チュウ・なか",
+        "relation, entente"
+       ],
+       [
+        "柱",
+        "N3",
+        "チュウ・はしら",
+        "pilier, colonne"
+       ],
+       [
+        "帳",
+        "N3",
+        "チョウ",
+        "registre, carnet"
+       ],
+       [
+        "庁",
+        "N3",
+        "チョウ",
+        "agence (gouvernementale)"
+       ]
+      ]
+     }
+    },
+    {
+     "title": "Kanji N3 + N4 — lot 7/9 (ordre gojūon)",
+     "tag": "漢",
+     "table": {
+      "headers": [
+       "Kanji",
+       "Niv.",
+       "Lecture",
+       "Sens"
+      ],
+      "rows": [
+       [
+        "腸",
+        "N3",
+        "チョウ",
+        "intestin"
+       ],
+       [
+        "頂",
+        "N3",
+        "チョウ・いただ(く)",
+        "sommet, recevoir (humble)"
+       ],
+       [
+        "調",
+        "N3",
+        "チョウ・しら(べる)",
+        "enquêter, ton"
+       ],
+       [
+        "丁",
+        "N4",
+        "チョウ・テイ",
+        "bloc, pair"
+       ],
+       [
+        "張",
+        "N3",
+        "チョウ・は(る)",
+        "tendre, étendre"
+       ],
+       [
+        "賃",
+        "N3",
+        "チン",
+        "loyer, salaire"
+       ],
+       [
+        "沈",
+        "N3",
+        "チン・しず(む)",
+        "couler, sombrer"
+       ],
+       [
+        "珍",
+        "N3",
+        "チン・めずら(しい)",
+        "rare, curieux"
+       ],
+       [
+        "値",
+        "N3",
+        "チ・ね・あたい",
+        "valeur, prix"
+       ],
+       [
+        "追",
+        "N4",
+        "ツイ・お(う)",
+        "poursuivre"
+       ],
+       [
+        "痛",
+        "N3",
+        "ツウ・いた(い)",
+        "douleur"
+       ],
+       [
+        "停",
+        "N3",
+        "テイ",
+        "s'arrêter, arrêt"
+       ],
+       [
+        "提",
+        "N3",
+        "テイ・さ(げる)",
+        "présenter, soumettre"
+       ],
+       [
+        "定",
+        "N3",
+        "テイ・さだ(める)",
+        "fixer, déterminer"
+       ],
+       [
+        "底",
+        "N3",
+        "テイ・そこ",
+        "fond"
+       ],
+       [
+        "庭",
+        "N4",
+        "テイ・にわ",
+        "jardin"
+       ],
+       [
+        "程",
+        "N3",
+        "テイ・ほど",
+        "degré, mesure"
+       ],
+       [
+        "適",
+        "N3",
+        "テキ",
+        "approprié, convenir"
+       ],
+       [
+        "笛",
+        "N3",
+        "テキ・ふえ",
+        "flûte, sifflet"
+       ],
+       [
+        "鉄",
+        "N4",
+        "テツ",
+        "fer"
+       ],
+       [
+        "典",
+        "N3",
+        "テン",
+        "code, dictionnaire"
+       ],
+       [
+        "展",
+        "N3",
+        "テン",
+        "déployer, exposer"
+       ],
+       [
+        "転",
+        "N4",
+        "テン・ころ(ぶ)",
+        "tourner, tomber"
+       ],
+       [
+        "党",
+        "N3",
+        "トウ",
+        "parti (politique)"
+       ],
+       [
+        "当",
+        "N3",
+        "トウ・あ(たる)",
+        "toucher, juste, ce…"
+       ],
+       [
+        "討",
+        "N3",
+        "トウ・う(つ)",
+        "examiner, attaquer"
+       ],
+       [
+        "島",
+        "N4",
+        "トウ・しま",
+        "île"
+       ],
+       [
+        "統",
+        "N3",
+        "トウ・す(べる)",
+        "gouverner, unifier"
+       ],
+       [
+        "登",
+        "N4",
+        "トウ・ト・のぼ(る)",
+        "grimper"
+       ],
+       [
+        "投",
+        "N4",
+        "トウ・な(げる)",
+        "lancer"
+       ],
+       [
+        "灯",
+        "N3",
+        "トウ・ひ",
+        "lampe, lumière"
+       ],
+       [
+        "等",
+        "N3",
+        "トウ・ひと(しい)・など",
+        "égal, etc."
+       ],
+       [
+        "豆",
+        "N4",
+        "トウ・まめ",
+        "haricot"
+       ],
+       [
+        "湯",
+        "N4",
+        "トウ・ゆ",
+        "eau chaude"
+       ],
+       [
+        "特",
+        "N3",
+        "トク",
+        "spécial, particulier"
+       ],
+       [
+        "突",
+        "N3",
+        "トツ・つ(く)",
+        "percer, soudain"
+       ],
+       [
+        "届",
+        "N3",
+        "とど(く)・とど(ける)",
+        "parvenir, livrer"
+       ],
+       [
+        "都",
+        "N3",
+        "ト・ツ・みやこ",
+        "capitale, métropole"
+       ],
+       [
+        "銅",
+        "N3",
+        "ドウ",
+        "cuivre"
+       ],
+       [
+        "動",
+        "N4",
+        "ドウ・うご(く)",
+        "bouger"
+       ],
+       [
+        "導",
+        "N3",
+        "ドウ・みちび(く)",
+        "guider, conduire"
+       ],
+       [
+        "童",
+        "N3",
+        "ドウ・わらべ",
+        "enfant"
+       ],
+       [
+        "毒",
+        "N3",
+        "ドク",
+        "poison"
+       ],
+       [
+        "独",
+        "N3",
+        "ドク・ひと(り)",
+        "seul, indépendant"
+       ],
+       [
+        "曇",
+        "N3",
+        "ドン・くも(る)",
+        "nuageux"
+       ],
+       [
+        "鈍",
+        "N3",
+        "ドン・にぶ(い)",
+        "émoussé, lent"
+       ],
+       [
+        "度",
+        "N4",
+        "ド・タク",
+        "degré, fois"
+       ],
+       [
+        "努",
+        "N3",
+        "ド・つと(める)",
+        "s'efforcer"
+       ],
+       [
+        "内",
+        "N3",
+        "ナイ・うち",
+        "intérieur"
+       ],
+       [
+        "難",
+        "N3",
+        "ナン・むずか(しい)",
+        "difficile, calamité"
+       ],
+       [
+        "任",
+        "N3",
+        "ニン・まか(せる)",
+        "confier, charge"
+       ],
+       [
+        "認",
+        "N3",
+        "ニン・みと(める)",
+        "reconnaître, admettre"
+       ],
+       [
+        "寧",
+        "N3",
+        "ネイ",
+        "paisible, poli"
+       ],
+       [
+        "熱",
+        "N3",
+        "ネツ・あつ(い)",
+        "chaleur, fièvre"
+       ],
+       [
+        "念",
+        "N3",
+        "ネン",
+        "pensée, désir, attention"
+       ],
+       [
+        "燃",
+        "N3",
+        "ネン・も(える)",
+        "brûler"
+       ],
+       [
+        "脳",
+        "N3",
+        "ノウ",
+        "cerveau"
+       ],
+       [
+        "農",
+        "N3",
+        "ノウ",
+        "agriculture"
+       ],
+       [
+        "濃",
+        "N3",
+        "ノウ・こ(い)",
+        "épais, foncé"
+       ],
+       [
+        "悩",
+        "N3",
+        "ノウ・なや(む)",
+        "souffrir, se tourmenter"
+       ]
+      ]
+     }
+    },
+    {
+     "title": "Kanji N3 + N4 — lot 8/9 (ordre gojūon)",
+     "tag": "漢",
+     "table": {
+      "headers": [
+       "Kanji",
+       "Niv.",
+       "Lecture",
+       "Sens"
+      ],
+      "rows": [
+       [
+        "肺",
+        "N3",
+        "ハイ",
+        "poumon"
+       ],
+       [
+        "俳",
+        "N3",
+        "ハイ",
+        "haïku, acteur"
+       ],
+       [
+        "拝",
+        "N3",
+        "ハイ・おが(む)",
+        "prier, saluer"
+       ],
+       [
+        "配",
+        "N3",
+        "ハイ・くば(る)",
+        "distribuer, livrer"
+       ],
+       [
+        "杯",
+        "N3",
+        "ハイ・さかずき",
+        "coupe, verre (compteur)"
+       ],
+       [
+        "背",
+        "N3",
+        "ハイ・せ・せい",
+        "dos, taille"
+       ],
+       [
+        "敗",
+        "N3",
+        "ハイ・やぶ(れる)",
+        "défaite, échouer"
+       ],
+       [
+        "博",
+        "N3",
+        "ハク・バク",
+        "vaste, exposition"
+       ],
+       [
+        "箱",
+        "N3",
+        "はこ",
+        "boîte, carton"
+       ],
+       [
+        "畑",
+        "N3",
+        "はたけ",
+        "champ (cultivé)"
+       ],
+       [
+        "発",
+        "N3",
+        "ハツ・ホツ",
+        "émettre, partir"
+       ],
+       [
+        "範",
+        "N3",
+        "ハン",
+        "modèle, étendue"
+       ],
+       [
+        "般",
+        "N3",
+        "ハン",
+        "général, sorte"
+       ],
+       [
+        "販",
+        "N3",
+        "ハン",
+        "vendre, commerce"
+       ],
+       [
+        "版",
+        "N3",
+        "ハン",
+        "édition, planche"
+       ],
+       [
+        "班",
+        "N3",
+        "ハン",
+        "groupe, escouade"
+       ],
+       [
+        "犯",
+        "N3",
+        "ハン・おか(す)",
+        "commettre (un délit)"
+       ],
+       [
+        "坂",
+        "N4",
+        "ハン・さか",
+        "pente, côte"
+       ],
+       [
+        "反",
+        "N4",
+        "ハン・そ(る)",
+        "opposé, contre"
+       ],
+       [
+        "判",
+        "N3",
+        "ハン・バン",
+        "juger, sceau"
+       ],
+       [
+        "板",
+        "N4",
+        "ハン・バン・いた",
+        "planche"
+       ],
+       [
+        "波",
+        "N4",
+        "ハ・なみ",
+        "vague"
+       ],
+       [
+        "倍",
+        "N3",
+        "バイ",
+        "double, fois"
+       ],
+       [
+        "梅",
+        "N3",
+        "バイ・うめ",
+        "prunier, prune"
+       ],
+       [
+        "麦",
+        "N3",
+        "バク・むぎ",
+        "blé, céréale"
+       ],
+       [
+        "非",
+        "N3",
+        "ヒ",
+        "non-, faute"
+       ],
+       [
+        "批",
+        "N3",
+        "ヒ",
+        "critiquer"
+       ],
+       [
+        "秘",
+        "N3",
+        "ヒ",
+        "secret"
+       ],
+       [
+        "必",
+        "N3",
+        "ヒツ・かなら(ず)",
+        "forcément, indispensable"
+       ],
+       [
+        "筆",
+        "N3",
+        "ヒツ・ふで",
+        "pinceau, écriture"
+       ],
+       [
+        "評",
+        "N3",
+        "ヒョウ",
+        "évaluer, critiquer"
+       ],
+       [
+        "標",
+        "N3",
+        "ヒョウ",
+        "marque, cible"
+       ],
+       [
+        "票",
+        "N3",
+        "ヒョウ",
+        "bulletin, vote"
+       ],
+       [
+        "表",
+        "N3",
+        "ヒョウ・おもて・あらわ(す)",
+        "surface, exprimer, tableau"
+       ],
+       [
+        "氷",
+        "N4",
+        "ヒョウ・こおり",
+        "glace"
+       ],
+       [
+        "品",
+        "N4",
+        "ヒン・しな",
+        "article, qualité"
+       ],
+       [
+        "否",
+        "N3",
+        "ヒ・いな",
+        "non, refus"
+       ],
+       [
+        "悲",
+        "N4",
+        "ヒ・かな(しい)",
+        "triste"
+       ],
+       [
+        "彼",
+        "N3",
+        "ヒ・かれ・かの",
+        "il, elle"
+       ],
+       [
+        "皮",
+        "N3",
+        "ヒ・かわ",
+        "peau, cuir"
+       ],
+       [
+        "被",
+        "N3",
+        "ヒ・こうむ(る)",
+        "subir, recevoir"
+       ],
+       [
+        "避",
+        "N3",
+        "ヒ・さ(ける)",
+        "éviter, esquiver"
+       ],
+       [
+        "費",
+        "N3",
+        "ヒ・つい(やす)",
+        "dépense, frais"
+       ],
+       [
+        "疲",
+        "N3",
+        "ヒ・つか(れる)",
+        "être fatigué"
+       ],
+       [
+        "秒",
+        "N4",
+        "ビョウ",
+        "seconde"
+       ],
+       [
+        "病",
+        "N4",
+        "ビョウ・や(む)",
+        "maladie"
+       ],
+       [
+        "美",
+        "N4",
+        "ビ・うつく(しい)",
+        "beau"
+       ],
+       [
+        "尾",
+        "N3",
+        "ビ・お",
+        "queue"
+       ],
+       [
+        "備",
+        "N3",
+        "ビ・そな(える)",
+        "préparer, équiper"
+       ],
+       [
+        "鼻",
+        "N4",
+        "ビ・はな",
+        "nez"
+       ],
+       [
+        "普",
+        "N3",
+        "フ",
+        "ordinaire, général"
+       ],
+       [
+        "服",
+        "N4",
+        "フク",
+        "vêtement"
+       ],
+       [
+        "福",
+        "N4",
+        "フク",
+        "bonheur, fortune"
+       ],
+       [
+        "複",
+        "N3",
+        "フク",
+        "multiple, complexe"
+       ],
+       [
+        "負",
+        "N4",
+        "フ・ま(ける)",
+        "perdre, charge"
+       ],
+       [
+        "部",
+        "N4",
+        "ブ",
+        "partie, section"
+       ],
+       [
+        "物",
+        "N4",
+        "ブツ・モツ・もの",
+        "chose"
+       ],
+       [
+        "平",
+        "N4",
+        "ヘイ・たい(ら)",
+        "plat, paix"
+       ],
+       [
+        "返",
+        "N4",
+        "ヘン・かえ(す)",
+        "rendre, répondre"
+       ],
+       [
+        "別",
+        "N3",
+        "ベツ・わか(れる)",
+        "séparer, distinct"
+       ]
+      ]
+     }
+    },
+    {
+     "title": "Kanji N3 + N4 — lot 9/9 (ordre gojūon)",
+     "tag": "漢",
+     "table": {
+      "headers": [
+       "Kanji",
+       "Niv.",
+       "Lecture",
+       "Sens"
+      ],
+      "rows": [
+       [
+        "勉",
+        "N4",
+        "ベン",
+        "effort, étude"
+       ],
+       [
+        "法",
+        "N3",
+        "ホウ・ハッ",
+        "loi, méthode"
+       ],
+       [
+        "放",
+        "N4",
+        "ホウ・はな(す)",
+        "lâcher, diffuser"
+       ],
+       [
+        "貿",
+        "N3",
+        "ボウ",
+        "commerce"
+       ],
+       [
+        "望",
+        "N3",
+        "ボウ・のぞ(む)",
+        "souhaiter, espoir"
+       ],
+       [
+        "防",
+        "N3",
+        "ボウ・ふせ(ぐ)",
+        "prévenir, défendre"
+       ],
+       [
+        "民",
+        "N3",
+        "ミン・たみ",
+        "peuple"
+       ],
+       [
+        "味",
+        "N4",
+        "ミ・あじ",
+        "goût"
+       ],
+       [
+        "務",
+        "N3",
+        "ム・つと(める)",
+        "devoir, fonction"
+       ],
+       [
+        "命",
+        "N4",
+        "メイ・いのち",
+        "vie, ordre"
+       ],
+       [
+        "面",
+        "N4",
+        "メン・おも(て)",
+        "face, surface"
+       ],
+       [
+        "問",
+        "N4",
+        "モン・と(う)",
+        "question, demander"
+       ],
+       [
+        "約",
+        "N3",
+        "ヤク",
+        "environ, promesse"
+       ],
+       [
+        "役",
+        "N3",
+        "ヤク・エキ",
+        "rôle, service"
+       ],
+       [
+        "薬",
+        "N4",
+        "ヤク・くすり",
+        "médicament"
+       ],
+       [
+        "輸",
+        "N3",
+        "ユ",
+        "transporter"
+       ],
+       [
+        "遊",
+        "N4",
+        "ユウ・あそ(ぶ)",
+        "jouer, s’amuser"
+       ],
+       [
+        "有",
+        "N4",
+        "ユウ・ウ・あ(る)",
+        "avoir, exister"
+       ],
+       [
+        "優",
+        "N3",
+        "ユウ・やさ(しい)・すぐ(れる)",
+        "supérieur, doux"
+       ],
+       [
+        "油",
+        "N4",
+        "ユ・あぶら",
+        "huile"
+       ],
+       [
+        "由",
+        "N3",
+        "ユ・ユウ・よし",
+        "raison, motif"
+       ],
+       [
+        "予",
+        "N4",
+        "ヨ",
+        "d’avance"
+       ],
+       [
+        "洋",
+        "N4",
+        "ヨウ",
+        "océan, occidental"
+       ],
+       [
+        "陽",
+        "N4",
+        "ヨウ",
+        "soleil, yang"
+       ],
+       [
+        "容",
+        "N3",
+        "ヨウ",
+        "contenir, apparence"
+       ],
+       [
+        "要",
+        "N3",
+        "ヨウ・い(る)",
+        "nécessité, essentiel"
+       ],
+       [
+        "様",
+        "N4",
+        "ヨウ・さま",
+        "manière, M./Mme"
+       ],
+       [
+        "葉",
+        "N4",
+        "ヨウ・は",
+        "feuille"
+       ],
+       [
+        "頼",
+        "N3",
+        "ライ・たの(む)",
+        "demander, compter sur"
+       ],
+       [
+        "落",
+        "N4",
+        "ラク・お(ちる)",
+        "tomber"
+       ],
+       [
+        "略",
+        "N3",
+        "リャク",
+        "abréger, stratégie"
+       ],
+       [
+        "流",
+        "N4",
+        "リュウ・なが(れる)",
+        "couler, courant"
+       ],
+       [
+        "両",
+        "N4",
+        "リョウ",
+        "les deux"
+       ],
+       [
+        "良",
+        "N3",
+        "リョウ・よ(い)",
+        "bon"
+       ],
+       [
+        "緑",
+        "N4",
+        "リョク・みどり",
+        "vert"
+       ],
+       [
+        "旅",
+        "N4",
+        "リョ・たび",
+        "voyage"
+       ],
+       [
+        "例",
+        "N3",
+        "レイ・たと(える)",
+        "exemple"
+       ],
+       [
+        "礼",
+        "N4",
+        "レイ・ライ",
+        "politesse, salut"
+       ],
+       [
+        "列",
+        "N4",
+        "レツ",
+        "rangée, file"
+       ],
+       [
+        "劣",
+        "N3",
+        "レツ・おと(る)",
+        "inférieur"
+       ],
+       [
+        "練",
+        "N4",
+        "レン・ね(る)",
+        "s’exercer, pétrir"
+       ],
+       [
+        "論",
+        "N3",
+        "ロン",
+        "argument, théorie"
+       ],
+       [
+        "路",
+        "N4",
+        "ロ・じ",
+        "route"
+       ],
+       [
+        "和",
+        "N4",
+        "ワ・やわ(らぐ)",
+        "harmonie, japonais"
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "title": "Lot 1 — Temps & calendrier",
+   "tag": "S2",
+   "table": {
+    "headers": [
+     "Kanji",
+     "Lecture",
+     "Sens",
+     "Mot exemple"
+    ],
+    "rows": [
+     [
+      "過",
+      "カ・す(ぎる)",
+      "passer, excès",
+      "過去 (kako) passé"
+     ],
+     [
+      "期",
+      "キ",
+      "période",
+      "期間 (kikan) durée"
+     ],
+     [
+      "未",
+      "ミ",
+      "pas encore",
+      "未来 (mirai) futur"
+     ],
+     [
+      "際",
+      "サイ・きわ",
+      "occasion, bord",
+      "国際 (kokusai) international"
+     ],
+     [
+      "過",
+      "—",
+      "—",
+      "過程 (katei) processus"
+     ],
+     [
+      "続",
+      "ゾク・つづ(く)",
+      "continuer",
+      "続行 (zokkō) poursuite"
+     ]
+    ]
+   }
+  },
+  {
+   "title": "Lot 2 — Émotions & esprit",
+   "tag": "S3",
+   "table": {
+    "headers": [
+     "Kanji",
+     "Lecture",
+     "Sens",
+     "Mot exemple"
+    ],
+    "rows": [
+     [
+      "感",
+      "カン",
+      "ressentir",
+      "感動 (kandō) émotion"
+     ],
+     [
+      "情",
+      "ジョウ",
+      "sentiment",
+      "感情 (kanjō) sentiment"
+     ],
+     [
+      "怒",
+      "ド・おこ(る)",
+      "colère",
+      "怒る (okoru) se fâcher"
+     ],
+     [
+      "悲",
+      "ヒ・かな(しい)",
+      "tristesse",
+      "悲しい (kanashii) triste"
+     ],
+     [
+      "喜",
+      "キ・よろこ(ぶ)",
+      "joie",
+      "喜ぶ (yorokobu) se réjouir"
+     ],
+     [
+      "恥",
+      "チ・は(ずかしい)",
+      "honte",
+      "恥ずかしい (hazukashii) gêné"
+     ]
+    ]
+   }
+  },
+  {
+   "title": "Lot 3 — Travail & société",
+   "tag": "S6",
+   "table": {
+    "headers": [
+     "Kanji",
+     "Lecture",
+     "Sens",
+     "Mot exemple"
+    ],
+    "rows": [
+     [
+      "職",
+      "ショク",
+      "emploi",
+      "職業 (shokugyō) profession"
+     ],
+     [
+      "給",
+      "キュウ",
+      "salaire, fournir",
+      "給料 (kyūryō) salaire"
+     ],
+     [
+      "産",
+      "サン・う(む)",
+      "produire",
+      "生産 (seisan) production"
+     ],
+     [
+      "経",
+      "ケイ",
+      "gérer, passer",
+      "経済 (keizai) économie"
+     ],
+     [
+      "済",
+      "サイ・す(む)",
+      "finir, régler",
+      "経済 / 済む (sumu)"
+     ],
+     [
+      "議",
+      "ギ",
+      "débattre",
+      "会議 (kaigi) réunion"
+     ]
+    ]
+   }
+  },
+  {
+   "title": "Lot 4 — Nature & science",
+   "tag": "S8",
+   "table": {
+    "headers": [
+     "Kanji",
+     "Lecture",
+     "Sens",
+     "Mot exemple"
+    ],
+    "rows": [
+     [
+      "境",
+      "キョウ・さかい",
+      "frontière",
+      "環境 (kankyō) environnement"
+     ],
+     [
+      "温",
+      "オン・あたた(かい)",
+      "chaleur",
+      "温度 (ondo) température"
+     ],
+     [
+      "石",
+      "セキ・いし",
+      "pierre",
+      "石油 (sekiyu) pétrole"
+     ],
+     [
+      "技",
+      "ギ・わざ",
+      "technique",
+      "技術 (gijutsu) technologie"
+     ],
+     [
+      "果",
+      "カ・は(たす)",
+      "résultat, fruit",
+      "結果 (kekka) résultat"
+     ],
+     [
+      "破",
+      "ハ・やぶ(る)",
+      "briser",
+      "破壊 (hakai) destruction"
+     ]
+    ]
+   }
+  },
+  {
+   "title": "Lot 5 — Mouvement & directions",
+   "tag": "N3",
+   "table": {
+    "headers": [
+     "Kanji",
+     "Lecture",
+     "Sens",
+     "Mot exemple"
+    ],
+    "rows": [
+     [
+      "動",
+      "ドウ・うご(く)",
+      "bouger",
+      "運動 (undō) sport"
+     ],
+     [
+      "働",
+      "ドウ・はたら(く)",
+      "travailler",
+      "労働 (rōdō) travail"
+     ],
+     [
+      "運",
+      "ウン・はこ(ぶ)",
+      "transporter, chance",
+      "運転 (unten) conduite"
+     ],
+     [
+      "転",
+      "テン・ころ(ぶ)",
+      "tourner, tomber",
+      "回転 (kaiten) rotation"
+     ],
+     [
+      "進",
+      "シン・すす(む)",
+      "avancer",
+      "進歩 (shinpo) progrès"
+     ],
+     [
+      "移",
+      "イ・うつ(る)",
+      "déplacer",
+      "移動 (idō) déplacement"
+     ],
+     [
+      "速",
+      "ソク・はや(い)",
+      "rapide",
+      "速度 (sokudo) vitesse"
+     ],
+     [
+      "遅",
+      "チ・おく(れる)",
+      "tard, lent",
+      "遅刻 (chikoku) retard"
+     ],
+     [
+      "追",
+      "ツイ・お(う)",
+      "poursuivre",
+      "追加 (tsuika) ajout"
+     ],
+     [
+      "登",
+      "トウ・のぼ(る)",
+      "grimper",
+      "登山 (tozan) alpinisme"
+     ]
+    ]
+   }
+  },
+  {
+   "title": "Lot 6 — Société & communication",
+   "tag": "N3",
+   "table": {
+    "headers": [
+     "Kanji",
+     "Lecture",
+     "Sens",
+     "Mot exemple"
+    ],
+    "rows": [
+     [
+      "社",
+      "シャ・やしろ",
+      "société, sanctuaire",
+      "社会 (shakai) société"
+     ],
+     [
+      "界",
+      "カイ",
+      "monde, limite",
+      "世界 (sekai) le monde"
+     ],
+     [
+      "法",
+      "ホウ",
+      "loi, méthode",
+      "方法 (hōhō) méthode"
+     ],
+     [
+      "制",
+      "セイ",
+      "système, contrôle",
+      "制度 (seido) système"
+     ],
+     [
+      "規",
+      "キ",
+      "norme, règle",
+      "規則 (kisoku) règlement"
+     ],
+     [
+      "権",
+      "ケン",
+      "droit, pouvoir",
+      "権利 (kenri) droit"
+     ],
+     [
+      "任",
+      "ニン・まか(せる)",
+      "confier",
+      "責任 (sekinin) responsabilité"
+     ],
+     [
+      "協",
+      "キョウ",
+      "coopérer",
+      "協力 (kyōryoku) coopération"
+     ],
+     [
+      "在",
+      "ザイ・あ(る)",
+      "se trouver",
+      "現在 (genzai) le présent"
+     ],
+     [
+      "報",
+      "ホウ・むく(いる)",
+      "rapporter, récompenser",
+      "報告 (hōkoku) rapport"
+     ]
+    ]
+   }
+  },
+  {
+   "title": "Lot 7 — Quantité, choix, opinion",
+   "tag": "N3",
+   "table": {
+    "headers": [
+     "Kanji",
+     "Lecture",
+     "Sens",
+     "Mot exemple"
+    ],
+    "rows": [
+     [
+      "増",
+      "ゾウ・ふ(える)",
+      "augmenter",
+      "増加 (zōka) hausse"
+     ],
+     [
+      "減",
+      "ゲン・へ(る)",
+      "diminuer",
+      "減少 (genshō) baisse"
+     ],
+     [
+      "比",
+      "ヒ・くら(べる)",
+      "comparer",
+      "比較 (hikaku) comparaison"
+     ],
+     [
+      "量",
+      "リョウ・はか(る)",
+      "quantité",
+      "数量 (sūryō) quantité"
+     ],
+     [
+      "価",
+      "カ・あたい",
+      "valeur",
+      "価格 (kakaku) prix"
+     ],
+     [
+      "得",
+      "トク・え(る)",
+      "obtenir, avantage",
+      "得意 (tokui) point fort"
+     ],
+     [
+      "失",
+      "シツ・うしな(う)",
+      "perdre",
+      "失敗 (shippai) échec"
+     ],
+     [
+      "選",
+      "セン・えら(ぶ)",
+      "choisir",
+      "選択 (sentaku) choix"
+     ],
+     [
+      "決",
+      "ケツ・き(める)",
+      "décider",
+      "決定 (kettei) décision"
+     ],
+     [
+      "反",
+      "ハン・そ(る)",
+      "opposé, contre",
+      "反対 (hantai) opposition"
+     ]
+    ]
+   }
+  }
+ ],
+ "prose": [
+  "<p style=\"color:var(--muted)\">Apprends-les <b>dans des mots</b> (colonne exemples). ~650 kanji au total ; voici des lots à fort rendement.</p>",
+  "<div class=\"tip\"><svg class=\"ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3l9 5-9 5-9-5z\"></path><path d=\"M3 13l9 5 9-5\"></path></svg> Le N3 demande ~650 kanji au total. Apprends-les <b>dans des mots</b> (colonne exemples), entraîne-toi avec les quiz <b>Kanji</b> de l'app et reviens sur « Réviser mes erreurs ». Vise ~20 kanji nouveaux/semaine en phase 1–2.</div>"
+ ]
+}

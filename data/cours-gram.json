@@ -1,0 +1,3480 @@
+{
+ "id": "gram",
+ "title": "文法 — Grammaire N3 par leçons",
+ "lessons": [
+  {
+   "title": "Aide-mémoire grammaire N3 + N4 mélangés — 148 points (93 N3 · 55 N4)",
+   "tag": "文",
+   "intro": [
+    "Index récapitulatif des points de grammaire des paliers N4 et N3, triés par <b>lecture</b> (ordre gojūon). La colonne <b>Niv.</b> indique le niveau. Les explications détaillées avec exemples sont dans les leçons ci-dessous."
+   ],
+   "lessons": [
+    {
+     "title": "Grammaire N3 + N4 — lot 1/4 (ordre gojūon)",
+     "tag": "文",
+     "table": {
+      "headers": [
+       "Forme",
+       "Niv.",
+       "Sens"
+      ],
+      "rows": [
+       [
+        "〜place : 〜場合は",
+        "N3",
+        "« dans le cas où »."
+       ],
+       [
+        "〜うちに",
+        "N3",
+        "« pendant que / avant que (ça change) »."
+       ],
+       [
+        "お〜する",
+        "N4",
+        "modestie (kenjōgo)"
+       ],
+       [
+        "お〜になる",
+        "N4",
+        "respect (sonkeigo)"
+       ],
+       [
+        "〜おかげで / 〜せいで",
+        "N3",
+        "« grâce à » / « à cause de (reproche) »."
+       ],
+       [
+        "お／ご〜ください",
+        "N3",
+        "demande polie (尊敬)."
+       ],
+       [
+        "お／ご〜になる ・ お／ご〜する",
+        "N3",
+        "« ça explique que / c'est donc pour ça que » — conclusion logique."
+       ],
+       [
+        "〜かと思うと / 〜かと思ったら",
+        "N3",
+        "« à peine… que (changement rapide) »."
+       ],
+       [
+        "〜かもしれない",
+        "N4",
+        "possibilité : « peut-être »"
+       ],
+       [
+        "〜がたい",
+        "N3",
+        "« difficile à (littéraire) »."
+       ],
+       [
+        "〜がち",
+        "N3",
+        "« avoir tendance à (souvent négatif) »."
+       ],
+       [
+        "〜がる / 〜たがる",
+        "N3",
+        "exprime le sentiment/désir d'une 3e personne."
+       ],
+       [
+        "〜きり",
+        "N3",
+        "« depuis que… (et plus rien depuis) »."
+       ],
+       [
+        "〜きる / 〜きれない",
+        "N3",
+        "« refaire / re- »."
+       ],
+       [
+        "〜くせに",
+        "N3",
+        "« alors que (avec reproche/mépris) »."
+       ],
+       [
+        "〜こそ",
+        "N3",
+        "« c'est précisément / cette fois-ci »."
+       ],
+       [
+        "〜ことができる",
+        "N4",
+        "capacité : « pouvoir »"
+       ],
+       [
+        "〜ことだ",
+        "N3",
+        "conseil ferme « tu devrais / il faut »."
+       ],
+       [
+        "〜ことにする",
+        "N4",
+        "décision personnelle : « décider de »"
+       ],
+       [
+        "〜ことにする / 〜ことになる",
+        "N3",
+        "« en venir à / arriver à (changement progressif de capacité/habitude) »."
+       ],
+       [
+        "〜ことになっている",
+        "N3",
+        "« il est convenu/réglé que » — règle, coutume."
+       ],
+       [
+        "〜ことになる",
+        "N4",
+        "décision externe : « il est décidé que »"
+       ],
+       [
+        "〜さえ〜ば",
+        "N3",
+        "« il suffit que / du moment que »."
+       ],
+       [
+        "〜させてください / 〜させていただく",
+        "N3",
+        "demander la permission de faire (humble)."
+       ],
+       [
+        "〜ざるを得ない",
+        "N3",
+        "« être contraint de / ne pas pouvoir faire autrement »."
+       ],
+       [
+        "〜し",
+        "N3",
+        "exemples non exhaustifs « des choses comme »."
+       ],
+       [
+        "〜しかない",
+        "N3",
+        "« il ne reste qu'à / seulement »."
+       ],
+       [
+        "〜すぎる",
+        "N4",
+        "excès : « trop »"
+       ],
+       [
+        "〜そうだ (apparence)",
+        "N3",
+        "« avoir l'air de / sembler sur le point de » — jugement visuel immédiat."
+       ],
+       [
+        "〜そうだ (ouï-dire)",
+        "N3",
+        "« il paraît que / on dit que » — information rapportée."
+       ],
+       [
+        "〜たことがある",
+        "N4",
+        "expérience : « avoir déjà… »"
+       ],
+       [
+        "〜たって / 〜だって (口語)",
+        "N3",
+        "« même si » (oral)."
+       ],
+       [
+        "〜たとたん(に)",
+        "N3",
+        "« à l'instant même où » (juste après, souvent surprise)."
+       ],
+       [
+        "〜たばかり",
+        "N3",
+        "« venir tout juste de » (ressenti subjectif, peu importe le temps réel)."
+       ],
+       [
+        "〜たびに",
+        "N3",
+        "« chaque fois que »."
+       ],
+       [
+        "〜たほうがいい",
+        "N4",
+        "conseil : « il vaut mieux »"
+       ],
+       [
+        "〜ために",
+        "N3",
+        "« afin de / à cause de » (but ou cause)."
+       ],
+       [
+        "〜たら",
+        "N3",
+        "« quand / si… » — le plus courant à l'oral ; condition + résultat ponctuel."
+       ],
+       [
+        "〜たらいい / 〜といい / 〜ばいい",
+        "N3",
+        "« il vaudrait / ce serait bien si / j'espère que »."
+       ],
+       [
+        "〜たり〜たりする",
+        "N4",
+        "énumération : « tantôt… tantôt »"
+       ],
+       [
+        "〜だけ",
+        "N3",
+        "« seulement / ne … que »."
+       ],
+       [
+        "〜だけあって / 〜だけに",
+        "N3",
+        "« justement parce que / à la hauteur de » (résultat attendu)."
+       ],
+       [
+        "〜だけでなく〜も",
+        "N3",
+        "« non seulement… mais aussi »."
+       ],
+       [
+        "〜だらけ",
+        "N3",
+        "« plein de / couvert de » (négatif)."
+       ],
+       [
+        "〜って (口語)",
+        "N3",
+        "forme orale de という / と."
+       ]
+      ]
+     }
+    },
+    {
+     "title": "Grammaire N3 + N4 — lot 2/4 (ordre gojūon)",
+     "tag": "文",
+     "table": {
+      "headers": [
+       "Forme",
+       "Niv.",
+       "Sens"
+      ],
+      "rows": [
+       [
+        "〜っぱなし",
+        "N3",
+        "« laissé tel quel (par négligence) »."
+       ],
+       [
+        "〜っぽい",
+        "N3",
+        "« qui a un air de / facilement »."
+       ],
+       [
+        "〜つつある",
+        "N3",
+        "« être en train de (évoluer) »."
+       ],
+       [
+        "〜つもりだ",
+        "N4",
+        "intention : « avoir l’intention de »"
+       ],
+       [
+        "〜てあげる",
+        "N4",
+        "faveur : « faire pour qqn »"
+       ],
+       [
+        "〜てある",
+        "N4",
+        "état résultant (volontaire)"
+       ],
+       [
+        "〜ていく",
+        "N4",
+        "« aller en… » (éloignement / suite)"
+       ],
+       [
+        "〜ていく / 〜てくる",
+        "N3",
+        "« comme / conformément à »."
+       ],
+       [
+        "〜ていただく / 〜てくださる",
+        "N3",
+        "versions polies de もらう / くれる."
+       ],
+       [
+        "〜ていただけませんか",
+        "N3",
+        "demande très polie « pourriez-vous… ? »."
+       ],
+       [
+        "〜ておく",
+        "N4",
+        "préparation : « faire à l’avance »"
+       ],
+       [
+        "〜てくる",
+        "N4",
+        "« venir à, se mettre à » (rapprochement / début)"
+       ],
+       [
+        "〜てくれる",
+        "N4",
+        "faveur : « faire pour moi »"
+       ],
+       [
+        "〜てしまう",
+        "N4",
+        "achèvement / regret : « finir par, hélas »"
+       ],
+       [
+        "〜てはいけない",
+        "N4",
+        "interdiction : « il ne faut pas »"
+       ],
+       [
+        "〜てはいけない / 〜てはならない",
+        "N3",
+        "« il ne faut pas / interdiction »."
+       ],
+       [
+        "〜てみる",
+        "N4",
+        "essai : « essayer de »"
+       ],
+       [
+        "〜ても",
+        "N4",
+        "« même si »"
+       ],
+       [
+        "〜ても / 〜でも",
+        "N3",
+        "« même si »."
+       ],
+       [
+        "〜てもいい",
+        "N4",
+        "permission : « on peut »"
+       ],
+       [
+        "〜てもらう",
+        "N4",
+        "« se faire faire qqch par qqn »"
+       ],
+       [
+        "〜でしょう / だろう",
+        "N4",
+        "probabilité : « sans doute »"
+       ],
+       [
+        "〜と",
+        "N3",
+        "« dès que / à chaque fois que » — conséquence automatique, naturelle."
+       ],
+       [
+        "〜という",
+        "N4",
+        "« qui s’appelle / le fait que »"
+       ],
+       [
+        "〜ということだ",
+        "N3",
+        "« cela signifie que » ou « il paraît que »."
+       ],
+       [
+        "〜ところだ",
+        "N4",
+        "« sur le point de / en train de / venir de »"
+       ],
+       [
+        "〜ところに / 〜ところへ / 〜ところを",
+        "N3",
+        "« juste au moment où »."
+       ],
+       [
+        "〜とともに",
+        "N3",
+        "« en même temps que / avec »."
+       ],
+       [
+        "〜とは",
+        "N3",
+        "« ce qu'on appelle… c'est », pose un terme à définir."
+       ],
+       [
+        "〜とは限らない",
+        "N3",
+        "« ce n'est pas forcément le cas »."
+       ],
+       [
+        "〜どころか",
+        "N3",
+        "« loin de / bien au contraire »."
+       ],
+       [
+        "〜な (interdiction)",
+        "N3",
+        "interdiction brusque « ne … pas ! »."
+       ],
+       [
+        "〜ないことはない",
+        "N3",
+        "« ce n'est pas impossible / on peut quand même »."
+       ],
+       [
+        "〜ないほうがいい",
+        "N4",
+        "conseil : « mieux vaut ne pas »"
+       ],
+       [
+        "〜ながら",
+        "N4",
+        "simultanéité : « tout en… »"
+       ],
+       [
+        "〜なくてもいい",
+        "N4",
+        "« pas besoin de »"
+       ],
+       [
+        "〜なければならない",
+        "N4",
+        "obligation : « devoir, il faut »"
+       ],
+       [
+        "〜なければならない / 〜なきゃ",
+        "N3",
+        "« devoir / être obligé de »."
+       ],
+       [
+        "〜なさい",
+        "N4",
+        "ordre doux : « fais ! »"
+       ],
+       [
+        "〜なら",
+        "N3",
+        "« si c'est le cas de… / dans ce cas » — réagit à ce que dit l'interlocuteur."
+       ],
+       [
+        "〜なんか / 〜なんて",
+        "N3",
+        "dédain, modestie ou surprise."
+       ],
+       [
+        "〜において / 〜における",
+        "N3",
+        "« à / dans (lieu, domaine) »."
+       ],
+       [
+        "〜にくい",
+        "N4",
+        "difficulté : « difficile à… »"
+       ],
+       [
+        "〜にしては",
+        "N3",
+        "« pour (contrairement à l'attente) »."
+       ],
+       [
+        "〜について",
+        "N4",
+        "« au sujet de »"
+       ]
+      ]
+     }
+    },
+    {
+     "title": "Grammaire N3 + N4 — lot 3/4 (ordre gojūon)",
+     "tag": "文",
+     "table": {
+      "headers": [
+       "Forme",
+       "Niv.",
+       "Sens"
+      ],
+      "rows": [
+       [
+        "〜について / 〜に対して",
+        "N3",
+        "« en tant que »."
+       ],
+       [
+        "〜につれて",
+        "N3",
+        "« à mesure que » (évolutions parallèles)."
+       ],
+       [
+        "〜にとって",
+        "N3",
+        "« pour / du point de vue de »."
+       ],
+       [
+        "〜にもかかわらず",
+        "N3",
+        "« malgré / bien que »."
+       ],
+       [
+        "〜によって",
+        "N3",
+        "« selon / par le biais de / par (passif) »."
+       ],
+       [
+        "〜によると",
+        "N4",
+        "« selon, d’après »"
+       ],
+       [
+        "〜に応じて",
+        "N3",
+        "« en fonction de / selon »."
+       ],
+       [
+        "〜に決まっている",
+        "N3",
+        "« c'est sûr et certain / forcément »."
+       ],
+       [
+        "〜に過ぎない",
+        "N3",
+        "« ce n'est rien de plus que / juste »."
+       ],
+       [
+        "〜に違いない",
+        "N3",
+        "« ça ne fait aucun doute que / sûrement »."
+       ],
+       [
+        "〜に関して",
+        "N3",
+        "« concernant » (plus formel que について)."
+       ],
+       [
+        "〜の / 〜こと",
+        "N3",
+        "transforme une proposition en nom."
+       ],
+       [
+        "〜のだ / んだ",
+        "N4",
+        "explication / insistance"
+       ],
+       [
+        "〜ので",
+        "N4",
+        "cause polie : « comme, parce que »"
+       ],
+       [
+        "〜のに",
+        "N4",
+        "contraste : « bien que / alors que »"
+       ],
+       [
+        "〜はずがない",
+        "N3",
+        "« il est impossible que » — négation logique."
+       ],
+       [
+        "〜はずだ",
+        "N4",
+        "attente logique : « censé être »"
+       ],
+       [
+        "〜ば",
+        "N3",
+        "« si… » — condition générale, vérité logique ou naturelle."
+       ],
+       [
+        "〜ば〜ほど",
+        "N4",
+        "« plus… plus… »"
+       ],
+       [
+        "〜ばかりでなく / 〜はもちろん",
+        "N3",
+        "« non seulement… mais aussi »."
+       ],
+       [
+        "〜ばかりでなく / 〜上に",
+        "N3",
+        "« de plus / qui plus est » (ajout dans le même sens)."
+       ],
+       [
+        "〜べきだ",
+        "N3",
+        "« on doit / il faut (devoir moral) »."
+       ],
+       [
+        "〜ほうがいい",
+        "N3",
+        "« il vaut mieux (faire / ne pas faire) » — conseil."
+       ],
+       [
+        "〜ほど / 〜くらい",
+        "N3",
+        "« au point de / à tel point que »."
+       ],
+       [
+        "〜まい",
+        "N3",
+        "« ne plus jamais (volonté négative) / sans doute pas »."
+       ],
+       [
+        "〜まま",
+        "N4",
+        "« en l’état, tel quel »"
+       ],
+       [
+        "〜みたい",
+        "N4",
+        "comparaison : « comme, on dirait »"
+       ],
+       [
+        "〜ものだ",
+        "N3",
+        "vérité générale, morale, ou nostalgie (« on a tendance à / c'est ainsi »)."
+       ],
+       [
+        "〜やすい",
+        "N4",
+        "aptitude : « facile à… »"
+       ],
+       [
+        "〜やすい / 〜にくい",
+        "N3",
+        "« facile / difficile à »."
+       ],
+       [
+        "〜やら〜やら",
+        "N3",
+        "énumération (souvent accablante)."
+       ],
+       [
+        "〜ようだ / 〜みたいだ",
+        "N3",
+        "« on dirait que / il semble que » — déduction basée sur des indices."
+       ],
+       [
+        "〜ように",
+        "N4",
+        "but : « pour que / de façon à »"
+       ],
+       [
+        "〜ようにする",
+        "N4",
+        "effort : « faire en sorte de »"
+       ],
+       [
+        "〜ようになる",
+        "N4",
+        "changement : « en venir à, finir par »"
+       ],
+       [
+        "〜らしい",
+        "N4",
+        "ouï-dire / typique : « il paraît, digne de »"
+       ],
+       [
+        "〜わけにはいかない",
+        "N3",
+        "« on ne peut pas se permettre de »."
+       ],
+       [
+        "〜をはじめ",
+        "N3",
+        "« à commencer par »."
+       ],
+       [
+        "〜を通じて / 〜を通して",
+        "N3",
+        "« par l'intermédiaire de / tout au long de »."
+       ],
+       [
+        "〜以上(は)",
+        "N3",
+        "« du moment que / puisque »."
+       ],
+       [
+        "使役 — Causatif 〜させる",
+        "N3",
+        "« faire / laisser faire ». Personne forcée → に (autorisation) ou を (ordre)."
+       ],
+       [
+        "使役受身 — Causatif-passif 〜させられる",
+        "N3",
+        "« être obligé de » — on subit une action imposée."
+       ],
+       [
+        "受身 — Passif 〜られる",
+        "N3",
+        "« être + participe » — souvent passif de désagrément (迷惑の受身)."
+       ],
+       [
+        "〜向き / 〜向け",
+        "N3",
+        "on cherche à se rappeler « c'était… déjà ? »."
+       ],
+       [
+        "〜始める",
+        "N4",
+        "« commencer à… »"
+       ]
+      ]
+     }
+    },
+    {
+     "title": "Grammaire N3 + N4 — lot 4/4 (ordre gojūon)",
+     "tag": "文",
+     "table": {
+      "headers": [
+       "Forme",
+       "Niv.",
+       "Sens"
+      ],
+      "rows": [
+       [
+        "〜始める / 〜出す",
+        "N3",
+        "« continuer à »."
+       ],
+       [
+        "〜方（かた）",
+        "N4",
+        "« la manière de… »"
+       ],
+       [
+        "〜最中に",
+        "N3",
+        "« en plein milieu de (action en cours interrompue) »."
+       ],
+       [
+        "〜次第",
+        "N3",
+        "« dès que (formel) »."
+       ],
+       [
+        "〜気味",
+        "N3",
+        "« un peu / une légère tendance à » (souvent négatif)."
+       ],
+       [
+        "〜終わる",
+        "N4",
+        "« finir de… »"
+       ],
+       [
+        "〜続ける",
+        "N4",
+        "« continuer à… »"
+       ],
+       [
+        "〜際に / 〜際は",
+        "N3",
+        "« lors de / à l'occasion de »."
+       ],
+       [
+        "〜（さ）せられる",
+        "N4",
+        "causatif-passif : « être obligé de »"
+       ],
+       [
+        "〜（さ）せる",
+        "N4",
+        "causatif : « faire / laisser faire »"
+       ],
+       [
+        "〜（よ）う",
+        "N4",
+        "volitif : « allons / faisons »"
+       ],
+       [
+        "〜（よ）うと思う",
+        "N4",
+        "projet : « je pense faire »"
+       ],
+       [
+        "〜（ら）れる",
+        "N4",
+        "passif : « être …é »"
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "title": "Formes de base — formation V · い-adj · な-adj · 名",
+   "tag": "基",
+   "intro": [
+    "La plupart des points ci-dessous s'attachent au <b>普通形 (forme neutre / « plaine »)</b>. Voici cette forme pour chaque nature de mot.",
+    "<b>Connexion devant un point de grammaire</b> (au présent affirmatif). Verbes et い-adjectifs gardent leur forme neutre telle quelle ; seules <b>な-adj</b> et <b>noms</b> changent :",
+    "💡 Lecture et sens d'un mot : <b>appui long</b> (mobile) ou <b>double-clic</b> (ordinateur) sur le mot."
+   ],
+   "table": {
+    "headers": [
+     "Nature",
+     "présent",
+     "présent nég.",
+     "passé",
+     "passé nég."
+    ],
+    "rows": [
+     [
+      "動詞 verbe",
+      "行く",
+      "行かない",
+      "行った",
+      "行かなかった"
+     ],
+     [
+      "い-adj",
+      "高い",
+      "高くない",
+      "高かった",
+      "高くなかった"
+     ],
+     [
+      "な-adj",
+      "静かだ",
+      "静かじゃない",
+      "静かだった",
+      "静かじゃなかった"
+     ],
+     [
+      "名 nom",
+      "学生だ",
+      "学生じゃない",
+      "学生だった",
+      "学生じゃなかった"
+     ]
+    ]
+   }
+  },
+  {
+   "title": "Conjugaison des verbes — formes utilisées en grammaire",
+   "tag": "基",
+   "intro": [
+    "Former chaque base selon le groupe : <b>五段 (G1)</b>, <b>一段 (G2</b> : finit en ～eる／～iる, ex. 食べる・見る<b>)</b>, irréguliers <b>する・来る</b>.",
+    "<b>て形 / た形 des verbes 五段</b> — selon la dernière syllabe du 辞書形 :",
+    "💡 一段 (G2) : on remplace simplement ～る par la terminaison voulue (食べる→食べて／食べた／食べない／食べれば…)."
+   ],
+   "table": {
+    "headers": [
+     "Forme",
+     "五段 — 書く",
+     "一段 — 食べる",
+     "する",
+     "来る"
+    ],
+    "rows": [
+     [
+      "辞書形 (dictionnaire)",
+      "書く",
+      "食べる",
+      "する",
+      "来る（くる）"
+     ],
+     [
+      "ます形 (radical)",
+      "書き",
+      "食べ",
+      "し",
+      "来（き）"
+     ],
+     [
+      "て形",
+      "書いて",
+      "食べて",
+      "して",
+      "来て（きて）"
+     ],
+     [
+      "た形 (passé)",
+      "書いた",
+      "食べた",
+      "した",
+      "来た（きた）"
+     ],
+     [
+      "ない形 (négatif)",
+      "書かない",
+      "食べない",
+      "しない",
+      "来ない（こない）"
+     ],
+     [
+      "ば形 (conditionnel)",
+      "書けば",
+      "食べれば",
+      "すれば",
+      "来れば（くれば）"
+     ],
+     [
+      "意向形 (volitif)",
+      "書こう",
+      "食べよう",
+      "しよう",
+      "来よう（こよう）"
+     ],
+     [
+      "可能形 (potentiel)",
+      "書ける",
+      "食べられる",
+      "できる",
+      "来られる（こられる）"
+     ],
+     [
+      "受身 (passif)",
+      "書かれる",
+      "食べられる",
+      "される",
+      "来られる"
+     ],
+     [
+      "使役 (causatif)",
+      "書かせる",
+      "食べさせる",
+      "させる",
+      "来させる（こさせる）"
+     ],
+     [
+      "命令形 (ordre)",
+      "書け",
+      "食べろ",
+      "しろ",
+      "来い（こい）"
+     ]
+    ]
+   }
+  },
+  {
+   "title": "Leçon 1 — Conditionnels & hypothèses",
+   "tag": "S2",
+   "points": [
+    {
+     "form": "〜ば",
+     "struct": "V(forme ば) / い-adj：〜ければ",
+     "mean": "« si… » — condition générale, vérité logique ou naturelle.",
+     "examples": [
+      {
+       "jp": "安ければ買います。",
+       "ro": "yasukereba kaimasu.",
+       "fr": "Si c'est bon marché, je l'achète.",
+       "an": [
+        "安い（やすい）→安ければ « forme conditionnelle en ば »",
+        "買う（かう）→買います « acheter (poli) » → « si c'est bon marché, j'achète »."
+       ]
+      },
+      {
+       "jp": "練習すれば上手になる。",
+       "ro": "renshū sureba jōzu ni naru.",
+       "fr": "Si tu t'entraînes, tu deviendras bon.",
+       "an": [
+        "練習する（れんしゅうする）→練習すれば « conditionnel en ば »",
+        "上手（じょうず）« habile, doué »",
+        "なる « devenir » → « si tu t'entraînes, tu deviendras bon »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜たら",
+     "struct": "V(た)＋ら / 名・な-adj＋だったら",
+     "mean": "« quand / si… » — le plus courant à l'oral ; condition + résultat ponctuel.",
+     "examples": [
+      {
+       "jp": "家に帰ったら電話します。",
+       "ro": "ie ni kaettara denwa shimasu.",
+       "fr": "Quand je rentrerai, je t'appellerai.",
+       "an": [
+        "家（いえ）« maison »",
+        "に « particule de destination »",
+        "帰る（かえる）→帰ったら « forme た ＋ら = conditionnel temporel »",
+        "電話する（でんわする）→電話します « téléphoner (poli) » → « quand je rentrerai, je t'appellerai »."
+       ]
+      },
+      {
+       "jp": "時間があったら手伝ってください。",
+       "ro": "jikan ga attara tetsudatte kudasai.",
+       "fr": "Si tu as le temps, aide-moi.",
+       "an": [
+        "時間（じかん）« temps »",
+        "ある→あったら « forme た ＋ら = si »",
+        "手伝う（てつだう）→手伝ってください « forme て ＋ください = demande polie » → « si tu as le temps, aide-moi »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜なら",
+     "struct": "名・な-adj語幹＋なら ／ V・い-adj 普通形＋なら（学生なら・静かなら）",
+     "mean": "« si c'est le cas de… / dans ce cas » — réagit à ce que dit l'interlocuteur.",
+     "examples": [
+      {
+       "jp": "日本へ行くなら京都がいいよ。",
+       "ro": "nihon e iku nara kyōto ga ii yo.",
+       "fr": "Si tu vas au Japon, Kyoto, c'est bien.",
+       "an": [
+        "日本（にほん）« Japon »",
+        "へ « particule de direction »",
+        "行く（いく）→行くなら « なら = conditionnel de supposition (puisque…) »",
+        "京都（きょうと）« Kyoto »",
+        "いい « bien » → « si tu vas au Japon, Kyoto, c'est bien »."
+       ]
+      },
+      {
+       "jp": "天気がいいなら散歩しよう。",
+       "ro": "tenki ga ii nara sanpo shiyō.",
+       "fr": "S'il fait beau, allons nous promener.",
+       "an": [
+        "天気（てんき）« temps qu'il fait »",
+        "いい→いいなら « なら = conditionnel de supposition »",
+        "散歩する（さんぽする）→散歩しよう « forme volitive = allons » → « s'il fait beau, allons nous promener »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜と",
+     "struct": "V/adj 辞書形＋と",
+     "mean": "« dès que / à chaque fois que » — conséquence automatique, naturelle.",
+     "examples": [
+      {
+       "jp": "このボタンを押すと水が出ます。",
+       "ro": "kono botan o osu to mizu ga demasu.",
+       "fr": "Si on appuie sur ce bouton, l'eau coule.",
+       "an": [
+        "ボタン « bouton »",
+        "を « COD »",
+        "押す（おす）→押すと « と = conséquence automatique (dès que…) »",
+        "水（みず）« eau »",
+        "出る（でる）→出ます « sortir, couler (poli) » → « si on appuie sur ce bouton, l'eau coule »."
+       ]
+      },
+      {
+       "jp": "春になると花が咲く。",
+       "ro": "haru ni naru to hana ga saku.",
+       "fr": "Quand le printemps arrive, les fleurs s'ouvrent.",
+       "an": [
+        "春（はる）« printemps »",
+        "なる→なると « と = enchaînement naturel (quand…) »",
+        "花（はな）« fleur »",
+        "咲く（さく）« fleurir » → « quand le printemps arrive, les fleurs s'ouvrent »."
+       ]
+      }
+     ]
+    }
+   ],
+   "tip": "<svg class=\"ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"></circle><path d=\"M12 11v5M12 8h.01\"></path></svg> Choisir le bon « si » : <b>と</b> = automatique/naturel · <b>ば</b> = condition générale · <b>たら</b> = oral, cas précis · <b>なら</b> = réagit au contexte/sujet."
+  },
+  {
+   "title": "Leçon 2 — Apparence, ouï-dire, conjecture",
+   "tag": "S3",
+   "points": [
+    {
+     "form": "〜そうだ (apparence)",
+     "struct": "V(ます語幹) / adj語幹 ＋ そう",
+     "mean": "« avoir l'air de / sembler sur le point de » — jugement visuel immédiat.",
+     "examples": [
+      {
+       "jp": "この料理はおいしそうだ。",
+       "ro": "kono ryōri wa oishisō da.",
+       "fr": "Ce plat a l'air bon.",
+       "an": [
+        "料理（りょうり）« plat, cuisine »",
+        "は « thème »",
+        "おいしい « bon »→おいしそうだ « radical ＋そうだ = apparence (a l'air de) » → « ce plat a l'air bon »."
+       ]
+      },
+      {
+       "jp": "雨が降りそうです。",
+       "ro": "ame ga furisō desu.",
+       "fr": "On dirait qu'il va pleuvoir.",
+       "an": [
+        "雨（あめ）« pluie »",
+        "が « sujet »",
+        "降る（ふる）→降りそうです « base en い ＋そうです = signe imminent (on dirait que…) » → « on dirait qu'il va pleuvoir »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜そうだ (ouï-dire)",
+     "struct": "V・い-adj 普通形 ／ な-adj・名＋だ ＋そうだ（静かだそうだ・学生だそうだ）",
+     "mean": "« il paraît que / on dit que » — information rapportée.",
+     "examples": [
+      {
+       "jp": "天気予報によると明日は雨だそうだ。",
+       "ro": "tenki yohō ni yoru to ashita wa ame da sō da.",
+       "fr": "D'après la météo, il paraît qu'il pleuvra demain.",
+       "an": [
+        "天気予報（てんきよほう）« prévisions météo »",
+        "によると « selon, d'après »",
+        "明日（あした）« demain »",
+        "雨（あめ）« pluie »→雨だそうだ « ＋そうだ = ouï-dire (il paraît que…) » → « d'après la météo, il paraît qu'il pleuvra demain »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ようだ / 〜みたいだ",
+     "struct": "V・い-adj 普通形 ／ な-adj＋な ／ 名＋の ＋ようだ（静かなようだ・学生のようだ）",
+     "mean": "« on dirait que / il semble que » — déduction basée sur des indices.",
+     "examples": [
+      {
+       "jp": "誰もいないようだ。",
+       "ro": "dare mo inai yō da.",
+       "fr": "On dirait qu'il n'y a personne.",
+       "an": [
+        "誰（だれ）も « personne (＋négatif) »",
+        "いる→いない « négatif d'existence » →いないようだ « ようだ = impression, déduction (on dirait que…) » → « on dirait qu'il n'y a personne »."
+       ]
+      },
+      {
+       "jp": "彼は疲れているみたいだ。",
+       "ro": "kare wa tsukarete iru mitai da.",
+       "fr": "Il a l'air fatigué.",
+       "an": [
+        "彼（かれ）« il »",
+        "は « thème »",
+        "疲れる（つかれる）→疲れている « forme ている = état » →みたいだ « みたいだ = apparence familière (a l'air de) » → « il a l'air fatigué »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜らしい",
+     "struct": "V・い-adj 普通形 ／ な-adj・名 語幹 ＋らしい（静からしい・学生らしい）",
+     "mean": "« il paraît que » (info entendue) ou « typique de » (名＋らしい).",
+     "examples": [
+      {
+       "jp": "来月から値段が上がるらしい。",
+       "ro": "raigetsu kara nedan ga agaru rashii.",
+       "fr": "Il paraît que les prix vont monter le mois prochain.",
+       "an": [
+        "来月（らいげつ）« le mois prochain »",
+        "から « à partir de »",
+        "値段（ねだん）« prix »",
+        "上がる（あがる）→上がるらしい « らしい = information rapportée (il paraît que…) » → « il paraît que les prix vont monter le mois prochain »."
+       ]
+      },
+      {
+       "jp": "彼は本当に男らしい。",
+       "ro": "kare wa hontō ni otokorashii.",
+       "fr": "Il est vraiment viril (typiquement masculin).",
+       "an": [
+        "彼（かれ）« il »",
+        "本当に（ほんとうに）« vraiment »",
+        "男（おとこ）« homme »→男らしい « nom ＋らしい = typique de, digne de (suffixe) » → « il est vraiment viril »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 3 — Voix passive, causative, causative-passive",
+   "tag": "S4",
+   "points": [
+    {
+     "form": "受身 — Passif 〜られる",
+     "struct": "G1：あ段＋れる ／ G2：〜られる ／ する→される",
+     "mean": "« être + participe » — souvent passif de désagrément (迷惑の受身).",
+     "examples": [
+      {
+       "jp": "弟にケーキを食べられた。",
+       "ro": "otōto ni kēki o taberareta.",
+       "fr": "Mon petit frère m'a mangé mon gâteau (à mon dam).",
+       "an": [
+        "弟（おとうと）« petit frère »",
+        "に « agent du passif »",
+        "ケーキ « gâteau »",
+        "を « COD »",
+        "食べる（たべる）→食べられた « passif subi (préjudice) » → « mon petit frère m'a mangé mon gâteau, à mon détriment »."
+       ]
+      },
+      {
+       "jp": "この本は多くの人に読まれている。",
+       "ro": "kono hon wa ōku no hito ni yomarete iru.",
+       "fr": "Ce livre est lu par beaucoup de gens.",
+       "an": [
+        "本（ほん）« livre »",
+        "は « thème »",
+        "多くの人（おおくのひと）« beaucoup de gens »",
+        "に « agent du passif »",
+        "読む（よむ）→読まれている « passif ＋ている = état (est lu) » → « ce livre est lu par beaucoup de gens »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "使役 — Causatif 〜させる",
+     "struct": "G1：あ段＋せる ／ G2：〜させる ／ する→させる",
+     "mean": "« faire / laisser faire ». Personne forcée → に (autorisation) ou を (ordre).",
+     "examples": [
+      {
+       "jp": "先生は学生に漢字を書かせた。",
+       "ro": "sensei wa gakusei ni kanji o kakaseta.",
+       "fr": "Le professeur a fait écrire des kanji aux élèves.",
+       "an": [
+        "先生（せんせい）« professeur »",
+        "学生（がくせい）« élève »",
+        "に « celui qu'on fait agir »",
+        "漢字（かんじ）« kanji »",
+        "を « COD »",
+        "書く（かく）→書かせた « causatif passé (fit écrire) » → « le professeur a fait écrire des kanji aux élèves »."
+       ]
+      },
+      {
+       "jp": "子供を公園で遊ばせる。",
+       "ro": "kodomo o kōen de asobaseru.",
+       "fr": "Je laisse les enfants jouer au parc.",
+       "an": [
+        "子供（こども）« enfants »",
+        "を « causé (verbe intransitif) »",
+        "公園（こうえん）« parc »",
+        "で « lieu de l'action »",
+        "遊ぶ（あそぶ）→遊ばせる « causatif = laisser/faire jouer » → « je laisse les enfants jouer au parc »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "使役受身 — Causatif-passif 〜させられる",
+     "struct": "V使役 ＋ られる（G1：あ段＋される）",
+     "mean": "« être obligé de » — on subit une action imposée.",
+     "examples": [
+      {
+       "jp": "毎日残業させられる。",
+       "ro": "mainichi zangyō saserareru.",
+       "fr": "On m'oblige à faire des heures sup tous les jours.",
+       "an": [
+        "毎日（まいにち）« tous les jours »",
+        "残業する（ざんぎょうする）→残業させられる « causatif-passif = être contraint de » → « on m'oblige à faire des heures sup tous les jours »."
+       ]
+      },
+      {
+       "jp": "子供のとき、野菜を食べさせられた。",
+       "ro": "kodomo no toki, yasai o tabesaserareta.",
+       "fr": "Enfant, on me forçait à manger des légumes.",
+       "an": [
+        "子供（こども）のとき « quand j'étais enfant »",
+        "野菜（やさい）« légumes »",
+        "を « COD »",
+        "食べる（たべる）→食べさせられた « causatif-passif passé = être forcé de manger » → « enfant, on me forçait à manger des légumes »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 4 — Politesse (敬語) : essentiel",
+   "tag": "S6",
+   "table": {
+    "headers": [
+     "Neutre",
+     "尊敬語 (respect)",
+     "謙譲語 (modeste)"
+    ],
+    "rows": [
+     [
+      "する",
+      "なさる",
+      "いたす"
+     ],
+     [
+      "行く・来る・いる",
+      "いらっしゃる",
+      "参る／伺う"
+     ],
+     [
+      "言う",
+      "おっしゃる",
+      "申す／申し上げる"
+     ],
+     [
+      "食べる・飲む",
+      "召し上がる",
+      "いただく"
+     ],
+     [
+      "見る",
+      "ご覧になる",
+      "拝見する"
+     ],
+     [
+      "知っている",
+      "ご存じだ",
+      "存じておる"
+     ]
+    ]
+   },
+   "points": [
+    {
+     "form": "お／ご〜になる ・ お／ご〜する",
+     "struct": "尊敬：お＋V(ます語幹)＋になる ／ 謙譲：お＋V(ます語幹)＋する",
+     "examples": [
+      {
+       "jp": "先生はもうお帰りになりました。",
+       "ro": "sensei wa mō okaeri ni narimashita.",
+       "fr": "Le professeur est déjà rentré. (respect)",
+       "an": [
+        "先生（せんせい）« professeur »",
+        "もう « déjà »",
+        "帰る（かえる）→お帰りになりました « お＋base＋になる = honorifique respectueux (sonkeigo) » → « le professeur est déjà rentré (respect) »."
+       ]
+      },
+      {
+       "jp": "私がお持ちします。",
+       "ro": "watashi ga omochi shimasu.",
+       "fr": "Je vais le porter. (modestie)",
+       "an": [
+        "私（わたし）« moi »",
+        "が « sujet emphatique »",
+        "持つ（もつ）→お持ちします « お＋base＋する = modeste (kenjōgo) » → « je vais le porter (modestie) »."
+       ]
+      }
+     ]
+    }
+   ],
+   "tip": "Le keigo apparaît au N3 surtout en compréhension. 3 registres : 尊敬語 (respect, l'autre), 謙譲語 (modestie, soi), 丁寧語 (poli neutre, です/ます)."
+  },
+  {
+   "title": "Leçon 5 — Explication, déduction logique",
+   "tag": "S7",
+   "points": [
+    {
+     "form": "〜わけだ",
+     "struct": "V・い-adj 普通形 ／ な-adj＋な ／ 名＋という ＋わけだ",
+     "mean": "« ça explique que / c'est donc pour ça que » — conclusion logique.",
+     "examples": [
+      {
+       "jp": "10年も日本にいたのか。道理で日本語が上手なわけだ。",
+       "ro": "jūnen mo nihon ni ita no ka. dōri de nihongo ga jōzu na wake da.",
+       "fr": "Tu es resté 10 ans au Japon ? Pas étonnant que tu parles si bien.",
+       "an": [
+        "10年（じゅうねん）も « pas moins de 10 ans »",
+        "日本（にほん）にいた « être resté au Japon »",
+        "道理で（どうりで）« pas étonnant que »",
+        "日本語（にほんご）が上手（じょうず）→上手なわけだ « わけだ = conclusion logique (forcément) » → « tu es resté 10 ans au Japon ? Pas étonnant que tu parles si bien »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜はずだ",
+     "struct": "V・い-adj 普通形 ／ な-adj＋な ／ 名＋の ＋はずだ",
+     "mean": "« ça devrait / logiquement » — forte attente fondée.",
+     "examples": [
+      {
+       "jp": "彼はもう着いているはずだ。",
+       "ro": "kare wa mō tsuite iru hazu da.",
+       "fr": "Il devrait déjà être arrivé.",
+       "an": [
+        "彼（かれ）« il »",
+        "もう « déjà »",
+        "着く（つく）→着いている « forme ている = état » →はずだ « はずだ = supposition logique (devrait) » → « il devrait déjà être arrivé »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜はずがない",
+     "struct": "V・い-adj 普通形 ／ な-adj＋な ／ 名＋の ＋はずがない",
+     "mean": "« il est impossible que » — négation logique.",
+     "examples": [
+      {
+       "jp": "そんなことがあるはずがない。",
+       "ro": "sonna koto ga aru hazu ga nai.",
+       "fr": "C'est impossible qu'une telle chose arrive.",
+       "an": [
+        "そんなこと « une telle chose »",
+        "が « sujet »",
+        "ある « exister » →あるはずがない « はずがない = c'est impossible que » → « c'est impossible qu'une telle chose arrive »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜に違いない",
+     "struct": "V・い-adj 普通形 ／ な-adj・名 語幹 ＋に違いない",
+     "mean": "« ça ne fait aucun doute que / sûrement ».",
+     "examples": [
+      {
+       "jp": "彼が犯人に違いない。",
+       "ro": "kare ga hannin ni chigainai.",
+       "fr": "C'est sûrement lui le coupable.",
+       "an": [
+        "彼（かれ）« il »",
+        "が « sujet emphatique »",
+        "犯人（はんにん）« coupable » →犯人に違いない « に違いない = certitude (sûrement) » → « c'est sûrement lui le coupable »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜かもしれない",
+     "struct": "V・い-adj 普通形 ／ な-adj・名 語幹 ＋かもしれない",
+     "mean": "« peut-être / il se peut que » — possibilité faible.",
+     "examples": [
+      {
+       "jp": "明日は雪が降るかもしれない。",
+       "ro": "ashita wa yuki ga furu kamoshirenai.",
+       "fr": "Il neigera peut-être demain.",
+       "an": [
+        "明日（あした）« demain »",
+        "は « thème »",
+        "雪（ゆき）« neige »",
+        "降る（ふる）→降るかもしれない « かもしれない = possibilité (peut-être) » → « il neigera peut-être demain »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 6 — Temps, étapes, simultanéité",
+   "tag": "S8",
+   "points": [
+    {
+     "form": "〜ところだ",
+     "struct": "辞書形＋ところ（vais）／〜ているところ（en train）／〜たところ（viens de）",
+     "mean": "situer une action dans le temps précis.",
+     "examples": [
+      {
+       "jp": "今から出かけるところです。",
+       "ro": "ima kara dekakeru tokoro desu.",
+       "fr": "Je suis sur le point de sortir.",
+       "an": [
+        "今（いま）から « à partir de maintenant »",
+        "出かける（でかける）→出かけるところです « dictionnaire ＋ところ = sur le point de » → « je suis sur le point de sortir »."
+       ]
+      },
+      {
+       "jp": "今、食べているところだ。",
+       "ro": "ima, tabete iru tokoro da.",
+       "fr": "Je suis en train de manger, là.",
+       "an": [
+        "今（いま）« maintenant »",
+        "食べる（たべる）→食べているところだ « forme ている ＋ところ = en plein milieu de » → « je suis en train de manger, là »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜たばかり",
+     "struct": "V(た)＋ばかり",
+     "mean": "« venir tout juste de » (ressenti subjectif, peu importe le temps réel).",
+     "examples": [
+      {
+       "jp": "日本に来たばかりで、まだ慣れていない。",
+       "ro": "nihon ni kita bakari de, mada narete inai.",
+       "fr": "Je viens d'arriver au Japon, je ne suis pas encore habitué.",
+       "an": [
+        "日本（にほん）に « destination »",
+        "来る（くる）→来たばかり « forme た ＋ばかり = venir juste de »",
+        "まだ « encore »",
+        "慣れる（なれる）→慣れていない « ている négatif = ne pas être habitué » → « je viens d'arriver au Japon, je ne suis pas encore habitué »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ながら",
+     "struct": "V(ます語幹)＋ながら",
+     "mean": "« tout en… » — deux actions simultanées par le même sujet.",
+     "examples": [
+      {
+       "jp": "音楽を聞きながら勉強する。",
+       "ro": "ongaku o kikinagara benkyō suru.",
+       "fr": "J'étudie tout en écoutant de la musique.",
+       "an": [
+        "音楽（おんがく）« musique »",
+        "を « COD »",
+        "聞く（きく）→聞きながら « base en い ＋ながら = simultanéité (tout en…) »",
+        "勉強する（べんきょうする）« étudier » → « j'étudie tout en écoutant de la musique »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜うちに",
+     "struct": "辞書形／ない形／名＋の ＋うちに",
+     "mean": "« pendant que / avant que (ça change) ».",
+     "examples": [
+      {
+       "jp": "熱いうちに食べてください。",
+       "ro": "atsui uchi ni tabete kudasai.",
+       "fr": "Mangez tant que c'est chaud.",
+       "an": [
+        "熱い（あつい）→熱いうちに « adjectif ＋うちに = tant que (pendant que ça dure) »",
+        "食べる（たべる）→食べてください « forme て ＋ください = demande polie » → « mangez tant que c'est chaud »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜たびに",
+     "struct": "辞書形／名＋の ＋たびに",
+     "mean": "« chaque fois que ».",
+     "examples": [
+      {
+       "jp": "この写真を見るたびに故郷を思い出す。",
+       "ro": "kono shashin o miru tabi ni furusato o omoidasu.",
+       "fr": "Chaque fois que je vois cette photo, je repense à mon pays.",
+       "an": [
+        "写真（しゃしん）« photo »",
+        "を « COD »",
+        "見る（みる）→見るたびに « dictionnaire ＋たびに = chaque fois que »",
+        "故郷（こきょう）« pays natal »",
+        "思い出す（おもいだす）« se rappeler » → « chaque fois que je vois cette photo, je repense à mon pays »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 7 — Tendance, nuance, « il vaut mieux »",
+   "tag": "S9",
+   "points": [
+    {
+     "form": "〜ものだ",
+     "struct": "V・い-adj 普通形 ／ な-adj＋な ＋ものだ",
+     "mean": "vérité générale, morale, ou nostalgie (« on a tendance à / c'est ainsi »).",
+     "examples": [
+      {
+       "jp": "年を取ると忘れっぽくなるものだ。",
+       "ro": "toshi o toru to wasureppoku naru mono da.",
+       "fr": "En vieillissant, on a tendance à devenir oublieux.",
+       "an": [
+        "年を取る（としをとる）→取ると « と = quand »",
+        "忘れる（わすれる）→忘れっぽい « base ＋っぽい = enclin à oublier »",
+        "なる→なるものだ « ものだ = vérité générale » → « en vieillissant, on a tendance à devenir oublieux »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜がち",
+     "struct": "V(ます語幹)／名＋がち",
+     "mean": "« avoir tendance à (souvent négatif) ».",
+     "examples": [
+      {
+       "jp": "冬は風邪をひきがちだ。",
+       "ro": "fuyu wa kaze o hikigachi da.",
+       "fr": "En hiver, on attrape facilement froid.",
+       "an": [
+        "冬（ふゆ）« hiver »",
+        "は « thème »",
+        "風邪（かぜ）をひく « attraper froid » →ひきがちだ « base en い ＋がち = tendance fâcheuse (avoir tendance à) » → « en hiver, on attrape facilement froid »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜っぽい",
+     "struct": "名／V(ます語幹)＋っぽい",
+     "mean": "« qui a un air de / facilement ».",
+     "examples": [
+      {
+       "jp": "彼は怒りっぽい性格だ。",
+       "ro": "kare wa okorippoi seikaku da.",
+       "fr": "Il a un caractère colérique.",
+       "an": [
+        "彼（かれ）« il »",
+        "は « thème »",
+        "怒る（おこる）→怒りっぽい « base ＋っぽい = porté à se mettre en colère »",
+        "性格（せいかく）« caractère » → « il a un caractère colérique »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ほうがいい",
+     "struct": "V(た)／ない形＋ほうがいい",
+     "mean": "« il vaut mieux (faire / ne pas faire) » — conseil.",
+     "examples": [
+      {
+       "jp": "早く寝たほうがいいよ。",
+       "ro": "hayaku neta hō ga ii yo.",
+       "fr": "Tu ferais mieux de te coucher tôt.",
+       "an": [
+        "早く（はやく）« tôt »",
+        "寝る（ねる）→寝たほうがいい « forme た ＋ほうがいい = conseil (ferais mieux de) »",
+        "よ « particule d'insistance » → « tu ferais mieux de te coucher tôt »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 8 — Cause, objectif, moyen",
+   "tag": "S10",
+   "points": [
+    {
+     "form": "〜ために",
+     "struct": "辞書形／名＋の ＋ために",
+     "mean": "« afin de / à cause de » (but ou cause).",
+     "examples": [
+      {
+       "jp": "健康のために毎朝走っている。",
+       "ro": "kenkō no tame ni maiasa hashitte iru.",
+       "fr": "Je cours chaque matin pour ma santé.",
+       "an": [
+        "健康（けんこう）« santé »→健康のために « nom ＋のために = but (pour) »",
+        "毎朝（まいあさ）« chaque matin »",
+        "走る（はしる）→走っている « ている = action habituelle » → « je cours chaque matin pour ma santé »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ように",
+     "struct": "辞書形／ない形＋ように",
+     "mean": "« de sorte que / pour que » (but avec verbe non volontaire/potentiel).",
+     "examples": [
+      {
+       "jp": "忘れないようにメモします。",
+       "ro": "wasurenai yō ni memo shimasu.",
+       "fr": "Je prends note pour ne pas oublier.",
+       "an": [
+        "忘れる（わすれる）→忘れない « négatif » →忘れないように « ないように = but négatif (pour ne pas) »",
+        "メモする « prendre note » →メモします « poli » → « je prends note pour ne pas oublier »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜おかげで / 〜せいで",
+     "struct": "V・い-adj 普通形 ／ な-adj＋な ／ 名＋の ＋おかげで（positif）／せいで（négatif）",
+     "mean": "« grâce à » / « à cause de (reproche) ».",
+     "examples": [
+      {
+       "jp": "先生のおかげで合格できた。",
+       "ro": "sensei no okage de gōkaku dekita.",
+       "fr": "Grâce au professeur, j'ai réussi.",
+       "an": [
+        "先生（せんせい）« professeur »→先生のおかげで « のおかげで = grâce à (cause positive) »",
+        "合格する（ごうかくする）→合格できた « potentiel passé = a pu réussir » → « grâce au professeur, j'ai réussi »."
+       ]
+      },
+      {
+       "jp": "雨のせいで試合が中止になった。",
+       "ro": "ame no sei de shiai ga chūshi ni natta.",
+       "fr": "À cause de la pluie, le match a été annulé.",
+       "an": [
+        "雨（あめ）« pluie »→雨のせいで « のせいで = à cause de (cause négative) »",
+        "試合（しあい）« match »",
+        "中止（ちゅうし）になった « être annulé » → « à cause de la pluie, le match a été annulé »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜によって",
+     "struct": "名＋によって",
+     "mean": "« selon / par le biais de / par (passif) ».",
+     "examples": [
+      {
+       "jp": "人によって考え方が違う。",
+       "ro": "hito ni yotte kangaekata ga chigau.",
+       "fr": "Selon les personnes, la façon de penser diffère.",
+       "an": [
+        "人（ひと）→人によって « によって = selon, en fonction de »",
+        "考え方（かんがえかた）« façon de penser »",
+        "が « sujet »",
+        "違う（ちがう）« différer » → « selon les personnes, la façon de penser diffère »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 9 — Restriction, addition, opposition",
+   "tag": "S12",
+   "points": [
+    {
+     "form": "〜だけでなく〜も",
+     "struct": "名／普通形＋だけでなく…も",
+     "mean": "« non seulement… mais aussi ».",
+     "examples": [
+      {
+       "jp": "彼は英語だけでなく中国語も話せる。",
+       "ro": "kare wa eigo dake de naku chūgokugo mo hanaseru.",
+       "fr": "Il parle non seulement anglais mais aussi chinois.",
+       "an": [
+        "彼（かれ）« il »",
+        "英語（えいご）→英語だけでなく « だけでなく…も = non seulement…mais aussi »",
+        "中国語（ちゅうごくご）も « le chinois aussi »",
+        "話す（はなす）→話せる « potentiel = pouvoir parler » → « il parle non seulement anglais mais aussi chinois »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ばかりでなく / 〜上に",
+     "struct": "普通形＋上に",
+     "mean": "« de plus / qui plus est » (ajout dans le même sens).",
+     "examples": [
+      {
+       "jp": "この店は安い上においしい。",
+       "ro": "kono mise wa yasui ue ni oishii.",
+       "fr": "Ce restaurant est bon marché et en plus délicieux.",
+       "an": [
+        "店（みせ）« restaurant, boutique »",
+        "は « thème »",
+        "安い（やすい）→安い上に « 上に = de plus, en outre »",
+        "おいしい « délicieux » → « ce restaurant est bon marché et en plus délicieux »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜のに",
+     "struct": "V・い-adj 普通形 ／ な-adj・名 ＋な ＋のに（静かなのに・学生なのに）",
+     "mean": "« bien que / alors que » — opposition avec déception.",
+     "examples": [
+      {
+       "jp": "薬を飲んだのに熱が下がらない。",
+       "ro": "kusuri o nonda noni netsu ga sagaranai.",
+       "fr": "J'ai pris un médicament, pourtant la fièvre ne baisse pas.",
+       "an": [
+        "薬（くすり）« médicament »",
+        "を « COD »",
+        "飲む（のむ）→飲んだのに « forme た ＋のに = opposition (pourtant) »",
+        "熱（ねつ）« fièvre »",
+        "下がる（さがる）→下がらない « négatif = ne baisse pas » → « j'ai pris un médicament, pourtant la fièvre ne baisse pas »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜くせに",
+     "struct": "V・い-adj 普通形 ／ な-adj＋な ／ 名＋の ＋くせに",
+     "mean": "« alors que (avec reproche/mépris) ».",
+     "examples": [
+      {
+       "jp": "知っているくせに教えてくれない。",
+       "ro": "shitte iru kuse ni oshiete kurenai.",
+       "fr": "Il le sait pourtant il ne me le dit pas.",
+       "an": [
+        "知る（しる）→知っている « état (savoir) » →知っているくせに « くせに = bien que (reproche) »",
+        "教える（おしえる）→教えてくれない « くれる négatif = ne me dit pas » → « il le sait pourtant il ne me le dit pas »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ほど / 〜くらい",
+     "struct": "普通形＋ほど",
+     "mean": "« au point de / à tel point que ».",
+     "examples": [
+      {
+       "jp": "立てないほど疲れた。",
+       "ro": "tatenai hodo tsukareta.",
+       "fr": "J'étais fatigué au point de ne plus pouvoir me lever.",
+       "an": [
+        "立つ（たつ）→立てない « potentiel négatif (ne pas pouvoir se lever) » →立てないほど « ほど = au point de (degré) »",
+        "疲れる（つかれる）→疲れた « passé » → « j'étais fatigué au point de ne plus pouvoir me lever »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 10 — Obligation, permission, interdiction (rappel + N3)",
+   "tag": "S13",
+   "points": [
+    {
+     "form": "〜なければならない / 〜なきゃ",
+     "struct": "ない形（語幹）＋なければならない",
+     "mean": "« devoir / être obligé de ».",
+     "examples": [
+      {
+       "jp": "明日までに払わなければならない。",
+       "ro": "ashita made ni harawanakereba naranai.",
+       "fr": "Je dois payer d'ici demain.",
+       "an": [
+        "明日（あした）→明日までに « までに = limite temporelle (d'ici) »",
+        "払う（はらう）→払わなければならない « なければならない = obligation (devoir) » → « je dois payer d'ici demain »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜なくてもいい",
+     "struct": "ない形（語幹）＋なくてもいい",
+     "mean": "« pas besoin de ».",
+     "examples": [
+      {
+       "jp": "急がなくてもいいですよ。",
+       "ro": "isoganakute mo ii desu yo.",
+       "fr": "Pas besoin de se presser.",
+       "an": [
+        "急ぐ（いそぐ）→急がなくてもいい « なくてもいい = absence d'obligation (pas besoin de) »",
+        "です « poli »",
+        "よ « particule rassurante » → « pas besoin de se presser »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜てはいけない / 〜てはならない",
+     "struct": "て形＋はいけない",
+     "mean": "« il ne faut pas / interdiction ».",
+     "examples": [
+      {
+       "jp": "ここで写真を撮ってはいけない。",
+       "ro": "koko de shashin o totte wa ikenai.",
+       "fr": "Il est interdit de prendre des photos ici.",
+       "an": [
+        "ここ « ici »",
+        "で « lieu »",
+        "写真（しゃしん）« photo »",
+        "を « COD »",
+        "撮る（とる）→撮ってはいけない « forme て ＋はいけない = interdiction » → « il est interdit de prendre des photos ici »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ことになっている",
+     "struct": "辞書形／ない形＋ことになっている",
+     "mean": "« il est convenu/réglé que » — règle, coutume.",
+     "examples": [
+      {
+       "jp": "校内では日本語を話すことになっている。",
+       "ro": "kōnai de wa nihongo o hanasu koto ni natte iru.",
+       "fr": "Dans l'école, la règle est de parler japonais.",
+       "an": [
+        "校内（こうない）では « dans l'école »",
+        "日本語（にほんご）« japonais »",
+        "を « COD »",
+        "話す（はなす）→話すことになっている « ことになっている = règle établie » → « dans l'école, la règle est de parler japonais »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 11 — Décisions, changements, devenir",
+   "tag": "S14",
+   "points": [
+    {
+     "form": "〜ことにする / 〜ことになる",
+     "struct": "辞書形／ない形＋ことにする（décision perso）／ことになる（décidé par circonstances）",
+     "examples": [
+      {
+       "jp": "来月から運動することにした。",
+       "ro": "raigetsu kara undō suru koto ni shita.",
+       "fr": "J'ai décidé de faire du sport dès le mois prochain.",
+       "an": [
+        "来月（らいげつ）から « à partir du mois prochain »",
+        "運動する（うんどうする）→運動することにした « ことにした = décision personnelle » → « j'ai décidé de faire du sport dès le mois prochain »."
+       ]
+      },
+      {
+       "jp": "転勤で大阪に住むことになった。",
+       "ro": "tenkin de ōsaka ni sumu koto ni natta.",
+       "fr": "Suite à une mutation, je vais habiter à Osaka.",
+       "an": [
+        "転勤（てんきん）で « par mutation (cause) »",
+        "大阪（おおさか）に « destination »",
+        "住む（すむ）→住むことになった « ことになった = décision extérieure (il a été décidé que) » → « suite à une mutation, je vais habiter à Osaka »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ようになる",
+     "struct": "辞書形／可能形＋ようになる",
+     "mean": "« en venir à / arriver à (changement progressif de capacité/habitude) ».",
+     "examples": [
+      {
+       "jp": "日本語が話せるようになった。",
+       "ro": "nihongo ga hanaseru yō ni natta.",
+       "fr": "Je suis devenu capable de parler japonais.",
+       "an": [
+        "日本語（にほんご）が « sujet »",
+        "話す（はなす）→話せる « potentiel » →話せるようになった « ようになった = changement d'état (en venir à pouvoir) » → « je suis devenu capable de parler japonais »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ようにする",
+     "struct": "辞書形／ない形＋ようにする",
+     "mean": "« s'efforcer de / faire en sorte de ».",
+     "examples": [
+      {
+       "jp": "毎日野菜を食べるようにしている。",
+       "ro": "mainichi yasai o taberu yō ni shite iru.",
+       "fr": "Je m'efforce de manger des légumes chaque jour.",
+       "an": [
+        "毎日（まいにち）« chaque jour »",
+        "野菜（やさい）« légumes »",
+        "を « COD »",
+        "食べる（たべる）→食べるようにしている « ようにしている = effort habituel (s'efforcer de) » → « je m'efforce de manger des légumes chaque jour »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ていく / 〜てくる",
+     "struct": "て形＋いく（s'éloigne/futur）／くる（se rapproche/passé→présent）",
+     "examples": [
+      {
+       "jp": "これから寒くなっていく。",
+       "ro": "kore kara samuku natte iku.",
+       "fr": "Il va faire de plus en plus froid désormais.",
+       "an": [
+        "これから « désormais »",
+        "寒い（さむい）→寒くなって « devenir froid » →なっていく « ていく = évolution future (de plus en plus) » → « il va faire de plus en plus froid désormais »."
+       ]
+      },
+      {
+       "jp": "だんだん日本語が分かってきた。",
+       "ro": "dandan nihongo ga wakatte kita.",
+       "fr": "J'en suis venu à comprendre le japonais petit à petit.",
+       "an": [
+        "だんだん « petit à petit »",
+        "日本語（にほんご）が « sujet »",
+        "分かる（わかる）→分かってきた « てきた = évolution jusqu'à présent (en venir à) » → « j'en suis venu à comprendre le japonais petit à petit »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 12 — Expressions clés fréquentes au N3",
+   "tag": "S15",
+   "points": [
+    {
+     "form": "〜とおりに",
+     "struct": "辞書形／た形／名＋の ＋とおりに",
+     "mean": "« comme / conformément à ».",
+     "examples": [
+      {
+       "jp": "説明書のとおりに組み立てた。",
+       "ro": "setsumeisho no tōri ni kumitateta.",
+       "fr": "J'ai monté ça selon la notice.",
+       "an": [
+        "説明書（せつめいしょ）« notice »→説明書のとおりに « のとおりに = conformément à »",
+        "組み立てる（くみたてる）→組み立てた « assembler (passé) » → « j'ai monté ça selon la notice »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜まま",
+     "struct": "た形／ない形／名＋の ＋まま",
+     "mean": "« en laissant tel quel / sans changer d'état ».",
+     "examples": [
+      {
+       "jp": "電気をつけたまま寝てしまった。",
+       "ro": "denki o tsuketa mama nete shimatta.",
+       "fr": "Je me suis endormi en laissant la lumière allumée.",
+       "an": [
+        "電気（でんき）« lumière »",
+        "を « COD »",
+        "つける→つけたまま « forme た ＋まま = état laissé tel quel »",
+        "寝る（ねる）→寝てしまった « てしまった = action accomplie (regret) » → « je me suis endormi en laissant la lumière allumée »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜について / 〜に対して",
+     "struct": "名＋について（au sujet de）／に対して（envers, contre）",
+     "examples": [
+      {
+       "jp": "環境問題について話し合った。",
+       "ro": "kankyō mondai ni tsuite hanashiatta.",
+       "fr": "Nous avons discuté du problème environnemental.",
+       "an": [
+        "環境問題（かんきょうもんだい）« problème environnemental »→について « について = au sujet de »",
+        "話し合う（はなしあう）→話し合った « discuter ensemble (passé) » → « nous avons discuté du problème environnemental »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜として",
+     "struct": "名＋として",
+     "mean": "« en tant que ».",
+     "examples": [
+      {
+       "jp": "医者として働いている。",
+       "ro": "isha to shite hataraite iru.",
+       "fr": "Je travaille en tant que médecin.",
+       "an": [
+        "医者（いしゃ）« médecin »→医者として « として = en tant que (rôle) »",
+        "働く（はたらく）→働いている « ている = action en cours / habituelle » → « je travaille en tant que médecin »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜place : 〜場合は",
+     "struct": "V・い-adj 普通形 ／ な-adj＋な ／ 名＋の ＋場合は",
+     "mean": "« dans le cas où ».",
+     "examples": [
+      {
+       "jp": "遅れる場合は連絡してください。",
+       "ro": "okureru baai wa renraku shite kudasai.",
+       "fr": "En cas de retard, prévenez-moi.",
+       "an": [
+        "遅れる（おくれる）→遅れる場合は « 場合は = dans le cas où »",
+        "連絡する（れんらくする）→連絡してください « forme て ＋ください = demande polie » → « en cas de retard, prévenez-moi »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 13 — Forme en て + auxiliaires d'aspect",
+   "tag": "N3",
+   "points": [
+    {
+     "form": "〜てみる",
+     "struct": "て形＋みる",
+     "mean": "« essayer de (pour voir) ».",
+     "examples": [
+      {
+       "jp": "この料理を作ってみる。",
+       "ro": "kono ryōri o tsukutte miru.",
+       "fr": "Je vais essayer de faire ce plat.",
+       "an": [
+        "料理（りょうり）« plat »",
+        "を « COD »",
+        "作る（つくる）→作ってみる « forme て ＋みる = essayer de » → « je vais essayer de faire ce plat »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ておく",
+     "struct": "て形＋おく（口語：〜とく）",
+     "mean": "« faire à l'avance / par anticipation ».",
+     "examples": [
+      {
+       "jp": "旅行の前に切符を買っておく。",
+       "ro": "ryokō no mae ni kippu o katte oku.",
+       "fr": "J'achète le billet à l'avance avant le voyage.",
+       "an": [
+        "旅行（りょこう）の前に « avant le voyage »",
+        "切符（きっぷ）« billet »",
+        "を « COD »",
+        "買う（かう）→買っておく « forme て ＋おく = action préparatoire (à l'avance) » → « j'achète le billet à l'avance avant le voyage »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜てある",
+     "struct": "他動詞て形＋ある",
+     "mean": "« état résultant d'une action volontaire ».",
+     "examples": [
+      {
+       "jp": "壁に絵が掛けてある。",
+       "ro": "kabe ni e ga kakete aru.",
+       "fr": "Un tableau est accroché au mur (qqn l'a fait).",
+       "an": [
+        "壁（かべ）« mur »",
+        "に « lieu »",
+        "絵（え）« tableau »",
+        "が « sujet »",
+        "掛ける（かける）→掛けてある « forme て ＋ある = état résultant d'une action intentionnelle » → « un tableau est accroché au mur (qqn l'a fait) »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜てしまう",
+     "struct": "て形＋しまう（口語：〜ちゃう／〜じゃう）",
+     "mean": "« faire complètement » ou regret « finir par (malheureusement) ».",
+     "examples": [
+      {
+       "jp": "財布を忘れてしまった。",
+       "ro": "saifu o wasurete shimatta.",
+       "fr": "J'ai (malheureusement) oublié mon portefeuille.",
+       "an": [
+        "財布（さいふ）« portefeuille »",
+        "を « COD »",
+        "忘れる（わすれる）→忘れてしまった « forme て ＋しまった = action accomplie regrettable » → « j'ai malheureusement oublié mon portefeuille »."
+       ]
+      }
+     ]
+    }
+   ],
+   "tip": "Rappel : <b>〜ていく</b> (s'éloigne / vers le futur) et <b>〜てくる</b> (se rapproche / depuis le passé) — voir Leçon 11."
+  },
+  {
+   "title": "Leçon 14 — Donner & recevoir des services (授受)",
+   "tag": "N3",
+   "points": [
+    {
+     "form": "〜てあげる",
+     "struct": "て形＋あげる",
+     "mean": "faire qqch POUR qqn (de soi vers autrui).",
+     "examples": [
+      {
+       "jp": "友達に本を貸してあげた。",
+       "ro": "tomodachi ni hon o kashite ageta.",
+       "fr": "J'ai prêté un livre à mon ami.",
+       "an": [
+        "友達（ともだち）に « bénéficiaire »",
+        "本（ほん）« livre »",
+        "を « COD »",
+        "貸す（かす）→貸してあげた « forme て ＋あげる = faire pour autrui (passé) » → « j'ai prêté un livre à mon ami »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜てくれる",
+     "struct": "て形＋くれる",
+     "mean": "qqn fait qqch POUR MOI (vers le locuteur).",
+     "examples": [
+      {
+       "jp": "友達が手伝ってくれた。",
+       "ro": "tomodachi ga tetsudatte kureta.",
+       "fr": "Mon ami m'a aidé.",
+       "an": [
+        "友達（ともだち）« ami »",
+        "が « sujet »",
+        "手伝う（てつだう）→手伝ってくれた « forme て ＋くれる = faire pour moi (passé) » → « mon ami m'a aidé »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜てもらう",
+     "struct": "（人）に〜てもらう",
+     "mean": "obtenir/recevoir le service de qqn.",
+     "examples": [
+      {
+       "jp": "先生に文法を教えてもらった。",
+       "ro": "sensei ni bunpō o oshiete moratta.",
+       "fr": "Je me suis fait expliquer la grammaire par le prof.",
+       "an": [
+        "先生（せんせい）« le professeur »",
+        "に « marque l'agent du bienfait »",
+        "文法（ぶんぽう）« grammaire »",
+        "を « COD »",
+        "教える（おしえる）→教えてもらった « forme て ＋もらう = recevoir un service de qqn (passé) » → « je me suis fait expliquer la grammaire par le professeur »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ていただく / 〜てくださる",
+     "struct": "謙譲：〜ていただく ／ 尊敬：〜てくださる",
+     "mean": "versions polies de もらう / くれる.",
+     "examples": [
+      {
+       "jp": "先生が説明してくださった。",
+       "ro": "sensei ga setsumei shite kudasatta.",
+       "fr": "Le professeur a eu la gentillesse d'expliquer.",
+       "an": [
+        "先生（せんせい）« le professeur »",
+        "が « sujet »",
+        "説明（せつめい）する « expliquer » →説明してくださった « forme て ＋くださる = faire l'honneur de (honorifique, passé) » → « le professeur a eu la gentillesse d'expliquer »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 15 — Demandes, ordres, permissions, interdictions",
+   "tag": "N3",
+   "points": [
+    {
+     "form": "〜ていただけませんか",
+     "struct": "て形＋いただけませんか／いただけますか",
+     "mean": "demande très polie « pourriez-vous… ? ».",
+     "examples": [
+      {
+       "jp": "少々お待ちいただけますか。",
+       "ro": "shōshō omachi itadakemasu ka.",
+       "fr": "Pourriez-vous patienter un instant ?",
+       "an": [
+        "少々（しょうしょう）« un instant »",
+        "待つ（まつ）→お待ち « base poli en お＋連用形 »",
+        "いただけますか « いただく au potentiel poli = pourriez-vous (humble) » → « pourriez-vous patienter un instant ? »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "お／ご〜ください",
+     "struct": "お＋V(ます語幹)＋ください",
+     "mean": "demande polie (尊敬).",
+     "examples": [
+      {
+       "jp": "こちらにお座りください。",
+       "ro": "kochira ni osuwari kudasai.",
+       "fr": "Veuillez vous asseoir ici.",
+       "an": [
+        "こちら « ici (poli) »",
+        "に « lieu »",
+        "座る（すわる）→お座り « base honorifique お＋連用形 »",
+        "ください « ＋ください = veuillez (requête polie) » → « veuillez vous asseoir ici »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜なさい",
+     "struct": "V(ます語幹)＋なさい",
+     "mean": "ordre doux (parent→enfant, prof→élève).",
+     "examples": [
+      {
+       "jp": "早く寝なさい。",
+       "ro": "hayaku nesai.",
+       "fr": "Va te coucher vite.",
+       "an": [
+        "早い（はやい）→早く « adverbialisé = vite »",
+        "寝る（ねる）→寝なさい « 連用形 ＋なさい = impératif doux (autorité) » → « va te coucher vite »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜な (interdiction)",
+     "struct": "辞書形＋な",
+     "mean": "interdiction brusque « ne … pas ! ».",
+     "examples": [
+      {
+       "jp": "ここに入るな。",
+       "ro": "koko ni hairu na.",
+       "fr": "N'entre pas ici !",
+       "an": [
+        "ここ « ici »",
+        "に « lieu »",
+        "入る（はいる）→入るな « forme du dictionnaire ＋な = impératif négatif (interdiction) » → « n'entre pas ici ! »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜させてください / 〜させていただく",
+     "struct": "使役て形＋ください／いただく",
+     "mean": "demander la permission de faire (humble).",
+     "examples": [
+      {
+       "jp": "少し休ませてください。",
+       "ro": "sukoshi yasumasete kudasai.",
+       "fr": "Permettez-moi de me reposer un peu.",
+       "an": [
+        "少し（すこし）« un peu »",
+        "休む（やすむ）→休ませて « causatif させる ＋forme て »",
+        "ください « ＋ください = permettez-moi de (demande de permission) » → « permettez-moi de me reposer un peu »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 16 — Nominalisation & citation",
+   "tag": "N3",
+   "points": [
+    {
+     "form": "〜の / 〜こと",
+     "struct": "普通形＋の／こと（nominaliseurs）",
+     "mean": "transforme une proposition en nom.",
+     "examples": [
+      {
+       "jp": "日本語を話すのは難しい。",
+       "ro": "nihongo o hanasu no wa muzukashii.",
+       "fr": "Parler japonais est difficile.",
+       "an": [
+        "日本語（にほんご）« le japonais »",
+        "を « COD »",
+        "話す（はなす）→話すの « nominalisation par の »",
+        "は « thème »",
+        "難しい（むずかしい）« difficile » → « parler japonais est difficile »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜という",
+     "struct": "名＋という＋名",
+     "mean": "« appelé / nommé », ou introduit une information.",
+     "examples": [
+      {
+       "jp": "「金閣寺」というお寺へ行った。",
+       "ro": "\"kinkakuji\" to iu otera e itta.",
+       "fr": "Je suis allé à un temple appelé Kinkaku-ji.",
+       "an": [
+        "金閣寺（きんかくじ）« le Kinkaku-ji »",
+        "という « ＝nommé, appelé (citation+identification) »",
+        "お寺（おてら）« temple »",
+        "へ « direction »",
+        "行く（いく）→行った « forme た = passé » → « je suis allé à un temple appelé Kinkaku-ji »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ということだ",
+     "struct": "V・い-adj 普通形 ／ な-adj・名＋だ ＋ということだ",
+     "mean": "« cela signifie que » ou « il paraît que ».",
+     "examples": [
+      {
+       "jp": "部長は今日来ないということだ。",
+       "ro": "buchō wa kyō konai to iu koto da.",
+       "fr": "Il paraît que le chef ne vient pas aujourd'hui.",
+       "an": [
+        "部長（ぶちょう）« le chef de service »",
+        "は « thème »",
+        "今日（きょう）« aujourd'hui »",
+        "来る（くる）→来ない « négatif »",
+        "ということだ « ＝il paraît que, on dit que (ouï-dire) » → « il paraît que le chef ne vient pas aujourd'hui »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜って (口語)",
+     "struct": "名／普通形＋って（=という／と）",
+     "mean": "forme orale de という / と.",
+     "examples": [
+      {
+       "jp": "田中さんって優しいね。",
+       "ro": "tanaka-san tte yasashii ne.",
+       "fr": "Ce Tanaka, il est gentil, hein.",
+       "an": [
+        "田中（たなか）さん « M. Tanaka »",
+        "って « ＝thème oral familier (＝は/というのは) »",
+        "優しい（やさしい）« gentil »",
+        "ね « particule de connivence » → « ce Tanaka, il est gentil, hein »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜とは",
+     "struct": "名＋とは（définition）",
+     "mean": "« ce qu'on appelle… c'est », pose un terme à définir.",
+     "examples": [
+      {
+       "jp": "幸せとは何だろう。",
+       "ro": "shiawase to wa nan darō.",
+       "fr": "Qu'est-ce que le bonheur ?",
+       "an": [
+        "幸せ（しあわせ）« le bonheur »",
+        "とは « ＝particule de définition (＝quant à la notion de) »",
+        "何（なに）« quoi »",
+        "だろう « ＝supposition/interrogation = je me demande » → « qu'est-ce que le bonheur ? »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 17 — Verbes composés (auxiliaires)",
+   "tag": "N3",
+   "points": [
+    {
+     "form": "〜始める / 〜出す",
+     "struct": "V(ます語幹)＋始める（commencer）／＋出す（soudain）",
+     "examples": [
+      {
+       "jp": "急に雨が降り出した。",
+       "ro": "kyū ni ame ga furidashita.",
+       "fr": "Il s'est mis à pleuvoir soudainement.",
+       "an": [
+        "急（きゅう）に « soudainement »",
+        "雨（あめ）« la pluie »",
+        "が « sujet »",
+        "降る（ふる）→降り出した « 連用形 ＋出す = se mettre à (commencement soudain), au passé » → « il s'est mis à pleuvoir soudainement »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜続ける",
+     "struct": "V(ます語幹)＋続ける",
+     "mean": "« continuer à ».",
+     "examples": [
+      {
+       "jp": "三時間も歩き続けた。",
+       "ro": "sanjikan mo arukitsuzuketa.",
+       "fr": "J'ai marché sans arrêt pendant 3 heures.",
+       "an": [
+        "三時間（さんじかん）« trois heures »",
+        "も « ＝insistance (pas moins de) »",
+        "歩く（あるく）→歩き続けた « 連用形 ＋続ける = continuer à (passé) » → « j'ai marché sans arrêt pendant trois heures »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜終わる",
+     "struct": "V(ます語幹)＋終わる",
+     "mean": "« finir de ».",
+     "examples": [
+      {
+       "jp": "本を読み終わった。",
+       "ro": "hon o yomiowatta.",
+       "fr": "J'ai fini de lire le livre.",
+       "an": [
+        "本（ほん）« le livre »",
+        "を « COD »",
+        "読む（よむ）→読み終わった « 連用形 ＋終わる = finir de (achèvement), au passé » → « j'ai fini de lire le livre »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜きる / 〜きれない",
+     "struct": "V(ます語幹)＋きる（jusqu'au bout）／きれない（ne pas pouvoir）",
+     "examples": [
+      {
+       "jp": "多すぎて食べきれない。",
+       "ro": "ōsugite tabekirenai.",
+       "fr": "Il y en a trop, je ne peux pas tout finir.",
+       "an": [
+        "多い（おおい）→多すぎて « 語幹 ＋すぎる = excès, forme て »",
+        "食べる（たべる）→食べきれない « 連用形 ＋きれない = ne pas pouvoir finir/épuiser (potentiel négatif de 切る) » → « il y en a trop, je ne peux pas tout finir »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜直す",
+     "struct": "V(ます語幹)＋直す",
+     "mean": "« refaire / re- ».",
+     "examples": [
+      {
+       "jp": "レポートを書き直す。",
+       "ro": "repōto o kakinaosu.",
+       "fr": "Je réécris le rapport.",
+       "an": [
+        "レポート « le rapport »",
+        "を « COD »",
+        "書く（かく）→書き直す « 連用形 ＋直す = refaire l'action (re-) » → « je réécris le rapport »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 18 — Facilité, excès, tendance",
+   "tag": "N3",
+   "points": [
+    {
+     "form": "〜やすい / 〜にくい",
+     "struct": "V(ます語幹)＋やすい／にくい",
+     "mean": "« facile / difficile à ».",
+     "examples": [
+      {
+       "jp": "この本は読みやすい。",
+       "ro": "kono hon wa yomiyasui.",
+       "fr": "Ce livre est facile à lire.",
+       "an": [
+        "この本（ほん）« ce livre »",
+        "は « thème »",
+        "読む（よむ）→読みやすい « 連用形 ＋やすい = facile à (faire) » → « ce livre est facile à lire »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜すぎる",
+     "struct": "V(ます語幹)／adj語幹＋すぎる",
+     "mean": "« trop ».",
+     "examples": [
+      {
+       "jp": "昨日は食べすぎた。",
+       "ro": "kinō wa tabesugita.",
+       "fr": "Hier j'ai trop mangé.",
+       "an": [
+        "昨日（きのう）« hier »",
+        "は « thème »",
+        "食べる（たべる）→食べすぎた « 連用形 ＋すぎる = faire trop (excès), au passé » → « hier j'ai trop mangé »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜がる / 〜たがる",
+     "struct": "adj語幹＋がる ／ V(ます語幹)＋たがる",
+     "mean": "exprime le sentiment/désir d'une 3e personne.",
+     "examples": [
+      {
+       "jp": "子供が犬を怖がっている。",
+       "ro": "kodomo ga inu o kowagatte iru.",
+       "fr": "L'enfant a peur du chien.",
+       "an": [
+        "子供（こども）« l'enfant »",
+        "が « sujet »",
+        "犬（いぬ）« le chien »",
+        "を « COD »",
+        "怖い（こわい）→怖がっている « 語幹 ＋がる = manifester un sentiment (d'autrui) ＋ている (état) » → « l'enfant a peur du chien »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜気味",
+     "struct": "名／V(ます語幹)＋気味",
+     "mean": "« un peu / une légère tendance à » (souvent négatif).",
+     "examples": [
+      {
+       "jp": "今日は風邪気味だ。",
+       "ro": "kyō wa kaze gimi da.",
+       "fr": "Aujourd'hui je suis un peu enrhumé.",
+       "an": [
+        "今日（きょう）« aujourd'hui »",
+        "は « thème »",
+        "風邪（かぜ）« rhume »",
+        "気味（ぎみ）« ＝suffixe = une tendance à, un léger (état naissant) »",
+        "だ « copule » → « aujourd'hui je suis un peu enrhumé »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 19 — Conditions & souhaits (suite)",
+   "tag": "N3",
+   "points": [
+    {
+     "form": "〜ても / 〜でも",
+     "struct": "て形＋も ／ 名・な-adj＋でも",
+     "mean": "« même si ».",
+     "examples": [
+      {
+       "jp": "雨が降っても行きます。",
+       "ro": "ame ga futte mo ikimasu.",
+       "fr": "J'irai même s'il pleut.",
+       "an": [
+        "雨（あめ）« la pluie »",
+        "が « sujet »",
+        "降る（ふる）→降っても « forme て ＋も = même si (concession) »",
+        "行く（いく）→行きます « aller (poli) » → « j'irai même s'il pleut »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜たって / 〜だって (口語)",
+     "struct": "た形＋って（= ても）",
+     "mean": "« même si » (oral).",
+     "examples": [
+      {
+       "jp": "今から急いだって間に合わない。",
+       "ro": "ima kara isoidatte ma ni awanai.",
+       "fr": "Même en me pressant maintenant, je n'arriverai pas à temps.",
+       "an": [
+        "今（いま）から « à partir de maintenant »",
+        "急ぐ（いそぐ）→急いだって « ＝たって ＝forme た+って = même si (concession familière, ＝ても) »",
+        "間に合う（まにあう）→間に合わない « arriver à temps (négatif) » → « même en me pressant maintenant, je n'arriverai pas à temps »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜たらいい / 〜といい / 〜ばいい",
+     "struct": "条件形＋いい",
+     "mean": "« il vaudrait / ce serait bien si / j'espère que ».",
+     "examples": [
+      {
+       "jp": "どうしたらいいですか。",
+       "ro": "dō shitara ii desu ka.",
+       "fr": "Qu'est-ce que je devrais faire ?",
+       "an": [
+        "どう « comment »",
+        "する→したら « forme た ＋ら = conditionnel »",
+        "いい « bon »",
+        "ですか « ＝したらいい = que faut-il faire ? (demande de conseil) » → « qu'est-ce que je devrais faire ? »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ことだ",
+     "struct": "辞書形／ない形＋ことだ",
+     "mean": "conseil ferme « tu devrais / il faut ».",
+     "examples": [
+      {
+       "jp": "合格したければ、毎日勉強することだ。",
+       "ro": "gōkaku shitakereba, mainichi benkyō suru koto da.",
+       "fr": "Si tu veux réussir, il faut étudier tous les jours.",
+       "an": [
+        "合格（ごうかく）する « réussir » →したければ « ＋たい au conditionnel ば = si l'on veut »",
+        "毎日（まいにち）« chaque jour »",
+        "勉強（べんきょう）する « étudier » →勉強することだ « ＝ことだ = il faut, c'est ce qu'il convient de faire (conseil) » → « si tu veux réussir, il faut étudier tous les jours »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 20 — Énumération & ajout",
+   "tag": "N3",
+   "points": [
+    {
+     "form": "〜し",
+     "struct": "普通形＋し（énumère des raisons）",
+     "examples": [
+      {
+       "jp": "この店は安いし、おいしいし、よく行く。",
+       "ro": "kono mise wa yasui shi, oishii shi, yoku iku.",
+       "fr": "Ce resto est bon marché et bon, alors j'y vais souvent.",
+       "an": [
+        "この店（みせ）« ce magasin »",
+        "は « thème »",
+        "安い（やすい）→安いし « ＝し = énumération de raisons (et puis) »",
+        "おいしい→おいしいし « ＝し = et de plus »",
+        "よく行く（いく）« j'y vais souvent » → « ce resto est bon marché et bon, alors j'y vais souvent »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜とか〜とか",
+     "struct": "名／辞書形＋とか",
+     "mean": "exemples non exhaustifs « des choses comme ».",
+     "examples": [
+      {
+       "jp": "休みは映画とか買い物とかをする。",
+       "ro": "yasumi wa eiga toka kaimono toka o suru.",
+       "fr": "En congé je fais des trucs comme le ciné ou les courses.",
+       "an": [
+        "休み（やすみ）« les congés »",
+        "は « thème »",
+        "映画（えいが）« cinéma »",
+        "とか « ＝énumération non exhaustive (des trucs comme) »",
+        "買い物（かいもの）« courses »",
+        "とか « ＝et autres »",
+        "をする « faire » → « en congé je fais des trucs comme le ciné ou les courses »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜やら〜やら",
+     "struct": "名／普通形＋やら",
+     "mean": "énumération (souvent accablante).",
+     "examples": [
+      {
+       "jp": "仕事やら家事やらで忙しい。",
+       "ro": "shigoto yara kaji yara de isogashii.",
+       "fr": "Entre le travail, les tâches ménagères, etc., je suis débordé.",
+       "an": [
+        "仕事（しごと）« travail »",
+        "やら « ＝énumération avec nuance d'accablement (entre... et...) »",
+        "家事（かじ）« tâches ménagères »",
+        "やら « ＝et tout ça »",
+        "で « cause »",
+        "忙しい（いそがしい）« occupé » → « entre le travail, les tâches ménagères, etc., je suis débordé »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ばかりでなく / 〜はもちろん",
+     "struct": "名／普通形＋ばかりでなく…も ／ 名＋はもちろん",
+     "mean": "« non seulement… mais aussi ».",
+     "examples": [
+      {
+       "jp": "漢字はもちろん、文法も難しい。",
+       "ro": "kanji wa mochiron, bunpō mo muzukashii.",
+       "fr": "Les kanji bien sûr, mais la grammaire aussi est difficile.",
+       "an": [
+        "漢字（かんじ）« les kanji »",
+        "はもちろん « ＝non seulement... bien sûr (＝はもちろん) »",
+        "文法（ぶんぽう）« la grammaire »",
+        "も « ＝aussi (mais... aussi) »",
+        "難しい（むずかしい）« difficile » → « les kanji bien sûr, mais la grammaire aussi est difficile »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 21 — Restriction & emphase",
+   "tag": "N3",
+   "points": [
+    {
+     "form": "〜だけ",
+     "struct": "名／辞書形＋だけ",
+     "mean": "« seulement / ne … que ».",
+     "examples": [
+      {
+       "jp": "一度だけ会ったことがある。",
+       "ro": "ichido dake atta koto ga aru.",
+       "fr": "Je l'ai rencontré une seule fois.",
+       "an": [
+        "一度（いちど）« une fois »",
+        "だけ « ＝seulement »",
+        "会う（あう）→会ったことがある « forme た ＋ことがある = avoir déjà fait l'expérience de » → « je l'ai rencontré une seule fois »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜だけあって / 〜だけに",
+     "struct": "普通形＋だけあって／だけに",
+     "mean": "« justement parce que / à la hauteur de » (résultat attendu).",
+     "examples": [
+      {
+       "jp": "先生だけあって、説明が分かりやすい。",
+       "ro": "sensei dake atte, setsumei ga wakariyasui.",
+       "fr": "En vrai professeur, ses explications sont claires.",
+       "an": [
+        "先生（せんせい）« professeur »",
+        "だけあって « ＝à la hauteur de, comme on l'attend de (justification valorisante) »",
+        "説明（せつめい）« explication »",
+        "が « sujet »",
+        "分かる（わかる）→分かりやすい « 連用形 ＋やすい = facile à comprendre » → « en vrai professeur, ses explications sont claires »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜こそ",
+     "struct": "名＋こそ",
+     "mean": "« c'est précisément / cette fois-ci ».",
+     "examples": [
+      {
+       "jp": "今度こそ頑張ります。",
+       "ro": "kondo koso ganbarimasu.",
+       "fr": "Cette fois-ci, je vais vraiment me donner à fond.",
+       "an": [
+        "今度（こんど）« cette fois »",
+        "こそ « ＝particule d'insistance (c'est bien cette fois que) »",
+        "頑張る（がんばる）→頑張ります « faire de son mieux (poli) » → « cette fois-ci, je vais vraiment me donner à fond »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜しかない",
+     "struct": "名／辞書形＋しかない",
+     "mean": "« il ne reste qu'à / seulement ».",
+     "examples": [
+      {
+       "jp": "バスがないから歩くしかない。",
+       "ro": "basu ga nai kara aruku shika nai.",
+       "fr": "Il n'y a pas de bus, je n'ai qu'à marcher.",
+       "an": [
+        "バス « le bus »",
+        "が « sujet »",
+        "ない « il n'y en a pas »",
+        "から « cause »",
+        "歩く（あるく）→歩くしかない « forme du dictionnaire ＋しかない = n'avoir d'autre choix que de » → « il n'y a pas de bus, je n'ai qu'à marcher »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜さえ〜ば",
+     "struct": "名＋さえ＋条件形",
+     "mean": "« il suffit que / du moment que ».",
+     "examples": [
+      {
+       "jp": "薬さえ飲めば治る。",
+       "ro": "kusuri sae nomeba naoru.",
+       "fr": "Il suffit de prendre le médicament pour guérir.",
+       "an": [
+        "薬（くすり）« le médicament »",
+        "さえ « ＝ne serait-ce que, il suffit de »",
+        "飲む（のむ）→飲めば « forme conditionnelle en ば »",
+        "治る（なおる）« guérir » → « il suffit de prendre le médicament pour guérir »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 22 — Relations & points de vue",
+   "tag": "N3",
+   "points": [
+    {
+     "form": "〜にとって",
+     "struct": "名＋にとって",
+     "mean": "« pour / du point de vue de ».",
+     "examples": [
+      {
+       "jp": "私にとって家族が一番大切だ。",
+       "ro": "watashi ni totte kazoku ga ichiban taisetsu da.",
+       "fr": "Pour moi, la famille est ce qui compte le plus.",
+       "an": [
+        "私（わたし）« moi »",
+        "にとって « ＝du point de vue de, pour »",
+        "家族（かぞく）« la famille »",
+        "が « sujet »",
+        "一番（いちばん）« le plus »",
+        "大切（たいせつ）だ « précieux » → « pour moi, la famille est ce qui compte le plus »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜に関して",
+     "struct": "名＋に関して／に関する",
+     "mean": "« concernant » (plus formel que について).",
+     "examples": [
+      {
+       "jp": "事故に関して調査中だ。",
+       "ro": "jiko ni kanshite chōsa-chū da.",
+       "fr": "Une enquête est en cours concernant l'accident.",
+       "an": [
+        "事故（じこ）« l'accident »",
+        "に関して（にかんして）« ＝concernant, au sujet de »",
+        "調査（ちょうさ）« enquête »",
+        "中（ちゅう）だ « ＝en cours de » → « une enquête est en cours concernant l'accident »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜に応じて",
+     "struct": "名＋に応じて",
+     "mean": "« en fonction de / selon ».",
+     "examples": [
+      {
+       "jp": "収入に応じて税金が決まる。",
+       "ro": "shūnyū ni ōjite zeikin ga kimaru.",
+       "fr": "L'impôt est fixé selon les revenus.",
+       "an": [
+        "収入（しゅうにゅう）« les revenus »",
+        "に応じて（におうじて）« ＝selon, en fonction de »",
+        "税金（ぜいきん）« l'impôt »",
+        "が « sujet »",
+        "決まる（きまる）« se décider, être fixé » → « l'impôt est fixé selon les revenus »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜をはじめ",
+     "struct": "名＋をはじめ（として）",
+     "mean": "« à commencer par ».",
+     "examples": [
+      {
+       "jp": "東京をはじめ、各地で開催される。",
+       "ro": "tōkyō o hajime, kakuchi de kaisai sareru.",
+       "fr": "Cela a lieu à Tokyo et dans diverses régions.",
+       "an": [
+        "東京（とうきょう）« Tokyo »",
+        "をはじめ « ＝à commencer par, et notamment (suivi d'autres) »",
+        "各地（かくち）« diverses régions »",
+        "で « lieu »",
+        "開催（かいさい）する→開催される « passif = avoir lieu, être organisé » → « cela a lieu à Tokyo et dans diverses régions »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜を通じて / 〜を通して",
+     "struct": "名＋を通じて／を通して",
+     "mean": "« par l'intermédiaire de / tout au long de ».",
+     "examples": [
+      {
+       "jp": "テレビを通じてニュースを知った。",
+       "ro": "terebi o tsūjite nyūsu o shitta.",
+       "fr": "J'ai appris la nouvelle par la télévision.",
+       "an": [
+        "テレビ « la télévision »",
+        "を通じて（をつうじて）« ＝par l'intermédiaire de, via »",
+        "ニュース « la nouvelle »",
+        "を « COD »",
+        "知る（しる）→知った « apprendre, savoir (passé) » → « j'ai appris la nouvelle par la télévision »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜において / 〜における",
+     "struct": "名＋において／における（formel）",
+     "mean": "« à / dans (lieu, domaine) ».",
+     "examples": [
+      {
+       "jp": "会議は大阪において行われた。",
+       "ro": "kaigi wa ōsaka ni oite okonawareta.",
+       "fr": "La réunion s'est tenue à Osaka.",
+       "an": [
+        "会議（かいぎ）« la réunion »",
+        "は « thème »",
+        "大阪（おおさか）« Osaka »",
+        "において « ＝à, dans (lieu, registre formel) »",
+        "行う（おこなう）→行われた « passif = se tenir, avoir lieu (passé) » → « la réunion s'est tenue à Osaka »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 23 — Temps & circonstances",
+   "tag": "N3",
+   "points": [
+    {
+     "form": "〜際に / 〜際は",
+     "struct": "辞書形／た形／名＋の ＋際に（formel）",
+     "mean": "« lors de / à l'occasion de ».",
+     "examples": [
+      {
+       "jp": "お降りの際は足元にご注意ください。",
+       "ro": "oori no sai wa ashimoto ni go-chūi kudasai.",
+       "fr": "À la descente, attention où vous mettez les pieds.",
+       "an": [
+        "降りる（おりる）→お降り « nominal poli = la descente »",
+        "の際（さい）は « ＝au moment de, lors de (formel) »",
+        "足元（あしもと）« où l'on met les pieds »",
+        "に « cible »",
+        "ご注意（ちゅうい）ください « ＝faites attention (honorifique poli) » → « à la descente, attention où vous mettez les pieds »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜最中に",
+     "struct": "V(ている)／名＋の ＋最中に",
+     "mean": "« en plein milieu de (action en cours interrompue) ».",
+     "examples": [
+      {
+       "jp": "食事の最中に電話が鳴った。",
+       "ro": "shokuji no saichū ni denwa ga natta.",
+       "fr": "En plein repas, le téléphone a sonné.",
+       "an": [
+        "食事（しょくじ）« le repas »",
+        "の最中（さいちゅう）に « ＝en plein milieu de, en pleine action »",
+        "電話（でんわ）« le téléphone »",
+        "が « sujet »",
+        "鳴る（なる）→鳴った « sonner (passé) » → « en plein repas, le téléphone a sonné »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜たとたん(に)",
+     "struct": "V(た)＋とたん(に)",
+     "mean": "« à l'instant même où » (juste après, souvent surprise).",
+     "examples": [
+      {
+       "jp": "立ち上がったとたん、めまいがした。",
+       "ro": "tachiagatta totan, memai ga shita.",
+       "fr": "À peine levé, j'ai eu un vertige.",
+       "an": [
+        "立ち上がる（たちあがる）→立ち上がった « forme た »",
+        "とたん « ＝た+とたん = à l'instant même où, à peine... que »",
+        "めまい « vertige »",
+        "がした « ＝が＋する = s'est produit » → « à peine levé, j'ai eu un vertige »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜かと思うと / 〜かと思ったら",
+     "struct": "V(た)＋かと思うと",
+     "mean": "« à peine… que (changement rapide) ».",
+     "examples": [
+      {
+       "jp": "泣いたかと思うと、もう笑っている。",
+       "ro": "naita ka to omou to, mō waratte iru.",
+       "fr": "À peine a-t-il pleuré qu'il rit déjà.",
+       "an": [
+        "泣く（なく）→泣いた « forme た »",
+        "かと思うと（かとおもうと）« ＝た＋かと思うと = à peine... que déjà »",
+        "もう « déjà »",
+        "笑う（わらう）→笑っている « forme ている = état en cours » → « à peine a-t-il pleuré qu'il rit déjà »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜次第",
+     "struct": "V(ます語幹)＋次第",
+     "mean": "« dès que (formel) ».",
+     "examples": [
+      {
+       "jp": "準備ができ次第、出発します。",
+       "ro": "junbi ga deki shidai, shuppatsu shimasu.",
+       "fr": "Dès que les préparatifs sont prêts, on part.",
+       "an": [
+        "準備（じゅんび）« les préparatifs »",
+        "ができ « ＝être prêt (連用形 de できる) »",
+        "次第（しだい）« ＝連用形 ＋次第 = dès que, aussitôt que »",
+        "出発（しゅっぱつ）します « partir (poli) » → « dès que les préparatifs sont prêts, on part »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ところに / 〜ところへ / 〜ところを",
+     "struct": "V(ている／た)＋ところに／へ／を",
+     "mean": "« juste au moment où ».",
+     "examples": [
+      {
+       "jp": "出かけようとしたところに客が来た。",
+       "ro": "dekakeyō to shita tokoro ni kyaku ga kita.",
+       "fr": "Juste au moment où j'allais sortir, un visiteur est arrivé.",
+       "an": [
+        "出かける（でかける）→出かけようとした « volitif よう ＋とする = être sur le point de (passé) »",
+        "ところに « ＝juste au moment où (interruption) »",
+        "客（きゃく）« un visiteur »",
+        "が « sujet »",
+        "来る（くる）→来た « venir (passé) » → « juste au moment où j'allais sortir, un visiteur est arrivé »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 24 — Jugement & nécessité",
+   "tag": "N3",
+   "points": [
+    {
+     "form": "〜べきだ",
+     "struct": "辞書形＋べきだ（する→すべき）",
+     "mean": "« on doit / il faut (devoir moral) ».",
+     "examples": [
+      {
+       "jp": "約束は守るべきだ。",
+       "ro": "yakusoku wa mamoru beki da.",
+       "fr": "On doit tenir ses promesses.",
+       "an": [
+        "約束（やくそく）« la promesse »",
+        "は « thème »",
+        "守る（まもる）→守るべきだ « forme du dictionnaire ＋べきだ = on doit, il convient de (devoir moral) » → « on doit tenir ses promesses »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ざるを得ない",
+     "struct": "ない形（語幹）＋ざるを得ない（する→せざる）",
+     "mean": "« être contraint de / ne pas pouvoir faire autrement ».",
+     "examples": [
+      {
+       "jp": "事実を認めざるを得ない。",
+       "ro": "jijitsu o mitomezaru o enai.",
+       "fr": "Je suis bien obligé de reconnaître les faits.",
+       "an": [
+        "事実（じじつ）« les faits »",
+        "を « COD »",
+        "認める（みとめる）→認めざるを得ない « 未然形 ＋ざるを得ない = ne pas pouvoir faire autrement que de, être obligé de » → « je suis bien obligé de reconnaître les faits »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜わけにはいかない",
+     "struct": "辞書形／ない形＋わけにはいかない",
+     "mean": "« on ne peut pas se permettre de ».",
+     "examples": [
+      {
+       "jp": "大事な会議だから、休むわけにはいかない。",
+       "ro": "daiji na kaigi dakara, yasumu wake ni wa ikanai.",
+       "fr": "C'est une réunion importante, je ne peux pas me permettre de manquer.",
+       "an": [
+        "大事（だいじ）な « important »",
+        "会議（かいぎ）« réunion »",
+        "だから « cause »",
+        "休む（やすむ）→休むわけにはいかない « forme du dictionnaire ＋わけにはいかない = on ne peut pas se permettre de » → « c'est une réunion importante, je ne peux pas me permettre de manquer »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜に決まっている",
+     "struct": "V・い-adj 普通形 ／ な-adj・名 語幹 ＋に決まっている",
+     "mean": "« c'est sûr et certain / forcément ».",
+     "examples": [
+      {
+       "jp": "そんな話、うそに決まっている。",
+       "ro": "sonna hanashi, uso ni kimatte iru.",
+       "fr": "Une telle histoire, c'est forcément un mensonge.",
+       "an": [
+        "そんな話（はなし）« une telle histoire »",
+        "うそ « mensonge »",
+        "に決まっている（にきまっている）« ＝c'est forcément, à coup sûr (certitude) » → « une telle histoire, c'est forcément un mensonge »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜に過ぎない",
+     "struct": "V・い-adj 普通形 ／ な-adj・名（＋である） ＋に過ぎない",
+     "mean": "« ce n'est rien de plus que / juste ».",
+     "examples": [
+      {
+       "jp": "それは言い訳に過ぎない。",
+       "ro": "sore wa iiwake ni suginai.",
+       "fr": "Ce n'est qu'une excuse.",
+       "an": [
+        "それ « cela »",
+        "は « thème »",
+        "言い訳（いいわけ）« une excuse »",
+        "に過ぎない（にすぎない）« ＝ne... rien de plus que, ne... qu'une simple » → « ce n'est qu'une excuse »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜とは限らない",
+     "struct": "V・い-adj 普通形 ／ な-adj・名（＋だ） ＋とは限らない",
+     "mean": "« ce n'est pas forcément le cas ».",
+     "examples": [
+      {
+       "jp": "高いものがいいとは限らない。",
+       "ro": "takai mono ga ii to wa kagiranai.",
+       "fr": "Ce qui est cher n'est pas forcément bon.",
+       "an": [
+        "高い（たかい）« cher »",
+        "もの « chose »",
+        "が « sujet »",
+        "いい « bon »",
+        "とは限らない（とはかぎらない）« ＝n'est pas forcément, pas nécessairement » → « ce qui est cher n'est pas forcément bon »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ないことはない",
+     "struct": "ない形＋ことはない",
+     "mean": "« ce n'est pas impossible / on peut quand même ».",
+     "examples": [
+      {
+       "jp": "頑張れば、できないことはない。",
+       "ro": "ganbareba, dekinai koto wa nai.",
+       "fr": "Avec des efforts, ce n'est pas impossible.",
+       "an": [
+        "頑張る（がんばる）→頑張れば « forme conditionnelle en ば »",
+        "できる→できない « potentiel négatif »",
+        "ことはない « ＝ことはない = ce n'est pas le cas que, double négation = ce n'est pas impossible » → « avec des efforts, ce n'est pas impossible »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 25 — Connecteurs & relations (formel)",
+   "tag": "N3",
+   "points": [
+    {
+     "form": "〜つつある",
+     "struct": "V(ます語幹)＋つつある",
+     "mean": "« être en train de (évoluer) ».",
+     "examples": [
+      {
+       "jp": "景気は回復しつつある。",
+       "ro": "keiki wa kaifuku shitsutsu aru.",
+       "fr": "L'économie est en train de se redresser.",
+       "an": [
+        "景気（けいき）« la conjoncture économique »",
+        "は « thème »",
+        "回復（かいふく）する « se rétablir » →回復しつつある « 連用形 ＋つつある = être en train de (évolution progressive) » → « l'économie est en train de se redresser »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜どころか",
+     "struct": "普通形＋どころか",
+     "mean": "« loin de / bien au contraire ».",
+     "examples": [
+      {
+       "jp": "謝るどころか、文句を言った。",
+       "ro": "ayamaru dokoro ka, monku o itta.",
+       "fr": "Loin de s'excuser, il a râlé.",
+       "an": [
+        "謝る（あやまる）→謝るどころか « forme du dictionnaire ＋どころか = loin de, bien au contraire »",
+        "文句（もんく）« des plaintes »",
+        "を « COD »",
+        "言う（いう）→言った « dire (passé) » → « loin de s'excuser, il a râlé »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜とともに",
+     "struct": "名／辞書形＋とともに",
+     "mean": "« en même temps que / avec ».",
+     "examples": [
+      {
+       "jp": "時代とともに考え方も変わる。",
+       "ro": "jidai to tomo ni kangaekata mo kawaru.",
+       "fr": "Les mentalités changent avec l'époque.",
+       "an": [
+        "時代（じだい）« l'époque »",
+        "とともに « ＝en même temps que, avec »",
+        "考え方（かんがえかた）« la façon de penser »",
+        "も « aussi »",
+        "変わる（かわる）« changer » → « les mentalités changent avec l'époque »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜につれて",
+     "struct": "辞書形／名＋につれて",
+     "mean": "« à mesure que » (évolutions parallèles).",
+     "examples": [
+      {
+       "jp": "山を登るにつれて寒くなる。",
+       "ro": "yama o noboru ni tsurete samuku naru.",
+       "fr": "À mesure qu'on monte, il fait plus froid.",
+       "an": [
+        "山（やま）« la montagne »",
+        "を « parcours »",
+        "登る（のぼる）→登るにつれて « forme du dictionnaire ＋につれて = à mesure que (proportion) »",
+        "寒い（さむい）→寒くなる « ＋なる = devenir froid » → « à mesure qu'on monte, il fait plus froid »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜にもかかわらず",
+     "struct": "普通形／名＋にもかかわらず",
+     "mean": "« malgré / bien que ».",
+     "examples": [
+      {
+       "jp": "努力したにもかかわらず、失敗した。",
+       "ro": "doryoku shita ni mo kakawarazu, shippai shita.",
+       "fr": "Malgré mes efforts, j'ai échoué.",
+       "an": [
+        "努力（どりょく）する→努力した « forme た »",
+        "にもかかわらず « ＝malgré, en dépit de (concession forte) »",
+        "失敗（しっぱい）する→失敗した « échouer (passé) » → « malgré mes efforts, j'ai échoué »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜以上(は)",
+     "struct": "V・い-adj 普通形 ／ な-adj・名＋である ＋以上(は)",
+     "mean": "« du moment que / puisque ».",
+     "examples": [
+      {
+       "jp": "引き受けた以上、最後までやる。",
+       "ro": "hikiuketa ijō, saigo made yaru.",
+       "fr": "Puisque j'ai accepté, je vais jusqu'au bout.",
+       "an": [
+        "引き受ける（ひきうける）→引き受けた « forme た »",
+        "以上（いじょう）« ＝た＋以上 = du moment que, puisque (engagement) »",
+        "最後（さいご）まで « jusqu'au bout »",
+        "やる « faire » → « puisque j'ai accepté, je vais jusqu'au bout »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜にしては",
+     "struct": "普通形／名＋にしては",
+     "mean": "« pour (contrairement à l'attente) ».",
+     "examples": [
+      {
+       "jp": "初めてにしては上手だ。",
+       "ro": "hajimete ni shite wa jōzu da.",
+       "fr": "Pour une première fois, c'est bien fait.",
+       "an": [
+        "初めて（はじめて）« une première fois »",
+        "にしては « ＝pour, compte tenu de (contraste avec l'attente) »",
+        "上手（じょうず）だ « habile, bien fait » → « pour une première fois, c'est bien fait »."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leçon 26 — Nuances, registre familier & divers",
+   "tag": "N3",
+   "points": [
+    {
+     "form": "〜きり",
+     "struct": "V(た)＋きり（＋ない）",
+     "mean": "« depuis que… (et plus rien depuis) ».",
+     "examples": [
+      {
+       "jp": "朝、家を出たきり、まだ帰っていない。",
+       "ro": "asa, ie o deta kiri, mada kaette inai.",
+       "fr": "Sorti le matin, il n'est toujours pas rentré.",
+       "an": [
+        "朝（あさ）« le matin »",
+        "家（いえ）« la maison »",
+        "を « point de départ »",
+        "出る（でる）→出たきり « forme た ＋きり = depuis que (sans suite, état figé) »",
+        "まだ « encore »",
+        "帰る（かえる）→帰っていない « ＋ていない = ne pas être rentré » → « sorti le matin, il n'est toujours pas rentré »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜まい",
+     "struct": "辞書形＋まい",
+     "mean": "« ne plus jamais (volonté négative) / sans doute pas ».",
+     "examples": [
+      {
+       "jp": "二度と遅刻するまい。",
+       "ro": "nidoto chikoku suru mai.",
+       "fr": "Je ne serai plus jamais en retard.",
+       "an": [
+        "二度と（にどと）« plus jamais »",
+        "遅刻（ちこく）する « être en retard » →するまい « ＋まい = volonté négative = ne plus faire (résolution) » → « je ne serai plus jamais en retard »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜がたい",
+     "struct": "V(ます語幹)＋がたい",
+     "mean": "« difficile à (littéraire) ».",
+     "examples": [
+      {
+       "jp": "信じがたい話だ。",
+       "ro": "shinjigatai hanashi da.",
+       "fr": "Une histoire difficile à croire.",
+       "an": [
+        "信じる（しんじる）→信じがたい « 連用形 ＋がたい = difficile à, dur à (faire) »",
+        "話（はなし）« histoire »",
+        "だ « copule » → « une histoire difficile à croire »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜っぱなし",
+     "struct": "V(ます語幹)＋っぱなし",
+     "mean": "« laissé tel quel (par négligence) ».",
+     "examples": [
+      {
+       "jp": "電気をつけっぱなしにした。",
+       "ro": "denki o tsukeppanashi ni shita.",
+       "fr": "J'ai laissé la lumière allumée.",
+       "an": [
+        "電気（でんき）« la lumière »",
+        "を « COD »",
+        "つける→つけっぱなし « 連用形 ＋っぱなし = laisser dans un état (sans y mettre fin) »",
+        "にした « ＝にする = mettre dans cet état (passé) » → « j'ai laissé la lumière allumée »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜だらけ",
+     "struct": "名＋だらけ",
+     "mean": "« plein de / couvert de » (négatif).",
+     "examples": [
+      {
+       "jp": "この作文は間違いだらけだ。",
+       "ro": "kono sakubun wa machigai darake da.",
+       "fr": "Cette rédaction est pleine de fautes.",
+       "an": [
+        "この作文（さくぶん）« cette rédaction »",
+        "は « thème »",
+        "間違い（まちがい）« fautes »",
+        "だらけ « ＝nom ＋だらけ = couvert de, plein de (péjoratif) »",
+        "だ « copule » → « cette rédaction est pleine de fautes »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜向き / 〜向け",
+     "struct": "名＋向き（adapté à）／向け（destiné à）",
+     "examples": [
+      {
+       "jp": "これは初心者向けの本だ。",
+       "ro": "kore wa shoshinsha-muke no hon da.",
+       "fr": "C'est un livre destiné aux débutants.",
+       "an": [
+        "これ « ceci »",
+        "は « thème »",
+        "初心者（しょしんしゃ）« débutants »",
+        "向け（むけ）« ＝nom ＋向け = destiné à, à l'intention de »",
+        "の本（ほん）だ « livre » → « c'est un livre destiné aux débutants »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜っけ",
+     "struct": "普通形＋っけ（口語）",
+     "mean": "on cherche à se rappeler « c'était… déjà ? ».",
+     "examples": [
+      {
+       "jp": "明日は休みだっけ？",
+       "ro": "ashita wa yasumi dakke?",
+       "fr": "C'est congé demain, déjà ?",
+       "an": [
+        "明日（あした）« demain »",
+        "は « thème »",
+        "休み（やすみ）« congé »",
+        "だっけ « ＝だ＋っけ = particule de rappel/vérification (c'était bien... ?) » → « c'est congé demain, déjà ? »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜なんか / 〜なんて",
+     "struct": "名＋なんか ／ 普通形＋なんて",
+     "mean": "dédain, modestie ou surprise.",
+     "examples": [
+      {
+       "jp": "彼が来るなんて、思わなかった。",
+       "ro": "kare ga kuru nante, omowanakatta.",
+       "fr": "Je ne pensais pas qu'il viendrait, lui.",
+       "an": [
+        "彼（かれ）« lui »",
+        "が « sujet »",
+        "来る（くる）« venir »",
+        "なんて « ＝marque l'étonnement/incrédulité (l'idée que...) »",
+        "思う（おもう）→思わなかった « penser (négatif passé) » → « je ne pensais pas qu'il viendrait, lui »."
+       ]
+      }
+     ]
+    },
+    {
+     "form": "〜ば〜ほど",
+     "struct": "条件形＋同V辞書形＋ほど",
+     "mean": "« plus… plus… ».",
+     "examples": [
+      {
+       "jp": "練習すればするほど上手になる。",
+       "ro": "renshū sureba suru hodo jōzu ni naru.",
+       "fr": "Plus on s'entraîne, plus on progresse.",
+       "an": [
+        "練習（れんしゅう）する→すれば « forme conditionnelle en ば »",
+        "するほど « ＝ば＋ほど = plus... plus (proportion croissante) »",
+        "上手（じょうず）になる « devenir habile » → « plus on s'entraîne, plus on progresse »."
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "prose": [
+  "<p style=\"color:var(--muted)\">Chaque point : <b>forme</b>, sens, <span style=\"font-family:monospace\">construction</span>, et 2 exemples (japonais · lecture · français). Déplie une leçon.</p>",
+  "<div class=\"tip\"><svg class=\"ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z\"></path></svg> Avec les 26 leçons ci-dessus, tu couvres l'ensemble de la grammaire N3 (~150 points). Pour t'entraîner avec des QCM corrigés et des révisions espacées, va dans l'<a href=\"app-n3.html\"><svg class=\"ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M22 12h-4l-3 8-6-16-3 8H2\"></path></svg> Entraînement adaptatif</a> (catégorie Grammaire) puis « Réviser mes erreurs ». La grammaire se teste vite en lecture : révise régulièrement.</div>"
+ ]
+}
