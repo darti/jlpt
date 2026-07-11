@@ -197,10 +197,13 @@
 
   /* Furigana: hidden by default; revealed per-word on tap (`.show`, toggled by dict
      `furi()`'s inline onclick) or globally via `[data-furi="on"]` on the root.
-     `visibility` (not `display`) reserves the line so revealing never shifts layout. */
-  ruby rt { visibility: hidden; }
+     `display: none` (not `visibility: hidden`): a hidden `<rt>` must leave layout
+     entirely. `visibility: hidden` keeps the annotation box in flow, so the ruby is
+     sized to the wider reading (きゃく over 客) and spreads the base kanji apart —
+     the odd intra-word gaps. Trade-off: revealing a word grows that line's height. */
+  ruby rt { display: none; }
   ruby.show rt,
-  :root[data-furi="on"] ruby rt { visibility: visible; }
+  :root[data-furi="on"] ruby rt { display: revert; }
 
   /* Data-embedded emphasis (`<b>`/`<strong>` inside question explanations, rendered via
      dangerouslySetInnerHTML) at a medium weight — full bold on kanji reads poorly. The UI's
