@@ -1,0 +1,40 @@
+// Copie les fichiers *livrés* (hors bundle JS/CSS produit par `bun build`) dans _site/,
+// pour que `bunx serve _site` en local soit STRICTEMENT identique au déploiement Pages.
+//
+// SOURCE UNIQUE de la liste des fichiers livrés : `bun run build` ET `.github/workflows/deploy.yml`
+// passent par ce script. Sans lui, _site/sw.js (+ data/, manifest, icônes, stubs) restaient
+// périmés en local — l'app servait une vieille version et « Forcer la mise à jour » ne changeait
+// rien (le serveur renvoyait toujours l'ancien sw.js). Cf. scripts/dev.ts (même inventaire).
+import { copyFileSync, mkdirSync, readdirSync, existsSync } from "node:fs";
+
+const OUT = "_site";
+
+// Fichiers racine livrés : stubs de redirection (anciennes URL → routes hash), PWA, icônes, doc.
+export const ROOT = [
+  "quiz.html", "app-n3.html",
+  "manifest.webmanifest", "sw.js",
+  "icon-180.png", "icon-192.png", "icon-512.png",
+  "README.md",
+];
+
+// Données chargées au runtime par le React : banques du quiz (+ index), dictionnaire, cours.
+// (Même sélection que scripts/dev.ts STATIC_FILES — grammar/kanji/vocab.json ne sont pas servis.)
+export const isServedData = (f) =>
+  /^bank-.*\.json$/.test(f) || f === "dict.json" || /^cours-.*\.json$/.test(f);
+
+export function copyStatic() {
+  mkdirSync(`${OUT}/data`, { recursive: true });
+  const dataFiles = readdirSync("data").filter(isServedData);
+  let n = 0;
+  for (const f of ROOT) {
+    if (!existsSync(f)) { console.warn(`  ⚠ ${f} absent — ignoré`); continue; }
+    copyFileSync(f, `${OUT}/${f}`); n++;
+  }
+  for (const f of dataFiles) { copyFileSync(`data/${f}`, `${OUT}/data/${f}`); n++; }
+  console.log(`✓ ${n} fichiers livrés copiés dans ${OUT}/ (dont data/ : ${dataFiles.length})`);
+  return n;
+}
+
+// Effet de bord uniquement quand exécuté directement (`bun tools/copy-static.mjs`),
+// jamais à l'import (tests) — sinon importer le module lancerait la copie.
+if (import.meta.main) copyStatic();

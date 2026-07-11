@@ -5,7 +5,7 @@
   "scripts": {
     "css": "bunx @tailwindcss/cli -i src/styles/tailwind.css -o src/styles/styles.gen.css",
     "dev": "bun run scripts/dev.ts",
-    "build": "bun run css -- --minify && bun build ./index.html --minify --splitting --outdir=_site",
+    "build": "bun run css -- --minify && bun build ./index.html --minify --splitting --outdir=_site && bun tools/copy-static.mjs",
     "test": "bun test",
     "typecheck": "tsc --noEmit"
   },

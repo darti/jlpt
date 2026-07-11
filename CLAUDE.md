@@ -31,9 +31,12 @@ UI en **français**, contenu en **japonais**. **Runtime & outils : `bun` exclusi
   supprime PAS). Pour voir ce qu'une page embarque, greper `_site/*.js`, PAS le HTML
   (`Bun.build` sur un `.tsx` ne voit pas les scripts référencés par le HTML). `bun build`
   ne nettoie pas `--outdir` → chunks périmés possibles dans `_site`.
-- **Déploiement** : `.github/workflows/deploy.yml` copie une **liste de fichiers
-  explicite** dans `_site`. Tout nouveau fichier livré doit y être ajouté, sinon
-  il ne sera pas publié. Push sur `main` → Pages (https://darti.github.io/jlpt/).
+- **Fichiers livrés** : `bun run build` bundle `index.html` **puis** copie les fichiers
+  livrés (`sw.js`, manifest, icônes, stubs `quiz`/`app-n3.html`, `data/*.json`) dans `_site`
+  via **`tools/copy-static.mjs`** — inventaire **unique** aussi utilisé par `deploy.yml`.
+  Tout nouveau fichier livré s'ajoute là (`ROOT` ou `isServedData`), sinon absent en local
+  **et** en prod. Sans cette copie, `bunx serve _site` sert un `_site` périmé (vieux `sw.js`
+  → « Forcer la mise à jour » sans effet). Push sur `main` → Pages (https://darti.github.io/jlpt/).
 - **Persistance** : localStorage même origine, partagé entre pages —
   `jlptN3adapt_v2` (progression), `jlptN3_theme`, `jlptN3_updatedAt`.
   Sync multi-appareils optionnelle via Gist (PAT scope `gist`).
