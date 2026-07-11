@@ -33,7 +33,7 @@ export function QuestionCard({
         />
       )}
       <div
-        className="text-fg text-xl leading-relaxed mb-4"
+        className="text-fg text-xl leading-relaxed mb-6"
         dangerouslySetInnerHTML={{ __html: stemHtml }}
       />
       {question.cat === "ecoute" && (
@@ -55,7 +55,7 @@ export function QuestionCard({
               ? "bg-surface-2 border border-status-failed text-status-failed"
               : answered
                 ? "bg-surface-2 border border-line text-fg-dim"
-                : "bg-surface-2 border border-line text-fg";
+                : "bg-surface-2 border border-line text-fg hover:border-accent transition-colors";
           return (
             <button
               key={i}
