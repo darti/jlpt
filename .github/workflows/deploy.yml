@@ -49,7 +49,7 @@ jobs:
           # Banque de questions du quiz : fetchée en relatif (data/bank-*.json), donc
           # doit vivre sous _site/data/, pas à la racine de _site/.
           mkdir -p _site/data
-          cp data/bank-*.json data/bank-index.json _site/data/
+          cp data/bank-*.json data/bank-index.json data/dict.json _site/data/
 
       - name: Téléverser l'artefact
         uses: actions/upload-pages-artifact@v3

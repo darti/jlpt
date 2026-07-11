@@ -22,6 +22,9 @@ const STATIC_FILES = new Set([
   "/data/bank-grammaire.json", "/data/bank-vocabulaire.json",
   "/data/bank-kanji.json", "/data/bank-lecture.json", "/data/bank-ecoute.json",
   "/data/bank-index.json",
+  // Dictionnaire (furigana / définition au tap) — le quiz React le fetch au runtime
+  // via src/lib/dict.ts (les données ne sont plus inlinées dans le bundle).
+  "/data/dict.json",
 ]);
 
 // One-shot CSS build so styles.gen.css exists before the first request…
