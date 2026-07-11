@@ -46,10 +46,12 @@ contenu en **japonais**. **Runtime & outils : `bun` exclusivement — jamais `no
 
 ## Migration en cours
 
-Portage incrémental (strangler) vers **React + TypeScript, bundlé par Bun**,
-page par page. **Portées (React, sur `main`)** : `index.html` (dashboard), `quiz.html`,
-`app-n3.html` (hub Entraînement). **Encore vanilla** : `cours-n3.html`, `planning-n3.html`.
-Le quiz porte furigana/tap dans `src/lib/dict.ts` (fetch `data/dict.json` au runtime).
+Portage incrémental (strangler) vers **React + TypeScript, bundlé par Bun**. Désormais une
+**SPA `HashRouter`** (une seule entrée `index.html`, react-router-dom) : routes `/` (dashboard),
+`/quiz`, `/entrainement` (hub), `/planning`. `quiz.html`/`app-n3.html` = stubs de redirection
+vers les routes hash. **Encore vanilla** : `cours-n3.html` (dernière page ; ses liens pointent
+vers `index.html#/…`). Le quiz porte furigana/tap dans `src/lib/dict.ts` (fetch `data/dict.json`
+au runtime) ; furigana masqués par défaut (tap / bascule `ふ`).
 
 - **Styles** : tokens CSS / Tailwind v4 repris de `~/Projects/darticorp/oku-theory/oku-ui`,
   **vendorisés** dans `src/styles/` (`tailwind.css` = tokens `@theme` + shims ;

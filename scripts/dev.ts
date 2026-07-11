@@ -12,7 +12,7 @@ import index from "../index.html";
 const STATIC_FILES = new Set([
   // quiz.html / app-n3.html are now tiny redirect stubs → the SPA hash routes.
   "/quiz.html", "/app-n3.html",
-  "/cours-n3.html", "/planning-n3.html",
+  "/cours-n3.html",
   "/progress.js", "/dict.js", "/theme.css",
   "/sw.js", "/manifest.webmanifest",
   "/icon-180.png", "/icon-192.png", "/icon-512.png",

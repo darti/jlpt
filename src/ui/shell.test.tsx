@@ -26,8 +26,9 @@ test("TopNav renders internal router links + external vanilla links", () => {
   const html = nav("dark");
   expect(html).toContain('href="/quiz"');           // NavLink → router route
   expect(html).toContain('href="/entrainement"');
-  expect(html).toContain('href="cours-n3.html"');    // still-vanilla external
-  expect(html).toContain("Planning");
+  expect(html).toContain('href="/planning"');       // Planning now an internal route
+  expect(html).toContain('href="cours-n3.html"');    // cours still vanilla external
+  expect(html).not.toContain("planning-n3.html");    // no longer external
   expect(html).toContain("ふ");                        // global furigana toggle
 });
 

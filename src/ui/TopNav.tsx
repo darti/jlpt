@@ -7,11 +7,11 @@ const ROUTES = [
   { to: "/", label: "Accueil", end: true },
   { to: "/entrainement", label: "Entraînement" },
   { to: "/quiz", label: "Quiz" },
+  { to: "/planning", label: "Planning" },
 ];
 // Still-vanilla pages (ported in later slices) — plain external links for now.
 const EXTERNAL = [
   { href: "cours-n3.html", label: "Cours" },
-  { href: "planning-n3.html", label: "Planning" },
 ];
 const ON = "text-fg font-semibold text-sm";
 const OFF = "text-fg-dim font-semibold text-sm";
