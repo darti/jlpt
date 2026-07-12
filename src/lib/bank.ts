@@ -2,7 +2,7 @@ import { SKILLS, type Skill } from "../types/progress.ts";
 import { DRATING } from "./elo.ts";
 import type { Question } from "../types/quiz.ts";
 
-type FetchLike = (url: string) => Promise<{ json: () => Promise<unknown> }>;
+export type FetchLike = (url: string) => Promise<{ json: () => Promise<unknown> }>;
 
 export function shuffle<T>(a: T[], rng: () => number = Math.random): T[] {
   const out = a.slice();
@@ -47,6 +47,20 @@ export function loadCategory(cat: Skill, fetchImpl: FetchLike = fetch as FetchLi
   return p;
 }
 
+/** Resolve `ids → Question[]` by loading the pools of the categories the ids belong to (per `idx`).
+ *  Order follows `ids`; ids absent from the pools are dropped. Shared by resume + the errors slice. */
+export async function questionsForIds(
+  ids: number[], idx: Record<number, Skill>, fetchImpl: FetchLike = fetch as FetchLike,
+): Promise<Question[]> {
+  if (!ids.length) return [];
+  const catsNeeded = new Set<Skill>();
+  for (const id of ids) { const c = idx[id]; if (c) catsNeeded.add(c); }
+  const pools = await Promise.all([...catsNeeded].map((c) => loadCategory(c, fetchImpl)));
+  const byId = new Map<number, Question>();
+  for (const pool of pools) for (const p of pool) byId.set(p.id, p);
+  return ids.map((id) => byId.get(id)).filter((p): p is Question => p !== undefined);
+}
+
 export function pickAdaptive(
   pool: Question[], R: number, exclude: Set<number>, wrong: number[], rng: () => number = Math.random,
 ): Question[] {
@@ -57,8 +71,30 @@ export function pickAdaptive(
     .map((x) => x.q);
 }
 
-export function allocate(masteryOf: (c: Skill) => number, minutes: number): { total: number; alloc: Record<Skill, number> } {
-  const total = Math.max(4, Math.min(45, Math.round(minutes * 1.5)));
+/** The `n` most-recent ids from `wrong[]` (its tail), newest first. Empty for n<=0 or no errors. */
+export function selectRecentErrors(wrong: number[], n: number): number[] {
+  if (n <= 0 || wrong.length === 0) return [];
+  return wrong.slice(Math.max(0, wrong.length - n)).reverse();
+}
+
+/** Combine a guaranteed errors slice with adaptive fill into a single shuffled session.
+ *  Adaptive fills `total - errorQs.length` (reconciles the budget when errorQs is short or empty;
+ *  clamped at 0). Callers must exclude the error ids from `adaptiveCandidates` upstream. */
+export function composeSession(
+  errorQs: Question[], adaptiveCandidates: Question[], total: number, rng: () => number = Math.random,
+): Question[] {
+  const adaptiveTarget = Math.max(0, total - errorQs.length);
+  const adaptiveQs = shuffle(adaptiveCandidates, rng).slice(0, adaptiveTarget);
+  return shuffle([...errorQs, ...adaptiveQs], rng);
+}
+
+/** Questions for a session of `minutes` (~1.5/min, clamped to [4, 45]). */
+export function questionCount(minutes: number): number {
+  return Math.max(4, Math.min(45, Math.round(minutes * 1.5)));
+}
+
+/** Distribute a fixed `total` question budget across skills, weighting weaker skills. */
+export function allocateCount(masteryOf: (c: Skill) => number, total: number): Record<Skill, number> {
   const w = {} as Record<Skill, number>;
   let sum = 0;
   for (const c of SKILLS) { w[c] = 0.2 + (1 - masteryOf(c)) * 1.3; sum += w[c]; }
@@ -68,5 +104,10 @@ export function allocate(masteryOf: (c: Skill) => number, minutes: number): { to
   const order = [...SKILLS].sort((a, b) => masteryOf(a) - masteryOf(b));
   let i = 0;
   while (assigned < total) { alloc[order[i % order.length]]++; assigned++; i++; }
-  return { total, alloc };
+  return alloc;
+}
+
+export function allocate(masteryOf: (c: Skill) => number, minutes: number): { total: number; alloc: Record<Skill, number> } {
+  const total = questionCount(minutes);
+  return { total, alloc: allocateCount(masteryOf, total) };
 }

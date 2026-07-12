@@ -3,7 +3,10 @@ import { useSearchParams } from "react-router-dom";
 import { SKILLS, type Progress, type Skill } from "../../types/progress.ts";
 import type { Question, SkillState } from "../../types/quiz.ts";
 import { updateRating } from "../../lib/elo.ts";
-import { allocate, loadCategory, pickAdaptive, shuffle } from "../../lib/bank.ts";
+import {
+  questionCount, allocateCount, loadCategory, pickAdaptive,
+  questionsForIds, selectRecentErrors, composeSession,
+} from "../../lib/bank.ts";
 import { readRawProgress, writeProgress } from "../../lib/storage.ts";
 import { decodeBits, encodeBits, setBit } from "../../lib/coverage.ts";
 import { dashboardModel, masteryOf } from "../../lib/scoring.ts";
@@ -143,6 +146,8 @@ export function useQuiz() {
     pushTimerRef.current = setTimeout(() => { void cloudPush(gistDeps, false); }, PUSH_DEBOUNCE_MS);
   }, [gistDeps]);
 
+  // Hook-local, useRef-cached, retry-on-failure variant of the id→skill index — distinct from
+  // lib `loadBankIndex` (module-memoized, no retry, shared by the coverage hook; see bank.ts).
   const ensureBankIndex = useCallback((): Promise<Record<number, Skill> | null> => {
     if (bankIndexRef.current) return Promise.resolve(bankIndexRef.current);
     if (!bankIndexPromiseRef.current) {
@@ -175,32 +180,45 @@ export function useQuiz() {
     const raw = readRawProgress();
     const progress = asProgress(raw);
     const wrong = asWrong(raw);
-    const { total, alloc } = allocate((c) => masteryOf(progress, c), min);
+    const total = questionCount(min);
 
-    // Consult the decision engine. `resume: false` — "Commencer" always starts fresh; the
-    // resume decision is handled at the card level. In #1 BUILT_CAPS is all-off, so the plan
-    // is always { kind: "composed", alloc: { errors: 0, learn: 0, adaptive: total } }. Later
-    // sub-projects flip a cap in BUILT_CAPS and branch on plan.kind / plan.alloc here.
+    // Consult the decision engine. `resume: false` — "Commencer" always starts fresh; the resume
+    // decision is handled at the card level. Errors are built (BUILT_CAPS.errors); diagnostic/learn
+    // are not yet, so plan.kind is always "composed" here. Later sub-projects flip a cap and branch.
     const plan = pickSessionPlan(
       { resume: false, daysSinceDiagnostic: null, wrongCount: wrong.length, newCoursePoints: 0 },
       total,
       BUILT_CAPS,
     );
-    if (plan.kind !== "composed") return; // diagnostic/resume unreachable in #1
+    if (plan.kind !== "composed") return; // diagnostic/resume unreachable in #2
 
-    const exclude = new Set<number>();
+    // Errors slice: the most-recent wrong[] ids (up to plan.alloc.errors), resolved to questions.
+    // C2: if the bank index is unavailable (network failure — ensureBankIndex resolves null), the
+    // guaranteed errors floor is skipped and the session degrades to adaptive-only. That is the
+    // accepted fallback: pickAdaptive still soft-surfaces wrong ids via its +150 boost (for
+    // mastery-loaded categories). resumeNow bails on a null index (nothing to resume); start() has a
+    // valid adaptive session to build, so it proceeds.
+    const errorIds = selectRecentErrors(wrong, plan.alloc.errors);
+    const idx = await ensureBankIndex();
+    const errorQs = idx ? await questionsForIds(errorIds, idx) : [];
+
+    // Adaptive fills exactly the remaining budget, weighted by mastery — so no weighted pick is
+    // dropped (C1). Seed `exclude` with the error ids first → no duplicates.
+    const adaptiveTarget = Math.max(0, total - errorQs.length);
+    const alloc = allocateCount((c) => masteryOf(progress, c), adaptiveTarget);
+    const exclude = new Set<number>(errorQs.map((q) => q.id));
     const picked: Question[] = [];
     for (const cat of SKILLS) {
       const n = alloc[cat];
       if (!n) continue;
       const pool = await loadCategory(cat);
       const R = skillStateOf(raw, cat).R;
-      const picks = pickAdaptive(pool, R, exclude, wrong).slice(0, n);
+      const picks = pickAdaptive(pool, R, exclude, wrong).slice(0, n); // wrong kept → +150 boost (soft floor)
       for (const q of picks) exclude.add(q.id);
       picked.push(...picks);
     }
 
-    const session = shuffle(picked).slice(0, plan.alloc.adaptive);
+    const session = composeSession(errorQs, picked, total, Math.random);
     if (!session.length) return;
 
     rightRef.current = 0;
@@ -302,16 +320,7 @@ export function useQuiz() {
     const idx = await ensureBankIndex();
     if (!idx) return;
 
-    const catsNeeded = new Set<Skill>();
-    for (const id of r.ids) {
-      const cat = idx[id];
-      if (cat) catsNeeded.add(cat);
-    }
-    const pools = await Promise.all([...catsNeeded].map((c) => loadCategory(c)));
-    const byId = new Map<number, Question>();
-    for (const pool of pools) for (const q of pool) byId.set(q.id, q);
-
-    const rebuilt = r.ids.map((id) => byId.get(id)).filter((q): q is Question => q !== undefined);
+    const rebuilt = await questionsForIds(r.ids, idx);
     if (!rebuilt.length) {
       clearResumeState();
       setResume(null);
