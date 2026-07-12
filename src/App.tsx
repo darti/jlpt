@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { InstallPrompt } from "./features/pwa/InstallPrompt.tsx";
 import { Dashboard } from "./features/dashboard/Dashboard.tsx";
 import { ProgressChart } from "./features/dashboard/ProgressChart.tsx";
 import { useProgress } from "./features/dashboard/useProgress.ts";
@@ -17,7 +16,6 @@ export function DashboardView({ model, days, scores, coverage }: {
 }) {
   return (
     <>
-      <InstallPrompt />
       <Dashboard model={model} days={days} coverage={coverage} />
       <section className="bg-panel border border-line rounded-xl p-5 shadow-card surface-blur">
         <h2 className="text-fg text-lg font-bold mt-0 mb-3">Progression</h2>

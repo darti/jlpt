@@ -9,6 +9,7 @@ test("Parametrage renders font, theme, data and sync sections", () => {
       <Parametrage />
     </ThemeContext.Provider>,
   );
+  expect(html).toContain("Installer");                       // InstallPrompt (moved from Accueil)
   expect(html).toContain("Police");                          // Settings font section
   expect(html).toContain("Exporter");                        // Settings data section
   expect(html).toContain("Réinitialiser");                   // Settings data section
