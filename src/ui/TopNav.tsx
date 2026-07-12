@@ -18,7 +18,7 @@ export function TopNav() {
   const [furiOn, setFuriOn] = useState(() => readFuri());
   const toggleFuri = () => { const on = writeFuri(!furiOn); setFuriOn(on); applyFuri(); };
   return (
-    <nav className="sticky top-0 z-10 flex gap-4 flex-wrap justify-center items-center px-3 pb-2.5 pt-[calc(0.625rem+env(safe-area-inset-top))]">
+    <nav className="sticky top-[env(safe-area-inset-top)] z-10 flex gap-4 flex-wrap justify-center items-center px-3 py-2.5">
       {ROUTES.map((r) => (
         <NavLink key={r.to} to={r.to} end={r.end} className={({ isActive }) => (isActive ? ON : OFF)}>
           {r.label}

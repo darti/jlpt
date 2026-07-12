@@ -14,7 +14,7 @@ export function Footer({ onForceRefresh, version }: { onForceRefresh: () => void
   };
 
   return (
-    <footer className="text-center text-fg-dim text-sm mt-8">
+    <footer className="text-center text-fg-dim text-sm mt-8 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
       頑張ってください！ — Bon courage
       <br />
       <span className="inline-flex items-center gap-2 mt-2">
