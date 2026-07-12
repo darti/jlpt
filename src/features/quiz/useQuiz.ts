@@ -5,6 +5,7 @@ import type { Question, SkillState } from "../../types/quiz.ts";
 import { updateRating } from "../../lib/elo.ts";
 import { allocate, loadCategory, pickAdaptive, shuffle } from "../../lib/bank.ts";
 import { readRawProgress, writeProgress } from "../../lib/storage.ts";
+import { decodeBits, encodeBits, setBit } from "../../lib/coverage.ts";
 import { dashboardModel, masteryOf } from "../../lib/scoring.ts";
 import { cloudPush, type GistDeps } from "../../lib/gist.ts";
 
@@ -228,11 +229,21 @@ export function useQuiz() {
     const withoutId = curWrong.filter((id) => id !== q.id);
     const nextWrong = (correct ? withoutId : [...withoutId, q.id]).slice(-80);
 
+    // Coverage: mark the item seen (always) and mastered (when correct). Read-modify-write on
+    // the same `raw`; the encoded value already carries every prior bit, so writeProgress's
+    // overwrite of these string fields is monotone within a device.
+    const seen = encodeBits(setBit(decodeBits(typeof raw?.seen === "string" ? raw.seen : ""), q.id));
+    const mastered = correct
+      ? encodeBits(setBit(decodeBits(typeof raw?.mastered === "string" ? raw.mastered : ""), q.id))
+      : undefined;
+
     writeProgress({
       skill: { [q.cat]: nextSkill },
       total: numField(raw, "total") + 1,
       right: numField(raw, "right") + (correct ? 1 : 0),
       wrong: nextWrong,
+      seen,
+      ...(mastered !== undefined ? { mastered } : {}),
     });
     schedulePush();
 
