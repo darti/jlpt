@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { BAR_SKILLS, type Skill } from "../../types/progress.ts";
+import type { SkillCoverage } from "../../lib/coverage.ts";
 
 const LABELS: Record<Skill, string> = {
   grammaire: "Grammaire", vocabulaire: "Vocab", kanji: "Kanji", lecture: "Lecture", ecoute: "Écoute",
@@ -17,14 +18,18 @@ function cssVar(name: string, fallback: string): string {
 }
 
 /**
- * Skill-mastery radar (spider) chart — one learner profiled across the four BAR_SKILLS
- * (0–100 % each). Single series → a single accent hue with no legend (the axis labels name
- * each skill, so identity is never color-alone). ECharts is tree-shaken and dynamically
- * imported so it lands in its own runtime-cached chunk and never touches the DOM under SSR.
- * The visible value list below carries exact %s — radar is poor at precise reading — and
- * doubles as the accessible + offline-first-visit fallback when the chart chunk is absent.
+ * Skill radar (spider) chart across the four BAR_SKILLS (0–100 % each). Always plots
+ * "Maîtrise" (Elo mastery, filled accent). When `coverage` is given it overlays a second
+ * "Vu" series (référentiel seen %) as a dashed, un-filled neutral outline — distinguished
+ * from mastery by hue AND line-style AND fill, so the two series never rely on colour alone
+ * (dataviz), with a legend since ≥2 series are shown. ECharts is tree-shaken + dynamically
+ * imported (own runtime-cached chunk, never touches the DOM under SSR); the visible value
+ * list below carries exact %s and is the accessible + offline-first-visit fallback.
  */
-export function SkillChart({ mastery }: { mastery: Record<Skill, number> }) {
+export function SkillChart(
+  { mastery, coverage }:
+  { mastery: Record<Skill, number>; coverage?: Record<Skill, SkillCoverage> | null },
+) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!ref.current) return;
@@ -44,6 +49,24 @@ export function SkillChart({ mastery }: { mastery: Record<Skill, number> }) {
         const accent = cssVar("--color-accent", "#88c0d0");
         const dim = cssVar("--color-fg-dim", "rgba(236,239,244,0.62)");
         const line = cssVar("--color-line-hi", "rgba(236,239,244,0.14)");
+        const data: Record<string, unknown>[] = [{
+          value: BAR_SKILLS.map((s) => mastery[s]),
+          name: "Maîtrise",
+          symbolSize: 8,                              // dataviz: markers ≥ 8px
+          lineStyle: { color: accent, width: 2 },     // dataviz: thin 2px line
+          itemStyle: { color: accent },
+          areaStyle: { color: accent, opacity: 0.18 },// soft fill; line + vertices carry the shape
+        }];
+        if (coverage) {
+          data.push({
+            value: BAR_SKILLS.map((s) => coverage[s]?.seen ?? 0),
+            name: "Vu",
+            symbolSize: 5,
+            // dashed neutral outline (no fill) → reads as the coverage "envelope" behind mastery
+            lineStyle: { color: dim, width: 2, type: "dashed" },
+            itemStyle: { color: dim },
+          });
+        }
         c.setOption({
           tooltip: {}, // per-series hover (dataviz: ship a hover layer)
           radar: {
@@ -55,25 +78,16 @@ export function SkillChart({ mastery }: { mastery: Record<Skill, number> }) {
             axisLine: { lineStyle: { color: line } },
             splitArea: { show: false },                   // no zebra rings — keep it quiet
           },
-          series: [{
-            type: "radar",
-            data: [{
-              value: BAR_SKILLS.map((s) => mastery[s]),
-              name: "Maîtrise",
-              symbolSize: 8,                              // dataviz: markers ≥ 8px
-              lineStyle: { color: accent, width: 2 },     // dataviz: thin 2px line
-              itemStyle: { color: accent },
-              areaStyle: { color: accent, opacity: 0.18 },// soft fill; line + vertices carry the shape
-            }],
-          }],
+          series: [{ type: "radar", data }],
         });
         onResize = () => c.resize();
         window.addEventListener("resize", onResize);
       } catch { /* ECharts chunk unavailable (offline first visit) → value list below is the fallback */ }
     })();
     return () => { disposed = true; if (onResize) window.removeEventListener("resize", onResize); chart?.dispose(); };
-  }, [mastery]);
+  }, [mastery, coverage]);
 
+  const hasCov = !!coverage;
   return (
     <div>
       <div
@@ -83,11 +97,31 @@ export function SkillChart({ mastery }: { mastery: Record<Skill, number> }) {
         role="img"
         aria-label="Radar de maîtrise par compétence"
       />
+      {hasCov && (
+        // Legend — mandatory for ≥2 series; identity via label, not colour alone.
+        <div className="flex flex-wrap justify-center gap-4 mt-2 text-meta text-fg-dim">
+          <span className="flex items-center gap-2">
+            <span
+              aria-hidden="true"
+              style={{ background: "var(--color-accent)", width: 10, height: 10, borderRadius: 999, display: "inline-block" }}
+            />
+            Maîtrise
+          </span>
+          <span className="flex items-center gap-2">
+            <span
+              aria-hidden="true"
+              style={{ borderTop: "2px dashed var(--color-fg-dim)", width: 16, display: "inline-block" }}
+            />
+            Vu (couverture)
+          </span>
+        </div>
+      )}
       <div className="flex flex-wrap justify-center gap-4 mt-1 text-sm">
         {BAR_SKILLS.map((s) => (
           <span key={s} className="flex items-center gap-2 text-fg-dim">
             <span className={`inline-block w-2 h-2 rounded-full ${DOT[s]}`} aria-hidden="true" />
             {LABELS[s]} <b className="text-fg">{mastery[s]}%</b>
+            {hasCov && <> · vu <b className="text-fg">{coverage[s]?.seen ?? 0}%</b></>}
           </span>
         ))}
       </div>

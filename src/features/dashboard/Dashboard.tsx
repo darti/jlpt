@@ -59,10 +59,10 @@ export function Dashboard(
         </p>
       </div>
 
-      {/* Maîtrise par compétence : radar */}
+      {/* Maîtrise par compétence : radar (maîtrise + couverture « vu » en surimpression) */}
       <div className={CARD}>
         <h2 className={HEADING}>Maîtrise par compétence</h2>
-        <SkillChart mastery={model.barMastery} />
+        <SkillChart mastery={model.barMastery} coverage={coverage} />
       </div>
 
       {/* Couverture du référentiel : anneaux vu / appris */}
