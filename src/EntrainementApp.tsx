@@ -4,8 +4,13 @@ import { QuestionCard } from "./features/quiz/QuestionCard.tsx";
 import { Corrige } from "./features/quiz/Corrige.tsx";
 import { Results } from "./features/quiz/Results.tsx";
 import { useQuiz, type Phase, type ResumeState } from "./features/quiz/useQuiz.ts";
-import { speak, sentenceFromG } from "./lib/tts.ts";
+import { DiagnosticIntro } from "./features/quiz/DiagnosticIntro.tsx";
+import { DiagnosticResults } from "./features/quiz/DiagnosticResults.tsx";
+import { dashboardModel, type DashboardModel } from "./lib/scoring.ts";
+import { readProgress } from "./lib/storage.ts";
+import { speakQuestion } from "./lib/tts.ts";
 import type { Question } from "./types/quiz.ts";
+import type { DiagAnswer } from "./features/quiz/useQuiz.ts";
 
 /** Pure, prop-driven Entraînement content: the hub (phase "home") or the quiz flow
  *  (question/corrigé/résultats). SSR-renderable — all effects live in the container +
@@ -14,18 +19,15 @@ export function EntrainementAppView(props: {
   phase: Phase; question: Question | null; count: number; right: number;
   minutes: number; resume: ResumeState | null;
   answered: boolean; chosen: number | null;
+  index?: number;
+  mode?: "normal" | "diagnostic"; diagAnswers?: DiagAnswer[]; diagModel?: DashboardModel | null;
   onStart: () => void; onChoose: (i: number) => void; onNext: () => void; onRestart: () => void;
   onSetMinutes: (m: number) => void;
   onResumeNow: () => void; onDismissResume: () => void;
+  onBeginDiag?: () => void; onLater?: () => void; onDiagDone?: () => void;
 }) {
   const { question } = props;
-  const onSpeak = () => {
-    if (!question) return;
-    const speakText = question.cat === "ecoute"
-      ? (typeof question.script === "string" && question.script ? question.script : question.q)
-      : sentenceFromG(question.g ?? question.q);
-    speak(speakText);
-  };
+  const onSpeak = () => { if (question) speakQuestion(question); };
 
   if (props.phase === "home") {
     return (
@@ -37,10 +39,19 @@ export function EntrainementAppView(props: {
     );
   }
 
+  if (props.phase === "diag-intro") {
+    return <DiagnosticIntro count={props.count} onStart={props.onBeginDiag ?? (() => {})} onLater={props.onLater ?? (() => {})} />;
+  }
+
   return (
     <>
       {props.phase === "question" && question && (
-        <QuestionCard question={question} chosen={null} answered={false} onChoose={props.onChoose} onSpeak={onSpeak} />
+        <div className="flex flex-col gap-3">
+          {props.mode === "diagnostic" && (
+            <p className="text-fg-dim text-sm m-0">Test · question {(props.index ?? 0) + 1} / {props.count}</p>
+          )}
+          <QuestionCard question={question} chosen={null} answered={false} onChoose={props.onChoose} onSpeak={onSpeak} />
+        </div>
       )}
       {props.phase === "corrige" && question && (
         <div className="flex flex-col gap-4">
@@ -58,6 +69,9 @@ export function EntrainementAppView(props: {
       {props.phase === "results" && (
         <Results count={props.count} right={props.right} onRestart={props.onRestart} />
       )}
+      {props.phase === "diag-results" && props.diagModel && (
+        <DiagnosticResults model={props.diagModel} answers={props.diagAnswers ?? []} onDone={props.onDiagDone ?? (() => {})} />
+      )}
     </>
   );
 }
@@ -68,15 +82,22 @@ export default function EntrainementApp() {
   const quiz = useQuiz();
   const [resumeDismissed, setResumeDismissed] = useState(false);
 
+  const diagModel: DashboardModel | null = quiz.phase === "diag-results"
+    ? dashboardModel(readProgress() ?? { total: 0, skill: {} }, new Date())
+    : null;
+
   return (
     <EntrainementAppView
-      phase={quiz.phase} question={quiz.question} count={quiz.count} right={quiz.right}
+      phase={quiz.phase} question={quiz.question} count={quiz.count} right={quiz.right} index={quiz.index}
       minutes={quiz.minutes}
       resume={resumeDismissed ? null : quiz.resume}
       answered={quiz.answered} chosen={quiz.chosen}
+      mode={quiz.mode} diagAnswers={quiz.diagAnswers} diagModel={diagModel}
       onStart={quiz.start} onChoose={quiz.choose} onNext={quiz.next} onRestart={quiz.restart}
       onSetMinutes={quiz.setMinutes}
       onResumeNow={quiz.resumeNow} onDismissResume={() => setResumeDismissed(true)}
+      onBeginDiag={quiz.beginDiagnostic} onLater={() => quiz.start(undefined, { skipDiagnostic: true })}
+      onDiagDone={quiz.restart}
     />
   );
 }

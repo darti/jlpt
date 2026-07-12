@@ -71,6 +71,40 @@ export function pickAdaptive(
     .map((x) => x.q);
 }
 
+/** Broad, level-triangulating selection for a diagnostic: ~equal share per skill with a spread of
+ *  difficulties (d=1/2/3), shuffled. Distinct from pickAdaptive (mastery-weighted). Pure. */
+export function selectDiagnostic(
+  poolsBySkill: Partial<Record<Skill, Question[]>>, total: number, rng: () => number = Math.random,
+): Question[] {
+  if (total <= 0) return [];
+  const skills = SKILLS.filter((s) => (poolsBySkill[s]?.length ?? 0) > 0);
+  if (!skills.length) return [];
+  const base = Math.floor(total / skills.length);
+  let remainder = total - base * skills.length;
+  const picked: Question[] = [];
+  for (const s of skills) {
+    const want = base + (remainder > 0 ? 1 : 0);
+    if (remainder > 0) remainder--;
+    // Group this skill's (shuffled) pool by difficulty, then round-robin d1→d2→d3 to spread levels.
+    const byD: [Question[], Question[], Question[]] = [[], [], []];
+    for (const q of shuffle(poolsBySkill[s] ?? [], rng)) byD[q.d - 1].push(q);
+    let taken = 0, di = 0;
+    while (taken < want) {
+      let advanced = false;
+      for (let k = 0; k < 3; k++) {
+        const bucket = byD[(di + k) % 3];
+        if (bucket.length) {
+          picked.push(bucket.shift() as Question);
+          taken++; di = (di + k + 1) % 3; advanced = true;
+          break;
+        }
+      }
+      if (!advanced) break; // this skill's pool is exhausted
+    }
+  }
+  return shuffle(picked, rng);
+}
+
 /** The `n` most-recent ids from `wrong[]` (its tail), newest first. Empty for n<=0 or no errors. */
 export function selectRecentErrors(wrong: number[], n: number): number[] {
   if (n <= 0 || wrong.length === 0) return [];

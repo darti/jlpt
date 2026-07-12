@@ -2,6 +2,7 @@ import { test, expect } from "bun:test";
 import {
   shuffle, pickAdaptive, allocate, allocateCount, questionCount, loadCategory, loadBankIndex,
   clearBankIndexCache, clearCategoryCache, selectRecentErrors, composeSession, questionsForIds,
+  selectDiagnostic,
 } from "./bank.ts";
 import type { FetchLike } from "./bank.ts";
 import type { Question } from "../types/quiz.ts";
@@ -128,4 +129,52 @@ test("questionsForIds returns [] for no ids", async () => {
   const idx: Record<number, Skill> = {};
   const fetchImpl: FetchLike = async () => ({ json: async () => [] });
   expect(await questionsForIds([], idx, fetchImpl)).toEqual([]);
+});
+
+test("selectDiagnostic spreads across skills and difficulties, no duplicates", () => {
+  const mk = (cat: Skill, base: number): Question[] =>
+    [1, 2, 3].flatMap((d) => [0, 1].map((k) => ({ id: base + d * 10 + k, cat, d: d as 1 | 2 | 3, q: "", o: [], a: 0 })));
+  const pools: Record<Skill, Question[]> = {
+    grammaire: mk("grammaire", 100), vocabulaire: mk("vocabulaire", 200), kanji: mk("kanji", 300),
+    lecture: mk("lecture", 400), ecoute: mk("ecoute", 500),
+  };
+  const out = selectDiagnostic(pools, 15, () => 0);
+  expect(out).toHaveLength(15);
+  expect(new Set(out.map((x) => x.id)).size).toBe(15); // no duplicates
+  for (const cat of ["grammaire", "vocabulaire", "kanji", "lecture", "ecoute"] as Skill[]) {
+    expect(out.filter((x) => x.cat === cat)).toHaveLength(3); // ~3 per skill (15/5)
+  }
+});
+
+// MAJOR #4: prove the difficulty spread against a BALANCED pool with a deterministic rng —
+// asking 3 from {2×d1, 2×d2, 2×d3} must yield exactly one of each (round-robin d1→d2→d3).
+test("selectDiagnostic yields a balanced difficulty spread when the pool allows", () => {
+  const mk = (cat: Skill): Question[] =>
+    [1, 2, 3].flatMap((d) => [0, 1].map((k) => ({ id: d * 100 + k, cat, d: d as 1 | 2 | 3, q: "", o: [], a: 0 })));
+  const pools: Record<Skill, Question[]> = {
+    grammaire: mk("grammaire"), vocabulaire: [], kanji: [], lecture: [], ecoute: [],
+  };
+  const out = selectDiagnostic(pools, 3, () => 0);
+  expect(out.map((x) => x.d).sort()).toEqual([1, 2, 3]); // one of each difficulty
+});
+
+// MAJOR #4: skewed pool (only d1 available) — the spread degrades gracefully to what exists.
+test("selectDiagnostic degrades to available difficulties on a skewed pool", () => {
+  const only1: Question[] = [0, 1, 2, 3, 4].map((k) => ({ id: k, cat: "kanji" as Skill, d: 1 as const, q: "", o: [], a: 0 }));
+  const pools: Record<Skill, Question[]> = { grammaire: [], vocabulaire: [], kanji: only1, lecture: [], ecoute: [] };
+  const out = selectDiagnostic(pools, 3, () => 0);
+  expect(out).toHaveLength(3);
+  expect(out.every((x) => x.d === 1)).toBe(true); // no d2/d3 exist → all d1, no crash
+});
+
+test("selectDiagnostic skips empty skills and never exceeds total", () => {
+  const one: Question[] = [{ id: 1, cat: "kanji", d: 1, q: "", o: [], a: 0 }];
+  const pools: Partial<Record<Skill, Question[]>> = { kanji: one };
+  const out = selectDiagnostic(pools, 15, () => 0);
+  expect(out.length).toBeLessThanOrEqual(15);
+  expect(out.every((x) => x.cat === "kanji")).toBe(true);
+});
+
+test("selectDiagnostic returns [] for total<=0", () => {
+  expect(selectDiagnostic({}, 0, () => 0)).toEqual([]);
 });

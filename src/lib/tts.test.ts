@@ -1,5 +1,6 @@
 import { test, expect } from "bun:test";
-import { sentenceFromG } from "./tts.ts";
+import { sentenceFromG, speechTextFor } from "./tts.ts";
+import type { Question } from "../types/quiz.ts";
 
 test("sentenceFromG strips French glosses «…», keeps the post-→ form, drops furigana (…)", () => {
   // one segment: "帰る（かえる）→帰ったら «conditionnel»" → "帰ったら"
@@ -12,4 +13,21 @@ test("sentenceFromG joins ' · '-separated segments", () => {
 
 test("sentenceFromG on empty input returns empty string", () => {
   expect(sentenceFromG("")).toBe("");
+});
+
+test("speechTextFor uses the listening script for ecoute questions", () => {
+  const q: Question = { id: 1, cat: "ecoute", d: 1, q: "stem", o: [], a: 0, script: "きいてください" };
+  expect(speechTextFor(q)).toBe("きいてください");
+});
+test("speechTextFor falls back to the stem for ecoute without a script", () => {
+  const q: Question = { id: 1, cat: "ecoute", d: 1, q: "stem", o: [], a: 0 };
+  expect(speechTextFor(q)).toBe("stem");
+});
+test("speechTextFor rebuilds the sentence from g for non-ecoute questions", () => {
+  const q: Question = { id: 1, cat: "grammaire", d: 1, q: "stem", o: [], a: 0, g: "帰る→帰ったら «cond»" };
+  expect(speechTextFor(q)).toBe("帰ったら");
+});
+test("speechTextFor uses the stem (via sentenceFromG) when g is absent, non-ecoute", () => {
+  const q: Question = { id: 1, cat: "vocabulaire", d: 1, q: "音楽（おんがく）«musique»", o: [], a: 0 };
+  expect(speechTextFor(q)).toBe("音楽");
 });

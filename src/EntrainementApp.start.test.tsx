@@ -49,6 +49,7 @@ afterEach(() => {
 });
 
 test("clicking Commencer starts a session (event arg does not NaN the session length)", async () => {
+  localStorage.setItem("jlptN3adapt_v2", JSON.stringify({ diagAt: Date.now() })); // recent diagnostic → composed path
   act(() => { root.render(<MemoryRouter><EntrainementApp /></MemoryRouter>); });
 
   const btn = [...container.querySelectorAll("button")].find((b) => b.textContent === "Commencer");
@@ -69,7 +70,7 @@ test("a session with stored errors injects the recent wrong ids without duplicat
   // id scheme `(catIndex+1)*100 + i`) — all within the 30% cap (floor(0.3*15) = 4), so
   // every one of them must survive into the session as the "recent errors" slice.
   const wrongIds = [100, 101, 200, 201];
-  localStorage.setItem("jlptN3adapt_v2", JSON.stringify({ wrong: wrongIds }));
+  localStorage.setItem("jlptN3adapt_v2", JSON.stringify({ wrong: wrongIds, diagAt: Date.now() }));
 
   act(() => { root.render(<MemoryRouter><EntrainementApp /></MemoryRouter>); });
 
@@ -93,7 +94,7 @@ test("a session with stored errors injects the recent wrong ids without duplicat
 test("index-fetch failure degrades to an adaptive-only session (no crash, budget kept)", async () => {
   // Seed errors that would be injected IF the index resolved.
   const someIds = Object.values(BANK).flat().slice(0, 4).map((q) => q.id);
-  localStorage.setItem("jlptN3adapt_v2", JSON.stringify({ wrong: someIds }));
+  localStorage.setItem("jlptN3adapt_v2", JSON.stringify({ wrong: someIds, diagAt: Date.now() }));
   // Override the harness fetch: fail only bank-index, still serve category pools.
   globalThis.fetch = (async (url: string) => {
     const u = String(url);
