@@ -8,7 +8,7 @@ import { DiagnosticIntro } from "./features/quiz/DiagnosticIntro.tsx";
 import { DiagnosticResults } from "./features/quiz/DiagnosticResults.tsx";
 import { dashboardModel, type DashboardModel } from "./lib/scoring.ts";
 import { readProgress } from "./lib/storage.ts";
-import { speak, sentenceFromG } from "./lib/tts.ts";
+import { speakQuestion } from "./lib/tts.ts";
 import type { Question } from "./types/quiz.ts";
 import type { DiagAnswer } from "./features/quiz/useQuiz.ts";
 
@@ -27,13 +27,7 @@ export function EntrainementAppView(props: {
   onBeginDiag?: () => void; onLater?: () => void; onDiagDone?: () => void;
 }) {
   const { question } = props;
-  const onSpeak = () => {
-    if (!question) return;
-    const speakText = question.cat === "ecoute"
-      ? (typeof question.script === "string" && question.script ? question.script : question.q)
-      : sentenceFromG(question.g ?? question.q);
-    speak(speakText);
-  };
+  const onSpeak = () => { if (question) speakQuestion(question); };
 
   if (props.phase === "home") {
     return (

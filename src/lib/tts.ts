@@ -1,3 +1,5 @@
+import type { Question } from "../types/quiz.ts";
+
 /** Rebuild the full Japanese sentence from a grammar decomposition `g`
  *  (mirrors legacy sentenceFromG): drop French glosses «…», keep the form
  *  after →, and remove （furigana）. */
@@ -29,4 +31,18 @@ export function speak(text: string): void {
 }
 export function stopSpeak(): void {
   try { if (typeof speechSynthesis !== "undefined") speechSynthesis.cancel(); } catch { /* ignore */ }
+}
+
+/** The Japanese text to speak for a question: the listening script (or the stem) for ecoute,
+ *  else the sentence rebuilt from the grammar decomposition `g`. Pure. */
+export function speechTextFor(question: Question): string {
+  if (question.cat === "ecoute") {
+    return typeof question.script === "string" && question.script ? question.script : question.q;
+  }
+  return sentenceFromG(question.g ?? question.q);
+}
+
+/** Speak a question's Japanese aloud (no-op when speech synthesis is unavailable). */
+export function speakQuestion(question: Question): void {
+  speak(speechTextFor(question));
 }

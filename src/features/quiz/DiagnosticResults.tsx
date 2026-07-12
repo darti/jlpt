@@ -3,6 +3,7 @@ import { SKILLS, type Skill } from "../../types/progress.ts";
 import type { Question } from "../../types/quiz.ts";
 import { QuestionCard } from "./QuestionCard.tsx";
 import { Corrige } from "./Corrige.tsx";
+import { speakQuestion } from "../../lib/tts.ts";
 
 const SKILL_LABELS: Record<Skill, string> = {
   grammaire: "Grammaire", vocabulaire: "Vocab", kanji: "Kanji", lecture: "Lecture", ecoute: "Écoute",
@@ -46,7 +47,7 @@ export function DiagnosticResults({
       <p className="text-fg text-base font-bold m-0">Correction</p>
       {answers.map((a) => (
         <div key={a.question.id} className="flex flex-col gap-2">
-          <QuestionCard question={a.question} chosen={a.chosen} answered={true} onChoose={() => {}} onSpeak={() => {}} />
+          <QuestionCard question={a.question} chosen={a.chosen} answered={true} onChoose={() => {}} onSpeak={() => speakQuestion(a.question)} />
           <Corrige question={a.question} correct={a.chosen === a.question.a} />
         </div>
       ))}
