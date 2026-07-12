@@ -1,6 +1,6 @@
 export function Header() {
   return (
-    <header className="px-5 pt-6 pb-3 text-center">
+    <header className="px-5 pt-[calc(1.5rem+env(safe-area-inset-top))] pb-3 text-center">
       <h1 className="text-xl text-fg m-0">
         Préparation <span className="text-accent">JLPT N3</span>
       </h1>
