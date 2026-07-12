@@ -1,5 +1,6 @@
 import { passTier, type DashboardModel } from "../../lib/scoring.ts";
 import { SkillChart } from "./SkillChart.tsx";
+import { PassGauge } from "./PassGauge.tsx";
 import { CoverageRings } from "./CoverageRings.tsx";
 import type { SkillCoverage } from "../../lib/coverage.ts";
 import type { Skill } from "../../types/progress.ts";
@@ -47,14 +48,7 @@ export function Dashboard(
           <div className="text-meta text-fg-dim">jours restants</div>
         </div>
       </div>
-      {model.hasEnough && (
-        <div className="h-3 rounded-full bg-surface-2 border border-line relative mb-3">
-          <div
-            className="absolute w-[3px] h-5 -top-1 rounded bg-accent"
-            style={{ left: `clamp(1%, ${model.passPct}%, 99%)` }}
-          />
-        </div>
-      )}
+      {model.hasEnough && <PassGauge passPct={model.passPct} />}
       <SkillChart mastery={model.barMastery} />
       {coverage && <CoverageRings coverage={coverage} />}
       <p className="text-fg-dim text-sm mt-2">
