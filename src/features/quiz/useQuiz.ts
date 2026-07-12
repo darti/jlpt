@@ -187,7 +187,7 @@ export function useQuiz() {
       total,
       BUILT_CAPS,
     );
-    if (plan.kind !== "composed") return; // diagnostic/resume unreachable in #1
+    if (plan.kind !== "composed") return; // diagnostic/resume unreachable in #2
 
     // Errors slice: the most-recent wrong[] ids (up to plan.alloc.errors), resolved to questions.
     const errorIds = selectRecentErrors(wrong, plan.alloc.errors);
