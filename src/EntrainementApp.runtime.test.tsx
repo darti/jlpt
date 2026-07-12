@@ -3,11 +3,10 @@ import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { MemoryRouter } from "react-router-dom";
 import EntrainementApp from "./EntrainementApp.tsx";
-import { ThemeContext } from "./hooks/useThemeContext.tsx";
 
-// Runtime smoke: mounts the FULL container (hooks + effects, not just SSR) under happy-dom.
-// EntrainementApp is a route component now → wrap in MemoryRouter (router hooks) + a
-// ThemeContext (it reads useThemeContext). Font scale is applied by AppShell, not here.
+// Runtime smoke: mounts the FULL container (useQuiz + useProgress effects) under happy-dom.
+// EntrainementApp is a route component → wrap in MemoryRouter (useSearchParams). No search
+// params → no auto-start; phase stays "home" and the hub renders.
 (globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
 let container: HTMLDivElement;
@@ -34,28 +33,26 @@ afterEach(() => {
 
 function renderApp() {
   act(() => {
-    root.render(
-      <MemoryRouter>
-        <ThemeContext.Provider value={{ theme: "dark", toggle: () => {} }}>
-          <EntrainementApp />
-        </ThemeContext.Provider>
-      </MemoryRouter>,
-    );
+    root.render(<MemoryRouter><EntrainementApp /></MemoryRouter>);
   });
 }
 
-test("EntrainementApp mounts live without throwing and renders the whole hub", () => {
+test("mounts live and renders the hub (start card + dashboard stats)", () => {
   renderApp();
   const text = container.textContent ?? "";
-  expect(text).toContain("Démarrer ma session"); // SessionLauncher
-  expect(text).toContain("Réglages");            // Settings
-  expect(text).toContain("Synchronisation multi-appareils"); // SyncSection (full tree mounted)
+  expect(text).toContain("Lancer une session"); // QuizHome start card
   expect(text).toContain("%");                   // Dashboard progress stats
 });
 
-test("mount reads the session-score history into the progress chart", () => {
+test("hub no longer shows settings or sync (moved to Paramétrage)", () => {
   renderApp();
-  // 2 seeded session scores → ProgressChart renders its data view (delta summary), not empty-state.
+  const text = container.textContent ?? "";
+  expect(text).not.toContain("Réglages");
+  expect(text).not.toContain("Synchronisation multi-appareils");
+});
+
+test("reads the session-score history into the progress chart", () => {
+  renderApp();
   const text = container.textContent ?? "";
   expect(text).toContain("estimé /180");
   expect(text).not.toContain("Au moins 2 diagnostics");

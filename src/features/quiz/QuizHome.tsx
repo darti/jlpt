@@ -18,7 +18,7 @@ export function QuizHome({
 }) {
   return (
     <div className="bg-panel border border-line rounded-xl p-5 shadow-card surface-blur">
-      <h2 className="text-fg text-lg font-bold mt-0 mb-3">S'entraîner</h2>
+      <h2 className="text-fg text-lg font-bold mt-0 mb-3">Lancer une session</h2>
       <div className="flex flex-wrap gap-2 mb-4">
         {SKILLS.map((cat) => (
           <button

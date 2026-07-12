@@ -1,13 +1,6 @@
 import { passTier, type DashboardModel } from "../../lib/scoring.ts";
-import { BAR_SKILLS, type Skill } from "../../types/progress.ts";
+import { SkillChart } from "./SkillChart.tsx";
 
-const LABELS = {
-  grammaire: "Grammaire", vocabulaire: "Vocab", kanji: "Kanji", lecture: "Lecture",
-} as Record<Skill, string>;
-const BAR = {
-  grammaire: "bg-skill-grammaire", vocabulaire: "bg-skill-vocabulaire",
-  kanji: "bg-skill-kanji", lecture: "bg-skill-lecture",
-} as Record<Skill, string>;
 const TIER_COLOR = {
   ok: "text-status-completed", warn: "text-prio-high", bad: "text-status-failed",
 } as const;
@@ -56,18 +49,7 @@ export function Dashboard({ model, days }: { model: DashboardModel | null; days:
           />
         </div>
       )}
-      {BAR_SKILLS.map((c) => {
-        const m = model.barMastery[c];
-        return (
-          <div key={c} className="flex items-center gap-2 my-1 text-sm">
-            <span className="w-24 text-fg-dim">{LABELS[c]}</span>
-            <div className="flex-1 h-[9px] bg-surface-2 rounded-full overflow-hidden border border-line">
-              <div className={`h-full ${BAR[c]}`} style={{ width: `${m}%` }} />
-            </div>
-            <span className="w-9 text-right text-fg-dim">{m}%</span>
-          </div>
-        );
-      })}
+      <SkillChart mastery={model.barMastery} />
       <p className="text-fg-dim text-sm mt-2">
         {model.answers} réponses · fiabilité {Math.round(model.confidence * 100)}%
       </p>

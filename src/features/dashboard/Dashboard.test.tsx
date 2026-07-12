@@ -45,7 +45,7 @@ test("shows placeholders under 5 answers", () => {
   expect(html).toContain("—");
 });
 
-test("displays skill mastery bars for the four BAR_SKILLS only, not ecoute", () => {
+test("delegates skill mastery to the radar chart for the four BAR_SKILLS only, not ecoute", () => {
   const m = dashboardModel(flat(1600, 60), new Date("2026-07-10T00:00:00"));
   const html = renderToStaticMarkup(<Dashboard model={m} days={m.days} />);
   expect(html).toContain("Grammaire");
@@ -53,8 +53,7 @@ test("displays skill mastery bars for the four BAR_SKILLS only, not ecoute", () 
   expect(html).toContain("Kanji");
   expect(html).toContain("Lecture");
   expect(html).not.toContain("Écoute");
-  const barRows = html.match(/w-24 text-fg-dim/g) ?? [];
-  expect(barRows.length).toBe(4);
+  expect(html).toContain("skill-chart"); // radar container is rendered (chart draws client-side)
 });
 
 test("renders confidence percentage", () => {

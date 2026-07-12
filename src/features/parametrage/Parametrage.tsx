@@ -1,4 +1,4 @@
-import { Settings } from "../entrainement/Settings.tsx";
+import { Settings } from "./Settings.tsx";
 import { SyncSection } from "../sync/SyncSection.tsx";
 import { useThemeContext } from "../../hooks/useThemeContext.tsx";
 
