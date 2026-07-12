@@ -36,7 +36,7 @@ export function importJson(
  *  (M3: `gram:{}` included so vanilla SRS state isn't wiped/desynced). Does not touch
  *  theme/gist/fontscale keys. */
 export function resetProgress(store: Store = globalThis.localStorage): void {
-  const blank = { skill: blankSkills(), total: 0, right: 0, bestStreak: 0, streak: 0, wrong: [], history: [], lastDiag: null, gram: {} };
+  const blank = { skill: blankSkills(), total: 0, right: 0, bestStreak: 0, streak: 0, wrong: [], history: [], lastDiag: null, gram: {}, seen: "", mastered: "" };
   try {
     store.setItem(PROGRESS_KEY, JSON.stringify(blank));
     store.setItem(UPDATED_KEY, new Date().toISOString());

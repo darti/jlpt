@@ -48,3 +48,11 @@ test("resetProgress writes a blank progress blob, leaves theme/gist untouched", 
   expect((s as any).getItem("jlptN3_theme")).toBe("light");
   expect((s as any).getItem("jlptN3_gh")).toBe("keep");
 });
+
+test("resetProgress clears the coverage bitsets (seen/mastered)", () => {
+  const s = memStore({ jlptN3adapt_v2: JSON.stringify({ total: 9, skill: {}, seen: "AAA", mastered: "BBB" }) });
+  resetProgress(s);
+  const blob = JSON.parse((s as any).getItem("jlptN3adapt_v2"));
+  expect(blob.seen).toBe("");
+  expect(blob.mastered).toBe("");
+});
