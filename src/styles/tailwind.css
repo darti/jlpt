@@ -190,6 +190,12 @@
     }
   }
   body {
+    /* Remplir au moins la hauteur du viewport : sinon, sur une page courte en PWA iOS,
+       le `body` est plus court que l'écran et le calque de fond fixe (`body::before`,
+       aurores) n'est pas peint dans la zone basse (safe-area / home indicator) → bande
+       plate. `100dvh` suit le viewport dynamique ; `100vh` = repli anciens navigateurs. */
+    min-height: 100vh;
+    min-height: 100dvh;
     background: var(--color-bg);
     color: var(--color-fg);
     font-family: var(--font-sans);
@@ -249,6 +255,13 @@
   .tok-adv   { background: #6a9e4f; }
   .vbreak .tok-note { background: rgba(76, 86, 106, 0.35); color: var(--color-fg-dim); justify-content: center; }
   .vbreak .tok-note .tok-g { font-style: italic; font-size: 0.76rem; color: var(--color-fg-dim); }
+  /* Légende de l'analyse : clé « couleur → rôle » sous les pastilles. Générée par
+     visualBreak() sous forme de <span><i class="tok-role"></i>libellé</span>. Le carré
+     `i` prend sa couleur des `.tok-*` ci-dessus. Sans ces règles, les carrés sont
+     invisibles (inline vide) et les libellés se collent (« nom / groupeverbe / forme »). */
+  .vbleg { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px 14px; margin-top: 8px; font-size: 0.72rem; color: var(--color-fg-dim); }
+  .vbleg span { display: inline-flex; align-items: center; gap: 5px; }
+  .vbleg i { flex: none; width: 10px; height: 10px; border-radius: 3px; }
 
   /* Spinner for the « Forcer la mise à jour » busy state. The vendored Tailwind subset
      doesn't compile `animate-spin`, so the keyframes + utility are defined explicitly here. */
