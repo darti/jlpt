@@ -1,4 +1,5 @@
 import { useCours, type CoursSection, type CoursLesson, type CoursPoint, type CoursExample, type CoursTable } from "./useCours.ts";
+import { visualBreak } from "../../lib/dict.ts";
 
 // Furigana hook exposed by src/lib/dict.ts (via AppShell's setupDict); SSR-guarded.
 declare const furi: ((s: string) => string) | undefined;
@@ -10,10 +11,10 @@ function Example({ ex }: { ex: CoursExample }) {
       <div className="text-fg text-base" dangerouslySetInnerHTML={{ __html: furiOrPlain(ex.jp) }} />
       <div className="text-fg-muted text-meta">{ex.ro}</div>
       <div className="text-fg-dim">{ex.fr}</div>
+      {/* Analyse visuelle : les annotations mot-à-mot sont rendues en jetons colorés par rôle
+          (visualBreak, pure — pas de dépendance runtime), comme sur la page vanilla d'origine. */}
       {ex.an && ex.an.length > 0 && (
-        <ul className="mt-1 list-none p-0 m-0 text-fg-muted text-meta flex flex-col gap-0.5">
-          {ex.an.map((a, i) => <li key={i}>{a}</li>)}
-        </ul>
+        <div dangerouslySetInnerHTML={{ __html: visualBreak(ex.an.join(" · "), { legend: false }) }} />
       )}
     </div>
   );

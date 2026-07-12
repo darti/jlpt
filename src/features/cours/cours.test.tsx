@@ -12,7 +12,7 @@ const sections: CoursSection[] = [
         tag: "S2",
         title: "Leçon 1 — Conditionnels",
         points: [
-          { form: "〜ば", struct: "V(forme ば)", mean: "« si… »", examples: [{ jp: "安ければ買います。", ro: "yasukereba kaimasu.", fr: "Si c'est bon marché, je l'achète.", an: ["安い→安ければ"] }] },
+          { form: "〜ば", struct: "V(forme ば)", mean: "« si… »", examples: [{ jp: "安ければ買います。", ro: "yasukereba kaimasu.", fr: "Si c'est bon marché, je l'achète.", an: ["安い（やすい）→安ければ « conditionnel »", "を « COD »"] }] },
         ],
         tip: "と/ば/たら/なら : nuances.",
       },
@@ -29,4 +29,9 @@ test("CoursView renders sections, lessons, points, examples + method tips", () =
   expect(html).toContain("安ければ買います");        // example jp
   expect(html).toContain("bon marché");            // example fr (apostrophe would be HTML-escaped)
   expect(html).toContain("Lis la question");       // method tip
+  // Analyse visuelle : les annotations deviennent des jetons colorés par rôle (regression:
+  // ce rendu « blocs de couleur » avait sauté au port React, l'app n'affichait qu'une liste).
+  expect(html).toContain('class="vbreak"');        // colored-block container
+  expect(html).toContain("tok-verb");              // 安ければ (contient →) → verbe
+  expect(html).toContain("tok-part");              // を → particule
 });
