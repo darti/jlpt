@@ -17,6 +17,20 @@ export function masteryOf(p: Progress, c: Skill): number {
   return 1 / (1 + Math.pow(10, (PASS_RATING - skR(p, c)) / 400));
 }
 
+const PRIOR_R = 1450;   // neutral rating (= blankSkills)
+const SHRINK_M = 10;    // pseudo-count — aligned with the Elo K breakpoint (t < 10)
+
+/** Display mastery (0..1): the rating is shrunk toward the neutral prior by evidence `t`,
+ *  then run through the same logistic. At t=0 it equals a blank skill's masteryOf; it
+ *  converges to masteryOf(R) as t grows. Used for the dashboard bars ONLY — `masteryOf`
+ *  stays raw for `allocate()` and the success model. */
+export function displayMastery(p: Progress, c: Skill): number {
+  const R = skR(p, c);
+  const t = skT(p, c);
+  const Reff = (t * R + SHRINK_M * PRIOR_R) / (t + SHRINK_M);
+  return 1 / (1 + Math.pow(10, (PASS_RATING - Reff) / 400));
+}
+
 export function daysUntilExam(now: Date): number {
   return Math.max(0, Math.ceil((EXAM_DATE.getTime() - now.getTime()) / MS_PER_DAY));
 }
@@ -70,7 +84,7 @@ export interface DashboardModel {
 export function dashboardModel(p: Progress, now: Date): DashboardModel {
   const s = successModel(p);
   const barMastery = Object.fromEntries(
-    BAR_SKILLS.map((c) => [c, Math.round(masteryOf(p, c) * 100)]),
+    BAR_SKILLS.map((c) => [c, Math.round(displayMastery(p, c) * 100)]),
   ) as Record<Skill, number>;
 
   return {

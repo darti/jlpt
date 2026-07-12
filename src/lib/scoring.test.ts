@@ -1,6 +1,6 @@
 import { test, expect } from "bun:test";
 import type { Progress } from "../types/progress.ts";
-import { masteryOf, dashboardModel, daysUntilExam, passTier } from "./scoring.ts";
+import { masteryOf, displayMastery, dashboardModel, daysUntilExam, passTier } from "./scoring.ts";
 
 const flat = (R: number, total: number, ecouteT = 0): Progress => ({
   total,
@@ -17,6 +17,25 @@ test("masteryOf at the pass rating is 0.5", () => {
   expect(masteryOf(flat(1600, 60), "grammaire")).toBeCloseTo(0.5, 10);
 });
 
+test("displayMastery with t=0 equals the blank-skill masteryOf (no discontinuity)", () => {
+  const p: Progress = { total: 0, skill: {} };
+  expect(displayMastery(p, "vocabulaire")).toBeCloseTo(masteryOf(p, "vocabulaire"), 10);
+});
+
+test("displayMastery is shrunk below raw when R is high but t is small", () => {
+  const p: Progress = { total: 8, skill: { vocabulaire: { R: 1800, t: 8 } } };
+  expect(displayMastery(p, "vocabulaire")).toBeLessThan(masteryOf(p, "vocabulaire"));
+});
+
+test("displayMastery converges toward raw as t grows", () => {
+  const lo: Progress = { total: 5, skill: { kanji: { R: 1800, t: 5 } } };
+  const hi: Progress = { total: 500, skill: { kanji: { R: 1800, t: 500 } } };
+  const raw = masteryOf(hi, "kanji");
+  const dLo = Math.abs(displayMastery(lo, "kanji") - raw);
+  const dHi = Math.abs(displayMastery(hi, "kanji") - raw);
+  expect(dHi).toBeLessThan(dLo);
+});
+
 test("dashboardModel for all-1600 / 60 answers, estimated listening (ecoute.t<3)", () => {
   const m = dashboardModel(flat(1600, 60), new Date("2026-07-10T00:00:00"));
   expect(m.answers).toBe(60);
@@ -24,7 +43,8 @@ test("dashboardModel for all-1600 / 60 answers, estimated listening (ecoute.t<3)
   expect(m.sectionTotal).toBe(86);
   expect(m.level).toBe("N3-");
   expect(m.confidence).toBeCloseTo(1, 10);
-  expect(m.barMastery.kanji).toBe(50);
+  // barMastery uses displayMastery: R=1600,t=60 shrinks toward the 1450 prior → 47 (not raw 50).
+  expect(m.barMastery.kanji).toBe(47);
   expect(m.hasEnough).toBe(true);
 });
 
