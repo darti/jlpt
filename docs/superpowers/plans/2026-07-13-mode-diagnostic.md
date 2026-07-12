@@ -43,41 +43,59 @@ Rappel — signatures existantes à réutiliser : `shuffle`, `questionCount`, `l
 - Test: `src/lib/bank.test.ts`
 
 **Interfaces:**
-- Produces: `function selectDiagnostic(poolsBySkill: Record<Skill, Question[]>, total: number, rng?: () => number): Question[]` — répartit `total` ~également sur les skills ayant des questions, **étale les difficultés** (d=1/2/3), sans doublon, résultat `shuffle`-é.
+- Produces: `function selectDiagnostic(poolsBySkill: Partial<Record<Skill, Question[]>>, total: number, rng?: () => number): Question[]` — répartit `total` ~également sur les skills ayant des questions, **étale les difficultés** (d=1/2/3), sans doublon, résultat `shuffle`-é. *(Signature `Partial` — la fonction garde déjà `poolsBySkill[s]?.length ?? 0`, ce qui évite les `as any` dans les tests — MINOR #8.)*
 
 - [ ] **Step 1: Write the failing test**
 
-Append to `src/lib/bank.test.ts` (add `selectDiagnostic` to the existing import from `./bank.ts`). The `q(id,d)` helper hardcodes `cat:"kanji"`; build per-skill pools with explicit `cat`:
+Append to `src/lib/bank.test.ts` (add `selectDiagnostic` to the existing import from `./bank.ts`, and `import type { Skill } from "../types/progress.ts";` if absent). Type the fixtures properly (no `as any`):
 
 ```ts
 test("selectDiagnostic spreads across skills and difficulties, no duplicates", () => {
-  const mk = (cat: string, base: number): Question[] =>
+  const mk = (cat: Skill, base: number): Question[] =>
     [1, 2, 3].flatMap((d) => [0, 1].map((k) => ({ id: base + d * 10 + k, cat, d: d as 1 | 2 | 3, q: "", o: [], a: 0 })));
-  const pools = {
+  const pools: Record<Skill, Question[]> = {
     grammaire: mk("grammaire", 100), vocabulaire: mk("vocabulaire", 200), kanji: mk("kanji", 300),
     lecture: mk("lecture", 400), ecoute: mk("ecoute", 500),
-  } as Record<string, Question[]>;
-  const out = selectDiagnostic(pools as any, 15, () => 0);
+  };
+  const out = selectDiagnostic(pools, 15, () => 0);
   expect(out).toHaveLength(15);
   expect(new Set(out.map((x) => x.id)).size).toBe(15); // no duplicates
-  // ~3 per skill (15/5)
-  for (const cat of ["grammaire", "vocabulaire", "kanji", "lecture", "ecoute"]) {
-    expect(out.filter((x) => x.cat === cat)).toHaveLength(3);
+  for (const cat of ["grammaire", "vocabulaire", "kanji", "lecture", "ecoute"] as Skill[]) {
+    expect(out.filter((x) => x.cat === cat)).toHaveLength(3); // ~3 per skill (15/5)
   }
-  // difficulties are spread, not all the same
-  expect(new Set(out.map((x) => x.d)).size).toBeGreaterThan(1);
+});
+
+// MAJOR #4: prove the difficulty spread against a BALANCED pool with a deterministic rng —
+// asking 3 from {2×d1, 2×d2, 2×d3} must yield exactly one of each (round-robin d1→d2→d3).
+test("selectDiagnostic yields a balanced difficulty spread when the pool allows", () => {
+  const mk = (cat: Skill): Question[] =>
+    [1, 2, 3].flatMap((d) => [0, 1].map((k) => ({ id: d * 100 + k, cat, d: d as 1 | 2 | 3, q: "", o: [], a: 0 })));
+  const pools: Record<Skill, Question[]> = {
+    grammaire: mk("grammaire"), vocabulaire: [], kanji: [], lecture: [], ecoute: [],
+  };
+  const out = selectDiagnostic(pools, 3, () => 0);
+  expect(out.map((x) => x.d).sort()).toEqual([1, 2, 3]); // one of each difficulty
+});
+
+// MAJOR #4: skewed pool (only d1 available) — the spread degrades gracefully to what exists.
+test("selectDiagnostic degrades to available difficulties on a skewed pool", () => {
+  const only1: Question[] = [0, 1, 2, 3, 4].map((k) => ({ id: k, cat: "kanji" as Skill, d: 1 as const, q: "", o: [], a: 0 }));
+  const pools: Record<Skill, Question[]> = { grammaire: [], vocabulaire: [], kanji: only1, lecture: [], ecoute: [] };
+  const out = selectDiagnostic(pools, 3, () => 0);
+  expect(out).toHaveLength(3);
+  expect(out.every((x) => x.d === 1)).toBe(true); // no d2/d3 exist → all d1, no crash
 });
 
 test("selectDiagnostic skips empty skills and never exceeds total", () => {
-  const one = [{ id: 1, cat: "kanji", d: 1 as const, q: "", o: [], a: 0 }];
-  const pools = { grammaire: [], vocabulaire: [], kanji: one, lecture: [], ecoute: [] } as Record<string, Question[]>;
-  const out = selectDiagnostic(pools as any, 15, () => 0);
+  const one: Question[] = [{ id: 1, cat: "kanji", d: 1, q: "", o: [], a: 0 }];
+  const pools: Partial<Record<Skill, Question[]>> = { kanji: one };
+  const out = selectDiagnostic(pools, 15, () => 0);
   expect(out.length).toBeLessThanOrEqual(15);
   expect(out.every((x) => x.cat === "kanji")).toBe(true);
 });
 
 test("selectDiagnostic returns [] for total<=0", () => {
-  expect(selectDiagnostic({} as any, 0, () => 0)).toEqual([]);
+  expect(selectDiagnostic({}, 0, () => 0)).toEqual([]);
 });
 ```
 
@@ -94,7 +112,7 @@ In `src/lib/bank.ts`, add after `pickAdaptive` (uses `shuffle`, `SKILLS`, `Quest
 /** Broad, level-triangulating selection for a diagnostic: ~equal share per skill with a spread of
  *  difficulties (d=1/2/3), shuffled. Distinct from pickAdaptive (mastery-weighted). Pure. */
 export function selectDiagnostic(
-  poolsBySkill: Record<Skill, Question[]>, total: number, rng: () => number = Math.random,
+  poolsBySkill: Partial<Record<Skill, Question[]>>, total: number, rng: () => number = Math.random,
 ): Question[] {
   if (total <= 0) return [];
   const skills = SKILLS.filter((s) => (poolsBySkill[s]?.length ?? 0) > 0);
@@ -107,7 +125,7 @@ export function selectDiagnostic(
     if (remainder > 0) remainder--;
     // Group this skill's (shuffled) pool by difficulty, then round-robin d1→d2→d3 to spread levels.
     const byD: [Question[], Question[], Question[]] = [[], [], []];
-    for (const q of shuffle(poolsBySkill[s], rng)) byD[q.d - 1].push(q);
+    for (const q of shuffle(poolsBySkill[s] ?? [], rng)) byD[q.d - 1].push(q);
     let taken = 0, di = 0;
     while (taken < want) {
       let advanced = false;
@@ -178,22 +196,27 @@ import { DiagnosticResults } from "./DiagnosticResults.tsx";
 import type { DashboardModel } from "../../lib/scoring.ts";
 import type { Question } from "../../types/quiz.ts";
 
+// Real `dashboardModel` shape: barMastery covers BAR_SKILLS (4 skills, NO ecoute). The component
+// must NOT depend on barMastery for the per-skill breakdown — it derives that from `answers`.
 const model: DashboardModel = {
-  answers: 15, passPct: 42, sectionTotal: 90, level: "N3-", days: 100, confidence: 0.5,
-  barMastery: { grammaire: 55, vocabulaire: 60, kanji: 40, lecture: 50, ecoute: 45 } as Record<string, number> as never,
+  answers: 2, passPct: 42, sectionTotal: 90, level: "N3-", days: 100, confidence: 0.5,
+  barMastery: { grammaire: 55, vocabulaire: 60, kanji: 40, lecture: 50 } as Record<string, number> as never,
   hasEnough: true,
 };
-const q: Question = { id: 1, cat: "grammaire", d: 1, q: "test", o: ["a", "b"], a: 0 };
+const g: Question = { id: 1, cat: "grammaire", d: 1, q: "test", o: ["a", "b"], a: 0 };
+const e: Question = { id: 2, cat: "ecoute", d: 1, q: "kiku", o: ["a", "b"], a: 0 };
 
-test("DiagnosticResults shows the estimated level, score, and a correction per answer", () => {
+test("DiagnosticResults shows the estimated level and a per-skill breakdown from answers (incl. ecoute)", () => {
   const html = renderToStaticMarkup(
-    <DiagnosticResults model={model} answers={[{ question: q, chosen: 1 }]} onDone={() => {}} />,
+    <DiagnosticResults model={model} answers={[{ question: g, chosen: 1 }, { question: e, chosen: 0 }]} onDone={() => {}} />,
   );
-  expect(html).toContain("niveau estim"); // "niveau estimé" (é is not escaped, but assert prefix to be safe)
+  expect(html).toContain("niveau estim"); // "niveau estimé"
   expect(html).toContain("N3-");
+  expect(html).toContain("Grammaire"); // per-skill breakdown from answers
+  expect(html).toContain("Écoute");    // ecoute IS shown (derived from answers, not barMastery)
   expect(html).toContain("Correction");
-  expect(html).toContain("Termin"); // "Terminé" button
-  expect(html).toContain("Faux"); // Corrige renders (chosen 1 != a 0)
+  expect(html).toContain("Termin");    // "Terminé" button
+  expect(html).toContain("Faux");      // Corrige renders for the grammaire miss (chosen 1 != a 0)
 });
 ```
 
@@ -249,7 +272,7 @@ export function DiagnosticIntro({
 
 ```tsx
 import type { DashboardModel } from "../../lib/scoring.ts";
-import type { Skill } from "../../types/progress.ts";
+import { SKILLS, type Skill } from "../../types/progress.ts";
 import type { Question } from "../../types/quiz.ts";
 import { QuestionCard } from "./QuestionCard.tsx";
 import { Corrige } from "./Corrige.tsx";
@@ -258,8 +281,9 @@ const SKILL_LABELS: Record<Skill, string> = {
   grammaire: "Grammaire", vocabulaire: "Vocab", kanji: "Kanji", lecture: "Lecture", ecoute: "Écoute",
 };
 
-/** Diagnostic report: estimated level (from `dashboardModel`) + a full corrigé per answered
- *  question (reuses QuestionCard + Corrige). Pure / prop-driven. */
+/** Diagnostic report: estimated level (from `dashboardModel`) + a per-skill score derived from
+ *  THIS test's answers (covers all 5 tested categories — `barMastery` omits `ecoute`, MAJOR #3) +
+ *  a full corrigé per answered question (reuses QuestionCard + Corrige). Pure / prop-driven. */
 export function DiagnosticResults({
   model, answers, onDone,
 }: {
@@ -268,6 +292,13 @@ export function DiagnosticResults({
   onDone: () => void;
 }) {
   const right = answers.filter((a) => a.chosen === a.question.a).length;
+  // Per-skill breakdown from the answers themselves — every tested category appears, in SKILLS order.
+  const perSkill = SKILLS
+    .map((s) => {
+      const rows = answers.filter((a) => a.question.cat === s);
+      return { skill: s, total: rows.length, right: rows.filter((a) => a.chosen === a.question.a).length };
+    })
+    .filter((r) => r.total > 0);
   return (
     <div className="flex flex-col gap-4">
       <div className="bg-panel border border-line rounded-xl p-6 shadow-card surface-blur text-center">
@@ -277,17 +308,17 @@ export function DiagnosticResults({
           {model.passPct}% de réussite estimée · {right}/{answers.length} au test
         </p>
         <div className="flex flex-col gap-1 text-left">
-          {(Object.entries(model.barMastery) as [Skill, number][]).map(([skill, pct]) => (
-            <div key={skill} className="flex items-center justify-between text-sm">
-              <span className="text-fg-dim">{SKILL_LABELS[skill] ?? skill}</span>
-              <span className="text-fg font-bold">{pct}%</span>
+          {perSkill.map((r) => (
+            <div key={r.skill} className="flex items-center justify-between text-sm">
+              <span className="text-fg-dim">{SKILL_LABELS[r.skill]}</span>
+              <span className="text-fg font-bold">{r.right}/{r.total}</span>
             </div>
           ))}
         </div>
       </div>
       <p className="text-fg text-base font-bold m-0">Correction</p>
-      {answers.map((a, i) => (
-        <div key={i} className="flex flex-col gap-2">
+      {answers.map((a) => (
+        <div key={a.question.id} className="flex flex-col gap-2">
           <QuestionCard question={a.question} chosen={a.chosen} answered={true} onChoose={() => {}} onSpeak={() => {}} />
           <Corrige question={a.question} correct={a.chosen === a.question.a} />
         </div>
@@ -388,10 +419,12 @@ Add a `DiagAnswer` type near `ResumeState`:
 export interface DiagAnswer { question: Question; chosen: number; }
 ```
 
-Add a day helper near the other module helpers:
+Add a day helper near the other module helpers. **MINOR #7:** define `DAY_MS` once and reuse it for
+the existing `RESUME_MAX_AGE_MS` (currently `2 * 864e5`) → change that line to `2 * DAY_MS`:
 
 ```ts
 const DAY_MS = 864e5;
+// (change the existing `const RESUME_MAX_AGE_MS = 2 * 864e5;` to `2 * DAY_MS`)
 function daysSince(ts: unknown): number | null {
   return typeof ts === "number" && ts > 0 ? (Date.now() - ts) / DAY_MS : null;
 }
@@ -412,7 +445,6 @@ Replace the `start` signature and the plan computation. Change the callback to a
   const start = useCallback(async (minArg?: number, opts?: { skipDiagnostic?: boolean }) => {
     const min = resolveMinutes(minArg, minutes);
     const raw = readRawProgress();
-    const progress = asProgress(raw);
     const wrong = asWrong(raw);
     const total = questionCount(min);
 
@@ -430,6 +462,10 @@ Replace the `start` signature and the plan computation. Change the callback to a
       await Promise.all(SKILLS.map(async (s) => { poolsBySkill[s] = await loadCategory(s); }));
       const session = selectDiagnostic(poolsBySkill, total, Math.random);
       if (!session.length) return;
+      // Starting a diagnostic abandons any pending normal session — clear its resume so a stale
+      // "Reprendre" card can't resurface on a later reload (MAJOR #5b).
+      clearResumeState();
+      setResume(null);
       rightRef.current = 0;
       setQuestions(session);
       setIndex(0);
@@ -437,15 +473,16 @@ Replace the `start` signature and the plan computation. Change the callback to a
       setMode("diagnostic");
       setAnswered(false);
       setChosen(null);
-      setPhase("diag-intro"); // notify before the first question; no resume for a one-shot test
+      setPhase("diag-intro"); // notify before the first question
       return;
     }
     if (plan.kind !== "composed") return; // resume unreachable from start()
 
     setMode("normal");
+    const progress = asProgress(raw); // MINOR #6: only the composed path needs mastery
 ```
 
-Everything AFTER `setMode("normal");` is the existing composed body (errors slice → adaptive → `composeSession` → set state → persist resume) — leave it unchanged. Keep the explanatory comment block above the composed body.
+Everything AFTER `const progress = asProgress(raw);` is the existing composed body (errors slice → adaptive → `composeSession` → set state → persist resume) — leave it unchanged. Keep the explanatory comment block above the composed body. (Note: the original `const progress = asProgress(raw);` at the top of `start()` is removed — it now lives here, used only by the composed path.)
 
 - [ ] **Step 7: `beginDiagnostic`, `choose()` diagnostic branch, `restart()` reset**
 
@@ -477,6 +514,8 @@ In `choose()`, keep the shared progress/rating write, but branch the UI transiti
     const mastered = correct
       ? encodeBits(setBit(decodeBits(typeof raw?.mastered === "string" ? raw.mastered : ""), q.id))
       : undefined;
+    // MAJOR #5a: on the LAST diagnostic answer, fold `diagAt` into this same write (one round-trip).
+    const isLastDiag = mode === "diagnostic" && index + 1 >= questions.length;
     writeProgress({
       skill: { [q.cat]: nextSkill },
       total: numField(raw, "total") + 1,
@@ -484,6 +523,7 @@ In `choose()`, keep the shared progress/rating write, but branch the UI transiti
       wrong: nextWrong,
       seen,
       ...(mastered !== undefined ? { mastered } : {}),
+      ...(isLastDiag ? { diagAt: Date.now() } : {}),
     });
     schedulePush();
     rightRef.current += correct ? 1 : 0;
@@ -492,12 +532,8 @@ In `choose()`, keep the shared progress/rating write, but branch the UI transiti
       // Tout droit: record the answer for the end-of-test corrigé, then advance immediately.
       setDiagAnswers((prev) => [...prev, { question: q, chosen: i }]);
       const ni = index + 1;
-      if (ni >= questions.length) {
-        writeProgress({ diagAt: Date.now() }); // stamp the diagnostic completion
-        setPhase("diag-results");
-      } else {
-        setIndex(ni); // phase stays "question"
-      }
+      if (ni >= questions.length) setPhase("diag-results"); // diagAt already stamped in the merged write
+      else setIndex(ni);                                    // phase stays "question"
       return;
     }
 
@@ -542,18 +578,20 @@ import { readProgress } from "./lib/storage.ts";
 import type { DiagAnswer } from "./features/quiz/useQuiz.ts";
 ```
 
-Extend `EntrainementAppView`'s props (add the diagnostic ones):
+Extend `EntrainementAppView`'s props (add the diagnostic ones as **optional** — CRITICAL #1 / MAJOR #2:
+keeps every existing caller, incl. `EntrainementApp.test.tsx`, compiling unchanged, and avoids surface creep):
 
 ```ts
 export function EntrainementAppView(props: {
-  phase: Phase; question: Question | null; count: number; right: number; index: number;
+  phase: Phase; question: Question | null; count: number; right: number;
   minutes: number; resume: ResumeState | null;
   answered: boolean; chosen: number | null;
-  mode: "normal" | "diagnostic"; diagAnswers: DiagAnswer[]; diagModel: DashboardModel | null;
+  index?: number;
+  mode?: "normal" | "diagnostic"; diagAnswers?: DiagAnswer[]; diagModel?: DashboardModel | null;
   onStart: () => void; onChoose: (i: number) => void; onNext: () => void; onRestart: () => void;
   onSetMinutes: (m: number) => void;
   onResumeNow: () => void; onDismissResume: () => void;
-  onBeginDiag: () => void; onLater: () => void; onDiagDone: () => void;
+  onBeginDiag?: () => void; onLater?: () => void; onDiagDone?: () => void;
 }) {
 ```
 
@@ -561,28 +599,28 @@ Add the `diag-intro` case (early return, like `home`) and update the `question` 
 
 ```ts
   if (props.phase === "diag-intro") {
-    return <DiagnosticIntro count={props.count} onStart={props.onBeginDiag} onLater={props.onLater} />;
+    return <DiagnosticIntro count={props.count} onStart={props.onBeginDiag ?? (() => {})} onLater={props.onLater ?? (() => {})} />;
   }
 ```
 
-Replace the `question`-phase block with:
+Replace the `question`-phase block with (default the optional `mode`/`index`):
 
 ```tsx
       {props.phase === "question" && question && (
         <div className="flex flex-col gap-3">
           {props.mode === "diagnostic" && (
-            <p className="text-fg-dim text-sm m-0">Test · question {props.index + 1} / {props.count}</p>
+            <p className="text-fg-dim text-sm m-0">Test · question {(props.index ?? 0) + 1} / {props.count}</p>
           )}
           <QuestionCard question={question} chosen={null} answered={false} onChoose={props.onChoose} onSpeak={onSpeak} />
         </div>
       )}
 ```
 
-Add after the `results` block:
+Add after the `results` block (default the optional `diagAnswers`/`onDiagDone`):
 
 ```tsx
       {props.phase === "diag-results" && props.diagModel && (
-        <DiagnosticResults model={props.diagModel} answers={props.diagAnswers} onDone={props.onDiagDone} />
+        <DiagnosticResults model={props.diagModel} answers={props.diagAnswers ?? []} onDone={props.onDiagDone ?? (() => {})} />
       )}
 ```
 
@@ -692,6 +730,18 @@ test("a recent diagnostic (<7d) skips the test — Commencer builds a normal ses
   expect(text).not.toContain("Mode test");   // no diagnostic
   expect(text).toContain("Q-");              // a normal question is showing
 });
+
+// MAJOR #5b: entering a diagnostic must clear a pending normal-session resume so it can't
+// resurface on a later reload.
+test("entering the diagnostic clears a pending resume session", async () => {
+  localStorage.setItem("jlptN3adapt_v2", JSON.stringify({ total: 0, skill: {} })); // no diagAt → diagnostic due
+  localStorage.setItem("jlptN3quiz_resume", JSON.stringify({ kind: "quiz", ids: [1, 2, 3], qi: 1, right: 1, t: Date.now() }));
+  act(() => { root.render(<MemoryRouter><EntrainementApp /></MemoryRouter>); });
+  await click("Nouvelle session"); // resume card shown → dismiss to reveal Commencer
+  await click("Commencer");         // diagnostic due → diag-intro; start() clears the resume
+  expect(container.textContent ?? "").toContain("Mode test");
+  expect(localStorage.getItem("jlptN3quiz_resume")).toBeNull(); // stale resume gone
+});
 ```
 
 - [ ] **Step 10: Typecheck + full suite (GREEN)**
@@ -700,7 +750,11 @@ Run: `bun run typecheck`
 Expected: PASS.
 
 Run: `bun test`
-Expected: PASS — full suite green (contract tests, component smokes, the two integration tests, and all pre-existing tests including `EntrainementApp.start.test.tsx`, which still seeds no `diagAt`… **wait**: that file's tests seed no `diagAt` → after the flip they'd hit the diagnostic path and break. **Fix them in this step:** in `src/EntrainementApp.start.test.tsx`, add `diagAt: Date.now()` to the seeded `jlptN3adapt_v2` blob in the tests that click "Commencer" and expect a normal session (the "starts a session" test and the "stored errors" test), so they exercise the composed path. The index-null test already throws on `bank-index`; add `diagAt` there too so it stays on the composed path.)
+Expected: PASS — full suite green (contract tests, component smokes, the three integration tests, and all pre-existing tests).
+
+**Two pre-existing test files to reconcile with the flag flip:**
+- `src/EntrainementApp.test.tsx` (pure-view SSR test): **no change needed** — it renders `EntrainementAppView` directly with explicit props and never calls `start()`, and the new props are optional (CRITICAL #1 / MAJOR #2), so it compiles as-is.
+- `src/EntrainementApp.start.test.tsx` (container-driven, calls `start()` via a Commencer click): its tests seed **no** `diagAt` → after the flip they'd route into the diagnostic path and break. **Fix in this step:** add `diagAt: Date.now()` to the seeded `jlptN3adapt_v2` blob in every test that clicks "Commencer" and expects a normal session (the "starts a session" test, the "stored errors" test, and the "index-fetch failure" test), so they stay on the composed path. Add `src/EntrainementApp.start.test.tsx` to Task 3's file list.
 
 - [ ] **Step 11: Commit**
 
@@ -727,4 +781,15 @@ git commit -m "feat : mode diagnostic de bout en bout (intro, tout droit, niveau
 
 **3. Type consistency:** `Phase` étendue (Task 3) et consommée dans la vue (Task 3, même tâche). `DiagAnswer` défini dans useQuiz, importé par `EntrainementApp` et utilisé par `DiagnosticResults` via la forme `{ question, chosen }` (structurellement identique). `DashboardModel` importé de `scoring.ts` dans `DiagnosticResults` (Task 2) et `EntrainementApp` (Task 3). `start(minArg?, opts?)` — la nouvelle signature est appelée `quiz.start` (0 arg via onStart), `quiz.start(undefined, {skipDiagnostic:true})` (onLater), et `start(params.min)` (effet URL, inchangé, `opts` optionnel). `selectDiagnostic` défini Task 1, consommé Task 3.
 
-**Note de couverture :** le test d'intégration (Task 3 step 9) exerce le chemin diagnostic de bout en bout (intro → tout droit → niveau + `diagAt`) et le repli « diagnostic récent → composé », ce qui couvre le câblage `start()`/`choose()`/routage que les unités ne voient pas isolément.
+**Note de couverture :** le test d'intégration (Task 3 step 9) exerce le chemin diagnostic de bout en bout (intro → tout droit → niveau + `diagAt`), le repli « diagnostic récent → composé », et le nettoyage du resume — ce qui couvre le câblage `start()`/`choose()`/routage que les unités ne voient pas isolément.
+
+## Remédiation de la revue de plan (auto-générée)
+
+Revue `…/2026-07-13-mode-diagnostic.review.md` (CHANGES REQUESTED, 1 Critical + 4 Major). Corrigé **dans ce plan avant exécution** :
+- **Critical #1 / Major #2** — props diagnostic de `EntrainementAppView` rendues **optionnelles** (defaults au point d'usage) → `EntrainementApp.test.tsx` compile sans modif, pas de surface-creep. (Task 3, step 8/10)
+- **Major #3** — `DiagnosticResults` calcule le détail par catégorie **depuis `answers`** (les 5 skills testés, `ecoute` inclus), pas depuis `barMastery` (4 skills). (Task 2)
+- **Major #4** — tests `selectDiagnostic` ajoutés : spread équilibré + pool biaisé. (Task 1)
+- **Major #5** — (a) écriture `diagAt` **fusionnée** dans le write partagé du dernier item ; (b) resume **purgé** à l'entrée du diagnostic + test dédié. (Task 3, steps 6-7, 9)
+- **Minors 6/7/8/9** — `progress` déplacé dans la branche composée ; `DAY_MS` partagé ; signature `Partial` (drop `as any`) ; `key={question.id}`.
+
+**Différés (backlog, hors #3)** — non implémentés, à capturer : (1) stabilité de l'Elo K=40 sur un diagnostic à froid ; (2) affordance d'abandon en cours de test (aujourd'hui : sortie via la nav + [Plus tard] à la ré-invite) ; (3) taille d'échantillon minimale quand la banque est trop mince.
