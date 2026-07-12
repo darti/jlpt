@@ -4,7 +4,8 @@ import { SKILLS, type Progress, type Skill } from "../../types/progress.ts";
 import type { Question, SkillState } from "../../types/quiz.ts";
 import { updateRating } from "../../lib/elo.ts";
 import {
-  allocate, loadCategory, pickAdaptive, questionsForIds, selectRecentErrors, composeSession,
+  questionCount, allocateCount, loadCategory, pickAdaptive,
+  questionsForIds, selectRecentErrors, composeSession,
 } from "../../lib/bank.ts";
 import { readRawProgress, writeProgress } from "../../lib/storage.ts";
 import { decodeBits, encodeBits, setBit } from "../../lib/coverage.ts";
@@ -145,6 +146,8 @@ export function useQuiz() {
     pushTimerRef.current = setTimeout(() => { void cloudPush(gistDeps, false); }, PUSH_DEBOUNCE_MS);
   }, [gistDeps]);
 
+  // Hook-local, useRef-cached, retry-on-failure variant of the id→skill index — distinct from
+  // lib `loadBankIndex` (module-memoized, no retry, shared by the coverage hook; see bank.ts).
   const ensureBankIndex = useCallback((): Promise<Record<number, Skill> | null> => {
     if (bankIndexRef.current) return Promise.resolve(bankIndexRef.current);
     if (!bankIndexPromiseRef.current) {
@@ -177,7 +180,7 @@ export function useQuiz() {
     const raw = readRawProgress();
     const progress = asProgress(raw);
     const wrong = asWrong(raw);
-    const { total, alloc } = allocate((c) => masteryOf(progress, c), min);
+    const total = questionCount(min);
 
     // Consult the decision engine. `resume: false` — "Commencer" always starts fresh; the resume
     // decision is handled at the card level. Errors are built (BUILT_CAPS.errors); diagnostic/learn
@@ -190,11 +193,19 @@ export function useQuiz() {
     if (plan.kind !== "composed") return; // diagnostic/resume unreachable in #2
 
     // Errors slice: the most-recent wrong[] ids (up to plan.alloc.errors), resolved to questions.
+    // C2: if the bank index is unavailable (network failure — ensureBankIndex resolves null), the
+    // guaranteed errors floor is skipped and the session degrades to adaptive-only. That is the
+    // accepted fallback: pickAdaptive still soft-surfaces wrong ids via its +150 boost (for
+    // mastery-loaded categories). resumeNow bails on a null index (nothing to resume); start() has a
+    // valid adaptive session to build, so it proceeds.
     const errorIds = selectRecentErrors(wrong, plan.alloc.errors);
     const idx = await ensureBankIndex();
     const errorQs = idx ? await questionsForIds(errorIds, idx) : [];
 
-    // Adaptive candidates fill the rest — excluding the errors already picked (no duplicates).
+    // Adaptive fills exactly the remaining budget, weighted by mastery — so no weighted pick is
+    // dropped (C1). Seed `exclude` with the error ids first → no duplicates.
+    const adaptiveTarget = Math.max(0, total - errorQs.length);
+    const alloc = allocateCount((c) => masteryOf(progress, c), adaptiveTarget);
     const exclude = new Set<number>(errorQs.map((q) => q.id));
     const picked: Question[] = [];
     for (const cat of SKILLS) {
@@ -207,8 +218,6 @@ export function useQuiz() {
       picked.push(...picks);
     }
 
-    // composeSession reconciles the budget: adaptive = total - errorQs.length (unresolved errors
-    // fall back to adaptive), then shuffles errors + adaptive together.
     const session = composeSession(errorQs, picked, total, Math.random);
     if (!session.length) return;
 

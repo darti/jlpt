@@ -1,9 +1,11 @@
 import { test, expect } from "bun:test";
 import {
-  shuffle, pickAdaptive, allocate, loadCategory, loadBankIndex, clearBankIndexCache,
-  clearCategoryCache, selectRecentErrors, composeSession, questionsForIds,
+  shuffle, pickAdaptive, allocate, allocateCount, questionCount, loadCategory, loadBankIndex,
+  clearBankIndexCache, clearCategoryCache, selectRecentErrors, composeSession, questionsForIds,
 } from "./bank.ts";
+import type { FetchLike } from "./bank.ts";
 import type { Question } from "../types/quiz.ts";
+import type { Skill } from "../types/progress.ts";
 
 const q = (id: number, d: 1 | 2 | 3): Question =>
   ({ id, cat: "kanji", d, q: "", o: [], a: 0 });
@@ -36,6 +38,18 @@ test("pickAdaptive excludes ids in the exclude set", () => {
 test("allocate distributes ~1.5 questions/min, weighting weaker skills", () => {
   const { total } = allocate(() => 0.5, 10);
   expect(total).toBe(15); // clamp(4, round(10*1.5), 45)
+});
+
+test("allocateCount distributes exactly `total` across skills", () => {
+  const alloc = allocateCount(() => 0.5, 11);
+  const sum = Object.values(alloc).reduce((a, b) => a + b, 0);
+  expect(sum).toBe(11); // no over/under-pick — this is what preserves the weighting under a reduced budget
+});
+
+test("questionCount clamps minutes to [4,45] at ~1.5/min", () => {
+  expect(questionCount(10)).toBe(15);
+  expect(questionCount(1)).toBe(4);   // floor
+  expect(questionCount(999)).toBe(45); // ceil
 });
 
 test("loadCategory fetches the split file and memoizes", async () => {
@@ -74,7 +88,7 @@ test("selectRecentErrors returns all (reversed) when n >= length", () => {
 });
 
 test("composeSession keeps all errorQs and fills adaptive up to total", () => {
-  const rng = () => 0; // deterministic shuffle (no swaps beyond j=0)
+  const rng = () => 0; // deterministic shuffle
   const errorQs = [q(1, 1), q(2, 1), q(3, 1)];
   const adaptive = [q(10, 1), q(11, 1), q(12, 1), q(13, 1), q(14, 1)];
   const out = composeSession(errorQs, adaptive, 6, rng);
@@ -100,17 +114,18 @@ test("composeSession clamps adaptiveTarget to 0 when errors already exceed total
 
 test("questionsForIds resolves ids across categories, preserves order, drops unknowns", async () => {
   clearCategoryCache();
-  const idx = { 1: "kanji", 2: "grammaire", 3: "kanji" } as Record<string, string>;
-  const fetchImpl = async (url: string) => ({
-    json: async () =>
-      url.includes("kanji")
-        ? [{ id: 1, cat: "kanji", d: 1, q: "", o: [], a: 0 }, { id: 3, cat: "kanji", d: 1, q: "", o: [], a: 0 }]
-        : [{ id: 2, cat: "grammaire", d: 1, q: "", o: [], a: 0 }],
+  const idx: Record<number, Skill> = { 1: "kanji", 2: "grammaire", 3: "kanji" };
+  const kanjiPool: Question[] = [q(1, 1), q(3, 1)];
+  const grammairePool: Question[] = [{ id: 2, cat: "grammaire", d: 1, q: "", o: [], a: 0 }];
+  const fetchImpl: FetchLike = async (url) => ({
+    json: async () => (url.includes("kanji") ? kanjiPool : grammairePool),
   });
-  const out = await questionsForIds([3, 2, 1, 99], idx as any, fetchImpl as any);
+  const out = await questionsForIds([3, 2, 1, 99], idx, fetchImpl);
   expect(out.map((x) => x.id)).toEqual([3, 2, 1]); // order preserved, 99 (unknown) dropped
 });
 
 test("questionsForIds returns [] for no ids", async () => {
-  expect(await questionsForIds([], {}, (async () => ({ json: async () => [] })) as any)).toEqual([]);
+  const idx: Record<number, Skill> = {};
+  const fetchImpl: FetchLike = async () => ({ json: async () => [] });
+  expect(await questionsForIds([], idx, fetchImpl)).toEqual([]);
 });

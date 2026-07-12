@@ -2,7 +2,7 @@ import { SKILLS, type Skill } from "../types/progress.ts";
 import { DRATING } from "./elo.ts";
 import type { Question } from "../types/quiz.ts";
 
-type FetchLike = (url: string) => Promise<{ json: () => Promise<unknown> }>;
+export type FetchLike = (url: string) => Promise<{ json: () => Promise<unknown> }>;
 
 export function shuffle<T>(a: T[], rng: () => number = Math.random): T[] {
   const out = a.slice();
@@ -88,8 +88,13 @@ export function composeSession(
   return shuffle([...errorQs, ...adaptiveQs], rng);
 }
 
-export function allocate(masteryOf: (c: Skill) => number, minutes: number): { total: number; alloc: Record<Skill, number> } {
-  const total = Math.max(4, Math.min(45, Math.round(minutes * 1.5)));
+/** Questions for a session of `minutes` (~1.5/min, clamped to [4, 45]). */
+export function questionCount(minutes: number): number {
+  return Math.max(4, Math.min(45, Math.round(minutes * 1.5)));
+}
+
+/** Distribute a fixed `total` question budget across skills, weighting weaker skills. */
+export function allocateCount(masteryOf: (c: Skill) => number, total: number): Record<Skill, number> {
   const w = {} as Record<Skill, number>;
   let sum = 0;
   for (const c of SKILLS) { w[c] = 0.2 + (1 - masteryOf(c)) * 1.3; sum += w[c]; }
@@ -99,5 +104,10 @@ export function allocate(masteryOf: (c: Skill) => number, minutes: number): { to
   const order = [...SKILLS].sort((a, b) => masteryOf(a) - masteryOf(b));
   let i = 0;
   while (assigned < total) { alloc[order[i % order.length]]++; assigned++; i++; }
-  return { total, alloc };
+  return alloc;
+}
+
+export function allocate(masteryOf: (c: Skill) => number, minutes: number): { total: number; alloc: Record<Skill, number> } {
+  const total = questionCount(minutes);
+  return { total, alloc: allocateCount(masteryOf, total) };
 }
