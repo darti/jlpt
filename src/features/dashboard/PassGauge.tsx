@@ -1,25 +1,26 @@
 import { useEffect, useRef } from "react";
 import { passTier, type PassTier } from "../../lib/scoring.ts";
 
-// Status tokens (reserved palette) + the tier stated in words, so colour is never alone.
+// Status tokens (reserved palette) + short zone words, so meaning never rides on colour alone.
 const TIER_VAR: Record<PassTier, string> = {
   ok: "--color-status-completed", warn: "--color-prio-high", bad: "--color-status-failed",
 };
-const TIER_WORD: Record<PassTier, string> = {
-  ok: "en bonne voie", warn: "à confirmer", bad: "à risque",
-};
+const TIER_WORD: Record<PassTier, string> = { ok: "Prêt", warn: "Limite", bad: "Risque" };
 
 // cssVar is only ever read inside the effect (browser), so `document` is defined there.
 function cssVar(name: string, fallback: string): string {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
 }
 
+// Small arrowhead pointer (ECharts "grade rating" gauge), sits out near the rim.
+const ARROW = "path://M12.8,0.7l12,40.1H0.7L12.8,0.7z";
+
 /**
- * Semicircular gauge for the estimated pass probability (0–100 %). The arc carries the three
- * risk zones (passTier's own 40/70 thresholds) as red→amber→green bands and a pointer marks
- * the value; the caption below spells out the value + tier in words (SSR/offline fallback, and
- * so status never rides on colour alone). ECharts is tree-shaken + dynamically imported so it
- * lands in its own runtime-cached chunk and never touches the DOM under SSR.
+ * Semicircular "grade" gauge for the estimated pass probability (0–100 %). Three risk zones
+ * (passTier's own 40/70 thresholds) colour the arc; an arrowhead near the rim + the auto-tinted
+ * ticks and centre number all inherit the value's zone colour; the arc is captioned Risque /
+ * Limite / Prêt and the tier is repeated in words below (SSR/offline fallback, never colour-alone).
+ * ECharts is tree-shaken + dynamically imported so it lands in its own runtime-cached chunk.
  */
 export function PassGauge({ passPct }: { passPct: number }) {
   const pct = Math.max(0, Math.min(100, Math.round(passPct)));
@@ -43,26 +44,28 @@ export function PassGauge({ passPct }: { passPct: number }) {
         const bad = cssVar("--color-status-failed", "#bf616a");
         const warn = cssVar("--color-prio-high", "#ebcb8b");
         const ok = cssVar("--color-status-completed", "#a3be8c");
-        const notch = cssVar("--color-panel", "#3b4252");
         const muted = cssVar("--color-fg-muted", "rgba(236,239,244,0.45)");
-        const tierColor = tier === "ok" ? ok : tier === "warn" ? warn : bad;
         c.setOption({
           series: [{
             type: "gauge",
             startAngle: 180, endAngle: 0,          // semicircle
-            center: ["50%", "78%"], radius: "90%",
-            min: 0, max: 100, splitNumber: 5,
-            axisLine: { lineStyle: { width: 14, color: [[0.4, bad], [0.7, warn], [1, ok]] } },
-            pointer: { length: "58%", width: 6, itemStyle: { color: tierColor } },
-            anchor: {
-              show: true, size: 14, showAbove: true,
-              itemStyle: { color: tierColor, borderColor: notch, borderWidth: 2 },
-            },
+            center: ["50%", "80%"], radius: "84%",
+            min: 0, max: 100, splitNumber: 10,
+            axisLine: { lineStyle: { width: 3, color: [[0.4, bad], [0.7, warn], [1, ok]] } },
+            pointer: { icon: ARROW, length: "10%", width: 11, offsetCenter: [0, "-54%"], itemStyle: { color: "auto" } },
+            anchor: { show: false },
             axisTick: { show: false },
-            splitLine: { distance: -14, length: 14, lineStyle: { color: notch, width: 2 } }, // notches at 20/40/60/80
-            axisLabel: { distance: 16, color: muted, fontSize: 10 },
+            splitLine: { distance: -3, length: 5, lineStyle: { color: "auto", width: 1 } },
+            axisLabel: {
+              color: muted, fontSize: 9, distance: -26, rotate: "tangential",
+              formatter: (v: number) =>
+                (v === 20 ? TIER_WORD.bad : v === 50 ? TIER_WORD.warn : v === 90 ? TIER_WORD.ok : ""),
+            },
             title: { show: false },
-            detail: { show: false },              // value shown in the HTML caption (no needle overlap)
+            detail: {
+              offsetCenter: [0, "-26%"], fontSize: 26, fontWeight: "bold",
+              valueAnimation: false, formatter: "{value}%", color: "inherit",
+            },
             data: [{ value: pct }],
           }],
         });
@@ -79,7 +82,7 @@ export function PassGauge({ passPct }: { passPct: number }) {
         ref={ref}
         role="img"
         aria-label={`Réussite estimée ${pct} %, ${TIER_WORD[tier]}`}
-        style={{ width: "100%", height: 118 }}
+        style={{ width: "100%", height: 150 }}
       />
       <p className="text-sm text-fg-dim text-center m-0">
         <b style={{ color: `var(${TIER_VAR[tier]})` }}>{pct}%</b> · {TIER_WORD[tier]}

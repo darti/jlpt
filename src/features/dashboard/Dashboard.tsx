@@ -9,6 +9,9 @@ const TIER_COLOR = {
   ok: "text-status-completed", warn: "text-prio-high", bad: "text-status-failed",
 } as const;
 
+const CARD = "bg-panel border border-line rounded-xl px-6 py-5 shadow-card surface-blur";
+const HEADING = "text-fg text-lg font-bold mt-0 mb-3";
+
 // Pure presentational component. Model validation (null check, shape verification) is deferred
 // to the parent/caller (see useProgress hook). This component only checks for empty data state.
 export function Dashboard(
@@ -17,7 +20,7 @@ export function Dashboard(
 ) {
   if (!model || model.answers === 0) {
     return (
-      <div className="bg-panel border border-line rounded-xl px-6 py-5 mb-6 shadow-card surface-blur">
+      <div className={`${CARD} mb-6`}>
         <p className="text-fg-dim text-sm m-0">
           Aucune donnée pour l'instant — lance un quiz dans l'entraînement adaptatif
           pour générer ton analyse. ({days} jours avant l'examen)
@@ -29,29 +32,45 @@ export function Dashboard(
   const score = model.hasEnough ? `${model.sectionTotal}/180` : "—";
   const pctColor = TIER_COLOR[passTier(model.passPct)];
   return (
-    <div className="bg-panel border border-line rounded-xl px-6 py-5 mb-6 shadow-card surface-blur">
-      <div className="grid grid-cols-2 gap-2 text-center mb-3">
-        <div className="bg-surface-2 border border-line rounded-lg py-2 px-1">
-          <div className={`text-xl font-bold ${pctColor}`}>{pct}</div>
-          <div className="text-meta text-fg-dim">réussite estimée</div>
+    <div className="flex flex-col gap-4 mb-6">
+      {/* Estimation d'examen : indicateurs clés + jauge de réussite */}
+      <div className={CARD}>
+        <div className="grid grid-cols-2 gap-2 text-center mb-3">
+          <div className="bg-surface-2 border border-line rounded-lg py-2 px-1">
+            <div className={`text-xl font-bold ${pctColor}`}>{pct}</div>
+            <div className="text-meta text-fg-dim">réussite estimée</div>
+          </div>
+          <div className="bg-surface-2 border border-line rounded-lg py-2 px-1">
+            <div className="text-xl font-bold text-accent">{score}</div>
+            <div className="text-meta text-fg-dim">score estimé</div>
+          </div>
+          <div className="bg-surface-2 border border-line rounded-lg py-2 px-1">
+            <div className="text-xl font-bold text-prio-high">{model.level}</div>
+            <div className="text-meta text-fg-dim">niveau</div>
+          </div>
+          <div className="bg-surface-2 border border-line rounded-lg py-2 px-1">
+            <div className="text-xl font-bold text-status-completed">{days}</div>
+            <div className="text-meta text-fg-dim">jours restants</div>
+          </div>
         </div>
-        <div className="bg-surface-2 border border-line rounded-lg py-2 px-1">
-          <div className="text-xl font-bold text-accent">{score}</div>
-          <div className="text-meta text-fg-dim">score estimé</div>
-        </div>
-        <div className="bg-surface-2 border border-line rounded-lg py-2 px-1">
-          <div className="text-xl font-bold text-prio-high">{model.level}</div>
-          <div className="text-meta text-fg-dim">niveau</div>
-        </div>
-        <div className="bg-surface-2 border border-line rounded-lg py-2 px-1">
-          <div className="text-xl font-bold text-status-completed">{days}</div>
-          <div className="text-meta text-fg-dim">jours restants</div>
-        </div>
+        {model.hasEnough && <PassGauge passPct={model.passPct} />}
       </div>
-      {model.hasEnough && <PassGauge passPct={model.passPct} />}
-      <SkillChart mastery={model.barMastery} />
-      {coverage && <CoverageRings coverage={coverage} />}
-      <p className="text-fg-dim text-sm mt-2">
+
+      {/* Maîtrise par compétence : radar */}
+      <div className={CARD}>
+        <h2 className={HEADING}>Maîtrise par compétence</h2>
+        <SkillChart mastery={model.barMastery} />
+      </div>
+
+      {/* Couverture du référentiel : anneaux vu / appris */}
+      {coverage && (
+        <div className={CARD}>
+          <h2 className={HEADING}>Couverture du référentiel</h2>
+          <CoverageRings coverage={coverage} />
+        </div>
+      )}
+
+      <p className="text-fg-dim text-sm text-center m-0">
         {model.answers} réponses · fiabilité {Math.round(model.confidence * 100)}%
       </p>
     </div>

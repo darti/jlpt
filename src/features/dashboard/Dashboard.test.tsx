@@ -74,13 +74,13 @@ test("gauge shows the pass % value and the risk tier once there is enough data",
   const m = dashboardModel(flat(1600, 60), new Date("2026-07-10T00:00:00")); // passPct 17 -> bad
   const html = renderToStaticMarkup(<Dashboard model={m} days={m.days} />);
   expect(html).toContain("17%");        // value in the gauge caption / fallback
-  expect(html).toContain("à risque");   // tier spelled out (status never colour-alone)
+  expect(html).toContain("Risque");     // zone spelled out (status never colour-alone)
 });
 
 test("gauge is hidden when there is not enough data", () => {
   const m = dashboardModel(flat(1600, 3), new Date("2026-07-10T00:00:00"));
   const html = renderToStaticMarkup(<Dashboard model={m} days={m.days} />);
-  expect(html).not.toContain("à risque"); // no PassGauge (its tier word) below the enough-data threshold
+  expect(html).not.toContain("Risque"); // no PassGauge (its zone word) below the enough-data threshold
 });
 
 test("pass-% threshold color is the risk (bad) tone below 40%", () => {
