@@ -11,17 +11,18 @@ const cov = {
   lecture: { seen: 40, mastered: 25, seenN: 21, masteredN: 13, total: 52 },
 } as Record<Skill, SkillCoverage>;
 
-test("CoverageRings renders vu/appris labels and percentages", () => {
+test("CoverageRings renders vu/appris counts out of the per-skill total", () => {
   const html = renderToStaticMarkup(<CoverageRings coverage={cov} />);
   expect(html).toContain("Grammaire");
   expect(html).toContain("vu");
   expect(html).toContain("appris");
-  expect(html).toContain("12%");
-  expect(html).toContain("8%");
+  expect(html).toContain("141");   // grammaire seenN
+  expect(html).toContain("94");    // grammaire masteredN
+  expect(html).toContain("1174");  // grammaire total (denominator made explicit)
 });
 
-test("CoverageRings tolerates a missing skill entry (defaults to 0)", () => {
+test("CoverageRings tolerates a missing skill entry (defaults to 0 / 0)", () => {
   const html = renderToStaticMarkup(<CoverageRings coverage={{} as Record<Skill, SkillCoverage>} />);
   expect(html).toContain("Grammaire");
-  expect(html).toContain("0%");
+  expect(html).toContain("sur 0");
 });

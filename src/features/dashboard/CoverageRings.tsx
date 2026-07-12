@@ -26,7 +26,7 @@ export function CoverageRings({ coverage }: { coverage: Record<Skill, SkillCover
           <div key={s} className="flex flex-col items-center gap-1 text-center">
             <svg
               width="52" height="52" viewBox="0 0 52 52"
-              role="img" aria-label={`${LABELS[s]} : vu ${cov.seen} %, appris ${cov.mastered} %`}
+              role="img" aria-label={`${LABELS[s]} : vu ${cov.seenN} sur ${cov.total}, appris ${cov.masteredN}`}
             >
               <circle cx="26" cy="26" r={R_OUT} fill="none" strokeWidth="4" style={{ stroke: TRACK }} />
               <circle
@@ -45,8 +45,9 @@ export function CoverageRings({ coverage }: { coverage: Record<Skill, SkillCover
             </svg>
             <span className="text-meta text-fg-dim">{LABELS[s]}</span>
             <span className="text-meta text-fg-dim">
-              vu <b className="text-fg">{cov.seen}%</b> · appris <b className="text-fg">{cov.mastered}%</b>
+              vu <b className="text-fg">{cov.seenN}</b> · appris <b className="text-fg">{cov.masteredN}</b>
             </span>
+            <span className="text-meta text-fg-muted">sur {cov.total}</span>
           </div>
         );
       })}
