@@ -74,23 +74,17 @@ export function PassGauge({ passPct }: { passPct: number }) {
   }, [pct, tier]);
 
   return (
-    <div className="mb-3" style={{ position: "relative" }}>
+    <div className="mb-3">
       <div
         ref={ref}
         role="img"
         aria-label={`Réussite estimée ${pct} %, ${TIER_WORD[tier]}`}
-        style={{ width: "100%", height: 150 }}
+        style={{ width: "100%", height: 128 }}
       />
-      {/* Label centred inside the dial (HTML overlay → SSR/offline-safe, tests read it). */}
-      <div
-        className="text-fg-dim"
-        style={{
-          position: "absolute", left: "50%", top: "62%", transform: "translate(-50%, -50%)",
-          whiteSpace: "nowrap", pointerEvents: "none", fontSize: 15,
-        }}
-      >
+      {/* Value + zone label just below the dial (SSR/offline-safe, tests read it). */}
+      <p className="text-fg-dim text-center m-0" style={{ marginTop: -6, fontSize: 15 }}>
         <b style={{ color: `var(${TIER_VAR[tier]})` }}>{pct}%</b> · {TIER_WORD[tier]}
-      </div>
+      </p>
     </div>
   );
 }
