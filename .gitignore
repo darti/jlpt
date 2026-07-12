@@ -1,4 +1,4 @@
-node_modules/
+node_modules
 _site/
 src/styles/styles.gen.css
 .worktrees/
