@@ -4,7 +4,9 @@ import { useThemeContext } from "../hooks/useThemeContext.tsx";
 import { applyFuri, readFuri, writeFuri } from "../lib/furigana.ts";
 
 // Panel background + border + blur — applied only while the nav is pinned to the top.
-const STUCK_BG = "bg-panel border-b border-line surface-blur";
+// `notch-fill` extends that frosted background up through the iOS safe-area strip so the
+// blur reaches the very top of the screen instead of stopping at the notch (see tailwind.css).
+const STUCK_BG = "bg-panel border-b border-line surface-blur notch-fill";
 
 const ROUTES = [
   { to: "/", label: "Accueil", end: true },

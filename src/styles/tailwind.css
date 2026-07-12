@@ -145,6 +145,29 @@
   backdrop-filter: var(--effect-backdrop, none);
 }
 
+/* iOS notch fill for the pinned top-nav. The sticky nav pins at
+ * `top: env(safe-area-inset-top)` to clear the notch, so its own frosted
+ * background starts *below* the safe-area strip — leaving the status-bar /
+ * notch region unblurred. This paint-only pseudo-element extends the same
+ * `bg-panel` + `surface-blur` up through that strip so the blur reaches the
+ * very top of the screen. `position: absolute` keeps it out of layout (no
+ * content jump / no effect on the stuck-detection math); the sticky nav is
+ * already a positioned containing block, so no `position: relative` is needed. */
+@utility notch-fill {
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    height: env(safe-area-inset-top);
+    background: var(--color-panel);
+    -webkit-backdrop-filter: var(--effect-backdrop, none);
+    backdrop-filter: var(--effect-backdrop, none);
+    pointer-events: none;
+  }
+}
+
 /* Themeable surface elevation. Tailwind's `shadow-*` namespace inlines token
  * values at build time, so these read `var(--elevation-*)` at element time
  * instead — letting a `[data-theme]` override actually re-tint the shadow.
