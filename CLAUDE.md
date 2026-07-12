@@ -24,8 +24,11 @@ par tâche = branche + répertoire isolés.
 - **Source de vérité = `data/*.json`** (bank, dict, cours, kanji, grammar, vocab).
   Tout est **chargé au runtime** par le React (`fetch`) — plus aucun inline, plus de `sync-*.mjs`.
 - **Une seule SPA** : `index.html` monte un `HashRouter` (react-router-dom, `src/AppShell.tsx`).
-  Routes : `/` (dashboard), `/quiz` (moteur adaptatif type Elo), `/entrainement` (hub),
-  `/cours`, `/planning`. `quiz.html`/`app-n3.html` = **stubs de redirection** (anciennes
+  Routes : `/` (Accueil : dashboard + graphe de progression), `/entrainement` (**onglet unique
+  fusionné** — hub reprise/démarrage **et** moteur quiz adaptatif type Elo inline, piloté par
+  `useQuiz` ; phase `home` = hub, sinon flux question/corrigé/résultats), `/parametrage`
+  (police/thème/données/synchro), `/cours`, `/planning`. `/quiz` **redirige** vers `/entrainement`
+  (compat, query préservée) ; `quiz.html`/`app-n3.html` = **stubs de redirection** (anciennes
   URL/bookmarks → routes hash). Le shell (thème/SW/police/dict) est dans `AppShell` (montage unique).
 - Contenu chargé au runtime : `data/dict.json` (furigana + tap-pour-définir, `src/lib/dict.ts`),
   `data/cours-*.json` (route `/cours`, `src/features/cours`), `data/bank-*.json` (quiz).
