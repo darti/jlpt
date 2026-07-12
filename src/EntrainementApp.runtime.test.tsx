@@ -37,25 +37,18 @@ function renderApp() {
   });
 }
 
-test("mounts live and renders the hub (start card + dashboard stats)", () => {
+test("mounts live and renders the hub (start card)", () => {
   renderApp();
-  const text = container.textContent ?? "";
-  expect(text).toContain("Lancer une session"); // QuizHome start card
-  expect(text).toContain("%");                   // Dashboard progress stats
+  expect(container.textContent ?? "").toContain("Lancer une session"); // QuizHome start card
 });
 
-test("hub no longer shows settings or sync (moved to Paramétrage)", () => {
+test("hub no longer shows stats, chart, settings or sync (moved to Accueil/Paramétrage)", () => {
   renderApp();
   const text = container.textContent ?? "";
+  expect(text).not.toContain("réussite estimée"); // Dashboard stats → Accueil
+  expect(text).not.toContain("estimé /180");       // ProgressChart → Accueil
   expect(text).not.toContain("Réglages");
   expect(text).not.toContain("Synchronisation multi-appareils");
-});
-
-test("reads the session-score history into the progress chart", () => {
-  renderApp();
-  const text = container.textContent ?? "";
-  expect(text).toContain("estimé /180");
-  expect(text).not.toContain("Au moins 2 diagnostics");
 });
 
 test("resume banner appears when a valid quiz session is stored", () => {

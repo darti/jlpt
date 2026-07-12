@@ -1,8 +1,5 @@
-import { Dashboard } from "../dashboard/Dashboard.tsx";
-import { ProgressChart } from "./ProgressChart.tsx";
 import { QuizHome } from "../quiz/QuizHome.tsx";
 import { ResumeBanner } from "../quiz/ResumeBanner.tsx";
-import type { DashboardModel } from "../../lib/scoring.ts";
 import type { ResumeState } from "../quiz/useQuiz.ts";
 import type { Skill } from "../../types/progress.ts";
 
@@ -15,14 +12,10 @@ const STUBS = [
   { key: "erreurs", label: "Réviser les erreurs", desc: "Reprends tes fautes" },
 ];
 
-/** Entraînement hub (phase "home"): resumable-session banner + progress overview (reused
- *  `Dashboard`) + session-score chart + the quiz start card (`QuizHome`) + deferred stubs.
- *  Réglages + synchro now live on the Paramétrage route. Pure/prop-driven; the leaf
- *  components own their SSR-guarded effects. */
+/** Entraînement hub (phase "home"): resumable-session banner + the quiz start card
+ *  (`QuizHome`) + deferred stubs. Stats overview + progression chart now live on the
+ *  Accueil route; réglages + synchro on Paramétrage. Pure/prop-driven. */
 export function EntrainementHome(props: {
-  model: DashboardModel | null;
-  days: number;
-  scores: number[];
   selected: Set<Skill>;
   minutes: number;
   resume: ResumeState | null;
@@ -35,11 +28,6 @@ export function EntrainementHome(props: {
   return (
     <div className="flex flex-col gap-6">
       <ResumeBanner resume={props.resume} onResume={props.onResumeNow} onDismiss={props.onDismissResume} />
-      <Dashboard model={props.model} days={props.days} />
-      <section className="bg-panel border border-line rounded-xl p-5 shadow-card surface-blur">
-        <h2 className="text-fg text-lg font-bold mt-0 mb-3">Progression</h2>
-        <ProgressChart scores={props.scores} />
-      </section>
       <QuizHome
         selected={props.selected}
         minutes={props.minutes}
