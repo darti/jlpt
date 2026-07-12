@@ -1,15 +1,15 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import { BAR_SKILLS, type Skill } from "../../types/progress.ts";
 import type { SkillCoverage } from "../../lib/coverage.ts";
 
 const LABELS: Record<Skill, string> = {
   grammaire: "Grammaire", vocabulaire: "Vocab", kanji: "Kanji", lecture: "Lecture", ecoute: "Écoute",
 };
-// Per-skill identity dot for the value list — matches the app-wide `--color-skill-*` tokens.
-// Decorative only: the skill name beside it carries identity (dataviz: never color alone).
-const DOT: Record<Skill, string> = {
-  grammaire: "bg-skill-grammaire", vocabulaire: "bg-skill-vocabulaire",
-  kanji: "bg-skill-kanji", lecture: "bg-skill-lecture", ecoute: "bg-skill-lecture",
+// Visually-hidden style (inline → no Tailwind utility needed): keeps the exact per-skill
+// figures in the DOM as the accessible table view + SSR text, without showing a sub-legend.
+const SR_ONLY: CSSProperties = {
+  position: "absolute", width: 1, height: 1, padding: 0, margin: -1,
+  overflow: "hidden", clip: "rect(0 0 0 0)", whiteSpace: "nowrap", border: 0,
 };
 
 // cssVar is only ever called inside the effect (browser), so `document` is defined there.
@@ -70,7 +70,7 @@ export function SkillChart(
         c.setOption({
           tooltip: {}, // per-series hover (dataviz: ship a hover layer)
           radar: {
-            indicator: BAR_SKILLS.map((s) => ({ name: LABELS[s], max: 100 })),
+            indicator: BAR_SKILLS.map((s) => ({ name: LABELS[s], min: 0, max: 100 })), // axes pinned 0–100 %
             radius: "66%",
             splitNumber: 4,
             axisName: { color: dim, fontSize: 12 },
@@ -116,15 +116,16 @@ export function SkillChart(
           </span>
         </div>
       )}
-      <div className="flex flex-wrap justify-center gap-4 mt-1 text-sm">
+      {/* Exact per-skill figures — visually hidden (a radar reads poorly for precise values
+          and the legend already carries series identity), kept in the DOM as the accessible
+          table view (dataviz) + SSR text. */}
+      <ul style={SR_ONLY}>
         {BAR_SKILLS.map((s) => (
-          <span key={s} className="flex items-center gap-2 text-fg-dim">
-            <span className={`inline-block w-2 h-2 rounded-full ${DOT[s]}`} aria-hidden="true" />
-            {LABELS[s]} <b className="text-fg">{mastery[s]}%</b>
-            {hasCov && <> · vu <b className="text-fg">{coverage[s]?.seen ?? 0}%</b></>}
-          </span>
+          <li key={s}>
+            {LABELS[s]} : maîtrise {mastery[s]}%{hasCov ? `, vu ${coverage[s]?.seen ?? 0}%` : ""}
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
