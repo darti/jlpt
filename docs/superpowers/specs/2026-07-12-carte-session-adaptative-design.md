@@ -167,3 +167,13 @@ mode par mode dans les sous-projets #2 → #4.
   `lastDiagnosticAt` alimentant `daysSinceDiagnostic`), Apprendre (#4, incl. calcul de
   `newCoursePoints`).
 - Tout affichage du mélange dans la carte (choix « magique » : mix caché).
+
+### ⚠️ Piège pour le #2 (réconciliation budget adaptatif)
+
+Dans `useQuiz.start()`, la boucle de pioche répartit le **`total`** entier d'`allocate()` entre
+catégories (`alloc[cat]`, dont la somme = `total`), **indépendamment** de `plan.alloc.adaptive`.
+Invisible en #1 (`adaptive === total`). Dès que le #2 passe `errors: true` dans `BUILT_CAPS`,
+`adaptive` devient `total − errors` : la boucle sur-pioche alors des questions adaptatives puis
+tronque à `adaptive`, et le #2 doit **injecter séparément** ses questions d'erreurs. Le #2 doit
+donc réconcilier la répartition `total`-based d'`allocate` avec le budget `adaptive` réduit —
+ne pas supposer que la boucle respecte déjà `plan.alloc.adaptive`.
