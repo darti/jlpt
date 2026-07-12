@@ -47,6 +47,20 @@ export function loadCategory(cat: Skill, fetchImpl: FetchLike = fetch as FetchLi
   return p;
 }
 
+/** Resolve `ids → Question[]` by loading the pools of the categories the ids belong to (per `idx`).
+ *  Order follows `ids`; ids absent from the pools are dropped. Shared by resume + the errors slice. */
+export async function questionsForIds(
+  ids: number[], idx: Record<number, Skill>, fetchImpl: FetchLike = fetch as FetchLike,
+): Promise<Question[]> {
+  if (!ids.length) return [];
+  const catsNeeded = new Set<Skill>();
+  for (const id of ids) { const c = idx[id]; if (c) catsNeeded.add(c); }
+  const pools = await Promise.all([...catsNeeded].map((c) => loadCategory(c, fetchImpl)));
+  const byId = new Map<number, Question>();
+  for (const pool of pools) for (const p of pool) byId.set(p.id, p);
+  return ids.map((id) => byId.get(id)).filter((p): p is Question => p !== undefined);
+}
+
 export function pickAdaptive(
   pool: Question[], R: number, exclude: Set<number>, wrong: number[], rng: () => number = Math.random,
 ): Question[] {

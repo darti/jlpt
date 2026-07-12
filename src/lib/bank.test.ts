@@ -1,7 +1,7 @@
 import { test, expect } from "bun:test";
 import {
   shuffle, pickAdaptive, allocate, loadCategory, loadBankIndex, clearBankIndexCache,
-  selectRecentErrors, composeSession,
+  clearCategoryCache, selectRecentErrors, composeSession, questionsForIds,
 } from "./bank.ts";
 import type { Question } from "../types/quiz.ts";
 
@@ -96,4 +96,21 @@ test("composeSession clamps adaptiveTarget to 0 when errors already exceed total
   const out = composeSession(errorQs, [q(10, 1)], 2, () => 0);
   expect(out).toHaveLength(3); // all errorQs kept, no adaptive added
   expect(out.map((x) => x.id).sort()).toEqual([1, 2, 3]);
+});
+
+test("questionsForIds resolves ids across categories, preserves order, drops unknowns", async () => {
+  clearCategoryCache();
+  const idx = { 1: "kanji", 2: "grammaire", 3: "kanji" } as Record<string, string>;
+  const fetchImpl = async (url: string) => ({
+    json: async () =>
+      url.includes("kanji")
+        ? [{ id: 1, cat: "kanji", d: 1, q: "", o: [], a: 0 }, { id: 3, cat: "kanji", d: 1, q: "", o: [], a: 0 }]
+        : [{ id: 2, cat: "grammaire", d: 1, q: "", o: [], a: 0 }],
+  });
+  const out = await questionsForIds([3, 2, 1, 99], idx as any, fetchImpl as any);
+  expect(out.map((x) => x.id)).toEqual([3, 2, 1]); // order preserved, 99 (unknown) dropped
+});
+
+test("questionsForIds returns [] for no ids", async () => {
+  expect(await questionsForIds([], {}, (async () => ({ json: async () => [] })) as any)).toEqual([]);
 });

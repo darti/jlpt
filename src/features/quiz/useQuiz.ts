@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { SKILLS, type Progress, type Skill } from "../../types/progress.ts";
 import type { Question, SkillState } from "../../types/quiz.ts";
 import { updateRating } from "../../lib/elo.ts";
-import { allocate, loadCategory, pickAdaptive, shuffle } from "../../lib/bank.ts";
+import { allocate, loadCategory, pickAdaptive, shuffle, questionsForIds } from "../../lib/bank.ts";
 import { readRawProgress, writeProgress } from "../../lib/storage.ts";
 import { decodeBits, encodeBits, setBit } from "../../lib/coverage.ts";
 import { dashboardModel, masteryOf } from "../../lib/scoring.ts";
@@ -302,16 +302,7 @@ export function useQuiz() {
     const idx = await ensureBankIndex();
     if (!idx) return;
 
-    const catsNeeded = new Set<Skill>();
-    for (const id of r.ids) {
-      const cat = idx[id];
-      if (cat) catsNeeded.add(cat);
-    }
-    const pools = await Promise.all([...catsNeeded].map((c) => loadCategory(c)));
-    const byId = new Map<number, Question>();
-    for (const pool of pools) for (const q of pool) byId.set(q.id, q);
-
-    const rebuilt = r.ids.map((id) => byId.get(id)).filter((q): q is Question => q !== undefined);
+    const rebuilt = await questionsForIds(r.ids, idx);
     if (!rebuilt.length) {
       clearResumeState();
       setResume(null);
