@@ -81,6 +81,15 @@ Le boost +150 reste inchangé (on continue de passer `wrong` à `pickAdaptive`) 
 Les ids d'erreurs non résolus retombent gracieusement dans l'adaptatif (`adaptiveTarget` monte),
 le budget `total` reste tenu.
 
+> **Durcissement post-revue (C1/C2).** La réconciliation du budget se fait désormais **à
+> l'allocation** : `bank.ts` expose `questionCount(minutes)` + `allocateCount(masteryOf, total)`, et
+> `start()` alloue la boucle adaptative à `adaptiveTarget = total − nbErreurs` (au lieu de piocher
+> `total` puis d'en jeter au hasard via le slice de `composeSession`) — la **pondération par maîtrise
+> est ainsi préservée exactement**, plus diluée. `composeSession` garde son slice comme filet de
+> sécurité (désormais no-op). **C2** : si `ensureBankIndex()` échoue (réseau `null`), le socle
+> d'erreurs est ignoré et la session dégrade en adaptatif-seul (le boost +150 re-surface quand même
+> les fautes) — contrat documenté dans `start()` et couvert par un test index-null.
+
 ## Tests (TDD)
 
 - `bank.test.ts` : `selectRecentErrors` — vide, `n=0`, `n<len` (prend la queue, plus récent en tête),
