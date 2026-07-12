@@ -467,8 +467,13 @@ git commit -m "feat : hook useCoverage — couverture par compétence via bank-i
 - Create: `src/features/dashboard/CoverageRings.test.tsx`
 - Modify: `src/features/dashboard/Dashboard.tsx` (accept `coverage`, render rings)
 - Modify: `src/App.tsx` (compute + pass `coverage`)
-- Modify: `src/EntrainementApp.tsx` (compute + thread `coverage`)
-- Modify: `src/features/entrainement/EntrainementHome.tsx` (thread `coverage` to `Dashboard`)
+
+> **DEVIATION (G9), applied during execution:** the plan originally also wired
+> `EntrainementApp.tsx` + `EntrainementHome.tsx`. Between planning and execution, the
+> parallel `main` work (`78bfb37`) **moved the Dashboard/stats block out of Entraînement
+> onto the Accueil route**. Entraînement no longer renders `Dashboard`, so those two files
+> are left untouched — coverage rings surface once, on Accueil (`App.tsx`). Steps 7 below
+> is therefore dropped.
 
 **Interfaces:**
 - Consumes: `SkillCoverage` (Task 1), `BAR_SKILLS`/`Skill`, `useCoverage` (Task 5).
@@ -631,22 +636,7 @@ export default function App() {
 
 > `coverageBySkill`/`SkillCoverage` are imported for the type only if needed; keep only the imports you use (typecheck will flag unused). Minimal set: `useCoverage`, `SkillCoverage`, `Skill`.
 
-- [ ] **Step 7: Wire `EntrainementApp.tsx` + `EntrainementHome.tsx`**
-
-In `EntrainementApp.tsx`, add the hook + thread the prop:
-
-```tsx
-import { useCoverage } from "./features/dashboard/useCoverage.ts";
-import type { SkillCoverage } from "./lib/coverage.ts";
-// … in EntrainementAppView props type, add:
-//   coverage?: Record<Skill, SkillCoverage> | null;
-// … pass it into <EntrainementHome … coverage={props.coverage} />
-// … in EntrainementApp():
-  const coverage = useCoverage(progress);
-// … in the returned <EntrainementAppView … coverage={coverage} />
-```
-
-In `EntrainementHome.tsx`, add `coverage?: Record<Skill, SkillCoverage> | null` to the props type (import `SkillCoverage` from `../../lib/coverage.ts`) and forward it: `<Dashboard model={props.model} days={props.days} coverage={props.coverage} />`.
+- [ ] ~~**Step 7: Wire `EntrainementApp.tsx` + `EntrainementHome.tsx`**~~ — **DROPPED** (see deviation note above; Entraînement no longer renders `Dashboard`).
 
 - [ ] **Step 8: Verify the whole build + tests**
 
@@ -657,8 +647,7 @@ Expected: PASS. Fix any unused-import or prop-threading type errors surfaced.
 
 ```bash
 git add src/features/dashboard/CoverageRings.tsx src/features/dashboard/CoverageRings.test.tsx \
-        src/features/dashboard/Dashboard.tsx src/App.tsx src/EntrainementApp.tsx \
-        src/features/entrainement/EntrainementHome.tsx
+        src/features/dashboard/Dashboard.tsx src/App.tsx
 git commit -m "feat : anneaux de couverture (vu/appris) sous le radar du tableau de bord"
 ```
 

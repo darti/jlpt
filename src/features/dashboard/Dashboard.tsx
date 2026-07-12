@@ -1,5 +1,8 @@
 import { passTier, type DashboardModel } from "../../lib/scoring.ts";
 import { SkillChart } from "./SkillChart.tsx";
+import { CoverageRings } from "./CoverageRings.tsx";
+import type { SkillCoverage } from "../../lib/coverage.ts";
+import type { Skill } from "../../types/progress.ts";
 
 const TIER_COLOR = {
   ok: "text-status-completed", warn: "text-prio-high", bad: "text-status-failed",
@@ -7,7 +10,10 @@ const TIER_COLOR = {
 
 // Pure presentational component. Model validation (null check, shape verification) is deferred
 // to the parent/caller (see useProgress hook). This component only checks for empty data state.
-export function Dashboard({ model, days }: { model: DashboardModel | null; days: number }) {
+export function Dashboard(
+  { model, days, coverage }:
+  { model: DashboardModel | null; days: number; coverage?: Record<Skill, SkillCoverage> | null },
+) {
   if (!model || model.answers === 0) {
     return (
       <div className="bg-panel border border-line rounded-xl px-6 py-5 mb-6 shadow-card surface-blur">
@@ -50,6 +56,7 @@ export function Dashboard({ model, days }: { model: DashboardModel | null; days:
         </div>
       )}
       <SkillChart mastery={model.barMastery} />
+      {coverage && <CoverageRings coverage={coverage} />}
       <p className="text-fg-dim text-sm mt-2">
         {model.answers} réponses · fiabilité {Math.round(model.confidence * 100)}%
       </p>
