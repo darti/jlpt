@@ -3,7 +3,9 @@ import { useSearchParams } from "react-router-dom";
 import { SKILLS, type Progress, type Skill } from "../../types/progress.ts";
 import type { Question, SkillState } from "../../types/quiz.ts";
 import { updateRating } from "../../lib/elo.ts";
-import { allocate, loadCategory, pickAdaptive, shuffle, questionsForIds } from "../../lib/bank.ts";
+import {
+  allocate, loadCategory, pickAdaptive, questionsForIds, selectRecentErrors, composeSession,
+} from "../../lib/bank.ts";
 import { readRawProgress, writeProgress } from "../../lib/storage.ts";
 import { decodeBits, encodeBits, setBit } from "../../lib/coverage.ts";
 import { dashboardModel, masteryOf } from "../../lib/scoring.ts";
@@ -177,10 +179,9 @@ export function useQuiz() {
     const wrong = asWrong(raw);
     const { total, alloc } = allocate((c) => masteryOf(progress, c), min);
 
-    // Consult the decision engine. `resume: false` — "Commencer" always starts fresh; the
-    // resume decision is handled at the card level. In #1 BUILT_CAPS is all-off, so the plan
-    // is always { kind: "composed", alloc: { errors: 0, learn: 0, adaptive: total } }. Later
-    // sub-projects flip a cap in BUILT_CAPS and branch on plan.kind / plan.alloc here.
+    // Consult the decision engine. `resume: false` — "Commencer" always starts fresh; the resume
+    // decision is handled at the card level. Errors are built (BUILT_CAPS.errors); diagnostic/learn
+    // are not yet, so plan.kind is always "composed" here. Later sub-projects flip a cap and branch.
     const plan = pickSessionPlan(
       { resume: false, daysSinceDiagnostic: null, wrongCount: wrong.length, newCoursePoints: 0 },
       total,
@@ -188,19 +189,27 @@ export function useQuiz() {
     );
     if (plan.kind !== "composed") return; // diagnostic/resume unreachable in #1
 
-    const exclude = new Set<number>();
+    // Errors slice: the most-recent wrong[] ids (up to plan.alloc.errors), resolved to questions.
+    const errorIds = selectRecentErrors(wrong, plan.alloc.errors);
+    const idx = await ensureBankIndex();
+    const errorQs = idx ? await questionsForIds(errorIds, idx) : [];
+
+    // Adaptive candidates fill the rest — excluding the errors already picked (no duplicates).
+    const exclude = new Set<number>(errorQs.map((q) => q.id));
     const picked: Question[] = [];
     for (const cat of SKILLS) {
       const n = alloc[cat];
       if (!n) continue;
       const pool = await loadCategory(cat);
       const R = skillStateOf(raw, cat).R;
-      const picks = pickAdaptive(pool, R, exclude, wrong).slice(0, n);
+      const picks = pickAdaptive(pool, R, exclude, wrong).slice(0, n); // wrong kept → +150 boost (soft floor)
       for (const q of picks) exclude.add(q.id);
       picked.push(...picks);
     }
 
-    const session = shuffle(picked).slice(0, plan.alloc.adaptive);
+    // composeSession reconciles the budget: adaptive = total - errorQs.length (unresolved errors
+    // fall back to adaptive), then shuffles errors + adaptive together.
+    const session = composeSession(errorQs, picked, total, Math.random);
     if (!session.length) return;
 
     rightRef.current = 0;
