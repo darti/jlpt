@@ -57,6 +57,23 @@ export function pickAdaptive(
     .map((x) => x.q);
 }
 
+/** The `n` most-recent ids from `wrong[]` (its tail), newest first. Empty for n<=0 or no errors. */
+export function selectRecentErrors(wrong: number[], n: number): number[] {
+  if (n <= 0 || wrong.length === 0) return [];
+  return wrong.slice(Math.max(0, wrong.length - n)).reverse();
+}
+
+/** Combine a guaranteed errors slice with adaptive fill into a single shuffled session.
+ *  Adaptive fills `total - errorQs.length` (reconciles the budget when errorQs is short or empty;
+ *  clamped at 0). Callers must exclude the error ids from `adaptiveCandidates` upstream. */
+export function composeSession(
+  errorQs: Question[], adaptiveCandidates: Question[], total: number, rng: () => number = Math.random,
+): Question[] {
+  const adaptiveTarget = Math.max(0, total - errorQs.length);
+  const adaptiveQs = shuffle(adaptiveCandidates, rng).slice(0, adaptiveTarget);
+  return shuffle([...errorQs, ...adaptiveQs], rng);
+}
+
 export function allocate(masteryOf: (c: Skill) => number, minutes: number): { total: number; alloc: Record<Skill, number> } {
   const total = Math.max(4, Math.min(45, Math.round(minutes * 1.5)));
   const w = {} as Record<Skill, number>;

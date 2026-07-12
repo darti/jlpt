@@ -1,5 +1,8 @@
 import { test, expect } from "bun:test";
-import { shuffle, pickAdaptive, allocate, loadCategory, loadBankIndex, clearBankIndexCache } from "./bank.ts";
+import {
+  shuffle, pickAdaptive, allocate, loadCategory, loadBankIndex, clearBankIndexCache,
+  selectRecentErrors, composeSession,
+} from "./bank.ts";
 import type { Question } from "../types/quiz.ts";
 
 const q = (id: number, d: 1 | 2 | 3): Question =>
@@ -53,4 +56,44 @@ test("loadBankIndex fetches bank-index.json and memoizes", async () => {
   expect(a).toBe(b);
   expect(calls).toBe(1);
   expect(a[0]).toBe("grammaire");
+});
+
+test("selectRecentErrors returns [] for empty wrong or non-positive n", () => {
+  expect(selectRecentErrors([], 3)).toEqual([]);
+  expect(selectRecentErrors([1, 2, 3], 0)).toEqual([]);
+  expect(selectRecentErrors([1, 2, 3], -1)).toEqual([]);
+});
+
+test("selectRecentErrors takes the tail (most recent), newest first", () => {
+  // wrong is chronological: 10 oldest ... 40 newest
+  expect(selectRecentErrors([10, 20, 30, 40], 2)).toEqual([40, 30]);
+});
+
+test("selectRecentErrors returns all (reversed) when n >= length", () => {
+  expect(selectRecentErrors([10, 20, 30], 5)).toEqual([30, 20, 10]);
+});
+
+test("composeSession keeps all errorQs and fills adaptive up to total", () => {
+  const rng = () => 0; // deterministic shuffle (no swaps beyond j=0)
+  const errorQs = [q(1, 1), q(2, 1), q(3, 1)];
+  const adaptive = [q(10, 1), q(11, 1), q(12, 1), q(13, 1), q(14, 1)];
+  const out = composeSession(errorQs, adaptive, 6, rng);
+  expect(out).toHaveLength(6);
+  for (const id of [1, 2, 3]) expect(out.map((x) => x.id)).toContain(id);
+  expect(new Set(out.map((x) => x.id)).size).toBe(6); // no duplicates
+});
+
+test("composeSession short errors slice: adaptive covers the remainder to total", () => {
+  const errorQs = [q(1, 1)];
+  const adaptive = [q(10, 1), q(11, 1), q(12, 1), q(13, 1)];
+  const out = composeSession(errorQs, adaptive, 4, () => 0);
+  expect(out).toHaveLength(4);
+  expect(out.map((x) => x.id)).toContain(1);
+});
+
+test("composeSession clamps adaptiveTarget to 0 when errors already exceed total", () => {
+  const errorQs = [q(1, 1), q(2, 1), q(3, 1)];
+  const out = composeSession(errorQs, [q(10, 1)], 2, () => 0);
+  expect(out).toHaveLength(3); // all errorQs kept, no adaptive added
+  expect(out.map((x) => x.id).sort()).toEqual([1, 2, 3]);
 });
