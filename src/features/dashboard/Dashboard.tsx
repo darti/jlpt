@@ -54,6 +54,9 @@ export function Dashboard(
           </div>
         </div>
         {model.hasEnough && <PassGauge passPct={model.passPct} />}
+        <p className="text-fg-dim text-sm text-center m-0">
+          {model.answers} réponses · fiabilité {Math.round(model.confidence * 100)}%
+        </p>
       </div>
 
       {/* Maîtrise par compétence : radar */}
@@ -69,10 +72,6 @@ export function Dashboard(
           <CoverageRings coverage={coverage} />
         </div>
       )}
-
-      <p className="text-fg-dim text-sm text-center m-0">
-        {model.answers} réponses · fiabilité {Math.round(model.confidence * 100)}%
-      </p>
     </div>
   );
 }

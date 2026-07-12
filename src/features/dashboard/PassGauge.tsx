@@ -62,10 +62,7 @@ export function PassGauge({ passPct }: { passPct: number }) {
                 (v === 20 ? TIER_WORD.bad : v === 50 ? TIER_WORD.warn : v === 90 ? TIER_WORD.ok : ""),
             },
             title: { show: false },
-            detail: {
-              offsetCenter: [0, "-26%"], fontSize: 26, fontWeight: "bold",
-              valueAnimation: false, formatter: "{value}%", color: "inherit",
-            },
+            detail: { show: false }, // value shown in the caption below the dial (no in-gauge number)
             data: [{ value: pct }],
           }],
         });

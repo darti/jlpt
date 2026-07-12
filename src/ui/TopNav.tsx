@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useThemeContext } from "../hooks/useThemeContext.tsx";
 import { applyFuri, readFuri, writeFuri } from "../lib/furigana.ts";
+
+// Panel background + border + blur — applied only while the nav is pinned to the top.
+const STUCK_BG = "bg-panel border-b border-line surface-blur";
 
 const ROUTES = [
   { to: "/", label: "Accueil", end: true },
@@ -16,9 +19,33 @@ const OFF = "text-fg-dim font-semibold text-sm";
 export function TopNav() {
   const { theme, toggle } = useThemeContext();
   const [furiOn, setFuriOn] = useState(() => readFuri());
+  const [stuck, setStuck] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
   const toggleFuri = () => { const on = writeFuri(!furiOn); setFuriOn(on); applyFuri(); };
+
+  // The nav is `position: sticky`; show its background only once it's pinned at the top.
+  useEffect(() => {
+    const el = navRef.current;
+    if (!el) return;
+    const stickyTop = parseFloat(getComputedStyle(el).top) || 0; // resolves env(safe-area-inset-top)
+    let raf = 0;
+    const update = () => { raf = 0; setStuck(el.getBoundingClientRect().top <= stickyTop + 0.5); };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   return (
-    <nav className="sticky top-[env(safe-area-inset-top)] z-10 flex gap-4 flex-wrap justify-center items-center px-3 py-2.5 bg-panel border-b border-line surface-blur">
+    <nav
+      ref={navRef}
+      className={`sticky top-[env(safe-area-inset-top)] z-10 flex gap-4 flex-wrap justify-center items-center px-3 py-2.5 ${stuck ? STUCK_BG : ""}`}
+    >
       {ROUTES.map((r) => (
         <NavLink key={r.to} to={r.to} end={r.end} className={({ isActive }) => (isActive ? ON : OFF)}>
           {r.label}
