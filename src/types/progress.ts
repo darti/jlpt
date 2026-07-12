@@ -5,4 +5,6 @@ export const BAR_SKILLS: Skill[] = ["grammaire", "vocabulaire", "kanji", "lectur
 export interface Progress {
   total: number;
   skill: Partial<Record<Skill, { R: number; t: number }>>;
+  seen?: string;      // base64 bitset over global ids — answered ≥ 1×
+  mastered?: string;  // base64 bitset — answered correctly ≥ 1× (⊆ seen)
 }
