@@ -26,6 +26,13 @@ const RESUME_KEY = "jlptN3quiz_resume";
 const RESUME_MAX_AGE_MS = 2 * 864e5; // 2 days — mirrors legacy getResume()
 const PUSH_DEBOUNCE_MS = 1500;
 
+/** Resolve a session length: a numeric `minArg` (URL handoff `?min=N`) wins; anything else
+ *  falls back to the `minutes` state. Guards `start` when it's wired as `onStart={quiz.start}`
+ *  and React passes the click event as the first arg (which would otherwise be NaN-ed). */
+export function resolveMinutes(minArg: unknown, minutes: number): number {
+  return typeof minArg === "number" ? minArg : minutes;
+}
+
 /** Pure parse of quiz session params from a URL query string (hub → quiz handoff). */
 export function parseSessionParams(search: string): { min?: number; resume: boolean } {
   const p = new URLSearchParams(search);
@@ -172,7 +179,7 @@ export function useQuiz() {
   // `minArg` lets the URL handoff (?min=N) start a session directly, without waiting
   // on the async `minutes` state (C3.1 — avoids a stale-closure auto-start bug).
   const start = useCallback(async (minArg?: number) => {
-    const min = minArg ?? minutes;
+    const min = resolveMinutes(minArg, minutes);
     const raw = readRawProgress();
     const progress = asProgress(raw);
     const wrong = asWrong(raw);

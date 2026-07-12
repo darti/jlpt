@@ -14,6 +14,13 @@ export function shuffle<T>(a: T[], rng: () => number = Math.random): T[] {
 }
 
 const cache = new Map<Skill, Promise<Question[]>>();
+
+/** Clears the memoized category pools. Tests that drive `loadCategory` with a mocked
+ *  fetch call this to isolate the shared module cache from other test files. */
+export function clearCategoryCache(): void {
+  cache.clear();
+}
+
 export function loadCategory(cat: Skill, fetchImpl: FetchLike = fetch as FetchLike): Promise<Question[]> {
   let p = cache.get(cat);
   if (!p) {
