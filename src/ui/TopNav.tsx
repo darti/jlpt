@@ -6,7 +6,6 @@ import { applyFuri, readFuri, writeFuri } from "../lib/furigana.ts";
 const ROUTES = [
   { to: "/", label: "Accueil", end: true },
   { to: "/entrainement", label: "Entraînement" },
-  { to: "/quiz", label: "Quiz" },
   { to: "/cours", label: "Cours" },
   { to: "/planning", label: "Planning" },
   { to: "/parametrage", label: "Paramétrage" },
