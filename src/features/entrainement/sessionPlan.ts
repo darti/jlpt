@@ -33,8 +33,8 @@ export type SessionPlan =
   | { kind: "diagnostic" }
   | { kind: "composed"; alloc: { errors: number; learn: number; adaptive: number } };
 
-/** Capacités construites à ce jour. Sous-projets #3→#4 : passer un flag à `true` ici. */
-export const BUILT_CAPS: Caps = { diagnostic: false, errors: true, learn: false };
+/** Capacités construites à ce jour. Sous-projet #4 : passer `learn` à `true` ici. */
+export const BUILT_CAPS: Caps = { diagnostic: true, errors: true, learn: false };
 
 /** Décide le plan de session (premier match gagne). `total` = budget de questions (dérivé du temps). */
 export function pickSessionPlan(state: SessionState, total: number, caps: Caps): SessionPlan {

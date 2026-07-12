@@ -52,9 +52,9 @@ test("learn fills after errors, bounded by newCoursePoints", () => {
   expect(plan).toEqual({ kind: "composed", alloc: { errors: 3, learn: 2, adaptive: 5 } });
 });
 
-test("#2 contract: BUILT_CAPS enables errors (30% cap); learn/diagnostic still off", () => {
+test("#2 contract: BUILT_CAPS enables errors (30% cap); learn still off", () => {
   const plan = pickSessionPlan(
-    { ...base, wrongCount: 50, newCoursePoints: 5, daysSinceDiagnostic: null },
+    { ...base, wrongCount: 50, newCoursePoints: 5, daysSinceDiagnostic: 3 },
     10,
     BUILT_CAPS,
   );
@@ -63,6 +63,16 @@ test("#2 contract: BUILT_CAPS enables errors (30% cap); learn/diagnostic still o
 });
 
 test("#2 contract: no errors emitted when wrong[] is empty", () => {
-  const plan = pickSessionPlan({ ...base, wrongCount: 0 }, 10, BUILT_CAPS);
+  const plan = pickSessionPlan({ ...base, wrongCount: 0, daysSinceDiagnostic: 3 }, 10, BUILT_CAPS);
   expect(plan).toEqual({ kind: "composed", alloc: { errors: 0, learn: 0, adaptive: 10 } });
+});
+
+test("#3 contract: BUILT_CAPS emits diagnostic when never assessed or >=7d", () => {
+  expect(pickSessionPlan({ ...base, daysSinceDiagnostic: null }, 10, BUILT_CAPS)).toEqual({ kind: "diagnostic" });
+  expect(pickSessionPlan({ ...base, daysSinceDiagnostic: 7 }, 10, BUILT_CAPS)).toEqual({ kind: "diagnostic" });
+});
+
+test("#3 contract: a recent diagnostic (<7d) yields a composed session", () => {
+  const plan = pickSessionPlan({ ...base, daysSinceDiagnostic: 3, wrongCount: 50 }, 10, BUILT_CAPS);
+  expect(plan.kind).toBe("composed");
 });

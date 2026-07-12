@@ -5,7 +5,7 @@ import type { Question, SkillState } from "../../types/quiz.ts";
 import { updateRating } from "../../lib/elo.ts";
 import {
   questionCount, allocateCount, loadCategory, pickAdaptive,
-  questionsForIds, selectRecentErrors, composeSession,
+  questionsForIds, selectRecentErrors, composeSession, selectDiagnostic,
 } from "../../lib/bank.ts";
 import { readRawProgress, writeProgress } from "../../lib/storage.ts";
 import { decodeBits, encodeBits, setBit } from "../../lib/coverage.ts";
@@ -13,7 +13,7 @@ import { dashboardModel, masteryOf } from "../../lib/scoring.ts";
 import { cloudPush, type GistDeps } from "../../lib/gist.ts";
 import { pickSessionPlan, BUILT_CAPS } from "../entrainement/sessionPlan.ts";
 
-export type Phase = "home" | "question" | "corrige" | "results";
+export type Phase = "home" | "question" | "corrige" | "results" | "diag-intro" | "diag-results";
 
 /** Shape persisted at `jlptN3quiz_resume` — port of legacy `saveResume`/`getResume` (app-n3.html:430-446). */
 export interface ResumeState {
@@ -24,12 +24,21 @@ export interface ResumeState {
   t: number;
 }
 
+/** One answered diagnostic item, kept for the end-of-test corrigé. */
+export interface DiagAnswer { question: Question; chosen: number; }
+
 // Deliberately separate from vanilla `app-n3`'s `jlptN3_resume` key so the two
 // apps never clobber each other's in-progress session — within-app resume
 // still round-trips.
 const RESUME_KEY = "jlptN3quiz_resume";
-const RESUME_MAX_AGE_MS = 2 * 864e5; // 2 days — mirrors legacy getResume()
+const DAY_MS = 864e5;
+const RESUME_MAX_AGE_MS = 2 * DAY_MS; // 2 days — mirrors legacy getResume()
 const PUSH_DEBOUNCE_MS = 1500;
+
+/** Days since a persisted timestamp (`diagAt`), or `null` when absent/invalid. */
+function daysSince(ts: unknown): number | null {
+  return typeof ts === "number" && ts > 0 ? (Date.now() - ts) / DAY_MS : null;
+}
 
 /** Resolve a session length: a numeric `minArg` (URL handoff `?min=N`) wins; anything else
  *  falls back to the `minutes` state. Guards `start` when it's wired as `onStart={quiz.start}`
@@ -128,6 +137,8 @@ export function useQuiz() {
   const [resume, setResume] = useState<ResumeState | null>(null);
   const [answered, setAnswered] = useState(false);
   const [chosen, setChosen] = useState<number | null>(null);
+  const [mode, setMode] = useState<"normal" | "diagnostic">("normal");
+  const [diagAnswers, setDiagAnswers] = useState<DiagAnswer[]>([]);
 
   const rightRef = useRef(0);
   const bankIndexRef = useRef<Record<number, Skill> | null>(null);
@@ -175,22 +186,47 @@ export function useQuiz() {
 
   // `minArg` lets the URL handoff (?min=N) start a session directly, without waiting
   // on the async `minutes` state (C3.1 — avoids a stale-closure auto-start bug).
-  const start = useCallback(async (minArg?: number) => {
+  const start = useCallback(async (minArg?: number, opts?: { skipDiagnostic?: boolean }) => {
     const min = resolveMinutes(minArg, minutes);
     const raw = readRawProgress();
-    const progress = asProgress(raw);
     const wrong = asWrong(raw);
     const total = questionCount(min);
 
+    // `skipDiagnostic` ([Plus tard]) forces a recent-diagnostic reading → composed path.
+    const daysSinceDiagnostic = opts?.skipDiagnostic ? 0 : daysSince(raw?.diagAt);
+
     // Consult the decision engine. `resume: false` — "Commencer" always starts fresh; the resume
-    // decision is handled at the card level. Errors are built (BUILT_CAPS.errors); diagnostic/learn
-    // are not yet, so plan.kind is always "composed" here. Later sub-projects flip a cap and branch.
+    // decision is handled at the card level. Errors are built (BUILT_CAPS.errors); learn is not
+    // yet. Later sub-projects flip a cap and branch.
     const plan = pickSessionPlan(
-      { resume: false, daysSinceDiagnostic: null, wrongCount: wrong.length, newCoursePoints: 0 },
+      { resume: false, daysSinceDiagnostic, wrongCount: wrong.length, newCoursePoints: 0 },
       total,
       BUILT_CAPS,
     );
-    if (plan.kind !== "composed") return; // diagnostic/resume unreachable in #2
+
+    if (plan.kind === "diagnostic") {
+      const poolsBySkill = {} as Record<Skill, Question[]>;
+      await Promise.all(SKILLS.map(async (s) => { poolsBySkill[s] = await loadCategory(s); }));
+      const session = selectDiagnostic(poolsBySkill, total, Math.random);
+      if (!session.length) return;
+      // Starting a diagnostic abandons any pending normal session — clear its resume so a stale
+      // "Reprendre" card can't resurface on a later reload (MAJOR #5b).
+      clearResumeState();
+      setResume(null);
+      rightRef.current = 0;
+      setQuestions(session);
+      setIndex(0);
+      setDiagAnswers([]);
+      setMode("diagnostic");
+      setAnswered(false);
+      setChosen(null);
+      setPhase("diag-intro"); // notify before the first question
+      return;
+    }
+    if (plan.kind !== "composed") return; // resume unreachable from start()
+
+    setMode("normal");
+    const progress = asProgress(raw); // MINOR #6: only the composed path needs mastery
 
     // Errors slice: the most-recent wrong[] ids (up to plan.alloc.errors), resolved to questions.
     // C2: if the bank index is unavailable (network failure — ensureBankIndex resolves null), the
@@ -238,24 +274,18 @@ export function useQuiz() {
     if (!q || answered) return;
     const correct = i === q.a;
 
-    setChosen(i);
-    setAnswered(true);
-    setPhase("corrige");
-
+    // Shared: measure — write the Elo rating + progression exactly like a normal answer.
     const raw = readRawProgress();
     const curWrong = asWrong(raw);
     const nextSkill = updateRating(skillStateOf(raw, q.cat), q.d, correct);
     const withoutId = curWrong.filter((id) => id !== q.id);
     const nextWrong = (correct ? withoutId : [...withoutId, q.id]).slice(-80);
-
-    // Coverage: mark the item seen (always) and mastered (when correct). Read-modify-write on
-    // the same `raw`; the encoded value already carries every prior bit, so writeProgress's
-    // overwrite of these string fields is monotone within a device.
     const seen = encodeBits(setBit(decodeBits(typeof raw?.seen === "string" ? raw.seen : ""), q.id));
     const mastered = correct
       ? encodeBits(setBit(decodeBits(typeof raw?.mastered === "string" ? raw.mastered : ""), q.id))
       : undefined;
-
+    // MAJOR #5a: on the LAST diagnostic answer, fold `diagAt` into this same write (one round-trip).
+    const isLastDiag = mode === "diagnostic" && index + 1 >= questions.length;
     writeProgress({
       skill: { [q.cat]: nextSkill },
       total: numField(raw, "total") + 1,
@@ -263,17 +293,31 @@ export function useQuiz() {
       wrong: nextWrong,
       seen,
       ...(mastered !== undefined ? { mastered } : {}),
+      ...(isLastDiag ? { diagAt: Date.now() } : {}),
     });
     schedulePush();
-
     rightRef.current += correct ? 1 : 0;
+
+    if (mode === "diagnostic") {
+      // Tout droit: record the answer for the end-of-test corrigé, then advance immediately.
+      setDiagAnswers((prev) => [...prev, { question: q, chosen: i }]);
+      const ni = index + 1;
+      if (ni >= questions.length) setPhase("diag-results"); // diagAt already stamped in the merged write
+      else setIndex(ni);                                    // phase stays "question"
+      return;
+    }
+
+    // Normal: reveal the corrigé.
+    setChosen(i);
+    setAnswered(true);
+    setPhase("corrige");
     setResume((prev) => {
       if (!prev) return prev;
       const next: ResumeState = { ...prev, qi: index, right: rightRef.current };
       persistResumeState(next);
       return next;
     });
-  }, [questions, index, answered, schedulePush]);
+  }, [questions, index, answered, schedulePush, mode]);
 
   const next = useCallback(() => {
     const ni = index + 1;
@@ -306,6 +350,14 @@ export function useQuiz() {
     setPhase("home");
     setQuestions([]);
     setIndex(0);
+    setAnswered(false);
+    setChosen(null);
+    setMode("normal");
+    setDiagAnswers([]);
+  }, []);
+
+  const beginDiagnostic = useCallback(() => {
+    setPhase("question"); // questions already loaded by start(); mode is "diagnostic"
     setAnswered(false);
     setChosen(null);
   }, []);
@@ -358,11 +410,14 @@ export function useQuiz() {
     resume,
     answered,
     chosen,
+    mode,
+    diagAnswers,
     start,
     choose,
     next,
     restart,
     setMinutes,
     resumeNow,
+    beginDiagnostic,
   };
 }

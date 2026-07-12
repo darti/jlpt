@@ -52,6 +52,7 @@ afterEach(() => {
 });
 
 test("answering a question records it as seen and mastered (correct)", async () => {
+  localStorage.setItem("jlptN3adapt_v2", JSON.stringify({ diagAt: Date.now() })); // recent diagnostic → composed path
   act(() => { root.render(<MemoryRouter><EntrainementApp /></MemoryRouter>); });
 
   const start = [...container.querySelectorAll("button")].find((b) => b.textContent === "Commencer");
