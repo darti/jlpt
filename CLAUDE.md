@@ -4,6 +4,21 @@ App web pour préparer le JLPT N3 : **SPA React + TypeScript, bundlée par Bun**
 vanilla → React terminé). PWA installable, 100 % locale, déployée sur GitHub Pages.
 UI en **français**, contenu en **japonais**. **Runtime & outils : `bun` exclusivement — jamais `node`.**
 
+## Workflow — worktrees OBLIGATOIRES
+
+**Tout travail (feature, fix, refactor) DOIT se faire dans un `git worktree` sous `.worktrees/`,
+jamais directement dans le répertoire principal.** Plusieurs agents partagent ce dépôt : travailler
+dans la racine mêle HEAD / staging / commits entre agents (collisions déjà constatées). Un worktree
+par tâche = branche + répertoire isolés.
+
+    git worktree add .worktrees/<branche> -b <branche>   # crée branche + répertoire isolés
+    cd .worktrees/<branche>
+    ln -s ../../node_modules node_modules                # réutilise les deps (sinon `bun install`)
+    # … éditer, `bun test`, commiter, pousser depuis le worktree …
+    git worktree remove .worktrees/<branche>             # nettoyer après merge
+
+`.worktrees/` est ignoré par git. Ne jamais faire deux agents sur la même branche/le même répertoire.
+
 ## Architecture (non évidente — lire avant d'éditer)
 
 - **Source de vérité = `data/*.json`** (bank, dict, cours, kanji, grammar, vocab).
