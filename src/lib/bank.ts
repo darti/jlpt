@@ -21,6 +21,23 @@ export function clearCategoryCache(): void {
   cache.clear();
 }
 
+let bankIndexPromise: Promise<Record<number, Skill>> | null = null;
+
+/** Clears the memoized bank-index. Mirrors clearCategoryCache for test isolation. */
+export function clearBankIndexCache(): void {
+  bankIndexPromise = null;
+}
+
+/** Cached id→skill index (`data/bank-index.json`). Shared by the coverage hook. */
+export function loadBankIndex(fetchImpl: FetchLike = fetch as FetchLike): Promise<Record<number, Skill>> {
+  if (!bankIndexPromise) {
+    bankIndexPromise = fetchImpl("data/bank-index.json").then(
+      (r) => r.json() as Promise<Record<number, Skill>>,
+    );
+  }
+  return bankIndexPromise;
+}
+
 export function loadCategory(cat: Skill, fetchImpl: FetchLike = fetch as FetchLike): Promise<Question[]> {
   let p = cache.get(cat);
   if (!p) {

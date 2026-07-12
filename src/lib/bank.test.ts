@@ -1,5 +1,5 @@
 import { test, expect } from "bun:test";
-import { shuffle, pickAdaptive, allocate, loadCategory } from "./bank.ts";
+import { shuffle, pickAdaptive, allocate, loadCategory, loadBankIndex, clearBankIndexCache } from "./bank.ts";
 import type { Question } from "../types/quiz.ts";
 
 const q = (id: number, d: 1 | 2 | 3): Question =>
@@ -42,4 +42,15 @@ test("loadCategory fetches the split file and memoizes", async () => {
   const b = await loadCategory("kanji", fetchImpl as any);
   expect(a).toBe(b);        // same memoized array
   expect(calls).toBe(1);    // fetched once
+});
+
+test("loadBankIndex fetches bank-index.json and memoizes", async () => {
+  clearBankIndexCache();
+  let calls = 0;
+  const fetchImpl = async (_url: string) => { calls++; return { json: async () => ({ 0: "grammaire", 2: "kanji" }) }; };
+  const a = await loadBankIndex(fetchImpl as any);
+  const b = await loadBankIndex(fetchImpl as any);
+  expect(a).toBe(b);
+  expect(calls).toBe(1);
+  expect(a[0]).toBe("grammaire");
 });
