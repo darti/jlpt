@@ -195,8 +195,9 @@
     font-family: var(--font-sans);
   }
 
-  /* Furigana: hidden by default; revealed per-word on tap (`.show`, toggled by dict
-     `furi()`'s inline onclick) or globally via `[data-furi="on"]` on the root.
+  /* Furigana: hidden by default; revealed globally via `[data-furi="on"]` on the root
+     (the « ふ » toggle in the top nav). Tapping a word opens its definition popup instead
+     of toggling furigana, so there is no per-word reveal.
      The `<rt>` is absolutely positioned — out of flow — so revealing furigana shifts
      NOTHING: it never widens the base kanji (no intra-word gaps) and never grows the
      line box (no vertical reflow). A `visibility` toggle swaps the ink in and out of
@@ -215,7 +216,6 @@
     white-space: nowrap;
     visibility: hidden;
   }
-  ruby.show rt,
   :root[data-furi="on"] ruby rt { visibility: visible; }
 
   /* Data-embedded emphasis (`<b>`/`<strong>` inside question explanations, rendered via

@@ -40,7 +40,7 @@ export function furi(s: string | null | undefined): string {
         const sub = s.substr(i, L);
         if (/^[一-鿿]+$/.test(sub) && READ[sub]) { m = sub; break; }
       }
-      if (m) { out += '<ruby onclick="this.classList.toggle(\'show\')">' + m + "<rt>" + READ[m] + "</rt></ruby>"; i += m.length; }
+      if (m) { out += "<ruby>" + m + "<rt>" + READ[m] + "</rt></ruby>"; i += m.length; }
       else { out += c; i++; }
     } else { out += c; i++; }
   }
@@ -247,9 +247,10 @@ export function initDefs(opts?: { singleTap?: boolean }): void {
 export async function setupDict(url = "data/dict.json"): Promise<void> {
   const w = window as unknown as Record<string, unknown>;
   w.furi = furi; w.visualBreak = visualBreak; w.initDefs = initDefs; w.hideDef = hideDef; w.jlptSay = jlptSay;
-  // Attach tap-to-define gestures app-wide. NOT singleTap: a single tap toggles a word's
-  // furigana (the ruby's inline onclick); the definition popup is long-press / double-click.
-  initDefs();
+  // Attach tap-to-define gestures app-wide. singleTap: a single tap/click on a word opens the
+  // definition popup (reading + meaning + TTS) — same gesture on mobile and desktop. Furigana are
+  // no longer toggled per-word; they are revealed only by the global menu (`[data-furi="on"]`).
+  initDefs({ singleTap: true });
   if ("speechSynthesis" in window) { _pickVoice(); try { speechSynthesis.onvoiceschanged = _pickVoice; } catch { /* ignore */ } }
   try {
     const res = await fetch(url);
