@@ -8,6 +8,7 @@ import { readRawProgress, writeProgress } from "../../lib/storage.ts";
 import { decodeBits, encodeBits, setBit } from "../../lib/coverage.ts";
 import { dashboardModel, masteryOf } from "../../lib/scoring.ts";
 import { cloudPush, type GistDeps } from "../../lib/gist.ts";
+import { pickSessionPlan, BUILT_CAPS } from "../entrainement/sessionPlan.ts";
 
 export type Phase = "home" | "question" | "corrige" | "results";
 
@@ -81,7 +82,7 @@ function asWrong(raw: Record<string, unknown> | null): number[] {
 }
 
 /** Reads + validates the persisted `jlptN3quiz_resume` session (clears it if >2 days
- *  old). Exported so the Entraînement hub's ResumeBanner reuses the exact same
+ *  old). Exported so the Entraînement hub's session card reuses the exact same
  *  key + staleness rule instead of duplicating it. */
 export function readResumeState(): ResumeState | null {
   try {
@@ -120,7 +121,6 @@ export function useQuiz() {
   const [phase, setPhase] = useState<Phase>("home");
   const [questions, setQuestions] = useState<Question[]>([]);
   const [index, setIndex] = useState(0);
-  const [selected, setSelected] = useState<Set<Skill>>(() => new Set(SKILLS));
   const [minutes, setMinutesState] = useState(10);
   const [resume, setResume] = useState<ResumeState | null>(null);
   const [answered, setAnswered] = useState(false);
@@ -166,15 +166,6 @@ export function useQuiz() {
     if (pushTimerRef.current) clearTimeout(pushTimerRef.current);
   }, []);
 
-  const toggleCat = useCallback((c: Skill) => {
-    setSelected((prev) => {
-      const next = new Set(prev);
-      if (next.has(c)) next.delete(c); else next.add(c);
-      if (next.size === 0) next.add(c); // never allow an empty selection (mirrors legacy renderCats)
-      return next;
-    });
-  }, []);
-
   const setMinutes = useCallback((m: number) => setMinutesState(m), []);
 
   // `minArg` lets the URL handoff (?min=N) start a session directly, without waiting
@@ -186,10 +177,20 @@ export function useQuiz() {
     const wrong = asWrong(raw);
     const { total, alloc } = allocate((c) => masteryOf(progress, c), min);
 
+    // Consult the decision engine. `resume: false` — "Commencer" always starts fresh; the
+    // resume decision is handled at the card level. In #1 BUILT_CAPS is all-off, so the plan
+    // is always { kind: "composed", alloc: { errors: 0, learn: 0, adaptive: total } }. Later
+    // sub-projects flip a cap in BUILT_CAPS and branch on plan.kind / plan.alloc here.
+    const plan = pickSessionPlan(
+      { resume: false, daysSinceDiagnostic: null, wrongCount: wrong.length, newCoursePoints: 0 },
+      total,
+      BUILT_CAPS,
+    );
+    if (plan.kind !== "composed") return; // diagnostic/resume unreachable in #1
+
     const exclude = new Set<number>();
     const picked: Question[] = [];
     for (const cat of SKILLS) {
-      if (!selected.has(cat)) continue;
       const n = alloc[cat];
       if (!n) continue;
       const pool = await loadCategory(cat);
@@ -199,7 +200,7 @@ export function useQuiz() {
       picked.push(...picks);
     }
 
-    const session = shuffle(picked).slice(0, total);
+    const session = shuffle(picked).slice(0, plan.alloc.adaptive);
     if (!session.length) return;
 
     rightRef.current = 0;
@@ -212,7 +213,7 @@ export function useQuiz() {
     const r: ResumeState = { kind: "quiz", ids: session.map((q) => q.id), qi: 0, right: 0, t: Date.now() };
     persistResumeState(r);
     setResume(r);
-  }, [selected, minutes]);
+  }, [minutes]);
 
   const choose = useCallback((i: number) => {
     const q = questions[index];
@@ -295,7 +296,7 @@ export function useQuiz() {
   // of localStorage at mount, when the async `resume` state is still null (C3.2).
   const resumeNow = useCallback(async (explicit?: ResumeState) => {
     // `explicit` is only honored when it's a real ResumeState — resumeNow is also wired as
-    // an onClick handler (quiz ResumeBanner), which would otherwise pass a click event here.
+    // an onClick handler (quiz session card), which would otherwise pass a click event here.
     const r = explicit && Array.isArray(explicit.ids) ? explicit : resume;
     if (!r) return;
     const idx = await ensureBankIndex();
@@ -344,7 +345,6 @@ export function useQuiz() {
     index,
     count: questions.length,
     right: rightRef.current,
-    selected,
     minutes,
     resume,
     answered,
@@ -353,7 +353,6 @@ export function useQuiz() {
     choose,
     next,
     restart,
-    toggleCat,
     setMinutes,
     resumeNow,
   };

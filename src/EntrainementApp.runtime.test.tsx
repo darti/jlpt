@@ -37,9 +37,10 @@ function renderApp() {
   });
 }
 
-test("mounts live and renders the hub (start card)", () => {
+test("mounts live and renders the session card in resume state", () => {
   renderApp();
-  expect(container.textContent ?? "").toContain("Lancer une session"); // QuizHome start card
+  expect(container.textContent ?? "").toContain("Reprendre ta session");
+  expect(container.textContent ?? "").toContain("Continuer");
 });
 
 test("hub no longer shows stats, chart, settings or sync (moved to Accueil/Paramétrage)", () => {
@@ -49,9 +50,4 @@ test("hub no longer shows stats, chart, settings or sync (moved to Accueil/Param
   expect(text).not.toContain("estimé /180");       // ProgressChart → Accueil
   expect(text).not.toContain("Réglages");
   expect(text).not.toContain("Synchronisation multi-appareils");
-});
-
-test("resume banner appears when a valid quiz session is stored", () => {
-  renderApp();
-  expect(container.textContent ?? "").toContain("Reprendre ma session");
 });

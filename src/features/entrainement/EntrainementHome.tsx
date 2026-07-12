@@ -1,25 +1,12 @@
-import { QuizHome } from "../quiz/QuizHome.tsx";
-import { ResumeBanner } from "../quiz/ResumeBanner.tsx";
+import { SessionCard } from "./SessionCard.tsx";
 import type { ResumeState } from "../quiz/useQuiz.ts";
-import type { Skill } from "../../types/progress.ts";
 
-// Diagnostic/SRS are deferred to a later strangler slice (their vanilla code drops from
-// the tree, recoverable from git) — shown as disabled «bientôt disponible» cards so the
-// hub's shape matches the eventual full app.
-const STUBS = [
-  { key: "diagnostic", label: "Diagnostic", desc: "Évalue ton niveau réel" },
-  { key: "apprendre", label: "Apprendre", desc: "Cours et nouveaux points" },
-  { key: "erreurs", label: "Réviser les erreurs", desc: "Reprends tes fautes" },
-];
-
-/** Entraînement hub (phase "home"): resumable-session banner + the quiz start card
- *  (`QuizHome`) + deferred stubs. Stats overview + progression chart now live on the
- *  Accueil route; réglages + synchro on Paramétrage. Pure/prop-driven. */
+/** Entraînement hub (phase "home") : une seule carte de session auto-pilotée par l'état
+ *  (`SessionCard`). Stats + graphe de progression vivent sur l'Accueil ; réglages + synchro
+ *  sur Paramétrage. Pure / prop-driven. */
 export function EntrainementHome(props: {
-  selected: Set<Skill>;
   minutes: number;
   resume: ResumeState | null;
-  onToggleCat: (c: Skill) => void;
   onSetMinutes: (m: number) => void;
   onStart: () => void;
   onResumeNow: () => void;
@@ -27,27 +14,14 @@ export function EntrainementHome(props: {
 }) {
   return (
     <div className="flex flex-col gap-6">
-      <ResumeBanner resume={props.resume} onResume={props.onResumeNow} onDismiss={props.onDismissResume} />
-      <QuizHome
-        selected={props.selected}
+      <SessionCard
+        resume={props.resume}
         minutes={props.minutes}
-        onToggleCat={props.onToggleCat}
         onSetMinutes={props.onSetMinutes}
         onStart={props.onStart}
+        onResumeNow={props.onResumeNow}
+        onDismissResume={props.onDismissResume}
       />
-      <section className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        {STUBS.map((s) => (
-          <div
-            key={s.key}
-            aria-disabled="true"
-            className="bg-panel border border-line rounded-xl p-4 shadow-card surface-blur opacity-60"
-          >
-            <h3 className="text-fg text-sm font-bold m-0">{s.label}</h3>
-            <p className="text-fg-dim text-xs mt-1 mb-2">{s.desc}</p>
-            <span className="text-meta text-fg-muted">bientôt disponible</span>
-          </div>
-        ))}
-      </section>
     </div>
   );
 }

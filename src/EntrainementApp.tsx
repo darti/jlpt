@@ -5,7 +5,6 @@ import { Corrige } from "./features/quiz/Corrige.tsx";
 import { Results } from "./features/quiz/Results.tsx";
 import { useQuiz, type Phase, type ResumeState } from "./features/quiz/useQuiz.ts";
 import { speak, sentenceFromG } from "./lib/tts.ts";
-import type { Skill } from "./types/progress.ts";
 import type { Question } from "./types/quiz.ts";
 
 /** Pure, prop-driven Entraînement content: the hub (phase "home") or the quiz flow
@@ -13,10 +12,10 @@ import type { Question } from "./types/quiz.ts";
  *  leaves. The stats overview + progression chart live on the Accueil route. */
 export function EntrainementAppView(props: {
   phase: Phase; question: Question | null; count: number; right: number;
-  selected: Set<Skill>; minutes: number; resume: ResumeState | null;
+  minutes: number; resume: ResumeState | null;
   answered: boolean; chosen: number | null;
   onStart: () => void; onChoose: (i: number) => void; onNext: () => void; onRestart: () => void;
-  onToggleCat: (c: Skill) => void; onSetMinutes: (m: number) => void;
+  onSetMinutes: (m: number) => void;
   onResumeNow: () => void; onDismissResume: () => void;
 }) {
   const { question } = props;
@@ -31,8 +30,8 @@ export function EntrainementAppView(props: {
   if (props.phase === "home") {
     return (
       <EntrainementHome
-        selected={props.selected} minutes={props.minutes} resume={props.resume}
-        onToggleCat={props.onToggleCat} onSetMinutes={props.onSetMinutes} onStart={props.onStart}
+        minutes={props.minutes} resume={props.resume}
+        onSetMinutes={props.onSetMinutes} onStart={props.onStart}
         onResumeNow={props.onResumeNow} onDismissResume={props.onDismissResume}
       />
     );
@@ -72,11 +71,11 @@ export default function EntrainementApp() {
   return (
     <EntrainementAppView
       phase={quiz.phase} question={quiz.question} count={quiz.count} right={quiz.right}
-      selected={quiz.selected} minutes={quiz.minutes}
+      minutes={quiz.minutes}
       resume={resumeDismissed ? null : quiz.resume}
       answered={quiz.answered} chosen={quiz.chosen}
       onStart={quiz.start} onChoose={quiz.choose} onNext={quiz.next} onRestart={quiz.restart}
-      onToggleCat={quiz.toggleCat} onSetMinutes={quiz.setMinutes}
+      onSetMinutes={quiz.setMinutes}
       onResumeNow={quiz.resumeNow} onDismissResume={() => setResumeDismissed(true)}
     />
   );
