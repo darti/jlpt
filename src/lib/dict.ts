@@ -40,7 +40,7 @@ export function furi(s: string | null | undefined): string {
         const sub = s.substr(i, L);
         if (/^[一-鿿]+$/.test(sub) && READ[sub]) { m = sub; break; }
       }
-      if (m) { out += '<ruby onclick="this.classList.toggle(\'show\')">' + m + "<rt>" + READ[m] + "</rt></ruby>"; i += m.length; }
+      if (m) { out += "<ruby>" + m + "<rt>" + READ[m] + "</rt></ruby>"; i += m.length; }
       else { out += c; i++; }
     } else { out += c; i++; }
   }
@@ -166,8 +166,6 @@ function defShow(px: number, py: number, d: Def | null): boolean {
   pop.style.top = Math.min(py + 16, window.innerHeight - pop.offsetHeight - 12) + "px";
   return true;
 }
-function defAt(px: number, py: number, word: string): boolean { const d = lookupDef(word); return d ? defShow(px, py, d) : false; }
-function showDef(e?: MouseEvent): void { const sel = window.getSelection ? String(window.getSelection()) : ""; defAt((e && e.clientX) || window.innerWidth / 2, (e && e.clientY) || 120, sel); }
 function jpRunAt(x: number, y: number): { run: string; rel: number } | null {
   const doc = document as unknown as { caretRangeFromPoint?: (x: number, y: number) => Range | null; caretPositionFromPoint?: (x: number, y: number) => { offsetNode: Node; offset: number } | null };
   let range: Range | null = null;
@@ -199,39 +197,20 @@ function defAtPoint(x: number, y: number): boolean {
 }
 
 // ---------- gestes ----------
-let _lpT: ReturnType<typeof setTimeout> | null = null, _lpX = 0, _lpY = 0, _lpGuard = false;
-function _lpClear(): void { if (_lpT) { clearTimeout(_lpT); _lpT = null; } }
-export function initDefs(opts?: { singleTap?: boolean }): void {
-  opts = opts || {}; const singleTap = !!opts.singleTap;
+// Un seul geste : le tap/clic. `click` se déclenche pour la souris (desktop) comme pour le
+// tap tactile (mobile) → comportement identique sur les deux. Pas d'appui long ni de double-clic.
+// `opts` conservé pour compat d'appel (initDefs({ singleTap: true })) mais sans effet : le tap
+// ouvre toujours la popup de définition.
+export function initDefs(_opts?: { singleTap?: boolean }): void {
   ensurePopup();
-  document.addEventListener("touchstart", (e) => {
-    if (!e.touches || e.touches.length !== 1) { _lpClear(); return; }
-    const t = e.touches[0]; _lpX = t.clientX; _lpY = t.clientY; _lpClear();
-    _lpT = setTimeout(() => {
-      _lpT = null;
-      let ok = defAtPoint(_lpX, _lpY);
-      if (!ok && window.getSelection) ok = defAt(_lpX, _lpY, String(window.getSelection()));
-      if (ok) { _lpGuard = true; setTimeout(() => { _lpGuard = false; }, 700); }
-    }, 450);
-  }, { passive: true });
-  document.addEventListener("touchmove", (e) => {
-    if (!_lpT || !e.touches[0]) return; const t = e.touches[0];
-    if (Math.abs(t.clientX - _lpX) > 10 || Math.abs(t.clientY - _lpY) > 10) _lpClear();
-  }, { passive: true });
-  document.addEventListener("touchend", (e) => {
-    _lpClear();
-    if (_lpGuard && e.cancelable) e.preventDefault();
-  }, { passive: false });
-  document.addEventListener("dblclick", showDef as (e: Event) => void);
   document.addEventListener("click", (e) => {
-    if (_lpGuard) return;
     const pop = document.getElementById("defPop");
     const target = e.target as Element | null;
     if (pop && target && pop.contains(target)) return;
     if (target && target.closest && target.closest("button,a,input,textarea,select,label,.opt,.chip,.start,.navtoggle,.furibtn,.listenbtn,.topnav")) {
       if (pop && pop.style.display === "block") hideDef(); return;
     }
-    if (singleTap) { if (defAtPoint(e.clientX, e.clientY)) return; }
+    if (defAtPoint(e.clientX, e.clientY)) return;
     if (pop && pop.style.display === "block") hideDef();
   });
   window.addEventListener("scroll", hideDef, true);
@@ -247,8 +226,9 @@ export function initDefs(opts?: { singleTap?: boolean }): void {
 export async function setupDict(url = "data/dict.json"): Promise<void> {
   const w = window as unknown as Record<string, unknown>;
   w.furi = furi; w.visualBreak = visualBreak; w.initDefs = initDefs; w.hideDef = hideDef; w.jlptSay = jlptSay;
-  // Attach tap-to-define gestures app-wide. NOT singleTap: a single tap toggles a word's
-  // furigana (the ruby's inline onclick); the definition popup is long-press / double-click.
+  // Attach tap-to-define gestures app-wide: a single tap/click on a word opens the definition
+  // popup (reading + meaning + TTS) — same gesture on mobile and desktop, no long-press/double-click.
+  // Furigana are no longer toggled per-word; they are revealed only by the global menu (`[data-furi="on"]`).
   initDefs();
   if ("speechSynthesis" in window) { _pickVoice(); try { speechSynthesis.onvoiceschanged = _pickVoice; } catch { /* ignore */ } }
   try {
