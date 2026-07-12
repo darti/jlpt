@@ -28,7 +28,7 @@ export function QuestionCard({
     <div className="bg-panel border border-line rounded-xl p-5 shadow-card surface-blur">
       {question.cat === "lecture" && passage && (
         <div
-          className="text-fg text-base mb-3 leading-relaxed"
+          className="text-fg text-base mb-3 leading-loose"
           dangerouslySetInnerHTML={{ __html: furiOrPlain(passage) }}
         />
       )}
