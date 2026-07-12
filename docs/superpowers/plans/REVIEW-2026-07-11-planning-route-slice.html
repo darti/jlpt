@@ -1,0 +1,477 @@
+<title>Review — usePlanning.test.ts</title>
+<style>
+  :root {
+    --bg: #f7f6f3;
+    --panel: #ffffff;
+    --panel-2: #f0eeea;
+    --line: #e2ded6;
+    --fg: #22242a;
+    --fg-dim: #6b6f78;
+    --fg-faint: #9aa0aa;
+    --accent: #4f7a5e;
+    --crit: #c33d33;
+    --crit-bg: #fbe9e7;
+    --major: #b5731a;
+    --major-bg: #faf0df;
+    --minor: #2f6fa3;
+    --minor-bg: #e7f0f8;
+    --defer: #5f6570;
+    --defer-bg: #eceef0;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Code", Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14161b;
+      --panel: #1c1f26;
+      --panel-2: #23262e;
+      --line: #2e323b;
+      --fg: #e6e7ea;
+      --fg-dim: #a2a7b0;
+      --fg-faint: #6f757f;
+      --accent: #7fb08e;
+      --crit: #e0685e;
+      --crit-bg: #2c1c1b;
+      --major: #d9a05a;
+      --major-bg: #2a2218;
+      --minor: #6aa6d6;
+      --minor-bg: #17222c;
+      --defer: #8b919b;
+      --defer-bg: #22252c;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f7f6f3; --panel: #ffffff; --panel-2: #f0eeea; --line: #e2ded6;
+    --fg: #22242a; --fg-dim: #6b6f78; --fg-faint: #9aa0aa; --accent: #4f7a5e;
+    --crit: #c33d33; --crit-bg: #fbe9e7; --major: #b5731a; --major-bg: #faf0df;
+    --minor: #2f6fa3; --minor-bg: #e7f0f8; --defer: #5f6570; --defer-bg: #eceef0;
+  }
+  :root[data-theme="dark"] {
+    --bg: #14161b; --panel: #1c1f26; --panel-2: #23262e; --line: #2e323b;
+    --fg: #e6e7ea; --fg-dim: #a2a7b0; --fg-faint: #6f757f; --accent: #7fb08e;
+    --crit: #e0685e; --crit-bg: #2c1c1b; --major: #d9a05a; --major-bg: #2a2218;
+    --minor: #6aa6d6; --minor-bg: #17222c; --defer: #8b919b; --defer-bg: #22252c;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: clamp(1.5rem, 4vw, 3.5rem) clamp(1rem, 4vw, 2rem) 5rem;
+  }
+
+  header.top { border-bottom: 1px solid var(--line); padding-bottom: 1.75rem; margin-bottom: 2rem; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+    margin: 0 0 0.6rem;
+  }
+  h1 {
+    font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+    line-height: 1.15;
+    margin: 0 0 0.9rem;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  .meta { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; font-size: 0.9rem; color: var(--fg-dim); }
+  .meta b { color: var(--fg); font-weight: 600; }
+  .meta code { font-family: var(--mono); font-size: 0.82rem; background: var(--panel-2); padding: 0.1rem 0.4rem; border-radius: 4px; }
+
+  .verdict {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    margin-top: 1.4rem;
+    padding: 0.5rem 0.95rem;
+    border-radius: 999px;
+    font-weight: 600; font-size: 0.92rem;
+    background: var(--crit-bg); color: var(--crit);
+    border: 1px solid color-mix(in srgb, var(--crit) 35%, transparent);
+  }
+  .verdict .dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--crit); }
+
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr)); gap: 0.75rem; margin: 2rem 0; }
+  .tile {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0.95rem 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .tile::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
+  .tile.c::before { background: var(--crit); }
+  .tile.m::before { background: var(--major); }
+  .tile.n::before { background: var(--minor); }
+  .tile.d::before { background: var(--defer); }
+  .tile .n { font-size: 1.9rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+  .tile .l { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-dim); margin-top: 0.4rem; }
+
+  .note {
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--major);
+    border-radius: 8px;
+    padding: 1rem 1.15rem;
+    font-size: 0.9rem;
+    color: var(--fg-dim);
+    margin: 1.75rem 0 2.25rem;
+  }
+  .note b { color: var(--fg); }
+
+  h2.sec {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: baseline; gap: 0.6rem;
+  }
+  h2.sec .cnt { color: var(--fg-faint); font-size: 0.75rem; }
+  h2.sec.crit { color: var(--crit); }
+  h2.sec.major { color: var(--major); }
+  h2.sec.minor { color: var(--minor); }
+  h2.sec.defer { color: var(--defer); }
+
+  .finding {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.15rem 1.3rem;
+    margin-bottom: 0.85rem;
+    border-left: 3px solid var(--line);
+  }
+  .finding.crit { border-left-color: var(--crit); }
+  .finding.major { border-left-color: var(--major); }
+  .finding.minor { border-left-color: var(--minor); }
+  .finding.defer { border-left-color: var(--defer); }
+
+  .fhead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 0.75rem; margin-bottom: 0.6rem; }
+  .fhead .anchor { font-family: var(--mono); font-size: 0.82rem; color: var(--fg); background: var(--panel-2); padding: 0.12rem 0.45rem; border-radius: 5px; }
+  .fhead .title { font-weight: 600; font-size: 1rem; }
+  .fhead .eff { margin-left: auto; font-family: var(--mono); font-size: 0.72rem; color: var(--fg-faint); border: 1px solid var(--line); padding: 0.05rem 0.4rem; border-radius: 4px; }
+
+  .finding dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 0.9rem; font-size: 0.9rem; }
+  .finding dt { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-faint); padding-top: 0.12rem; }
+  .finding dd { margin: 0; color: var(--fg-dim); }
+  .finding dd b { color: var(--fg); font-weight: 600; }
+  .finding code { font-family: var(--mono); font-size: 0.83rem; background: var(--panel-2); padding: 0.08rem 0.35rem; border-radius: 4px; color: var(--fg); }
+  .flags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .flag { font-family: var(--mono); font-size: 0.7rem; background: var(--panel-2); border: 1px solid var(--line); color: var(--fg-dim); padding: 0.1rem 0.45rem; border-radius: 999px; }
+
+  .empty { color: var(--fg-faint); font-size: 0.9rem; font-style: italic; margin: 0 0 0.5rem; }
+
+  details.raw { margin-top: 3rem; border-top: 1px solid var(--line); padding-top: 1.5rem; }
+  details.raw > summary {
+    cursor: pointer; font-family: var(--mono); font-size: 0.8rem;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-dim);
+    list-style: none;
+  }
+  details.raw > summary::-webkit-details-marker { display: none; }
+  details.raw > summary::before { content: "▸ "; color: var(--fg-faint); }
+  details.raw[open] > summary::before { content: "▾ "; }
+  .rev {
+    margin: 1.25rem 0;
+    padding: 0.9rem 1.1rem;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 0.88rem;
+  }
+  .rev h4 { margin: 0 0 0.35rem; font-family: var(--mono); font-size: 0.82rem; color: var(--fg); }
+  .rev p { margin: 0.35rem 0; color: var(--fg-dim); }
+  .rev .status { font-family: var(--mono); font-size: 0.72rem; }
+  .rev .status.clear { color: var(--accent); }
+  .rev .status.hit { color: var(--major); }
+
+  a { color: var(--accent); }
+  .footer-note { margin-top: 2.5rem; font-size: 0.82rem; color: var(--fg-faint); }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <p class="eyebrow">Review Team · Consolidated Report</p>
+    <h1>Planning route slice — <code style="font-family:var(--mono);font-size:0.85em">usePlanning.test.ts</code></h1>
+    <div class="meta">
+      <span><b>Scope:</b> <code>src/features/planning/usePlanning.test.ts</code> (untracked, new)</span>
+      <span><b>Intent:</b> RED test for Task 3's pure progress calc (<code>progressOf</code>, <code>weekDone</code>)</span>
+      <span><b>Language:</b> TypeScript → common team + TS lenses</span>
+    </div>
+    <div class="verdict"><span class="dot"></span>CHANGES REQUESTED · 1 critical blocks the slice</div>
+  </header>
+
+  <div class="tiles">
+    <div class="tile c"><div class="n">1</div><div class="l">Critical</div></div>
+    <div class="tile m"><div class="n">3</div><div class="l">Major</div></div>
+    <div class="tile n"><div class="n">2</div><div class="l">Minor</div></div>
+    <div class="tile d"><div class="n">2</div><div class="l">Deferred</div></div>
+  </div>
+
+  <div class="note">
+    <b>Dispatch honesty (skill rule G9).</b> The <code>/review</code> skill's Phase 2 requires spawning the 10-agent
+    roster (8 common reviewers + <code>typescript:team-picky-reviewer</code> + <code>typescript:team-security-reviewer</code>)
+    as parallel subagents. This environment exposes no agent-spawning tool — only a task-list tracker and teammate
+    messaging, neither of which can launch reviewers. Rather than fabricate ten reviewer transcripts (which the skill
+    explicitly forbids), the orchestrator ran each reviewer's <b>lens directly</b> against the full brief: the plan spec
+    (Task 3), the test file, its two imports (<code>weeks.ts</code> present, <code>usePlanning.ts</code> absent), the
+    vanilla <code>planning-n3.html</code> key convention, and a live <code>bun test</code> run. Findings below are labeled
+    with the reviewer whose axis surfaced them.
+  </div>
+
+  <h2 class="sec crit">Critical <span class="cnt">— must fix before the slice lands</span></h2>
+
+  <div class="finding crit">
+    <div class="fhead">
+      <span class="anchor">usePlanning.test.ts:2</span>
+      <span class="title">Module under test does not exist — suite errors on import</span>
+      <span class="eff">Effort: S</span>
+    </div>
+    <dl>
+      <dt>Why</dt>
+      <dd>The test imports <code>{ progressOf, weekDone }</code> from <code>./usePlanning.ts</code>, but that file
+        was never created. <code>bun test</code> reports <b>“Cannot find module './usePlanning.ts'”</b> — 0 pass, 1 fail,
+        1 error. The directory holds only <code>weeks.ts</code> and this test.</dd>
+      <dt>Context</dt>
+      <dd>This is the plan's <b>RED step</b> (Task 3, Step 1) — failing-on-purpose is the intended TDD state. It is only
+        blocking because the implementation (Step 3) and its commit (Step 5) have not happened: the plan's own invariant
+        is “the app must build, test-pass, work at every task boundary.” The test file was committed/written in isolation
+        while <code>usePlanning.ts</code> is missing, so <b>the tree is currently red at a boundary</b>.</dd>
+      <dt>Fix</dt>
+      <dd>Create <code>src/features/planning/usePlanning.ts</code> exporting <code>progressOf(state, weeks)</code> and
+        <code>weekDone(state, weekNo, itemCount)</code> per the plan body, then re-run to GREEN before treating this slice
+        as complete. (A module import failure — not an assertion failure — is not a valid resting state.)</dd>
+      <dt>Flagged&nbsp;by</dt>
+      <dd><span class="flags"><span class="flag">stub-hunter</span><span class="flag">test-auditor</span><span class="flag">spec-surveyor</span><span class="flag">ts:picky</span></span></dd>
+    </dl>
+  </div>
+
+  <h2 class="sec major">Major <span class="cnt">— should fix before merge</span></h2>
+
+  <div class="finding major">
+    <div class="fhead">
+      <span class="anchor">usePlanning.test.ts:15–19</span>
+      <span class="title"><code>weekDone</code> negative-path is thin; the “count is per-week” guarantee is under-tested</span>
+      <span class="eff">Effort: S</span>
+    </div>
+    <dl>
+      <dt>Why</dt>
+      <dd>The plan's test had two assertions; the written file added a good third (<code>{ "2_0": true }, 1, 2 → 0</code>,
+        proving week 2's checks don't leak into week 1). But <code>weekDone</code> ignores <code>itemIdx ≥ itemCount</code>
+        by design — there is no test that a stray key like <code>"1_5": true</code> beyond <code>itemCount</code> is
+        <b>not</b> counted, which is the exact off-by-one this helper exists to prevent.</dd>
+      <dt>Fix</dt>
+      <dd>Add <code>expect(weekDone({ "1_0": true, "1_9": true }, 1, 2)).toBe(1)</code> — a key past the item count must be
+        ignored.</dd>
+      <dt>Flagged&nbsp;by</dt>
+      <dd><span class="flags"><span class="flag">test-auditor</span><span class="flag">devils-advocate</span></span></dd>
+    </dl>
+  </div>
+
+  <div class="finding major">
+    <div class="fhead">
+      <span class="anchor">usePlanning.test.ts:10–13</span>
+      <span class="title">No coverage for the empty-plan / rounding edges of <code>progressOf</code></span>
+      <span class="eff">Effort: S</span>
+    </div>
+    <dl>
+      <dt>Why</dt>
+      <dd>The plan's <code>progressOf</code> body guards <code>total ? … : 0</code> — a divide-by-zero branch for an empty
+        <code>weeks</code> array — that no test exercises. The 67% assertion (2/3 → <code>Math.round(66.6…)</code>) is a nice
+        rounding check, but the <code>pct: 0</code>-when-<code>total===0</code> branch and a round-<i>down</i> case
+        (e.g. 1/3 → 33) are unverified.</dd>
+      <dt>Fix</dt>
+      <dd>Add <code>expect(progressOf({}, [])).toEqual({ done: 0, total: 0, pct: 0 })</code> and a round-down assertion.</dd>
+      <dt>Flagged&nbsp;by</dt>
+      <dd><span class="flags"><span class="flag">test-auditor</span><span class="flag">ts:picky</span></span></dd>
+    </dl>
+  </div>
+
+  <div class="finding major">
+    <div class="fhead">
+      <span class="anchor">usePlanning.test.ts:10–19</span>
+      <span class="title">Pure calc is tested; the <code>usePlanning</code> hook &amp; its localStorage persistence are not</span>
+      <span class="eff">Effort: M</span>
+    </div>
+    <dl>
+      <dt>Why</dt>
+      <dd>Per the plan this is deliberate — “the exported <code>progressOf</code>/<code>weekDone</code> are the tested units;
+        the hook is thin,” with hydration deferred to <code>Planning.tsx</code>. That is a reasonable scoping call, but the
+        risk surface (the <code>jlptN3progress_v1</code> read/parse guard, the <code>toggle</code> key format
+        <code>`${weekNo}_${itemIdx}`</code>, the SSR-safe empty first render) then has <b>zero</b> automated coverage in this
+        slice. The plan's own hook sketch even contains a dead-code hydration stub (<code>if (!hydrated …) { /* set in effect below */ }</code>).</dd>
+      <dt>Fix</dt>
+      <dd>Accept the scoping for this test file, but ensure Task 4's <code>Planning.test.tsx</code> asserts a toggle persists
+        to <code>jlptN3progress_v1</code> and survives a remount — otherwise the persistence contract ships untested.</dd>
+      <dt>Flagged&nbsp;by</dt>
+      <dd><span class="flags"><span class="flag">test-auditor</span><span class="flag">spec-surveyor</span><span class="flag">devils-advocate</span></span></dd>
+    </dl>
+  </div>
+
+  <h2 class="sec minor">Minor <span class="cnt">— quality</span></h2>
+
+  <div class="finding minor">
+    <div class="fhead">
+      <span class="anchor">usePlanning.test.ts:5–8</span>
+      <span class="title">Local <code>WEEKS</code> fixture shadows the real export of the same name</span>
+      <span class="eff">Effort: S</span>
+    </div>
+    <dl>
+      <dt>Why</dt>
+      <dd>The fixture is named <code>WEEKS</code> — identical to the production const in <code>weeks.ts</code>. It's a
+        2-entry stand-in, which is correct for a unit test, but the shared name invites a future reader to assume it's the
+        real 20-week data. Harmless today; a readability trap.</dd>
+      <dt>Fix</dt>
+      <dd>Rename to <code>FIXTURE_WEEKS</code> or <code>WEEKS_2</code> to signal it's a stub.</dd>
+      <dt>Flagged&nbsp;by</dt>
+      <dd><span class="flags"><span class="flag">ts:picky</span><span class="flag">picky</span></span></dd>
+    </dl>
+  </div>
+
+  <div class="finding minor">
+    <div class="fhead">
+      <span class="anchor">usePlanning.test.ts:11–12</span>
+      <span class="title">Assertions rely on object key order via <code>toEqual</code> shape</span>
+      <span class="eff">Effort: S</span>
+    </div>
+    <dl>
+      <dt>Why</dt>
+      <dd><code>toEqual({ done, total, pct })</code> is order-insensitive in bun's matcher, so this is fine — noting only that
+        the test couples to the exact returned shape. If <code>progressOf</code> later gains a field, every assertion breaks.
+        Acceptable for a small pure fn.</dd>
+      <dt>Fix</dt>
+      <dd>None required; consider <code>toMatchObject</code> only if the return type is expected to grow.</dd>
+      <dt>Flagged&nbsp;by</dt>
+      <dd><span class="flags"><span class="flag">ts:picky</span></span></dd>
+    </dl>
+  </div>
+
+  <h2 class="sec defer">Deferred <span class="cnt">— backlog candidates</span></h2>
+
+  <div class="finding defer">
+    <div class="fhead">
+      <span class="anchor">weeks.ts:8–27</span>
+      <span class="title">No verification that <code>WEEKS.length === 20</code></span>
+      <span class="eff">Effort: S</span>
+    </div>
+    <dl>
+      <dt>Why</dt>
+      <dd>Plan Task 2 relies on a one-off shell count (<code>bun -e '…WEEKS.length'</code>) instead of a committed assertion.
+        The real data <i>is</i> 20 entries (verified), but nothing guards against an accidental deletion in a later edit.</dd>
+      <dt>Suggested backlog</dt>
+      <dd>Run <code>/backlog "add a WEEKS.length===20 + per-week 4-item sanity test to the planning suite"</code>.</dd>
+      <dt>Flagged&nbsp;by</dt>
+      <dd><span class="flags"><span class="flag">devils-advocate</span><span class="flag">test-auditor</span></span></dd>
+    </dl>
+  </div>
+
+  <div class="finding defer">
+    <div class="fhead">
+      <span class="anchor">usePlanning.test.ts:16</span>
+      <span class="title">1-based week key convention is load-bearing and only implicitly documented</span>
+      <span class="eff">Effort: S</span>
+    </div>
+    <dl>
+      <dt>Why</dt>
+      <dd>The test encodes that state keys are <code>"1_0"</code> (1-based week) — matching the vanilla
+        <code>planning-n3.html</code> (<code>wk = i+1</code>), which is essential for not orphaning existing users'
+        <code>jlptN3progress_v1</code> data. That migration-critical invariant lives only in a test title today.</dd>
+      <dt>Suggested backlog</dt>
+      <dd>Run <code>/backlog "document the 1-based weekNo state-key format on usePlanning as the localStorage-compat contract"</code>.</dd>
+      <dt>Flagged&nbsp;by</dt>
+      <dd><span class="flags"><span class="flag">breaking-change-detector</span><span class="flag">devils-advocate</span></span></dd>
+    </dl>
+  </div>
+
+  <details class="raw">
+    <summary>Raw reviewer lenses (10/10 run — 8 common + 2 TypeScript)</summary>
+
+    <div class="rev">
+      <h4>1 · common:team-spec-surveyor</h4>
+      <p class="status hit">PARTIAL</p>
+      <p>Test matches Task 3 Step 1's interface exactly (<code>progressOf</code>/<code>weekDone</code> signatures, key format).
+        Written file is a superset of the plan's snippet — it adds the <code>"2_0" → 0</code> leakage assertion, a small
+        improvement. But Step 1 is only one of five steps; the module (Step 3) and commit (Step 5) are absent, so the task's
+        acceptance state (“GREEN”) is not reached. → CRITICAL #1, MAJOR #3.</p>
+    </div>
+    <div class="rev">
+      <h4>2 · common:team-devils-advocate</h4>
+      <p class="status hit">QUESTIONS</p>
+      <p>What happens with a key past <code>itemCount</code>? Untested (MAJOR #1). Empty-weeks divide guard? Untested
+        (MAJOR #2). Is the 1-based key format guaranteed to match legacy storage? Yes (confirmed against vanilla), but
+        only a test title records it (DEFERRED #2). Length-of-WEEKS never asserted (DEFERRED #1).</p>
+    </div>
+    <div class="rev">
+      <h4>3 · common:team-stub-hunter</h4>
+      <p class="status hit">FOUND</p>
+      <p>Import target <code>./usePlanning.ts</code> is a dangling reference — the module is a stub-by-absence. (The plan's
+        own hook sketch also contains a <code>/* set in effect below */</code> placeholder branch, but that code is not in
+        this diff.) → CRITICAL #1.</p>
+    </div>
+    <div class="rev">
+      <h4>4 · common:team-test-auditor</h4>
+      <p class="status hit">GAPS</p>
+      <p>Suite does not execute (module missing) — the primary finding. Beyond that: missing over-count edge, missing
+        empty/round-down edges, hook+persistence uncovered. Positive: the added week-isolation assertion is exactly the
+        right instinct. → CRITICAL #1, MAJOR #1/#2/#3.</p>
+    </div>
+    <div class="rev">
+      <h4>5 · common:team-dep-auditor</h4>
+      <p class="status clear">NOTHING IN SCOPE</p>
+      <p>Only import is <code>bun:test</code> (already a devDependency) plus two intra-feature modules. No new packages,
+        no lockfile change. Clean.</p>
+    </div>
+    <div class="rev">
+      <h4>6 · common:team-breaking-change-detector</h4>
+      <p class="status hit">WATCH</p>
+      <p>No public API changed by a test file itself. But the test pins the <code>jlptN3progress_v1</code> 1-based key
+        format — the compatibility contract with existing users' saved progress. Worth documenting so a future refactor
+        doesn't silently orphan saved data. → DEFERRED #2.</p>
+    </div>
+    <div class="rev">
+      <h4>7 · common:team-security-reviewer</h4>
+      <p class="status clear">NOTHING IN SCOPE</p>
+      <p>Pure functions over an in-memory fixture; no I/O, no user input, no secrets, no injection surface in this file.
+        (localStorage JSON.parse hardening lives in <code>usePlanning.ts</code>, out of this diff.) Clean.</p>
+    </div>
+    <div class="rev">
+      <h4>8 · common:team-picky-reviewer</h4>
+      <p class="status hit">NITPICKS</p>
+      <p>Fixture named <code>WEEKS</code> shadows the production const (MINOR #1). Otherwise idiomatic: descriptive test
+        names, explicit <code>Week[]</code> typing, no magic beyond the intentional key strings.</p>
+    </div>
+    <div class="rev">
+      <h4>9 · typescript:team-picky-reviewer</h4>
+      <p class="status hit">SHOULD-FIX / NITPICKS</p>
+      <p>Import extension <code>./usePlanning.ts</code> / <code>./weeks.ts</code> (explicit <code>.ts</code>) is consistent
+        with the repo's existing style and bun's resolver — fine. Missing empty-array/round-down cases (MAJOR #2). Fixture
+        shadowing (MINOR #1). <code>toEqual</code> shape-coupling is acceptable (MINOR #2). Types are sound: <code>Week[]</code>
+        fixture is assignable, key strings are untyped <code>Record&lt;string, boolean&gt;</code> as the plan's
+        <code>PlanState</code> intends.</p>
+    </div>
+    <div class="rev">
+      <h4>10 · typescript:team-security-reviewer</h4>
+      <p class="status clear">NOTHING IN SCOPE</p>
+      <p>No <code>any</code>, no unsafe cast, no prototype-pollution vector (the fixture keys are literals, not user data).
+        No environment or network access. Clean.</p>
+    </div>
+    <p class="footer-note">Verification-only agent <code>typescript:team-integration-validator</code> intentionally
+      excluded per skill rule (heavy full-suite compile, not a diff lens).</p>
+  </details>
+
+  <p class="footer-note">
+    Next steps — (1) <b>Fix CRITICAL now:</b> implement <code>usePlanning.ts</code> and re-run to GREEN.
+    (2) <b>Capture DEFERRED</b> as backlog tasks. (3) <b>Re-run <code>/review</code></b> once the module exists to confirm
+    the suite is green and the MAJOR test-gaps are closed.
+  </p>
+</div>

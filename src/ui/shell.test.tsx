@@ -24,10 +24,11 @@ test("Header shows the French title", () => {
 
 test("TopNav renders internal router links + external vanilla links", () => {
   const html = nav("dark");
-  expect(html).toContain('href="/quiz"');           // NavLink → router route
-  expect(html).toContain('href="/entrainement"');
+  expect(html).toContain('href="/entrainement"');   // merged quiz + hub route
+  expect(html).toContain('href="/parametrage"');    // new settings tab
   expect(html).toContain('href="/planning"');       // Planning internal route
   expect(html).toContain('href="/cours"');          // Cours now internal too
+  expect(html).not.toContain('href="/quiz"');       // Quiz tab merged into Entraînement
   expect(html).not.toContain(".html");               // no external vanilla links left
   expect(html).toContain("ふ");                        // global furigana toggle
 });

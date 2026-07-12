@@ -37,6 +37,14 @@ UI en **français**, contenu en **japonais**. **Runtime & outils : `bun` exclusi
   Tout nouveau fichier livré s'ajoute là (`ROOT` ou `isServedData`), sinon absent en local
   **et** en prod. Sans cette copie, `bunx serve _site` sert un `_site` périmé (vieux `sw.js`
   → « Forcer la mise à jour » sans effet). Push sur `main` → Pages (https://darti.github.io/jlpt/).
+- **Tailwind vendorisé = sous-ensemble** : toutes les utilités ne sont PAS compilées
+  (ex. `animate-spin` absent). Définir les manquantes (keyframes + règle/`@utility`)
+  dans `src/styles/tailwind.css` `@layer base` — cf. `.jlpt-spin`, `.vbreak`/`.tok-*`.
+- **Grep de références** : inclure `.tsx` ET `.ts` (`--include="*.ts"` seul rate les
+  composants React → liens/imports morts non détectés, ex. un `href` vers une page supprimée).
+- **Test navigateur (HashRouter)** : changer le hash (`#/x`) ne recharge PAS la page.
+  Pour charger un nouveau bundle après `bun run build`, faire un vrai `location.reload()`
+  (le HTML est network-first, donc pas besoin de bumper `sw.js`).
 - **Persistance** : localStorage même origine, partagé entre pages —
   `jlptN3adapt_v2` (progression), `jlptN3_theme`, `jlptN3_updatedAt`.
   Sync multi-appareils optionnelle via Gist (PAT scope `gist`).

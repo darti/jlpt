@@ -6,9 +6,9 @@ import { applyFuri, readFuri, writeFuri } from "../lib/furigana.ts";
 const ROUTES = [
   { to: "/", label: "Accueil", end: true },
   { to: "/entrainement", label: "Entraînement" },
-  { to: "/quiz", label: "Quiz" },
   { to: "/cours", label: "Cours" },
   { to: "/planning", label: "Planning" },
+  { to: "/parametrage", label: "Paramétrage" },
 ];
 const ON = "text-fg font-semibold text-sm";
 const OFF = "text-fg-dim font-semibold text-sm";
@@ -18,7 +18,7 @@ export function TopNav() {
   const [furiOn, setFuriOn] = useState(() => readFuri());
   const toggleFuri = () => { const on = writeFuri(!furiOn); setFuriOn(on); applyFuri(); };
   return (
-    <nav className="sticky top-[env(safe-area-inset-top)] z-10 flex gap-4 flex-wrap justify-center items-center px-3 py-2.5">
+    <nav className="sticky top-[env(safe-area-inset-top)] z-10 flex gap-4 flex-wrap justify-center items-center px-3 py-2.5 bg-panel border-b border-line surface-blur">
       {ROUTES.map((r) => (
         <NavLink key={r.to} to={r.to} end={r.end} className={({ isActive }) => (isActive ? ON : OFF)}>
           {r.label}
