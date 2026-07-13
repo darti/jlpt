@@ -29,3 +29,26 @@ test("useCours charge gram/vocab/kanji/method dans l'ordre", async () => {
   expect(state.cats?.map((c) => c.id)).toEqual(["gram", "vocab", "kanji", "method"]);
   await act(async () => { root.unmount(); });
 });
+
+test("useCours rejette une donnée périmée (ancien schéma) sans planter → []", async () => {
+  // Régression : un cache SW d'avant la migration lessons→groups sert l'ancienne
+  // forme au code courant. Le loader doit dégrader (→ []) au lieu de laisser
+  // CategoryIndex faire category.groups.map sur undefined.
+  const fake: Record<string, unknown> = {
+    "data/cours-gram.json":   { id: "gram", title: "G", kind: "learn", groups: [] },
+    "data/cours-vocab.json":  { id: "vocab", title: "V", intro: ["…"], lessons: [] }, // périmé
+    "data/cours-kanji.json":  { id: "kanji", title: "K", kind: "learn", groups: [] },
+    "data/cours-method.json": { id: "method", title: "M", kind: "method", sections: [] },
+  };
+  globalThis.fetch = ((url: string) =>
+    Promise.resolve({ json: () => Promise.resolve(fake[url]) })) as unknown as typeof fetch;
+
+  const state: { cats: CoursCategory[] | null } = { cats: null };
+  function Probe() { state.cats = useCours(); return null; }
+  const host = document.createElement("div"); const root: Root = createRoot(host);
+  await act(async () => { root.render(<Probe />); });
+  await act(async () => { await Promise.resolve(); });
+
+  expect(state.cats).toEqual([]);
+  await act(async () => { root.unmount(); });
+});
