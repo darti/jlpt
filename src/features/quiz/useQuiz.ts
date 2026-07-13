@@ -251,7 +251,9 @@ export function useQuiz() {
         const pool = await loadCategory(cat);
         const unseen = pool.filter((q) => !hasBit(seen, q.id));
         const R = skillStateOf(raw, cat).R;
-        const picks = pickAdaptive(unseen, R, exclude, wrong).slice(0, n);
+        // wrong ⊆ seen (choose() sets the seen bit when appending to wrong[]), so no wrong id is ever
+        // in `unseen` — pass [] rather than a dead +150 boost that can't fire here.
+        const picks = pickAdaptive(unseen, R, exclude, []).slice(0, n);
         for (const q of picks) exclude.add(q.id);
         learnQs.push(...picks);
       }
