@@ -26,3 +26,13 @@ test("DiagnosticResults shows the estimated level and a per-skill breakdown from
   expect(html).toContain("Termin");    // "Terminé" button
   expect(html).toContain("Faux");      // Corrige renders for the grammaire miss (chosen 1 != a 0)
 });
+
+test("DiagnosticResults renders a matched Rappel de cours when a coursIndex is provided", () => {
+  const g: Question = { id: 3, cat: "grammaire", d: 1, q: "", o: ["a", "b"], a: 0, e: "<b>〜たら</b> = x" };
+  const idx = new Map([["たら", { forme: "〜たら", niv: "N3", sens: "« quand »." }]]);
+  const html = renderToStaticMarkup(
+    <DiagnosticResults model={model} answers={[{ question: g, chosen: 1 }]} onDone={() => {}} coursIndex={idx} />,
+  );
+  expect(html).toContain("Rappel de cours");
+  expect(html).toContain("〜たら");
+});

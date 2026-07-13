@@ -4,6 +4,7 @@ import type { Question } from "../../types/quiz.ts";
 import { QuestionCard } from "./QuestionCard.tsx";
 import { Corrige } from "./Corrige.tsx";
 import { speakQuestion } from "../../lib/tts.ts";
+import { resolveGrammarRappel, type CoursGramIndex } from "../cours/coursGramIndex.ts";
 
 const SKILL_LABELS: Record<Skill, string> = {
   grammaire: "Grammaire", vocabulaire: "Vocab", kanji: "Kanji", lecture: "Lecture", ecoute: "Écoute",
@@ -13,11 +14,12 @@ const SKILL_LABELS: Record<Skill, string> = {
  *  THIS test's answers (covers all 5 tested categories — `barMastery` omits `ecoute`, MAJOR #3) +
  *  a full corrigé per answered question (reuses QuestionCard + Corrige). Pure / prop-driven. */
 export function DiagnosticResults({
-  model, answers, onDone,
+  model, answers, onDone, coursIndex,
 }: {
   model: DashboardModel;
   answers: { question: Question; chosen: number }[];
   onDone: () => void;
+  coursIndex?: CoursGramIndex | null;
 }) {
   const right = answers.filter((a) => a.chosen === a.question.a).length;
   // Per-skill breakdown from the answers themselves — every tested category appears, in SKILLS order.
@@ -48,7 +50,7 @@ export function DiagnosticResults({
       {answers.map((a) => (
         <div key={a.question.id} className="flex flex-col gap-2">
           <QuestionCard question={a.question} chosen={a.chosen} answered={true} onChoose={() => {}} onSpeak={() => speakQuestion(a.question)} />
-          <Corrige question={a.question} correct={a.chosen === a.question.a} />
+          <Corrige question={a.question} correct={a.chosen === a.question.a} rappel={resolveGrammarRappel(a.question, coursIndex ?? null)} />
         </div>
       ))}
       <button
