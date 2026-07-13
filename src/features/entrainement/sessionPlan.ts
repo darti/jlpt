@@ -8,6 +8,9 @@ export const DIAGNOSTIC_INTERVAL_DAYS = 7;
 /** Part maximale du budget de questions consacrée au rejeu des erreurs. */
 export const ERRORS_CAP = 0.3;
 
+/** Part maximale du budget de questions consacrée aux items inédits (mode Apprendre). */
+export const LEARN_CAP = 0.4;
+
 /** État de l'apprenant lu depuis la progression + la session reprenable. */
 export interface SessionState {
   /** Une session en cours (< 2 j) existe. */
@@ -45,7 +48,9 @@ export function pickSessionPlan(state: SessionState, total: number, caps: Caps):
   if (caps.diagnostic && diagnosticDue) return { kind: "diagnostic" };
 
   const errors = caps.errors ? Math.min(state.wrongCount, Math.floor(ERRORS_CAP * total)) : 0;
-  const learn = caps.learn ? Math.min(state.newCoursePoints, Math.max(0, total - errors)) : 0;
+  const learn = caps.learn
+    ? Math.min(state.newCoursePoints, Math.floor(LEARN_CAP * total), Math.max(0, total - errors))
+    : 0;
   const adaptive = Math.max(0, total - errors - learn);
   return { kind: "composed", alloc: { errors, learn, adaptive } };
 }

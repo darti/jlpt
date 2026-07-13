@@ -76,3 +76,13 @@ test("#3 contract: a recent diagnostic (<7d) yields a composed session", () => {
   const plan = pickSessionPlan({ ...base, daysSinceDiagnostic: 3, wrongCount: 50 }, 10, BUILT_CAPS);
   expect(plan.kind).toBe("composed");
 });
+
+test("learn is capped at LEARN_CAP (40%) of the budget", () => {
+  const plan = pickSessionPlan(
+    { ...base, newCoursePoints: 100 },
+    10,
+    { diagnostic: false, errors: false, learn: true },
+  );
+  // errors off → 0; learn = min(100, floor(0.4*10)=4, 10-0=10) = 4; adaptive = 6
+  expect(plan).toEqual({ kind: "composed", alloc: { errors: 0, learn: 4, adaptive: 6 } });
+});
