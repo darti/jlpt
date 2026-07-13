@@ -1,3986 +1,4385 @@
 {
  "id": "vocab",
  "title": "語彙 — Vocabulaire par thèmes",
+ "kind": "learn",
  "intro": [
   "Objectif vocab : ~3 700 mots. Vise 50–60 nouveaux mots/semaine en phase 1–3, et entraîne-les avec les quiz Vocab de l'app + « Réviser mes erreurs ». Priorise les mots vus dans les exemples du cours et des quiz."
  ],
- "lessons": [
+ "groups": [
   {
-   "title": "Vocabulaire N3 + N4 mélangés — 559 mots (300 N3 · 259 N4)",
-   "tag": "語",
-   "intro": [
-    "Vocabulaire des paliers N4 et N3 réuni et trié par <b>lecture</b> (ordre gojūon あ→ん). La colonne <b>Niv.</b> indique le niveau. Cœur haute/moyenne fréquence — étendu progressivement."
-   ],
-   "lessons": [
+   "id": "g1",
+   "title": "Vocabulaire N3 + N4 — lot 1/10 (ordre gojūon)",
+   "items": [
     {
-     "title": "Vocabulaire N3 + N4 — lot 1/10 (ordre gojūon)",
-     "tag": "語",
-     "table": {
-      "headers": [
-       "Mot",
-       "Niv.",
-       "Lecture",
-       "Sens"
-      ],
-      "rows": [
-       [
-        "挨拶",
-        "N3",
-        "あいさつ",
-        "salutation"
-       ],
-       [
-        "会う",
-        "N4",
-        "あう",
-        "rencontrer"
-       ],
-       [
-        "赤ちゃん",
-        "N4",
-        "あかちゃん",
-        "bébé"
-       ],
-       [
-        "上がる",
-        "N4",
-        "あがる",
-        "monter"
-       ],
-       [
-        "浅い",
-        "N4",
-        "あさい",
-        "peu profond"
-       ],
-       [
-        "味",
-        "N3",
-        "あじ",
-        "goût"
-       ],
-       [
-        "明日",
-        "N4",
-        "あす",
-        "demain"
-       ],
-       [
-        "遊ぶ",
-        "N4",
-        "あそぶ",
-        "jouer, s’amuser"
-       ],
-       [
-        "集まる",
-        "N4",
-        "あつまる",
-        "se rassembler"
-       ],
-       [
-        "集める",
-        "N4",
-        "あつめる",
-        "collecter"
-       ],
-       [
-        "謝る",
-        "N4",
-        "あやまる",
-        "s’excuser"
-       ],
-       [
-        "表す",
-        "N3",
-        "あらわす",
-        "exprimer, représenter"
-       ],
-       [
-        "安全 / 危険",
-        "N3",
-        "あんぜん / きけん",
-        "sécurité / danger"
-       ],
-       [
-        "案内",
-        "N4",
-        "あんない",
-        "guide, indication"
-       ],
-       [
-        "以下",
-        "N4",
-        "いか",
-        "en dessous de"
-       ],
-       [
-        "以外",
-        "N4",
-        "いがい",
-        "excepté"
-       ],
-       [
-        "医学",
-        "N4",
-        "いがく",
-        "médecine (étude)"
-       ],
-       [
-        "生きる",
-        "N4",
-        "いきる",
-        "vivre"
-       ],
-       [
-        "意見",
-        "N3",
-        "いけん",
-        "opinion"
-       ],
-       [
-        "意識",
-        "N3",
-        "いしき",
-        "conscience"
-       ],
-       [
-        "維持(する)",
-        "N3",
-        "いじ",
-        "maintien, maintenir"
-       ],
-       [
-        "以上",
-        "N4",
-        "いじょう",
-        "au-dessus de, plus de"
-       ],
-       [
-        "急ぐ",
-        "N4",
-        "いそぐ",
-        "se dépêcher"
-       ],
-       [
-        "一度",
-        "N4",
-        "いちど",
-        "une fois"
-       ],
-       [
-        "一生懸命",
-        "N4",
-        "いっしょうけんめい",
-        "de toutes ses forces"
-       ],
-       [
-        "一般",
-        "N3",
-        "いっぱん",
-        "général, ordinaire"
-       ],
-       [
-        "糸",
-        "N4",
-        "いと",
-        "fil"
-       ],
-       [
-        "以内",
-        "N4",
-        "いない",
-        "dans la limite de"
-       ],
-       [
-        "田舎",
-        "N4",
-        "いなか",
-        "campagne"
-       ],
-       [
-        "祈る",
-        "N4",
-        "いのる",
-        "prier"
-       ],
-       [
-        "意味",
-        "N3",
-        "いみ",
-        "sens, signification"
-       ],
-       [
-        "印象",
-        "N3",
-        "いんしょう",
-        "impression"
-       ],
-       [
-        "受付",
-        "N4",
-        "うけつけ",
-        "accueil, réception"
-       ],
-       [
-        "受ける",
-        "N3",
-        "うける",
-        "recevoir, passer (un test)"
-       ],
-       [
-        "動く",
-        "N4",
-        "うごく",
-        "bouger"
-       ],
-       [
-        "嘘",
-        "N4",
-        "うそ",
-        "mensonge"
-       ],
-       [
-        "打ち合わせ",
-        "N3",
-        "うちあわせ",
-        "concertation, briefing"
-       ],
-       [
-        "打つ",
-        "N4",
-        "うつ",
-        "frapper"
-       ],
-       [
-        "美しい",
-        "N4",
-        "うつくしい",
-        "beau"
-       ],
-       [
-        "移る",
-        "N4",
-        "うつる",
-        "se déplacer, déménager"
-       ],
-       [
-        "裏",
-        "N4",
-        "うら",
-        "envers, arrière"
-       ],
-       [
-        "売り場",
-        "N4",
-        "うりば",
-        "rayon (magasin)"
-       ],
-       [
-        "噂",
-        "N3",
-        "うわさ",
-        "rumeur"
-       ],
-       [
-        "運転",
-        "N4",
-        "うんてん",
-        "conduite"
-       ],
-       [
-        "運動",
-        "N4",
-        "うんどう",
-        "exercice physique"
-       ],
-       [
-        "影響",
-        "N3",
-        "えいきょう",
-        "influence"
-       ],
-       [
-        "営業",
-        "N3",
-        "えいぎょう",
-        "vente, activité commerciale"
-       ],
-       [
-        "栄養",
-        "N3",
-        "えいよう",
-        "nutrition"
-       ],
-       [
-        "枝",
-        "N4",
-        "えだ",
-        "branche"
-       ],
-       [
-        "選ぶ",
-        "N3",
-        "えらぶ",
-        "choisir"
-       ],
-       [
-        "延期(する)",
-        "N3",
-        "えんき",
-        "report, ajourner"
-       ],
-       [
-        "遠慮",
-        "N4",
-        "えんりょ",
-        "réserve, retenue"
-       ],
-       [
-        "お祝い",
-        "N4",
-        "おいわい",
-        "félicitations, cadeau"
-       ],
-       [
-        "横断",
-        "N4",
-        "おうだん",
-        "traversée"
-       ],
-       [
-        "応募",
-        "N3",
-        "おうぼ",
-        "candidature"
-       ],
-       [
-        "屋上",
-        "N4",
-        "おくじょう",
-        "toit-terrasse"
-       ],
-       [
-        "贈り物",
-        "N4",
-        "おくりもの",
-        "cadeau"
-       ],
-       [
-        "遅れる",
-        "N4",
-        "おくれる",
-        "être en retard"
-       ],
-       [
-        "起こす",
-        "N4",
-        "おこす",
-        "réveiller, provoquer"
-       ],
-       [
-        "怒る",
-        "N4",
-        "おこる",
-        "se fâcher"
-       ]
-      ]
-     }
+     "id": "vocab:挨拶",
+     "mot": "挨拶",
+     "lecture": "あいさつ",
+     "sens": "salutation",
+     "niv": "N3"
     },
     {
-     "title": "Vocabulaire N3 + N4 — lot 2/10 (ordre gojūon)",
-     "tag": "語",
-     "table": {
-      "headers": [
-       "Mot",
-       "Niv.",
-       "Lecture",
-       "Sens"
-      ],
-      "rows": [
-       [
-        "押す",
-        "N4",
-        "おす",
-        "pousser, appuyer"
-       ],
-       [
-        "お釣り",
-        "N4",
-        "おつり",
-        "monnaie rendue"
-       ],
-       [
-        "お土産",
-        "N4",
-        "おみやげ",
-        "souvenir (cadeau)"
-       ],
-       [
-        "思い出",
-        "N4",
-        "おもいで",
-        "souvenir"
-       ],
-       [
-        "表",
-        "N4",
-        "おもて",
-        "endroit, recto"
-       ],
-       [
-        "折る",
-        "N4",
-        "おる",
-        "plier, casser"
-       ],
-       [
-        "お礼",
-        "N4",
-        "おれい",
-        "remerciement"
-       ],
-       [
-        "終わり",
-        "N4",
-        "おわり",
-        "fin"
-       ],
-       [
-        "改革",
-        "N3",
-        "かいかく",
-        "réforme"
-       ],
-       [
-        "会議",
-        "N3",
-        "かいぎ",
-        "réunion"
-       ],
-       [
-        "解決",
-        "N3",
-        "かいけつ",
-        "résolution"
-       ],
-       [
-        "会場",
-        "N4",
-        "かいじょう",
-        "salle (événement)"
-       ],
-       [
-        "解説",
-        "N3",
-        "かいせつ",
-        "explication, commentaire"
-       ],
-       [
-        "改善(する)",
-        "N3",
-        "かいぜん",
-        "amélioration, améliorer"
-       ],
-       [
-        "解答",
-        "N3",
-        "かいとう",
-        "réponse (à un problème)"
-       ],
-       [
-        "回答",
-        "N3",
-        "かいとう",
-        "réponse (à une enquête)"
-       ],
-       [
-        "会話",
-        "N3",
-        "かいわ",
-        "conversation"
-       ],
-       [
-        "帰り",
-        "N4",
-        "かえり",
-        "retour"
-       ],
-       [
-        "香り",
-        "N3",
-        "かおり",
-        "parfum, arôme"
-       ],
-       [
-        "係",
-        "N4",
-        "かかり",
-        "responsable, préposé"
-       ],
-       [
-        "科学",
-        "N4",
-        "かがく",
-        "science"
-       ],
-       [
-        "鏡",
-        "N4",
-        "かがみ",
-        "miroir"
-       ],
-       [
-        "覚悟",
-        "N3",
-        "かくご",
-        "résolution, détermination"
-       ],
-       [
-        "確認",
-        "N3",
-        "かくにん",
-        "vérification"
-       ],
-       [
-        "家具",
-        "N4",
-        "かぐ",
-        "meuble"
-       ],
-       [
-        "火事",
-        "N3",
-        "かじ",
-        "incendie"
-       ],
-       [
-        "数",
-        "N4",
-        "かず",
-        "nombre"
-       ],
-       [
-        "風邪",
-        "N3",
-        "かぜ",
-        "rhume"
-       ],
-       [
-        "風",
-        "N4",
-        "かぜ",
-        "vent"
-       ],
-       [
-        "硬い",
-        "N4",
-        "かたい",
-        "dur, solide"
-       ],
-       [
-        "形",
-        "N4",
-        "かたち",
-        "forme"
-       ],
-       [
-        "課題",
-        "N3",
-        "かだい",
-        "tâche, problème à résoudre"
-       ],
-       [
-        "課長",
-        "N4",
-        "かちょう",
-        "chef de section"
-       ],
-       [
-        "格好",
-        "N4",
-        "かっこう",
-        "allure, apparence"
-       ],
-       [
-        "勝つ",
-        "N4",
-        "かつ",
-        "gagner"
-       ],
-       [
-        "必ず",
-        "N4",
-        "かならず",
-        "sans faute, forcément"
-       ],
-       [
-        "金持ち",
-        "N4",
-        "かねもち",
-        "personne riche"
-       ],
-       [
-        "彼",
-        "N4",
-        "かれ",
-        "lui, il"
-       ],
-       [
-        "変わる / 変える",
-        "N3",
-        "かわる / かえる",
-        "changer (intr. / tr.)"
-       ],
-       [
-        "考える",
-        "N4",
-        "かんがえる",
-        "réfléchir"
-       ],
-       [
-        "環境",
-        "N3",
-        "かんきょう",
-        "environnement"
-       ],
-       [
-        "関係",
-        "N3",
-        "かんけい",
-        "relation"
-       ],
-       [
-        "看護師",
-        "N4",
-        "かんごし",
-        "infirmier(ère)"
-       ],
-       [
-        "感謝",
-        "N3",
-        "かんしゃ",
-        "gratitude"
-       ],
-       [
-        "感じる",
-        "N3",
-        "かんじる",
-        "ressentir"
-       ],
-       [
-        "感想",
-        "N3",
-        "かんそう",
-        "impression, avis"
-       ],
-       [
-        "管理(する)",
-        "N3",
-        "かんり",
-        "gestion, gérer"
-       ],
-       [
-        "我慢(する)",
-        "N3",
-        "がまん",
-        "patience, endurer"
-       ],
-       [
-        "記憶",
-        "N3",
-        "きおく",
-        "mémoire, souvenir"
-       ],
-       [
-        "気温",
-        "N3",
-        "きおん",
-        "température (de l'air)"
-       ],
-       [
-        "機会",
-        "N4",
-        "きかい",
-        "occasion"
-       ],
-       [
-        "機械",
-        "N4",
-        "きかい",
-        "machine"
-       ],
-       [
-        "期限",
-        "N3",
-        "きげん",
-        "échéance, délai"
-       ],
-       [
-        "基準",
-        "N3",
-        "きじゅん",
-        "critère, norme"
-       ],
-       [
-        "季節",
-        "N4",
-        "きせつ",
-        "saison"
-       ],
-       [
-        "規則",
-        "N3",
-        "きそく",
-        "règlement"
-       ],
-       [
-        "期待(する)",
-        "N3",
-        "きたい",
-        "attente, espérer"
-       ],
-       [
-        "きちんと",
-        "N3",
-        "—",
-        "correctement, en ordre"
-       ],
-       [
-        "気分",
-        "N4",
-        "きぶん",
-        "humeur, état"
-       ],
-       [
-        "希望(する)",
-        "N3",
-        "きぼう",
-        "espoir, souhaiter"
-       ]
-      ]
-     }
+     "id": "vocab:会う",
+     "mot": "会う",
+     "lecture": "あう",
+     "sens": "rencontrer",
+     "niv": "N4"
     },
     {
-     "title": "Vocabulaire N3 + N4 — lot 3/10 (ordre gojūon)",
-     "tag": "語",
-     "table": {
-      "headers": [
-       "Mot",
-       "Niv.",
-       "Lecture",
-       "Sens"
-      ],
-      "rows": [
-       [
-        "決まる / 決める",
-        "N3",
-        "きまる / きめる",
-        "se décider / décider"
-       ],
-       [
-        "気持ち",
-        "N4",
-        "きもち",
-        "sentiment, sensation"
-       ],
-       [
-        "客",
-        "N4",
-        "きゃく",
-        "client, invité"
-       ],
-       [
-        "急(な)",
-        "N3",
-        "きゅう",
-        "soudain, urgent"
-       ],
-       [
-        "急行",
-        "N4",
-        "きゅうこう",
-        "train express"
-       ],
-       [
-        "給料",
-        "N3",
-        "きゅうりょう",
-        "salaire"
-       ],
-       [
-        "教育",
-        "N4",
-        "きょういく",
-        "éducation"
-       ],
-       [
-        "教会",
-        "N4",
-        "きょうかい",
-        "église"
-       ],
-       [
-        "協調",
-        "N3",
-        "きょうちょう",
-        "coopération, harmonie"
-       ],
-       [
-        "共通",
-        "N3",
-        "きょうつう",
-        "point commun"
-       ],
-       [
-        "興味",
-        "N4",
-        "きょうみ",
-        "intérêt"
-       ],
-       [
-        "協力",
-        "N3",
-        "きょうりょく",
-        "coopération"
-       ],
-       [
-        "記録",
-        "N3",
-        "きろく",
-        "enregistrement, record"
-       ],
-       [
-        "近所",
-        "N3",
-        "きんじょ",
-        "voisinage"
-       ],
-       [
-        "緊張",
-        "N3",
-        "きんちょう",
-        "tension, trac"
-       ],
-       [
-        "技術",
-        "N3",
-        "ぎじゅつ",
-        "technologie, technique"
-       ],
-       [
-        "義務",
-        "N3",
-        "ぎむ",
-        "devoir, obligation"
-       ],
-       [
-        "疑問",
-        "N3",
-        "ぎもん",
-        "doute, interrogation"
-       ],
-       [
-        "空気",
-        "N4",
-        "くうき",
-        "air"
-       ],
-       [
-        "草",
-        "N4",
-        "くさ",
-        "herbe"
-       ],
-       [
-        "苦情",
-        "N3",
-        "くじょう",
-        "réclamation"
-       ],
-       [
-        "薬",
-        "N3",
-        "くすり",
-        "médicament"
-       ],
-       [
-        "癖",
-        "N3",
-        "くせ",
-        "manie, tic"
-       ],
-       [
-        "首",
-        "N4",
-        "くび",
-        "cou"
-       ],
-       [
-        "工夫(する)",
-        "N3",
-        "くふう",
-        "ingéniosité, s'ingénier"
-       ],
-       [
-        "区別",
-        "N3",
-        "くべつ",
-        "distinction"
-       ],
-       [
-        "雲",
-        "N4",
-        "くも",
-        "nuage"
-       ],
-       [
-        "比べる",
-        "N3",
-        "くらべる",
-        "comparer"
-       ],
-       [
-        "暮れる",
-        "N4",
-        "くれる",
-        "(jour) décliner"
-       ],
-       [
-        "苦労(する)",
-        "N3",
-        "くろう",
-        "peine, prendre de la peine"
-       ],
-       [
-        "加える",
-        "N3",
-        "くわえる",
-        "ajouter"
-       ],
-       [
-        "具合",
-        "N4",
-        "ぐあい",
-        "état, condition"
-       ],
-       [
-        "経験",
-        "N3",
-        "けいけん",
-        "expérience"
-       ],
-       [
-        "傾向",
-        "N3",
-        "けいこう",
-        "tendance"
-       ],
-       [
-        "警告",
-        "N3",
-        "けいこく",
-        "avertissement"
-       ],
-       [
-        "警察",
-        "N4",
-        "けいさつ",
-        "police"
-       ],
-       [
-        "経済",
-        "N3",
-        "けいざい",
-        "économie"
-       ],
-       [
-        "継続(する)",
-        "N3",
-        "けいぞく",
-        "continuation, poursuivre"
-       ],
-       [
-        "契約",
-        "N3",
-        "けいやく",
-        "contrat"
-       ],
-       [
-        "怪我",
-        "N3",
-        "けが",
-        "blessure"
-       ],
-       [
-        "景色",
-        "N4",
-        "けしき",
-        "paysage"
-       ],
-       [
-        "結果",
-        "N3",
-        "けっか",
-        "résultat"
-       ],
-       [
-        "結婚",
-        "N4",
-        "けっこん",
-        "mariage"
-       ],
-       [
-        "決定",
-        "N3",
-        "けってい",
-        "décision"
-       ],
-       [
-        "決断",
-        "N3",
-        "けつだん",
-        "décision (ferme)"
-       ],
-       [
-        "結論",
-        "N3",
-        "けつろん",
-        "conclusion"
-       ],
-       [
-        "喧嘩",
-        "N4",
-        "けんか",
-        "dispute, bagarre"
-       ],
-       [
-        "研究",
-        "N3",
-        "けんきゅう",
-        "recherche"
-       ],
-       [
-        "健康",
-        "N3",
-        "けんこう",
-        "santé"
-       ],
-       [
-        "見物",
-        "N4",
-        "けんぶつ",
-        "visite touristique"
-       ],
-       [
-        "権利",
-        "N3",
-        "けんり",
-        "droit"
-       ],
-       [
-        "原因",
-        "N3",
-        "げんいん",
-        "cause"
-       ],
-       [
-        "減少(する)",
-        "N3",
-        "げんしょう",
-        "baisse, diminuer"
-       ],
-       [
-        "効果",
-        "N3",
-        "こうか",
-        "effet"
-       ],
-       [
-        "後悔",
-        "N3",
-        "こうかい",
-        "regret"
-       ],
-       [
-        "講義",
-        "N3",
-        "こうぎ",
-        "cours magistral"
-       ],
-       [
-        "工業",
-        "N4",
-        "こうぎょう",
-        "industrie"
-       ],
-       [
-        "向上(する)",
-        "N3",
-        "こうじょう",
-        "amélioration, progresser"
-       ],
-       [
-        "工場",
-        "N4",
-        "こうじょう",
-        "usine"
-       ],
-       [
-        "交通",
-        "N4",
-        "こうつう",
-        "circulation, transport"
-       ]
-      ]
-     }
+     "id": "vocab:赤ちゃん",
+     "mot": "赤ちゃん",
+     "lecture": "あかちゃん",
+     "sens": "bébé",
+     "niv": "N4"
     },
     {
-     "title": "Vocabulaire N3 + N4 — lot 4/10 (ordre gojūon)",
-     "tag": "語",
-     "table": {
-      "headers": [
-       "Mot",
-       "Niv.",
-       "Lecture",
-       "Sens"
-      ],
-      "rows": [
-       [
-        "公務員",
-        "N4",
-        "こうむいん",
-        "fonctionnaire"
-       ],
-       [
-        "効率",
-        "N3",
-        "こうりつ",
-        "efficacité, rendement"
-       ],
-       [
-        "国際",
-        "N4",
-        "こくさい",
-        "international"
-       ],
-       [
-        "心",
-        "N4",
-        "こころ",
-        "cœur, esprit"
-       ],
-       [
-        "故障",
-        "N4",
-        "こしょう",
-        "panne"
-       ],
-       [
-        "答え",
-        "N4",
-        "こたえ",
-        "réponse"
-       ],
-       [
-        "今度",
-        "N4",
-        "こんど",
-        "cette fois / prochaine fois"
-       ],
-       [
-        "今夜",
-        "N4",
-        "こんや",
-        "cette nuit"
-       ],
-       [
-        "合格",
-        "N3",
-        "ごうかく",
-        "réussite (à un examen)"
-       ],
-       [
-        "合計",
-        "N3",
-        "ごうけい",
-        "total"
-       ],
-       [
-        "誤解",
-        "N3",
-        "ごかい",
-        "malentendu"
-       ],
-       [
-        "災害",
-        "N3",
-        "さいがい",
-        "catastrophe"
-       ],
-       [
-        "最近",
-        "N3",
-        "さいきん",
-        "récemment"
-       ],
-       [
-        "最初 / 最後",
-        "N3",
-        "さいしょ / さいご",
-        "le début / la fin"
-       ],
-       [
-        "最大 / 最小",
-        "N3",
-        "さいだい / さいしょう",
-        "maximum / minimum"
-       ],
-       [
-        "盛ん",
-        "N4",
-        "さかん",
-        "florissant, actif"
-       ],
-       [
-        "探す",
-        "N4",
-        "さがす",
-        "chercher"
-       ],
-       [
-        "下がる",
-        "N4",
-        "さがる",
-        "baisser"
-       ],
-       [
-        "寂しい",
-        "N4",
-        "さびしい",
-        "seul, triste"
-       ],
-       [
-        "差別",
-        "N3",
-        "さべつ",
-        "discrimination"
-       ],
-       [
-        "騒ぐ",
-        "N4",
-        "さわぐ",
-        "faire du bruit"
-       ],
-       [
-        "触る",
-        "N4",
-        "さわる",
-        "toucher"
-       ],
-       [
-        "参加",
-        "N3",
-        "さんか",
-        "participation"
-       ],
-       [
-        "産業",
-        "N4",
-        "さんぎょう",
-        "industrie"
-       ],
-       [
-        "賛成(する)",
-        "N3",
-        "さんせい",
-        "approbation, approuver"
-       ],
-       [
-        "在庫",
-        "N3",
-        "ざいこ",
-        "stock"
-       ],
-       [
-        "材料",
-        "N3",
-        "ざいりょう",
-        "ingrédients, matériaux"
-       ],
-       [
-        "残業",
-        "N3",
-        "ざんぎょう",
-        "heures supplémentaires"
-       ],
-       [
-        "支援(する)",
-        "N3",
-        "しえん",
-        "soutien, soutenir"
-       ],
-       [
-        "資格",
-        "N3",
-        "しかく",
-        "qualification, diplôme"
-       ],
-       [
-        "叱る",
-        "N4",
-        "しかる",
-        "gronder"
-       ],
-       [
-        "試験",
-        "N3",
-        "しけん",
-        "examen"
-       ],
-       [
-        "支持(する)",
-        "N3",
-        "しじ",
-        "appui, soutenir"
-       ],
-       [
-        "姿勢",
-        "N3",
-        "しせい",
-        "posture, attitude"
-       ],
-       [
-        "自然",
-        "N3",
-        "しぜん",
-        "nature"
-       ],
-       [
-        "親しい",
-        "N4",
-        "したしい",
-        "intime, proche"
-       ],
-       [
-        "しっかり",
-        "N3",
-        "—",
-        "solidement, comme il faut"
-       ],
-       [
-        "失敗",
-        "N4",
-        "しっぱい",
-        "échec"
-       ],
-       [
-        "湿度",
-        "N3",
-        "しつど",
-        "humidité"
-       ],
-       [
-        "質問",
-        "N3",
-        "しつもん",
-        "question"
-       ],
-       [
-        "失礼",
-        "N4",
-        "しつれい",
-        "impoli, excusez-moi"
-       ],
-       [
-        "品物",
-        "N4",
-        "しなもの",
-        "article, marchandise"
-       ],
-       [
-        "支払い",
-        "N3",
-        "しはらい",
-        "paiement"
-       ],
-       [
-        "市民",
-        "N4",
-        "しみん",
-        "citoyen"
-       ],
-       [
-        "社会",
-        "N3",
-        "しゃかい",
-        "société"
-       ],
-       [
-        "社長",
-        "N4",
-        "しゃちょう",
-        "PDG, patron"
-       ],
-       [
-        "借金",
-        "N3",
-        "しゃっきん",
-        "dette"
-       ],
-       [
-        "習慣",
-        "N3",
-        "しゅうかん",
-        "habitude"
-       ],
-       [
-        "就職",
-        "N3",
-        "しゅうしょく",
-        "entrée dans la vie active"
-       ],
-       [
-        "修正(する)",
-        "N3",
-        "しゅうせい",
-        "correction, corriger"
-       ],
-       [
-        "集中",
-        "N3",
-        "しゅうちゅう",
-        "concentration"
-       ],
-       [
-        "週末",
-        "N3",
-        "しゅうまつ",
-        "week-end"
-       ],
-       [
-        "祝日",
-        "N3",
-        "しゅくじつ",
-        "jour férié"
-       ],
-       [
-        "手術",
-        "N3",
-        "しゅじゅつ",
-        "opération"
-       ],
-       [
-        "主張(する)",
-        "N3",
-        "しゅちょう",
-        "affirmation, soutenir"
-       ],
-       [
-        "出席",
-        "N4",
-        "しゅっせき",
-        "présence (réunion)"
-       ],
-       [
-        "出張",
-        "N3",
-        "しゅっちょう",
-        "voyage d'affaires"
-       ],
-       [
-        "出発",
-        "N4",
-        "しゅっぱつ",
-        "départ"
-       ],
-       [
-        "趣味",
-        "N4",
-        "しゅみ",
-        "passe-temps"
-       ],
-       [
-        "紹介",
-        "N3",
-        "しょうかい",
-        "présentation"
-       ]
-      ]
-     }
+     "id": "vocab:上がる",
+     "mot": "上がる",
+     "lecture": "あがる",
+     "sens": "monter",
+     "niv": "N4"
     },
     {
-     "title": "Vocabulaire N3 + N4 — lot 5/10 (ordre gojūon)",
-     "tag": "語",
-     "table": {
-      "headers": [
-       "Mot",
-       "Niv.",
-       "Lecture",
-       "Sens"
-      ],
-      "rows": [
-       [
-        "正月",
-        "N4",
-        "しょうがつ",
-        "Nouvel An"
-       ],
-       [
-        "証拠",
-        "N3",
-        "しょうこ",
-        "preuve"
-       ],
-       [
-        "小説",
-        "N4",
-        "しょうせつ",
-        "roman"
-       ],
-       [
-        "招待",
-        "N3",
-        "しょうたい",
-        "invitation"
-       ],
-       [
-        "承知",
-        "N4",
-        "しょうち",
-        "accord, consentement"
-       ],
-       [
-        "商品",
-        "N3",
-        "しょうひん",
-        "marchandise, article"
-       ],
-       [
-        "将来",
-        "N3",
-        "しょうらい",
-        "avenir"
-       ],
-       [
-        "食事",
-        "N3",
-        "しょくじ",
-        "repas"
-       ],
-       [
-        "食料品",
-        "N4",
-        "しょくりょうひん",
-        "denrées alimentaires"
-       ],
-       [
-        "処理(する)",
-        "N3",
-        "しょり",
-        "traitement, traiter"
-       ],
-       [
-        "書類",
-        "N3",
-        "しょるい",
-        "documents"
-       ],
-       [
-        "調べる",
-        "N3",
-        "しらべる",
-        "vérifier, enquêter"
-       ],
-       [
-        "資料",
-        "N3",
-        "しりょう",
-        "documents, données"
-       ],
-       [
-        "診察",
-        "N3",
-        "しんさつ",
-        "consultation médicale"
-       ],
-       [
-        "真実",
-        "N3",
-        "しんじつ",
-        "vérité"
-       ],
-       [
-        "親切",
-        "N4",
-        "しんせつ",
-        "gentil"
-       ],
-       [
-        "心配(する)",
-        "N3",
-        "しんぱい",
-        "souci, s'inquiéter"
-       ],
-       [
-        "新聞",
-        "N4",
-        "しんぶん",
-        "journal"
-       ],
-       [
-        "進歩",
-        "N3",
-        "しんぽ",
-        "progrès"
-       ],
-       [
-        "信頼",
-        "N3",
-        "しんらい",
-        "confiance"
-       ],
-       [
-        "事件",
-        "N3",
-        "じけん",
-        "affaire, incident"
-       ],
-       [
-        "事故",
-        "N3",
-        "じこ",
-        "accident"
-       ],
-       [
-        "地震",
-        "N3",
-        "じしん",
-        "séisme"
-       ],
-       [
-        "事実",
-        "N3",
-        "じじつ",
-        "fait"
-       ],
-       [
-        "実行(する)",
-        "N3",
-        "じっこう",
-        "exécution, mettre en œuvre"
-       ],
-       [
-        "実際",
-        "N3",
-        "じっさい",
-        "en réalité"
-       ],
-       [
-        "実施(する)",
-        "N3",
-        "じっし",
-        "mise en application"
-       ],
-       [
-        "実現(する)",
-        "N3",
-        "じつげん",
-        "réalisation, réaliser"
-       ],
-       [
-        "実は",
-        "N3",
-        "じつは",
-        "en fait"
-       ],
-       [
-        "邪魔",
-        "N4",
-        "じゃま",
-        "gêne, obstacle"
-       ],
-       [
-        "住所",
-        "N4",
-        "じゅうしょ",
-        "adresse"
-       ],
-       [
-        "柔道",
-        "N4",
-        "じゅうどう",
-        "judo"
-       ],
-       [
-        "十分",
-        "N3",
-        "じゅうぶん",
-        "suffisant"
-       ],
-       [
-        "重要",
-        "N3",
-        "じゅうよう",
-        "important"
-       ],
-       [
-        "授業",
-        "N3",
-        "じゅぎょう",
-        "cours"
-       ],
-       [
-        "受験",
-        "N3",
-        "じゅけん",
-        "passer un examen"
-       ],
-       [
-        "準備",
-        "N3",
-        "じゅんび",
-        "préparation"
-       ],
-       [
-        "自由",
-        "N3",
-        "じゆう",
-        "liberté"
-       ],
-       [
-        "状況",
-        "N3",
-        "じょうきょう",
-        "situation"
-       ],
-       [
-        "条件",
-        "N3",
-        "じょうけん",
-        "condition"
-       ],
-       [
-        "上司",
-        "N3",
-        "じょうし",
-        "supérieur hiérarchique"
-       ],
-       [
-        "状態",
-        "N3",
-        "じょうたい",
-        "état, condition"
-       ],
-       [
-        "情報",
-        "N3",
-        "じょうほう",
-        "information"
-       ],
-       [
-        "人口",
-        "N4",
-        "じんこう",
-        "population"
-       ],
-       [
-        "推測",
-        "N3",
-        "すいそく",
-        "supposition"
-       ],
-       [
-        "水道",
-        "N4",
-        "すいどう",
-        "eau courante"
-       ],
-       [
-        "睡眠",
-        "N3",
-        "すいみん",
-        "sommeil"
-       ],
-       [
-        "数学",
-        "N4",
-        "すうがく",
-        "mathématiques"
-       ],
-       [
-        "過ぎる",
-        "N3",
-        "すぎる",
-        "passer, dépasser"
-       ],
-       [
-        "進む",
-        "N3",
-        "すすむ",
-        "avancer, progresser"
-       ],
-       [
-        "すっかり",
-        "N3",
-        "—",
-        "complètement, entièrement"
-       ],
-       [
-        "すり",
-        "N4",
-        "すり",
-        "pickpocket"
-       ],
-       [
-        "性格",
-        "N3",
-        "せいかく",
-        "caractère"
-       ],
-       [
-        "生活",
-        "N4",
-        "せいかつ",
-        "vie quotidienne"
-       ],
-       [
-        "請求",
-        "N3",
-        "せいきゅう",
-        "facturation, réclamation"
-       ],
-       [
-        "生産",
-        "N4",
-        "せいさん",
-        "production"
-       ],
-       [
-        "政治",
-        "N3",
-        "せいじ",
-        "politique"
-       ],
-       [
-        "成績",
-        "N3",
-        "せいせき",
-        "résultats, notes"
-       ],
-       [
-        "成長(する)",
-        "N3",
-        "せいちょう",
-        "croissance, grandir"
-       ],
-       [
-        "制度",
-        "N3",
-        "せいど",
-        "système, dispositif"
-       ]
-      ]
-     }
+     "id": "vocab:浅い",
+     "mot": "浅い",
+     "lecture": "あさい",
+     "sens": "peu profond",
+     "niv": "N4"
     },
     {
-     "title": "Vocabulaire N3 + N4 — lot 6/10 (ordre gojūon)",
-     "tag": "語",
-     "table": {
-      "headers": [
-       "Mot",
-       "Niv.",
-       "Lecture",
-       "Sens"
-      ],
-      "rows": [
-       [
-        "製品",
-        "N3",
-        "せいひん",
-        "produit (manufacturé)"
-       ],
-       [
-        "西洋",
-        "N4",
-        "せいよう",
-        "Occident"
-       ],
-       [
-        "世界",
-        "N4",
-        "せかい",
-        "le monde"
-       ],
-       [
-        "席",
-        "N4",
-        "せき",
-        "siège, place"
-       ],
-       [
-        "責任",
-        "N3",
-        "せきにん",
-        "responsabilité"
-       ],
-       [
-        "説明",
-        "N3",
-        "せつめい",
-        "explication"
-       ],
-       [
-        "世話",
-        "N4",
-        "せわ",
-        "soin, aide"
-       ],
-       [
-        "線",
-        "N4",
-        "せん",
-        "ligne"
-       ],
-       [
-        "戦争",
-        "N4",
-        "せんそう",
-        "guerre"
-       ],
-       [
-        "選択",
-        "N3",
-        "せんたく",
-        "choix"
-       ],
-       [
-        "専門",
-        "N3",
-        "せんもん",
-        "spécialité"
-       ],
-       [
-        "税金",
-        "N3",
-        "ぜいきん",
-        "impôt"
-       ],
-       [
-        "絶対",
-        "N3",
-        "ぜったい",
-        "absolument"
-       ],
-       [
-        "相談",
-        "N3",
-        "そうだん",
-        "consultation, conseil"
-       ],
-       [
-        "育てる",
-        "N3",
-        "そだてる",
-        "élever, cultiver"
-       ],
-       [
-        "卒業",
-        "N3",
-        "そつぎょう",
-        "fin d'études, diplôme"
-       ],
-       [
-        "祖父",
-        "N4",
-        "そふ",
-        "grand-père"
-       ],
-       [
-        "祖母",
-        "N4",
-        "そぼ",
-        "grand-mère"
-       ],
-       [
-        "尊敬",
-        "N3",
-        "そんけい",
-        "respect, estime"
-       ],
-       [
-        "増加(する)",
-        "N3",
-        "ぞうか",
-        "augmentation, augmenter"
-       ],
-       [
-        "増減",
-        "N3",
-        "ぞうげん",
-        "variation (hausse/baisse)"
-       ],
-       [
-        "退院",
-        "N3",
-        "たいいん",
-        "sortie d'hôpital"
-       ],
-       [
-        "対応(する)",
-        "N3",
-        "たいおう",
-        "réponse, faire face à"
-       ],
-       [
-        "対策",
-        "N3",
-        "たいさく",
-        "contre-mesure"
-       ],
-       [
-        "退職",
-        "N3",
-        "たいしょく",
-        "départ (emploi), retraite"
-       ],
-       [
-        "体調",
-        "N3",
-        "たいちょう",
-        "état de santé"
-       ],
-       [
-        "態度",
-        "N3",
-        "たいど",
-        "attitude"
-       ],
-       [
-        "台風",
-        "N3",
-        "たいふう",
-        "typhon"
-       ],
-       [
-        "倒れる",
-        "N4",
-        "たおれる",
-        "s’effondrer"
-       ],
-       [
-        "足す",
-        "N4",
-        "たす",
-        "ajouter"
-       ],
-       [
-        "助ける",
-        "N3",
-        "たすける",
-        "aider, sauver"
-       ],
-       [
-        "尋ねる",
-        "N4",
-        "たずねる",
-        "demander, rendre visite"
-       ],
-       [
-        "畳",
-        "N4",
-        "たたみ",
-        "tatami"
-       ],
-       [
-        "正しい",
-        "N4",
-        "ただしい",
-        "correct"
-       ],
-       [
-        "立場",
-        "N3",
-        "たちば",
-        "position, point de vue"
-       ],
-       [
-        "立てる",
-        "N4",
-        "たてる",
-        "dresser, établir"
-       ],
-       [
-        "建てる",
-        "N4",
-        "たてる",
-        "construire"
-       ],
-       [
-        "例えば",
-        "N3",
-        "たとえば",
-        "par exemple"
-       ],
-       [
-        "楽しむ",
-        "N4",
-        "たのしむ",
-        "s’amuser"
-       ],
-       [
-        "頼む",
-        "N4",
-        "たのむ",
-        "demander, commander"
-       ],
-       [
-        "たまに",
-        "N3",
-        "—",
-        "de temps en temps"
-       ],
-       [
-        "足りる",
-        "N4",
-        "たりる",
-        "suffire"
-       ],
-       [
-        "担当",
-        "N3",
-        "たんとう",
-        "prise en charge, responsable"
-       ],
-       [
-        "大学生",
-        "N4",
-        "だいがくせい",
-        "étudiant"
-       ],
-       [
-        "大事",
-        "N4",
-        "だいじ",
-        "important, précieux"
-       ],
-       [
-        "台所",
-        "N4",
-        "だいどころ",
-        "cuisine"
-       ],
-       [
-        "違う",
-        "N4",
-        "ちがう",
-        "être différent"
-       ],
-       [
-        "知識",
-        "N3",
-        "ちしき",
-        "connaissances"
-       ],
-       [
-        "注意",
-        "N3",
-        "ちゅうい",
-        "attention, avertissement"
-       ],
-       [
-        "中止(する)",
-        "N3",
-        "ちゅうし",
-        "annulation, interrompre"
-       ],
-       [
-        "注射",
-        "N4",
-        "ちゅうしゃ",
-        "piqûre, injection"
-       ],
-       [
-        "駐車場",
-        "N4",
-        "ちゅうしゃじょう",
-        "parking"
-       ],
-       [
-        "注文",
-        "N3",
-        "ちゅうもん",
-        "commande"
-       ],
-       [
-        "調査",
-        "N3",
-        "ちょうさ",
-        "enquête, étude"
-       ],
-       [
-        "調整(する)",
-        "N3",
-        "ちょうせい",
-        "ajustement, régler"
-       ],
-       [
-        "貯金",
-        "N3",
-        "ちょきん",
-        "épargne"
-       ],
-       [
-        "地理",
-        "N4",
-        "ちり",
-        "géographie"
-       ],
-       [
-        "治療",
-        "N3",
-        "ちりょう",
-        "traitement médical"
-       ],
-       [
-        "通訳",
-        "N3",
-        "つうやく",
-        "interprétation (orale)"
-       ],
-       [
-        "捕まえる",
-        "N4",
-        "つかまえる",
-        "attraper"
-       ]
-      ]
-     }
+     "id": "vocab:味",
+     "mot": "味",
+     "lecture": "あじ",
+     "sens": "goût",
+     "niv": "N3"
     },
     {
-     "title": "Vocabulaire N3 + N4 — lot 7/10 (ordre gojūon)",
-     "tag": "語",
-     "table": {
-      "headers": [
-       "Mot",
-       "Niv.",
-       "Lecture",
-       "Sens"
-      ],
-      "rows": [
-       [
-        "月",
-        "N4",
-        "つき",
-        "lune, mois"
-       ],
-       [
-        "付ける",
-        "N4",
-        "つける",
-        "attacher, allumer"
-       ],
-       [
-        "都合",
-        "N4",
-        "つごう",
-        "convenance, disponibilité"
-       ],
-       [
-        "伝える",
-        "N4",
-        "つたえる",
-        "transmettre"
-       ],
-       [
-        "包む",
-        "N4",
-        "つつむ",
-        "envelopper"
-       ],
-       [
-        "続く / 続ける",
-        "N3",
-        "つづく / つづける",
-        "continuer"
-       ],
-       [
-        "妻",
-        "N4",
-        "つま",
-        "épouse"
-       ],
-       [
-        "積もる",
-        "N4",
-        "つもる",
-        "s’accumuler"
-       ],
-       [
-        "釣る",
-        "N4",
-        "つる",
-        "pêcher"
-       ],
-       [
-        "連れる",
-        "N4",
-        "つれる",
-        "emmener"
-       ],
-       [
-        "提案(する)",
-        "N3",
-        "ていあん",
-        "proposition, proposer"
-       ],
-       [
-        "程度",
-        "N3",
-        "ていど",
-        "degré, niveau"
-       ],
-       [
-        "丁寧",
-        "N4",
-        "ていねい",
-        "poli, soigné"
-       ],
-       [
-        "適当",
-        "N4",
-        "てきとう",
-        "approprié, à la légère"
-       ],
-       [
-        "手伝う",
-        "N4",
-        "てつだう",
-        "aider"
-       ],
-       [
-        "寺",
-        "N4",
-        "てら",
-        "temple"
-       ],
-       [
-        "店員",
-        "N4",
-        "てんいん",
-        "vendeur, employé"
-       ],
-       [
-        "天気予報",
-        "N4",
-        "てんきよほう",
-        "prévisions météo"
-       ],
-       [
-        "点数",
-        "N3",
-        "てんすう",
-        "score, points"
-       ],
-       [
-        "電灯",
-        "N4",
-        "でんとう",
-        "lampe électrique"
-       ],
-       [
-        "当然",
-        "N3",
-        "とうぜん",
-        "naturel, évident"
-       ],
-       [
-        "遠く",
-        "N4",
-        "とおく",
-        "au loin"
-       ],
-       [
-        "通る",
-        "N4",
-        "とおる",
-        "passer (par)"
-       ],
-       [
-        "特徴",
-        "N3",
-        "とくちょう",
-        "caractéristique"
-       ],
-       [
-        "特に",
-        "N3",
-        "とくに",
-        "surtout"
-       ],
-       [
-        "特別",
-        "N3",
-        "とくべつ",
-        "spécial"
-       ],
-       [
-        "途中",
-        "N3",
-        "とちゅう",
-        "en cours de route"
-       ],
-       [
-        "特急",
-        "N4",
-        "とっきゅう",
-        "train ultra-rapide"
-       ],
-       [
-        "届ける",
-        "N4",
-        "とどける",
-        "livrer, remettre"
-       ],
-       [
-        "泊まる",
-        "N4",
-        "とまる",
-        "passer la nuit"
-       ],
-       [
-        "取引",
-        "N3",
-        "とりひき",
-        "transaction, affaires"
-       ],
-       [
-        "道具",
-        "N4",
-        "どうぐ",
-        "outil"
-       ],
-       [
-        "同僚",
-        "N3",
-        "どうりょう",
-        "collègue"
-       ],
-       [
-        "努力(する)",
-        "N3",
-        "どりょく",
-        "effort, s'efforcer"
-       ],
-       [
-        "泥棒",
-        "N4",
-        "どろぼう",
-        "voleur"
-       ],
-       [
-        "内容",
-        "N3",
-        "ないよう",
-        "contenu"
-       ],
-       [
-        "直す",
-        "N4",
-        "なおす",
-        "réparer, corriger"
-       ],
-       [
-        "治る",
-        "N4",
-        "なおる",
-        "guérir"
-       ],
-       [
-        "亡くなる",
-        "N4",
-        "なくなる",
-        "décéder"
-       ],
-       [
-        "投げる",
-        "N4",
-        "なげる",
-        "lancer"
-       ],
-       [
-        "慣れる",
-        "N4",
-        "なれる",
-        "s’habituer"
-       ],
-       [
-        "苦い",
-        "N4",
-        "にがい",
-        "amer"
-       ],
-       [
-        "苦手",
-        "N4",
-        "にがて",
-        "point faible, qu’on évite"
-       ],
-       [
-        "入院",
-        "N3",
-        "にゅういん",
-        "hospitalisation"
-       ],
-       [
-        "入学",
-        "N3",
-        "にゅうがく",
-        "entrée à l'école"
-       ],
-       [
-        "似る",
-        "N4",
-        "にる",
-        "ressembler"
-       ],
-       [
-        "人形",
-        "N4",
-        "にんぎょう",
-        "poupée"
-       ],
-       [
-        "盗む",
-        "N4",
-        "ぬすむ",
-        "dérober"
-       ],
-       [
-        "塗る",
-        "N4",
-        "ぬる",
-        "enduire, peindre"
-       ],
-       [
-        "濡れる",
-        "N4",
-        "ぬれる",
-        "être mouillé"
-       ],
-       [
-        "値段",
-        "N3",
-        "ねだん",
-        "prix"
-       ],
-       [
-        "熱心",
-        "N4",
-        "ねっしん",
-        "assidu, passionné"
-       ],
-       [
-        "眠い",
-        "N4",
-        "ねむい",
-        "somnolent"
-       ],
-       [
-        "眠る",
-        "N4",
-        "ねむる",
-        "dormir"
-       ],
-       [
-        "能力",
-        "N3",
-        "のうりょく",
-        "capacité, aptitude"
-       ],
-       [
-        "乗り換える",
-        "N4",
-        "のりかえる",
-        "changer (de train)"
-       ],
-       [
-        "歯",
-        "N4",
-        "は",
-        "dent"
-       ],
-       [
-        "配達",
-        "N3",
-        "はいたつ",
-        "livraison"
-       ],
-       [
-        "運ぶ",
-        "N4",
-        "はこぶ",
-        "transporter"
-       ],
-       [
-        "始める",
-        "N4",
-        "はじめる",
-        "commencer"
-       ]
-      ]
-     }
+     "id": "vocab:明日",
+     "mot": "明日",
+     "lecture": "あす",
+     "sens": "demain",
+     "niv": "N4"
     },
     {
-     "title": "Vocabulaire N3 + N4 — lot 8/10 (ordre gojūon)",
-     "tag": "語",
-     "table": {
-      "headers": [
-       "Mot",
-       "Niv.",
-       "Lecture",
-       "Sens"
-      ],
-      "rows": [
-       [
-        "働く",
-        "N3",
-        "はたらく",
-        "travailler"
-       ],
-       [
-        "発見(する)",
-        "N3",
-        "はっけん",
-        "découverte, découvrir"
-       ],
-       [
-        "発生(する)",
-        "N3",
-        "はっせい",
-        "survenue, se produire"
-       ],
-       [
-        "発達(する)",
-        "N3",
-        "はったつ",
-        "développement, progrès"
-       ],
-       [
-        "発展(する)",
-        "N3",
-        "はってん",
-        "développement, essor"
-       ],
-       [
-        "発展",
-        "N3",
-        "はってん",
-        "développement, essor"
-       ],
-       [
-        "発表",
-        "N3",
-        "はっぴょう",
-        "annonce, présentation"
-       ],
-       [
-        "発音",
-        "N3",
-        "はつおん",
-        "prononciation"
-       ],
-       [
-        "発言",
-        "N3",
-        "はつげん",
-        "prise de parole"
-       ],
-       [
-        "払う",
-        "N4",
-        "はらう",
-        "payer"
-       ],
-       [
-        "範囲",
-        "N3",
-        "はんい",
-        "étendue, portée"
-       ],
-       [
-        "反省",
-        "N3",
-        "はんせい",
-        "autocritique, réflexion"
-       ],
-       [
-        "反対(する)",
-        "N3",
-        "はんたい",
-        "opposition, s'opposer"
-       ],
-       [
-        "判断",
-        "N3",
-        "はんだん",
-        "jugement"
-       ],
-       [
-        "反応",
-        "N3",
-        "はんのう",
-        "réaction"
-       ],
-       [
-        "販売",
-        "N3",
-        "はんばい",
-        "vente"
-       ],
-       [
-        "場合",
-        "N3",
-        "ばあい",
-        "cas, situation"
-       ],
-       [
-        "倍",
-        "N4",
-        "ばい",
-        "double, fois"
-       ],
-       [
-        "場所",
-        "N4",
-        "ばしょ",
-        "endroit, lieu"
-       ],
-       [
-        "引っ越す",
-        "N4",
-        "ひっこす",
-        "déménager"
-       ],
-       [
-        "必要",
-        "N3",
-        "ひつよう",
-        "nécessaire"
-       ],
-       [
-        "評価",
-        "N3",
-        "ひょうか",
-        "évaluation"
-       ],
-       [
-        "表情",
-        "N3",
-        "ひょうじょう",
-        "expression du visage"
-       ],
-       [
-        "評判",
-        "N3",
-        "ひょうばん",
-        "réputation"
-       ],
-       [
-        "費用",
-        "N3",
-        "ひよう",
-        "frais, coût"
-       ],
-       [
-        "昼間",
-        "N3",
-        "ひるま",
-        "la journée"
-       ],
-       [
-        "拾う",
-        "N4",
-        "ひろう",
-        "ramasser"
-       ],
-       [
-        "美術館",
-        "N4",
-        "びじゅつかん",
-        "musée d’art"
-       ],
-       [
-        "平等",
-        "N3",
-        "びょうどう",
-        "égalité"
-       ],
-       [
-        "不安",
-        "N3",
-        "ふあん",
-        "inquiétude, anxiété"
-       ],
-       [
-        "増える / 減る",
-        "N3",
-        "ふえる / へる",
-        "augmenter / diminuer"
-       ],
-       [
-        "深い",
-        "N4",
-        "ふかい",
-        "profond"
-       ],
-       [
-        "複雑 / 簡単",
-        "N3",
-        "ふくざつ / かんたん",
-        "compliqué / simple"
-       ],
-       [
-        "含む",
-        "N3",
-        "ふくむ",
-        "contenir, inclure"
-       ],
-       [
-        "不合格",
-        "N3",
-        "ふごうかく",
-        "échec (à un examen)"
-       ],
-       [
-        "普段",
-        "N3",
-        "ふだん",
-        "d'ordinaire"
-       ],
-       [
-        "普通",
-        "N3",
-        "ふつう",
-        "ordinaire, normalement"
-       ],
-       [
-        "太る",
-        "N4",
-        "ふとる",
-        "grossir"
-       ],
-       [
-        "不満",
-        "N3",
-        "ふまん",
-        "mécontentement"
-       ],
-       [
-        "踏む",
-        "N4",
-        "ふむ",
-        "marcher sur"
-       ],
-       [
-        "部下",
-        "N3",
-        "ぶか",
-        "subordonné"
-       ],
-       [
-        "文化",
-        "N3",
-        "ぶんか",
-        "culture"
-       ],
-       [
-        "文学",
-        "N4",
-        "ぶんがく",
-        "littérature"
-       ],
-       [
-        "平均",
-        "N3",
-        "へいきん",
-        "moyenne"
-       ],
-       [
-        "平日",
-        "N3",
-        "へいじつ",
-        "jour de semaine"
-       ],
-       [
-        "変化",
-        "N3",
-        "へんか",
-        "changement"
-       ],
-       [
-        "変更(する)",
-        "N3",
-        "へんこう",
-        "modification, changer"
-       ],
-       [
-        "返事",
-        "N3",
-        "へんじ",
-        "réponse"
-       ],
-       [
-        "便利",
-        "N3",
-        "べんり",
-        "pratique"
-       ],
-       [
-        "報告",
-        "N3",
-        "ほうこく",
-        "rapport, compte rendu"
-       ],
-       [
-        "方法",
-        "N3",
-        "ほうほう",
-        "méthode"
-       ],
-       [
-        "訪問",
-        "N3",
-        "ほうもん",
-        "visite"
-       ],
-       [
-        "法律",
-        "N3",
-        "ほうりつ",
-        "loi"
-       ],
-       [
-        "保護(する)",
-        "N3",
-        "ほご",
-        "protection, protéger"
-       ],
-       [
-        "星",
-        "N4",
-        "ほし",
-        "étoile"
-       ],
-       [
-        "褒める",
-        "N4",
-        "ほめる",
-        "féliciter, louer"
-       ],
-       [
-        "翻訳",
-        "N3",
-        "ほんやく",
-        "traduction (écrite)"
-       ],
-       [
-        "貿易",
-        "N4",
-        "ぼうえき",
-        "commerce extérieur"
-       ],
-       [
-        "防止(する)",
-        "N3",
-        "ぼうし",
-        "prévention, empêcher"
-       ],
-       [
-        "僕",
-        "N4",
-        "ぼく",
-        "moi (masculin familier)"
-       ]
-      ]
-     }
+     "id": "vocab:遊ぶ",
+     "mot": "遊ぶ",
+     "lecture": "あそぶ",
+     "sens": "jouer, s’amuser",
+     "niv": "N4"
     },
     {
-     "title": "Vocabulaire N3 + N4 — lot 9/10 (ordre gojūon)",
-     "tag": "語",
-     "table": {
-      "headers": [
-       "Mot",
-       "Niv.",
-       "Lecture",
-       "Sens"
-      ],
-      "rows": [
-       [
-        "募集",
-        "N3",
-        "ぼしゅう",
-        "recrutement, appel"
-       ],
-       [
-        "参る",
-        "N4",
-        "まいる",
-        "aller/venir (modeste)"
-       ],
-       [
-        "負ける",
-        "N4",
-        "まける",
-        "perdre"
-       ],
-       [
-        "真面目",
-        "N4",
-        "まじめ",
-        "sérieux"
-       ],
-       [
-        "間違える",
-        "N4",
-        "まちがえる",
-        "se tromper"
-       ],
-       [
-        "祭り",
-        "N4",
-        "まつり",
-        "fête, festival"
-       ],
-       [
-        "守る",
-        "N4",
-        "まもる",
-        "protéger"
-       ],
-       [
-        "回る",
-        "N4",
-        "まわる",
-        "tourner"
-       ],
-       [
-        "漫画",
-        "N4",
-        "まんが",
-        "manga"
-       ],
-       [
-        "満足(する)",
-        "N3",
-        "まんぞく",
-        "satisfaction, être satisfait"
-       ],
-       [
-        "見える",
-        "N4",
-        "みえる",
-        "être visible"
-       ],
-       [
-        "湖",
-        "N4",
-        "みずうみ",
-        "lac"
-       ],
-       [
-        "味噌",
-        "N4",
-        "みそ",
-        "miso"
-       ],
-       [
-        "見つける",
-        "N4",
-        "みつける",
-        "trouver"
-       ],
-       [
-        "認める",
-        "N3",
-        "みとめる",
-        "reconnaître, admettre"
-       ],
-       [
-        "緑",
-        "N4",
-        "みどり",
-        "vert, verdure"
-       ],
-       [
-        "港",
-        "N4",
-        "みなと",
-        "port"
-       ],
-       [
-        "迎える",
-        "N4",
-        "むかえる",
-        "accueillir"
-       ],
-       [
-        "昔",
-        "N4",
-        "むかし",
-        "autrefois"
-       ],
-       [
-        "虫",
-        "N4",
-        "むし",
-        "insecte"
-       ],
-       [
-        "矛盾",
-        "N3",
-        "むじゅん",
-        "contradiction"
-       ],
-       [
-        "息子",
-        "N4",
-        "むすこ",
-        "fils"
-       ],
-       [
-        "娘",
-        "N4",
-        "むすめ",
-        "fille"
-       ],
-       [
-        "村",
-        "N4",
-        "むら",
-        "village"
-       ],
-       [
-        "珍しい",
-        "N4",
-        "めずらしい",
-        "rare"
-       ],
-       [
-        "免許",
-        "N3",
-        "めんきょ",
-        "permis, licence"
-       ],
-       [
-        "申し込む",
-        "N4",
-        "もうしこむ",
-        "s’inscrire, postuler"
-       ],
-       [
-        "目的",
-        "N3",
-        "もくてき",
-        "but, objectif"
-       ],
-       [
-        "目標",
-        "N3",
-        "もくひょう",
-        "objectif, cible"
-       ],
-       [
-        "戻る",
-        "N4",
-        "もどる",
-        "revenir"
-       ],
-       [
-        "森",
-        "N4",
-        "もり",
-        "forêt"
-       ],
-       [
-        "焼く",
-        "N4",
-        "やく",
-        "brûler, griller"
-       ],
-       [
-        "役",
-        "N4",
-        "やく",
-        "rôle, fonction"
-       ],
-       [
-        "約束",
-        "N3",
-        "やくそく",
-        "promesse"
-       ],
-       [
-        "役立つ",
-        "N4",
-        "やくだつ",
-        "être utile"
-       ],
-       [
-        "役割",
-        "N3",
-        "やくわり",
-        "rôle"
-       ],
-       [
-        "優しい",
-        "N4",
-        "やさしい",
-        "gentil, doux"
-       ],
-       [
-        "安い",
-        "N4",
-        "やすい",
-        "bon marché"
-       ],
-       [
-        "やはり / やっぱり",
-        "N3",
-        "—",
-        "comme prévu, malgré tout"
-       ],
-       [
-        "止む",
-        "N4",
-        "やむ",
-        "cesser"
-       ],
-       [
-        "柔らかい",
-        "N4",
-        "やわらかい",
-        "mou, tendre"
-       ],
-       [
-        "湯",
-        "N4",
-        "ゆ",
-        "eau chaude"
-       ],
-       [
-        "夕方",
-        "N3",
-        "ゆうがた",
-        "le soir"
-       ],
-       [
-        "油断",
-        "N3",
-        "ゆだん",
-        "relâchement, inattention"
-       ],
-       [
-        "夢",
-        "N4",
-        "ゆめ",
-        "rêve"
-       ],
-       [
-        "揺れる",
-        "N4",
-        "ゆれる",
-        "trembler, osciller"
-       ],
-       [
-        "用意",
-        "N4",
-        "ようい",
-        "préparation"
-       ],
-       [
-        "要求(する)",
-        "N3",
-        "ようきゅう",
-        "exigence, réclamer"
-       ],
-       [
-        "用事",
-        "N4",
-        "ようじ",
-        "affaire à régler"
-       ],
-       [
-        "要望",
-        "N3",
-        "ようぼう",
-        "demande, souhait"
-       ],
-       [
-        "汚れる",
-        "N4",
-        "よごれる",
-        "se salir"
-       ],
-       [
-        "予算",
-        "N3",
-        "よさん",
-        "budget"
-       ],
-       [
-        "予想",
-        "N3",
-        "よそう",
-        "pronostic"
-       ],
-       [
-        "予測",
-        "N3",
-        "よそく",
-        "prévision"
-       ],
-       [
-        "予定",
-        "N3",
-        "よてい",
-        "programme, prévision"
-       ],
-       [
-        "夜中",
-        "N3",
-        "よなか",
-        "au milieu de la nuit"
-       ],
-       [
-        "予報",
-        "N3",
-        "よほう",
-        "prévision (météo)"
-       ],
-       [
-        "予防(する)",
-        "N3",
-        "よぼう",
-        "prévention, prévenir"
-       ],
-       [
-        "予約",
-        "N3",
-        "よやく",
-        "réservation"
-       ],
-       [
-        "喜ぶ",
-        "N4",
-        "よろこぶ",
-        "se réjouir"
-       ]
-      ]
-     }
+     "id": "vocab:集まる",
+     "mot": "集まる",
+     "lecture": "あつまる",
+     "sens": "se rassembler",
+     "niv": "N4"
     },
     {
-     "title": "Vocabulaire N3 + N4 — lot 10/10 (ordre gojūon)",
-     "tag": "語",
-     "table": {
-      "headers": [
-       "Mot",
-       "Niv.",
-       "Lecture",
-       "Sens"
-      ],
-      "rows": [
-       [
-        "理解",
-        "N3",
-        "りかい",
-        "compréhension"
-       ],
-       [
-        "留学",
-        "N4",
-        "りゅうがく",
-        "études à l’étranger"
-       ],
-       [
-        "理由",
-        "N3",
-        "りゆう",
-        "raison"
-       ],
-       [
-        "領収書",
-        "N3",
-        "りょうしゅうしょ",
-        "reçu"
-       ],
-       [
-        "両方",
-        "N4",
-        "りょうほう",
-        "les deux"
-       ],
-       [
-        "旅館",
-        "N4",
-        "りょかん",
-        "auberge japonaise"
-       ],
-       [
-        "利用",
-        "N4",
-        "りよう",
-        "utilisation"
-       ],
-       [
-        "理論",
-        "N3",
-        "りろん",
-        "théorie"
-       ],
-       [
-        "留守",
-        "N3",
-        "るす",
-        "absence (du domicile)"
-       ],
-       [
-        "歴史",
-        "N3",
-        "れきし",
-        "histoire"
-       ],
-       [
-        "連絡",
-        "N3",
-        "れんらく",
-        "contact, communication"
-       ],
-       [
-        "沸かす",
-        "N4",
-        "わかす",
-        "faire bouillir"
-       ],
-       [
-        "別れる",
-        "N4",
-        "わかれる",
-        "se séparer"
-       ],
-       [
-        "沸く",
-        "N4",
-        "わく",
-        "bouillir"
-       ],
-       [
-        "わざわざ",
-        "N3",
-        "—",
-        "exprès, se donner la peine"
-       ],
-       [
-        "笑う",
-        "N4",
-        "わらう",
-        "rire"
-       ],
-       [
-        "割合",
-        "N3",
-        "わりあい",
-        "proportion, taux"
-       ],
-       [
-        "割引",
-        "N3",
-        "わりびき",
-        "réduction"
-       ],
-       [
-        "割れる",
-        "N4",
-        "われる",
-        "se casser"
-       ]
-      ]
-     }
+     "id": "vocab:集める",
+     "mot": "集める",
+     "lecture": "あつめる",
+     "sens": "collecter",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:謝る",
+     "mot": "謝る",
+     "lecture": "あやまる",
+     "sens": "s’excuser",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:表す",
+     "mot": "表す",
+     "lecture": "あらわす",
+     "sens": "exprimer, représenter",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:安全 / 危険",
+     "mot": "安全 / 危険",
+     "lecture": "あんぜん / きけん",
+     "sens": "sécurité / danger",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:案内",
+     "mot": "案内",
+     "lecture": "あんない",
+     "sens": "guide, indication",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:以下",
+     "mot": "以下",
+     "lecture": "いか",
+     "sens": "en dessous de",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:以外",
+     "mot": "以外",
+     "lecture": "いがい",
+     "sens": "excepté",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:医学",
+     "mot": "医学",
+     "lecture": "いがく",
+     "sens": "médecine (étude)",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:生きる",
+     "mot": "生きる",
+     "lecture": "いきる",
+     "sens": "vivre",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:意見",
+     "mot": "意見",
+     "lecture": "いけん",
+     "sens": "opinion",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:意識",
+     "mot": "意識",
+     "lecture": "いしき",
+     "sens": "conscience",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:維持(する)",
+     "mot": "維持(する)",
+     "lecture": "いじ",
+     "sens": "maintien, maintenir",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:以上",
+     "mot": "以上",
+     "lecture": "いじょう",
+     "sens": "au-dessus de, plus de",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:急ぐ",
+     "mot": "急ぐ",
+     "lecture": "いそぐ",
+     "sens": "se dépêcher",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:一度",
+     "mot": "一度",
+     "lecture": "いちど",
+     "sens": "une fois",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:一生懸命",
+     "mot": "一生懸命",
+     "lecture": "いっしょうけんめい",
+     "sens": "de toutes ses forces",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:一般",
+     "mot": "一般",
+     "lecture": "いっぱん",
+     "sens": "général, ordinaire",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:糸",
+     "mot": "糸",
+     "lecture": "いと",
+     "sens": "fil",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:以内",
+     "mot": "以内",
+     "lecture": "いない",
+     "sens": "dans la limite de",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:田舎",
+     "mot": "田舎",
+     "lecture": "いなか",
+     "sens": "campagne",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:祈る",
+     "mot": "祈る",
+     "lecture": "いのる",
+     "sens": "prier",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:意味",
+     "mot": "意味",
+     "lecture": "いみ",
+     "sens": "sens, signification",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:印象",
+     "mot": "印象",
+     "lecture": "いんしょう",
+     "sens": "impression",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:受付",
+     "mot": "受付",
+     "lecture": "うけつけ",
+     "sens": "accueil, réception",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:受ける",
+     "mot": "受ける",
+     "lecture": "うける",
+     "sens": "recevoir, passer (un test)",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:動く",
+     "mot": "動く",
+     "lecture": "うごく",
+     "sens": "bouger",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:嘘",
+     "mot": "嘘",
+     "lecture": "うそ",
+     "sens": "mensonge",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:打ち合わせ",
+     "mot": "打ち合わせ",
+     "lecture": "うちあわせ",
+     "sens": "concertation, briefing",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:打つ",
+     "mot": "打つ",
+     "lecture": "うつ",
+     "sens": "frapper",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:美しい",
+     "mot": "美しい",
+     "lecture": "うつくしい",
+     "sens": "beau",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:移る",
+     "mot": "移る",
+     "lecture": "うつる",
+     "sens": "se déplacer, déménager",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:裏",
+     "mot": "裏",
+     "lecture": "うら",
+     "sens": "envers, arrière",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:売り場",
+     "mot": "売り場",
+     "lecture": "うりば",
+     "sens": "rayon (magasin)",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:噂",
+     "mot": "噂",
+     "lecture": "うわさ",
+     "sens": "rumeur",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:運転",
+     "mot": "運転",
+     "lecture": "うんてん",
+     "sens": "conduite",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:運動",
+     "mot": "運動",
+     "lecture": "うんどう",
+     "sens": "exercice physique",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:影響",
+     "mot": "影響",
+     "lecture": "えいきょう",
+     "sens": "influence",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:営業",
+     "mot": "営業",
+     "lecture": "えいぎょう",
+     "sens": "vente, activité commerciale",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:栄養",
+     "mot": "栄養",
+     "lecture": "えいよう",
+     "sens": "nutrition",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:枝",
+     "mot": "枝",
+     "lecture": "えだ",
+     "sens": "branche",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:選ぶ",
+     "mot": "選ぶ",
+     "lecture": "えらぶ",
+     "sens": "choisir",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:延期(する)",
+     "mot": "延期(する)",
+     "lecture": "えんき",
+     "sens": "report, ajourner",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:遠慮",
+     "mot": "遠慮",
+     "lecture": "えんりょ",
+     "sens": "réserve, retenue",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:お祝い",
+     "mot": "お祝い",
+     "lecture": "おいわい",
+     "sens": "félicitations, cadeau",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:横断",
+     "mot": "横断",
+     "lecture": "おうだん",
+     "sens": "traversée",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:応募",
+     "mot": "応募",
+     "lecture": "おうぼ",
+     "sens": "candidature",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:屋上",
+     "mot": "屋上",
+     "lecture": "おくじょう",
+     "sens": "toit-terrasse",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:贈り物",
+     "mot": "贈り物",
+     "lecture": "おくりもの",
+     "sens": "cadeau",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:遅れる",
+     "mot": "遅れる",
+     "lecture": "おくれる",
+     "sens": "être en retard",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:起こす",
+     "mot": "起こす",
+     "lecture": "おこす",
+     "sens": "réveiller, provoquer",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:怒る",
+     "mot": "怒る",
+     "lecture": "おこる",
+     "sens": "se fâcher",
+     "niv": "N4"
     }
    ]
   },
   {
+   "id": "g2",
+   "title": "Vocabulaire N3 + N4 — lot 2/10 (ordre gojūon)",
+   "items": [
+    {
+     "id": "vocab:押す",
+     "mot": "押す",
+     "lecture": "おす",
+     "sens": "pousser, appuyer",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:お釣り",
+     "mot": "お釣り",
+     "lecture": "おつり",
+     "sens": "monnaie rendue",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:お土産",
+     "mot": "お土産",
+     "lecture": "おみやげ",
+     "sens": "souvenir (cadeau)",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:思い出",
+     "mot": "思い出",
+     "lecture": "おもいで",
+     "sens": "souvenir",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:表",
+     "mot": "表",
+     "lecture": "おもて",
+     "sens": "endroit, recto",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:折る",
+     "mot": "折る",
+     "lecture": "おる",
+     "sens": "plier, casser",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:お礼",
+     "mot": "お礼",
+     "lecture": "おれい",
+     "sens": "remerciement",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:終わり",
+     "mot": "終わり",
+     "lecture": "おわり",
+     "sens": "fin",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:改革",
+     "mot": "改革",
+     "lecture": "かいかく",
+     "sens": "réforme",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:会議",
+     "mot": "会議",
+     "lecture": "かいぎ",
+     "sens": "réunion",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:解決",
+     "mot": "解決",
+     "lecture": "かいけつ",
+     "sens": "résolution",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:会場",
+     "mot": "会場",
+     "lecture": "かいじょう",
+     "sens": "salle (événement)",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:解説",
+     "mot": "解説",
+     "lecture": "かいせつ",
+     "sens": "explication, commentaire",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:改善(する)",
+     "mot": "改善(する)",
+     "lecture": "かいぜん",
+     "sens": "amélioration, améliorer",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:解答",
+     "mot": "解答",
+     "lecture": "かいとう",
+     "sens": "réponse (à un problème)",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:回答",
+     "mot": "回答",
+     "lecture": "かいとう",
+     "sens": "réponse (à une enquête)",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:会話",
+     "mot": "会話",
+     "lecture": "かいわ",
+     "sens": "conversation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:帰り",
+     "mot": "帰り",
+     "lecture": "かえり",
+     "sens": "retour",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:香り",
+     "mot": "香り",
+     "lecture": "かおり",
+     "sens": "parfum, arôme",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:係",
+     "mot": "係",
+     "lecture": "かかり",
+     "sens": "responsable, préposé",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:科学",
+     "mot": "科学",
+     "lecture": "かがく",
+     "sens": "science",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:鏡",
+     "mot": "鏡",
+     "lecture": "かがみ",
+     "sens": "miroir",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:覚悟",
+     "mot": "覚悟",
+     "lecture": "かくご",
+     "sens": "résolution, détermination",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:確認",
+     "mot": "確認",
+     "lecture": "かくにん",
+     "sens": "vérification",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:家具",
+     "mot": "家具",
+     "lecture": "かぐ",
+     "sens": "meuble",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:火事",
+     "mot": "火事",
+     "lecture": "かじ",
+     "sens": "incendie",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:数",
+     "mot": "数",
+     "lecture": "かず",
+     "sens": "nombre",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:風邪",
+     "mot": "風邪",
+     "lecture": "かぜ",
+     "sens": "rhume",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:風",
+     "mot": "風",
+     "lecture": "かぜ",
+     "sens": "vent",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:硬い",
+     "mot": "硬い",
+     "lecture": "かたい",
+     "sens": "dur, solide",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:形",
+     "mot": "形",
+     "lecture": "かたち",
+     "sens": "forme",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:課題",
+     "mot": "課題",
+     "lecture": "かだい",
+     "sens": "tâche, problème à résoudre",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:課長",
+     "mot": "課長",
+     "lecture": "かちょう",
+     "sens": "chef de section",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:格好",
+     "mot": "格好",
+     "lecture": "かっこう",
+     "sens": "allure, apparence",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:勝つ",
+     "mot": "勝つ",
+     "lecture": "かつ",
+     "sens": "gagner",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:必ず",
+     "mot": "必ず",
+     "lecture": "かならず",
+     "sens": "sans faute, forcément",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:金持ち",
+     "mot": "金持ち",
+     "lecture": "かねもち",
+     "sens": "personne riche",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:彼",
+     "mot": "彼",
+     "lecture": "かれ",
+     "sens": "lui, il",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:変わる / 変える",
+     "mot": "変わる / 変える",
+     "lecture": "かわる / かえる",
+     "sens": "changer (intr. / tr.)",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:考える",
+     "mot": "考える",
+     "lecture": "かんがえる",
+     "sens": "réfléchir",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:環境",
+     "mot": "環境",
+     "lecture": "かんきょう",
+     "sens": "environnement",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:関係",
+     "mot": "関係",
+     "lecture": "かんけい",
+     "sens": "relation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:看護師",
+     "mot": "看護師",
+     "lecture": "かんごし",
+     "sens": "infirmier(ère)",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:感謝",
+     "mot": "感謝",
+     "lecture": "かんしゃ",
+     "sens": "gratitude",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:感じる",
+     "mot": "感じる",
+     "lecture": "かんじる",
+     "sens": "ressentir",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:感想",
+     "mot": "感想",
+     "lecture": "かんそう",
+     "sens": "impression, avis",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:管理(する)",
+     "mot": "管理(する)",
+     "lecture": "かんり",
+     "sens": "gestion, gérer",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:我慢(する)",
+     "mot": "我慢(する)",
+     "lecture": "がまん",
+     "sens": "patience, endurer",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:記憶",
+     "mot": "記憶",
+     "lecture": "きおく",
+     "sens": "mémoire, souvenir",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:気温",
+     "mot": "気温",
+     "lecture": "きおん",
+     "sens": "température (de l'air)",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:機会",
+     "mot": "機会",
+     "lecture": "きかい",
+     "sens": "occasion",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:機械",
+     "mot": "機械",
+     "lecture": "きかい",
+     "sens": "machine",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:期限",
+     "mot": "期限",
+     "lecture": "きげん",
+     "sens": "échéance, délai",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:基準",
+     "mot": "基準",
+     "lecture": "きじゅん",
+     "sens": "critère, norme",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:季節",
+     "mot": "季節",
+     "lecture": "きせつ",
+     "sens": "saison",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:規則",
+     "mot": "規則",
+     "lecture": "きそく",
+     "sens": "règlement",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:期待(する)",
+     "mot": "期待(する)",
+     "lecture": "きたい",
+     "sens": "attente, espérer",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:きちんと",
+     "mot": "きちんと",
+     "lecture": "—",
+     "sens": "correctement, en ordre",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:気分",
+     "mot": "気分",
+     "lecture": "きぶん",
+     "sens": "humeur, état",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:希望(する)",
+     "mot": "希望(する)",
+     "lecture": "きぼう",
+     "sens": "espoir, souhaiter",
+     "niv": "N3"
+    }
+   ]
+  },
+  {
+   "id": "g3",
+   "title": "Vocabulaire N3 + N4 — lot 3/10 (ordre gojūon)",
+   "items": [
+    {
+     "id": "vocab:決まる / 決める",
+     "mot": "決まる / 決める",
+     "lecture": "きまる / きめる",
+     "sens": "se décider / décider",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:気持ち",
+     "mot": "気持ち",
+     "lecture": "きもち",
+     "sens": "sentiment, sensation",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:客",
+     "mot": "客",
+     "lecture": "きゃく",
+     "sens": "client, invité",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:急(な)",
+     "mot": "急(な)",
+     "lecture": "きゅう",
+     "sens": "soudain, urgent",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:急行",
+     "mot": "急行",
+     "lecture": "きゅうこう",
+     "sens": "train express",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:給料",
+     "mot": "給料",
+     "lecture": "きゅうりょう",
+     "sens": "salaire",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:教育",
+     "mot": "教育",
+     "lecture": "きょういく",
+     "sens": "éducation",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:教会",
+     "mot": "教会",
+     "lecture": "きょうかい",
+     "sens": "église",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:協調",
+     "mot": "協調",
+     "lecture": "きょうちょう",
+     "sens": "coopération, harmonie",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:共通",
+     "mot": "共通",
+     "lecture": "きょうつう",
+     "sens": "point commun",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:興味",
+     "mot": "興味",
+     "lecture": "きょうみ",
+     "sens": "intérêt",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:協力",
+     "mot": "協力",
+     "lecture": "きょうりょく",
+     "sens": "coopération",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:記録",
+     "mot": "記録",
+     "lecture": "きろく",
+     "sens": "enregistrement, record",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:近所",
+     "mot": "近所",
+     "lecture": "きんじょ",
+     "sens": "voisinage",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:緊張",
+     "mot": "緊張",
+     "lecture": "きんちょう",
+     "sens": "tension, trac",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:技術",
+     "mot": "技術",
+     "lecture": "ぎじゅつ",
+     "sens": "technologie, technique",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:義務",
+     "mot": "義務",
+     "lecture": "ぎむ",
+     "sens": "devoir, obligation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:疑問",
+     "mot": "疑問",
+     "lecture": "ぎもん",
+     "sens": "doute, interrogation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:空気",
+     "mot": "空気",
+     "lecture": "くうき",
+     "sens": "air",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:草",
+     "mot": "草",
+     "lecture": "くさ",
+     "sens": "herbe",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:苦情",
+     "mot": "苦情",
+     "lecture": "くじょう",
+     "sens": "réclamation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:薬",
+     "mot": "薬",
+     "lecture": "くすり",
+     "sens": "médicament",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:癖",
+     "mot": "癖",
+     "lecture": "くせ",
+     "sens": "manie, tic",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:首",
+     "mot": "首",
+     "lecture": "くび",
+     "sens": "cou",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:工夫(する)",
+     "mot": "工夫(する)",
+     "lecture": "くふう",
+     "sens": "ingéniosité, s'ingénier",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:区別",
+     "mot": "区別",
+     "lecture": "くべつ",
+     "sens": "distinction",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:雲",
+     "mot": "雲",
+     "lecture": "くも",
+     "sens": "nuage",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:比べる",
+     "mot": "比べる",
+     "lecture": "くらべる",
+     "sens": "comparer",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:暮れる",
+     "mot": "暮れる",
+     "lecture": "くれる",
+     "sens": "(jour) décliner",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:苦労(する)",
+     "mot": "苦労(する)",
+     "lecture": "くろう",
+     "sens": "peine, prendre de la peine",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:加える",
+     "mot": "加える",
+     "lecture": "くわえる",
+     "sens": "ajouter",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:具合",
+     "mot": "具合",
+     "lecture": "ぐあい",
+     "sens": "état, condition",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:経験",
+     "mot": "経験",
+     "lecture": "けいけん",
+     "sens": "expérience",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:傾向",
+     "mot": "傾向",
+     "lecture": "けいこう",
+     "sens": "tendance",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:警告",
+     "mot": "警告",
+     "lecture": "けいこく",
+     "sens": "avertissement",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:警察",
+     "mot": "警察",
+     "lecture": "けいさつ",
+     "sens": "police",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:経済",
+     "mot": "経済",
+     "lecture": "けいざい",
+     "sens": "économie",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:継続(する)",
+     "mot": "継続(する)",
+     "lecture": "けいぞく",
+     "sens": "continuation, poursuivre",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:契約",
+     "mot": "契約",
+     "lecture": "けいやく",
+     "sens": "contrat",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:怪我",
+     "mot": "怪我",
+     "lecture": "けが",
+     "sens": "blessure",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:景色",
+     "mot": "景色",
+     "lecture": "けしき",
+     "sens": "paysage",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:結果",
+     "mot": "結果",
+     "lecture": "けっか",
+     "sens": "résultat",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:結婚",
+     "mot": "結婚",
+     "lecture": "けっこん",
+     "sens": "mariage",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:決定",
+     "mot": "決定",
+     "lecture": "けってい",
+     "sens": "décision",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:決断",
+     "mot": "決断",
+     "lecture": "けつだん",
+     "sens": "décision (ferme)",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:結論",
+     "mot": "結論",
+     "lecture": "けつろん",
+     "sens": "conclusion",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:喧嘩",
+     "mot": "喧嘩",
+     "lecture": "けんか",
+     "sens": "dispute, bagarre",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:研究",
+     "mot": "研究",
+     "lecture": "けんきゅう",
+     "sens": "recherche",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:健康",
+     "mot": "健康",
+     "lecture": "けんこう",
+     "sens": "santé",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:見物",
+     "mot": "見物",
+     "lecture": "けんぶつ",
+     "sens": "visite touristique",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:権利",
+     "mot": "権利",
+     "lecture": "けんり",
+     "sens": "droit",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:原因",
+     "mot": "原因",
+     "lecture": "げんいん",
+     "sens": "cause",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:減少(する)",
+     "mot": "減少(する)",
+     "lecture": "げんしょう",
+     "sens": "baisse, diminuer",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:効果",
+     "mot": "効果",
+     "lecture": "こうか",
+     "sens": "effet",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:後悔",
+     "mot": "後悔",
+     "lecture": "こうかい",
+     "sens": "regret",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:講義",
+     "mot": "講義",
+     "lecture": "こうぎ",
+     "sens": "cours magistral",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:工業",
+     "mot": "工業",
+     "lecture": "こうぎょう",
+     "sens": "industrie",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:向上(する)",
+     "mot": "向上(する)",
+     "lecture": "こうじょう",
+     "sens": "amélioration, progresser",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:工場",
+     "mot": "工場",
+     "lecture": "こうじょう",
+     "sens": "usine",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:交通",
+     "mot": "交通",
+     "lecture": "こうつう",
+     "sens": "circulation, transport",
+     "niv": "N4"
+    }
+   ]
+  },
+  {
+   "id": "g4",
+   "title": "Vocabulaire N3 + N4 — lot 4/10 (ordre gojūon)",
+   "items": [
+    {
+     "id": "vocab:公務員",
+     "mot": "公務員",
+     "lecture": "こうむいん",
+     "sens": "fonctionnaire",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:効率",
+     "mot": "効率",
+     "lecture": "こうりつ",
+     "sens": "efficacité, rendement",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:国際",
+     "mot": "国際",
+     "lecture": "こくさい",
+     "sens": "international",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:心",
+     "mot": "心",
+     "lecture": "こころ",
+     "sens": "cœur, esprit",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:故障",
+     "mot": "故障",
+     "lecture": "こしょう",
+     "sens": "panne",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:答え",
+     "mot": "答え",
+     "lecture": "こたえ",
+     "sens": "réponse",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:今度",
+     "mot": "今度",
+     "lecture": "こんど",
+     "sens": "cette fois / prochaine fois",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:今夜",
+     "mot": "今夜",
+     "lecture": "こんや",
+     "sens": "cette nuit",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:合格",
+     "mot": "合格",
+     "lecture": "ごうかく",
+     "sens": "réussite (à un examen)",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:合計",
+     "mot": "合計",
+     "lecture": "ごうけい",
+     "sens": "total",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:誤解",
+     "mot": "誤解",
+     "lecture": "ごかい",
+     "sens": "malentendu",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:災害",
+     "mot": "災害",
+     "lecture": "さいがい",
+     "sens": "catastrophe",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:最近",
+     "mot": "最近",
+     "lecture": "さいきん",
+     "sens": "récemment",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:最初 / 最後",
+     "mot": "最初 / 最後",
+     "lecture": "さいしょ / さいご",
+     "sens": "le début / la fin",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:最大 / 最小",
+     "mot": "最大 / 最小",
+     "lecture": "さいだい / さいしょう",
+     "sens": "maximum / minimum",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:盛ん",
+     "mot": "盛ん",
+     "lecture": "さかん",
+     "sens": "florissant, actif",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:探す",
+     "mot": "探す",
+     "lecture": "さがす",
+     "sens": "chercher",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:下がる",
+     "mot": "下がる",
+     "lecture": "さがる",
+     "sens": "baisser",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:寂しい",
+     "mot": "寂しい",
+     "lecture": "さびしい",
+     "sens": "seul, triste",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:差別",
+     "mot": "差別",
+     "lecture": "さべつ",
+     "sens": "discrimination",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:騒ぐ",
+     "mot": "騒ぐ",
+     "lecture": "さわぐ",
+     "sens": "faire du bruit",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:触る",
+     "mot": "触る",
+     "lecture": "さわる",
+     "sens": "toucher",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:参加",
+     "mot": "参加",
+     "lecture": "さんか",
+     "sens": "participation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:産業",
+     "mot": "産業",
+     "lecture": "さんぎょう",
+     "sens": "industrie",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:賛成(する)",
+     "mot": "賛成(する)",
+     "lecture": "さんせい",
+     "sens": "approbation, approuver",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:在庫",
+     "mot": "在庫",
+     "lecture": "ざいこ",
+     "sens": "stock",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:材料",
+     "mot": "材料",
+     "lecture": "ざいりょう",
+     "sens": "ingrédients, matériaux",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:残業",
+     "mot": "残業",
+     "lecture": "ざんぎょう",
+     "sens": "heures supplémentaires",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:支援(する)",
+     "mot": "支援(する)",
+     "lecture": "しえん",
+     "sens": "soutien, soutenir",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:資格",
+     "mot": "資格",
+     "lecture": "しかく",
+     "sens": "qualification, diplôme",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:叱る",
+     "mot": "叱る",
+     "lecture": "しかる",
+     "sens": "gronder",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:試験",
+     "mot": "試験",
+     "lecture": "しけん",
+     "sens": "examen",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:支持(する)",
+     "mot": "支持(する)",
+     "lecture": "しじ",
+     "sens": "appui, soutenir",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:姿勢",
+     "mot": "姿勢",
+     "lecture": "しせい",
+     "sens": "posture, attitude",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:自然",
+     "mot": "自然",
+     "lecture": "しぜん",
+     "sens": "nature",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:親しい",
+     "mot": "親しい",
+     "lecture": "したしい",
+     "sens": "intime, proche",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:しっかり",
+     "mot": "しっかり",
+     "lecture": "—",
+     "sens": "solidement, comme il faut",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:失敗",
+     "mot": "失敗",
+     "lecture": "しっぱい",
+     "sens": "échec",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:湿度",
+     "mot": "湿度",
+     "lecture": "しつど",
+     "sens": "humidité",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:質問",
+     "mot": "質問",
+     "lecture": "しつもん",
+     "sens": "question",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:失礼",
+     "mot": "失礼",
+     "lecture": "しつれい",
+     "sens": "impoli, excusez-moi",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:品物",
+     "mot": "品物",
+     "lecture": "しなもの",
+     "sens": "article, marchandise",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:支払い",
+     "mot": "支払い",
+     "lecture": "しはらい",
+     "sens": "paiement",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:市民",
+     "mot": "市民",
+     "lecture": "しみん",
+     "sens": "citoyen",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:社会",
+     "mot": "社会",
+     "lecture": "しゃかい",
+     "sens": "société",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:社長",
+     "mot": "社長",
+     "lecture": "しゃちょう",
+     "sens": "PDG, patron",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:借金",
+     "mot": "借金",
+     "lecture": "しゃっきん",
+     "sens": "dette",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:習慣",
+     "mot": "習慣",
+     "lecture": "しゅうかん",
+     "sens": "habitude",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:就職",
+     "mot": "就職",
+     "lecture": "しゅうしょく",
+     "sens": "entrée dans la vie active",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:修正(する)",
+     "mot": "修正(する)",
+     "lecture": "しゅうせい",
+     "sens": "correction, corriger",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:集中",
+     "mot": "集中",
+     "lecture": "しゅうちゅう",
+     "sens": "concentration",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:週末",
+     "mot": "週末",
+     "lecture": "しゅうまつ",
+     "sens": "week-end",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:祝日",
+     "mot": "祝日",
+     "lecture": "しゅくじつ",
+     "sens": "jour férié",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:手術",
+     "mot": "手術",
+     "lecture": "しゅじゅつ",
+     "sens": "opération",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:主張(する)",
+     "mot": "主張(する)",
+     "lecture": "しゅちょう",
+     "sens": "affirmation, soutenir",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:出席",
+     "mot": "出席",
+     "lecture": "しゅっせき",
+     "sens": "présence (réunion)",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:出張",
+     "mot": "出張",
+     "lecture": "しゅっちょう",
+     "sens": "voyage d'affaires",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:出発",
+     "mot": "出発",
+     "lecture": "しゅっぱつ",
+     "sens": "départ",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:趣味",
+     "mot": "趣味",
+     "lecture": "しゅみ",
+     "sens": "passe-temps",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:紹介",
+     "mot": "紹介",
+     "lecture": "しょうかい",
+     "sens": "présentation",
+     "niv": "N3"
+    }
+   ]
+  },
+  {
+   "id": "g5",
+   "title": "Vocabulaire N3 + N4 — lot 5/10 (ordre gojūon)",
+   "items": [
+    {
+     "id": "vocab:正月",
+     "mot": "正月",
+     "lecture": "しょうがつ",
+     "sens": "Nouvel An",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:証拠",
+     "mot": "証拠",
+     "lecture": "しょうこ",
+     "sens": "preuve",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:小説",
+     "mot": "小説",
+     "lecture": "しょうせつ",
+     "sens": "roman",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:招待",
+     "mot": "招待",
+     "lecture": "しょうたい",
+     "sens": "invitation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:承知",
+     "mot": "承知",
+     "lecture": "しょうち",
+     "sens": "accord, consentement",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:商品",
+     "mot": "商品",
+     "lecture": "しょうひん",
+     "sens": "marchandise, article",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:将来",
+     "mot": "将来",
+     "lecture": "しょうらい",
+     "sens": "avenir",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:食事",
+     "mot": "食事",
+     "lecture": "しょくじ",
+     "sens": "repas",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:食料品",
+     "mot": "食料品",
+     "lecture": "しょくりょうひん",
+     "sens": "denrées alimentaires",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:処理(する)",
+     "mot": "処理(する)",
+     "lecture": "しょり",
+     "sens": "traitement, traiter",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:書類",
+     "mot": "書類",
+     "lecture": "しょるい",
+     "sens": "documents",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:調べる",
+     "mot": "調べる",
+     "lecture": "しらべる",
+     "sens": "vérifier, enquêter",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:資料",
+     "mot": "資料",
+     "lecture": "しりょう",
+     "sens": "documents, données",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:診察",
+     "mot": "診察",
+     "lecture": "しんさつ",
+     "sens": "consultation médicale",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:真実",
+     "mot": "真実",
+     "lecture": "しんじつ",
+     "sens": "vérité",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:親切",
+     "mot": "親切",
+     "lecture": "しんせつ",
+     "sens": "gentil",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:心配(する)",
+     "mot": "心配(する)",
+     "lecture": "しんぱい",
+     "sens": "souci, s'inquiéter",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:新聞",
+     "mot": "新聞",
+     "lecture": "しんぶん",
+     "sens": "journal",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:進歩",
+     "mot": "進歩",
+     "lecture": "しんぽ",
+     "sens": "progrès",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:信頼",
+     "mot": "信頼",
+     "lecture": "しんらい",
+     "sens": "confiance",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:事件",
+     "mot": "事件",
+     "lecture": "じけん",
+     "sens": "affaire, incident",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:事故",
+     "mot": "事故",
+     "lecture": "じこ",
+     "sens": "accident",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:地震",
+     "mot": "地震",
+     "lecture": "じしん",
+     "sens": "séisme",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:事実",
+     "mot": "事実",
+     "lecture": "じじつ",
+     "sens": "fait",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:実行(する)",
+     "mot": "実行(する)",
+     "lecture": "じっこう",
+     "sens": "exécution, mettre en œuvre",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:実際",
+     "mot": "実際",
+     "lecture": "じっさい",
+     "sens": "en réalité",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:実施(する)",
+     "mot": "実施(する)",
+     "lecture": "じっし",
+     "sens": "mise en application",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:実現(する)",
+     "mot": "実現(する)",
+     "lecture": "じつげん",
+     "sens": "réalisation, réaliser",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:実は",
+     "mot": "実は",
+     "lecture": "じつは",
+     "sens": "en fait",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:邪魔",
+     "mot": "邪魔",
+     "lecture": "じゃま",
+     "sens": "gêne, obstacle",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:住所",
+     "mot": "住所",
+     "lecture": "じゅうしょ",
+     "sens": "adresse",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:柔道",
+     "mot": "柔道",
+     "lecture": "じゅうどう",
+     "sens": "judo",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:十分",
+     "mot": "十分",
+     "lecture": "じゅうぶん",
+     "sens": "suffisant",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:重要",
+     "mot": "重要",
+     "lecture": "じゅうよう",
+     "sens": "important",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:授業",
+     "mot": "授業",
+     "lecture": "じゅぎょう",
+     "sens": "cours",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:受験",
+     "mot": "受験",
+     "lecture": "じゅけん",
+     "sens": "passer un examen",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:準備",
+     "mot": "準備",
+     "lecture": "じゅんび",
+     "sens": "préparation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:自由",
+     "mot": "自由",
+     "lecture": "じゆう",
+     "sens": "liberté",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:状況",
+     "mot": "状況",
+     "lecture": "じょうきょう",
+     "sens": "situation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:条件",
+     "mot": "条件",
+     "lecture": "じょうけん",
+     "sens": "condition",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:上司",
+     "mot": "上司",
+     "lecture": "じょうし",
+     "sens": "supérieur hiérarchique",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:状態",
+     "mot": "状態",
+     "lecture": "じょうたい",
+     "sens": "état, condition",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:情報",
+     "mot": "情報",
+     "lecture": "じょうほう",
+     "sens": "information",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:人口",
+     "mot": "人口",
+     "lecture": "じんこう",
+     "sens": "population",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:推測",
+     "mot": "推測",
+     "lecture": "すいそく",
+     "sens": "supposition",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:水道",
+     "mot": "水道",
+     "lecture": "すいどう",
+     "sens": "eau courante",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:睡眠",
+     "mot": "睡眠",
+     "lecture": "すいみん",
+     "sens": "sommeil",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:数学",
+     "mot": "数学",
+     "lecture": "すうがく",
+     "sens": "mathématiques",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:過ぎる",
+     "mot": "過ぎる",
+     "lecture": "すぎる",
+     "sens": "passer, dépasser",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:進む",
+     "mot": "進む",
+     "lecture": "すすむ",
+     "sens": "avancer, progresser",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:すっかり",
+     "mot": "すっかり",
+     "lecture": "—",
+     "sens": "complètement, entièrement",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:すり",
+     "mot": "すり",
+     "lecture": "すり",
+     "sens": "pickpocket",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:性格",
+     "mot": "性格",
+     "lecture": "せいかく",
+     "sens": "caractère",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:生活",
+     "mot": "生活",
+     "lecture": "せいかつ",
+     "sens": "vie quotidienne",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:請求",
+     "mot": "請求",
+     "lecture": "せいきゅう",
+     "sens": "facturation, réclamation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:生産",
+     "mot": "生産",
+     "lecture": "せいさん",
+     "sens": "production",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:政治",
+     "mot": "政治",
+     "lecture": "せいじ",
+     "sens": "politique",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:成績",
+     "mot": "成績",
+     "lecture": "せいせき",
+     "sens": "résultats, notes",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:成長(する)",
+     "mot": "成長(する)",
+     "lecture": "せいちょう",
+     "sens": "croissance, grandir",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:制度",
+     "mot": "制度",
+     "lecture": "せいど",
+     "sens": "système, dispositif",
+     "niv": "N3"
+    }
+   ]
+  },
+  {
+   "id": "g6",
+   "title": "Vocabulaire N3 + N4 — lot 6/10 (ordre gojūon)",
+   "items": [
+    {
+     "id": "vocab:製品",
+     "mot": "製品",
+     "lecture": "せいひん",
+     "sens": "produit (manufacturé)",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:西洋",
+     "mot": "西洋",
+     "lecture": "せいよう",
+     "sens": "Occident",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:世界",
+     "mot": "世界",
+     "lecture": "せかい",
+     "sens": "le monde",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:席",
+     "mot": "席",
+     "lecture": "せき",
+     "sens": "siège, place",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:責任",
+     "mot": "責任",
+     "lecture": "せきにん",
+     "sens": "responsabilité",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:説明",
+     "mot": "説明",
+     "lecture": "せつめい",
+     "sens": "explication",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:世話",
+     "mot": "世話",
+     "lecture": "せわ",
+     "sens": "soin, aide",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:線",
+     "mot": "線",
+     "lecture": "せん",
+     "sens": "ligne",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:戦争",
+     "mot": "戦争",
+     "lecture": "せんそう",
+     "sens": "guerre",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:選択",
+     "mot": "選択",
+     "lecture": "せんたく",
+     "sens": "choix",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:専門",
+     "mot": "専門",
+     "lecture": "せんもん",
+     "sens": "spécialité",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:税金",
+     "mot": "税金",
+     "lecture": "ぜいきん",
+     "sens": "impôt",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:絶対",
+     "mot": "絶対",
+     "lecture": "ぜったい",
+     "sens": "absolument",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:相談",
+     "mot": "相談",
+     "lecture": "そうだん",
+     "sens": "consultation, conseil",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:育てる",
+     "mot": "育てる",
+     "lecture": "そだてる",
+     "sens": "élever, cultiver",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:卒業",
+     "mot": "卒業",
+     "lecture": "そつぎょう",
+     "sens": "fin d'études, diplôme",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:祖父",
+     "mot": "祖父",
+     "lecture": "そふ",
+     "sens": "grand-père",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:祖母",
+     "mot": "祖母",
+     "lecture": "そぼ",
+     "sens": "grand-mère",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:尊敬",
+     "mot": "尊敬",
+     "lecture": "そんけい",
+     "sens": "respect, estime",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:増加(する)",
+     "mot": "増加(する)",
+     "lecture": "ぞうか",
+     "sens": "augmentation, augmenter",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:増減",
+     "mot": "増減",
+     "lecture": "ぞうげん",
+     "sens": "variation (hausse/baisse)",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:退院",
+     "mot": "退院",
+     "lecture": "たいいん",
+     "sens": "sortie d'hôpital",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:対応(する)",
+     "mot": "対応(する)",
+     "lecture": "たいおう",
+     "sens": "réponse, faire face à",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:対策",
+     "mot": "対策",
+     "lecture": "たいさく",
+     "sens": "contre-mesure",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:退職",
+     "mot": "退職",
+     "lecture": "たいしょく",
+     "sens": "départ (emploi), retraite",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:体調",
+     "mot": "体調",
+     "lecture": "たいちょう",
+     "sens": "état de santé",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:態度",
+     "mot": "態度",
+     "lecture": "たいど",
+     "sens": "attitude",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:台風",
+     "mot": "台風",
+     "lecture": "たいふう",
+     "sens": "typhon",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:倒れる",
+     "mot": "倒れる",
+     "lecture": "たおれる",
+     "sens": "s’effondrer",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:足す",
+     "mot": "足す",
+     "lecture": "たす",
+     "sens": "ajouter",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:助ける",
+     "mot": "助ける",
+     "lecture": "たすける",
+     "sens": "aider, sauver",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:尋ねる",
+     "mot": "尋ねる",
+     "lecture": "たずねる",
+     "sens": "demander, rendre visite",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:畳",
+     "mot": "畳",
+     "lecture": "たたみ",
+     "sens": "tatami",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:正しい",
+     "mot": "正しい",
+     "lecture": "ただしい",
+     "sens": "correct",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:立場",
+     "mot": "立場",
+     "lecture": "たちば",
+     "sens": "position, point de vue",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:立てる",
+     "mot": "立てる",
+     "lecture": "たてる",
+     "sens": "dresser, établir",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:建てる",
+     "mot": "建てる",
+     "lecture": "たてる",
+     "sens": "construire",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:例えば",
+     "mot": "例えば",
+     "lecture": "たとえば",
+     "sens": "par exemple",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:楽しむ",
+     "mot": "楽しむ",
+     "lecture": "たのしむ",
+     "sens": "s’amuser",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:頼む",
+     "mot": "頼む",
+     "lecture": "たのむ",
+     "sens": "demander, commander",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:たまに",
+     "mot": "たまに",
+     "lecture": "—",
+     "sens": "de temps en temps",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:足りる",
+     "mot": "足りる",
+     "lecture": "たりる",
+     "sens": "suffire",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:担当",
+     "mot": "担当",
+     "lecture": "たんとう",
+     "sens": "prise en charge, responsable",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:大学生",
+     "mot": "大学生",
+     "lecture": "だいがくせい",
+     "sens": "étudiant",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:大事",
+     "mot": "大事",
+     "lecture": "だいじ",
+     "sens": "important, précieux",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:台所",
+     "mot": "台所",
+     "lecture": "だいどころ",
+     "sens": "cuisine",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:違う",
+     "mot": "違う",
+     "lecture": "ちがう",
+     "sens": "être différent",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:知識",
+     "mot": "知識",
+     "lecture": "ちしき",
+     "sens": "connaissances",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:注意",
+     "mot": "注意",
+     "lecture": "ちゅうい",
+     "sens": "attention, avertissement",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:中止(する)",
+     "mot": "中止(する)",
+     "lecture": "ちゅうし",
+     "sens": "annulation, interrompre",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:注射",
+     "mot": "注射",
+     "lecture": "ちゅうしゃ",
+     "sens": "piqûre, injection",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:駐車場",
+     "mot": "駐車場",
+     "lecture": "ちゅうしゃじょう",
+     "sens": "parking",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:注文",
+     "mot": "注文",
+     "lecture": "ちゅうもん",
+     "sens": "commande",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:調査",
+     "mot": "調査",
+     "lecture": "ちょうさ",
+     "sens": "enquête, étude",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:調整(する)",
+     "mot": "調整(する)",
+     "lecture": "ちょうせい",
+     "sens": "ajustement, régler",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:貯金",
+     "mot": "貯金",
+     "lecture": "ちょきん",
+     "sens": "épargne",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:地理",
+     "mot": "地理",
+     "lecture": "ちり",
+     "sens": "géographie",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:治療",
+     "mot": "治療",
+     "lecture": "ちりょう",
+     "sens": "traitement médical",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:通訳",
+     "mot": "通訳",
+     "lecture": "つうやく",
+     "sens": "interprétation (orale)",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:捕まえる",
+     "mot": "捕まえる",
+     "lecture": "つかまえる",
+     "sens": "attraper",
+     "niv": "N4"
+    }
+   ]
+  },
+  {
+   "id": "g7",
+   "title": "Vocabulaire N3 + N4 — lot 7/10 (ordre gojūon)",
+   "items": [
+    {
+     "id": "vocab:月",
+     "mot": "月",
+     "lecture": "つき",
+     "sens": "lune, mois",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:付ける",
+     "mot": "付ける",
+     "lecture": "つける",
+     "sens": "attacher, allumer",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:都合",
+     "mot": "都合",
+     "lecture": "つごう",
+     "sens": "convenance, disponibilité",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:伝える",
+     "mot": "伝える",
+     "lecture": "つたえる",
+     "sens": "transmettre",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:包む",
+     "mot": "包む",
+     "lecture": "つつむ",
+     "sens": "envelopper",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:続く / 続ける",
+     "mot": "続く / 続ける",
+     "lecture": "つづく / つづける",
+     "sens": "continuer",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:妻",
+     "mot": "妻",
+     "lecture": "つま",
+     "sens": "épouse",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:積もる",
+     "mot": "積もる",
+     "lecture": "つもる",
+     "sens": "s’accumuler",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:釣る",
+     "mot": "釣る",
+     "lecture": "つる",
+     "sens": "pêcher",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:連れる",
+     "mot": "連れる",
+     "lecture": "つれる",
+     "sens": "emmener",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:提案(する)",
+     "mot": "提案(する)",
+     "lecture": "ていあん",
+     "sens": "proposition, proposer",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:程度",
+     "mot": "程度",
+     "lecture": "ていど",
+     "sens": "degré, niveau",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:丁寧",
+     "mot": "丁寧",
+     "lecture": "ていねい",
+     "sens": "poli, soigné",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:適当",
+     "mot": "適当",
+     "lecture": "てきとう",
+     "sens": "approprié, à la légère",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:手伝う",
+     "mot": "手伝う",
+     "lecture": "てつだう",
+     "sens": "aider",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:寺",
+     "mot": "寺",
+     "lecture": "てら",
+     "sens": "temple",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:店員",
+     "mot": "店員",
+     "lecture": "てんいん",
+     "sens": "vendeur, employé",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:天気予報",
+     "mot": "天気予報",
+     "lecture": "てんきよほう",
+     "sens": "prévisions météo",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:点数",
+     "mot": "点数",
+     "lecture": "てんすう",
+     "sens": "score, points",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:電灯",
+     "mot": "電灯",
+     "lecture": "でんとう",
+     "sens": "lampe électrique",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:当然",
+     "mot": "当然",
+     "lecture": "とうぜん",
+     "sens": "naturel, évident",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:遠く",
+     "mot": "遠く",
+     "lecture": "とおく",
+     "sens": "au loin",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:通る",
+     "mot": "通る",
+     "lecture": "とおる",
+     "sens": "passer (par)",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:特徴",
+     "mot": "特徴",
+     "lecture": "とくちょう",
+     "sens": "caractéristique",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:特に",
+     "mot": "特に",
+     "lecture": "とくに",
+     "sens": "surtout",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:特別",
+     "mot": "特別",
+     "lecture": "とくべつ",
+     "sens": "spécial",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:途中",
+     "mot": "途中",
+     "lecture": "とちゅう",
+     "sens": "en cours de route",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:特急",
+     "mot": "特急",
+     "lecture": "とっきゅう",
+     "sens": "train ultra-rapide",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:届ける",
+     "mot": "届ける",
+     "lecture": "とどける",
+     "sens": "livrer, remettre",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:泊まる",
+     "mot": "泊まる",
+     "lecture": "とまる",
+     "sens": "passer la nuit",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:取引",
+     "mot": "取引",
+     "lecture": "とりひき",
+     "sens": "transaction, affaires",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:道具",
+     "mot": "道具",
+     "lecture": "どうぐ",
+     "sens": "outil",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:同僚",
+     "mot": "同僚",
+     "lecture": "どうりょう",
+     "sens": "collègue",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:努力(する)",
+     "mot": "努力(する)",
+     "lecture": "どりょく",
+     "sens": "effort, s'efforcer",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:泥棒",
+     "mot": "泥棒",
+     "lecture": "どろぼう",
+     "sens": "voleur",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:内容",
+     "mot": "内容",
+     "lecture": "ないよう",
+     "sens": "contenu",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:直す",
+     "mot": "直す",
+     "lecture": "なおす",
+     "sens": "réparer, corriger",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:治る",
+     "mot": "治る",
+     "lecture": "なおる",
+     "sens": "guérir",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:亡くなる",
+     "mot": "亡くなる",
+     "lecture": "なくなる",
+     "sens": "décéder",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:投げる",
+     "mot": "投げる",
+     "lecture": "なげる",
+     "sens": "lancer",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:慣れる",
+     "mot": "慣れる",
+     "lecture": "なれる",
+     "sens": "s’habituer",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:苦い",
+     "mot": "苦い",
+     "lecture": "にがい",
+     "sens": "amer",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:苦手",
+     "mot": "苦手",
+     "lecture": "にがて",
+     "sens": "point faible, qu’on évite",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:入院",
+     "mot": "入院",
+     "lecture": "にゅういん",
+     "sens": "hospitalisation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:入学",
+     "mot": "入学",
+     "lecture": "にゅうがく",
+     "sens": "entrée à l'école",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:似る",
+     "mot": "似る",
+     "lecture": "にる",
+     "sens": "ressembler",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:人形",
+     "mot": "人形",
+     "lecture": "にんぎょう",
+     "sens": "poupée",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:盗む",
+     "mot": "盗む",
+     "lecture": "ぬすむ",
+     "sens": "dérober",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:塗る",
+     "mot": "塗る",
+     "lecture": "ぬる",
+     "sens": "enduire, peindre",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:濡れる",
+     "mot": "濡れる",
+     "lecture": "ぬれる",
+     "sens": "être mouillé",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:値段",
+     "mot": "値段",
+     "lecture": "ねだん",
+     "sens": "prix",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:熱心",
+     "mot": "熱心",
+     "lecture": "ねっしん",
+     "sens": "assidu, passionné",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:眠い",
+     "mot": "眠い",
+     "lecture": "ねむい",
+     "sens": "somnolent",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:眠る",
+     "mot": "眠る",
+     "lecture": "ねむる",
+     "sens": "dormir",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:能力",
+     "mot": "能力",
+     "lecture": "のうりょく",
+     "sens": "capacité, aptitude",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:乗り換える",
+     "mot": "乗り換える",
+     "lecture": "のりかえる",
+     "sens": "changer (de train)",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:歯",
+     "mot": "歯",
+     "lecture": "は",
+     "sens": "dent",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:配達",
+     "mot": "配達",
+     "lecture": "はいたつ",
+     "sens": "livraison",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:運ぶ",
+     "mot": "運ぶ",
+     "lecture": "はこぶ",
+     "sens": "transporter",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:始める",
+     "mot": "始める",
+     "lecture": "はじめる",
+     "sens": "commencer",
+     "niv": "N4"
+    }
+   ]
+  },
+  {
+   "id": "g8",
+   "title": "Vocabulaire N3 + N4 — lot 8/10 (ordre gojūon)",
+   "items": [
+    {
+     "id": "vocab:働く",
+     "mot": "働く",
+     "lecture": "はたらく",
+     "sens": "travailler",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:発見(する)",
+     "mot": "発見(する)",
+     "lecture": "はっけん",
+     "sens": "découverte, découvrir",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:発生(する)",
+     "mot": "発生(する)",
+     "lecture": "はっせい",
+     "sens": "survenue, se produire",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:発達(する)",
+     "mot": "発達(する)",
+     "lecture": "はったつ",
+     "sens": "développement, progrès",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:発展(する)",
+     "mot": "発展(する)",
+     "lecture": "はってん",
+     "sens": "développement, essor",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:発展",
+     "mot": "発展",
+     "lecture": "はってん",
+     "sens": "développement, essor",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:発表",
+     "mot": "発表",
+     "lecture": "はっぴょう",
+     "sens": "annonce, présentation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:発音",
+     "mot": "発音",
+     "lecture": "はつおん",
+     "sens": "prononciation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:発言",
+     "mot": "発言",
+     "lecture": "はつげん",
+     "sens": "prise de parole",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:払う",
+     "mot": "払う",
+     "lecture": "はらう",
+     "sens": "payer",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:範囲",
+     "mot": "範囲",
+     "lecture": "はんい",
+     "sens": "étendue, portée",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:反省",
+     "mot": "反省",
+     "lecture": "はんせい",
+     "sens": "autocritique, réflexion",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:反対(する)",
+     "mot": "反対(する)",
+     "lecture": "はんたい",
+     "sens": "opposition, s'opposer",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:判断",
+     "mot": "判断",
+     "lecture": "はんだん",
+     "sens": "jugement",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:反応",
+     "mot": "反応",
+     "lecture": "はんのう",
+     "sens": "réaction",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:販売",
+     "mot": "販売",
+     "lecture": "はんばい",
+     "sens": "vente",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:場合",
+     "mot": "場合",
+     "lecture": "ばあい",
+     "sens": "cas, situation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:倍",
+     "mot": "倍",
+     "lecture": "ばい",
+     "sens": "double, fois",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:場所",
+     "mot": "場所",
+     "lecture": "ばしょ",
+     "sens": "endroit, lieu",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:引っ越す",
+     "mot": "引っ越す",
+     "lecture": "ひっこす",
+     "sens": "déménager",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:必要",
+     "mot": "必要",
+     "lecture": "ひつよう",
+     "sens": "nécessaire",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:評価",
+     "mot": "評価",
+     "lecture": "ひょうか",
+     "sens": "évaluation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:表情",
+     "mot": "表情",
+     "lecture": "ひょうじょう",
+     "sens": "expression du visage",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:評判",
+     "mot": "評判",
+     "lecture": "ひょうばん",
+     "sens": "réputation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:費用",
+     "mot": "費用",
+     "lecture": "ひよう",
+     "sens": "frais, coût",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:昼間",
+     "mot": "昼間",
+     "lecture": "ひるま",
+     "sens": "la journée",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:拾う",
+     "mot": "拾う",
+     "lecture": "ひろう",
+     "sens": "ramasser",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:美術館",
+     "mot": "美術館",
+     "lecture": "びじゅつかん",
+     "sens": "musée d’art",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:平等",
+     "mot": "平等",
+     "lecture": "びょうどう",
+     "sens": "égalité",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:不安",
+     "mot": "不安",
+     "lecture": "ふあん",
+     "sens": "inquiétude, anxiété",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:増える / 減る",
+     "mot": "増える / 減る",
+     "lecture": "ふえる / へる",
+     "sens": "augmenter / diminuer",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:深い",
+     "mot": "深い",
+     "lecture": "ふかい",
+     "sens": "profond",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:複雑 / 簡単",
+     "mot": "複雑 / 簡単",
+     "lecture": "ふくざつ / かんたん",
+     "sens": "compliqué / simple",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:含む",
+     "mot": "含む",
+     "lecture": "ふくむ",
+     "sens": "contenir, inclure",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:不合格",
+     "mot": "不合格",
+     "lecture": "ふごうかく",
+     "sens": "échec (à un examen)",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:普段",
+     "mot": "普段",
+     "lecture": "ふだん",
+     "sens": "d'ordinaire",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:普通",
+     "mot": "普通",
+     "lecture": "ふつう",
+     "sens": "ordinaire, normalement",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:太る",
+     "mot": "太る",
+     "lecture": "ふとる",
+     "sens": "grossir",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:不満",
+     "mot": "不満",
+     "lecture": "ふまん",
+     "sens": "mécontentement",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:踏む",
+     "mot": "踏む",
+     "lecture": "ふむ",
+     "sens": "marcher sur",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:部下",
+     "mot": "部下",
+     "lecture": "ぶか",
+     "sens": "subordonné",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:文化",
+     "mot": "文化",
+     "lecture": "ぶんか",
+     "sens": "culture",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:文学",
+     "mot": "文学",
+     "lecture": "ぶんがく",
+     "sens": "littérature",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:平均",
+     "mot": "平均",
+     "lecture": "へいきん",
+     "sens": "moyenne",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:平日",
+     "mot": "平日",
+     "lecture": "へいじつ",
+     "sens": "jour de semaine",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:変化",
+     "mot": "変化",
+     "lecture": "へんか",
+     "sens": "changement",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:変更(する)",
+     "mot": "変更(する)",
+     "lecture": "へんこう",
+     "sens": "modification, changer",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:返事",
+     "mot": "返事",
+     "lecture": "へんじ",
+     "sens": "réponse",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:便利",
+     "mot": "便利",
+     "lecture": "べんり",
+     "sens": "pratique",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:報告",
+     "mot": "報告",
+     "lecture": "ほうこく",
+     "sens": "rapport, compte rendu",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:方法",
+     "mot": "方法",
+     "lecture": "ほうほう",
+     "sens": "méthode",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:訪問",
+     "mot": "訪問",
+     "lecture": "ほうもん",
+     "sens": "visite",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:法律",
+     "mot": "法律",
+     "lecture": "ほうりつ",
+     "sens": "loi",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:保護(する)",
+     "mot": "保護(する)",
+     "lecture": "ほご",
+     "sens": "protection, protéger",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:星",
+     "mot": "星",
+     "lecture": "ほし",
+     "sens": "étoile",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:褒める",
+     "mot": "褒める",
+     "lecture": "ほめる",
+     "sens": "féliciter, louer",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:翻訳",
+     "mot": "翻訳",
+     "lecture": "ほんやく",
+     "sens": "traduction (écrite)",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:貿易",
+     "mot": "貿易",
+     "lecture": "ぼうえき",
+     "sens": "commerce extérieur",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:防止(する)",
+     "mot": "防止(する)",
+     "lecture": "ぼうし",
+     "sens": "prévention, empêcher",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:僕",
+     "mot": "僕",
+     "lecture": "ぼく",
+     "sens": "moi (masculin familier)",
+     "niv": "N4"
+    }
+   ]
+  },
+  {
+   "id": "g9",
+   "title": "Vocabulaire N3 + N4 — lot 9/10 (ordre gojūon)",
+   "items": [
+    {
+     "id": "vocab:募集",
+     "mot": "募集",
+     "lecture": "ぼしゅう",
+     "sens": "recrutement, appel",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:参る",
+     "mot": "参る",
+     "lecture": "まいる",
+     "sens": "aller/venir (modeste)",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:負ける",
+     "mot": "負ける",
+     "lecture": "まける",
+     "sens": "perdre",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:真面目",
+     "mot": "真面目",
+     "lecture": "まじめ",
+     "sens": "sérieux",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:間違える",
+     "mot": "間違える",
+     "lecture": "まちがえる",
+     "sens": "se tromper",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:祭り",
+     "mot": "祭り",
+     "lecture": "まつり",
+     "sens": "fête, festival",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:守る",
+     "mot": "守る",
+     "lecture": "まもる",
+     "sens": "protéger",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:回る",
+     "mot": "回る",
+     "lecture": "まわる",
+     "sens": "tourner",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:漫画",
+     "mot": "漫画",
+     "lecture": "まんが",
+     "sens": "manga",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:満足(する)",
+     "mot": "満足(する)",
+     "lecture": "まんぞく",
+     "sens": "satisfaction, être satisfait",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:見える",
+     "mot": "見える",
+     "lecture": "みえる",
+     "sens": "être visible",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:湖",
+     "mot": "湖",
+     "lecture": "みずうみ",
+     "sens": "lac",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:味噌",
+     "mot": "味噌",
+     "lecture": "みそ",
+     "sens": "miso",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:見つける",
+     "mot": "見つける",
+     "lecture": "みつける",
+     "sens": "trouver",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:認める",
+     "mot": "認める",
+     "lecture": "みとめる",
+     "sens": "reconnaître, admettre",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:緑",
+     "mot": "緑",
+     "lecture": "みどり",
+     "sens": "vert, verdure",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:港",
+     "mot": "港",
+     "lecture": "みなと",
+     "sens": "port",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:迎える",
+     "mot": "迎える",
+     "lecture": "むかえる",
+     "sens": "accueillir",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:昔",
+     "mot": "昔",
+     "lecture": "むかし",
+     "sens": "autrefois",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:虫",
+     "mot": "虫",
+     "lecture": "むし",
+     "sens": "insecte",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:矛盾",
+     "mot": "矛盾",
+     "lecture": "むじゅん",
+     "sens": "contradiction",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:息子",
+     "mot": "息子",
+     "lecture": "むすこ",
+     "sens": "fils",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:娘",
+     "mot": "娘",
+     "lecture": "むすめ",
+     "sens": "fille",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:村",
+     "mot": "村",
+     "lecture": "むら",
+     "sens": "village",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:珍しい",
+     "mot": "珍しい",
+     "lecture": "めずらしい",
+     "sens": "rare",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:免許",
+     "mot": "免許",
+     "lecture": "めんきょ",
+     "sens": "permis, licence",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:申し込む",
+     "mot": "申し込む",
+     "lecture": "もうしこむ",
+     "sens": "s’inscrire, postuler",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:目的",
+     "mot": "目的",
+     "lecture": "もくてき",
+     "sens": "but, objectif",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:目標",
+     "mot": "目標",
+     "lecture": "もくひょう",
+     "sens": "objectif, cible",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:戻る",
+     "mot": "戻る",
+     "lecture": "もどる",
+     "sens": "revenir",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:森",
+     "mot": "森",
+     "lecture": "もり",
+     "sens": "forêt",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:焼く",
+     "mot": "焼く",
+     "lecture": "やく",
+     "sens": "brûler, griller",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:役",
+     "mot": "役",
+     "lecture": "やく",
+     "sens": "rôle, fonction",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:約束",
+     "mot": "約束",
+     "lecture": "やくそく",
+     "sens": "promesse",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:役立つ",
+     "mot": "役立つ",
+     "lecture": "やくだつ",
+     "sens": "être utile",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:役割",
+     "mot": "役割",
+     "lecture": "やくわり",
+     "sens": "rôle",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:優しい",
+     "mot": "優しい",
+     "lecture": "やさしい",
+     "sens": "gentil, doux",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:安い",
+     "mot": "安い",
+     "lecture": "やすい",
+     "sens": "bon marché",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:やはり / やっぱり",
+     "mot": "やはり / やっぱり",
+     "lecture": "—",
+     "sens": "comme prévu, malgré tout",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:止む",
+     "mot": "止む",
+     "lecture": "やむ",
+     "sens": "cesser",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:柔らかい",
+     "mot": "柔らかい",
+     "lecture": "やわらかい",
+     "sens": "mou, tendre",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:湯",
+     "mot": "湯",
+     "lecture": "ゆ",
+     "sens": "eau chaude",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:夕方",
+     "mot": "夕方",
+     "lecture": "ゆうがた",
+     "sens": "le soir",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:油断",
+     "mot": "油断",
+     "lecture": "ゆだん",
+     "sens": "relâchement, inattention",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:夢",
+     "mot": "夢",
+     "lecture": "ゆめ",
+     "sens": "rêve",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:揺れる",
+     "mot": "揺れる",
+     "lecture": "ゆれる",
+     "sens": "trembler, osciller",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:用意",
+     "mot": "用意",
+     "lecture": "ようい",
+     "sens": "préparation",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:要求(する)",
+     "mot": "要求(する)",
+     "lecture": "ようきゅう",
+     "sens": "exigence, réclamer",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:用事",
+     "mot": "用事",
+     "lecture": "ようじ",
+     "sens": "affaire à régler",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:要望",
+     "mot": "要望",
+     "lecture": "ようぼう",
+     "sens": "demande, souhait",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:汚れる",
+     "mot": "汚れる",
+     "lecture": "よごれる",
+     "sens": "se salir",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:予算",
+     "mot": "予算",
+     "lecture": "よさん",
+     "sens": "budget",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:予想",
+     "mot": "予想",
+     "lecture": "よそう",
+     "sens": "pronostic",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:予測",
+     "mot": "予測",
+     "lecture": "よそく",
+     "sens": "prévision",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:予定",
+     "mot": "予定",
+     "lecture": "よてい",
+     "sens": "programme, prévision",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:夜中",
+     "mot": "夜中",
+     "lecture": "よなか",
+     "sens": "au milieu de la nuit",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:予報",
+     "mot": "予報",
+     "lecture": "よほう",
+     "sens": "prévision (météo)",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:予防(する)",
+     "mot": "予防(する)",
+     "lecture": "よぼう",
+     "sens": "prévention, prévenir",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:予約",
+     "mot": "予約",
+     "lecture": "よやく",
+     "sens": "réservation",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:喜ぶ",
+     "mot": "喜ぶ",
+     "lecture": "よろこぶ",
+     "sens": "se réjouir",
+     "niv": "N4"
+    }
+   ]
+  },
+  {
+   "id": "g10",
+   "title": "Vocabulaire N3 + N4 — lot 10/10 (ordre gojūon)",
+   "items": [
+    {
+     "id": "vocab:理解",
+     "mot": "理解",
+     "lecture": "りかい",
+     "sens": "compréhension",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:留学",
+     "mot": "留学",
+     "lecture": "りゅうがく",
+     "sens": "études à l’étranger",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:理由",
+     "mot": "理由",
+     "lecture": "りゆう",
+     "sens": "raison",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:領収書",
+     "mot": "領収書",
+     "lecture": "りょうしゅうしょ",
+     "sens": "reçu",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:両方",
+     "mot": "両方",
+     "lecture": "りょうほう",
+     "sens": "les deux",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:旅館",
+     "mot": "旅館",
+     "lecture": "りょかん",
+     "sens": "auberge japonaise",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:利用",
+     "mot": "利用",
+     "lecture": "りよう",
+     "sens": "utilisation",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:理論",
+     "mot": "理論",
+     "lecture": "りろん",
+     "sens": "théorie",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:留守",
+     "mot": "留守",
+     "lecture": "るす",
+     "sens": "absence (du domicile)",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:歴史",
+     "mot": "歴史",
+     "lecture": "れきし",
+     "sens": "histoire",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:連絡",
+     "mot": "連絡",
+     "lecture": "れんらく",
+     "sens": "contact, communication",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:沸かす",
+     "mot": "沸かす",
+     "lecture": "わかす",
+     "sens": "faire bouillir",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:別れる",
+     "mot": "別れる",
+     "lecture": "わかれる",
+     "sens": "se séparer",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:沸く",
+     "mot": "沸く",
+     "lecture": "わく",
+     "sens": "bouillir",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:わざわざ",
+     "mot": "わざわざ",
+     "lecture": "—",
+     "sens": "exprès, se donner la peine",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:笑う",
+     "mot": "笑う",
+     "lecture": "わらう",
+     "sens": "rire",
+     "niv": "N4"
+    },
+    {
+     "id": "vocab:割合",
+     "mot": "割合",
+     "lecture": "わりあい",
+     "sens": "proportion, taux",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:割引",
+     "mot": "割引",
+     "lecture": "わりびき",
+     "sens": "réduction",
+     "niv": "N3"
+    },
+    {
+     "id": "vocab:割れる",
+     "mot": "割れる",
+     "lecture": "われる",
+     "sens": "se casser",
+     "niv": "N4"
+    }
+   ]
+  },
+  {
+   "id": "g11",
    "title": "Thème 1 — Verbes composés (複合動詞) fréquents",
-   "table": {
-    "headers": [
-     "Mot",
-     "Lecture",
-     "Sens"
-    ],
-    "rows": [
-     [
-      "申し込む",
-      "もうしこむ",
-      "s'inscrire, postuler"
-     ],
-     [
-      "取り消す",
-      "とりけす",
-      "annuler"
-     ],
-     [
-      "引き受ける",
-      "ひきうける",
-      "se charger de"
-     ],
-     [
-      "思い出す",
-      "おもいだす",
-      "se souvenir"
-     ],
-     [
-      "呼びかける",
-      "よびかける",
-      "lancer un appel"
-     ],
-     [
-      "付き合う",
-      "つきあう",
-      "fréquenter, sortir avec"
-     ],
-     [
-      "落ち着く",
-      "おちつく",
-      "se calmer, se poser"
-     ]
-    ]
-   }
+   "items": [
+    {
+     "id": "vocab:取り消す",
+     "mot": "取り消す",
+     "lecture": "とりけす",
+     "sens": "annuler"
+    },
+    {
+     "id": "vocab:引き受ける",
+     "mot": "引き受ける",
+     "lecture": "ひきうける",
+     "sens": "se charger de"
+    },
+    {
+     "id": "vocab:思い出す",
+     "mot": "思い出す",
+     "lecture": "おもいだす",
+     "sens": "se souvenir"
+    },
+    {
+     "id": "vocab:呼びかける",
+     "mot": "呼びかける",
+     "lecture": "よびかける",
+     "sens": "lancer un appel"
+    },
+    {
+     "id": "vocab:付き合う",
+     "mot": "付き合う",
+     "lecture": "つきあう",
+     "sens": "fréquenter, sortir avec"
+    },
+    {
+     "id": "vocab:落ち着く",
+     "mot": "落ち着く",
+     "lecture": "おちつく",
+     "sens": "se calmer, se poser"
+    }
+   ]
   },
   {
+   "id": "g12",
    "title": "Thème 2 — Adverbes & connecteurs (très testés)",
-   "table": {
-    "headers": [
-     "Mot",
-     "Sens"
-    ],
-    "rows": [
-     [
-      "たとえば",
-      "par exemple"
-     ],
-     [
-      "つまり",
-      "autrement dit"
-     ],
-     [
-      "ところで",
-      "au fait (changement de sujet)"
-     ],
-     [
-      "それに",
-      "de plus"
-     ],
-     [
-      "しかも",
-      "qui plus est"
-     ],
-     [
-      "ただし",
-      "toutefois, à condition que"
-     ],
-     [
-      "かえって",
-      "au contraire, plutôt"
-     ],
-     [
-      "さすが",
-      "comme on pouvait s'y attendre"
-     ],
-     [
-      "わざわざ",
-      "exprès, en se donnant la peine"
-     ],
-     [
-      "なかなか〜ない",
-      "avoir du mal à"
-     ]
-    ]
-   }
+   "items": [
+    {
+     "id": "vocab:たとえば",
+     "mot": "たとえば",
+     "lecture": "",
+     "sens": "par exemple"
+    },
+    {
+     "id": "vocab:つまり",
+     "mot": "つまり",
+     "lecture": "",
+     "sens": "autrement dit"
+    },
+    {
+     "id": "vocab:ところで",
+     "mot": "ところで",
+     "lecture": "",
+     "sens": "au fait (changement de sujet)"
+    },
+    {
+     "id": "vocab:それに",
+     "mot": "それに",
+     "lecture": "",
+     "sens": "de plus"
+    },
+    {
+     "id": "vocab:しかも",
+     "mot": "しかも",
+     "lecture": "",
+     "sens": "qui plus est"
+    },
+    {
+     "id": "vocab:ただし",
+     "mot": "ただし",
+     "lecture": "",
+     "sens": "toutefois, à condition que"
+    },
+    {
+     "id": "vocab:かえって",
+     "mot": "かえって",
+     "lecture": "",
+     "sens": "au contraire, plutôt"
+    },
+    {
+     "id": "vocab:さすが",
+     "mot": "さすが",
+     "lecture": "",
+     "sens": "comme on pouvait s'y attendre"
+    },
+    {
+     "id": "vocab:なかなか〜ない",
+     "mot": "なかなか〜ない",
+     "lecture": "",
+     "sens": "avoir du mal à"
+    }
+   ]
   },
   {
+   "id": "g13",
    "title": "Thème 3 — Katakana courants au N3",
-   "table": {
-    "headers": [
-     "Mot",
-     "Sens"
-    ],
-    "rows": [
-     [
-      "イメージ",
-      "image, impression"
-     ],
-     [
-      "データ",
-      "données"
-     ],
-     [
-      "チャンス",
-      "occasion"
-     ],
-     [
-      "サービス",
-      "service"
-     ],
-     [
-      "テーマ",
-      "thème"
-     ],
-     [
-      "スケジュール",
-      "emploi du temps"
-     ],
-     [
-      "アドバイス",
-      "conseil"
-     ],
-     [
-      "マナー",
-      "savoir-vivre"
-     ]
-    ]
-   }
+   "items": [
+    {
+     "id": "vocab:イメージ",
+     "mot": "イメージ",
+     "lecture": "",
+     "sens": "image, impression"
+    },
+    {
+     "id": "vocab:データ",
+     "mot": "データ",
+     "lecture": "",
+     "sens": "données"
+    },
+    {
+     "id": "vocab:チャンス",
+     "mot": "チャンス",
+     "lecture": "",
+     "sens": "occasion"
+    },
+    {
+     "id": "vocab:サービス",
+     "mot": "サービス",
+     "lecture": "",
+     "sens": "service"
+    },
+    {
+     "id": "vocab:テーマ",
+     "mot": "テーマ",
+     "lecture": "",
+     "sens": "thème"
+    },
+    {
+     "id": "vocab:スケジュール",
+     "mot": "スケジュール",
+     "lecture": "",
+     "sens": "emploi du temps"
+    },
+    {
+     "id": "vocab:アドバイス",
+     "mot": "アドバイス",
+     "lecture": "",
+     "sens": "conseil"
+    },
+    {
+     "id": "vocab:マナー",
+     "mot": "マナー",
+     "lecture": "",
+     "sens": "savoir-vivre"
+    }
+   ]
   },
   {
+   "id": "g14",
    "title": "Thème 4 — Onomatopées (擬態語) fréquentes",
-   "table": {
-    "headers": [
-     "Mot",
-     "Sens"
-    ],
-    "rows": [
-     [
-      "そろそろ",
-      "bientôt, il est temps de"
-     ],
-     [
-      "ますます",
-      "de plus en plus"
-     ],
-     [
-      "はっきり",
-      "clairement"
-     ],
-     [
-      "ちゃんと",
-      "correctement, comme il faut"
-     ],
-     [
-      "きちんと",
-      "en ordre, proprement"
-     ],
-     [
-      "ぐっすり",
-      "(dormir) profondément"
-     ],
-     [
-      "うっかり",
-      "par inadvertance"
-     ],
-     [
-      "イライラ",
-      "être agacé"
-     ]
-    ]
-   }
+   "items": [
+    {
+     "id": "vocab:そろそろ",
+     "mot": "そろそろ",
+     "lecture": "",
+     "sens": "bientôt, il est temps de"
+    },
+    {
+     "id": "vocab:ますます",
+     "mot": "ますます",
+     "lecture": "",
+     "sens": "de plus en plus"
+    },
+    {
+     "id": "vocab:はっきり",
+     "mot": "はっきり",
+     "lecture": "",
+     "sens": "clairement"
+    },
+    {
+     "id": "vocab:ちゃんと",
+     "mot": "ちゃんと",
+     "lecture": "",
+     "sens": "correctement, comme il faut"
+    },
+    {
+     "id": "vocab:ぐっすり",
+     "mot": "ぐっすり",
+     "lecture": "",
+     "sens": "(dormir) profondément"
+    },
+    {
+     "id": "vocab:うっかり",
+     "mot": "うっかり",
+     "lecture": "",
+     "sens": "par inadvertance"
+    },
+    {
+     "id": "vocab:イライラ",
+     "mot": "イライラ",
+     "lecture": "",
+     "sens": "être agacé"
+    }
+   ]
   },
   {
+   "id": "g15",
    "title": "Thème 5 — Verbes courants N3",
-   "table": {
-    "headers": [
-     "Mot",
-     "Lecture",
-     "Sens"
-    ],
-    "rows": [
-     [
-      "増える / 減る",
-      "ふえる / へる",
-      "augmenter / diminuer"
-     ],
-     [
-      "比べる",
-      "くらべる",
-      "comparer"
-     ],
-     [
-      "選ぶ",
-      "えらぶ",
-      "choisir"
-     ],
-     [
-      "決める",
-      "きめる",
-      "décider"
-     ],
-     [
-      "育てる",
-      "そだてる",
-      "élever, cultiver"
-     ],
-     [
-      "進む",
-      "すすむ",
-      "avancer, progresser"
-     ],
-     [
-      "戻る",
-      "もどる",
-      "revenir"
-     ],
-     [
-      "変わる / 変える",
-      "かわる / かえる",
-      "changer (intr. / tr.)"
-     ],
-     [
-      "続く / 続ける",
-      "つづく / つづける",
-      "continuer (intr. / tr.)"
-     ],
-     [
-      "集める",
-      "あつめる",
-      "rassembler, collectionner"
-     ],
-     [
-      "配る",
-      "くばる",
-      "distribuer"
-     ],
-     [
-      "含む",
-      "ふくむ",
-      "contenir, inclure"
-     ],
-     [
-      "断る",
-      "ことわる",
-      "refuser"
-     ],
-     [
-      "過ごす",
-      "すごす",
-      "passer (du temps)"
-     ]
-    ]
-   }
+   "items": [
+    {
+     "id": "vocab:決める",
+     "mot": "決める",
+     "lecture": "きめる",
+     "sens": "décider"
+    },
+    {
+     "id": "vocab:配る",
+     "mot": "配る",
+     "lecture": "くばる",
+     "sens": "distribuer"
+    },
+    {
+     "id": "vocab:断る",
+     "mot": "断る",
+     "lecture": "ことわる",
+     "sens": "refuser"
+    },
+    {
+     "id": "vocab:過ごす",
+     "mot": "過ごす",
+     "lecture": "すごす",
+     "sens": "passer (du temps)"
+    }
+   ]
   },
   {
+   "id": "g16",
    "title": "Thème 6 — Adjectifs fréquents",
-   "table": {
-    "headers": [
-     "Mot",
-     "Lecture",
-     "Sens"
-    ],
-    "rows": [
-     [
-      "重要(な)",
-      "じゅうよう",
-      "important"
-     ],
-     [
-      "必要(な)",
-      "ひつよう",
-      "nécessaire"
-     ],
-     [
-      "十分(な)",
-      "じゅうぶん",
-      "suffisant"
-     ],
-     [
-      "正確(な)",
-      "せいかく",
-      "exact, précis"
-     ],
-     [
-      "適当(な)",
-      "てきとう",
-      "approprié ; au hasard"
-     ],
-     [
-      "急(な)",
-      "きゅう",
-      "soudain, urgent"
-     ],
-     [
-      "得意(な) / 苦手(な)",
-      "とくい / にがて",
-      "fort en / faible en"
-     ],
-     [
-      "盛ん(な)",
-      "さかん",
-      "florissant, actif"
-     ],
-     [
-      "詳しい",
-      "くわしい",
-      "détaillé, qui s'y connaît"
-     ],
-     [
-      "厳しい",
-      "きびしい",
-      "sévère, dur"
-     ],
-     [
-      "親しい",
-      "したしい",
-      "proche, intime"
-     ],
-     [
-      "珍しい",
-      "めずらしい",
-      "rare, inhabituel"
-     ],
-     [
-      "etc. — 苦しい / 怖い",
-      "くるしい / こわい",
-      "pénible / effrayant"
-     ]
-    ]
-   }
+   "items": [
+    {
+     "id": "vocab:重要(な)",
+     "mot": "重要(な)",
+     "lecture": "じゅうよう",
+     "sens": "important"
+    },
+    {
+     "id": "vocab:必要(な)",
+     "mot": "必要(な)",
+     "lecture": "ひつよう",
+     "sens": "nécessaire"
+    },
+    {
+     "id": "vocab:十分(な)",
+     "mot": "十分(な)",
+     "lecture": "じゅうぶん",
+     "sens": "suffisant"
+    },
+    {
+     "id": "vocab:正確(な)",
+     "mot": "正確(な)",
+     "lecture": "せいかく",
+     "sens": "exact, précis"
+    },
+    {
+     "id": "vocab:適当(な)",
+     "mot": "適当(な)",
+     "lecture": "てきとう",
+     "sens": "approprié ; au hasard"
+    },
+    {
+     "id": "vocab:得意(な) / 苦手(な)",
+     "mot": "得意(な) / 苦手(な)",
+     "lecture": "とくい / にがて",
+     "sens": "fort en / faible en"
+    },
+    {
+     "id": "vocab:盛ん(な)",
+     "mot": "盛ん(な)",
+     "lecture": "さかん",
+     "sens": "florissant, actif"
+    },
+    {
+     "id": "vocab:詳しい",
+     "mot": "詳しい",
+     "lecture": "くわしい",
+     "sens": "détaillé, qui s'y connaît"
+    },
+    {
+     "id": "vocab:厳しい",
+     "mot": "厳しい",
+     "lecture": "きびしい",
+     "sens": "sévère, dur"
+    },
+    {
+     "id": "vocab:etc. — 苦しい / 怖い",
+     "mot": "etc. — 苦しい / 怖い",
+     "lecture": "くるしい / こわい",
+     "sens": "pénible / effrayant"
+    }
+   ]
   },
   {
+   "id": "g17",
    "title": "Thème 7 — Adverbes & expressions",
-   "table": {
-    "headers": [
-     "Mot",
-     "Sens"
-    ],
-    "rows": [
-     [
-      "必ず (かならず)",
-      "sans faute, à coup sûr"
-     ],
-     [
-      "ぜひ",
-      "absolument, je t'en prie"
-     ],
-     [
-      "特に (とくに)",
-      "surtout, en particulier"
-     ],
-     [
-      "実は (じつは)",
-      "en fait, à vrai dire"
-     ],
-     [
-      "たぶん",
-      "probablement"
-     ],
-     [
-      "もしかしたら",
-      "peut-être (que)"
-     ],
-     [
-      "できるだけ",
-      "autant que possible"
-     ],
-     [
-      "わざと",
-      "exprès, volontairement"
-     ],
-     [
-      "偶然 (ぐうぜん)",
-      "par hasard"
-     ],
-     [
-      "そのうち",
-      "un de ces jours, bientôt"
-     ],
-     [
-      "さっき",
-      "tout à l'heure (passé proche)"
-     ],
-     [
-      "ますます",
-      "de plus en plus"
-     ]
-    ]
-   }
+   "items": [
+    {
+     "id": "vocab:必ず (かならず)",
+     "mot": "必ず (かならず)",
+     "lecture": "",
+     "sens": "sans faute, à coup sûr"
+    },
+    {
+     "id": "vocab:ぜひ",
+     "mot": "ぜひ",
+     "lecture": "",
+     "sens": "absolument, je t'en prie"
+    },
+    {
+     "id": "vocab:特に (とくに)",
+     "mot": "特に (とくに)",
+     "lecture": "",
+     "sens": "surtout, en particulier"
+    },
+    {
+     "id": "vocab:実は (じつは)",
+     "mot": "実は (じつは)",
+     "lecture": "",
+     "sens": "en fait, à vrai dire"
+    },
+    {
+     "id": "vocab:たぶん",
+     "mot": "たぶん",
+     "lecture": "",
+     "sens": "probablement"
+    },
+    {
+     "id": "vocab:もしかしたら",
+     "mot": "もしかしたら",
+     "lecture": "",
+     "sens": "peut-être (que)"
+    },
+    {
+     "id": "vocab:できるだけ",
+     "mot": "できるだけ",
+     "lecture": "",
+     "sens": "autant que possible"
+    },
+    {
+     "id": "vocab:わざと",
+     "mot": "わざと",
+     "lecture": "",
+     "sens": "exprès, volontairement"
+    },
+    {
+     "id": "vocab:偶然 (ぐうぜん)",
+     "mot": "偶然 (ぐうぜん)",
+     "lecture": "",
+     "sens": "par hasard"
+    },
+    {
+     "id": "vocab:そのうち",
+     "mot": "そのうち",
+     "lecture": "",
+     "sens": "un de ces jours, bientôt"
+    },
+    {
+     "id": "vocab:さっき",
+     "mot": "さっき",
+     "lecture": "",
+     "sens": "tout à l'heure (passé proche)"
+    }
+   ]
   },
   {
+   "id": "g18",
    "title": "Thème 8 — Noms : abstrait & société",
-   "table": {
-    "headers": [
-     "Mot",
-     "Lecture",
-     "Sens"
-    ],
-    "rows": [
-     [
-      "締め切り",
-      "しめきり",
-      "date limite"
-     ],
-     [
-      "都合",
-      "つごう",
-      "convenance, disponibilité"
-     ],
-     [
-      "内容",
-      "ないよう",
-      "contenu"
-     ],
-     [
-      "原因 / 結果",
-      "げんいん / けっか",
-      "cause / résultat"
-     ],
-     [
-      "理由",
-      "りゆう",
-      "raison, motif"
-     ],
-     [
-      "目的",
-      "もくてき",
-      "but, objectif"
-     ],
-     [
-      "状況",
-      "じょうきょう",
-      "situation"
-     ],
-     [
-      "影響",
-      "えいきょう",
-      "influence, effet"
-     ],
-     [
-      "関係",
-      "かんけい",
-      "relation, rapport"
-     ],
-     [
-      "経験",
-      "けいけん",
-      "expérience"
-     ],
-     [
-      "義務 / 権利",
-      "ぎむ / けんり",
-      "devoir / droit"
-     ],
-     [
-      "差 / 違い",
-      "さ / ちがい",
-      "écart / différence"
-     ]
-    ]
-   }
+   "items": [
+    {
+     "id": "vocab:締め切り",
+     "mot": "締め切り",
+     "lecture": "しめきり",
+     "sens": "date limite"
+    },
+    {
+     "id": "vocab:原因 / 結果",
+     "mot": "原因 / 結果",
+     "lecture": "げんいん / けっか",
+     "sens": "cause / résultat"
+    },
+    {
+     "id": "vocab:義務 / 権利",
+     "mot": "義務 / 権利",
+     "lecture": "ぎむ / けんり",
+     "sens": "devoir / droit"
+    },
+    {
+     "id": "vocab:差 / 違い",
+     "mot": "差 / 違い",
+     "lecture": "さ / ちがい",
+     "sens": "écart / différence"
+    }
+   ]
   }
  ]
 }

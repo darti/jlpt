@@ -1,0 +1,29 @@
+{
+ "id": "method",
+ "title": "読解・聴解 — Méthode",
+ "kind": "method",
+ "sections": [
+  {
+   "title": "読解 — Méthode compréhension écrite",
+   "tips": [
+    "<b>Lis la question d'abord</b>, puis cherche l'info dans le texte (surtout pour 情報検索, repérage d'info).",
+    "Repère les <b>connecteurs</b> (しかし, つまり, だから) : ils signalent où est la réponse.",
+    "Le 指示語 (こそあど : これ・それ・あれ) renvoie toujours à un mot proche avant — sache à quoi il réfère.",
+    "Ne traduis pas tout. <b>Vise le sens global</b>, puis zoome sur la phrase utile.",
+    "<b>Chronomètre-toi</b> dès la phase 3 : ~1 min par question. La lecture est une course.",
+    "Types de questions : 短文 (courts), 中文 (moyens), 長文 (longs), 情報検索 (annonces/pubs)."
+   ]
+  },
+  {
+   "title": "聴解 — Méthode compréhension orale",
+   "tips": [
+    "5 formats : 課題理解 (tâche à faire), 概要理解 (idée générale), 発話表現 (quoi dire), 即時応答 (réponse immédiate).",
+    "<b>Shadowing</b> : répète à voix haute par-dessus l'audio → améliore écoute ET prononciation.",
+    "Écoute du japonais <b>tous les jours</b>, même passivement (podcast, anime sans sous-titres FR).",
+    "Pour 即時応答 : entraîne-toi aux réponses naturelles (依頼 demandes, 誘い invitations, 謝罪 excuses).",
+    "Anticipe : pendant la lecture des choix, devine de quoi va parler l'audio.",
+    "Ne reste pas bloqué sur un mot inconnu — continue, le sens global suffit souvent."
+   ]
+  }
+ ]
+}

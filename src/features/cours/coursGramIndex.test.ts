@@ -3,7 +3,7 @@ import {
   normalizeForm, buildCoursGramIndex, extractGrammarForm, resolveGrammarRappel,
   loadCoursGramIndex, clearCoursGramCache,
 } from "./coursGramIndex.ts";
-import type { CoursSection } from "./useCours.ts";
+import type { LearnCategory } from "./coursSchema.ts";
 import type { Question } from "../../types/quiz.ts";
 
 test("normalizeForm strips 〜, spaces, and keeps the part after a colon", () => {
@@ -12,26 +12,25 @@ test("normalizeForm strips 〜, spaces, and keeps the part after a colon", () =>
   expect(normalizeForm(" 〜について ")).toBe("について");
 });
 
-const section: CoursSection = {
-  id: "gram", title: "文法",
-  lessons: [
-    { title: "Aide-mémoire", lessons: [
-      { title: "lot 1", table: { headers: ["Forme", "Niv.", "Sens"], rows: [
-        ["〜たら", "N3", "« quand/dès que »."],
-        ["〜について / 〜に対して", "N3", "« au sujet de »."],
-      ] } },
+const section: LearnCategory = {
+  id: "gram", title: "文法", kind: "learn",
+  groups: [
+    { id: "g1", title: "Leçon 1", items: [
+      { id: "gram:たら", form: "〜たら", niv: "N3", mean: "« quand/dès que »." },
+      { id: "gram:について", form: "〜について", niv: "N3", mean: "« au sujet de »." },
+      { id: "gram:に対して", form: "〜に対して", niv: "N3", mean: "« au sujet de »." },
+      // an item without niv/mean (e.g. from a conjugation table) must default to "" not undefined
+      { id: "gram:五段", form: "五段" },
     ] },
-    // a non-matching table (different headers) must be ignored
-    { title: "conjug", table: { headers: ["Forme", "五段", "一段"], rows: [["x", "y", "z"]] } },
   ],
 };
 
-test("buildCoursGramIndex indexes only the Forme/Niv./Sens table, splitting alternatives", () => {
+test("buildCoursGramIndex indexes every GramItem by normalized form", () => {
   const idx = buildCoursGramIndex(section);
   expect(idx.get("たら")).toEqual({ forme: "〜たら", niv: "N3", sens: "« quand/dès que »." });
   expect(idx.get("について")).toEqual({ forme: "〜について", niv: "N3", sens: "« au sujet de »." });
   expect(idx.get("に対して")).toEqual({ forme: "〜に対して", niv: "N3", sens: "« au sujet de »." });
-  expect(idx.has("x")).toBe(false); // conjugation table ignored
+  expect(idx.get("五段")).toEqual({ forme: "五段", niv: "", sens: "" });
 });
 
 test("extractGrammarForm returns the first <b> content, or null", () => {
