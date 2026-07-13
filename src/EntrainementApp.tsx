@@ -11,6 +11,8 @@ import { readProgress } from "./lib/storage.ts";
 import { speakQuestion } from "./lib/tts.ts";
 import type { Question } from "./types/quiz.ts";
 import type { DiagAnswer } from "./features/quiz/useQuiz.ts";
+import { useCoursGramIndex } from "./features/cours/useCoursGramIndex.ts";
+import { resolveGrammarRappel, type CoursGramIndex } from "./features/cours/coursGramIndex.ts";
 
 /** Pure, prop-driven Entraînement content: the hub (phase "home") or the quiz flow
  *  (question/corrigé/résultats). SSR-renderable — all effects live in the container +
@@ -21,6 +23,7 @@ export function EntrainementAppView(props: {
   answered: boolean; chosen: number | null;
   index?: number;
   mode?: "normal" | "diagnostic"; diagAnswers?: DiagAnswer[]; diagModel?: DashboardModel | null;
+  coursIndex?: CoursGramIndex | null;
   onStart: () => void; onChoose: (i: number) => void; onNext: () => void; onRestart: () => void;
   onSetMinutes: (m: number) => void;
   onResumeNow: () => void; onDismissResume: () => void;
@@ -56,7 +59,7 @@ export function EntrainementAppView(props: {
       {props.phase === "corrige" && question && (
         <div className="flex flex-col gap-4">
           <QuestionCard question={question} chosen={props.chosen} answered={true} onChoose={() => {}} onSpeak={onSpeak} />
-          <Corrige question={question} correct={props.chosen != null && props.chosen === question.a} />
+          <Corrige question={question} correct={props.chosen != null && props.chosen === question.a} rappel={resolveGrammarRappel(question, props.coursIndex ?? null)} />
           <button
             type="button"
             onClick={props.onNext}
@@ -70,7 +73,7 @@ export function EntrainementAppView(props: {
         <Results count={props.count} right={props.right} onRestart={props.onRestart} />
       )}
       {props.phase === "diag-results" && props.diagModel && (
-        <DiagnosticResults model={props.diagModel} answers={props.diagAnswers ?? []} onDone={props.onDiagDone ?? (() => {})} />
+        <DiagnosticResults model={props.diagModel} answers={props.diagAnswers ?? []} onDone={props.onDiagDone ?? (() => {})} coursIndex={props.coursIndex ?? null} />
       )}
     </>
   );
@@ -81,6 +84,7 @@ export function EntrainementAppView(props: {
 export default function EntrainementApp() {
   const quiz = useQuiz();
   const [resumeDismissed, setResumeDismissed] = useState(false);
+  const coursIndex = useCoursGramIndex();
 
   const diagModel: DashboardModel | null = quiz.phase === "diag-results"
     ? dashboardModel(readProgress() ?? { total: 0, skill: {} }, new Date())
@@ -93,6 +97,7 @@ export default function EntrainementApp() {
       resume={resumeDismissed ? null : quiz.resume}
       answered={quiz.answered} chosen={quiz.chosen}
       mode={quiz.mode} diagAnswers={quiz.diagAnswers} diagModel={diagModel}
+      coursIndex={coursIndex}
       onStart={quiz.start} onChoose={quiz.choose} onNext={quiz.next} onRestart={quiz.restart}
       onSetMinutes={quiz.setMinutes}
       onResumeNow={quiz.resumeNow} onDismissResume={() => setResumeDismissed(true)}

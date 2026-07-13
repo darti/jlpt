@@ -26,25 +26,32 @@ beforeEach(() => {
   root = createRoot(container);
 });
 
-afterEach(() => {
-  act(() => { root.unmount(); });
+afterEach(async () => {
+  await act(async () => { root.unmount(); await new Promise((r) => setTimeout(r, 0)); });
   container.remove();
 });
 
-function renderApp() {
-  act(() => {
+async function renderApp() {
+  await act(async () => {
     root.render(<MemoryRouter><EntrainementApp /></MemoryRouter>);
+    await new Promise((r) => setTimeout(r, 0));
   });
 }
 
-test("mounts live and renders the session card in resume state", () => {
-  renderApp();
+async function flushEffects() {
+  await act(async () => { await new Promise((r) => setTimeout(r, 0)); });
+}
+
+test("mounts live and renders the session card in resume state", async () => {
+  await renderApp();
+  await flushEffects();
   expect(container.textContent ?? "").toContain("Reprendre ta session");
   expect(container.textContent ?? "").toContain("Continuer");
 });
 
-test("hub no longer shows stats, chart, settings or sync (moved to Accueil/Paramétrage)", () => {
-  renderApp();
+test("hub no longer shows stats, chart, settings or sync (moved to Accueil/Paramétrage)", async () => {
+  await renderApp();
+  await flushEffects();
   const text = container.textContent ?? "";
   expect(text).not.toContain("réussite estimée"); // Dashboard stats → Accueil
   expect(text).not.toContain("estimé /180");       // ProgressChart → Accueil
