@@ -1,4 +1,7 @@
-/** Progression de cours : état par item (known/review), persistée à part du quiz. Pur + localStorage. */
+/**
+ * Progression de cours : état par item (known/review), persistée à part du quiz.
+ * Pur + localStorage.
+ */
 import type { CoursGroup, LearnCategory } from "./coursSchema.ts";
 
 export type ItemState = "known" | "review";
@@ -19,7 +22,11 @@ export function groupProgress(group: CoursGroup, p: CoursProgress): GroupStats {
 export function categoryProgress(cat: LearnCategory, p: CoursProgress): GroupStats {
   return cat.groups.reduce<GroupStats>((acc, grp) => {
     const s = groupProgress(grp, p);
-    return { known: acc.known + s.known, review: acc.review + s.review, total: acc.total + s.total };
+    return {
+      known: acc.known + s.known,
+      review: acc.review + s.review,
+      total: acc.total + s.total,
+    };
   }, { known: 0, review: 0, total: 0 });
 }
 
@@ -29,13 +36,19 @@ export function cycleState(cur: ItemState | undefined): ItemState | undefined {
   return undefined;
 }
 
-export function setItemState(p: CoursProgress, id: string, s: ItemState | undefined): CoursProgress {
+export function setItemState(
+  p: CoursProgress,
+  id: string,
+  s: ItemState | undefined
+): CoursProgress {
   const next = { ...p };
   if (s === undefined) delete next[id]; else next[id] = s;
   return next;
 }
 
-export function loadCoursProgress(store: Pick<Storage, "getItem"> = globalThis.localStorage): CoursProgress {
+export function loadCoursProgress(
+  store: Pick<Storage, "getItem"> = globalThis.localStorage
+): CoursProgress {
   let raw: string | null;
   try { raw = store.getItem(KEY); } catch { return {}; }
   if (raw === null) return {};
@@ -50,6 +63,9 @@ export function loadCoursProgress(store: Pick<Storage, "getItem"> = globalThis.l
   } catch { return {}; }
 }
 
-export function saveCoursProgress(p: CoursProgress, store: Pick<Storage, "setItem"> = globalThis.localStorage): void {
+export function saveCoursProgress(
+  p: CoursProgress,
+  store: Pick<Storage, "setItem"> = globalThis.localStorage
+): void {
   try { store.setItem(KEY, JSON.stringify(p)); } catch { /* best-effort */ }
 }

@@ -15,7 +15,12 @@ test("groupProgress compte known/review/total, ignore les états manquants", () 
 });
 
 test("categoryProgress additionne sur tous les groupes", () => {
-  const cat: LearnCategory = { id: "vocab", title: "V", kind: "learn", groups: [g("x", "a", "b"), g("y", "c")] };
+  const cat: LearnCategory = {
+    id: "vocab",
+    title: "V",
+    kind: "learn",
+    groups: [g("x", "a", "b"), g("y", "c")],
+  };
   const p: CoursProgress = { a: "known", c: "known" };
   expect(categoryProgress(cat, p)).toEqual({ known: 2, review: 0, total: 3 });
 });
@@ -35,7 +40,10 @@ test("setItemState pose un état, supprime la clé quand undefined, sans muter l
 
 test("load/save : round-trip, JSON invalide → {}, valeurs inconnues filtrées", () => {
   const mem: Record<string, string> = {};
-  const store = { getItem: (k: string) => mem[k] ?? null, setItem: (k: string, v: string) => { mem[k] = v; } };
+  const store = {
+    getItem: (k: string) => mem[k] ?? null,
+    setItem: (k: string, v: string) => { mem[k] = v; },
+  };
   saveCoursProgress({ a: "known", b: "review" }, store);
   expect(loadCoursProgress(store)).toEqual({ a: "known", b: "review" });
   mem["jlptN3_cours_v1"] = "{pas du json";
