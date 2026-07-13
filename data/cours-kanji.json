@@ -2,14 +2,1287 @@
  "id": "kanji",
  "title": "漢字 — Kanji N3 par thèmes",
  "kind": "learn",
- "intro": [
-  "Apprends-les <b>dans des mots</b> (colonne exemples). ~650 kanji au total ; voici des lots à fort rendement.",
-  "Le N3 demande ~650 kanji au total. Apprends-les dans des mots (colonne exemples), entraîne-toi avec les quiz Kanji de l'app et reviens sur « Réviser mes erreurs ». Vise ~20 kanji nouveaux/semaine en phase 1–2."
- ],
  "groups": [
   {
    "id": "g1",
-   "title": "Kanji N3 + N4 — lot 1/9 (ordre gojūon)",
+   "title": "Famille 亻 — personne",
+   "items": [
+    {
+     "id": "kanji:位",
+     "kanji": "位",
+     "lecture": "イ・くらい",
+     "sens": "rang, position"
+    },
+    {
+     "id": "kanji:億",
+     "kanji": "億",
+     "lecture": "オク",
+     "sens": "cent millions"
+    },
+    {
+     "id": "kanji:化",
+     "kanji": "化",
+     "lecture": "カ・ケ・ば(ける)",
+     "sens": "transformer, -isation"
+    },
+    {
+     "id": "kanji:供",
+     "kanji": "供",
+     "lecture": "キョウ・そな(える)・とも",
+     "sens": "offrir, accompagner"
+    },
+    {
+     "id": "kanji:偶",
+     "kanji": "偶",
+     "lecture": "グウ",
+     "sens": "par hasard, pair"
+    },
+    {
+     "id": "kanji:係",
+     "kanji": "係",
+     "lecture": "ケイ・かか(る)",
+     "sens": "lien, responsable"
+    },
+    {
+     "id": "kanji:件",
+     "kanji": "件",
+     "lecture": "ケン",
+     "sens": "affaire, (compteur)"
+    },
+    {
+     "id": "kanji:健",
+     "kanji": "健",
+     "lecture": "ケン・すこ(やか)",
+     "sens": "sain, vigoureux"
+    },
+    {
+     "id": "kanji:個",
+     "kanji": "個",
+     "lecture": "コ",
+     "sens": "individuel, (compteur)"
+    },
+    {
+     "id": "kanji:傷",
+     "kanji": "傷",
+     "lecture": "ショウ・きず",
+     "sens": "blessure"
+    },
+    {
+     "id": "kanji:信",
+     "kanji": "信",
+     "lecture": "シン",
+     "sens": "croire, confiance"
+    },
+    {
+     "id": "kanji:使",
+     "kanji": "使",
+     "lecture": "シ・つか(う)",
+     "sens": "utiliser"
+    },
+    {
+     "id": "kanji:仕",
+     "kanji": "仕",
+     "lecture": "シ・つか(える)",
+     "sens": "servir, travail"
+    },
+    {
+     "id": "kanji:住",
+     "kanji": "住",
+     "lecture": "ジュウ・す(む)",
+     "sens": "habiter"
+    },
+    {
+     "id": "kanji:仁",
+     "kanji": "仁",
+     "lecture": "ジン",
+     "sens": "bienveillance, humanité"
+    },
+    {
+     "id": "kanji:似",
+     "kanji": "似",
+     "lecture": "ジ・に(る)",
+     "sens": "ressembler"
+    },
+    {
+     "id": "kanji:像",
+     "kanji": "像",
+     "lecture": "ゾウ",
+     "sens": "image, statue"
+    },
+    {
+     "id": "kanji:他",
+     "kanji": "他",
+     "lecture": "タ・ほか",
+     "sens": "autre"
+    },
+    {
+     "id": "kanji:代",
+     "kanji": "代",
+     "lecture": "ダイ・タイ・か(わる)",
+     "sens": "génération, remplacer"
+    },
+    {
+     "id": "kanji:仲",
+     "kanji": "仲",
+     "lecture": "チュウ・なか",
+     "sens": "relation, entente"
+    },
+    {
+     "id": "kanji:値",
+     "kanji": "値",
+     "lecture": "チ・ね・あたい",
+     "sens": "valeur, prix"
+    },
+    {
+     "id": "kanji:停",
+     "kanji": "停",
+     "lecture": "テイ",
+     "sens": "s'arrêter, arrêt"
+    },
+    {
+     "id": "kanji:任",
+     "kanji": "任",
+     "lecture": "ニン・まか(せる)",
+     "sens": "confier, charge"
+    },
+    {
+     "id": "kanji:俳",
+     "kanji": "俳",
+     "lecture": "ハイ",
+     "sens": "haïku, acteur"
+    },
+    {
+     "id": "kanji:倍",
+     "kanji": "倍",
+     "lecture": "バイ",
+     "sens": "double, fois"
+    },
+    {
+     "id": "kanji:備",
+     "kanji": "備",
+     "lecture": "ビ・そな(える)",
+     "sens": "préparer, équiper"
+    },
+    {
+     "id": "kanji:優",
+     "kanji": "優",
+     "lecture": "ユウ・やさ(しい)・すぐ(れる)",
+     "sens": "supérieur, doux"
+    },
+    {
+     "id": "kanji:例",
+     "kanji": "例",
+     "lecture": "レイ・たと(える)",
+     "sens": "exemple"
+    },
+    {
+     "id": "kanji:働",
+     "kanji": "働",
+     "lecture": "ドウ・はたら(く)",
+     "sens": "travailler",
+     "exemple": "労働 (rōdō) travail"
+    },
+    {
+     "id": "kanji:価",
+     "kanji": "価",
+     "lecture": "カ・あたい",
+     "sens": "valeur",
+     "exemple": "価格 (kakaku) prix"
+    }
+   ]
+  },
+  {
+   "id": "g2",
+   "title": "Famille 氵 — eau",
+   "items": [
+    {
+     "id": "kanji:泳",
+     "kanji": "泳",
+     "lecture": "エイ・およ(ぐ)",
+     "sens": "nager"
+    },
+    {
+     "id": "kanji:温",
+     "kanji": "温",
+     "lecture": "オン・あたた(かい)",
+     "sens": "chaud, température"
+    },
+    {
+     "id": "kanji:漢",
+     "kanji": "漢",
+     "lecture": "カン",
+     "sens": "Chine, kanji"
+    },
+    {
+     "id": "kanji:泣",
+     "kanji": "泣",
+     "lecture": "キュウ・な(く)",
+     "sens": "pleurer"
+    },
+    {
+     "id": "kanji:況",
+     "kanji": "況",
+     "lecture": "キョウ",
+     "sens": "situation, état"
+    },
+    {
+     "id": "kanji:決",
+     "kanji": "決",
+     "lecture": "ケツ・き(める)",
+     "sens": "décider"
+    },
+    {
+     "id": "kanji:港",
+     "kanji": "港",
+     "lecture": "コウ・みなと",
+     "sens": "port"
+    },
+    {
+     "id": "kanji:混",
+     "kanji": "混",
+     "lecture": "コン・ま(じる)",
+     "sens": "mélanger"
+    },
+    {
+     "id": "kanji:湖",
+     "kanji": "湖",
+     "lecture": "コ・みずうみ",
+     "sens": "lac"
+    },
+    {
+     "id": "kanji:酒",
+     "kanji": "酒",
+     "lecture": "シュ・さけ",
+     "sens": "alcool, saké"
+    },
+    {
+     "id": "kanji:消",
+     "kanji": "消",
+     "lecture": "ショウ・き(える)・け(す)",
+     "sens": "éteindre, disparaître"
+    },
+    {
+     "id": "kanji:深",
+     "kanji": "深",
+     "lecture": "シン・ふか(い)",
+     "sens": "profond"
+    },
+    {
+     "id": "kanji:準",
+     "kanji": "準",
+     "lecture": "ジュン",
+     "sens": "niveau, norme"
+    },
+    {
+     "id": "kanji:治",
+     "kanji": "治",
+     "lecture": "ジ・チ・おさ(める)",
+     "sens": "gouverner, soigner"
+    },
+    {
+     "id": "kanji:清",
+     "kanji": "清",
+     "lecture": "セイ・きよ(い)",
+     "sens": "pur, propre"
+    },
+    {
+     "id": "kanji:測",
+     "kanji": "測",
+     "lecture": "ソク・はか(る)",
+     "sens": "mesurer"
+    },
+    {
+     "id": "kanji:注",
+     "kanji": "注",
+     "lecture": "チュウ・そそ(ぐ)",
+     "sens": "verser, attention"
+    },
+    {
+     "id": "kanji:沈",
+     "kanji": "沈",
+     "lecture": "チン・しず(む)",
+     "sens": "couler, sombrer"
+    },
+    {
+     "id": "kanji:湯",
+     "kanji": "湯",
+     "lecture": "トウ・ゆ",
+     "sens": "eau chaude"
+    },
+    {
+     "id": "kanji:濃",
+     "kanji": "濃",
+     "lecture": "ノウ・こ(い)",
+     "sens": "épais, foncé"
+    },
+    {
+     "id": "kanji:波",
+     "kanji": "波",
+     "lecture": "ハ・なみ",
+     "sens": "vague"
+    },
+    {
+     "id": "kanji:法",
+     "kanji": "法",
+     "lecture": "ホウ・ハッ",
+     "sens": "loi, méthode"
+    },
+    {
+     "id": "kanji:油",
+     "kanji": "油",
+     "lecture": "ユ・あぶら",
+     "sens": "huile"
+    },
+    {
+     "id": "kanji:洋",
+     "kanji": "洋",
+     "lecture": "ヨウ",
+     "sens": "océan, occidental"
+    },
+    {
+     "id": "kanji:流",
+     "kanji": "流",
+     "lecture": "リュウ・なが(れる)",
+     "sens": "couler, courant"
+    },
+    {
+     "id": "kanji:済",
+     "kanji": "済",
+     "lecture": "サイ・す(む)",
+     "sens": "finir, régler",
+     "exemple": "経済 / 済む (sumu)"
+    },
+    {
+     "id": "kanji:減",
+     "kanji": "減",
+     "lecture": "ゲン・へ(る)",
+     "sens": "diminuer",
+     "exemple": "減少 (genshō) baisse"
+    }
+   ]
+  },
+  {
+   "id": "g3",
+   "title": "Famille 木 — arbre / bois",
+   "items": [
+    {
+     "id": "kanji:案",
+     "kanji": "案",
+     "lecture": "アン",
+     "sens": "idée, proposition"
+    },
+    {
+     "id": "kanji:栄",
+     "kanji": "栄",
+     "lecture": "エイ・さか(える)",
+     "sens": "prospérer, gloire"
+    },
+    {
+     "id": "kanji:横",
+     "kanji": "横",
+     "lecture": "オウ・よこ",
+     "sens": "côté, horizontal"
+    },
+    {
+     "id": "kanji:果",
+     "kanji": "果",
+     "lecture": "カ・は(たす)",
+     "sens": "fruit, résultat"
+    },
+    {
+     "id": "kanji:橋",
+     "kanji": "橋",
+     "lecture": "キョウ・はし",
+     "sens": "pont"
+    },
+    {
+     "id": "kanji:極",
+     "kanji": "極",
+     "lecture": "キョク・きわ(める)",
+     "sens": "extrême, pôle"
+    },
+    {
+     "id": "kanji:机",
+     "kanji": "机",
+     "lecture": "キ・つくえ",
+     "sens": "bureau (table)"
+    },
+    {
+     "id": "kanji:機",
+     "kanji": "機",
+     "lecture": "キ・はた",
+     "sens": "machine, occasion"
+    },
+    {
+     "id": "kanji:業",
+     "kanji": "業",
+     "lecture": "ギョウ・ゴウ・わざ",
+     "sens": "travail, industrie"
+    },
+    {
+     "id": "kanji:検",
+     "kanji": "検",
+     "lecture": "ケン",
+     "sens": "examiner, vérifier"
+    },
+    {
+     "id": "kanji:権",
+     "kanji": "権",
+     "lecture": "ケン・ゴン",
+     "sens": "droit, pouvoir"
+    },
+    {
+     "id": "kanji:構",
+     "kanji": "構",
+     "lecture": "コウ・かま(える)",
+     "sens": "structure, bâtir"
+    },
+    {
+     "id": "kanji:根",
+     "kanji": "根",
+     "lecture": "コン・ね",
+     "sens": "racine"
+    },
+    {
+     "id": "kanji:査",
+     "kanji": "査",
+     "lecture": "サ",
+     "sens": "enquêter, inspecter"
+    },
+    {
+     "id": "kanji:雑",
+     "kanji": "雑",
+     "lecture": "ザツ・ゾウ",
+     "sens": "mélange, désordre"
+    },
+    {
+     "id": "kanji:集",
+     "kanji": "集",
+     "lecture": "シュウ・あつ(める)",
+     "sens": "rassembler"
+    },
+    {
+     "id": "kanji:植",
+     "kanji": "植",
+     "lecture": "ショク・う(える)",
+     "sens": "planter"
+    },
+    {
+     "id": "kanji:相",
+     "kanji": "相",
+     "lecture": "ソウ・あい",
+     "sens": "mutuel, aspect, ministre"
+    },
+    {
+     "id": "kanji:築",
+     "kanji": "築",
+     "lecture": "チク・きず(く)",
+     "sens": "bâtir"
+    },
+    {
+     "id": "kanji:柱",
+     "kanji": "柱",
+     "lecture": "チュウ・はしら",
+     "sens": "pilier, colonne"
+    },
+    {
+     "id": "kanji:杯",
+     "kanji": "杯",
+     "lecture": "ハイ・さかずき",
+     "sens": "coupe, verre (compteur)"
+    },
+    {
+     "id": "kanji:箱",
+     "kanji": "箱",
+     "lecture": "はこ",
+     "sens": "boîte, carton"
+    },
+    {
+     "id": "kanji:板",
+     "kanji": "板",
+     "lecture": "ハン・バン・いた",
+     "sens": "planche"
+    },
+    {
+     "id": "kanji:梅",
+     "kanji": "梅",
+     "lecture": "バイ・うめ",
+     "sens": "prunier, prune"
+    },
+    {
+     "id": "kanji:標",
+     "kanji": "標",
+     "lecture": "ヒョウ",
+     "sens": "marque, cible"
+    },
+    {
+     "id": "kanji:様",
+     "kanji": "様",
+     "lecture": "ヨウ・さま",
+     "sens": "manière, M./Mme"
+    }
+   ]
+  },
+  {
+   "id": "g4",
+   "title": "Famille 口 — bouche",
+   "items": [
+    {
+     "id": "kanji:回",
+     "kanji": "回",
+     "lecture": "カイ・まわ(る)",
+     "sens": "tourner, fois"
+    },
+    {
+     "id": "kanji:各",
+     "kanji": "各",
+     "lecture": "カク",
+     "sens": "chaque, divers"
+    },
+    {
+     "id": "kanji:含",
+     "kanji": "含",
+     "lecture": "ガン・ふく(む)",
+     "sens": "contenir, inclure"
+    },
+    {
+     "id": "kanji:吸",
+     "kanji": "吸",
+     "lecture": "キュウ・す(う)",
+     "sens": "aspirer, inhaler"
+    },
+    {
+     "id": "kanji:器",
+     "kanji": "器",
+     "lecture": "キ・うつわ",
+     "sens": "récipient, instrument"
+    },
+    {
+     "id": "kanji:句",
+     "kanji": "句",
+     "lecture": "ク",
+     "sens": "phrase, vers"
+    },
+    {
+     "id": "kanji:君",
+     "kanji": "君",
+     "lecture": "クン・きみ",
+     "sens": "tu (familier), -kun"
+    },
+    {
+     "id": "kanji:群",
+     "kanji": "群",
+     "lecture": "グン・む(れ)",
+     "sens": "groupe, foule"
+    },
+    {
+     "id": "kanji:向",
+     "kanji": "向",
+     "lecture": "コウ・む(く)",
+     "sens": "direction, se tourner"
+    },
+    {
+     "id": "kanji:告",
+     "kanji": "告",
+     "lecture": "コク・つ(げる)",
+     "sens": "annoncer, informer"
+    },
+    {
+     "id": "kanji:固",
+     "kanji": "固",
+     "lecture": "コ・かた(い)",
+     "sens": "dur, solide"
+    },
+    {
+     "id": "kanji:号",
+     "kanji": "号",
+     "lecture": "ゴウ",
+     "sens": "numéro, signal"
+    },
+    {
+     "id": "kanji:史",
+     "kanji": "史",
+     "lecture": "シ",
+     "sens": "histoire"
+    },
+    {
+     "id": "kanji:司",
+     "kanji": "司",
+     "lecture": "シ",
+     "sens": "administrer, fonction"
+    },
+    {
+     "id": "kanji:舎",
+     "kanji": "舎",
+     "lecture": "シャ",
+     "sens": "pavillon, dortoir"
+    },
+    {
+     "id": "kanji:商",
+     "kanji": "商",
+     "lecture": "ショウ・あきな(う)",
+     "sens": "commerce"
+    },
+    {
+     "id": "kanji:辞",
+     "kanji": "辞",
+     "lecture": "ジ・や(める)",
+     "sens": "démissionner, mot"
+    },
+    {
+     "id": "kanji:舌",
+     "kanji": "舌",
+     "lecture": "ゼツ・した",
+     "sens": "langue"
+    },
+    {
+     "id": "kanji:善",
+     "kanji": "善",
+     "lecture": "ゼン・よ(い)",
+     "sens": "bien, vertu"
+    },
+    {
+     "id": "kanji:品",
+     "kanji": "品",
+     "lecture": "ヒン・しな",
+     "sens": "article, qualité"
+    },
+    {
+     "id": "kanji:否",
+     "kanji": "否",
+     "lecture": "ヒ・いな",
+     "sens": "non, refus"
+    },
+    {
+     "id": "kanji:味",
+     "kanji": "味",
+     "lecture": "ミ・あじ",
+     "sens": "goût"
+    },
+    {
+     "id": "kanji:命",
+     "kanji": "命",
+     "lecture": "メイ・いのち",
+     "sens": "vie, ordre"
+    },
+    {
+     "id": "kanji:喜",
+     "kanji": "喜",
+     "lecture": "キ・よろこ(ぶ)",
+     "sens": "joie",
+     "exemple": "喜ぶ (yorokobu) se réjouir"
+    }
+   ]
+  },
+  {
+   "id": "g5",
+   "title": "Famille 言 — parole",
+   "items": [
+    {
+     "id": "kanji:課",
+     "kanji": "課",
+     "lecture": "カ",
+     "sens": "section, imposer"
+    },
+    {
+     "id": "kanji:許",
+     "kanji": "許",
+     "lecture": "キョ・ゆる(す)",
+     "sens": "permettre, pardonner"
+    },
+    {
+     "id": "kanji:記",
+     "kanji": "記",
+     "lecture": "キ・しる(す)",
+     "sens": "noter, inscrire"
+    },
+    {
+     "id": "kanji:議",
+     "kanji": "議",
+     "lecture": "ギ",
+     "sens": "délibérer, débattre"
+    },
+    {
+     "id": "kanji:警",
+     "kanji": "警",
+     "lecture": "ケイ",
+     "sens": "avertir, police"
+    },
+    {
+     "id": "kanji:講",
+     "kanji": "講",
+     "lecture": "コウ",
+     "sens": "conférence, cours"
+    },
+    {
+     "id": "kanji:護",
+     "kanji": "護",
+     "lecture": "ゴ",
+     "sens": "protéger"
+    },
+    {
+     "id": "kanji:詩",
+     "kanji": "詩",
+     "lecture": "シ",
+     "sens": "poème"
+    },
+    {
+     "id": "kanji:詞",
+     "kanji": "詞",
+     "lecture": "シ",
+     "sens": "mot, paroles"
+    },
+    {
+     "id": "kanji:誌",
+     "kanji": "誌",
+     "lecture": "シ",
+     "sens": "revue, magazine"
+    },
+    {
+     "id": "kanji:識",
+     "kanji": "識",
+     "lecture": "シキ",
+     "sens": "connaissance, discernement"
+    },
+    {
+     "id": "kanji:謝",
+     "kanji": "謝",
+     "lecture": "シャ・あやま(る)",
+     "sens": "remercier, s'excuser"
+    },
+    {
+     "id": "kanji:諸",
+     "kanji": "諸",
+     "lecture": "ショ",
+     "sens": "divers, plusieurs"
+    },
+    {
+     "id": "kanji:証",
+     "kanji": "証",
+     "lecture": "ショウ",
+     "sens": "preuve, certificat"
+    },
+    {
+     "id": "kanji:試",
+     "kanji": "試",
+     "lecture": "シ・こころ(みる)・ため(す)",
+     "sens": "essayer, test"
+    },
+    {
+     "id": "kanji:設",
+     "kanji": "設",
+     "lecture": "セツ・もう(ける)",
+     "sens": "installer, établir"
+    },
+    {
+     "id": "kanji:談",
+     "kanji": "談",
+     "lecture": "ダン",
+     "sens": "conversation"
+    },
+    {
+     "id": "kanji:調",
+     "kanji": "調",
+     "lecture": "チョウ・しら(べる)",
+     "sens": "enquêter, ton"
+    },
+    {
+     "id": "kanji:討",
+     "kanji": "討",
+     "lecture": "トウ・う(つ)",
+     "sens": "examiner, attaquer"
+    },
+    {
+     "id": "kanji:認",
+     "kanji": "認",
+     "lecture": "ニン・みと(める)",
+     "sens": "reconnaître, admettre"
+    },
+    {
+     "id": "kanji:評",
+     "kanji": "評",
+     "lecture": "ヒョウ",
+     "sens": "évaluer, critiquer"
+    },
+    {
+     "id": "kanji:論",
+     "kanji": "論",
+     "lecture": "ロン",
+     "sens": "argument, théorie"
+    }
+   ]
+  },
+  {
+   "id": "g6",
+   "title": "Famille 糸 — fil",
+   "items": [
+    {
+     "id": "kanji:紀",
+     "kanji": "紀",
+     "lecture": "キ",
+     "sens": "ère, chronique"
+    },
+    {
+     "id": "kanji:級",
+     "kanji": "級",
+     "lecture": "キュウ",
+     "sens": "classe, rang"
+    },
+    {
+     "id": "kanji:経",
+     "kanji": "経",
+     "lecture": "ケイ・キョウ・へ(る)",
+     "sens": "passer par, gérer"
+    },
+    {
+     "id": "kanji:結",
+     "kanji": "結",
+     "lecture": "ケツ・むす(ぶ)",
+     "sens": "nouer, conclure"
+    },
+    {
+     "id": "kanji:細",
+     "kanji": "細",
+     "lecture": "サイ・ほそ(い)・こま(かい)",
+     "sens": "fin, détaillé"
+    },
+    {
+     "id": "kanji:織",
+     "kanji": "織",
+     "lecture": "シキ・ショク・お(る)",
+     "sens": "tisser"
+    },
+    {
+     "id": "kanji:終",
+     "kanji": "終",
+     "lecture": "シュウ・お(わる)",
+     "sens": "finir"
+    },
+    {
+     "id": "kanji:縮",
+     "kanji": "縮",
+     "lecture": "シュク・ちぢ(む)",
+     "sens": "réduire, contracter"
+    },
+    {
+     "id": "kanji:純",
+     "kanji": "純",
+     "lecture": "ジュン",
+     "sens": "pur"
+    },
+    {
+     "id": "kanji:績",
+     "kanji": "績",
+     "lecture": "セキ",
+     "sens": "exploits, résultats"
+    },
+    {
+     "id": "kanji:絶",
+     "kanji": "絶",
+     "lecture": "ゼツ・た(える)",
+     "sens": "couper, extrême"
+    },
+    {
+     "id": "kanji:総",
+     "kanji": "総",
+     "lecture": "ソウ",
+     "sens": "total, général"
+    },
+    {
+     "id": "kanji:素",
+     "kanji": "素",
+     "lecture": "ソ・ス",
+     "sens": "élément, simple"
+    },
+    {
+     "id": "kanji:続",
+     "kanji": "続",
+     "lecture": "ゾク・つづ(く)",
+     "sens": "continuer"
+    },
+    {
+     "id": "kanji:統",
+     "kanji": "統",
+     "lecture": "トウ・す(べる)",
+     "sens": "gouverner, unifier"
+    },
+    {
+     "id": "kanji:約",
+     "kanji": "約",
+     "lecture": "ヤク",
+     "sens": "environ, promesse"
+    },
+    {
+     "id": "kanji:緑",
+     "kanji": "緑",
+     "lecture": "リョク・みどり",
+     "sens": "vert"
+    },
+    {
+     "id": "kanji:練",
+     "kanji": "練",
+     "lecture": "レン・ね(る)",
+     "sens": "s’exercer, pétrir"
+    },
+    {
+     "id": "kanji:給",
+     "kanji": "給",
+     "lecture": "キュウ",
+     "sens": "salaire, fournir",
+     "exemple": "給料 (kyūryō) salaire"
+    }
+   ]
+  },
+  {
+   "id": "g7",
+   "title": "Famille 日 — soleil / jour",
+   "items": [
+    {
+     "id": "kanji:暗",
+     "kanji": "暗",
+     "lecture": "アン・くら(い)",
+     "sens": "sombre, obscur"
+    },
+    {
+     "id": "kanji:影",
+     "kanji": "影",
+     "lecture": "エイ・かげ",
+     "sens": "ombre, image"
+    },
+    {
+     "id": "kanji:景",
+     "kanji": "景",
+     "lecture": "ケイ",
+     "sens": "paysage, vue"
+    },
+    {
+     "id": "kanji:最",
+     "kanji": "最",
+     "lecture": "サイ・もっと(も)",
+     "sens": "le plus"
+    },
+    {
+     "id": "kanji:昨",
+     "kanji": "昨",
+     "lecture": "サク",
+     "sens": "hier, précédent"
+    },
+    {
+     "id": "kanji:者",
+     "kanji": "者",
+     "lecture": "シャ・もの",
+     "sens": "personne"
+    },
+    {
+     "id": "kanji:署",
+     "kanji": "署",
+     "lecture": "ショ",
+     "sens": "poste, bureau"
+    },
+    {
+     "id": "kanji:昭",
+     "kanji": "昭",
+     "lecture": "ショウ",
+     "sens": "clair, ère Shōwa"
+    },
+    {
+     "id": "kanji:暑",
+     "kanji": "暑",
+     "lecture": "ショ・あつ(い)",
+     "sens": "chaud (temps)"
+    },
+    {
+     "id": "kanji:晴",
+     "kanji": "晴",
+     "lecture": "セイ・は(れる)",
+     "sens": "beau temps"
+    },
+    {
+     "id": "kanji:星",
+     "kanji": "星",
+     "lecture": "セイ・ほし",
+     "sens": "étoile"
+    },
+    {
+     "id": "kanji:昔",
+     "kanji": "昔",
+     "lecture": "セキ・むかし",
+     "sens": "autrefois"
+    },
+    {
+     "id": "kanji:是",
+     "kanji": "是",
+     "lecture": "ゼ",
+     "sens": "correct, justice"
+    },
+    {
+     "id": "kanji:暖",
+     "kanji": "暖",
+     "lecture": "ダン・あたた(かい)",
+     "sens": "chaud (température)"
+    },
+    {
+     "id": "kanji:曇",
+     "kanji": "曇",
+     "lecture": "ドン・くも(る)",
+     "sens": "nuageux"
+    },
+    {
+     "id": "kanji:普",
+     "kanji": "普",
+     "lecture": "フ",
+     "sens": "ordinaire, général"
+    },
+    {
+     "id": "kanji:増",
+     "kanji": "増",
+     "lecture": "ゾウ・ふ(える)",
+     "sens": "augmenter",
+     "exemple": "増加 (zōka) hausse"
+    },
+    {
+     "id": "kanji:量",
+     "kanji": "量",
+     "lecture": "リョウ・はか(る)",
+     "sens": "quantité",
+     "exemple": "数量 (sūryō) quantité"
+    }
+   ]
+  },
+  {
+   "id": "g8",
+   "title": "Famille 辶 — déplacement",
+   "items": [
+    {
+     "id": "kanji:運",
+     "kanji": "運",
+     "lecture": "ウン・はこ(ぶ)",
+     "sens": "transporter, chance"
+    },
+    {
+     "id": "kanji:込",
+     "kanji": "込",
+     "lecture": "こ(む)",
+     "sens": "être bondé, inclure"
+    },
+    {
+     "id": "kanji:進",
+     "kanji": "進",
+     "lecture": "シン・すす(む)",
+     "sens": "avancer"
+    },
+    {
+     "id": "kanji:述",
+     "kanji": "述",
+     "lecture": "ジュツ・の(べる)",
+     "sens": "énoncer, exposer"
+    },
+    {
+     "id": "kanji:選",
+     "kanji": "選",
+     "lecture": "セン・えら(ぶ)",
+     "sens": "choisir"
+    },
+    {
+     "id": "kanji:送",
+     "kanji": "送",
+     "lecture": "ソウ・おく(る)",
+     "sens": "envoyer"
+    },
+    {
+     "id": "kanji:速",
+     "kanji": "速",
+     "lecture": "ソク・はや(い)",
+     "sens": "rapide"
+    },
+    {
+     "id": "kanji:造",
+     "kanji": "造",
+     "lecture": "ゾウ・つく(る)",
+     "sens": "construire, fabriquer"
+    },
+    {
+     "id": "kanji:退",
+     "kanji": "退",
+     "lecture": "タイ・しりぞ(く)",
+     "sens": "reculer, se retirer"
+    },
+    {
+     "id": "kanji:達",
+     "kanji": "達",
+     "lecture": "タツ",
+     "sens": "atteindre, -tachi (pluriel)"
+    },
+    {
+     "id": "kanji:追",
+     "kanji": "追",
+     "lecture": "ツイ・お(う)",
+     "sens": "poursuivre"
+    },
+    {
+     "id": "kanji:適",
+     "kanji": "適",
+     "lecture": "テキ",
+     "sens": "approprié, convenir"
+    },
+    {
+     "id": "kanji:導",
+     "kanji": "導",
+     "lecture": "ドウ・みちび(く)",
+     "sens": "guider, conduire"
+    },
+    {
+     "id": "kanji:避",
+     "kanji": "避",
+     "lecture": "ヒ・さ(ける)",
+     "sens": "éviter, esquiver"
+    },
+    {
+     "id": "kanji:返",
+     "kanji": "返",
+     "lecture": "ヘン・かえ(す)",
+     "sens": "rendre, répondre"
+    },
+    {
+     "id": "kanji:遊",
+     "kanji": "遊",
+     "lecture": "ユウ・あそ(ぶ)",
+     "sens": "jouer, s’amuser"
+    },
+    {
+     "id": "kanji:過",
+     "kanji": "過",
+     "lecture": "カ・す(ぎる)",
+     "sens": "passer, excès",
+     "exemple": "過去 (kako) passé"
+    },
+    {
+     "id": "kanji:遅",
+     "kanji": "遅",
+     "lecture": "チ・おく(れる)",
+     "sens": "tard, lent",
+     "exemple": "遅刻 (chikoku) retard"
+    }
+   ]
+  },
+  {
+   "id": "g9",
+   "title": "Famille 扌 — main",
+   "items": [
+    {
+     "id": "kanji:拡",
+     "kanji": "拡",
+     "lecture": "カク",
+     "sens": "élargir, étendre"
+    },
+    {
+     "id": "kanji:採",
+     "kanji": "採",
+     "lecture": "サイ・と(る)",
+     "sens": "recueillir, adopter"
+    },
+    {
+     "id": "kanji:拾",
+     "kanji": "拾",
+     "lecture": "シュウ・ひろ(う)",
+     "sens": "ramasser"
+    },
+    {
+     "id": "kanji:招",
+     "kanji": "招",
+     "lecture": "ショウ・まね(く)",
+     "sens": "inviter"
+    },
+    {
+     "id": "kanji:指",
+     "kanji": "指",
+     "lecture": "シ・ゆび・さ(す)",
+     "sens": "doigt, montrer"
+    },
+    {
+     "id": "kanji:持",
+     "kanji": "持",
+     "lecture": "ジ・も(つ)",
+     "sens": "tenir, posséder"
+    },
+    {
+     "id": "kanji:推",
+     "kanji": "推",
+     "lecture": "スイ・お(す)",
+     "sens": "présumer, pousser"
+    },
+    {
+     "id": "kanji:接",
+     "kanji": "接",
+     "lecture": "セツ・つ(ぐ)",
+     "sens": "contact, joindre"
+    },
+    {
+     "id": "kanji:操",
+     "kanji": "操",
+     "lecture": "ソウ・あやつ(る)",
+     "sens": "manœuvrer"
+    },
+    {
+     "id": "kanji:損",
+     "kanji": "損",
+     "lecture": "ソン・そこ(なう)",
+     "sens": "perte, endommager"
+    },
+    {
+     "id": "kanji:探",
+     "kanji": "探",
+     "lecture": "タン・さが(す)",
+     "sens": "chercher, explorer"
+    },
+    {
+     "id": "kanji:担",
+     "kanji": "担",
+     "lecture": "タン・にな(う)",
+     "sens": "porter, se charger de"
+    },
+    {
+     "id": "kanji:打",
+     "kanji": "打",
+     "lecture": "ダ・う(つ)",
+     "sens": "frapper"
+    },
+    {
+     "id": "kanji:提",
+     "kanji": "提",
+     "lecture": "テイ・さ(げる)",
+     "sens": "présenter, soumettre"
+    },
+    {
+     "id": "kanji:投",
+     "kanji": "投",
+     "lecture": "トウ・な(げる)",
+     "sens": "lancer"
+    },
+    {
+     "id": "kanji:拝",
+     "kanji": "拝",
+     "lecture": "ハイ・おが(む)",
+     "sens": "prier, saluer"
+    },
+    {
+     "id": "kanji:批",
+     "kanji": "批",
+     "lecture": "ヒ",
+     "sens": "critiquer"
+    },
+    {
+     "id": "kanji:技",
+     "kanji": "技",
+     "lecture": "ギ・わざ",
+     "sens": "technique",
+     "exemple": "技術 (gijutsu) technologie"
+    }
+   ]
+  },
+  {
+   "id": "g10",
+   "title": "Famille 忄／心 — cœur / sentiment",
    "items": [
     {
      "id": "kanji:愛",
@@ -24,268 +1297,10 @@
      "sens": "mal, mauvais"
     },
     {
-     "id": "kanji:案",
-     "kanji": "案",
-     "lecture": "アン",
-     "sens": "idée, proposition"
-    },
-    {
-     "id": "kanji:暗",
-     "kanji": "暗",
-     "lecture": "アン・くら(い)",
-     "sens": "sombre, obscur"
-    },
-    {
-     "id": "kanji:安",
-     "kanji": "安",
-     "lecture": "アン・やす(い)",
-     "sens": "tranquille, bon marché"
-    },
-    {
-     "id": "kanji:医",
-     "kanji": "医",
-     "lecture": "イ",
-     "sens": "médecine"
-    },
-    {
      "id": "kanji:意",
      "kanji": "意",
      "lecture": "イ",
      "sens": "pensée, intention"
-    },
-    {
-     "id": "kanji:以",
-     "kanji": "以",
-     "lecture": "イ",
-     "sens": "à partir de, au moyen de"
-    },
-    {
-     "id": "kanji:胃",
-     "kanji": "胃",
-     "lecture": "イ",
-     "sens": "estomac"
-    },
-    {
-     "id": "kanji:育",
-     "kanji": "育",
-     "lecture": "イク・そだ(てる)",
-     "sens": "élever, éduquer"
-    },
-    {
-     "id": "kanji:員",
-     "kanji": "員",
-     "lecture": "イン",
-     "sens": "membre, employé"
-    },
-    {
-     "id": "kanji:院",
-     "kanji": "院",
-     "lecture": "イン",
-     "sens": "institution, hôpital"
-    },
-    {
-     "id": "kanji:印",
-     "kanji": "印",
-     "lecture": "イン・しるし",
-     "sens": "sceau, marque"
-    },
-    {
-     "id": "kanji:飲",
-     "kanji": "飲",
-     "lecture": "イン・の(む)",
-     "sens": "boire"
-    },
-    {
-     "id": "kanji:因",
-     "kanji": "因",
-     "lecture": "イン・よ(る)",
-     "sens": "cause"
-    },
-    {
-     "id": "kanji:囲",
-     "kanji": "囲",
-     "lecture": "イ・かこ(む)",
-     "sens": "entourer"
-    },
-    {
-     "id": "kanji:位",
-     "kanji": "位",
-     "lecture": "イ・くらい",
-     "sens": "rang, position"
-    },
-    {
-     "id": "kanji:運",
-     "kanji": "運",
-     "lecture": "ウン・はこ(ぶ)",
-     "sens": "transporter, chance"
-    },
-    {
-     "id": "kanji:英",
-     "kanji": "英",
-     "lecture": "エイ",
-     "sens": "Angleterre, talent"
-    },
-    {
-     "id": "kanji:営",
-     "kanji": "営",
-     "lecture": "エイ・いとな(む)",
-     "sens": "gérer, exploiter"
-    },
-    {
-     "id": "kanji:泳",
-     "kanji": "泳",
-     "lecture": "エイ・およ(ぐ)",
-     "sens": "nager"
-    },
-    {
-     "id": "kanji:影",
-     "kanji": "影",
-     "lecture": "エイ・かげ",
-     "sens": "ombre, image"
-    },
-    {
-     "id": "kanji:栄",
-     "kanji": "栄",
-     "lecture": "エイ・さか(える)",
-     "sens": "prospérer, gloire"
-    },
-    {
-     "id": "kanji:駅",
-     "kanji": "駅",
-     "lecture": "エキ",
-     "sens": "gare"
-    },
-    {
-     "id": "kanji:益",
-     "kanji": "益",
-     "lecture": "エキ・ヤク",
-     "sens": "bénéfice, profit"
-    },
-    {
-     "id": "kanji:央",
-     "kanji": "央",
-     "lecture": "オウ",
-     "sens": "centre"
-    },
-    {
-     "id": "kanji:横",
-     "kanji": "横",
-     "lecture": "オウ・よこ",
-     "sens": "côté, horizontal"
-    },
-    {
-     "id": "kanji:億",
-     "kanji": "億",
-     "lecture": "オク",
-     "sens": "cent millions"
-    },
-    {
-     "id": "kanji:屋",
-     "kanji": "屋",
-     "lecture": "オク・や",
-     "sens": "toit, magasin"
-    },
-    {
-     "id": "kanji:温",
-     "kanji": "温",
-     "lecture": "オン・あたた(かい)",
-     "sens": "chaud, température"
-    },
-    {
-     "id": "kanji:課",
-     "kanji": "課",
-     "lecture": "カ",
-     "sens": "section, imposer"
-    },
-    {
-     "id": "kanji:貨",
-     "kanji": "貨",
-     "lecture": "カ",
-     "sens": "marchandise, monnaie"
-    },
-    {
-     "id": "kanji:界",
-     "kanji": "界",
-     "lecture": "カイ",
-     "sens": "monde, limite"
-    },
-    {
-     "id": "kanji:階",
-     "kanji": "階",
-     "lecture": "カイ",
-     "sens": "étage"
-    },
-    {
-     "id": "kanji:改",
-     "kanji": "改",
-     "lecture": "カイ・あらた(める)",
-     "sens": "réformer, modifier"
-    },
-    {
-     "id": "kanji:解",
-     "kanji": "解",
-     "lecture": "カイ・ゲ・と(く)",
-     "sens": "résoudre, défaire"
-    },
-    {
-     "id": "kanji:開",
-     "kanji": "開",
-     "lecture": "カイ・ひら(く)・あ(ける)",
-     "sens": "ouvrir"
-    },
-    {
-     "id": "kanji:回",
-     "kanji": "回",
-     "lecture": "カイ・まわ(る)",
-     "sens": "tourner, fois"
-    },
-    {
-     "id": "kanji:較",
-     "kanji": "較",
-     "lecture": "カク",
-     "sens": "comparer"
-    },
-    {
-     "id": "kanji:拡",
-     "kanji": "拡",
-     "lecture": "カク",
-     "sens": "élargir, étendre"
-    },
-    {
-     "id": "kanji:各",
-     "kanji": "各",
-     "lecture": "カク",
-     "sens": "chaque, divers"
-    },
-    {
-     "id": "kanji:覚",
-     "kanji": "覚",
-     "lecture": "カク・おぼ(える)・さ(める)",
-     "sens": "mémoriser, se réveiller"
-    },
-    {
-     "id": "kanji:確",
-     "kanji": "確",
-     "lecture": "カク・たし(か)",
-     "sens": "certain, vérifier"
-    },
-    {
-     "id": "kanji:割",
-     "kanji": "割",
-     "lecture": "カツ・わ(る)",
-     "sens": "diviser, proportion, rôle"
-    },
-    {
-     "id": "kanji:漢",
-     "kanji": "漢",
-     "lecture": "カン",
-     "sens": "Chine, kanji"
-    },
-    {
-     "id": "kanji:館",
-     "kanji": "館",
-     "lecture": "カン",
-     "sens": "bâtiment, hall"
     },
     {
      "id": "kanji:感",
@@ -294,10 +1309,96 @@
      "sens": "ressentir, sensation"
     },
     {
-     "id": "kanji:観",
-     "kanji": "観",
-     "lecture": "カン",
-     "sens": "observer, point de vue"
+     "id": "kanji:急",
+     "kanji": "急",
+     "lecture": "キュウ・いそ(ぐ)",
+     "sens": "urgent, se presser"
+    },
+    {
+     "id": "kanji:情",
+     "kanji": "情",
+     "lecture": "ジョウ・なさ(け)",
+     "sens": "sentiment, situation"
+    },
+    {
+     "id": "kanji:性",
+     "kanji": "性",
+     "lecture": "セイ・ショウ",
+     "sens": "nature, caractère, sexe"
+    },
+    {
+     "id": "kanji:想",
+     "kanji": "想",
+     "lecture": "ソウ・ソ",
+     "sens": "penser, imaginer"
+    },
+    {
+     "id": "kanji:息",
+     "kanji": "息",
+     "lecture": "ソク・いき",
+     "sens": "souffle, fils"
+    },
+    {
+     "id": "kanji:態",
+     "kanji": "態",
+     "lecture": "タイ",
+     "sens": "état, attitude"
+    },
+    {
+     "id": "kanji:忠",
+     "kanji": "忠",
+     "lecture": "チュウ",
+     "sens": "loyauté, fidélité"
+    },
+    {
+     "id": "kanji:念",
+     "kanji": "念",
+     "lecture": "ネン",
+     "sens": "pensée, désir, attention"
+    },
+    {
+     "id": "kanji:悩",
+     "kanji": "悩",
+     "lecture": "ノウ・なや(む)",
+     "sens": "souffrir, se tourmenter"
+    },
+    {
+     "id": "kanji:必",
+     "kanji": "必",
+     "lecture": "ヒツ・かなら(ず)",
+     "sens": "forcément, indispensable"
+    },
+    {
+     "id": "kanji:悲",
+     "kanji": "悲",
+     "lecture": "ヒ・かな(しい)",
+     "sens": "triste"
+    },
+    {
+     "id": "kanji:怒",
+     "kanji": "怒",
+     "lecture": "ド・おこ(る)",
+     "sens": "colère",
+     "exemple": "怒る (okoru) se fâcher"
+    },
+    {
+     "id": "kanji:恥",
+     "kanji": "恥",
+     "lecture": "チ・は(ずかしい)",
+     "sens": "honte",
+     "exemple": "恥ずかしい (hazukashii) gêné"
+    }
+   ]
+  },
+  {
+   "id": "g11",
+   "title": "Famille 宀 — toit",
+   "items": [
+    {
+     "id": "kanji:安",
+     "kanji": "安",
+     "lecture": "アン・やす(い)",
+     "sens": "tranquille, bon marché"
     },
     {
      "id": "kanji:完",
@@ -324,94 +1425,10 @@
      "sens": "froid"
     },
     {
-     "id": "kanji:関",
-     "kanji": "関",
-     "lecture": "カン・せき",
-     "sens": "rapport, barrière"
-    },
-    {
-     "id": "kanji:加",
-     "kanji": "加",
-     "lecture": "カ・くわ(える)",
-     "sens": "ajouter"
-    },
-    {
-     "id": "kanji:化",
-     "kanji": "化",
-     "lecture": "カ・ケ・ば(ける)",
-     "sens": "transformer, -isation"
-    },
-    {
-     "id": "kanji:荷",
-     "kanji": "荷",
-     "lecture": "カ・に",
-     "sens": "bagage, charge"
-    },
-    {
-     "id": "kanji:果",
-     "kanji": "果",
-     "lecture": "カ・は(たす)",
-     "sens": "fruit, résultat"
-    },
-    {
      "id": "kanji:害",
      "kanji": "害",
      "lecture": "ガイ",
      "sens": "dommage, nuisance"
-    },
-    {
-     "id": "kanji:額",
-     "kanji": "額",
-     "lecture": "ガク・ひたい",
-     "sens": "montant, front"
-    },
-    {
-     "id": "kanji:岸",
-     "kanji": "岸",
-     "lecture": "ガン・きし",
-     "sens": "rivage, berge"
-    }
-   ]
-  },
-  {
-   "id": "g2",
-   "title": "Kanji N3 + N4 — lot 2/9 (ordre gojūon)",
-   "items": [
-    {
-     "id": "kanji:願",
-     "kanji": "願",
-     "lecture": "ガン・ねが(う)",
-     "sens": "souhaiter, prier"
-    },
-    {
-     "id": "kanji:含",
-     "kanji": "含",
-     "lecture": "ガン・ふく(む)",
-     "sens": "contenir, inclure"
-    },
-    {
-     "id": "kanji:芽",
-     "kanji": "芽",
-     "lecture": "ガ・め",
-     "sens": "bourgeon, germe"
-    },
-    {
-     "id": "kanji:規",
-     "kanji": "規",
-     "lecture": "キ",
-     "sens": "norme, règle"
-    },
-    {
-     "id": "kanji:紀",
-     "kanji": "紀",
-     "lecture": "キ",
-     "sens": "ère, chronique"
-    },
-    {
-     "id": "kanji:希",
-     "kanji": "希",
-     "lecture": "キ",
-     "sens": "rare, espoir"
     },
     {
      "id": "kanji:客",
@@ -420,184 +1437,10 @@
      "sens": "client, invité"
     },
     {
-     "id": "kanji:級",
-     "kanji": "級",
-     "lecture": "キュウ",
-     "sens": "classe, rang"
-    },
-    {
-     "id": "kanji:急",
-     "kanji": "急",
-     "lecture": "キュウ・いそ(ぐ)",
-     "sens": "urgent, se presser"
-    },
-    {
-     "id": "kanji:究",
-     "kanji": "究",
-     "lecture": "キュウ・きわ(める)",
-     "sens": "étudier à fond"
-    },
-    {
-     "id": "kanji:吸",
-     "kanji": "吸",
-     "lecture": "キュウ・す(う)",
-     "sens": "aspirer, inhaler"
-    },
-    {
-     "id": "kanji:救",
-     "kanji": "救",
-     "lecture": "キュウ・すく(う)",
-     "sens": "sauver, secourir"
-    },
-    {
-     "id": "kanji:球",
-     "kanji": "球",
-     "lecture": "キュウ・たま",
-     "sens": "balle, sphère"
-    },
-    {
-     "id": "kanji:泣",
-     "kanji": "泣",
-     "lecture": "キュウ・な(く)",
-     "sens": "pleurer"
-    },
-    {
      "id": "kanji:宮",
      "kanji": "宮",
      "lecture": "キュウ・みや",
      "sens": "palais, sanctuaire"
-    },
-    {
-     "id": "kanji:求",
-     "kanji": "求",
-     "lecture": "キュウ・もと(める)",
-     "sens": "demander, rechercher"
-    },
-    {
-     "id": "kanji:況",
-     "kanji": "況",
-     "lecture": "キョウ",
-     "sens": "situation, état"
-    },
-    {
-     "id": "kanji:鏡",
-     "kanji": "鏡",
-     "lecture": "キョウ・かがみ",
-     "sens": "miroir"
-    },
-    {
-     "id": "kanji:競",
-     "kanji": "競",
-     "lecture": "キョウ・きそ(う)",
-     "sens": "rivaliser, concourir"
-    },
-    {
-     "id": "kanji:供",
-     "kanji": "供",
-     "lecture": "キョウ・そな(える)・とも",
-     "sens": "offrir, accompagner"
-    },
-    {
-     "id": "kanji:共",
-     "kanji": "共",
-     "lecture": "キョウ・とも",
-     "sens": "commun, ensemble"
-    },
-    {
-     "id": "kanji:橋",
-     "kanji": "橋",
-     "lecture": "キョウ・はし",
-     "sens": "pont"
-    },
-    {
-     "id": "kanji:響",
-     "kanji": "響",
-     "lecture": "キョウ・ひび(く)",
-     "sens": "résonner, retentir"
-    },
-    {
-     "id": "kanji:局",
-     "kanji": "局",
-     "lecture": "キョク",
-     "sens": "bureau, station"
-    },
-    {
-     "id": "kanji:極",
-     "kanji": "極",
-     "lecture": "キョク・きわ(める)",
-     "sens": "extrême, pôle"
-    },
-    {
-     "id": "kanji:曲",
-     "kanji": "曲",
-     "lecture": "キョク・ま(がる)",
-     "sens": "courber, morceau"
-    },
-    {
-     "id": "kanji:居",
-     "kanji": "居",
-     "lecture": "キョ・い(る)",
-     "sens": "résider, être"
-    },
-    {
-     "id": "kanji:去",
-     "kanji": "去",
-     "lecture": "キョ・コ・さ(る)",
-     "sens": "partir, passé"
-    },
-    {
-     "id": "kanji:許",
-     "kanji": "許",
-     "lecture": "キョ・ゆる(す)",
-     "sens": "permettre, pardonner"
-    },
-    {
-     "id": "kanji:危",
-     "kanji": "危",
-     "lecture": "キ・あぶ(ない)",
-     "sens": "danger"
-    },
-    {
-     "id": "kanji:器",
-     "kanji": "器",
-     "lecture": "キ・うつわ",
-     "sens": "récipient, instrument"
-    },
-    {
-     "id": "kanji:起",
-     "kanji": "起",
-     "lecture": "キ・お(きる)",
-     "sens": "se lever, se produire"
-    },
-    {
-     "id": "kanji:期",
-     "kanji": "期",
-     "lecture": "キ・ゴ",
-     "sens": "période, terme"
-    },
-    {
-     "id": "kanji:記",
-     "kanji": "記",
-     "lecture": "キ・しる(す)",
-     "sens": "noter, inscrire"
-    },
-    {
-     "id": "kanji:机",
-     "kanji": "机",
-     "lecture": "キ・つくえ",
-     "sens": "bureau (table)"
-    },
-    {
-     "id": "kanji:機",
-     "kanji": "機",
-     "lecture": "キ・はた",
-     "sens": "machine, occasion"
-    },
-    {
-     "id": "kanji:基",
-     "kanji": "基",
-     "lecture": "キ・もと・もとい",
-     "sens": "base, fondement"
     },
     {
      "id": "kanji:寄",
@@ -606,640 +1449,10 @@
      "sens": "s'approcher, faire don"
     },
     {
-     "id": "kanji:議",
-     "kanji": "議",
-     "lecture": "ギ",
-     "sens": "délibérer, débattre"
-    },
-    {
-     "id": "kanji:義",
-     "kanji": "義",
-     "lecture": "ギ",
-     "sens": "sens, justice, devoir"
-    },
-    {
-     "id": "kanji:業",
-     "kanji": "業",
-     "lecture": "ギョウ・ゴウ・わざ",
-     "sens": "travail, industrie"
-    },
-    {
-     "id": "kanji:銀",
-     "kanji": "銀",
-     "lecture": "ギン",
-     "sens": "argent (métal)"
-    },
-    {
-     "id": "kanji:区",
-     "kanji": "区",
-     "lecture": "ク",
-     "sens": "arrondissement"
-    },
-    {
-     "id": "kanji:句",
-     "kanji": "句",
-     "lecture": "ク",
-     "sens": "phrase, vers"
-    },
-    {
-     "id": "kanji:君",
-     "kanji": "君",
-     "lecture": "クン・きみ",
-     "sens": "tu (familier), -kun"
-    },
-    {
-     "id": "kanji:苦",
-     "kanji": "苦",
-     "lecture": "ク・くる(しい)・にが(い)",
-     "sens": "souffrance, amer"
-    },
-    {
-     "id": "kanji:具",
-     "kanji": "具",
-     "lecture": "グ",
-     "sens": "outil, ingrédient"
-    },
-    {
-     "id": "kanji:偶",
-     "kanji": "偶",
-     "lecture": "グウ",
-     "sens": "par hasard, pair"
-    },
-    {
-     "id": "kanji:郡",
-     "kanji": "郡",
-     "lecture": "グン",
-     "sens": "district, arrondissement"
-    },
-    {
-     "id": "kanji:軍",
-     "kanji": "軍",
-     "lecture": "グン",
-     "sens": "armée, militaire"
-    },
-    {
-     "id": "kanji:群",
-     "kanji": "群",
-     "lecture": "グン・む(れ)",
-     "sens": "groupe, foule"
-    },
-    {
-     "id": "kanji:警",
-     "kanji": "警",
-     "lecture": "ケイ",
-     "sens": "avertir, police"
-    },
-    {
-     "id": "kanji:景",
-     "kanji": "景",
-     "lecture": "ケイ",
-     "sens": "paysage, vue"
-    },
-    {
-     "id": "kanji:係",
-     "kanji": "係",
-     "lecture": "ケイ・かか(る)",
-     "sens": "lien, responsable"
-    },
-    {
-     "id": "kanji:型",
-     "kanji": "型",
-     "lecture": "ケイ・かた",
-     "sens": "modèle, type"
-    },
-    {
-     "id": "kanji:軽",
-     "kanji": "軽",
-     "lecture": "ケイ・かる(い)",
-     "sens": "léger"
-    },
-    {
-     "id": "kanji:経",
-     "kanji": "経",
-     "lecture": "ケイ・キョウ・へ(る)",
-     "sens": "passer par, gérer"
-    },
-    {
-     "id": "kanji:形",
-     "kanji": "形",
-     "lecture": "ケイ・ギョウ・かたち",
-     "sens": "forme"
-    },
-    {
-     "id": "kanji:欠",
-     "kanji": "欠",
-     "lecture": "ケツ・か(ける)",
-     "sens": "manquer, absence"
-    },
-    {
-     "id": "kanji:決",
-     "kanji": "決",
-     "lecture": "ケツ・き(める)",
-     "sens": "décider"
-    }
-   ]
-  },
-  {
-   "id": "g3",
-   "title": "Kanji N3 + N4 — lot 3/9 (ordre gojūon)",
-   "items": [
-    {
-     "id": "kanji:血",
-     "kanji": "血",
-     "lecture": "ケツ・ち",
-     "sens": "sang"
-    },
-    {
-     "id": "kanji:結",
-     "kanji": "結",
-     "lecture": "ケツ・むす(ぶ)",
-     "sens": "nouer, conclure"
-    },
-    {
-     "id": "kanji:県",
-     "kanji": "県",
-     "lecture": "ケン",
-     "sens": "préfecture"
-    },
-    {
-     "id": "kanji:件",
-     "kanji": "件",
-     "lecture": "ケン",
-     "sens": "affaire, (compteur)"
-    },
-    {
-     "id": "kanji:検",
-     "kanji": "検",
-     "lecture": "ケン",
-     "sens": "examiner, vérifier"
-    },
-    {
-     "id": "kanji:券",
-     "kanji": "券",
-     "lecture": "ケン",
-     "sens": "billet, coupon"
-    },
-    {
-     "id": "kanji:険",
-     "kanji": "険",
-     "lecture": "ケン・けわ(しい)",
-     "sens": "dangereux, escarpé"
-    },
-    {
-     "id": "kanji:権",
-     "kanji": "権",
-     "lecture": "ケン・ゴン",
-     "sens": "droit, pouvoir"
-    },
-    {
-     "id": "kanji:健",
-     "kanji": "健",
-     "lecture": "ケン・すこ(やか)",
-     "sens": "sain, vigoureux"
-    },
-    {
-     "id": "kanji:研",
-     "kanji": "研",
-     "lecture": "ケン・と(ぐ)",
-     "sens": "étudier, polir"
-    },
-    {
-     "id": "kanji:芸",
-     "kanji": "芸",
-     "lecture": "ゲイ",
-     "sens": "art, talent"
-    },
-    {
-     "id": "kanji:現",
-     "kanji": "現",
-     "lecture": "ゲン・あらわ(れる)",
-     "sens": "apparaître, actuel"
-    },
-    {
-     "id": "kanji:限",
-     "kanji": "限",
-     "lecture": "ゲン・かぎ(る)",
-     "sens": "limiter"
-    },
-    {
-     "id": "kanji:個",
-     "kanji": "個",
-     "lecture": "コ",
-     "sens": "individuel, (compteur)"
-    },
-    {
-     "id": "kanji:庫",
-     "kanji": "庫",
-     "lecture": "コ",
-     "sens": "entrepôt, dépôt"
-    },
-    {
-     "id": "kanji:込",
-     "kanji": "込",
-     "lecture": "こ(む)",
-     "sens": "être bondé, inclure"
-    },
-    {
-     "id": "kanji:功",
-     "kanji": "功",
-     "lecture": "コウ",
-     "sens": "mérite, exploit"
-    },
-    {
-     "id": "kanji:康",
-     "kanji": "康",
-     "lecture": "コウ",
-     "sens": "paix, santé"
-    },
-    {
-     "id": "kanji:航",
-     "kanji": "航",
-     "lecture": "コウ",
-     "sens": "navigation"
-    },
-    {
-     "id": "kanji:鉱",
-     "kanji": "鉱",
-     "lecture": "コウ",
-     "sens": "minerai"
-    },
-    {
-     "id": "kanji:講",
-     "kanji": "講",
-     "lecture": "コウ",
-     "sens": "conférence, cours"
-    },
-    {
-     "id": "kanji:構",
-     "kanji": "構",
-     "lecture": "コウ・かま(える)",
-     "sens": "structure, bâtir"
-    },
-    {
-     "id": "kanji:効",
-     "kanji": "効",
-     "lecture": "コウ・き(く)",
-     "sens": "effet, efficace"
-    },
-    {
-     "id": "kanji:興",
-     "kanji": "興",
-     "lecture": "コウ・キョウ・おこ(る)",
-     "sens": "prospérer, intérêt"
-    },
-    {
-     "id": "kanji:好",
-     "kanji": "好",
-     "lecture": "コウ・この(む)・す(き)",
-     "sens": "aimer, préférer"
-    },
-    {
-     "id": "kanji:幸",
-     "kanji": "幸",
-     "lecture": "コウ・しあわ(せ)",
-     "sens": "bonheur"
-    },
-    {
-     "id": "kanji:攻",
-     "kanji": "攻",
-     "lecture": "コウ・せ(める)",
-     "sens": "attaquer"
-    },
-    {
-     "id": "kanji:港",
-     "kanji": "港",
-     "lecture": "コウ・みなと",
-     "sens": "port"
-    },
-    {
-     "id": "kanji:向",
-     "kanji": "向",
-     "lecture": "コウ・む(く)",
-     "sens": "direction, se tourner"
-    },
-    {
-     "id": "kanji:告",
-     "kanji": "告",
-     "lecture": "コク・つ(げる)",
-     "sens": "annoncer, informer"
-    },
-    {
-     "id": "kanji:骨",
-     "kanji": "骨",
-     "lecture": "コツ・ほね",
-     "sens": "os"
-    },
-    {
-     "id": "kanji:婚",
-     "kanji": "婚",
-     "lecture": "コン",
-     "sens": "mariage"
-    },
-    {
-     "id": "kanji:根",
-     "kanji": "根",
-     "lecture": "コン・ね",
-     "sens": "racine"
-    },
-    {
-     "id": "kanji:混",
-     "kanji": "混",
-     "lecture": "コン・ま(じる)",
-     "sens": "mélanger"
-    },
-    {
-     "id": "kanji:固",
-     "kanji": "固",
-     "lecture": "コ・かた(い)",
-     "sens": "dur, solide"
-    },
-    {
-     "id": "kanji:湖",
-     "kanji": "湖",
-     "lecture": "コ・みずうみ",
-     "sens": "lac"
-    },
-    {
-     "id": "kanji:護",
-     "kanji": "護",
-     "lecture": "ゴ",
-     "sens": "protéger"
-    },
-    {
-     "id": "kanji:号",
-     "kanji": "号",
-     "lecture": "ゴウ",
-     "sens": "numéro, signal"
-    },
-    {
-     "id": "kanji:互",
-     "kanji": "互",
-     "lecture": "ゴ・たが(い)",
-     "sens": "mutuel, réciproque"
-    },
-    {
-     "id": "kanji:査",
-     "kanji": "査",
-     "lecture": "サ",
-     "sens": "enquêter, inspecter"
-    },
-    {
-     "id": "kanji:妻",
-     "kanji": "妻",
-     "lecture": "サイ・つま",
-     "sens": "épouse"
-    },
-    {
-     "id": "kanji:採",
-     "kanji": "採",
-     "lecture": "サイ・と(る)",
-     "sens": "recueillir, adopter"
-    },
-    {
-     "id": "kanji:菜",
-     "kanji": "菜",
-     "lecture": "サイ・な",
-     "sens": "légume, plat"
-    },
-    {
-     "id": "kanji:細",
-     "kanji": "細",
-     "lecture": "サイ・ほそ(い)・こま(かい)",
-     "sens": "fin, détaillé"
-    },
-    {
-     "id": "kanji:祭",
-     "kanji": "祭",
-     "lecture": "サイ・まつ(り)",
-     "sens": "fête, festival"
-    },
-    {
-     "id": "kanji:最",
-     "kanji": "最",
-     "lecture": "サイ・もっと(も)",
-     "sens": "le plus"
-    },
-    {
-     "id": "kanji:災",
-     "kanji": "災",
-     "lecture": "サイ・わざわ(い)",
-     "sens": "catastrophe, fléau"
-    },
-    {
-     "id": "kanji:昨",
-     "kanji": "昨",
-     "lecture": "サク",
-     "sens": "hier, précédent"
-    },
-    {
      "id": "kanji:察",
      "kanji": "察",
      "lecture": "サツ",
      "sens": "observer, deviner"
-    },
-    {
-     "id": "kanji:賛",
-     "kanji": "賛",
-     "lecture": "サン",
-     "sens": "approuver, soutenir"
-    },
-    {
-     "id": "kanji:酸",
-     "kanji": "酸",
-     "lecture": "サン・す(い)",
-     "sens": "acide"
-    },
-    {
-     "id": "kanji:散",
-     "kanji": "散",
-     "lecture": "サン・ち(る)",
-     "sens": "se disperser"
-    },
-    {
-     "id": "kanji:差",
-     "kanji": "差",
-     "lecture": "サ・さ(す)",
-     "sens": "différence, écart"
-    },
-    {
-     "id": "kanji:在",
-     "kanji": "在",
-     "lecture": "ザイ・あ(る)",
-     "sens": "se trouver, exister"
-    },
-    {
-     "id": "kanji:財",
-     "kanji": "財",
-     "lecture": "ザイ・サイ",
-     "sens": "richesse, biens"
-    },
-    {
-     "id": "kanji:罪",
-     "kanji": "罪",
-     "lecture": "ザイ・つみ",
-     "sens": "crime, faute"
-    },
-    {
-     "id": "kanji:雑",
-     "kanji": "雑",
-     "lecture": "ザツ・ゾウ",
-     "sens": "mélange, désordre"
-    },
-    {
-     "id": "kanji:残",
-     "kanji": "残",
-     "lecture": "ザン・のこ(る)",
-     "sens": "rester, restes"
-    },
-    {
-     "id": "kanji:詩",
-     "kanji": "詩",
-     "lecture": "シ",
-     "sens": "poème"
-    },
-    {
-     "id": "kanji:視",
-     "kanji": "視",
-     "lecture": "シ",
-     "sens": "regarder, vue"
-    }
-   ]
-  },
-  {
-   "id": "g4",
-   "title": "Kanji N3 + N4 — lot 4/9 (ordre gojūon)",
-   "items": [
-    {
-     "id": "kanji:資",
-     "kanji": "資",
-     "lecture": "シ",
-     "sens": "capital, ressources"
-    },
-    {
-     "id": "kanji:史",
-     "kanji": "史",
-     "lecture": "シ",
-     "sens": "histoire"
-    },
-    {
-     "id": "kanji:司",
-     "kanji": "司",
-     "lecture": "シ",
-     "sens": "administrer, fonction"
-    },
-    {
-     "id": "kanji:詞",
-     "kanji": "詞",
-     "lecture": "シ",
-     "sens": "mot, paroles"
-    },
-    {
-     "id": "kanji:誌",
-     "kanji": "誌",
-     "lecture": "シ",
-     "sens": "revue, magazine"
-    },
-    {
-     "id": "kanji:識",
-     "kanji": "識",
-     "lecture": "シキ",
-     "sens": "connaissance, discernement"
-    },
-    {
-     "id": "kanji:式",
-     "kanji": "式",
-     "lecture": "シキ",
-     "sens": "cérémonie, formule"
-    },
-    {
-     "id": "kanji:織",
-     "kanji": "織",
-     "lecture": "シキ・ショク・お(る)",
-     "sens": "tisser"
-    },
-    {
-     "id": "kanji:質",
-     "kanji": "質",
-     "lecture": "シツ・シチ",
-     "sens": "qualité, nature"
-    },
-    {
-     "id": "kanji:舎",
-     "kanji": "舎",
-     "lecture": "シャ",
-     "sens": "pavillon, dortoir"
-    },
-    {
-     "id": "kanji:釈",
-     "kanji": "釈",
-     "lecture": "シャク",
-     "sens": "explication, interprétation"
-    },
-    {
-     "id": "kanji:謝",
-     "kanji": "謝",
-     "lecture": "シャ・あやま(る)",
-     "sens": "remercier, s'excuser"
-    },
-    {
-     "id": "kanji:写",
-     "kanji": "写",
-     "lecture": "シャ・うつ(す)",
-     "sens": "copier, photographier"
-    },
-    {
-     "id": "kanji:者",
-     "kanji": "者",
-     "lecture": "シャ・もの",
-     "sens": "personne"
-    },
-    {
-     "id": "kanji:集",
-     "kanji": "集",
-     "lecture": "シュウ・あつ(める)",
-     "sens": "rassembler"
-    },
-    {
-     "id": "kanji:終",
-     "kanji": "終",
-     "lecture": "シュウ・お(わる)",
-     "sens": "finir"
-    },
-    {
-     "id": "kanji:収",
-     "kanji": "収",
-     "lecture": "シュウ・おさ(める)",
-     "sens": "percevoir, ranger"
-    },
-    {
-     "id": "kanji:州",
-     "kanji": "州",
-     "lecture": "シュウ・す",
-     "sens": "province, état"
-    },
-    {
-     "id": "kanji:習",
-     "kanji": "習",
-     "lecture": "シュウ・なら(う)",
-     "sens": "apprendre"
-    },
-    {
-     "id": "kanji:拾",
-     "kanji": "拾",
-     "lecture": "シュウ・ひろ(う)",
-     "sens": "ramasser"
-    },
-    {
-     "id": "kanji:祝",
-     "kanji": "祝",
-     "lecture": "シュク・いわ(う)",
-     "sens": "célébrer, féliciter"
-    },
-    {
-     "id": "kanji:縮",
-     "kanji": "縮",
-     "lecture": "シュク・ちぢ(む)",
-     "sens": "réduire, contracter"
     },
     {
      "id": "kanji:宿",
@@ -1248,166 +1461,10 @@
      "sens": "auberge, loger"
     },
     {
-     "id": "kanji:酒",
-     "kanji": "酒",
-     "lecture": "シュ・さけ",
-     "sens": "alcool, saké"
-    },
-    {
      "id": "kanji:守",
      "kanji": "守",
      "lecture": "シュ・ス・まも(る)",
      "sens": "protéger, respecter"
-    },
-    {
-     "id": "kanji:種",
-     "kanji": "種",
-     "lecture": "シュ・たね",
-     "sens": "espèce, graine"
-    },
-    {
-     "id": "kanji:取",
-     "kanji": "取",
-     "lecture": "シュ・と(る)",
-     "sens": "prendre, saisir"
-    },
-    {
-     "id": "kanji:主",
-     "kanji": "主",
-     "lecture": "シュ・ぬし",
-     "sens": "maître, principal"
-    },
-    {
-     "id": "kanji:署",
-     "kanji": "署",
-     "lecture": "ショ",
-     "sens": "poste, bureau"
-    },
-    {
-     "id": "kanji:諸",
-     "kanji": "諸",
-     "lecture": "ショ",
-     "sens": "divers, plusieurs"
-    },
-    {
-     "id": "kanji:昭",
-     "kanji": "昭",
-     "lecture": "ショウ",
-     "sens": "clair, ère Shōwa"
-    },
-    {
-     "id": "kanji:章",
-     "kanji": "章",
-     "lecture": "ショウ",
-     "sens": "chapitre, insigne"
-    },
-    {
-     "id": "kanji:証",
-     "kanji": "証",
-     "lecture": "ショウ",
-     "sens": "preuve, certificat"
-    },
-    {
-     "id": "kanji:賞",
-     "kanji": "賞",
-     "lecture": "ショウ",
-     "sens": "prix, récompense"
-    },
-    {
-     "id": "kanji:商",
-     "kanji": "商",
-     "lecture": "ショウ・あきな(う)",
-     "sens": "commerce"
-    },
-    {
-     "id": "kanji:勝",
-     "kanji": "勝",
-     "lecture": "ショウ・か(つ)",
-     "sens": "victoire, gagner"
-    },
-    {
-     "id": "kanji:消",
-     "kanji": "消",
-     "lecture": "ショウ・き(える)・け(す)",
-     "sens": "éteindre, disparaître"
-    },
-    {
-     "id": "kanji:傷",
-     "kanji": "傷",
-     "lecture": "ショウ・きず",
-     "sens": "blessure"
-    },
-    {
-     "id": "kanji:象",
-     "kanji": "象",
-     "lecture": "ショウ・ゾウ",
-     "sens": "phénomène, image"
-    },
-    {
-     "id": "kanji:招",
-     "kanji": "招",
-     "lecture": "ショウ・まね(く)",
-     "sens": "inviter"
-    },
-    {
-     "id": "kanji:笑",
-     "kanji": "笑",
-     "lecture": "ショウ・わら(う)",
-     "sens": "rire, sourire"
-    },
-    {
-     "id": "kanji:植",
-     "kanji": "植",
-     "lecture": "ショク・う(える)",
-     "sens": "planter"
-    },
-    {
-     "id": "kanji:触",
-     "kanji": "触",
-     "lecture": "ショク・ふ(れる)・さわ(る)",
-     "sens": "toucher"
-    },
-    {
-     "id": "kanji:暑",
-     "kanji": "暑",
-     "lecture": "ショ・あつ(い)",
-     "sens": "chaud (temps)"
-    },
-    {
-     "id": "kanji:所",
-     "kanji": "所",
-     "lecture": "ショ・ところ",
-     "sens": "lieu, endroit"
-    },
-    {
-     "id": "kanji:初",
-     "kanji": "初",
-     "lecture": "ショ・はじ(め)・はつ",
-     "sens": "début, premier"
-    },
-    {
-     "id": "kanji:信",
-     "kanji": "信",
-     "lecture": "シン",
-     "sens": "croire, confiance"
-    },
-    {
-     "id": "kanji:神",
-     "kanji": "神",
-     "lecture": "シン・かみ",
-     "sens": "dieu, divin"
-    },
-    {
-     "id": "kanji:臣",
-     "kanji": "臣",
-     "lecture": "シン・ジン",
-     "sens": "vassal, ministre"
-    },
-    {
-     "id": "kanji:進",
-     "kanji": "進",
-     "lecture": "シン・すす(む)",
-     "sens": "avancer"
     },
     {
      "id": "kanji:寝",
@@ -1416,364 +1473,76 @@
      "sens": "dormir, se coucher"
     },
     {
-     "id": "kanji:針",
-     "kanji": "針",
-     "lecture": "シン・はり",
-     "sens": "aiguille"
-    },
-    {
-     "id": "kanji:深",
-     "kanji": "深",
-     "lecture": "シン・ふか(い)",
-     "sens": "profond"
-    },
-    {
-     "id": "kanji:震",
-     "kanji": "震",
-     "lecture": "シン・ふる(える)",
-     "sens": "trembler, séisme"
-    },
-    {
-     "id": "kanji:真",
-     "kanji": "真",
-     "lecture": "シン・ま",
-     "sens": "vrai, pur"
-    },
-    {
-     "id": "kanji:身",
-     "kanji": "身",
-     "lecture": "シン・み",
-     "sens": "corps, soi"
-    },
-    {
-     "id": "kanji:申",
-     "kanji": "申",
-     "lecture": "シン・もう(す)",
-     "sens": "dire (modeste)"
-    },
-    {
-     "id": "kanji:試",
-     "kanji": "試",
-     "lecture": "シ・こころ(みる)・ため(す)",
-     "sens": "essayer, test"
-    },
-    {
-     "id": "kanji:支",
-     "kanji": "支",
-     "lecture": "シ・ささ(える)",
-     "sens": "soutenir, payer"
-    },
-    {
-     "id": "kanji:死",
-     "kanji": "死",
-     "lecture": "シ・し(ぬ)",
-     "sens": "mort, mourir"
-    }
-   ]
-  },
-  {
-   "id": "g5",
-   "title": "Kanji N3 + N4 — lot 5/9 (ordre gojūon)",
-   "items": [
-    {
-     "id": "kanji:使",
-     "kanji": "使",
-     "lecture": "シ・つか(う)",
-     "sens": "utiliser"
-    },
-    {
-     "id": "kanji:仕",
-     "kanji": "仕",
-     "lecture": "シ・つか(える)",
-     "sens": "servir, travail"
-    },
-    {
-     "id": "kanji:歯",
-     "kanji": "歯",
-     "lecture": "シ・は",
-     "sens": "dent"
-    },
-    {
-     "id": "kanji:始",
-     "kanji": "始",
-     "lecture": "シ・はじ(める)",
-     "sens": "commencer"
-    },
-    {
-     "id": "kanji:指",
-     "kanji": "指",
-     "lecture": "シ・ゆび・さ(す)",
-     "sens": "doigt, montrer"
-    },
-    {
      "id": "kanji:実",
      "kanji": "実",
      "lecture": "ジツ・み・みの(る)",
      "sens": "réel, fruit"
     },
     {
-     "id": "kanji:住",
-     "kanji": "住",
-     "lecture": "ジュウ・す(む)",
-     "sens": "habiter"
+     "id": "kanji:定",
+     "kanji": "定",
+     "lecture": "テイ・さだ(める)",
+     "sens": "fixer, déterminer"
     },
     {
-     "id": "kanji:重",
-     "kanji": "重",
-     "lecture": "ジュウ・チョウ・おも(い)",
-     "sens": "lourd, important"
+     "id": "kanji:寧",
+     "kanji": "寧",
+     "lecture": "ネイ",
+     "sens": "paisible, poli"
     },
     {
-     "id": "kanji:術",
-     "kanji": "術",
-     "lecture": "ジュツ",
-     "sens": "technique, art"
+     "id": "kanji:容",
+     "kanji": "容",
+     "lecture": "ヨウ",
+     "sens": "contenir, apparence"
+    }
+   ]
+  },
+  {
+   "id": "g12",
+   "title": "Famille 貝 — argent / coquillage",
+   "items": [
+    {
+     "id": "kanji:員",
+     "kanji": "員",
+     "lecture": "イン",
+     "sens": "membre, employé"
     },
     {
-     "id": "kanji:述",
-     "kanji": "述",
-     "lecture": "ジュツ・の(べる)",
-     "sens": "énoncer, exposer"
+     "id": "kanji:貨",
+     "kanji": "貨",
+     "lecture": "カ",
+     "sens": "marchandise, monnaie"
     },
     {
-     "id": "kanji:純",
-     "kanji": "純",
-     "lecture": "ジュン",
-     "sens": "pur"
+     "id": "kanji:賛",
+     "kanji": "賛",
+     "lecture": "サン",
+     "sens": "approuver, soutenir"
     },
     {
-     "id": "kanji:準",
-     "kanji": "準",
-     "lecture": "ジュン",
-     "sens": "niveau, norme"
+     "id": "kanji:財",
+     "kanji": "財",
+     "lecture": "ザイ・サイ",
+     "sens": "richesse, biens"
     },
     {
-     "id": "kanji:順",
-     "kanji": "順",
-     "lecture": "ジュン",
-     "sens": "ordre, tour"
+     "id": "kanji:資",
+     "kanji": "資",
+     "lecture": "シ",
+     "sens": "capital, ressources"
     },
     {
-     "id": "kanji:受",
-     "kanji": "受",
-     "lecture": "ジュ・う(ける)",
-     "sens": "recevoir"
+     "id": "kanji:質",
+     "kanji": "質",
+     "lecture": "シツ・シチ",
+     "sens": "qualité, nature"
     },
     {
-     "id": "kanji:序",
-     "kanji": "序",
-     "lecture": "ジョ",
-     "sens": "ordre, préface"
-    },
-    {
-     "id": "kanji:状",
-     "kanji": "状",
-     "lecture": "ジョウ",
-     "sens": "état, condition"
-    },
-    {
-     "id": "kanji:城",
-     "kanji": "城",
-     "lecture": "ジョウ・しろ",
-     "sens": "château"
-    },
-    {
-     "id": "kanji:常",
-     "kanji": "常",
-     "lecture": "ジョウ・つね",
-     "sens": "ordinaire, constant"
-    },
-    {
-     "id": "kanji:情",
-     "kanji": "情",
-     "lecture": "ジョウ・なさ(け)",
-     "sens": "sentiment, situation"
-    },
-    {
-     "id": "kanji:乗",
-     "kanji": "乗",
-     "lecture": "ジョウ・の(る)",
-     "sens": "monter (véhicule)"
-    },
-    {
-     "id": "kanji:蒸",
-     "kanji": "蒸",
-     "lecture": "ジョウ・む(す)",
-     "sens": "vapeur, étuver"
-    },
-    {
-     "id": "kanji:除",
-     "kanji": "除",
-     "lecture": "ジョ・ジ・のぞ(く)",
-     "sens": "exclure, retirer"
-    },
-    {
-     "id": "kanji:助",
-     "kanji": "助",
-     "lecture": "ジョ・たす(ける)",
-     "sens": "aider, secourir"
-    },
-    {
-     "id": "kanji:仁",
-     "kanji": "仁",
-     "lecture": "ジン",
-     "sens": "bienveillance, humanité"
-    },
-    {
-     "id": "kanji:事",
-     "kanji": "事",
-     "lecture": "ジ・こと",
-     "sens": "affaire, chose"
-    },
-    {
-     "id": "kanji:示",
-     "kanji": "示",
-     "lecture": "ジ・しめ(す)",
-     "sens": "montrer, indiquer"
-    },
-    {
-     "id": "kanji:次",
-     "kanji": "次",
-     "lecture": "ジ・シ・つぎ",
-     "sens": "suivant, ordre"
-    },
-    {
-     "id": "kanji:治",
-     "kanji": "治",
-     "lecture": "ジ・チ・おさ(める)",
-     "sens": "gouverner, soigner"
-    },
-    {
-     "id": "kanji:児",
-     "kanji": "児",
-     "lecture": "ジ・ニ",
-     "sens": "enfant"
-    },
-    {
-     "id": "kanji:似",
-     "kanji": "似",
-     "lecture": "ジ・に(る)",
-     "sens": "ressembler"
-    },
-    {
-     "id": "kanji:持",
-     "kanji": "持",
-     "lecture": "ジ・も(つ)",
-     "sens": "tenir, posséder"
-    },
-    {
-     "id": "kanji:辞",
-     "kanji": "辞",
-     "lecture": "ジ・や(める)",
-     "sens": "démissionner, mot"
-    },
-    {
-     "id": "kanji:推",
-     "kanji": "推",
-     "lecture": "スイ・お(す)",
-     "sens": "présumer, pousser"
-    },
-    {
-     "id": "kanji:垂",
-     "kanji": "垂",
-     "lecture": "スイ・た(れる)",
-     "sens": "pendre, suspendre"
-    },
-    {
-     "id": "kanji:数",
-     "kanji": "数",
-     "lecture": "スウ・かず・かぞ(える)",
-     "sens": "nombre, compter"
-    },
-    {
-     "id": "kanji:寸",
-     "kanji": "寸",
-     "lecture": "スン",
-     "sens": "unité de longueur"
-    },
-    {
-     "id": "kanji:政",
-     "kanji": "政",
-     "lecture": "セイ",
-     "sens": "politique, gouvernement"
-    },
-    {
-     "id": "kanji:制",
-     "kanji": "制",
-     "lecture": "セイ",
-     "sens": "système, contrôler"
-    },
-    {
-     "id": "kanji:製",
-     "kanji": "製",
-     "lecture": "セイ",
-     "sens": "fabriquer"
-    },
-    {
-     "id": "kanji:姓",
-     "kanji": "姓",
-     "lecture": "セイ",
-     "sens": "nom de famille"
-    },
-    {
-     "id": "kanji:精",
-     "kanji": "精",
-     "lecture": "セイ",
-     "sens": "esprit, raffiné"
-    },
-    {
-     "id": "kanji:聖",
-     "kanji": "聖",
-     "lecture": "セイ",
-     "sens": "saint, sacré"
-    },
-    {
-     "id": "kanji:清",
-     "kanji": "清",
-     "lecture": "セイ・きよ(い)",
-     "sens": "pur, propre"
-    },
-    {
-     "id": "kanji:性",
-     "kanji": "性",
-     "lecture": "セイ・ショウ",
-     "sens": "nature, caractère, sexe"
-    },
-    {
-     "id": "kanji:整",
-     "kanji": "整",
-     "lecture": "セイ・ととの(える)",
-     "sens": "ranger, ajuster"
-    },
-    {
-     "id": "kanji:成",
-     "kanji": "成",
-     "lecture": "セイ・な(る)",
-     "sens": "devenir, accomplir"
-    },
-    {
-     "id": "kanji:晴",
-     "kanji": "晴",
-     "lecture": "セイ・は(れる)",
-     "sens": "beau temps"
-    },
-    {
-     "id": "kanji:星",
-     "kanji": "星",
-     "lecture": "セイ・ほし",
-     "sens": "étoile"
-    },
-    {
-     "id": "kanji:盛",
-     "kanji": "盛",
-     "lecture": "セイ・も(る)・さか(ん)",
-     "sens": "prospère, servir"
-    },
-    {
-     "id": "kanji:績",
-     "kanji": "績",
-     "lecture": "セキ",
-     "sens": "exploits, résultats"
+     "id": "kanji:賞",
+     "kanji": "賞",
+     "lecture": "ショウ",
+     "sens": "prix, récompense"
     },
     {
      "id": "kanji:責",
@@ -1782,460 +1551,10 @@
      "sens": "responsabilité, blâmer"
     },
     {
-     "id": "kanji:昔",
-     "kanji": "昔",
-     "lecture": "セキ・むかし",
-     "sens": "autrefois"
-    },
-    {
-     "id": "kanji:接",
-     "kanji": "接",
-     "lecture": "セツ・つ(ぐ)",
-     "sens": "contact, joindre"
-    },
-    {
-     "id": "kanji:節",
-     "kanji": "節",
-     "lecture": "セツ・ふし",
-     "sens": "nœud, saison, économiser"
-    },
-    {
-     "id": "kanji:設",
-     "kanji": "設",
-     "lecture": "セツ・もう(ける)",
-     "sens": "installer, établir"
-    },
-    {
-     "id": "kanji:選",
-     "kanji": "選",
-     "lecture": "セン・えら(ぶ)",
-     "sens": "choisir"
-    },
-    {
-     "id": "kanji:銭",
-     "kanji": "銭",
-     "lecture": "セン・ぜに",
-     "sens": "argent, sen"
-    },
-    {
-     "id": "kanji:戦",
-     "kanji": "戦",
-     "lecture": "セン・たたか(う)",
-     "sens": "guerre, combattre"
-    },
-    {
-     "id": "kanji:世",
-     "kanji": "世",
-     "lecture": "セ・セイ・よ",
-     "sens": "monde, génération"
-    },
-    {
-     "id": "kanji:是",
-     "kanji": "是",
-     "lecture": "ゼ",
-     "sens": "correct, justice"
-    }
-   ]
-  },
-  {
-   "id": "g6",
-   "title": "Kanji N3 + N4 — lot 6/9 (ordre gojūon)",
-   "items": [
-    {
-     "id": "kanji:税",
-     "kanji": "税",
-     "lecture": "ゼイ",
-     "sens": "impôt, taxe"
-    },
-    {
-     "id": "kanji:舌",
-     "kanji": "舌",
-     "lecture": "ゼツ・した",
-     "sens": "langue"
-    },
-    {
-     "id": "kanji:絶",
-     "kanji": "絶",
-     "lecture": "ゼツ・た(える)",
-     "sens": "couper, extrême"
-    },
-    {
-     "id": "kanji:然",
-     "kanji": "然",
-     "lecture": "ゼン・ネン",
-     "sens": "ainsi, naturel"
-    },
-    {
-     "id": "kanji:全",
-     "kanji": "全",
-     "lecture": "ゼン・まった(く)",
-     "sens": "entier, tout"
-    },
-    {
-     "id": "kanji:善",
-     "kanji": "善",
-     "lecture": "ゼン・よ(い)",
-     "sens": "bien, vertu"
-    },
-    {
-     "id": "kanji:祖",
-     "kanji": "祖",
-     "lecture": "ソ",
-     "sens": "ancêtre"
-    },
-    {
-     "id": "kanji:総",
-     "kanji": "総",
-     "lecture": "ソウ",
-     "sens": "total, général"
-    },
-    {
-     "id": "kanji:層",
-     "kanji": "層",
-     "lecture": "ソウ",
-     "sens": "couche, strate"
-    },
-    {
-     "id": "kanji:相",
-     "kanji": "相",
-     "lecture": "ソウ・あい",
-     "sens": "mutuel, aspect, ministre"
-    },
-    {
-     "id": "kanji:操",
-     "kanji": "操",
-     "lecture": "ソウ・あやつ(る)",
-     "sens": "manœuvrer"
-    },
-    {
-     "id": "kanji:争",
-     "kanji": "争",
-     "lecture": "ソウ・あらそ(う)",
-     "sens": "lutter, disputer"
-    },
-    {
-     "id": "kanji:送",
-     "kanji": "送",
-     "lecture": "ソウ・おく(る)",
-     "sens": "envoyer"
-    },
-    {
-     "id": "kanji:装",
-     "kanji": "装",
-     "lecture": "ソウ・ショウ",
-     "sens": "équiper, costume"
-    },
-    {
-     "id": "kanji:想",
-     "kanji": "想",
-     "lecture": "ソウ・ソ",
-     "sens": "penser, imaginer"
-    },
-    {
      "id": "kanji:則",
      "kanji": "則",
      "lecture": "ソク",
      "sens": "règle, loi"
-    },
-    {
-     "id": "kanji:息",
-     "kanji": "息",
-     "lecture": "ソク・いき",
-     "sens": "souffle, fils"
-    },
-    {
-     "id": "kanji:測",
-     "kanji": "測",
-     "lecture": "ソク・はか(る)",
-     "sens": "mesurer"
-    },
-    {
-     "id": "kanji:速",
-     "kanji": "速",
-     "lecture": "ソク・はや(い)",
-     "sens": "rapide"
-    },
-    {
-     "id": "kanji:率",
-     "kanji": "率",
-     "lecture": "ソツ・リツ",
-     "sens": "taux, conduire"
-    },
-    {
-     "id": "kanji:損",
-     "kanji": "損",
-     "lecture": "ソン・そこ(なう)",
-     "sens": "perte, endommager"
-    },
-    {
-     "id": "kanji:存",
-     "kanji": "存",
-     "lecture": "ソン・ゾン",
-     "sens": "exister"
-    },
-    {
-     "id": "kanji:尊",
-     "kanji": "尊",
-     "lecture": "ソン・たっと(い)",
-     "sens": "respecter, noble"
-    },
-    {
-     "id": "kanji:素",
-     "kanji": "素",
-     "lecture": "ソ・ス",
-     "sens": "élément, simple"
-    },
-    {
-     "id": "kanji:像",
-     "kanji": "像",
-     "lecture": "ゾウ",
-     "sens": "image, statue"
-    },
-    {
-     "id": "kanji:臓",
-     "kanji": "臓",
-     "lecture": "ゾウ",
-     "sens": "organe, viscère"
-    },
-    {
-     "id": "kanji:蔵",
-     "kanji": "蔵",
-     "lecture": "ゾウ・くら",
-     "sens": "entrepôt, réserve"
-    },
-    {
-     "id": "kanji:造",
-     "kanji": "造",
-     "lecture": "ゾウ・つく(る)",
-     "sens": "construire, fabriquer"
-    },
-    {
-     "id": "kanji:族",
-     "kanji": "族",
-     "lecture": "ゾク",
-     "sens": "tribu, famille"
-    },
-    {
-     "id": "kanji:続",
-     "kanji": "続",
-     "lecture": "ゾク・つづ(く)",
-     "sens": "continuer"
-    },
-    {
-     "id": "kanji:態",
-     "kanji": "態",
-     "lecture": "タイ",
-     "sens": "état, attitude"
-    },
-    {
-     "id": "kanji:隊",
-     "kanji": "隊",
-     "lecture": "タイ",
-     "sens": "troupe, escadron"
-    },
-    {
-     "id": "kanji:帯",
-     "kanji": "帯",
-     "lecture": "タイ・お(びる)・おび",
-     "sens": "ceinture, porter"
-    },
-    {
-     "id": "kanji:退",
-     "kanji": "退",
-     "lecture": "タイ・しりぞ(く)",
-     "sens": "reculer, se retirer"
-    },
-    {
-     "id": "kanji:対",
-     "kanji": "対",
-     "lecture": "タイ・ツイ",
-     "sens": "face à, opposé"
-    },
-    {
-     "id": "kanji:待",
-     "kanji": "待",
-     "lecture": "タイ・ま(つ)",
-     "sens": "attendre"
-    },
-    {
-     "id": "kanji:達",
-     "kanji": "達",
-     "lecture": "タツ",
-     "sens": "atteindre, -tachi (pluriel)"
-    },
-    {
-     "id": "kanji:単",
-     "kanji": "単",
-     "lecture": "タン",
-     "sens": "simple, seul"
-    },
-    {
-     "id": "kanji:探",
-     "kanji": "探",
-     "lecture": "タン・さが(す)",
-     "sens": "chercher, explorer"
-    },
-    {
-     "id": "kanji:炭",
-     "kanji": "炭",
-     "lecture": "タン・すみ",
-     "sens": "charbon"
-    },
-    {
-     "id": "kanji:担",
-     "kanji": "担",
-     "lecture": "タン・にな(う)",
-     "sens": "porter, se charger de"
-    },
-    {
-     "id": "kanji:短",
-     "kanji": "短",
-     "lecture": "タン・みじか(い)",
-     "sens": "court"
-    },
-    {
-     "id": "kanji:他",
-     "kanji": "他",
-     "lecture": "タ・ほか",
-     "sens": "autre"
-    },
-    {
-     "id": "kanji:第",
-     "kanji": "第",
-     "lecture": "ダイ",
-     "sens": "ordinal (n°)"
-    },
-    {
-     "id": "kanji:題",
-     "kanji": "題",
-     "lecture": "ダイ",
-     "sens": "sujet, problème"
-    },
-    {
-     "id": "kanji:代",
-     "kanji": "代",
-     "lecture": "ダイ・タイ・か(わる)",
-     "sens": "génération, remplacer"
-    },
-    {
-     "id": "kanji:談",
-     "kanji": "談",
-     "lecture": "ダン",
-     "sens": "conversation"
-    },
-    {
-     "id": "kanji:段",
-     "kanji": "段",
-     "lecture": "ダン",
-     "sens": "échelon, niveau"
-    },
-    {
-     "id": "kanji:暖",
-     "kanji": "暖",
-     "lecture": "ダン・あたた(かい)",
-     "sens": "chaud (température)"
-    },
-    {
-     "id": "kanji:断",
-     "kanji": "断",
-     "lecture": "ダン・た(つ)・ことわ(る)",
-     "sens": "trancher, refuser"
-    },
-    {
-     "id": "kanji:弾",
-     "kanji": "弾",
-     "lecture": "ダン・ひ(く)",
-     "sens": "tirer, jouer (instrument)"
-    },
-    {
-     "id": "kanji:打",
-     "kanji": "打",
-     "lecture": "ダ・う(つ)",
-     "sens": "frapper"
-    },
-    {
-     "id": "kanji:築",
-     "kanji": "築",
-     "lecture": "チク・きず(く)",
-     "sens": "bâtir"
-    },
-    {
-     "id": "kanji:着",
-     "kanji": "着",
-     "lecture": "チャク・き(る)・つ(く)",
-     "sens": "porter, arriver"
-    },
-    {
-     "id": "kanji:忠",
-     "kanji": "忠",
-     "lecture": "チュウ",
-     "sens": "loyauté, fidélité"
-    },
-    {
-     "id": "kanji:注",
-     "kanji": "注",
-     "lecture": "チュウ・そそ(ぐ)",
-     "sens": "verser, attention"
-    },
-    {
-     "id": "kanji:仲",
-     "kanji": "仲",
-     "lecture": "チュウ・なか",
-     "sens": "relation, entente"
-    },
-    {
-     "id": "kanji:柱",
-     "kanji": "柱",
-     "lecture": "チュウ・はしら",
-     "sens": "pilier, colonne"
-    },
-    {
-     "id": "kanji:帳",
-     "kanji": "帳",
-     "lecture": "チョウ",
-     "sens": "registre, carnet"
-    },
-    {
-     "id": "kanji:庁",
-     "kanji": "庁",
-     "lecture": "チョウ",
-     "sens": "agence (gouvernementale)"
-    }
-   ]
-  },
-  {
-   "id": "g7",
-   "title": "Kanji N3 + N4 — lot 7/9 (ordre gojūon)",
-   "items": [
-    {
-     "id": "kanji:腸",
-     "kanji": "腸",
-     "lecture": "チョウ",
-     "sens": "intestin"
-    },
-    {
-     "id": "kanji:頂",
-     "kanji": "頂",
-     "lecture": "チョウ・いただ(く)",
-     "sens": "sommet, recevoir (humble)"
-    },
-    {
-     "id": "kanji:調",
-     "kanji": "調",
-     "lecture": "チョウ・しら(べる)",
-     "sens": "enquêter, ton"
-    },
-    {
-     "id": "kanji:丁",
-     "kanji": "丁",
-     "lecture": "チョウ・テイ",
-     "sens": "bloc, pair"
-    },
-    {
-     "id": "kanji:張",
-     "kanji": "張",
-     "lecture": "チョウ・は(る)",
-     "sens": "tendre, étendre"
     },
     {
      "id": "kanji:賃",
@@ -2244,52 +1563,505 @@
      "sens": "loyer, salaire"
     },
     {
-     "id": "kanji:沈",
-     "kanji": "沈",
-     "lecture": "チン・しず(む)",
-     "sens": "couler, sombrer"
+     "id": "kanji:敗",
+     "kanji": "敗",
+     "lecture": "ハイ・やぶ(れる)",
+     "sens": "défaite, échouer"
     },
     {
-     "id": "kanji:珍",
-     "kanji": "珍",
-     "lecture": "チン・めずら(しい)",
-     "sens": "rare, curieux"
+     "id": "kanji:販",
+     "kanji": "販",
+     "lecture": "ハン",
+     "sens": "vendre, commerce"
     },
     {
-     "id": "kanji:値",
-     "kanji": "値",
-     "lecture": "チ・ね・あたい",
-     "sens": "valeur, prix"
+     "id": "kanji:費",
+     "kanji": "費",
+     "lecture": "ヒ・つい(やす)",
+     "sens": "dépense, frais"
     },
     {
-     "id": "kanji:追",
-     "kanji": "追",
-     "lecture": "ツイ・お(う)",
-     "sens": "poursuivre"
+     "id": "kanji:負",
+     "kanji": "負",
+     "lecture": "フ・ま(ける)",
+     "sens": "perdre, charge"
     },
     {
-     "id": "kanji:痛",
-     "kanji": "痛",
-     "lecture": "ツウ・いた(い)",
-     "sens": "douleur"
+     "id": "kanji:貿",
+     "kanji": "貿",
+     "lecture": "ボウ",
+     "sens": "commerce"
+    }
+   ]
+  },
+  {
+   "id": "g13",
+   "title": "Famille 阝 — colline / ville",
+   "items": [
+    {
+     "id": "kanji:院",
+     "kanji": "院",
+     "lecture": "イン",
+     "sens": "institution, hôpital"
     },
     {
-     "id": "kanji:停",
-     "kanji": "停",
-     "lecture": "テイ",
-     "sens": "s'arrêter, arrêt"
+     "id": "kanji:階",
+     "kanji": "階",
+     "lecture": "カイ",
+     "sens": "étage"
     },
     {
-     "id": "kanji:提",
-     "kanji": "提",
-     "lecture": "テイ・さ(げる)",
-     "sens": "présenter, soumettre"
+     "id": "kanji:響",
+     "kanji": "響",
+     "lecture": "キョウ・ひび(く)",
+     "sens": "résonner, retentir"
     },
     {
-     "id": "kanji:定",
-     "kanji": "定",
-     "lecture": "テイ・さだ(める)",
-     "sens": "fixer, déterminer"
+     "id": "kanji:郡",
+     "kanji": "郡",
+     "lecture": "グン",
+     "sens": "district, arrondissement"
+    },
+    {
+     "id": "kanji:険",
+     "kanji": "険",
+     "lecture": "ケン・けわ(しい)",
+     "sens": "dangereux, escarpé"
+    },
+    {
+     "id": "kanji:限",
+     "kanji": "限",
+     "lecture": "ゲン・かぎ(る)",
+     "sens": "limiter"
+    },
+    {
+     "id": "kanji:除",
+     "kanji": "除",
+     "lecture": "ジョ・ジ・のぞ(く)",
+     "sens": "exclure, retirer"
+    },
+    {
+     "id": "kanji:隊",
+     "kanji": "隊",
+     "lecture": "タイ",
+     "sens": "troupe, escadron"
+    },
+    {
+     "id": "kanji:都",
+     "kanji": "都",
+     "lecture": "ト・ツ・みやこ",
+     "sens": "capitale, métropole"
+    },
+    {
+     "id": "kanji:部",
+     "kanji": "部",
+     "lecture": "ブ",
+     "sens": "partie, section"
+    },
+    {
+     "id": "kanji:防",
+     "kanji": "防",
+     "lecture": "ボウ・ふせ(ぐ)",
+     "sens": "prévenir, défendre"
+    },
+    {
+     "id": "kanji:陽",
+     "kanji": "陽",
+     "lecture": "ヨウ",
+     "sens": "soleil, yang"
+    },
+    {
+     "id": "kanji:際",
+     "kanji": "際",
+     "lecture": "サイ・きわ",
+     "sens": "occasion, bord",
+     "exemple": "国際 (kokusai) international"
+    }
+   ]
+  },
+  {
+   "id": "g14",
+   "title": "Famille 月 — lune / corps",
+   "items": [
+    {
+     "id": "kanji:胃",
+     "kanji": "胃",
+     "lecture": "イ",
+     "sens": "estomac"
+    },
+    {
+     "id": "kanji:育",
+     "kanji": "育",
+     "lecture": "イク・そだ(てる)",
+     "sens": "élever, éduquer"
+    },
+    {
+     "id": "kanji:期",
+     "kanji": "期",
+     "lecture": "キ・ゴ",
+     "sens": "période, terme"
+    },
+    {
+     "id": "kanji:骨",
+     "kanji": "骨",
+     "lecture": "コツ・ほね",
+     "sens": "os"
+    },
+    {
+     "id": "kanji:臓",
+     "kanji": "臓",
+     "lecture": "ゾウ",
+     "sens": "organe, viscère"
+    },
+    {
+     "id": "kanji:腸",
+     "kanji": "腸",
+     "lecture": "チョウ",
+     "sens": "intestin"
+    },
+    {
+     "id": "kanji:脳",
+     "kanji": "脳",
+     "lecture": "ノウ",
+     "sens": "cerveau"
+    },
+    {
+     "id": "kanji:肺",
+     "kanji": "肺",
+     "lecture": "ハイ",
+     "sens": "poumon"
+    },
+    {
+     "id": "kanji:背",
+     "kanji": "背",
+     "lecture": "ハイ・せ・せい",
+     "sens": "dos, taille"
+    },
+    {
+     "id": "kanji:服",
+     "kanji": "服",
+     "lecture": "フク",
+     "sens": "vêtement"
+    },
+    {
+     "id": "kanji:望",
+     "kanji": "望",
+     "lecture": "ボウ・のぞ(む)",
+     "sens": "souhaiter, espoir"
+    },
+    {
+     "id": "kanji:有",
+     "kanji": "有",
+     "lecture": "ユウ・ウ・あ(る)",
+     "sens": "avoir, exister"
+    }
+   ]
+  },
+  {
+   "id": "g15",
+   "title": "Famille 艹 — plante",
+   "items": [
+    {
+     "id": "kanji:英",
+     "kanji": "英",
+     "lecture": "エイ",
+     "sens": "Angleterre, talent"
+    },
+    {
+     "id": "kanji:荷",
+     "kanji": "荷",
+     "lecture": "カ・に",
+     "sens": "bagage, charge"
+    },
+    {
+     "id": "kanji:芽",
+     "kanji": "芽",
+     "lecture": "ガ・め",
+     "sens": "bourgeon, germe"
+    },
+    {
+     "id": "kanji:苦",
+     "kanji": "苦",
+     "lecture": "ク・くる(しい)・にが(い)",
+     "sens": "souffrance, amer"
+    },
+    {
+     "id": "kanji:芸",
+     "kanji": "芸",
+     "lecture": "ゲイ",
+     "sens": "art, talent"
+    },
+    {
+     "id": "kanji:菜",
+     "kanji": "菜",
+     "lecture": "サイ・な",
+     "sens": "légume, plat"
+    },
+    {
+     "id": "kanji:蒸",
+     "kanji": "蒸",
+     "lecture": "ジョウ・む(す)",
+     "sens": "vapeur, étuver"
+    },
+    {
+     "id": "kanji:蔵",
+     "kanji": "蔵",
+     "lecture": "ゾウ・くら",
+     "sens": "entrepôt, réserve"
+    },
+    {
+     "id": "kanji:薬",
+     "kanji": "薬",
+     "lecture": "ヤク・くすり",
+     "sens": "médicament"
+    },
+    {
+     "id": "kanji:葉",
+     "kanji": "葉",
+     "lecture": "ヨウ・は",
+     "sens": "feuille"
+    },
+    {
+     "id": "kanji:落",
+     "kanji": "落",
+     "lecture": "ラク・お(ちる)",
+     "sens": "tomber"
+    }
+   ]
+  },
+  {
+   "id": "g16",
+   "title": "Famille 力 — force",
+   "items": [
+    {
+     "id": "kanji:加",
+     "kanji": "加",
+     "lecture": "カ・くわ(える)",
+     "sens": "ajouter"
+    },
+    {
+     "id": "kanji:功",
+     "kanji": "功",
+     "lecture": "コウ",
+     "sens": "mérite, exploit"
+    },
+    {
+     "id": "kanji:効",
+     "kanji": "効",
+     "lecture": "コウ・き(く)",
+     "sens": "effet, efficace"
+    },
+    {
+     "id": "kanji:勝",
+     "kanji": "勝",
+     "lecture": "ショウ・か(つ)",
+     "sens": "victoire, gagner"
+    },
+    {
+     "id": "kanji:助",
+     "kanji": "助",
+     "lecture": "ジョ・たす(ける)",
+     "sens": "aider, secourir"
+    },
+    {
+     "id": "kanji:動",
+     "kanji": "動",
+     "lecture": "ドウ・うご(く)",
+     "sens": "bouger"
+    },
+    {
+     "id": "kanji:努",
+     "kanji": "努",
+     "lecture": "ド・つと(める)",
+     "sens": "s'efforcer"
+    },
+    {
+     "id": "kanji:勉",
+     "kanji": "勉",
+     "lecture": "ベン",
+     "sens": "effort, étude"
+    },
+    {
+     "id": "kanji:務",
+     "kanji": "務",
+     "lecture": "ム・つと(める)",
+     "sens": "devoir, fonction"
+    },
+    {
+     "id": "kanji:劣",
+     "kanji": "劣",
+     "lecture": "レツ・おと(る)",
+     "sens": "inférieur"
+    },
+    {
+     "id": "kanji:協",
+     "kanji": "協",
+     "lecture": "キョウ",
+     "sens": "coopérer",
+     "exemple": "協力 (kyōryoku) coopération"
+    }
+   ]
+  },
+  {
+   "id": "g17",
+   "title": "Famille 礻／示 — rituel / esprit",
+   "items": [
+    {
+     "id": "kanji:祭",
+     "kanji": "祭",
+     "lecture": "サイ・まつ(り)",
+     "sens": "fête, festival"
+    },
+    {
+     "id": "kanji:視",
+     "kanji": "視",
+     "lecture": "シ",
+     "sens": "regarder, vue"
+    },
+    {
+     "id": "kanji:祝",
+     "kanji": "祝",
+     "lecture": "シュク・いわ(う)",
+     "sens": "célébrer, féliciter"
+    },
+    {
+     "id": "kanji:神",
+     "kanji": "神",
+     "lecture": "シン・かみ",
+     "sens": "dieu, divin"
+    },
+    {
+     "id": "kanji:示",
+     "kanji": "示",
+     "lecture": "ジ・しめ(す)",
+     "sens": "montrer, indiquer"
+    },
+    {
+     "id": "kanji:祖",
+     "kanji": "祖",
+     "lecture": "ソ",
+     "sens": "ancêtre"
+    },
+    {
+     "id": "kanji:票",
+     "kanji": "票",
+     "lecture": "ヒョウ",
+     "sens": "bulletin, vote"
+    },
+    {
+     "id": "kanji:福",
+     "kanji": "福",
+     "lecture": "フク",
+     "sens": "bonheur, fortune"
+    },
+    {
+     "id": "kanji:礼",
+     "kanji": "礼",
+     "lecture": "レイ・ライ",
+     "sens": "politesse, salut"
+    },
+    {
+     "id": "kanji:社",
+     "kanji": "社",
+     "lecture": "シャ・やしろ",
+     "sens": "société, sanctuaire",
+     "exemple": "社会 (shakai) société"
+    }
+   ]
+  },
+  {
+   "id": "g18",
+   "title": "Famille 刂 — couteau, côté droit",
+   "items": [
+    {
+     "id": "kanji:解",
+     "kanji": "解",
+     "lecture": "カイ・ゲ・と(く)",
+     "sens": "résoudre, défaire"
+    },
+    {
+     "id": "kanji:割",
+     "kanji": "割",
+     "lecture": "カツ・わ(る)",
+     "sens": "diviser, proportion, rôle"
+    },
+    {
+     "id": "kanji:型",
+     "kanji": "型",
+     "lecture": "ケイ・かた",
+     "sens": "modèle, type"
+    },
+    {
+     "id": "kanji:券",
+     "kanji": "券",
+     "lecture": "ケン",
+     "sens": "billet, coupon"
+    },
+    {
+     "id": "kanji:初",
+     "kanji": "初",
+     "lecture": "ショ・はじ(め)・はつ",
+     "sens": "début, premier"
+    },
+    {
+     "id": "kanji:制",
+     "kanji": "制",
+     "lecture": "セイ",
+     "sens": "système, contrôler"
+    },
+    {
+     "id": "kanji:判",
+     "kanji": "判",
+     "lecture": "ハン・バン",
+     "sens": "juger, sceau"
+    },
+    {
+     "id": "kanji:別",
+     "kanji": "別",
+     "lecture": "ベツ・わか(れる)",
+     "sens": "séparer, distinct"
+    },
+    {
+     "id": "kanji:列",
+     "kanji": "列",
+     "lecture": "レツ",
+     "sens": "rangée, file"
+    }
+   ]
+  },
+  {
+   "id": "g19",
+   "title": "Famille 广／厂 — abri / falaise",
+   "items": [
+    {
+     "id": "kanji:岸",
+     "kanji": "岸",
+     "lecture": "ガン・きし",
+     "sens": "rivage, berge"
+    },
+    {
+     "id": "kanji:庫",
+     "kanji": "庫",
+     "lecture": "コ",
+     "sens": "entrepôt, dépôt"
+    },
+    {
+     "id": "kanji:康",
+     "kanji": "康",
+     "lecture": "コウ",
+     "sens": "paix, santé"
+    },
+    {
+     "id": "kanji:序",
+     "kanji": "序",
+     "lecture": "ジョ",
+     "sens": "ordre, préface"
+    },
+    {
+     "id": "kanji:庁",
+     "kanji": "庁",
+     "lecture": "チョウ",
+     "sens": "agence (gouvernementale)"
     },
     {
      "id": "kanji:底",
@@ -2304,22 +2076,107 @@
      "sens": "jardin"
     },
     {
-     "id": "kanji:程",
-     "kanji": "程",
-     "lecture": "テイ・ほど",
-     "sens": "degré, mesure"
+     "id": "kanji:度",
+     "kanji": "度",
+     "lecture": "ド・タク",
+     "sens": "degré, fois"
     },
     {
-     "id": "kanji:適",
-     "kanji": "適",
-     "lecture": "テキ",
-     "sens": "approprié, convenir"
+     "id": "kanji:産",
+     "kanji": "産",
+     "lecture": "サン・う(む)",
+     "sens": "produire",
+     "exemple": "生産 (seisan) production"
+    }
+   ]
+  },
+  {
+   "id": "g20",
+   "title": "Famille 攵 — action (frapper)",
+   "items": [
+    {
+     "id": "kanji:改",
+     "kanji": "改",
+     "lecture": "カイ・あらた(める)",
+     "sens": "réformer, modifier"
     },
     {
-     "id": "kanji:笛",
-     "kanji": "笛",
-     "lecture": "テキ・ふえ",
-     "sens": "flûte, sifflet"
+     "id": "kanji:救",
+     "kanji": "救",
+     "lecture": "キュウ・すく(う)",
+     "sens": "sauver, secourir"
+    },
+    {
+     "id": "kanji:攻",
+     "kanji": "攻",
+     "lecture": "コウ・せ(める)",
+     "sens": "attaquer"
+    },
+    {
+     "id": "kanji:散",
+     "kanji": "散",
+     "lecture": "サン・ち(る)",
+     "sens": "se disperser"
+    },
+    {
+     "id": "kanji:数",
+     "kanji": "数",
+     "lecture": "スウ・かず・かぞ(える)",
+     "sens": "nombre, compter"
+    },
+    {
+     "id": "kanji:政",
+     "kanji": "政",
+     "lecture": "セイ",
+     "sens": "politique, gouvernement"
+    },
+    {
+     "id": "kanji:整",
+     "kanji": "整",
+     "lecture": "セイ・ととの(える)",
+     "sens": "ranger, ajuster"
+    },
+    {
+     "id": "kanji:放",
+     "kanji": "放",
+     "lecture": "ホウ・はな(す)",
+     "sens": "lâcher, diffuser"
+    }
+   ]
+  },
+  {
+   "id": "g21",
+   "title": "Famille 金 — métal",
+   "items": [
+    {
+     "id": "kanji:鏡",
+     "kanji": "鏡",
+     "lecture": "キョウ・かがみ",
+     "sens": "miroir"
+    },
+    {
+     "id": "kanji:銀",
+     "kanji": "銀",
+     "lecture": "ギン",
+     "sens": "argent (métal)"
+    },
+    {
+     "id": "kanji:鉱",
+     "kanji": "鉱",
+     "lecture": "コウ",
+     "sens": "minerai"
+    },
+    {
+     "id": "kanji:針",
+     "kanji": "針",
+     "lecture": "シン・はり",
+     "sens": "aiguille"
+    },
+    {
+     "id": "kanji:銭",
+     "kanji": "銭",
+     "lecture": "セン・ぜに",
+     "sens": "argent, sen"
     },
     {
      "id": "kanji:鉄",
@@ -2328,64 +2185,46 @@
      "sens": "fer"
     },
     {
-     "id": "kanji:典",
-     "kanji": "典",
-     "lecture": "テン",
-     "sens": "code, dictionnaire"
+     "id": "kanji:銅",
+     "kanji": "銅",
+     "lecture": "ドウ",
+     "sens": "cuivre"
     },
     {
-     "id": "kanji:展",
-     "kanji": "展",
-     "lecture": "テン",
-     "sens": "déployer, exposer"
+     "id": "kanji:鈍",
+     "kanji": "鈍",
+     "lecture": "ドン・にぶ(い)",
+     "sens": "émoussé, lent"
+    }
+   ]
+  },
+  {
+   "id": "g22",
+   "title": "Famille 灬／火 — feu",
+   "items": [
+    {
+     "id": "kanji:営",
+     "kanji": "営",
+     "lecture": "エイ・いとな(む)",
+     "sens": "gérer, exploiter"
     },
     {
-     "id": "kanji:転",
-     "kanji": "転",
-     "lecture": "テン・ころ(ぶ)",
-     "sens": "tourner, tomber"
+     "id": "kanji:災",
+     "kanji": "災",
+     "lecture": "サイ・わざわ(い)",
+     "sens": "catastrophe, fléau"
     },
     {
-     "id": "kanji:党",
-     "kanji": "党",
-     "lecture": "トウ",
-     "sens": "parti (politique)"
+     "id": "kanji:然",
+     "kanji": "然",
+     "lecture": "ゼン・ネン",
+     "sens": "ainsi, naturel"
     },
     {
-     "id": "kanji:当",
-     "kanji": "当",
-     "lecture": "トウ・あ(たる)",
-     "sens": "toucher, juste, ce…"
-    },
-    {
-     "id": "kanji:討",
-     "kanji": "討",
-     "lecture": "トウ・う(つ)",
-     "sens": "examiner, attaquer"
-    },
-    {
-     "id": "kanji:島",
-     "kanji": "島",
-     "lecture": "トウ・しま",
-     "sens": "île"
-    },
-    {
-     "id": "kanji:統",
-     "kanji": "統",
-     "lecture": "トウ・す(べる)",
-     "sens": "gouverner, unifier"
-    },
-    {
-     "id": "kanji:登",
-     "kanji": "登",
-     "lecture": "トウ・ト・のぼ(る)",
-     "sens": "grimper"
-    },
-    {
-     "id": "kanji:投",
-     "kanji": "投",
-     "lecture": "トウ・な(げる)",
-     "sens": "lancer"
+     "id": "kanji:炭",
+     "kanji": "炭",
+     "lecture": "タン・すみ",
+     "sens": "charbon"
     },
     {
      "id": "kanji:灯",
@@ -2394,34 +2233,52 @@
      "sens": "lampe, lumière"
     },
     {
-     "id": "kanji:等",
-     "kanji": "等",
-     "lecture": "トウ・ひと(しい)・など",
-     "sens": "égal, etc."
+     "id": "kanji:熱",
+     "kanji": "熱",
+     "lecture": "ネツ・あつ(い)",
+     "sens": "chaleur, fièvre"
     },
     {
-     "id": "kanji:豆",
-     "kanji": "豆",
-     "lecture": "トウ・まめ",
-     "sens": "haricot"
+     "id": "kanji:燃",
+     "kanji": "燃",
+     "lecture": "ネン・も(える)",
+     "sens": "brûler"
+    }
+   ]
+  },
+  {
+   "id": "g23",
+   "title": "Famille 尸 — corps allongé",
+   "items": [
+    {
+     "id": "kanji:屋",
+     "kanji": "屋",
+     "lecture": "オク・や",
+     "sens": "toit, magasin"
     },
     {
-     "id": "kanji:湯",
-     "kanji": "湯",
-     "lecture": "トウ・ゆ",
-     "sens": "eau chaude"
+     "id": "kanji:局",
+     "kanji": "局",
+     "lecture": "キョク",
+     "sens": "bureau, station"
     },
     {
-     "id": "kanji:特",
-     "kanji": "特",
-     "lecture": "トク",
-     "sens": "spécial, particulier"
+     "id": "kanji:居",
+     "kanji": "居",
+     "lecture": "キョ・い(る)",
+     "sens": "résider, être"
     },
     {
-     "id": "kanji:突",
-     "kanji": "突",
-     "lecture": "トツ・つ(く)",
-     "sens": "percer, soudain"
+     "id": "kanji:層",
+     "kanji": "層",
+     "lecture": "ソウ",
+     "sens": "couche, strate"
+    },
+    {
+     "id": "kanji:展",
+     "kanji": "展",
+     "lecture": "テン",
+     "sens": "déployer, exposer"
     },
     {
      "id": "kanji:届",
@@ -2430,310 +2287,34 @@
      "sens": "parvenir, livrer"
     },
     {
-     "id": "kanji:都",
-     "kanji": "都",
-     "lecture": "ト・ツ・みやこ",
-     "sens": "capitale, métropole"
-    },
-    {
-     "id": "kanji:銅",
-     "kanji": "銅",
-     "lecture": "ドウ",
-     "sens": "cuivre"
-    },
-    {
-     "id": "kanji:動",
-     "kanji": "動",
-     "lecture": "ドウ・うご(く)",
-     "sens": "bouger"
-    },
-    {
-     "id": "kanji:導",
-     "kanji": "導",
-     "lecture": "ドウ・みちび(く)",
-     "sens": "guider, conduire"
-    },
-    {
-     "id": "kanji:童",
-     "kanji": "童",
-     "lecture": "ドウ・わらべ",
-     "sens": "enfant"
-    },
-    {
-     "id": "kanji:毒",
-     "kanji": "毒",
-     "lecture": "ドク",
-     "sens": "poison"
-    },
-    {
-     "id": "kanji:独",
-     "kanji": "独",
-     "lecture": "ドク・ひと(り)",
-     "sens": "seul, indépendant"
-    },
-    {
-     "id": "kanji:曇",
-     "kanji": "曇",
-     "lecture": "ドン・くも(る)",
-     "sens": "nuageux"
-    },
-    {
-     "id": "kanji:鈍",
-     "kanji": "鈍",
-     "lecture": "ドン・にぶ(い)",
-     "sens": "émoussé, lent"
-    },
-    {
-     "id": "kanji:度",
-     "kanji": "度",
-     "lecture": "ド・タク",
-     "sens": "degré, fois"
-    },
-    {
-     "id": "kanji:努",
-     "kanji": "努",
-     "lecture": "ド・つと(める)",
-     "sens": "s'efforcer"
-    },
-    {
-     "id": "kanji:内",
-     "kanji": "内",
-     "lecture": "ナイ・うち",
-     "sens": "intérieur"
-    },
-    {
-     "id": "kanji:難",
-     "kanji": "難",
-     "lecture": "ナン・むずか(しい)",
-     "sens": "difficile, calamité"
-    },
-    {
-     "id": "kanji:任",
-     "kanji": "任",
-     "lecture": "ニン・まか(せる)",
-     "sens": "confier, charge"
-    },
-    {
-     "id": "kanji:認",
-     "kanji": "認",
-     "lecture": "ニン・みと(める)",
-     "sens": "reconnaître, admettre"
-    },
-    {
-     "id": "kanji:寧",
-     "kanji": "寧",
-     "lecture": "ネイ",
-     "sens": "paisible, poli"
-    },
-    {
-     "id": "kanji:熱",
-     "kanji": "熱",
-     "lecture": "ネツ・あつ(い)",
-     "sens": "chaleur, fièvre"
-    },
-    {
-     "id": "kanji:念",
-     "kanji": "念",
-     "lecture": "ネン",
-     "sens": "pensée, désir, attention"
-    },
-    {
-     "id": "kanji:燃",
-     "kanji": "燃",
-     "lecture": "ネン・も(える)",
-     "sens": "brûler"
-    },
-    {
-     "id": "kanji:脳",
-     "kanji": "脳",
-     "lecture": "ノウ",
-     "sens": "cerveau"
-    },
-    {
-     "id": "kanji:農",
-     "kanji": "農",
-     "lecture": "ノウ",
-     "sens": "agriculture"
-    },
-    {
-     "id": "kanji:濃",
-     "kanji": "濃",
-     "lecture": "ノウ・こ(い)",
-     "sens": "épais, foncé"
-    },
-    {
-     "id": "kanji:悩",
-     "kanji": "悩",
-     "lecture": "ノウ・なや(む)",
-     "sens": "souffrir, se tourmenter"
+     "id": "kanji:尾",
+     "kanji": "尾",
+     "lecture": "ビ・お",
+     "sens": "queue"
     }
    ]
   },
   {
-   "id": "g8",
-   "title": "Kanji N3 + N4 — lot 8/9 (ordre gojūon)",
+   "id": "g24",
+   "title": "Famille 禾 — céréale",
    "items": [
     {
-     "id": "kanji:肺",
-     "kanji": "肺",
-     "lecture": "ハイ",
-     "sens": "poumon"
+     "id": "kanji:種",
+     "kanji": "種",
+     "lecture": "シュ・たね",
+     "sens": "espèce, graine"
     },
     {
-     "id": "kanji:俳",
-     "kanji": "俳",
-     "lecture": "ハイ",
-     "sens": "haïku, acteur"
+     "id": "kanji:税",
+     "kanji": "税",
+     "lecture": "ゼイ",
+     "sens": "impôt, taxe"
     },
     {
-     "id": "kanji:拝",
-     "kanji": "拝",
-     "lecture": "ハイ・おが(む)",
-     "sens": "prier, saluer"
-    },
-    {
-     "id": "kanji:配",
-     "kanji": "配",
-     "lecture": "ハイ・くば(る)",
-     "sens": "distribuer, livrer"
-    },
-    {
-     "id": "kanji:杯",
-     "kanji": "杯",
-     "lecture": "ハイ・さかずき",
-     "sens": "coupe, verre (compteur)"
-    },
-    {
-     "id": "kanji:背",
-     "kanji": "背",
-     "lecture": "ハイ・せ・せい",
-     "sens": "dos, taille"
-    },
-    {
-     "id": "kanji:敗",
-     "kanji": "敗",
-     "lecture": "ハイ・やぶ(れる)",
-     "sens": "défaite, échouer"
-    },
-    {
-     "id": "kanji:博",
-     "kanji": "博",
-     "lecture": "ハク・バク",
-     "sens": "vaste, exposition"
-    },
-    {
-     "id": "kanji:箱",
-     "kanji": "箱",
-     "lecture": "はこ",
-     "sens": "boîte, carton"
-    },
-    {
-     "id": "kanji:畑",
-     "kanji": "畑",
-     "lecture": "はたけ",
-     "sens": "champ (cultivé)"
-    },
-    {
-     "id": "kanji:発",
-     "kanji": "発",
-     "lecture": "ハツ・ホツ",
-     "sens": "émettre, partir"
-    },
-    {
-     "id": "kanji:範",
-     "kanji": "範",
-     "lecture": "ハン",
-     "sens": "modèle, étendue"
-    },
-    {
-     "id": "kanji:般",
-     "kanji": "般",
-     "lecture": "ハン",
-     "sens": "général, sorte"
-    },
-    {
-     "id": "kanji:販",
-     "kanji": "販",
-     "lecture": "ハン",
-     "sens": "vendre, commerce"
-    },
-    {
-     "id": "kanji:版",
-     "kanji": "版",
-     "lecture": "ハン",
-     "sens": "édition, planche"
-    },
-    {
-     "id": "kanji:班",
-     "kanji": "班",
-     "lecture": "ハン",
-     "sens": "groupe, escouade"
-    },
-    {
-     "id": "kanji:犯",
-     "kanji": "犯",
-     "lecture": "ハン・おか(す)",
-     "sens": "commettre (un délit)"
-    },
-    {
-     "id": "kanji:坂",
-     "kanji": "坂",
-     "lecture": "ハン・さか",
-     "sens": "pente, côte"
-    },
-    {
-     "id": "kanji:反",
-     "kanji": "反",
-     "lecture": "ハン・そ(る)",
-     "sens": "opposé, contre"
-    },
-    {
-     "id": "kanji:判",
-     "kanji": "判",
-     "lecture": "ハン・バン",
-     "sens": "juger, sceau"
-    },
-    {
-     "id": "kanji:板",
-     "kanji": "板",
-     "lecture": "ハン・バン・いた",
-     "sens": "planche"
-    },
-    {
-     "id": "kanji:波",
-     "kanji": "波",
-     "lecture": "ハ・なみ",
-     "sens": "vague"
-    },
-    {
-     "id": "kanji:倍",
-     "kanji": "倍",
-     "lecture": "バイ",
-     "sens": "double, fois"
-    },
-    {
-     "id": "kanji:梅",
-     "kanji": "梅",
-     "lecture": "バイ・うめ",
-     "sens": "prunier, prune"
-    },
-    {
-     "id": "kanji:麦",
-     "kanji": "麦",
-     "lecture": "バク・むぎ",
-     "sens": "blé, céréale"
-    },
-    {
-     "id": "kanji:非",
-     "kanji": "非",
-     "lecture": "ヒ",
-     "sens": "non-, faute"
-    },
-    {
-     "id": "kanji:批",
-     "kanji": "批",
-     "lecture": "ヒ",
-     "sens": "critiquer"
+     "id": "kanji:程",
+     "kanji": "程",
+     "lecture": "テイ・ほど",
+     "sens": "degré, mesure"
     },
     {
      "id": "kanji:秘",
@@ -2742,40 +2323,542 @@
      "sens": "secret"
     },
     {
-     "id": "kanji:必",
-     "kanji": "必",
-     "lecture": "ヒツ・かなら(ず)",
-     "sens": "forcément, indispensable"
+     "id": "kanji:秒",
+     "kanji": "秒",
+     "lecture": "ビョウ",
+     "sens": "seconde"
     },
     {
-     "id": "kanji:筆",
-     "kanji": "筆",
-     "lecture": "ヒツ・ふで",
-     "sens": "pinceau, écriture"
+     "id": "kanji:和",
+     "kanji": "和",
+     "lecture": "ワ・やわ(らぐ)",
+     "sens": "harmonie, japonais"
     },
     {
-     "id": "kanji:評",
-     "kanji": "評",
-     "lecture": "ヒョウ",
-     "sens": "évaluer, critiquer"
+     "id": "kanji:移",
+     "kanji": "移",
+     "lecture": "イ・うつ(る)",
+     "sens": "déplacer",
+     "exemple": "移動 (idō) déplacement"
+    }
+   ]
+  },
+  {
+   "id": "g25",
+   "title": "Famille 田 — champ",
+   "items": [
+    {
+     "id": "kanji:界",
+     "kanji": "界",
+     "lecture": "カイ",
+     "sens": "monde, limite"
     },
     {
-     "id": "kanji:標",
-     "kanji": "標",
-     "lecture": "ヒョウ",
-     "sens": "marque, cible"
+     "id": "kanji:申",
+     "kanji": "申",
+     "lecture": "シン・もう(す)",
+     "sens": "dire (modeste)"
     },
     {
-     "id": "kanji:票",
-     "kanji": "票",
-     "lecture": "ヒョウ",
-     "sens": "bulletin, vote"
+     "id": "kanji:重",
+     "kanji": "重",
+     "lecture": "ジュウ・チョウ・おも(い)",
+     "sens": "lourd, important"
     },
     {
-     "id": "kanji:表",
-     "kanji": "表",
-     "lecture": "ヒョウ・おもて・あらわ(す)",
-     "sens": "surface, exprimer, tableau"
+     "id": "kanji:畑",
+     "kanji": "畑",
+     "lecture": "はたけ",
+     "sens": "champ (cultivé)"
+    },
+    {
+     "id": "kanji:鼻",
+     "kanji": "鼻",
+     "lecture": "ビ・はな",
+     "sens": "nez"
+    },
+    {
+     "id": "kanji:略",
+     "kanji": "略",
+     "lecture": "リャク",
+     "sens": "abréger, stratégie"
+    }
+   ]
+  },
+  {
+   "id": "g26",
+   "title": "Famille 車 — véhicule",
+   "items": [
+    {
+     "id": "kanji:較",
+     "kanji": "較",
+     "lecture": "カク",
+     "sens": "comparer"
+    },
+    {
+     "id": "kanji:軍",
+     "kanji": "軍",
+     "lecture": "グン",
+     "sens": "armée, militaire"
+    },
+    {
+     "id": "kanji:軽",
+     "kanji": "軽",
+     "lecture": "ケイ・かる(い)",
+     "sens": "léger"
+    },
+    {
+     "id": "kanji:転",
+     "kanji": "転",
+     "lecture": "テン・ころ(ぶ)",
+     "sens": "tourner, tomber"
+    },
+    {
+     "id": "kanji:範",
+     "kanji": "範",
+     "lecture": "ハン",
+     "sens": "modèle, étendue"
+    },
+    {
+     "id": "kanji:輸",
+     "kanji": "輸",
+     "lecture": "ユ",
+     "sens": "transporter"
+    }
+   ]
+  },
+  {
+   "id": "g27",
+   "title": "Famille 頁 — tête / page",
+   "items": [
+    {
+     "id": "kanji:額",
+     "kanji": "額",
+     "lecture": "ガク・ひたい",
+     "sens": "montant, front"
+    },
+    {
+     "id": "kanji:願",
+     "kanji": "願",
+     "lecture": "ガン・ねが(う)",
+     "sens": "souhaiter, prier"
+    },
+    {
+     "id": "kanji:順",
+     "kanji": "順",
+     "lecture": "ジュン",
+     "sens": "ordre, tour"
+    },
+    {
+     "id": "kanji:題",
+     "kanji": "題",
+     "lecture": "ダイ",
+     "sens": "sujet, problème"
+    },
+    {
+     "id": "kanji:頂",
+     "kanji": "頂",
+     "lecture": "チョウ・いただ(く)",
+     "sens": "sommet, recevoir (humble)"
+    },
+    {
+     "id": "kanji:頼",
+     "kanji": "頼",
+     "lecture": "ライ・たの(む)",
+     "sens": "demander, compter sur"
+    }
+   ]
+  },
+  {
+   "id": "g28",
+   "title": "Famille 女 — femme",
+   "items": [
+    {
+     "id": "kanji:好",
+     "kanji": "好",
+     "lecture": "コウ・この(む)・す(き)",
+     "sens": "aimer, préférer"
+    },
+    {
+     "id": "kanji:婚",
+     "kanji": "婚",
+     "lecture": "コン",
+     "sens": "mariage"
+    },
+    {
+     "id": "kanji:妻",
+     "kanji": "妻",
+     "lecture": "サイ・つま",
+     "sens": "épouse"
+    },
+    {
+     "id": "kanji:始",
+     "kanji": "始",
+     "lecture": "シ・はじ(める)",
+     "sens": "commencer"
+    },
+    {
+     "id": "kanji:姓",
+     "kanji": "姓",
+     "lecture": "セイ",
+     "sens": "nom de famille"
+    },
+    {
+     "id": "kanji:要",
+     "kanji": "要",
+     "lecture": "ヨウ・い(る)",
+     "sens": "nécessité, essentiel"
+    }
+   ]
+  },
+  {
+   "id": "g29",
+   "title": "Famille 王／玉 — jade / roi",
+   "items": [
+    {
+     "id": "kanji:球",
+     "kanji": "球",
+     "lecture": "キュウ・たま",
+     "sens": "balle, sphère"
+    },
+    {
+     "id": "kanji:現",
+     "kanji": "現",
+     "lecture": "ゲン・あらわ(れる)",
+     "sens": "apparaître, actuel"
+    },
+    {
+     "id": "kanji:全",
+     "kanji": "全",
+     "lecture": "ゼン・まった(く)",
+     "sens": "entier, tout"
+    },
+    {
+     "id": "kanji:珍",
+     "kanji": "珍",
+     "lecture": "チン・めずら(しい)",
+     "sens": "rare, curieux"
+    },
+    {
+     "id": "kanji:班",
+     "kanji": "班",
+     "lecture": "ハン",
+     "sens": "groupe, escouade"
+    }
+   ]
+  },
+  {
+   "id": "g30",
+   "title": "Famille 彳 — chemin",
+   "items": [
+    {
+     "id": "kanji:術",
+     "kanji": "術",
+     "lecture": "ジュツ",
+     "sens": "technique, art"
+    },
+    {
+     "id": "kanji:待",
+     "kanji": "待",
+     "lecture": "タイ・ま(つ)",
+     "sens": "attendre"
+    },
+    {
+     "id": "kanji:彼",
+     "kanji": "彼",
+     "lecture": "ヒ・かれ・かの",
+     "sens": "il, elle"
+    },
+    {
+     "id": "kanji:役",
+     "kanji": "役",
+     "lecture": "ヤク・エキ",
+     "sens": "rôle, service"
+    },
+    {
+     "id": "kanji:得",
+     "kanji": "得",
+     "lecture": "トク・え(る)",
+     "sens": "obtenir, avantage",
+     "exemple": "得意 (tokui) point fort"
+    }
+   ]
+  },
+  {
+   "id": "g31",
+   "title": "Famille 石 — pierre",
+   "items": [
+    {
+     "id": "kanji:確",
+     "kanji": "確",
+     "lecture": "カク・たし(か)",
+     "sens": "certain, vérifier"
+    },
+    {
+     "id": "kanji:研",
+     "kanji": "研",
+     "lecture": "ケン・と(ぐ)",
+     "sens": "étudier, polir"
+    },
+    {
+     "id": "kanji:石",
+     "kanji": "石",
+     "lecture": "セキ・いし",
+     "sens": "pierre",
+     "exemple": "石油 (sekiyu) pétrole"
+    },
+    {
+     "id": "kanji:破",
+     "kanji": "破",
+     "lecture": "ハ・やぶ(る)",
+     "sens": "briser",
+     "exemple": "破壊 (hakai) destruction"
+    }
+   ]
+  },
+  {
+   "id": "g32",
+   "title": "Famille 皿 — récipient",
+   "items": [
+    {
+     "id": "kanji:益",
+     "kanji": "益",
+     "lecture": "エキ・ヤク",
+     "sens": "bénéfice, profit"
+    },
+    {
+     "id": "kanji:血",
+     "kanji": "血",
+     "lecture": "ケツ・ち",
+     "sens": "sang"
+    },
+    {
+     "id": "kanji:盛",
+     "kanji": "盛",
+     "lecture": "セイ・も(る)・さか(ん)",
+     "sens": "prospère, servir"
+    }
+   ]
+  },
+  {
+   "id": "g33",
+   "title": "Famille 門 — porte",
+   "items": [
+    {
+     "id": "kanji:開",
+     "kanji": "開",
+     "lecture": "カイ・ひら(く)・あ(ける)",
+     "sens": "ouvrir"
+    },
+    {
+     "id": "kanji:関",
+     "kanji": "関",
+     "lecture": "カン・せき",
+     "sens": "rapport, barrière"
+    },
+    {
+     "id": "kanji:問",
+     "kanji": "問",
+     "lecture": "モン・と(う)",
+     "sens": "question, demander"
+    }
+   ]
+  },
+  {
+   "id": "g34",
+   "title": "Famille 見 — voir",
+   "items": [
+    {
+     "id": "kanji:覚",
+     "kanji": "覚",
+     "lecture": "カク・おぼ(える)・さ(める)",
+     "sens": "mémoriser, se réveiller"
+    },
+    {
+     "id": "kanji:観",
+     "kanji": "観",
+     "lecture": "カン",
+     "sens": "observer, point de vue"
+    },
+    {
+     "id": "kanji:規",
+     "kanji": "規",
+     "lecture": "キ",
+     "sens": "norme, règle"
+    }
+   ]
+  },
+  {
+   "id": "g35",
+   "title": "Famille 立 — debout",
+   "items": [
+    {
+     "id": "kanji:競",
+     "kanji": "競",
+     "lecture": "キョウ・きそ(う)",
+     "sens": "rivaliser, concourir"
+    },
+    {
+     "id": "kanji:章",
+     "kanji": "章",
+     "lecture": "ショウ",
+     "sens": "chapitre, insigne"
+    },
+    {
+     "id": "kanji:童",
+     "kanji": "童",
+     "lecture": "ドウ・わらべ",
+     "sens": "enfant"
+    }
+   ]
+  },
+  {
+   "id": "g36",
+   "title": "Famille 疒 — maladie",
+   "items": [
+    {
+     "id": "kanji:痛",
+     "kanji": "痛",
+     "lecture": "ツウ・いた(い)",
+     "sens": "douleur"
+    },
+    {
+     "id": "kanji:疲",
+     "kanji": "疲",
+     "lecture": "ヒ・つか(れる)",
+     "sens": "être fatigué"
+    },
+    {
+     "id": "kanji:病",
+     "kanji": "病",
+     "lecture": "ビョウ・や(む)",
+     "sens": "maladie"
+    }
+   ]
+  },
+  {
+   "id": "g37",
+   "title": "Famille 食 — manger",
+   "items": [
+    {
+     "id": "kanji:飲",
+     "kanji": "飲",
+     "lecture": "イン・の(む)",
+     "sens": "boire"
+    },
+    {
+     "id": "kanji:館",
+     "kanji": "館",
+     "lecture": "カン",
+     "sens": "bâtiment, hall"
+    }
+   ]
+  },
+  {
+   "id": "g38",
+   "title": "Famille 欠 — manque / bâiller",
+   "items": [
+    {
+     "id": "kanji:欠",
+     "kanji": "欠",
+     "lecture": "ケツ・か(ける)",
+     "sens": "manquer, absence"
+    },
+    {
+     "id": "kanji:次",
+     "kanji": "次",
+     "lecture": "ジ・シ・つぎ",
+     "sens": "suivant, ordre"
+    }
+   ]
+  },
+  {
+   "id": "g39",
+   "title": "Famille 儿 — jambes",
+   "items": [
+    {
+     "id": "kanji:児",
+     "kanji": "児",
+     "lecture": "ジ・ニ",
+     "sens": "enfant"
+    },
+    {
+     "id": "kanji:党",
+     "kanji": "党",
+     "lecture": "トウ",
+     "sens": "parti (politique)"
+    }
+   ]
+  },
+  {
+   "id": "g40",
+   "title": "Famille 米 — riz",
+   "items": [
+    {
+     "id": "kanji:精",
+     "kanji": "精",
+     "lecture": "セイ",
+     "sens": "esprit, raffiné"
+    },
+    {
+     "id": "kanji:断",
+     "kanji": "断",
+     "lecture": "ダン・た(つ)・ことわ(る)",
+     "sens": "trancher, refuser"
+    }
+   ]
+  },
+  {
+   "id": "g41",
+   "title": "Famille 走 — courir",
+   "items": [
+    {
+     "id": "kanji:起",
+     "kanji": "起",
+     "lecture": "キ・お(きる)",
+     "sens": "se lever, se produire"
+    }
+   ]
+  },
+  {
+   "id": "g42",
+   "title": "Sosies & confusables",
+   "items": [
+    {
+     "id": "kanji:幸",
+     "kanji": "幸",
+     "lecture": "コウ・しあわ(せ)",
+     "sens": "bonheur"
+    },
+    {
+     "id": "kanji:製",
+     "kanji": "製",
+     "lecture": "セイ",
+     "sens": "fabriquer"
+    },
+    {
+     "id": "kanji:成",
+     "kanji": "成",
+     "lecture": "セイ・な(る)",
+     "sens": "devenir, accomplir"
+    },
+    {
+     "id": "kanji:戦",
+     "kanji": "戦",
+     "lecture": "セン・たたか(う)",
+     "sens": "guerre, combattre"
+    },
+    {
+     "id": "kanji:単",
+     "kanji": "単",
+     "lecture": "タン",
+     "sens": "simple, seul"
+    },
+    {
+     "id": "kanji:反",
+     "kanji": "反",
+     "lecture": "ハン・そ(る)",
+     "sens": "opposé, contre"
     },
     {
      "id": "kanji:氷",
@@ -2784,28 +2867,664 @@
      "sens": "glace"
     },
     {
-     "id": "kanji:品",
-     "kanji": "品",
-     "lecture": "ヒン・しな",
-     "sens": "article, qualité"
+     "id": "kanji:由",
+     "kanji": "由",
+     "lecture": "ユ・ユウ・よし",
+     "sens": "raison, motif"
     },
     {
-     "id": "kanji:否",
-     "kanji": "否",
-     "lecture": "ヒ・いな",
-     "sens": "non, refus"
+     "id": "kanji:未",
+     "kanji": "未",
+     "lecture": "ミ",
+     "sens": "pas encore",
+     "exemple": "未来 (mirai) futur"
     },
     {
-     "id": "kanji:悲",
-     "kanji": "悲",
-     "lecture": "ヒ・かな(しい)",
-     "sens": "triste"
+     "id": "kanji:比",
+     "kanji": "比",
+     "lecture": "ヒ・くら(べる)",
+     "sens": "comparer",
+     "exemple": "比較 (hikaku) comparaison"
     },
     {
-     "id": "kanji:彼",
-     "kanji": "彼",
-     "lecture": "ヒ・かれ・かの",
-     "sens": "il, elle"
+     "id": "kanji:失",
+     "kanji": "失",
+     "lecture": "シツ・うしな(う)",
+     "sens": "perdre",
+     "exemple": "失敗 (shippai) échec"
+    }
+   ]
+  },
+  {
+   "id": "g43",
+   "title": "Par le sens : Notions abstraites, cause & forme",
+   "items": [
+    {
+     "id": "kanji:以",
+     "kanji": "以",
+     "lecture": "イ",
+     "sens": "à partir de, au moyen de"
+    },
+    {
+     "id": "kanji:因",
+     "kanji": "因",
+     "lecture": "イン・よ(る)",
+     "sens": "cause"
+    },
+    {
+     "id": "kanji:基",
+     "kanji": "基",
+     "lecture": "キ・もと・もとい",
+     "sens": "base, fondement"
+    },
+    {
+     "id": "kanji:義",
+     "kanji": "義",
+     "lecture": "ギ",
+     "sens": "sens, justice, devoir"
+    },
+    {
+     "id": "kanji:具",
+     "kanji": "具",
+     "lecture": "グ",
+     "sens": "outil, ingrédient"
+    },
+    {
+     "id": "kanji:形",
+     "kanji": "形",
+     "lecture": "ケイ・ギョウ・かたち",
+     "sens": "forme"
+    },
+    {
+     "id": "kanji:興",
+     "kanji": "興",
+     "lecture": "コウ・キョウ・おこ(る)",
+     "sens": "prospérer, intérêt"
+    },
+    {
+     "id": "kanji:互",
+     "kanji": "互",
+     "lecture": "ゴ・たが(い)",
+     "sens": "mutuel, réciproque"
+    },
+    {
+     "id": "kanji:差",
+     "kanji": "差",
+     "lecture": "サ・さ(す)",
+     "sens": "différence, écart"
+    },
+    {
+     "id": "kanji:在",
+     "kanji": "在",
+     "lecture": "ザイ・あ(る)",
+     "sens": "se trouver, exister"
+    },
+    {
+     "id": "kanji:残",
+     "kanji": "残",
+     "lecture": "ザン・のこ(る)",
+     "sens": "rester, restes"
+    },
+    {
+     "id": "kanji:式",
+     "kanji": "式",
+     "lecture": "シキ",
+     "sens": "cérémonie, formule"
+    },
+    {
+     "id": "kanji:釈",
+     "kanji": "釈",
+     "lecture": "シャク",
+     "sens": "explication, interprétation"
+    },
+    {
+     "id": "kanji:象",
+     "kanji": "象",
+     "lecture": "ショウ・ゾウ",
+     "sens": "phénomène, image"
+    },
+    {
+     "id": "kanji:状",
+     "kanji": "状",
+     "lecture": "ジョウ",
+     "sens": "état, condition"
+    },
+    {
+     "id": "kanji:事",
+     "kanji": "事",
+     "lecture": "ジ・こと",
+     "sens": "affaire, chose"
+    },
+    {
+     "id": "kanji:節",
+     "kanji": "節",
+     "lecture": "セツ・ふし",
+     "sens": "nœud, saison, économiser"
+    },
+    {
+     "id": "kanji:世",
+     "kanji": "世",
+     "lecture": "セ・セイ・よ",
+     "sens": "monde, génération"
+    },
+    {
+     "id": "kanji:率",
+     "kanji": "率",
+     "lecture": "ソツ・リツ",
+     "sens": "taux, conduire"
+    },
+    {
+     "id": "kanji:存",
+     "kanji": "存",
+     "lecture": "ソン・ゾン",
+     "sens": "exister"
+    },
+    {
+     "id": "kanji:対",
+     "kanji": "対",
+     "lecture": "タイ・ツイ",
+     "sens": "face à, opposé"
+    },
+    {
+     "id": "kanji:典",
+     "kanji": "典",
+     "lecture": "テン",
+     "sens": "code, dictionnaire"
+    },
+    {
+     "id": "kanji:般",
+     "kanji": "般",
+     "lecture": "ハン",
+     "sens": "général, sorte"
+    },
+    {
+     "id": "kanji:表",
+     "kanji": "表",
+     "lecture": "ヒョウ・おもて・あらわ(す)",
+     "sens": "surface, exprimer, tableau"
+    },
+    {
+     "id": "kanji:面",
+     "kanji": "面",
+     "lecture": "メン・おも(て)",
+     "sens": "face, surface"
+    },
+    {
+     "id": "kanji:予",
+     "kanji": "予",
+     "lecture": "ヨ",
+     "sens": "d’avance"
+    },
+    {
+     "id": "kanji:報",
+     "kanji": "報",
+     "lecture": "ホウ・むく(いる)",
+     "sens": "rapporter, récompenser",
+     "exemple": "報告 (hōkoku) rapport"
+    }
+   ]
+  },
+  {
+   "id": "g44",
+   "title": "Par le sens : Actions & manipulation",
+   "items": [
+    {
+     "id": "kanji:印",
+     "kanji": "印",
+     "lecture": "イン・しるし",
+     "sens": "sceau, marque"
+    },
+    {
+     "id": "kanji:囲",
+     "kanji": "囲",
+     "lecture": "イ・かこ(む)",
+     "sens": "entourer"
+    },
+    {
+     "id": "kanji:究",
+     "kanji": "究",
+     "lecture": "キュウ・きわ(める)",
+     "sens": "étudier à fond"
+    },
+    {
+     "id": "kanji:求",
+     "kanji": "求",
+     "lecture": "キュウ・もと(める)",
+     "sens": "demander, rechercher"
+    },
+    {
+     "id": "kanji:曲",
+     "kanji": "曲",
+     "lecture": "キョク・ま(がる)",
+     "sens": "courber, morceau"
+    },
+    {
+     "id": "kanji:写",
+     "kanji": "写",
+     "lecture": "シャ・うつ(す)",
+     "sens": "copier, photographier"
+    },
+    {
+     "id": "kanji:収",
+     "kanji": "収",
+     "lecture": "シュウ・おさ(める)",
+     "sens": "percevoir, ranger"
+    },
+    {
+     "id": "kanji:習",
+     "kanji": "習",
+     "lecture": "シュウ・なら(う)",
+     "sens": "apprendre"
+    },
+    {
+     "id": "kanji:取",
+     "kanji": "取",
+     "lecture": "シュ・と(る)",
+     "sens": "prendre, saisir"
+    },
+    {
+     "id": "kanji:触",
+     "kanji": "触",
+     "lecture": "ショク・ふ(れる)・さわ(る)",
+     "sens": "toucher"
+    },
+    {
+     "id": "kanji:支",
+     "kanji": "支",
+     "lecture": "シ・ささ(える)",
+     "sens": "soutenir, payer"
+    },
+    {
+     "id": "kanji:受",
+     "kanji": "受",
+     "lecture": "ジュ・う(ける)",
+     "sens": "recevoir"
+    },
+    {
+     "id": "kanji:垂",
+     "kanji": "垂",
+     "lecture": "スイ・た(れる)",
+     "sens": "pendre, suspendre"
+    },
+    {
+     "id": "kanji:弾",
+     "kanji": "弾",
+     "lecture": "ダン・ひ(く)",
+     "sens": "tirer, jouer (instrument)"
+    },
+    {
+     "id": "kanji:張",
+     "kanji": "張",
+     "lecture": "チョウ・は(る)",
+     "sens": "tendre, étendre"
+    },
+    {
+     "id": "kanji:配",
+     "kanji": "配",
+     "lecture": "ハイ・くば(る)",
+     "sens": "distribuer, livrer"
+    }
+   ]
+  },
+  {
+   "id": "g45",
+   "title": "Par le sens : Lieux & géographie",
+   "items": [
+    {
+     "id": "kanji:駅",
+     "kanji": "駅",
+     "lecture": "エキ",
+     "sens": "gare"
+    },
+    {
+     "id": "kanji:央",
+     "kanji": "央",
+     "lecture": "オウ",
+     "sens": "centre"
+    },
+    {
+     "id": "kanji:区",
+     "kanji": "区",
+     "lecture": "ク",
+     "sens": "arrondissement"
+    },
+    {
+     "id": "kanji:県",
+     "kanji": "県",
+     "lecture": "ケン",
+     "sens": "préfecture"
+    },
+    {
+     "id": "kanji:州",
+     "kanji": "州",
+     "lecture": "シュウ・す",
+     "sens": "province, état"
+    },
+    {
+     "id": "kanji:所",
+     "kanji": "所",
+     "lecture": "ショ・ところ",
+     "sens": "lieu, endroit"
+    },
+    {
+     "id": "kanji:震",
+     "kanji": "震",
+     "lecture": "シン・ふる(える)",
+     "sens": "trembler, séisme"
+    },
+    {
+     "id": "kanji:城",
+     "kanji": "城",
+     "lecture": "ジョウ・しろ",
+     "sens": "château"
+    },
+    {
+     "id": "kanji:島",
+     "kanji": "島",
+     "lecture": "トウ・しま",
+     "sens": "île"
+    },
+    {
+     "id": "kanji:内",
+     "kanji": "内",
+     "lecture": "ナイ・うち",
+     "sens": "intérieur"
+    },
+    {
+     "id": "kanji:農",
+     "kanji": "農",
+     "lecture": "ノウ",
+     "sens": "agriculture"
+    },
+    {
+     "id": "kanji:坂",
+     "kanji": "坂",
+     "lecture": "ハン・さか",
+     "sens": "pente, côte"
+    },
+    {
+     "id": "kanji:路",
+     "kanji": "路",
+     "lecture": "ロ・じ",
+     "sens": "route"
+    },
+    {
+     "id": "kanji:境",
+     "kanji": "境",
+     "lecture": "キョウ・さかい",
+     "sens": "frontière",
+     "exemple": "環境 (kankyō) environnement"
+    }
+   ]
+  },
+  {
+   "id": "g46",
+   "title": "Par le sens : Qualités & états",
+   "items": [
+    {
+     "id": "kanji:希",
+     "kanji": "希",
+     "lecture": "キ",
+     "sens": "rare, espoir"
+    },
+    {
+     "id": "kanji:危",
+     "kanji": "危",
+     "lecture": "キ・あぶ(ない)",
+     "sens": "danger"
+    },
+    {
+     "id": "kanji:真",
+     "kanji": "真",
+     "lecture": "シン・ま",
+     "sens": "vrai, pur"
+    },
+    {
+     "id": "kanji:常",
+     "kanji": "常",
+     "lecture": "ジョウ・つね",
+     "sens": "ordinaire, constant"
+    },
+    {
+     "id": "kanji:短",
+     "kanji": "短",
+     "lecture": "タン・みじか(い)",
+     "sens": "court"
+    },
+    {
+     "id": "kanji:当",
+     "kanji": "当",
+     "lecture": "トウ・あ(たる)",
+     "sens": "toucher, juste, ce…"
+    },
+    {
+     "id": "kanji:特",
+     "kanji": "特",
+     "lecture": "トク",
+     "sens": "spécial, particulier"
+    },
+    {
+     "id": "kanji:独",
+     "kanji": "独",
+     "lecture": "ドク・ひと(り)",
+     "sens": "seul, indépendant"
+    },
+    {
+     "id": "kanji:難",
+     "kanji": "難",
+     "lecture": "ナン・むずか(しい)",
+     "sens": "difficile, calamité"
+    },
+    {
+     "id": "kanji:博",
+     "kanji": "博",
+     "lecture": "ハク・バク",
+     "sens": "vaste, exposition"
+    },
+    {
+     "id": "kanji:複",
+     "kanji": "複",
+     "lecture": "フク",
+     "sens": "multiple, complexe"
+    },
+    {
+     "id": "kanji:平",
+     "kanji": "平",
+     "lecture": "ヘイ・たい(ら)",
+     "sens": "plat, paix"
+    },
+    {
+     "id": "kanji:良",
+     "kanji": "良",
+     "lecture": "リョウ・よ(い)",
+     "sens": "bon"
+    }
+   ]
+  },
+  {
+   "id": "g47",
+   "title": "Par le sens : Objets & matières",
+   "items": [
+    {
+     "id": "kanji:酸",
+     "kanji": "酸",
+     "lecture": "サン・す(い)",
+     "sens": "acide"
+    },
+    {
+     "id": "kanji:装",
+     "kanji": "装",
+     "lecture": "ソウ・ショウ",
+     "sens": "équiper, costume"
+    },
+    {
+     "id": "kanji:帯",
+     "kanji": "帯",
+     "lecture": "タイ・お(びる)・おび",
+     "sens": "ceinture, porter"
+    },
+    {
+     "id": "kanji:段",
+     "kanji": "段",
+     "lecture": "ダン",
+     "sens": "échelon, niveau"
+    },
+    {
+     "id": "kanji:帳",
+     "kanji": "帳",
+     "lecture": "チョウ",
+     "sens": "registre, carnet"
+    },
+    {
+     "id": "kanji:笛",
+     "kanji": "笛",
+     "lecture": "テキ・ふえ",
+     "sens": "flûte, sifflet"
+    },
+    {
+     "id": "kanji:豆",
+     "kanji": "豆",
+     "lecture": "トウ・まめ",
+     "sens": "haricot"
+    },
+    {
+     "id": "kanji:毒",
+     "kanji": "毒",
+     "lecture": "ドク",
+     "sens": "poison"
+    },
+    {
+     "id": "kanji:版",
+     "kanji": "版",
+     "lecture": "ハン",
+     "sens": "édition, planche"
+    },
+    {
+     "id": "kanji:麦",
+     "kanji": "麦",
+     "lecture": "バク・むぎ",
+     "sens": "blé, céréale"
+    },
+    {
+     "id": "kanji:筆",
+     "kanji": "筆",
+     "lecture": "ヒツ・ふで",
+     "sens": "pinceau, écriture"
+    },
+    {
+     "id": "kanji:物",
+     "kanji": "物",
+     "lecture": "ブツ・モツ・もの",
+     "sens": "chose"
+    }
+   ]
+  },
+  {
+   "id": "g48",
+   "title": "Par le sens : Société, pouvoir & droit",
+   "items": [
+    {
+     "id": "kanji:罪",
+     "kanji": "罪",
+     "lecture": "ザイ・つみ",
+     "sens": "crime, faute"
+    },
+    {
+     "id": "kanji:主",
+     "kanji": "主",
+     "lecture": "シュ・ぬし",
+     "sens": "maître, principal"
+    },
+    {
+     "id": "kanji:臣",
+     "kanji": "臣",
+     "lecture": "シン・ジン",
+     "sens": "vassal, ministre"
+    },
+    {
+     "id": "kanji:聖",
+     "kanji": "聖",
+     "lecture": "セイ",
+     "sens": "saint, sacré"
+    },
+    {
+     "id": "kanji:争",
+     "kanji": "争",
+     "lecture": "ソウ・あらそ(う)",
+     "sens": "lutter, disputer"
+    },
+    {
+     "id": "kanji:尊",
+     "kanji": "尊",
+     "lecture": "ソン・たっと(い)",
+     "sens": "respecter, noble"
+    },
+    {
+     "id": "kanji:族",
+     "kanji": "族",
+     "lecture": "ゾク",
+     "sens": "tribu, famille"
+    },
+    {
+     "id": "kanji:犯",
+     "kanji": "犯",
+     "lecture": "ハン・おか(す)",
+     "sens": "commettre (un délit)"
+    },
+    {
+     "id": "kanji:非",
+     "kanji": "非",
+     "lecture": "ヒ",
+     "sens": "non-, faute"
+    },
+    {
+     "id": "kanji:民",
+     "kanji": "民",
+     "lecture": "ミン・たみ",
+     "sens": "peuple"
+    },
+    {
+     "id": "kanji:職",
+     "kanji": "職",
+     "lecture": "ショク",
+     "sens": "emploi",
+     "exemple": "職業 (shokugyō) profession"
+    }
+   ]
+  },
+  {
+   "id": "g49",
+   "title": "Par le sens : Corps, santé & personne",
+   "items": [
+    {
+     "id": "kanji:医",
+     "kanji": "医",
+     "lecture": "イ",
+     "sens": "médecine"
+    },
+    {
+     "id": "kanji:笑",
+     "kanji": "笑",
+     "lecture": "ショウ・わら(う)",
+     "sens": "rire, sourire"
+    },
+    {
+     "id": "kanji:身",
+     "kanji": "身",
+     "lecture": "シン・み",
+     "sens": "corps, soi"
+    },
+    {
+     "id": "kanji:死",
+     "kanji": "死",
+     "lecture": "シ・し(ぬ)",
+     "sens": "mort, mourir"
+    },
+    {
+     "id": "kanji:歯",
+     "kanji": "歯",
+     "lecture": "シ・は",
+     "sens": "dent"
     },
     {
      "id": "kanji:皮",
@@ -2820,619 +3539,106 @@
      "sens": "subir, recevoir"
     },
     {
-     "id": "kanji:避",
-     "kanji": "避",
-     "lecture": "ヒ・さ(ける)",
-     "sens": "éviter, esquiver"
-    },
-    {
-     "id": "kanji:費",
-     "kanji": "費",
-     "lecture": "ヒ・つい(やす)",
-     "sens": "dépense, frais"
-    },
-    {
-     "id": "kanji:疲",
-     "kanji": "疲",
-     "lecture": "ヒ・つか(れる)",
-     "sens": "être fatigué"
-    },
-    {
-     "id": "kanji:秒",
-     "kanji": "秒",
-     "lecture": "ビョウ",
-     "sens": "seconde"
-    },
-    {
-     "id": "kanji:病",
-     "kanji": "病",
-     "lecture": "ビョウ・や(む)",
-     "sens": "maladie"
-    },
-    {
      "id": "kanji:美",
      "kanji": "美",
      "lecture": "ビ・うつく(しい)",
      "sens": "beau"
-    },
-    {
-     "id": "kanji:尾",
-     "kanji": "尾",
-     "lecture": "ビ・お",
-     "sens": "queue"
-    },
-    {
-     "id": "kanji:備",
-     "kanji": "備",
-     "lecture": "ビ・そな(える)",
-     "sens": "préparer, équiper"
-    },
-    {
-     "id": "kanji:鼻",
-     "kanji": "鼻",
-     "lecture": "ビ・はな",
-     "sens": "nez"
-    },
-    {
-     "id": "kanji:普",
-     "kanji": "普",
-     "lecture": "フ",
-     "sens": "ordinaire, général"
-    },
-    {
-     "id": "kanji:服",
-     "kanji": "服",
-     "lecture": "フク",
-     "sens": "vêtement"
-    },
-    {
-     "id": "kanji:福",
-     "kanji": "福",
-     "lecture": "フク",
-     "sens": "bonheur, fortune"
-    },
-    {
-     "id": "kanji:複",
-     "kanji": "複",
-     "lecture": "フク",
-     "sens": "multiple, complexe"
-    },
-    {
-     "id": "kanji:負",
-     "kanji": "負",
-     "lecture": "フ・ま(ける)",
-     "sens": "perdre, charge"
-    },
-    {
-     "id": "kanji:部",
-     "kanji": "部",
-     "lecture": "ブ",
-     "sens": "partie, section"
-    },
-    {
-     "id": "kanji:物",
-     "kanji": "物",
-     "lecture": "ブツ・モツ・もの",
-     "sens": "chose"
-    },
-    {
-     "id": "kanji:平",
-     "kanji": "平",
-     "lecture": "ヘイ・たい(ら)",
-     "sens": "plat, paix"
-    },
-    {
-     "id": "kanji:返",
-     "kanji": "返",
-     "lecture": "ヘン・かえ(す)",
-     "sens": "rendre, répondre"
-    },
-    {
-     "id": "kanji:別",
-     "kanji": "別",
-     "lecture": "ベツ・わか(れる)",
-     "sens": "séparer, distinct"
     }
    ]
   },
   {
-   "id": "g9",
-   "title": "Kanji N3 + N4 — lot 9/9 (ordre gojūon)",
+   "id": "g50",
+   "title": "Par le sens : Déplacement & voyage",
    "items": [
     {
-     "id": "kanji:勉",
-     "kanji": "勉",
-     "lecture": "ベン",
-     "sens": "effort, étude"
+     "id": "kanji:去",
+     "kanji": "去",
+     "lecture": "キョ・コ・さ(る)",
+     "sens": "partir, passé"
     },
     {
-     "id": "kanji:法",
-     "kanji": "法",
-     "lecture": "ホウ・ハッ",
-     "sens": "loi, méthode"
+     "id": "kanji:航",
+     "kanji": "航",
+     "lecture": "コウ",
+     "sens": "navigation"
     },
     {
-     "id": "kanji:放",
-     "kanji": "放",
-     "lecture": "ホウ・はな(す)",
-     "sens": "lâcher, diffuser"
+     "id": "kanji:乗",
+     "kanji": "乗",
+     "lecture": "ジョウ・の(る)",
+     "sens": "monter (véhicule)"
     },
     {
-     "id": "kanji:貿",
-     "kanji": "貿",
-     "lecture": "ボウ",
-     "sens": "commerce"
+     "id": "kanji:着",
+     "kanji": "着",
+     "lecture": "チャク・き(る)・つ(く)",
+     "sens": "porter, arriver"
     },
     {
-     "id": "kanji:望",
-     "kanji": "望",
-     "lecture": "ボウ・のぞ(む)",
-     "sens": "souhaiter, espoir"
+     "id": "kanji:登",
+     "kanji": "登",
+     "lecture": "トウ・ト・のぼ(る)",
+     "sens": "grimper"
     },
     {
-     "id": "kanji:防",
-     "kanji": "防",
-     "lecture": "ボウ・ふせ(ぐ)",
-     "sens": "prévenir, défendre"
+     "id": "kanji:突",
+     "kanji": "突",
+     "lecture": "トツ・つ(く)",
+     "sens": "percer, soudain"
     },
     {
-     "id": "kanji:民",
-     "kanji": "民",
-     "lecture": "ミン・たみ",
-     "sens": "peuple"
-    },
-    {
-     "id": "kanji:味",
-     "kanji": "味",
-     "lecture": "ミ・あじ",
-     "sens": "goût"
-    },
-    {
-     "id": "kanji:務",
-     "kanji": "務",
-     "lecture": "ム・つと(める)",
-     "sens": "devoir, fonction"
-    },
-    {
-     "id": "kanji:命",
-     "kanji": "命",
-     "lecture": "メイ・いのち",
-     "sens": "vie, ordre"
-    },
-    {
-     "id": "kanji:面",
-     "kanji": "面",
-     "lecture": "メン・おも(て)",
-     "sens": "face, surface"
-    },
-    {
-     "id": "kanji:問",
-     "kanji": "問",
-     "lecture": "モン・と(う)",
-     "sens": "question, demander"
-    },
-    {
-     "id": "kanji:約",
-     "kanji": "約",
-     "lecture": "ヤク",
-     "sens": "environ, promesse"
-    },
-    {
-     "id": "kanji:役",
-     "kanji": "役",
-     "lecture": "ヤク・エキ",
-     "sens": "rôle, service"
-    },
-    {
-     "id": "kanji:薬",
-     "kanji": "薬",
-     "lecture": "ヤク・くすり",
-     "sens": "médicament"
-    },
-    {
-     "id": "kanji:輸",
-     "kanji": "輸",
-     "lecture": "ユ",
-     "sens": "transporter"
-    },
-    {
-     "id": "kanji:遊",
-     "kanji": "遊",
-     "lecture": "ユウ・あそ(ぶ)",
-     "sens": "jouer, s’amuser"
-    },
-    {
-     "id": "kanji:有",
-     "kanji": "有",
-     "lecture": "ユウ・ウ・あ(る)",
-     "sens": "avoir, exister"
-    },
-    {
-     "id": "kanji:優",
-     "kanji": "優",
-     "lecture": "ユウ・やさ(しい)・すぐ(れる)",
-     "sens": "supérieur, doux"
-    },
-    {
-     "id": "kanji:油",
-     "kanji": "油",
-     "lecture": "ユ・あぶら",
-     "sens": "huile"
-    },
-    {
-     "id": "kanji:由",
-     "kanji": "由",
-     "lecture": "ユ・ユウ・よし",
-     "sens": "raison, motif"
-    },
-    {
-     "id": "kanji:予",
-     "kanji": "予",
-     "lecture": "ヨ",
-     "sens": "d’avance"
-    },
-    {
-     "id": "kanji:洋",
-     "kanji": "洋",
-     "lecture": "ヨウ",
-     "sens": "océan, occidental"
-    },
-    {
-     "id": "kanji:陽",
-     "kanji": "陽",
-     "lecture": "ヨウ",
-     "sens": "soleil, yang"
-    },
-    {
-     "id": "kanji:容",
-     "kanji": "容",
-     "lecture": "ヨウ",
-     "sens": "contenir, apparence"
-    },
-    {
-     "id": "kanji:要",
-     "kanji": "要",
-     "lecture": "ヨウ・い(る)",
-     "sens": "nécessité, essentiel"
-    },
-    {
-     "id": "kanji:様",
-     "kanji": "様",
-     "lecture": "ヨウ・さま",
-     "sens": "manière, M./Mme"
-    },
-    {
-     "id": "kanji:葉",
-     "kanji": "葉",
-     "lecture": "ヨウ・は",
-     "sens": "feuille"
-    },
-    {
-     "id": "kanji:頼",
-     "kanji": "頼",
-     "lecture": "ライ・たの(む)",
-     "sens": "demander, compter sur"
-    },
-    {
-     "id": "kanji:落",
-     "kanji": "落",
-     "lecture": "ラク・お(ちる)",
-     "sens": "tomber"
-    },
-    {
-     "id": "kanji:略",
-     "kanji": "略",
-     "lecture": "リャク",
-     "sens": "abréger, stratégie"
-    },
-    {
-     "id": "kanji:流",
-     "kanji": "流",
-     "lecture": "リュウ・なが(れる)",
-     "sens": "couler, courant"
-    },
-    {
-     "id": "kanji:両",
-     "kanji": "両",
-     "lecture": "リョウ",
-     "sens": "les deux"
-    },
-    {
-     "id": "kanji:良",
-     "kanji": "良",
-     "lecture": "リョウ・よ(い)",
-     "sens": "bon"
-    },
-    {
-     "id": "kanji:緑",
-     "kanji": "緑",
-     "lecture": "リョク・みどり",
-     "sens": "vert"
+     "id": "kanji:発",
+     "kanji": "発",
+     "lecture": "ハツ・ホツ",
+     "sens": "émettre, partir"
     },
     {
      "id": "kanji:旅",
      "kanji": "旅",
      "lecture": "リョ・たび",
      "sens": "voyage"
-    },
-    {
-     "id": "kanji:例",
-     "kanji": "例",
-     "lecture": "レイ・たと(える)",
-     "sens": "exemple"
-    },
-    {
-     "id": "kanji:礼",
-     "kanji": "礼",
-     "lecture": "レイ・ライ",
-     "sens": "politesse, salut"
-    },
-    {
-     "id": "kanji:列",
-     "kanji": "列",
-     "lecture": "レツ",
-     "sens": "rangée, file"
-    },
-    {
-     "id": "kanji:劣",
-     "kanji": "劣",
-     "lecture": "レツ・おと(る)",
-     "sens": "inférieur"
-    },
-    {
-     "id": "kanji:練",
-     "kanji": "練",
-     "lecture": "レン・ね(る)",
-     "sens": "s’exercer, pétrir"
-    },
-    {
-     "id": "kanji:論",
-     "kanji": "論",
-     "lecture": "ロン",
-     "sens": "argument, théorie"
-    },
-    {
-     "id": "kanji:路",
-     "kanji": "路",
-     "lecture": "ロ・じ",
-     "sens": "route"
-    },
-    {
-     "id": "kanji:和",
-     "kanji": "和",
-     "lecture": "ワ・やわ(らぐ)",
-     "sens": "harmonie, japonais"
     }
    ]
   },
   {
-   "id": "g10",
-   "title": "Lot 1 — Temps & calendrier",
+   "id": "g51",
+   "title": "Par le sens : Quantité, ordre & mesure",
    "items": [
     {
-     "id": "kanji:過",
-     "kanji": "過",
-     "lecture": "カ・す(ぎる)",
-     "sens": "passer, excès",
-     "exemple": "過去 (kako) passé"
+     "id": "kanji:共",
+     "kanji": "共",
+     "lecture": "キョウ・とも",
+     "sens": "commun, ensemble"
     },
     {
-     "id": "kanji:未",
-     "kanji": "未",
-     "lecture": "ミ",
-     "sens": "pas encore",
-     "exemple": "未来 (mirai) futur"
+     "id": "kanji:寸",
+     "kanji": "寸",
+     "lecture": "スン",
+     "sens": "unité de longueur"
     },
     {
-     "id": "kanji:際",
-     "kanji": "際",
-     "lecture": "サイ・きわ",
-     "sens": "occasion, bord",
-     "exemple": "国際 (kokusai) international"
-    }
-   ]
-  },
-  {
-   "id": "g11",
-   "title": "Lot 2 — Émotions & esprit",
-   "items": [
-    {
-     "id": "kanji:怒",
-     "kanji": "怒",
-     "lecture": "ド・おこ(る)",
-     "sens": "colère",
-     "exemple": "怒る (okoru) se fâcher"
+     "id": "kanji:第",
+     "kanji": "第",
+     "lecture": "ダイ",
+     "sens": "ordinal (n°)"
     },
     {
-     "id": "kanji:喜",
-     "kanji": "喜",
-     "lecture": "キ・よろこ(ぶ)",
-     "sens": "joie",
-     "exemple": "喜ぶ (yorokobu) se réjouir"
+     "id": "kanji:丁",
+     "kanji": "丁",
+     "lecture": "チョウ・テイ",
+     "sens": "bloc, pair"
     },
     {
-     "id": "kanji:恥",
-     "kanji": "恥",
-     "lecture": "チ・は(ずかしい)",
-     "sens": "honte",
-     "exemple": "恥ずかしい (hazukashii) gêné"
-    }
-   ]
-  },
-  {
-   "id": "g12",
-   "title": "Lot 3 — Travail & société",
-   "items": [
-    {
-     "id": "kanji:職",
-     "kanji": "職",
-     "lecture": "ショク",
-     "sens": "emploi",
-     "exemple": "職業 (shokugyō) profession"
+     "id": "kanji:等",
+     "kanji": "等",
+     "lecture": "トウ・ひと(しい)・など",
+     "sens": "égal, etc."
     },
     {
-     "id": "kanji:給",
-     "kanji": "給",
-     "lecture": "キュウ",
-     "sens": "salaire, fournir",
-     "exemple": "給料 (kyūryō) salaire"
-    },
-    {
-     "id": "kanji:産",
-     "kanji": "産",
-     "lecture": "サン・う(む)",
-     "sens": "produire",
-     "exemple": "生産 (seisan) production"
-    },
-    {
-     "id": "kanji:済",
-     "kanji": "済",
-     "lecture": "サイ・す(む)",
-     "sens": "finir, régler",
-     "exemple": "経済 / 済む (sumu)"
-    }
-   ]
-  },
-  {
-   "id": "g13",
-   "title": "Lot 4 — Nature & science",
-   "items": [
-    {
-     "id": "kanji:境",
-     "kanji": "境",
-     "lecture": "キョウ・さかい",
-     "sens": "frontière",
-     "exemple": "環境 (kankyō) environnement"
-    },
-    {
-     "id": "kanji:石",
-     "kanji": "石",
-     "lecture": "セキ・いし",
-     "sens": "pierre",
-     "exemple": "石油 (sekiyu) pétrole"
-    },
-    {
-     "id": "kanji:技",
-     "kanji": "技",
-     "lecture": "ギ・わざ",
-     "sens": "technique",
-     "exemple": "技術 (gijutsu) technologie"
-    },
-    {
-     "id": "kanji:破",
-     "kanji": "破",
-     "lecture": "ハ・やぶ(る)",
-     "sens": "briser",
-     "exemple": "破壊 (hakai) destruction"
-    }
-   ]
-  },
-  {
-   "id": "g14",
-   "title": "Lot 5 — Mouvement & directions",
-   "items": [
-    {
-     "id": "kanji:働",
-     "kanji": "働",
-     "lecture": "ドウ・はたら(く)",
-     "sens": "travailler",
-     "exemple": "労働 (rōdō) travail"
-    },
-    {
-     "id": "kanji:移",
-     "kanji": "移",
-     "lecture": "イ・うつ(る)",
-     "sens": "déplacer",
-     "exemple": "移動 (idō) déplacement"
-    },
-    {
-     "id": "kanji:遅",
-     "kanji": "遅",
-     "lecture": "チ・おく(れる)",
-     "sens": "tard, lent",
-     "exemple": "遅刻 (chikoku) retard"
-    }
-   ]
-  },
-  {
-   "id": "g15",
-   "title": "Lot 6 — Société & communication",
-   "items": [
-    {
-     "id": "kanji:社",
-     "kanji": "社",
-     "lecture": "シャ・やしろ",
-     "sens": "société, sanctuaire",
-     "exemple": "社会 (shakai) société"
-    },
-    {
-     "id": "kanji:協",
-     "kanji": "協",
-     "lecture": "キョウ",
-     "sens": "coopérer",
-     "exemple": "協力 (kyōryoku) coopération"
-    },
-    {
-     "id": "kanji:報",
-     "kanji": "報",
-     "lecture": "ホウ・むく(いる)",
-     "sens": "rapporter, récompenser",
-     "exemple": "報告 (hōkoku) rapport"
-    }
-   ]
-  },
-  {
-   "id": "g16",
-   "title": "Lot 7 — Quantité, choix, opinion",
-   "items": [
-    {
-     "id": "kanji:増",
-     "kanji": "増",
-     "lecture": "ゾウ・ふ(える)",
-     "sens": "augmenter",
-     "exemple": "増加 (zōka) hausse"
-    },
-    {
-     "id": "kanji:減",
-     "kanji": "減",
-     "lecture": "ゲン・へ(る)",
-     "sens": "diminuer",
-     "exemple": "減少 (genshō) baisse"
-    },
-    {
-     "id": "kanji:比",
-     "kanji": "比",
-     "lecture": "ヒ・くら(べる)",
-     "sens": "comparer",
-     "exemple": "比較 (hikaku) comparaison"
-    },
-    {
-     "id": "kanji:量",
-     "kanji": "量",
-     "lecture": "リョウ・はか(る)",
-     "sens": "quantité",
-     "exemple": "数量 (sūryō) quantité"
-    },
-    {
-     "id": "kanji:価",
-     "kanji": "価",
-     "lecture": "カ・あたい",
-     "sens": "valeur",
-     "exemple": "価格 (kakaku) prix"
-    },
-    {
-     "id": "kanji:得",
-     "kanji": "得",
-     "lecture": "トク・え(る)",
-     "sens": "obtenir, avantage",
-     "exemple": "得意 (tokui) point fort"
-    },
-    {
-     "id": "kanji:失",
-     "kanji": "失",
-     "lecture": "シツ・うしな(う)",
-     "sens": "perdre",
-     "exemple": "失敗 (shippai) échec"
+     "id": "kanji:両",
+     "kanji": "両",
+     "lecture": "リョウ",
+     "sens": "les deux"
     }
    ]
   }
