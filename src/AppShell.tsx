@@ -8,6 +8,7 @@ import { ThemeContext } from "./hooks/useThemeContext.tsx";
 import { useTheme } from "./hooks/useTheme.ts";
 import { useServiceWorker } from "./hooks/usePwa.ts";
 import { setupDict } from "./lib/dict.ts";
+import { pickJaVoice } from "./lib/tts.ts";
 import { applyFontScale } from "./lib/fontscale.ts";
 import { applyFuri } from "./lib/furigana.ts";
 
@@ -21,6 +22,11 @@ export function AppShell() {
     void setupDict();       // expose window.furi/visualBreak/initDefs + load data/dict.json
     applyFontScale();       // apply persisted --fs-ui/--fs-jp
     applyFuri();            // apply persisted global furigana visibility (data-furi)
+    if (typeof speechSynthesis !== "undefined") {
+      pickJaVoice();        // pré-charge la voix ja-JP pour la TTS (Cours + quiz)
+      // addEventListener (pas onvoiceschanged=) pour ne pas écraser le handler de dict.ts
+      try { speechSynthesis.addEventListener("voiceschanged", pickJaVoice); } catch { /* ignore */ }
+    }
   }, []);
 
   return (

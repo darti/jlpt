@@ -9,6 +9,8 @@ import type {
 import { type CoursProgress, type ItemState } from "./coursProgress.ts";
 import { visualBreak } from "../../lib/dict.ts";
 import { Breadcrumb } from "./Breadcrumb.tsx";
+import { SpeakButton } from "./SpeakButton.tsx";
+import { kanjiExempleJa } from "./coursSpeech.ts";
 
 declare const furi: ((s: string) => string) | undefined;
 const furiOrPlain = (t: string): string =>
@@ -50,10 +52,13 @@ function StateToggle({
 function Example({ ex }: { ex: CoursExample }) {
   return (
     <div className="bg-surface-2 border border-line rounded-lg p-3 text-sm flex flex-col gap-0.5">
-      <div
-        className="text-fg text-xl"
-        dangerouslySetInnerHTML={{ __html: furiOrPlain(ex.jp) }}
-      />
+      <div className="flex items-start gap-2">
+        <div
+          className="text-fg text-xl flex-1 min-w-0"
+          dangerouslySetInnerHTML={{ __html: furiOrPlain(ex.jp) }}
+        />
+        <SpeakButton text={ex.jp} />
+      </div>
       <div className="text-fg-muted text-meta">{ex.ro}</div>
       <div className="text-fg-dim">{ex.fr}</div>
       {ex.an && ex.an.length > 0 && (
@@ -89,6 +94,7 @@ function VocabRow({
         <div className="text-fg-dim text-sm">{it.sens}</div>
       </div>
       {it.niv && <span className="text-meta text-fg-muted">{it.niv}</span>}
+      <SpeakButton text={it.mot} />
     </div>
   );
 }
@@ -116,6 +122,7 @@ function KanjiRow({
           />
         )}
       </div>
+      {it.exemple && <SpeakButton text={kanjiExempleJa(it.exemple)} />}
     </div>
   );
 }
