@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import type { CoursCategory, CoursCategoryId } from "./coursSchema.ts";
 
-export * from "./coursSchema.ts"; // compat : consommateurs important les types depuis useCours
-
 const IDS: CoursCategoryId[] = ["gram", "vocab", "kanji", "method"];
 
 export function useCours(): CoursCategory[] | null {

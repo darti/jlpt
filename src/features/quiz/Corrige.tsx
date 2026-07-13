@@ -80,7 +80,10 @@ export function Corrige({ question, correct, rappel }: { question: Question; cor
           {rappel ? (
             <p className="text-fg-dim text-sm m-0">
               <span className="text-fg font-bold" dangerouslySetInnerHTML={{ __html: furiOrPlain(rappel.forme) }} />
-              {" "}({rappel.niv}) — {rappel.sens}{" "}
+              {" "}
+              {rappel.niv && `(${rappel.niv})`}
+              {rappel.sens && ` — ${rappel.sens}`}
+              {" "}
               <a href="#/cours" className="text-accent">· voir la leçon</a>
             </p>
           ) : (
