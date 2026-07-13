@@ -17,10 +17,10 @@ const section: LearnCategory = {
   groups: [
     { id: "g1", title: "Leçon 1", items: [
       { id: "gram:たら", form: "〜たら", niv: "N3", mean: "« quand/dès que »." },
-      { id: "gram:について", form: "〜について", niv: "N3", mean: "« au sujet de »." },
-      { id: "gram:に対して", form: "〜に対して", niv: "N3", mean: "« au sujet de »." },
       // an item without niv/mean (e.g. from a conjugation table) must default to "" not undefined
       { id: "gram:五段", form: "五段" },
+      // a compound form "A / B" of alternative forms must be indexed as TWO distinct keys
+      { id: "gram:について", form: "〜について / 〜に対して", niv: "N3", mean: "au sujet de" },
     ] },
   ],
 };
@@ -28,9 +28,13 @@ const section: LearnCategory = {
 test("buildCoursGramIndex indexes every GramItem by normalized form", () => {
   const idx = buildCoursGramIndex(section);
   expect(idx.get("たら")).toEqual({ forme: "〜たら", niv: "N3", sens: "« quand/dès que »." });
-  expect(idx.get("について")).toEqual({ forme: "〜について", niv: "N3", sens: "« au sujet de »." });
-  expect(idx.get("に対して")).toEqual({ forme: "〜に対して", niv: "N3", sens: "« au sujet de »." });
   expect(idx.get("五段")).toEqual({ forme: "五段", niv: "", sens: "" });
+});
+
+test("buildCoursGramIndex splits a compound form 'A / B' into two index entries", () => {
+  const idx = buildCoursGramIndex(section);
+  expect(idx.get("について")).toEqual({ forme: "〜について", niv: "N3", sens: "au sujet de" });
+  expect(idx.get("に対して")).toEqual({ forme: "〜に対して", niv: "N3", sens: "au sujet de" });
 });
 
 test("extractGrammarForm returns the first <b> content, or null", () => {

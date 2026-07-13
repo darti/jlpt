@@ -4,6 +4,11 @@
 // (struct/examples) par forme.
 import { readFileSync, writeFileSync, rmSync, existsSync } from "node:fs";
 
+if (!existsSync("data/cours-dokkai.json")) {
+  console.log("↷ transform déjà appliqué (sources supprimées) — rien à faire.");
+  process.exit(0);
+}
+
 const read = (p) => JSON.parse(readFileSync(p, "utf8"));
 const normForm = (s) => {
   const c = s.lastIndexOf(":");
