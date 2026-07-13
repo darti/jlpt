@@ -8,11 +8,10 @@ Les anciennes URL `app-n3.html` / `quiz.html` restent des redirections vers les 
 
 | Route | Description |
 |---|---|
-| `#/` | Tableau de bord : progression et accès aux modules |
+| `#/` | Tableau de bord : progression, accès aux modules, section repliable « Méthode N3 » (objectifs, 4 phases, routine) |
 | `#/entrainement` | **Hub d'entraînement** : lanceur de session, reprise, statistiques |
 | `#/quiz` | **Entraînement adaptatif** : QCM corrigés, difficulté ajustée au niveau (modèle type Elo par compétence), diagnostics périodiques, courbe de progression, **probabilité de réussite** et score estimé /180 |
 | `#/cours` | **Cours** : grammaire N3 (formation + sens + exemples traduits), kanji par thèmes, vocabulaire, méthodes lecture (読解) & écoute (聴解) |
-| `#/planning` | **Planning 20 semaines** en 4 phases, checklist sauvegardée, compte à rebours, ressources |
 
 ## Fonctionnement
 

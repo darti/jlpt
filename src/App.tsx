@@ -9,7 +9,7 @@ import { dashboardModel, daysUntilExam, type DashboardModel } from "./lib/scorin
 import type { SkillCoverage } from "./lib/coverage.ts";
 import type { Skill } from "./types/progress.ts";
 
-/** Accueil route content (shell lives in AppShell): stats overview + session-score chart.
+/** Accueil route content (shell lives in AppShell): stats overview, session-score chart, and the collapsible « Méthode N3 » section.
  *  Sync lives on Paramétrage; the session launcher lives on the Entraînement route. */
 export function DashboardView({ model, days, scores, coverage }: {
   model: DashboardModel | null; days: number; scores: number[];
