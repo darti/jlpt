@@ -1,6 +1,6 @@
 import { test, expect } from "bun:test";
 import {
-  emptyBits, setBit, hasBit, encodeBits, decodeBits, coverageBySkill,
+  emptyBits, setBit, hasBit, encodeBits, decodeBits, coverageBySkill, countUnseen,
 } from "./coverage.ts";
 import type { Skill } from "../types/progress.ts";
 
@@ -34,4 +34,20 @@ test("coverageBySkill buckets denominators and numerators per skill", () => {
   const cov = coverageBySkill(seen, mastered, idx);
   expect(cov.grammaire).toEqual({ seen: 50, mastered: 50, seenN: 1, masteredN: 1, total: 2 });
   expect(cov.kanji).toEqual({ seen: 100, mastered: 0, seenN: 1, masteredN: 0, total: 1 });
+});
+
+test("countUnseen counts bank-index ids whose seen bit is 0", () => {
+  const idx = { 1: "kanji", 2: "grammaire", 5: "kanji" } as Record<number, Skill>;
+  expect(countUnseen(emptyBits(), idx)).toBe(3); // none seen
+  let seen = setBit(emptyBits(), 2);
+  seen = setBit(seen, 5);
+  expect(countUnseen(seen, idx)).toBe(1); // only id 1 still unseen
+  seen = setBit(setBit(setBit(emptyBits(), 1), 2), 5);
+  expect(countUnseen(seen, idx)).toBe(0); // all seen
+});
+
+test("countUnseen ignores seen bits for ids not in the index", () => {
+  const idx = { 3: "kanji" } as Record<number, Skill>;
+  const seen = setBit(emptyBits(), 99); // 99 not in idx
+  expect(countUnseen(seen, idx)).toBe(1); // id 3 still unseen
 });

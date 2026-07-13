@@ -77,3 +77,12 @@ export function coverageBySkill(
   }
   return acc;
 }
+
+/** Count of bank-index ids whose `seen` bit is unset (never-encountered items). Pure. */
+export function countUnseen(seen: Uint8Array, bankIndex: Record<number, Skill>): number {
+  let n = 0;
+  for (const key in bankIndex) {
+    if (!hasBit(seen, Number(key))) n++;
+  }
+  return n;
+}
