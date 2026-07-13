@@ -38,13 +38,40 @@ test("toggle fait cycler l'état d'un item et le persiste", async () => {
   }); // review → neuf
   expect(api!.progress["vocab:食べる"]).toBeUndefined();
 
-  // persistance : re-mont → relit localStorage
+  // toggle persistant dans localStorage
   await act(async () => {
     api!.toggle("kanji:政");
   });
   expect(
     JSON.parse(globalThis.localStorage.getItem("jlptN3_cours_v1")!)
   ).toEqual({ "kanji:政": "known" });
+  await act(async () => {
+    root.unmount();
+  });
+});
+
+test("charge la progression depuis localStorage au montage", async () => {
+  // seed localStorage avec des données existantes
+  globalThis.localStorage.setItem(
+    "jlptN3_cours_v1",
+    JSON.stringify({ "vocab:水": "known", "kanji:火": "review" })
+  );
+
+  let api: ReturnType<typeof useCoursProgress> | null = null;
+  function Probe() {
+    api = useCoursProgress();
+    return null;
+  }
+  const host = document.createElement("div");
+  const root: Root = createRoot(host);
+  await act(async () => {
+    root.render(<Probe />);
+  });
+
+  // hook doit avoir chargé les données depuis localStorage
+  expect(api!.progress["vocab:水"]).toBe("known");
+  expect(api!.progress["kanji:火"]).toBe("review");
+
   await act(async () => {
     root.unmount();
   });
