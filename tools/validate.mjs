@@ -64,6 +64,38 @@ for (const [file, kind] of [['bank', 'quiz'], ['grammar', 'leçon'], ['kanji', '
 // (data/examples.json supprimé : les exemples du cours vivent maintenant inline dans
 //  data/cours-gram.json — extraits de cours-n3.html avant sa suppression, tranche SPA.)
 
+// ---------- cours (schéma unifié Category › Group › Item) ----------
+for (const id of ['gram', 'vocab', 'kanji', 'method']) {
+  const f = load('data/cours-' + id + '.json'); if (!f) continue;
+  let cat;
+  try { cat = JSON.parse(f.raw); } catch (e) { errors.push('data/cours-' + id + '.json : JSON invalide — ' + e.message); continue; }
+  if (cat.id !== id) errors.push('cours-' + id + ' : id="' + cat.id + '" ≠ "' + id + '"');
+  if (cat.kind !== 'learn' && cat.kind !== 'method') errors.push('cours-' + id + ' : kind invalide "' + cat.kind + '"');
+  if (cat.kind === 'method') {
+    if (!Array.isArray(cat.sections)) errors.push('cours-' + id + ' : sections doit être un tableau');
+    else cat.sections.forEach((s, i) => { if (!Array.isArray(s.tips)) errors.push('cours-' + id + '.sections[' + i + '] : tips manquant'); });
+    info.push('cours-' + id + '.json : ' + (cat.sections?.length ?? 0) + ' sections (méthode)');
+    continue;
+  }
+  if (!Array.isArray(cat.groups)) { errors.push('cours-' + id + ' : groups doit être un tableau'); continue; }
+  const seenId = new Set(); let nItems = 0;
+  cat.groups.forEach((g, gi) => {
+    if (typeof g.title !== 'string' || !g.title) errors.push('cours-' + id + '.groups[' + gi + '] : title manquant');
+    if (!Array.isArray(g.items)) { errors.push('cours-' + id + '.groups[' + gi + '] : items doit être un tableau'); return; }
+    g.items.forEach((it, ii) => {
+      const at = 'cours-' + id + '.groups[' + gi + '].items[' + ii + ']';
+      if (typeof it.id !== 'string' || !it.id) errors.push(at + ' : id manquant');
+      else if (seenId.has(it.id)) errors.push(at + ' : id dupliqué "' + it.id + '"');
+      else seenId.add(it.id);
+      if (id === 'vocab' && (!it.mot || typeof it.sens !== 'string')) errors.push(at + ' : mot/sens manquant');
+      if (id === 'kanji' && (!it.kanji || typeof it.sens !== 'string')) errors.push(at + ' : kanji/sens manquant');
+      if (id === 'gram' && !it.form) errors.push(at + ' : form manquant');
+      nItems++;
+    });
+  });
+  info.push('cours-' + id + '.json : ' + cat.groups.length + ' groupes, ' + nItems + ' items');
+}
+
 // ---------- rapport ----------
 info.forEach(l => console.log('  · ' + l));
 if (errors.length) {

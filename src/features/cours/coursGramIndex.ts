@@ -1,14 +1,15 @@
 /** Index of N3/N4 grammar points from data/cours-gram.json, keyed by normalized form, so a quiz
- *  corrigé can show a "Rappel de cours" for the tested grammar point. Pure logic + a memoized loader. */
-import type { CoursSection, CoursLesson } from "./useCours.ts";
+ *  corrigé can show a "Rappel de cours" for the tested grammar point. Pure logic + a memoized
+ *  loader. data/cours-gram.json is now the unified Category › Group › Item schema
+ *  (tools/transform-cours.mjs) : a "learn" category whose groups hold GramItem
+ *  (form/niv/mean/examples), one item per form. */
+import type { GramItem, LearnCategory } from "./coursSchema.ts";
 import type { Question } from "../../types/quiz.ts";
 
 export interface GrammarRappel { forme: string; niv: string; sens: string }
 export type CoursGramIndex = Map<string, GrammarRappel>;
 
 type FetchLike = (url: string) => Promise<{ json: () => Promise<unknown> }>;
-
-const GRAM_HEADERS = ["Forme", "Niv.", "Sens"];
 
 /** Normalize a grammar form for matching: keep the part after a colon, drop 〜 and whitespace. */
 export function normalizeForm(s: string): string {
@@ -17,26 +18,20 @@ export function normalizeForm(s: string): string {
   return core.replace(/〜/g, "").replace(/\s+/g, "");
 }
 
-/** Build the form→point index from the cours-gram section. Only the ['Forme','Niv.','Sens'] table
- *  counts; a Forme cell may hold `A / B` alternatives (each becomes its own key). */
-export function buildCoursGramIndex(section: CoursSection): CoursGramIndex {
+/** Build the form→point index from the cours-gram category. A GramItem's form may be a
+ *  compound "〜A / 〜B" of alternative forms (e.g. "〜ようだ / 〜みたいだ") — each alternative
+ *  is indexed separately so a quiz testing either one resolves to the same rappel. */
+export function buildCoursGramIndex(category: LearnCategory): CoursGramIndex {
   const index: CoursGramIndex = new Map();
-  const walk = (lessons: CoursLesson[] | undefined): void => {
-    for (const lesson of lessons ?? []) {
-      const t = lesson.table;
-      if (t && GRAM_HEADERS.every((h, i) => t.headers[i] === h)) {
-        for (const row of t.rows) {
-          const [forme, niv, sens] = row;
-          for (const alt of forme.split(" / ")) {
-            const key = normalizeForm(alt);
-            if (key) index.set(key, { forme: alt.trim(), niv, sens });
-          }
-        }
+  for (const group of category.groups) {
+    for (const it of group.items as GramItem[]) {
+      if (!it.form) continue;
+      for (const alt of it.form.split(" / ")) {
+        const key = normalizeForm(alt);
+        if (key) index.set(key, { forme: alt.trim(), niv: it.niv ?? "", sens: it.mean ?? "" });
       }
-      walk(lesson.lessons);
     }
-  };
-  walk(section.lessons);
+  }
   return index;
 }
 
@@ -65,7 +60,7 @@ export function clearCoursGramCache(): void { cache = null; }
 export function loadCoursGramIndex(fetchImpl: FetchLike = fetch as FetchLike): Promise<CoursGramIndex> {
   if (!cache) {
     cache = fetchImpl("data/cours-gram.json")
-      .then((r) => r.json() as Promise<CoursSection>)
+      .then((r) => r.json() as Promise<LearnCategory>)
       .then(buildCoursGramIndex)
       .catch(() => new Map<string, GrammarRappel>());
   }

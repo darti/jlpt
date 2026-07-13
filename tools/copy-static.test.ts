@@ -11,7 +11,7 @@ test("ROOT ledger includes the service worker and PWA/stub assets", () => {
 });
 
 test("isServedData selects the runtime-fetched data files", () => {
-  for (const f of ["bank-grammaire.json", "bank-index.json", "dict.json", "cours-gram.json", "cours-choukai.json"]) {
+  for (const f of ["bank-grammaire.json", "bank-index.json", "dict.json", "cours-gram.json", "cours-method.json"]) {
     expect(isServedData(f)).toBe(true);
   }
 });
