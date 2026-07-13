@@ -52,14 +52,14 @@ test("learn fills after errors, bounded by newCoursePoints", () => {
   expect(plan).toEqual({ kind: "composed", alloc: { errors: 3, learn: 2, adaptive: 5 } });
 });
 
-test("#2 contract: BUILT_CAPS enables errors (30% cap); learn still off", () => {
+test("#4 contract: BUILT_CAPS enables learn (40% cap) alongside errors", () => {
   const plan = pickSessionPlan(
     { ...base, wrongCount: 50, newCoursePoints: 5, daysSinceDiagnostic: 3 },
     10,
     BUILT_CAPS,
   );
-  // errors = min(50, floor(0.30*10)) = 3; learn off = 0; adaptive = 7
-  expect(plan).toEqual({ kind: "composed", alloc: { errors: 3, learn: 0, adaptive: 7 } });
+  // errors = min(50,3)=3; learn = min(5, floor(0.4*10)=4, 10-3=7)=4; adaptive = 10-3-4=3
+  expect(plan).toEqual({ kind: "composed", alloc: { errors: 3, learn: 4, adaptive: 3 } });
 });
 
 test("#2 contract: no errors emitted when wrong[] is empty", () => {
@@ -75,4 +75,14 @@ test("#3 contract: BUILT_CAPS emits diagnostic when never assessed or >=7d", () 
 test("#3 contract: a recent diagnostic (<7d) yields a composed session", () => {
   const plan = pickSessionPlan({ ...base, daysSinceDiagnostic: 3, wrongCount: 50 }, 10, BUILT_CAPS);
   expect(plan.kind).toBe("composed");
+});
+
+test("learn is capped at LEARN_CAP (40%) of the budget", () => {
+  const plan = pickSessionPlan(
+    { ...base, newCoursePoints: 100 },
+    10,
+    { diagnostic: false, errors: false, learn: true },
+  );
+  // errors off → 0; learn = min(100, floor(0.4*10)=4, 10-0=10) = 4; adaptive = 6
+  expect(plan).toEqual({ kind: "composed", alloc: { errors: 0, learn: 4, adaptive: 6 } });
 });

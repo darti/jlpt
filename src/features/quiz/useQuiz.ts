@@ -8,7 +8,7 @@ import {
   questionsForIds, selectRecentErrors, composeSession, selectDiagnostic,
 } from "../../lib/bank.ts";
 import { readRawProgress, writeProgress } from "../../lib/storage.ts";
-import { decodeBits, encodeBits, setBit } from "../../lib/coverage.ts";
+import { decodeBits, encodeBits, setBit, hasBit, countUnseen } from "../../lib/coverage.ts";
 import { dashboardModel, masteryOf } from "../../lib/scoring.ts";
 import { cloudPush, type GistDeps } from "../../lib/gist.ts";
 import { pickSessionPlan, BUILT_CAPS } from "../entrainement/sessionPlan.ts";
@@ -195,11 +195,16 @@ export function useQuiz() {
     // `skipDiagnostic` ([Plus tard]) forces a recent-diagnostic reading → composed path.
     const daysSinceDiagnostic = opts?.skipDiagnostic ? 0 : daysSince(raw?.diagAt);
 
+    // Coverage: count never-seen items for the learn ingredient (needs the full bank index).
+    // ensureBankIndex is prefetched on mount + cached, so awaiting it here is cheap.
+    const idx = await ensureBankIndex();
+    const seen = decodeBits(typeof raw?.seen === "string" ? raw.seen : "");
+    const newCoursePoints = idx ? countUnseen(seen, idx) : 0;
+
     // Consult the decision engine. `resume: false` — "Commencer" always starts fresh; the resume
-    // decision is handled at the card level. Errors are built (BUILT_CAPS.errors); learn is not
-    // yet. Later sub-projects flip a cap and branch.
+    // decision is handled at the card level. All four caps are now built.
     const plan = pickSessionPlan(
-      { resume: false, daysSinceDiagnostic, wrongCount: wrong.length, newCoursePoints: 0 },
+      { resume: false, daysSinceDiagnostic, wrongCount: wrong.length, newCoursePoints },
       total,
       BUILT_CAPS,
     );
@@ -229,20 +234,34 @@ export function useQuiz() {
     const progress = asProgress(raw); // MINOR #6: only the composed path needs mastery
 
     // Errors slice: the most-recent wrong[] ids (up to plan.alloc.errors), resolved to questions.
-    // C2: if the bank index is unavailable (network failure — ensureBankIndex resolves null), the
-    // guaranteed errors floor is skipped and the session degrades to adaptive-only. That is the
-    // accepted fallback: pickAdaptive still soft-surfaces wrong ids via its +150 boost (for
-    // mastery-loaded categories). resumeNow bails on a null index (nothing to resume); start() has a
-    // valid adaptive session to build, so it proceeds.
+    // (idx already loaded above; C2 fallback unchanged — null idx → empty errors, session degrades.)
     const errorIds = selectRecentErrors(wrong, plan.alloc.errors);
-    const idx = await ensureBankIndex();
     const errorQs = idx ? await questionsForIds(errorIds, idx) : [];
-
-    // Adaptive fills exactly the remaining budget, weighted by mastery — so no weighted pick is
-    // dropped (C1). Seed `exclude` with the error ids first → no duplicates.
-    const adaptiveTarget = Math.max(0, total - errorQs.length);
-    const alloc = allocateCount((c) => masteryOf(progress, c), adaptiveTarget);
     const exclude = new Set<number>(errorQs.map((q) => q.id));
+
+    // Learn slice: never-seen items, distributed by mastery and picked near the level. Each category's
+    // pool is filtered to unseen; unseen-thin categories simply contribute fewer (adaptive covers the
+    // shortfall below — budget still `total`).
+    const learnQs: Question[] = [];
+    if (plan.alloc.learn > 0) {
+      const learnAlloc = allocateCount((c) => masteryOf(progress, c), plan.alloc.learn);
+      for (const cat of SKILLS) {
+        const n = learnAlloc[cat];
+        if (!n) continue;
+        const pool = await loadCategory(cat);
+        const unseen = pool.filter((q) => !hasBit(seen, q.id));
+        const R = skillStateOf(raw, cat).R;
+        // wrong ⊆ seen (choose() sets the seen bit when appending to wrong[]), so no wrong id is ever
+        // in `unseen` — pass [] rather than a dead +150 boost that can't fire here.
+        const picks = pickAdaptive(unseen, R, exclude, []).slice(0, n);
+        for (const q of picks) exclude.add(q.id);
+        learnQs.push(...picks);
+      }
+    }
+
+    // Adaptive fills the remaining budget (weighted by mastery), from the full pools.
+    const adaptiveTarget = Math.max(0, total - errorQs.length - learnQs.length);
+    const alloc = allocateCount((c) => masteryOf(progress, c), adaptiveTarget);
     const picked: Question[] = [];
     for (const cat of SKILLS) {
       const n = alloc[cat];
@@ -254,7 +273,8 @@ export function useQuiz() {
       picked.push(...picks);
     }
 
-    const session = composeSession(errorQs, picked, total, Math.random);
+    // Guaranteed slices (errors + learn) + adaptive fill → composeSession reconciles the budget.
+    const session = composeSession([...errorQs, ...learnQs], picked, total, Math.random);
     if (!session.length) return;
 
     rightRef.current = 0;
