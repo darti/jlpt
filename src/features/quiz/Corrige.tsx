@@ -1,4 +1,5 @@
 import type { Question } from "../../types/quiz.ts";
+import type { GrammarRappel } from "../cours/coursGramIndex.ts";
 
 /** Same SSR-safe furigana guard as `QuestionCard` — see there for rationale. */
 declare const furi: ((s: string) => string) | undefined;
@@ -16,7 +17,7 @@ function visualBreakOrPlain(text: string): string {
 /** Port of the legacy corrigé block from `answer()` (app-n3.html:937-957):
  * correct/incorrect banner, rule explanation, grammar decomposition, and the
  * per-option analysis (`od`). Does not receive `chosen` — only `correct`. */
-export function Corrige({ question, correct }: { question: Question; correct: boolean }) {
+export function Corrige({ question, correct, rappel }: { question: Question; correct: boolean; rappel?: GrammarRappel | null }) {
   const correctAnswer = question.o[question.a];
   const od = question.od;
   const hasOd = od !== undefined && od.length === question.o.length;
@@ -71,6 +72,20 @@ export function Corrige({ question, correct }: { question: Question; correct: bo
               </li>
             ))}
           </ul>
+        </div>
+      )}
+      {question.cat === "grammaire" && (
+        <div className="mt-3 pt-3 border-t border-line">
+          <p className="text-accent text-sm font-bold mb-1">Rappel de cours</p>
+          {rappel ? (
+            <p className="text-fg-dim text-sm m-0">
+              <span className="text-fg font-bold" dangerouslySetInnerHTML={{ __html: furiOrPlain(rappel.forme) }} />
+              {" "}({rappel.niv}) — {rappel.sens}{" "}
+              <a href="#/cours" className="text-accent">· voir la leçon</a>
+            </p>
+          ) : (
+            <a href="#/cours" className="text-accent text-sm">📖 Revoir la grammaire dans le cours</a>
+          )}
         </div>
       )}
     </div>
