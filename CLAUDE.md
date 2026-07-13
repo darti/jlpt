@@ -27,8 +27,8 @@ par tâche = branche + répertoire isolés.
   Routes : `/` (Accueil : dashboard + graphe de progression), `/entrainement` (**onglet unique
   fusionné** — hub reprise/démarrage **et** moteur quiz adaptatif type Elo inline, piloté par
   `useQuiz` ; phase `home` = hub, sinon flux question/corrigé/résultats), `/parametrage`
-  (police/thème/données/synchro), `/cours`, `/planning`. `/quiz` **redirige** vers `/entrainement`
-  (compat, query préservée) ; `quiz.html`/`app-n3.html` = **stubs de redirection** (anciennes
+  (police/thème/données/synchro), `/cours`. `/quiz` **redirige** vers `/entrainement`
+  (compat, query préservée) ; `/planning` **redirige** vers `/` (compat, méthode rapatriée sur l'Accueil) ; `quiz.html`/`app-n3.html` = **stubs de redirection** (anciennes
   URL/bookmarks → routes hash). Le shell (thème/SW/police/dict) est dans `AppShell` (montage unique).
 - Contenu chargé au runtime : `data/dict.json` (furigana + tap-pour-définir, `src/lib/dict.ts`),
   `data/cours-*.json` (route `/cours`, `src/features/cours`), `data/bank-*.json` (quiz).

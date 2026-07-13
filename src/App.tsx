@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Dashboard } from "./features/dashboard/Dashboard.tsx";
 import { ProgressChart } from "./features/dashboard/ProgressChart.tsx";
+import { MethodeN3 } from "./features/dashboard/MethodeN3.tsx";
 import { useProgress } from "./features/dashboard/useProgress.ts";
 import { useCoverage } from "./features/dashboard/useCoverage.ts";
 import { readSessionScores } from "./lib/history.ts";
@@ -8,7 +9,7 @@ import { dashboardModel, daysUntilExam, type DashboardModel } from "./lib/scorin
 import type { SkillCoverage } from "./lib/coverage.ts";
 import type { Skill } from "./types/progress.ts";
 
-/** Accueil route content (shell lives in AppShell): stats overview + session-score chart.
+/** Accueil route content (shell lives in AppShell): stats overview, session-score chart, and the collapsible « Méthode N3 » section.
  *  Sync lives on Paramétrage; the session launcher lives on the Entraînement route. */
 export function DashboardView({ model, days, scores, coverage }: {
   model: DashboardModel | null; days: number; scores: number[];
@@ -21,6 +22,7 @@ export function DashboardView({ model, days, scores, coverage }: {
         <h2 className="text-fg text-lg font-bold mt-0 mb-3">Progression</h2>
         <ProgressChart scores={scores} />
       </section>
+      <MethodeN3 />
     </>
   );
 }

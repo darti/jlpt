@@ -1,5 +1,6 @@
 import { test, expect } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
+import { MemoryRouter } from "react-router-dom";
 import { DashboardView } from "./App.tsx";
 import { dashboardModel } from "./lib/scoring.ts";
 import type { Progress } from "./types/progress.ts";
@@ -9,12 +10,17 @@ const flat = (R: number): Progress => ({
   skill: { grammaire: { R, t: 60 }, vocabulaire: { R, t: 60 }, kanji: { R, t: 60 }, lecture: { R, t: 60 } },
 });
 
-test("DashboardView renders stats + progression chart (install + sync live on Paramétrage)", () => {
+test("DashboardView renders stats + progression chart + méthode (install + sync live on Paramétrage)", () => {
   const model = dashboardModel(flat(1600), new Date("2026-07-10T00:00:00"));
-  const html = renderToStaticMarkup(<DashboardView model={model} days={model.days} scores={[]} />);
+  const html = renderToStaticMarkup(
+    <MemoryRouter>
+      <DashboardView model={model} days={model.days} scores={[]} />
+    </MemoryRouter>,
+  );
   expect(html).toContain("17%");                                 // Dashboard stat
   expect(html).toContain("Progression");                         // chart section moved from Entraînement
   expect(html).toContain("Au moins 2 diagnostics");              // ProgressChart empty state
+  expect(html).toContain("La méthode N3");                       // section méthode rapatriée du Planning
   expect(html).not.toContain("Installer");                       // InstallPrompt moved to Paramétrage
   expect(html).not.toContain("Synchronisation multi-appareils"); // sync moved to Paramétrage
 });

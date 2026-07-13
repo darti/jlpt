@@ -12,7 +12,6 @@ const ROUTES = [
   { to: "/", label: "Accueil", end: true },
   { to: "/entrainement", label: "Entraînement" },
   { to: "/cours", label: "Cours" },
-  { to: "/planning", label: "Planning" },
   { to: "/parametrage", label: "Paramétrage" },
 ];
 const ON = "text-fg font-semibold text-sm";
