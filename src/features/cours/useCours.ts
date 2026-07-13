@@ -1,26 +1,23 @@
+/** Charge le contenu de cours (data/cours-*.json, schéma unifié) au runtime.
+ *  null = chargement, [] = échec. */
 import { useEffect, useState } from "react";
+import type { CoursCategory, CoursCategoryId } from "./coursSchema.ts";
 
-export interface CoursExample { jp: string; ro: string; fr: string; an: string[] }
-export interface CoursPoint { form?: string; struct?: string; mean?: string; examples?: CoursExample[] }
-export interface CoursTable { headers: string[]; rows: string[][] }
-export interface CoursLesson {
-  title: string; tag?: string; intro?: string[];
-  lessons?: CoursLesson[]; table?: CoursTable; points?: CoursPoint[]; tip?: string;
-}
-export interface CoursSection { id: string; title: string; intro?: string[]; lessons?: CoursLesson[]; tips?: string[] }
+export * from "./coursSchema.ts"; // compat : consommateurs important les types depuis useCours
 
-// The 5 course sections, in display order, from tools/extract-cours.mjs.
-const SECTION_IDS = ["gram", "kanji", "vocab", "dokkai", "choukai"];
+const IDS: CoursCategoryId[] = ["gram", "vocab", "kanji", "method"];
 
-/** Loads the course content (data/cours-*.json) at runtime. `null` = loading, `[]` = failed. */
-export function useCours(): CoursSection[] | null {
-  const [sections, setSections] = useState<CoursSection[] | null>(null);
+export function useCours(): CoursCategory[] | null {
+  const [cats, setCats] = useState<CoursCategory[] | null>(null);
   useEffect(() => {
     let alive = true;
-    Promise.all(SECTION_IDS.map((id) => fetch(`data/cours-${id}.json`).then((r) => r.json() as Promise<CoursSection>)))
-      .then((s) => { if (alive) setSections(s); })
-      .catch(() => { if (alive) setSections([]); });
+    Promise.all(
+      IDS.map((id) =>
+        fetch(`data/cours-${id}.json`).then((r) => r.json() as Promise<CoursCategory>)),
+    )
+      .then((c) => { if (alive) setCats(c); })
+      .catch(() => { if (alive) setCats([]); });
     return () => { alive = false; };
   }, []);
-  return sections;
+  return cats;
 }

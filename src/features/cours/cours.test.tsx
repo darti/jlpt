@@ -1,37 +1,71 @@
-import { test, expect } from "bun:test";
-import { renderToStaticMarkup } from "react-dom/server";
-import { CoursView } from "./Cours.tsx";
-import type { CoursSection } from "./useCours.ts";
+import { test, expect, afterEach } from "bun:test";
+import { act } from "react";
+import { createRoot, type Root } from "react-dom/client";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
+import { Cours } from "./Cours.tsx";
 
-const sections: CoursSection[] = [
-  {
-    id: "gram",
-    title: "文法 — Grammaire N3 par leçons",
-    lessons: [
-      {
-        tag: "S2",
-        title: "Leçon 1 — Conditionnels",
-        points: [
-          { form: "〜ば", struct: "V(forme ば)", mean: "« si… »", examples: [{ jp: "安ければ買います。", ro: "yasukereba kaimasu.", fr: "Si c'est bon marché, je l'achète.", an: ["安い（やすい）→安ければ « conditionnel »", "を « COD »"] }] },
-        ],
-        tip: "と/ば/たら/なら : nuances.",
-      },
-    ],
+(globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
+const origFetch = globalThis.fetch;
+afterEach(() => {
+  globalThis.fetch = origFetch;
+  try { globalThis.localStorage.clear(); } catch { /* noop */ }
+});
+
+const CATS: Record<string, unknown> = {
+  "data/cours-gram.json": {
+    id: "gram", title: "文法 — Grammaire", kind: "learn",
+    groups: [{
+      id: "g1", title: "Conditionnels",
+      items: [{ id: "gram:ば", form: "〜ば", mean: "si" }],
+    }],
   },
-  { id: "dokkai", title: "読解 — Méthode", tips: ["<b>Lis la question d'abord</b>."] },
-];
+  "data/cours-vocab.json": { id: "vocab", title: "語彙", kind: "learn", groups: [] },
+  "data/cours-kanji.json": {
+    id: "kanji", title: "漢字", kind: "learn",
+    groups: [{
+      id: "k1", title: "Eau",
+      items: [{ id: "kanji:水", kanji: "水", lecture: "みず", sens: "eau" }],
+    }],
+  },
+  "data/cours-method.json": { id: "method", title: "Méthode", kind: "method", sections: [] },
+};
 
-test("CoursView renders sections, lessons, points, examples + method tips", () => {
-  const html = renderToStaticMarkup(<CoursView sections={sections} />);
-  expect(html).toContain("Grammaire N3");        // section title
-  expect(html).toContain("Leçon 1 — Conditionnels"); // lesson
-  expect(html).toContain("〜ば");                  // grammar point form
-  expect(html).toContain("安ければ買います");        // example jp
-  expect(html).toContain("bon marché");            // example fr (apostrophe would be HTML-escaped)
-  expect(html).toContain("Lis la question");       // method tip
-  // Analyse visuelle : les annotations deviennent des jetons colorés par rôle (regression:
-  // ce rendu « blocs de couleur » avait sauté au port React, l'app n'affichait qu'une liste).
-  expect(html).toContain('class="vbreak"');        // colored-block container
-  expect(html).toContain("tok-verb");              // 安ければ (contient →) → verbe
-  expect(html).toContain("tok-part");              // を → particule
+async function mountAt(path: string): Promise<{ host: HTMLElement; root: Root }> {
+  globalThis.fetch = ((url: string) =>
+    Promise.resolve({ json: () => Promise.resolve(CATS[url]) })) as unknown as typeof fetch;
+  const host = document.createElement("div"); const root = createRoot(host);
+  await act(async () => {
+    root.render(
+      <MemoryRouter initialEntries={[path]}>
+        <Routes><Route path="cours/*" element={<Cours />} /></Routes>
+      </MemoryRouter>,
+    );
+  });
+  await act(async () => { await Promise.resolve(); });
+  return { host, root };
+}
+
+test("Cours /cours → hub des catégories", async () => {
+  const { host, root } = await mountAt("/cours");
+  expect(host.innerHTML).toContain("Grammaire");
+  expect(host.innerHTML).toContain("Méthode");
+  await act(async () => { root.unmount(); });
+});
+
+test("Cours /cours/gram/g1 → détail + toggle qui persiste", async () => {
+  const { host, root } = await mountAt("/cours/gram/g1");
+  expect(host.innerHTML).toContain("〜ば");
+  const btn = host.querySelector('[data-item-id="gram:ば"]') as HTMLButtonElement;
+  expect(btn).not.toBeNull();
+  await act(async () => { btn.click(); }); // neuf → known
+  const raw = globalThis.localStorage.getItem("jlptN3_cours_v1");
+  expect(JSON.parse(raw!)).toEqual({ "gram:ば": "known" });
+  await act(async () => { root.unmount(); });
+});
+
+test("Cours /cours/kanji/k1 → détail kanji (dispatch GroupDetail)", async () => {
+  const { host, root } = await mountAt("/cours/kanji/k1");
+  expect(host.innerHTML).toContain("水");
+  expect(host.innerHTML).toContain("eau");
+  await act(async () => { root.unmount(); });
 });

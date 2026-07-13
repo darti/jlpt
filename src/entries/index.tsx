@@ -20,7 +20,7 @@ if (root) createRoot(root).render(
           <Route path="quiz" element={<QuizRedirect />} />
           <Route path="entrainement" element={<EntrainementApp />} />
           <Route path="planning" element={<Planning />} />
-          <Route path="cours" element={<Cours />} />
+          <Route path="cours/*" element={<Cours />} />
           <Route path="parametrage" element={<Parametrage />} />
           <Route path="*" element={<App />} />
         </Route>
