@@ -105,7 +105,7 @@ function KanjiRow({
   return (
     <div className="flex items-center gap-3 border-b border-line py-2">
       <StateToggle id={it.id} state={state} onToggle={onToggle} />
-      <span className="text-fg text-4xl w-10 text-center">{it.kanji}</span>
+      <span className="text-fg text-4xl font-light w-10 text-center">{it.kanji}</span>
       <div className="flex-1 min-w-0">
         <span className="text-fg-muted text-base">{it.lecture}</span>
         <div className="text-fg-dim text-sm">{it.sens}</div>
