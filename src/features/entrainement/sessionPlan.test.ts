@@ -52,14 +52,14 @@ test("learn fills after errors, bounded by newCoursePoints", () => {
   expect(plan).toEqual({ kind: "composed", alloc: { errors: 3, learn: 2, adaptive: 5 } });
 });
 
-test("#2 contract: BUILT_CAPS enables errors (30% cap); learn still off", () => {
+test("#4 contract: BUILT_CAPS enables learn (40% cap) alongside errors", () => {
   const plan = pickSessionPlan(
     { ...base, wrongCount: 50, newCoursePoints: 5, daysSinceDiagnostic: 3 },
     10,
     BUILT_CAPS,
   );
-  // errors = min(50, floor(0.30*10)) = 3; learn off = 0; adaptive = 7
-  expect(plan).toEqual({ kind: "composed", alloc: { errors: 3, learn: 0, adaptive: 7 } });
+  // errors = min(50,3)=3; learn = min(5, floor(0.4*10)=4, 10-3=7)=4; adaptive = 10-3-4=3
+  expect(plan).toEqual({ kind: "composed", alloc: { errors: 3, learn: 4, adaptive: 3 } });
 });
 
 test("#2 contract: no errors emitted when wrong[] is empty", () => {
