@@ -1,21 +1,23 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ComponentType } from "react";
 import { NavLink } from "react-router-dom";
 import { useThemeContext } from "../hooks/useThemeContext.tsx";
 import { applyFuri, readFuri, writeFuri } from "../lib/furigana.ts";
+import { IconHome, IconDumbbell, IconBookOpen, IconGear, IconMoon, IconSun } from "./icons.tsx";
 
 // Panel background + border + blur — applied only while the nav is pinned to the top.
 // `notch-fill` extends that frosted background up through the iOS safe-area strip so the
 // blur reaches the very top of the screen instead of stopping at the notch (see tailwind.css).
 const STUCK_BG = "bg-panel border-b border-line surface-blur notch-fill";
 
-const ROUTES = [
-  { to: "/", label: "Accueil", end: true },
-  { to: "/entrainement", label: "Entraînement" },
-  { to: "/cours", label: "Cours" },
-  { to: "/parametrage", label: "Paramétrage" },
+// Tabs show a monochrome icon; `label` stays as the accessible name (aria-label + tooltip).
+const ROUTES: { to: string; label: string; Icon: ComponentType; end?: boolean }[] = [
+  { to: "/", label: "Accueil", Icon: IconHome, end: true },
+  { to: "/entrainement", label: "Entraînement", Icon: IconDumbbell },
+  { to: "/cours", label: "Cours", Icon: IconBookOpen },
+  { to: "/parametrage", label: "Paramétrage", Icon: IconGear },
 ];
-const ON = "text-fg font-semibold text-sm";
-const OFF = "text-fg-dim font-semibold text-sm";
+const ON = "text-fg text-lg";
+const OFF = "text-fg-dim text-lg";
 
 export function TopNav() {
   const { theme, toggle } = useThemeContext();
@@ -47,9 +49,16 @@ export function TopNav() {
       ref={navRef}
       className={`sticky top-[env(safe-area-inset-top)] z-10 flex gap-4 flex-wrap justify-center items-center px-3 py-2.5 ${stuck ? STUCK_BG : ""}`}
     >
-      {ROUTES.map((r) => (
-        <NavLink key={r.to} to={r.to} end={r.end} className={({ isActive }) => (isActive ? ON : OFF)}>
-          {r.label}
+      {ROUTES.map(({ to, label, Icon, end }) => (
+        <NavLink
+          key={to}
+          to={to}
+          end={end}
+          aria-label={label}
+          title={label}
+          className={({ isActive }) => (isActive ? ON : OFF)}
+        >
+          <Icon />
         </NavLink>
       ))}
       <button
@@ -65,9 +74,10 @@ export function TopNav() {
         type="button"
         onClick={toggle}
         aria-label="Basculer le thème"
-        className="text-fg-dim rounded-full min-w-8 h-8 cursor-pointer border-none bg-transparent"
+        title="Basculer le thème"
+        className="text-fg-dim rounded-full min-w-8 h-8 cursor-pointer border-none bg-transparent inline-flex items-center justify-center text-lg"
       >
-        {theme === "light" ? "☾" : "☀"}
+        {theme === "light" ? <IconMoon /> : <IconSun />}
       </button>
     </nav>
   );
