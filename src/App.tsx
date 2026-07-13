@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Dashboard } from "./features/dashboard/Dashboard.tsx";
 import { ProgressChart } from "./features/dashboard/ProgressChart.tsx";
+import { MethodeN3 } from "./features/dashboard/MethodeN3.tsx";
 import { useProgress } from "./features/dashboard/useProgress.ts";
 import { useCoverage } from "./features/dashboard/useCoverage.ts";
 import { readSessionScores } from "./lib/history.ts";
@@ -21,6 +22,7 @@ export function DashboardView({ model, days, scores, coverage }: {
         <h2 className="text-fg text-lg font-bold mt-0 mb-3">Progression</h2>
         <ProgressChart scores={scores} />
       </section>
+      <MethodeN3 />
     </>
   );
 }
