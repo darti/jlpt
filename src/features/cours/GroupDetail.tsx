@@ -51,14 +51,14 @@ function Example({ ex }: { ex: CoursExample }) {
   return (
     <div className="bg-surface-2 border border-line rounded-lg p-3 text-sm flex flex-col gap-0.5">
       <div
-        className="text-fg text-lg"
+        className="text-fg text-xl"
         dangerouslySetInnerHTML={{ __html: furiOrPlain(ex.jp) }}
       />
       <div className="text-fg-muted text-meta">{ex.ro}</div>
       <div className="text-fg-dim">{ex.fr}</div>
       {ex.an && ex.an.length > 0 && (
         <div
-          className="text-base"
+          className="text-lg"
           dangerouslySetInnerHTML={{
             __html: visualBreak(ex.an.join(" · "), { legend: false }),
           }}
@@ -82,10 +82,10 @@ function VocabRow({
       <StateToggle id={it.id} state={state} onToggle={onToggle} />
       <div className="flex-1 min-w-0">
         <span
-          className="text-fg text-lg"
+          className="text-fg text-xl"
           dangerouslySetInnerHTML={{ __html: furiOrPlain(it.mot) }}
         />
-        <span className="text-fg-muted text-sm ml-2">{it.lecture}</span>
+        <span className="text-fg-muted text-base ml-2">{it.lecture}</span>
         <div className="text-fg-dim text-sm">{it.sens}</div>
       </div>
       {it.niv && <span className="text-meta text-fg-muted">{it.niv}</span>}
@@ -105,13 +105,13 @@ function KanjiRow({
   return (
     <div className="flex items-center gap-3 border-b border-line py-2">
       <StateToggle id={it.id} state={state} onToggle={onToggle} />
-      <span className="text-fg text-3xl w-10 text-center">{it.kanji}</span>
+      <span className="text-fg text-4xl font-light w-10 text-center">{it.kanji}</span>
       <div className="flex-1 min-w-0">
-        <span className="text-fg-muted text-sm">{it.lecture}</span>
+        <span className="text-fg-muted text-base">{it.lecture}</span>
         <div className="text-fg-dim text-sm">{it.sens}</div>
         {it.exemple && (
           <div
-            className="text-fg-muted text-sm"
+            className="text-fg-muted text-base"
             dangerouslySetInnerHTML={{ __html: furiOrPlain(it.exemple) }}
           />
         )}
@@ -133,11 +133,11 @@ function GramPoint({
     <div className="border-l-2 border-accent pl-3 flex flex-col gap-1.5">
       <div className="flex items-center gap-2">
         <StateToggle id={it.id} state={state} onToggle={onToggle} />
-        <span className="text-fg text-lg font-bold">{it.form}</span>
+        <span className="text-fg text-xl font-bold">{it.form}</span>
         {it.niv && <span className="text-meta text-fg-muted">{it.niv}</span>}
       </div>
       {it.struct && (
-        <div className="text-fg-muted text-sm font-mono">{it.struct}</div>
+        <div className="text-fg-muted text-base font-mono">{it.struct}</div>
       )}
       {it.mean && <div className="text-fg-dim text-sm">{it.mean}</div>}
       {it.examples?.map((ex, i) => (
