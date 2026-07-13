@@ -16,14 +16,14 @@ export function DashboardView({ model, days, scores, coverage }: {
   coverage?: Record<Skill, SkillCoverage> | null;
 }) {
   return (
-    <>
+    <div className="flex flex-col gap-6">
       <Dashboard model={model} days={days} coverage={coverage} />
       <section className="bg-panel border border-line rounded-xl p-5 shadow-card surface-blur">
         <h2 className="text-fg text-lg font-bold mt-0 mb-3">Progression</h2>
         <ProgressChart scores={scores} />
       </section>
       <MethodeN3 />
-    </>
+    </div>
   );
 }
 

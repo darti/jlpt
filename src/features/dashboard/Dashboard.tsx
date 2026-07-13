@@ -20,7 +20,7 @@ export function Dashboard(
 ) {
   if (!model || model.answers === 0) {
     return (
-      <div className={`${CARD} mb-6`}>
+      <div className={CARD}>
         <p className="text-fg-dim text-sm m-0">
           Aucune donnée pour l'instant — lance un quiz dans l'entraînement adaptatif
           pour générer ton analyse. ({days} jours avant l'examen)
@@ -32,7 +32,7 @@ export function Dashboard(
   const score = model.hasEnough ? `${model.sectionTotal}/180` : "—";
   const pctColor = TIER_COLOR[passTier(model.passPct)];
   return (
-    <div className="flex flex-col gap-4 mb-6">
+    <div className="flex flex-col gap-6">
       {/* Estimation d'examen : indicateurs clés + jauge de réussite */}
       <div className={CARD}>
         <div className="grid grid-cols-2 gap-2 text-center mb-3">
