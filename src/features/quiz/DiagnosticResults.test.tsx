@@ -29,7 +29,7 @@ test("DiagnosticResults shows the estimated level and a per-skill breakdown from
 
 test("DiagnosticResults renders a matched Rappel de cours when a coursIndex is provided", () => {
   const g: Question = { id: 3, cat: "grammaire", d: 1, q: "", o: ["a", "b"], a: 0, e: "<b>〜たら</b> = x" };
-  const idx = new Map([["たら", { forme: "〜たら", niv: "N3", sens: "« quand »." }]]);
+  const idx = new Map([["たら", { forme: "〜たら", niv: "N3", sens: "« quand ».", id: "gram:たら", group: "g4" }]]);
   const html = renderToStaticMarkup(
     <DiagnosticResults model={model} answers={[{ question: g, chosen: 1 }]} onDone={() => {}} coursIndex={idx} />,
   );

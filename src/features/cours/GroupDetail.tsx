@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 import type {
   LearnCategory,
   CoursGroup,
@@ -8,9 +10,16 @@ import type {
 } from "./coursSchema.ts";
 import { type CoursProgress, type ItemState } from "./coursProgress.ts";
 import { visualBreak } from "../../lib/dict.ts";
+import { quizResumeHref } from "./coursDeepLink.ts";
 import { Breadcrumb } from "./Breadcrumb.tsx";
 import { SpeakButton } from "./SpeakButton.tsx";
 import { kanjiExempleJa } from "./coursSpeech.ts";
+
+/** Wrapper props shared by every item row so a deep-linked item can be anchored + highlighted. */
+type RowFocus = { focused?: boolean };
+
+/** Ring + soft background applied to the deep-linked item (`?focus=<id>`). */
+const FOCUS_RING = "ring-2 ring-accent rounded-lg bg-surface-2/60";
 
 declare const furi: ((s: string) => string) | undefined;
 const furiOrPlain = (t: string): string =>
@@ -77,13 +86,17 @@ function VocabRow({
   it,
   state,
   onToggle,
+  focused,
 }: {
   it: VocabItem;
   state: ItemState | undefined;
   onToggle: (id: string) => void;
-}) {
+} & RowFocus) {
   return (
-    <div className="flex items-center gap-3 border-b border-line py-2">
+    <div
+      data-cours-item={it.id}
+      className={`flex items-center gap-3 border-b border-line py-2${focused ? ` ${FOCUS_RING}` : ""}`}
+    >
       <StateToggle id={it.id} state={state} onToggle={onToggle} />
       <div className="flex-1 min-w-0">
         <span
@@ -103,13 +116,17 @@ function KanjiRow({
   it,
   state,
   onToggle,
+  focused,
 }: {
   it: KanjiItem;
   state: ItemState | undefined;
   onToggle: (id: string) => void;
-}) {
+} & RowFocus) {
   return (
-    <div className="flex items-center gap-3 border-b border-line py-2">
+    <div
+      data-cours-item={it.id}
+      className={`flex items-center gap-3 border-b border-line py-2${focused ? ` ${FOCUS_RING}` : ""}`}
+    >
       <StateToggle id={it.id} state={state} onToggle={onToggle} />
       <span className="text-fg text-4xl font-light w-10 text-center">{it.kanji}</span>
       <div className="flex-1 min-w-0">
@@ -131,13 +148,17 @@ function GramPoint({
   it,
   state,
   onToggle,
+  focused,
 }: {
   it: GramItem;
   state: ItemState | undefined;
   onToggle: (id: string) => void;
-}) {
+} & RowFocus) {
   return (
-    <div className="border-l-2 border-accent pl-3 flex flex-col gap-1.5">
+    <div
+      data-cours-item={it.id}
+      className={`border-l-2 border-accent pl-3 py-1 flex flex-col gap-1.5${focused ? ` ${FOCUS_RING}` : ""}`}
+    >
       <div className="flex items-center gap-2">
         <StateToggle id={it.id} state={state} onToggle={onToggle} />
         <span className="text-fg text-xl font-bold">{it.form}</span>
@@ -154,7 +175,9 @@ function GramPoint({
   );
 }
 
-/** Niveau 2 : le contenu d'un thème, rendu selon la catégorie. */
+/** Niveau 2 : le contenu d'un thème, rendu selon la catégorie. Un `?focus=<id>` (deep link,
+ *  typ. depuis un corrigé de quiz) fait défiler vers l'item et le surligne ; `?from=quiz`
+ *  affiche en plus une flèche « Revenir à la question » qui rouvre le corrigé quitté. */
 export function GroupDetail({
   category,
   group,
@@ -166,8 +189,22 @@ export function GroupDetail({
   progress: CoursProgress;
   onToggle: (id: string) => void;
 }) {
+  const [params] = useSearchParams();
+  const focus = params.get("focus");
+  const fromQuiz = params.get("from") === "quiz";
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  // Scroll the deep-linked item into view once the group is rendered. Item ids carry `:`/kana,
+  // so escape them for the attribute selector; scoped to this group's container so a stale id
+  // from another group is a harmless no-op.
+  useEffect(() => {
+    if (!focus || typeof CSS === "undefined" || !CSS.escape) return;
+    const el = containerRef.current?.querySelector(`[data-cours-item="${CSS.escape(focus)}"]`);
+    el?.scrollIntoView?.({ behavior: "smooth", block: "center" });
+  }, [focus, group.id]);
+
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3" ref={containerRef}>
       <Breadcrumb
         crumbs={[
           { label: "Cours", to: "/cours" },
@@ -178,6 +215,14 @@ export function GroupDetail({
           { label: group.title },
         ]}
       />
+      {fromQuiz && (
+        <a
+          href={quizResumeHref}
+          className="self-start inline-flex items-center gap-1 text-accent text-sm font-bold no-underline"
+        >
+          <span aria-hidden="true">←</span> Revenir à la question
+        </a>
+      )}
       <h2 className="text-fg text-lg font-bold">{group.title}</h2>
       {group.note && (
         <p className="text-fg-dim text-sm bg-surface-2 border border-line rounded-lg p-2.5">
@@ -192,6 +237,7 @@ export function GroupDetail({
               it={it as VocabItem}
               state={progress[it.id]}
               onToggle={onToggle}
+              focused={it.id === focus}
             />
           ))}
         {category.id === "kanji" &&
@@ -201,6 +247,7 @@ export function GroupDetail({
               it={it as KanjiItem}
               state={progress[it.id]}
               onToggle={onToggle}
+              focused={it.id === focus}
             />
           ))}
         {category.id === "gram" &&
@@ -210,6 +257,7 @@ export function GroupDetail({
               it={it as GramItem}
               state={progress[it.id]}
               onToggle={onToggle}
+              focused={it.id === focus}
             />
           ))}
       </div>

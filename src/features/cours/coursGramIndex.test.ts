@@ -27,14 +27,15 @@ const section: LearnCategory = {
 
 test("buildCoursGramIndex indexes every GramItem by normalized form", () => {
   const idx = buildCoursGramIndex(section);
-  expect(idx.get("たら")).toEqual({ forme: "〜たら", niv: "N3", sens: "« quand/dès que »." });
-  expect(idx.get("五段")).toEqual({ forme: "五段", niv: "", sens: "" });
+  expect(idx.get("たら")).toEqual({ forme: "〜たら", niv: "N3", sens: "« quand/dès que ».", id: "gram:たら", group: "g1" });
+  expect(idx.get("五段")).toEqual({ forme: "五段", niv: "", sens: "", id: "gram:五段", group: "g1" });
 });
 
 test("buildCoursGramIndex splits a compound form 'A / B' into two index entries", () => {
   const idx = buildCoursGramIndex(section);
-  expect(idx.get("について")).toEqual({ forme: "〜について", niv: "N3", sens: "au sujet de" });
-  expect(idx.get("に対して")).toEqual({ forme: "〜に対して", niv: "N3", sens: "au sujet de" });
+  // both alternatives resolve to the same source item (id/group), so either deep-links to it
+  expect(idx.get("について")).toEqual({ forme: "〜について", niv: "N3", sens: "au sujet de", id: "gram:について", group: "g1" });
+  expect(idx.get("に対して")).toEqual({ forme: "〜に対して", niv: "N3", sens: "au sujet de", id: "gram:について", group: "g1" });
 });
 
 test("extractGrammarForm returns the first <b> content, or null", () => {

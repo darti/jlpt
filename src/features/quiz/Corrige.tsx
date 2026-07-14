@@ -1,5 +1,6 @@
 import type { Question } from "../../types/quiz.ts";
 import type { GrammarRappel } from "../cours/coursGramIndex.ts";
+import { grammarPointHref } from "../cours/coursDeepLink.ts";
 
 /** Same SSR-safe furigana guard as `QuestionCard` — see there for rationale. */
 declare const furi: ((s: string) => string) | undefined;
@@ -84,10 +85,10 @@ export function Corrige({ question, correct, rappel }: { question: Question; cor
               {rappel.niv && `(${rappel.niv})`}
               {rappel.sens && ` — ${rappel.sens}`}
               {" "}
-              <a href="#/cours" className="text-accent">· voir la leçon</a>
+              <a href={grammarPointHref(rappel)} className="text-accent whitespace-nowrap">voir le point de grammaire →</a>
             </p>
           ) : (
-            <a href="#/cours" className="text-accent text-sm">📖 Revoir la grammaire dans le cours</a>
+            <a href="#/cours/gram" className="text-accent text-sm">📖 Revoir la grammaire dans le cours →</a>
           )}
         </div>
       )}

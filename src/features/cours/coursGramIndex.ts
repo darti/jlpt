@@ -6,7 +6,9 @@
 import type { GramItem, LearnCategory } from "./coursSchema.ts";
 import type { Question } from "../../types/quiz.ts";
 
-export interface GrammarRappel { forme: string; niv: string; sens: string }
+/** `id`/`group` locate the point in the cours master-detail (`/cours/gram/<group>` + item
+ *  `data-item-id`), so a quiz corrigé can deep-link straight to the tested rule. */
+export interface GrammarRappel { forme: string; niv: string; sens: string; id: string; group: string }
 export type CoursGramIndex = Map<string, GrammarRappel>;
 
 type FetchLike = (url: string) => Promise<{ json: () => Promise<unknown> }>;
@@ -28,7 +30,7 @@ export function buildCoursGramIndex(category: LearnCategory): CoursGramIndex {
       if (!it.form) continue;
       for (const alt of it.form.split(" / ")) {
         const key = normalizeForm(alt);
-        if (key) index.set(key, { forme: alt.trim(), niv: it.niv ?? "", sens: it.mean ?? "" });
+        if (key) index.set(key, { forme: alt.trim(), niv: it.niv ?? "", sens: it.mean ?? "", id: it.id, group: group.id });
       }
     }
   }

@@ -84,6 +84,35 @@ test("GroupDetail (grammaire) rend forme/structure/exemple", () => {
   expect(html).toContain("安ければ買う");
 });
 
+test("GroupDetail deep-linked (?focus + ?from=quiz) surligne l'item et offre le retour", () => {
+  const html = renderToStaticMarkup(
+    <MemoryRouter initialEntries={["/cours/gram/g1?focus=gram:ば&from=quiz"]}>
+      <GroupDetail
+        category={gramCat}
+        group={gramGroup}
+        progress={{}}
+        onToggle={() => {}}
+      />
+    </MemoryRouter>
+  );
+  // l'item ciblé porte l'ancre de scroll + le surlignage
+  expect(html).toContain('data-cours-item="gram:ば"');
+  expect(html).toContain("ring-accent");
+  // la flèche « Revenir à la question » rouvre le corrigé via le handoff resume
+  expect(html).toContain("#/entrainement?resume=1");
+  expect(html).toContain("Revenir");
+});
+
+test("GroupDetail sans deep link n'affiche ni surlignage ni retour", () => {
+  const html = renderToStaticMarkup(
+    <MemoryRouter>
+      <GroupDetail category={gramCat} group={gramGroup} progress={{}} onToggle={() => {}} />
+    </MemoryRouter>
+  );
+  expect(html).not.toContain("ring-accent");
+  expect(html).not.toContain("Revenir");
+});
+
 test("MethodPage rend les sections de conseils", () => {
   const m: MethodCategory = {
     id: "method",

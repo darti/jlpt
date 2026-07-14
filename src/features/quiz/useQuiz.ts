@@ -15,13 +15,18 @@ import { pickSessionPlan, BUILT_CAPS } from "../entrainement/sessionPlan.ts";
 
 export type Phase = "home" | "question" | "corrige" | "results" | "diag-intro" | "diag-results";
 
-/** Shape persisted at `jlptN3quiz_resume` — port of legacy `saveResume`/`getResume` (app-n3.html:430-446). */
+/** Shape persisted at `jlptN3quiz_resume` — port of legacy `saveResume`/`getResume` (app-n3.html:430-446).
+ *  `phase`/`chosen` are optional so a session interrupted on the corrigé (e.g. the user tapped
+ *  « voir le point de grammaire ») re-opens on that same corrigé instead of the bare question —
+ *  older blobs without them resume as a question, exactly as before. */
 export interface ResumeState {
   kind: "quiz";
   ids: number[];
   qi: number;
   right: number;
   t: number;
+  phase?: "question" | "corrige";
+  chosen?: number;
 }
 
 /** One answered diagnostic item, kept for the end-of-test corrigé. */
@@ -333,7 +338,9 @@ export function useQuiz() {
     setPhase("corrige");
     setResume((prev) => {
       if (!prev) return prev;
-      const next: ResumeState = { ...prev, qi: index, right: rightRef.current };
+      // Persist the corrigé so a round-trip to the cours (deep link → « Revenir à la question »)
+      // restores this exact correction, not a fresh question.
+      const next: ResumeState = { ...prev, qi: index, right: rightRef.current, phase: "corrige", chosen: i };
       persistResumeState(next);
       return next;
     });
@@ -359,7 +366,8 @@ export function useQuiz() {
 
       setResume((prev) => {
         if (!prev) return prev;
-        const next: ResumeState = { ...prev, qi: ni, right: rightRef.current };
+        // Advancing drops the corrigé marker so a later resume opens the new question.
+        const next: ResumeState = { ...prev, qi: ni, right: rightRef.current, phase: "question", chosen: undefined };
         persistResumeState(next);
         return next;
       });
@@ -399,12 +407,16 @@ export function useQuiz() {
       return;
     }
 
+    const qi = Math.min(r.qi, rebuilt.length - 1);
+    // Restore the corrigé the user left (deep-linked to the cours and came back) when the
+    // resume blob recorded one; otherwise resume on the question, as before.
+    const onCorrige = r.phase === "corrige" && typeof r.chosen === "number";
     rightRef.current = r.right;
     setQuestions(rebuilt);
-    setIndex(Math.min(r.qi, rebuilt.length - 1));
-    setAnswered(false);
-    setChosen(null);
-    setPhase("question");
+    setIndex(qi);
+    setAnswered(onCorrige);
+    setChosen(onCorrige ? (r.chosen as number) : null);
+    setPhase(onCorrige ? "corrige" : "question");
   }, [resume, ensureBankIndex]);
 
   // One-shot hub → quiz handoff: `?min=N` (router search) auto-starts a session of that
