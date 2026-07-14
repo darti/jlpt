@@ -18,6 +18,27 @@ import { kanjiExempleJa } from "./coursSpeech.ts";
 /** Wrapper props shared by every item row so a deep-linked item can be anchored + highlighted. */
 type RowFocus = { focused?: boolean };
 
+/** Découpe une structure grammaticale sur les « ／ » de premier niveau (hors parenthèses)
+ *  pour afficher chaque construction alternative sur sa propre ligne. Les « ／ » à
+ *  l'intérieur de （…） restent intacts (ex. « （口語：〜ちゃう／〜じゃう） »). */
+export function splitStruct(struct: string): string[] {
+  const parts: string[] = [];
+  let depth = 0;
+  let current = "";
+  for (const ch of struct) {
+    if (ch === "（" || ch === "(") depth++;
+    else if (ch === "）" || ch === ")") depth = Math.max(0, depth - 1);
+    if (ch === "／" && depth === 0) {
+      parts.push(current.trim());
+      current = "";
+      continue;
+    }
+    current += ch;
+  }
+  parts.push(current.trim());
+  return parts.filter((p) => p.length > 0);
+}
+
 /** Ring + soft background applied to the deep-linked item (`?focus=<id>`). */
 const FOCUS_RING = "ring-2 ring-accent rounded-lg bg-surface-2/60";
 
@@ -165,7 +186,11 @@ function GramPoint({
         {it.niv && <span className="text-meta text-fg-muted">{it.niv}</span>}
       </div>
       {it.struct && (
-        <div className="text-fg-muted text-base font-mono">{it.struct}</div>
+        <div className="text-fg-muted text-base font-mono flex flex-col">
+          {splitStruct(it.struct).map((line, i) => (
+            <span key={i}>{line}</span>
+          ))}
+        </div>
       )}
       {it.mean && <div className="text-fg-dim text-sm">{it.mean}</div>}
       {it.examples?.map((ex, i) => (

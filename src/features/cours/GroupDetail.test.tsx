@@ -1,7 +1,7 @@
 import { test, expect } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
-import { GroupDetail } from "./GroupDetail.tsx";
+import { GroupDetail, splitStruct } from "./GroupDetail.tsx";
 import { MethodPage } from "./MethodPage.tsx";
 import type { LearnCategory, MethodCategory, CoursGroup } from "./coursSchema.ts";
 
@@ -82,6 +82,45 @@ test("GroupDetail (grammaire) rend forme/structure/exemple", () => {
   expect(html).toContain("〜ば");
   expect(html).toContain("V(ば)");
   expect(html).toContain("安ければ買う");
+});
+
+test("splitStruct découpe sur les « ／ » de premier niveau (hors parenthèses)", () => {
+  expect(splitStruct("名・な-adj語幹＋なら ／ V・い-adj 普通形＋なら（学生なら・静かなら）")).toEqual([
+    "名・な-adj語幹＋なら",
+    "V・い-adj 普通形＋なら（学生なら・静かなら）",
+  ]);
+  // Les « ／ » à l'intérieur des parenthèses restent intacts.
+  expect(splitStruct("て形＋しまう（口語：〜ちゃう／〜じゃう）")).toEqual([
+    "て形＋しまう（口語：〜ちゃう／〜じゃう）",
+  ]);
+  // Structure sans « ／ » → une seule ligne.
+  expect(splitStruct("V(ば)")).toEqual(["V(ば)"]);
+});
+
+test("GroupDetail (grammaire) verticalise la structure sur les « ／ »", () => {
+  const html = renderToStaticMarkup(
+    <MemoryRouter>
+      <GroupDetail
+        category={gramCat}
+        group={{
+          id: "g2",
+          title: "Cond.",
+          items: [
+            {
+              id: "gram:なら",
+              form: "〜なら",
+              struct: "名・な-adj語幹＋なら ／ V・い-adj 普通形＋なら",
+            },
+          ],
+        }}
+        progress={{}}
+        onToggle={() => {}}
+      />
+    </MemoryRouter>
+  );
+  expect(html).toContain("<span>名・な-adj語幹＋なら</span>");
+  expect(html).toContain("<span>V・い-adj 普通形＋なら</span>");
+  expect(html).not.toContain("／");
 });
 
 test("GroupDetail deep-linked (?focus + ?from=quiz) surligne l'item et offre le retour", () => {
