@@ -51,13 +51,13 @@ export function EntrainementAppView(props: {
     <>
       {props.phase === "question" && question && (
         <div className="flex flex-col gap-3">
-          <SessionProgress index={props.index ?? 0} count={props.count} mode={props.mode} />
+          <SessionProgress index={props.index ?? 0} count={props.count} mode={props.mode} right={props.right} answered={props.index ?? 0} />
           <QuestionCard question={question} chosen={null} answered={false} onChoose={props.onChoose} onSpeak={onSpeak} />
         </div>
       )}
       {props.phase === "corrige" && question && (
         <div className="flex flex-col gap-4">
-          <SessionProgress index={props.index ?? 0} count={props.count} mode={props.mode} />
+          <SessionProgress index={props.index ?? 0} count={props.count} mode={props.mode} right={props.right} answered={(props.index ?? 0) + 1} />
           <QuestionCard question={question} chosen={props.chosen} answered={true} onChoose={() => {}} onSpeak={onSpeak} />
           <Corrige question={question} correct={props.chosen != null && props.chosen === question.a} rappel={resolveGrammarRappel(question, props.coursIndex ?? null)} />
           <button

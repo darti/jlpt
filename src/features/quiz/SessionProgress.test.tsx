@@ -9,6 +9,20 @@ test("SessionProgress (normal) shows « Question X / N » and fills the bar to p
   expect(html).toContain('role="progressbar"');
 });
 
+test("SessionProgress (normal) shows the ✓ bonnes / ✗ mauvaises tally", () => {
+  // 4 answered so far, 3 right → 1 wrong
+  const html = renderToStaticMarkup(<SessionProgress index={4} count={20} mode="normal" right={3} answered={4} />);
+  expect(html).toContain("✓ 3");
+  expect(html).toContain("✗ 1");
+});
+
+test("SessionProgress hides the tally before any answer and in diagnostic mode", () => {
+  // nothing answered yet → no tally
+  expect(renderToStaticMarkup(<SessionProgress index={0} count={20} mode="normal" right={0} answered={0} />)).not.toContain("✓");
+  // diagnostic conceals the score until the end-of-test corrigé
+  expect(renderToStaticMarkup(<SessionProgress index={2} count={10} mode="diagnostic" right={2} answered={2} />)).not.toContain("✓");
+});
+
 test("SessionProgress (diagnostic) keeps the legacy « Test · question X / N » wording", () => {
   const html = renderToStaticMarkup(<SessionProgress index={0} count={10} mode="diagnostic" />);
   expect(html).toContain("Test · question 1 / 10");
