@@ -2,6 +2,7 @@ import { useState } from "react";
 import { EntrainementHome } from "./features/entrainement/EntrainementHome.tsx";
 import { QuestionCard } from "./features/quiz/QuestionCard.tsx";
 import { Corrige } from "./features/quiz/Corrige.tsx";
+import { SessionProgress } from "./features/quiz/SessionProgress.tsx";
 import { Results } from "./features/quiz/Results.tsx";
 import { useQuiz, type Phase, type ResumeState } from "./features/quiz/useQuiz.ts";
 import { DiagnosticIntro } from "./features/quiz/DiagnosticIntro.tsx";
@@ -50,14 +51,13 @@ export function EntrainementAppView(props: {
     <>
       {props.phase === "question" && question && (
         <div className="flex flex-col gap-3">
-          {props.mode === "diagnostic" && (
-            <p className="text-fg-dim text-sm m-0">Test · question {(props.index ?? 0) + 1} / {props.count}</p>
-          )}
+          <SessionProgress index={props.index ?? 0} count={props.count} mode={props.mode} />
           <QuestionCard question={question} chosen={null} answered={false} onChoose={props.onChoose} onSpeak={onSpeak} />
         </div>
       )}
       {props.phase === "corrige" && question && (
         <div className="flex flex-col gap-4">
+          <SessionProgress index={props.index ?? 0} count={props.count} mode={props.mode} />
           <QuestionCard question={question} chosen={props.chosen} answered={true} onChoose={() => {}} onSpeak={onSpeak} />
           <Corrige question={question} correct={props.chosen != null && props.chosen === question.a} rappel={resolveGrammarRappel(question, props.coursIndex ?? null)} />
           <button
