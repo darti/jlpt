@@ -47,7 +47,7 @@ export function TopNav() {
   return (
     <nav
       ref={navRef}
-      className={`sticky top-[env(safe-area-inset-top)] z-10 flex gap-4 flex-wrap justify-center items-center px-3 py-2.5 ${stuck ? STUCK_BG : ""}`}
+      className={`sticky top-[env(safe-area-inset-top)] z-10 flex gap-6 flex-wrap justify-center items-center px-3 py-2.5 ${stuck ? STUCK_BG : ""}`}
     >
       {ROUTES.map(({ to, label, Icon, end }) => (
         <NavLink
