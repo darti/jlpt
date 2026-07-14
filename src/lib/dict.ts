@@ -29,19 +29,44 @@ export function applyDictData(data: Dict): void {
 }
 
 // ---------- furigana (recherche gloutonne du plus long mot) ----------
+const KANJI_RE = /[一-鿿々]/;
+const READING_RE = /^[ぁ-んァ-ンー・]+$/;
+
 export function furi(s: string | null | undefined): string {
   if (s == null) return "";
   let out = "", i = 0;
   while (i < s.length) {
     const c = s[i];
-    if (/[一-鿿]/.test(c)) {
-      let m: string | null = null;
-      for (let L = Math.min(12, s.length - i); L >= 1; L--) {
-        const sub = s.substr(i, L);
-        if (/^[一-鿿]+$/.test(sub) && READ[sub]) { m = sub; break; }
+    if (KANJI_RE.test(c)) {
+      // Extent of the kanji run starting at i.
+      let end = i;
+      while (end < s.length && KANJI_RE.test(s[end])) end++;
+
+      // Explicit inline reading right after the run — 漢字（かな） — is turned into ruby: the
+      // parentheses disappear from view and the reading becomes real furigana (hidden by default,
+      // revealed via the ふ toggle). The bank data carries these redundant readings inline; this
+      // strips the clutter while keeping the reading. Mirrors the cours renderer (line ~103).
+      if (s[end] === "（") {
+        const close = s.indexOf("）", end + 1);
+        if (close > end && READING_RE.test(s.slice(end + 1, close))) {
+          out += "<ruby>" + s.slice(i, end) + "<rt>" + s.slice(end + 1, close) + "</rt></ruby>";
+          i = close + 1;
+          continue;
+        }
       }
-      if (m) { out += "<ruby>" + m + "<rt>" + READ[m] + "</rt></ruby>"; i += m.length; }
-      else { out += c; i++; }
+
+      // Otherwise, greedy dictionary lookup over the run (original behaviour).
+      let k = i;
+      while (k < end) {
+        let m: string | null = null;
+        for (let L = Math.min(12, end - k); L >= 1; L--) {
+          const sub = s.substr(k, L);
+          if (READ[sub]) { m = sub; break; }
+        }
+        if (m) { out += "<ruby>" + m + "<rt>" + READ[m] + "</rt></ruby>"; k += m.length; }
+        else { out += s[k]; k++; }
+      }
+      i = end;
     } else { out += c; i++; }
   }
   return out;

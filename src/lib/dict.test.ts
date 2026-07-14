@@ -27,6 +27,22 @@ test("furi leaves kana-only text unchanged", () => {
   expect(furi("これはテスト")).toBe("これはテスト");
 });
 
+test("furi turns inline 漢字（かな） readings into ruby and drops the parentheses", () => {
+  // works even for words absent from the DICT — the reading comes from the parens
+  const html = furi("毎日（まいにち）");
+  expect(html).toBe("<ruby>毎日<rt>まいにち</rt></ruby>");
+  expect(html).not.toContain("（");
+});
+
+test("furi handles a full stem with several inline readings, no parentheses left", () => {
+  const html = furi("毎日（まいにち）日本語（にほんご）を勉強（べんきょう）し___。");
+  expect(html).not.toContain("（");
+  expect(html).toContain("<rt>まいにち</rt>");
+  expect(html).toContain("<rt>べんきょう</rt>");
+  expect(html).toContain("を");
+  expect(html).toContain("___");
+});
+
 test("lookupDef returns the entry for a known word", () => {
   expect(lookupDef("影響")).toEqual({ w: "影響", r: "えいきょう", m: "influence" });
 });

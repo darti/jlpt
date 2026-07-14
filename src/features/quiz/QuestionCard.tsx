@@ -26,6 +26,8 @@ export function QuestionCard({
 
   return (
     <div className="bg-panel border border-line rounded-xl p-5 shadow-card surface-blur">
+      {/* Identifiant discret de la question — permet de pointer précisément un item à corriger. */}
+      <div className="text-fg-muted text-meta text-right mb-1 select-all font-mono">#{question.id}</div>
       {question.cat === "lecture" && passage && (
         <div
           className="text-fg text-base mb-3 leading-loose"
@@ -63,9 +65,8 @@ export function QuestionCard({
               disabled={answered}
               onClick={() => onChoose(i)}
               className={`text-left rounded-lg px-4 py-2.5 text-base cursor-pointer ${cls}`}
-            >
-              {opt}
-            </button>
+              dangerouslySetInnerHTML={{ __html: furiOrPlain(opt) }}
+            />
           );
         })}
       </div>
