@@ -258,20 +258,64 @@
     {
      "id": "gram:ばよかった",
      "form": "〜ばよかった",
-     "niv": "N3",
-     "mean": "« j'aurais dû / si seulement j'avais… (regret) »"
+     "struct": "V(ば形) ＋ よかった",
+     "mean": "« j'aurais dû / si seulement j'avais… (regret) »",
+     "examples": [
+      {
+       "jp": "もっと早く出ればよかった。",
+       "ro": "motto hayaku dereba yokatta.",
+       "fr": "J'aurais dû partir plus tôt.",
+       "an": [
+        "もっと « plus »",
+        "早く（はやく）« tôt »",
+        "出る（でる）→出ればよかった « j'aurais dû partir » → « j'aurais dû partir plus tôt »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:としても",
      "form": "〜としても",
-     "niv": "N3",
-     "mean": "« même si, même en supposant que »"
+     "struct": "N/Na/A/V(普通形) ＋ としても",
+     "mean": "« même si, même en supposant que »",
+     "examples": [
+      {
+       "jp": "たとえ雨が降ったとしても、試合は行われる。",
+       "ro": "tatoe ame ga futta to shite mo, shiai wa okonawareru.",
+       "fr": "Même à supposer qu'il pleuve, le match aura lieu.",
+       "an": [
+        "たとえ « même si »",
+        "雨（あめ）« pluie »",
+        "が « sujet »",
+        "降る（ふる）→降った « être tombée »",
+        "としても « même si »",
+        "試合（しあい）« match »",
+        "は « thème »",
+        "行う（おこなう）→行われる « aura lieu » → « même à supposer qu'il pleuve, le match aura lieu »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:いくらても",
      "form": "いくら〜ても",
-     "niv": "N4",
-     "mean": "« même si… beaucoup, peu importe combien »"
+     "struct": "いくら ＋ て形＋も ／ い-adj〜くても ／ 名・な-adj＋でも",
+     "mean": "« même si… beaucoup, peu importe combien »",
+     "examples": [
+      {
+       "jp": "いくら考えても分からない。",
+       "ro": "ikura kangaete mo wakaranai.",
+       "fr": "J'ai beau réfléchir, je ne comprends pas.",
+       "an": [
+        "いくら « peu importe combien, quel que soit le degré »",
+        "考える（かんがえる）→考えても « forme て ＋も = même si » — いくら…ても « j'ai beau… »",
+        "分かる（わかる）→分からない « comprendre (négatif) » → « j'ai beau réfléchir, je ne comprends pas »."
+       ]
+      }
+     ],
+     "niv": "N4"
     }
    ]
   },
@@ -450,62 +494,210 @@
     {
      "id": "gram:ので",
      "form": "〜ので",
-     "niv": "N4",
-     "mean": "cause polie : « comme, parce que »"
+     "struct": "V/adj 普通形（な-adj・名＋な）＋ ので",
+     "mean": "cause polie : « comme, parce que »",
+     "examples": [
+      {
+       "jp": "雨が降っているので、傘を持っていきます。",
+       "ro": "ame ga futte iru node, kasa o motte ikimasu.",
+       "fr": "Comme il pleut, je prends un parapluie.",
+       "an": [
+        "雨（あめ）« pluie »",
+        "が « sujet »",
+        "降る（ふる）→降っているので « forme て+いる ＋ので = cause objective “comme / parce que” »",
+        "傘（かさ）« parapluie »",
+        "を « COD »",
+        "持っていきます（もっていきます）« emporter » → « comme il pleut, je prends un parapluie »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:ものだから",
      "form": "〜ものだから",
-     "niv": "N3",
-     "mean": "« c'est parce que… (excuse, justification) »"
+     "struct": "V/A(普通形)・Na(な)・N(な) ＋ ものだから",
+     "mean": "« c'est parce que… (excuse, justification) »",
+     "examples": [
+      {
+       "jp": "あまりに寒かったものだから、外に出なかった。",
+       "ro": "amari ni samukatta mono da kara, soto ni denakatta.",
+       "fr": "Comme il faisait vraiment trop froid, je ne suis pas sorti.",
+       "an": [
+        "あまりに « trop »",
+        "寒い（さむい）→寒かった « faisait froid »",
+        "ものだから « c'est que (justification) »",
+        "外（そと）« dehors »",
+        "に « à »",
+        "出る（でる）→出なかった « ne pas être sorti » → « comme il faisait vraiment trop froid, je ne suis pas sorti »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:にしたがって",
      "form": "〜にしたがって",
-     "niv": "N3",
-     "mean": "« à mesure que ; conformément à »"
+     "struct": "V辞書形／N ＋ にしたがって",
+     "mean": "« à mesure que ; conformément à »",
+     "examples": [
+      {
+       "jp": "規則にしたがって行動する。",
+       "ro": "kisoku ni shitagatte kōdō suru.",
+       "fr": "Agir conformément au règlement.",
+       "an": [
+        "規則（きそく）« règlement »",
+        "にしたがって « selon, en suivant »",
+        "行動（こうどう）→行動する « se comporter » → « agir conformément au règlement »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:に基づいて",
      "form": "〜に基づいて",
-     "niv": "N3",
-     "mean": "« sur la base de, en se fondant sur »"
+     "struct": "N ＋ に基づいて／に基づく",
+     "mean": "« sur la base de, en se fondant sur »",
+     "examples": [
+      {
+       "jp": "事実に基づいて報告する。",
+       "ro": "jijitsu ni motozuite hōkoku suru.",
+       "fr": "Faire un rapport fondé sur les faits.",
+       "an": [
+        "事実（じじつ）« faits »",
+        "に基づいて（にもとづいて）« en se fondant sur »",
+        "報告（ほうこく）する→報告する « faire un rapport » → « faire un rapport fondé sur les faits »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:をこめて",
      "form": "〜をこめて",
-     "niv": "N3",
-     "mean": "« avec (un sentiment) : plein d'amour/de gratitude »"
+     "struct": "N ＋ をこめて",
+     "mean": "« avec (un sentiment) : plein d'amour/de gratitude »",
+     "examples": [
+      {
+       "jp": "心をこめて手紙を書いた。",
+       "ro": "kokoro o komete tegami o kaita.",
+       "fr": "J'ai écrit une lettre avec tout mon cœur.",
+       "an": [
+        "心（こころ）« cœur »",
+        "をこめて « en y mettant »",
+        "手紙（てがみ）« lettre »",
+        "を « COD »",
+        "書く（かく）→書いた « avoir écrit » → « j'ai écrit une lettre avec tout mon cœur »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:に沿って",
      "form": "〜に沿って",
-     "niv": "N3",
-     "mean": "« le long de ; conformément à »"
+     "struct": "N ＋ に沿って",
+     "mean": "« le long de ; conformément à »",
+     "examples": [
+      {
+       "jp": "川に沿って歩いた。",
+       "ro": "kawa ni sotte aruita.",
+       "fr": "J'ai marché le long de la rivière.",
+       "an": [
+        "川（かわ）« rivière »",
+        "に « à »",
+        "沿う（そう）→沿って « le long de »",
+        "歩く（あるく）→歩いた « j'ai marché » → « j'ai marché le long de la rivière »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:からには",
      "form": "〜からには",
-     "niv": "N3",
-     "mean": "« puisque, du moment que (→ conséquence logique) »"
+     "struct": "V(普通形)/イ形/ナ形（である）/N（である） ＋ からには",
+     "mean": "« puisque, du moment que (→ conséquence logique) »",
+     "examples": [
+      {
+       "jp": "約束したからには、必ず守る。",
+       "ro": "yakusoku shita kara ni wa, kanarazu mamoru.",
+       "fr": "Du moment que je l'ai promis, je tiendrai parole coûte que coûte.",
+       "an": [
+        "約束する（やくそくする）→約束した « avoir promis »",
+        "からには « du moment que »",
+        "必ず（かならず）« sans faute »",
+        "守る（まもる）« tenir parole » → « du moment que je l'ai promis, je tiendrai parole coûte que coûte »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:をもとに",
      "form": "〜をもとに",
-     "niv": "N3",
-     "mean": "« à partir de, en se basant sur »"
+     "struct": "名 ＋ をもとに（＋ V）",
+     "mean": "« à partir de, en se basant sur »",
+     "examples": [
+      {
+       "jp": "この小説は実話をもとに書かれた。",
+       "ro": "kono shōsetsu wa jitsuwa o moto ni kakareta.",
+       "fr": "Ce roman a été écrit à partir d'une histoire vraie.",
+       "an": [
+        "この « ce »",
+        "小説（しょうせつ）« roman »",
+        "は « thème »",
+        "実話（じつわ）« histoire vraie »",
+        "をもとに « en se basant sur, à partir de »",
+        "書く（かく）→書かれた « passif passé = a été écrit » → « ce roman a été écrit à partir d'une histoire vraie »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:をもとにして",
      "form": "〜をもとにして",
-     "niv": "N3",
-     "mean": "« à partir de, en se basant sur »"
+     "struct": "名 ＋ をもとにして（＋ V）",
+     "mean": "« à partir de, en se basant sur »",
+     "examples": [
+      {
+       "jp": "アンケートの結果をもとにして計画を立てた。",
+       "ro": "ankēto no kekka o moto ni shite keikaku o tateta.",
+       "fr": "J'ai élaboré un plan en me basant sur les résultats du sondage.",
+       "an": [
+        "アンケート « sondage »",
+        "の « de »",
+        "結果（けっか）« résultats »",
+        "をもとにして « en se basant sur »",
+        "計画（けいかく）« plan »",
+        "を « COD »",
+        "立てる（たてる）→立てた « avoir élaboré (un plan) » → « j'ai élaboré un plan en me basant sur les résultats du sondage »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:からこそ",
      "form": "〜からこそ",
-     "niv": "N3",
-     "mean": "« c'est précisément parce que »"
+     "struct": "V・い-adj 普通形 ／ な-adj・名 ＋ だ ＋ からこそ",
+     "mean": "« c'est précisément parce que »",
+     "examples": [
+      {
+       "jp": "君のことを思うからこそ、厳しく言うのだ。",
+       "ro": "kimi no koto o omou kara koso, kibishiku iu no da.",
+       "fr": "C'est précisément parce que je me soucie de toi que je te parle durement.",
+       "an": [
+        "君（きみ）« toi »",
+        "のことを思う（おもう）→思うからこそ « 普通形 ＋からこそ = c'est précisément parce que »",
+        "厳しい（きびしい）→厳しく « durement »",
+        "言う（いう）→言うのだ « dire (＋のだ insistance) » → « c'est précisément parce que je me soucie de toi que je te parle durement »."
+       ]
+      }
+     ],
+     "niv": "N3"
     }
    ]
   },
@@ -845,62 +1037,223 @@
     {
      "id": "gram:ついでに",
      "form": "〜ついでに",
-     "niv": "N3",
-     "mean": "« en profiter pour, à l'occasion de »"
+     "struct": "V(辞書形/た形)/N（の） ＋ ついでに",
+     "mean": "« en profiter pour, à l'occasion de »",
+     "examples": [
+      {
+       "jp": "買い物に行くついでに、手紙を出した。",
+       "ro": "kaimono ni iku tsuide ni, tegami o dashita.",
+       "fr": "En allant faire les courses, j'en ai profité pour poster une lettre.",
+       "an": [
+        "買い物（かいもの）« courses »",
+        "に « à »",
+        "行く（いく）« aller »",
+        "ついでに « par la même occasion »",
+        "、",
+        "手紙（てがみ）« lettre »",
+        "を « COD »",
+        "出す（だす）→出した « ai posté » → « en allant faire les courses, j'en ai profité pour poster une lettre »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:にかけて",
      "form": "〜にかけて",
-     "niv": "N3",
-     "mean": "« 〜から〜にかけて : de… à… (période/zone) »"
+     "struct": "N（起点）から ＋ N（終点）にかけて",
+     "mean": "« 〜から〜にかけて : de… à… (période/zone) »",
+     "examples": [
+      {
+       "jp": "春から夏にかけて花が咲く。",
+       "ro": "haru kara natsu ni kakete hana ga saku.",
+       "fr": "Du printemps à l'été, les fleurs s'épanouissent.",
+       "an": [
+        "春（はる）« printemps »",
+        "から « depuis »",
+        "夏（なつ）« été »",
+        "にかけて « à »",
+        "花（はな）« fleurs »",
+        "が « sujet »",
+        "咲く（さく）« s'épanouissent » → « du printemps à l'été, les fleurs s'épanouissent »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:あげく",
      "form": "〜あげく",
-     "niv": "N3",
-     "mean": "« après (bien des efforts), et finalement… (souvent négatif) »"
+     "struct": "V(た形)／N（の） ＋ あげく（に）",
+     "mean": "« après (bien des efforts), et finalement… (souvent négatif) »",
+     "examples": [
+      {
+       "jp": "さんざん悩んだあげく、会社を辞めた。",
+       "ro": "sanzan nayanda ageku, kaisha o yameta.",
+       "fr": "Après m'être longuement tourmenté, j'ai fini par démissionner.",
+       "an": [
+        "さんざん « longuement, à outrance »",
+        "悩む（なやむ）→悩んだあげく « forme た ＋あげく = après (bien des efforts), finalement »",
+        "、",
+        "会社（かいしゃ）« entreprise »",
+        "を « COD »",
+        "辞める（やめる）→辞めた « ai démissionné » → « après m'être longuement tourmenté, j'ai fini par démissionner »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:上で",
      "form": "〜上で",
-     "niv": "N3",
-     "mean": "« après avoir… ; pour ce qui est de… »"
+     "struct": "V(た形)/N（の） ＋ 上で",
+     "mean": "« après avoir… ; pour ce qui est de… »",
+     "examples": [
+      {
+       "jp": "詳しい説明を聞いた上で、契約するかどうか決めます。",
+       "ro": "kuwashii setsumei o kiita ue de, keiyaku suru ka dō ka kimemasu.",
+       "fr": "Après avoir entendu des explications détaillées, je déciderai si je signe ou non.",
+       "an": [
+        "詳しい（くわしい）« détaillées »",
+        "説明（せつめい）« explications »",
+        "を « COD »",
+        "聞く（きく）→聞いた « avoir entendu »",
+        "上で（うえで）« après avoir »",
+        "、",
+        "契約する（けいやくする）« signer »",
+        "かどうか « si ou non »",
+        "決める（きめる）→決めます « je déciderai » → « après avoir entendu des explications détaillées, je déciderai si je signe ou non »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:ずに",
      "form": "〜ずに",
-     "niv": "N3",
-     "mean": "« sans (faire) (= 〜ないで, plus écrit) »"
+     "struct": "V(ない形の語幹) ＋ ずに（する→せずに）",
+     "mean": "« sans (faire) (= 〜ないで, plus écrit) »",
+     "examples": [
+      {
+       "jp": "朝ごはんを食べずに出かけた。",
+       "ro": "asagohan o tabezu ni dekaketa.",
+       "fr": "Il est sorti sans avoir mangé.",
+       "an": [
+        "朝ごはん（あさごはん）« petit-déjeuner »",
+        "を « COD »",
+        "食べる（たべる）→食べずに « sans manger »",
+        "出かける（でかける）→出かけた « sortir » → « il est sorti sans avoir mangé »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:つつ",
      "form": "〜つつ",
-     "niv": "N3",
-     "mean": "« tout en (faisant) ; bien que (littéraire) »"
+     "struct": "V(ます形の語幹) ＋ つつ（も）",
+     "mean": "« tout en (faisant) ; bien que (littéraire) »",
+     "examples": [
+      {
+       "jp": "悪いと知りつつ、つい嘘をついてしまった。",
+       "ro": "warui to shiritsutsu, tsui uso o tsuite shimatta.",
+       "fr": "Tout en sachant que c'était mal, j'ai fini par mentir.",
+       "an": [
+        "悪い（わるい）« mal »",
+        "と « citation »",
+        "知る（しる）→知りつつ « tout en sachant »",
+        "つい « malgré soi »",
+        "嘘（うそ）« mensonge »",
+        "を « COD »",
+        "つく→ついてしまった « avoir menti » → « tout en sachant que c'était mal, j'ai fini par mentir »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:ないうちに",
      "form": "〜ないうちに",
-     "niv": "N3",
-     "mean": "« avant que (ça n'arrive), tant que… ne… pas »"
+     "struct": "V(ない形) ＋ うちに",
+     "mean": "« avant que (ça n'arrive), tant que… ne… pas »",
+     "examples": [
+      {
+       "jp": "暗くならないうちに帰りましょう。",
+       "ro": "kuraku naranai uchi ni kaerimashō.",
+       "fr": "Rentrons avant qu'il ne fasse nuit.",
+       "an": [
+        "暗い（くらい）« sombre »",
+        "なる→暗くならないうちに « ない形 ＋うちに = avant que (ça ne devienne le cas) »",
+        "帰る（かえる）→帰りましょう « rentrons » → « rentrons avant qu'il ne fasse nuit »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:間に",
      "form": "〜間に",
-     "niv": "N4",
-     "mean": "« pendant que, au cours de (un intervalle) »"
+     "struct": "V(ている)／い-adj／な-adj＋な／N＋の ＋ 間に",
+     "mean": "« pendant que, au cours de (un intervalle) »",
+     "examples": [
+      {
+       "jp": "寝ている間に、雨が降り出した。",
+       "ro": "nete iru aida ni, ame ga furidashita.",
+       "fr": "Pendant que je dormais, il s'est mis à pleuvoir.",
+       "an": [
+        "寝る（ねる）→寝ている « être en train de dormir »",
+        "間に（あいだに）« pendant que (au cours de cet intervalle) »",
+        "、",
+        "雨（あめ）« pluie »",
+        "が « sujet »",
+        "降る（ふる）→降り出した « s'est mis à pleuvoir » → « pendant que je dormais, il s'est mis à pleuvoir »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:までに",
      "form": "〜までに",
-     "niv": "N4",
-     "mean": "« avant (une échéance), d'ici à »"
+     "struct": "N／V(辞書形) ＋ までに",
+     "mean": "« avant (une échéance), d'ici à »",
+     "examples": [
+      {
+       "jp": "5時までに帰ってください。",
+       "ro": "goji made ni kaette kudasai.",
+       "fr": "Rentre pour 5 heures au plus tard.",
+       "an": [
+        "5時（ごじ）« cinq heures »",
+        "までに « d'ici à »",
+        "帰る（かえる）→帰って « rentrer »",
+        "ください « s'il vous plaît » → « rentre pour 5 heures au plus tard »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:ところ",
      "form": "〜ところ",
-     "niv": "N3",
-     "mean": "« juste au moment de : sur le point de / juste après / en train de »"
+     "struct": "V(辞書形＝sur le point de)／V(ている＝en train de)／V(た形＝venir juste de) ＋ ところ",
+     "mean": "« juste au moment de : sur le point de / juste après / en train de »",
+     "examples": [
+      {
+       "jp": "ちょうど今、駅に着いたところです。",
+       "ro": "chōdo ima, eki ni tsuita tokoro desu.",
+       "fr": "Je viens juste d'arriver à la gare, à l'instant.",
+       "an": [
+        "ちょうど « juste, exactement »",
+        "今（いま）« maintenant »",
+        "、",
+        "駅（えき）« gare »",
+        "に « lieu (arrivée) »",
+        "着く（つく）→着いたところ « forme た ＋ところ = venir juste de (à l'instant) »",
+        "です « copule polie » → « je viens juste d'arriver à la gare, à l'instant »."
+       ]
+      }
+     ],
+     "niv": "N3"
     }
    ]
   },
@@ -1148,44 +1501,152 @@
     {
      "id": "gram:たことがある",
      "form": "〜たことがある",
-     "niv": "N4",
-     "mean": "expérience : « avoir déjà… »"
+     "struct": "V(た形) ＋ ことがある",
+     "mean": "expérience : « avoir déjà… »",
+     "examples": [
+      {
+       "jp": "日本へ行ったことがあります。",
+       "ro": "nihon e itta koto ga arimasu.",
+       "fr": "Je suis déjà allé au Japon.",
+       "an": [
+        "日本（にほん）« le Japon »",
+        "へ « direction »",
+        "行く（いく）→行ったことがあります « forme た ＋ことがある = expérience passée “avoir déjà fait” » → « je suis déjà allé au Japon »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:かけ",
      "form": "〜かけ",
-     "niv": "N3",
-     "mean": "« à moitié (fait), commencer à… sans finir »"
+     "struct": "V(ます形の語幹) ＋ かけ（＋の＋名：読みかけの本）",
+     "mean": "« à moitié (fait), commencer à… sans finir »",
+     "examples": [
+      {
+       "jp": "読みかけの本が机の上にある。",
+       "ro": "yomikake no hon ga tsukue no ue ni aru.",
+       "fr": "Un livre que j'ai commencé (sans le finir) est sur le bureau.",
+       "an": [
+        "読む（よむ）→読みかけ « base ます ＋かけ = commencé sans finir »",
+        "の « de (attributif) »",
+        "本（ほん）« livre »",
+        "が « sujet »",
+        "机（つくえ）« bureau »",
+        "の « de »",
+        "上（うえ）« dessus »",
+        "に « lieu »",
+        "ある « il y a » → « un livre que j'ai commencé (sans le finir) est sur le bureau »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:かける",
      "form": "〜かける",
-     "niv": "N3",
-     "mean": "« à moitié (fait), commencer à… sans finir »"
+     "struct": "V(ます形の語幹) ＋ かける（言いかける・食べかける）",
+     "mean": "« à moitié (fait), commencer à… sans finir »",
+     "examples": [
+      {
+       "jp": "彼は何か言いかけて、やめた。",
+       "ro": "kare wa nanika iikakete, yameta.",
+       "fr": "Il a commencé à dire quelque chose, puis s'est arrêté.",
+       "an": [
+        "彼（かれ）« il »",
+        "は « thème »",
+        "何か（なにか）« quelque chose »",
+        "言う（いう）→言いかけて « base ます ＋かける = commencer à… (interrompu) »",
+        "やめる→やめた « (puis) s'est arrêté » → « il a commencé à dire quelque chose, puis s'est arrêté »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:はじめる",
      "form": "〜はじめる",
-     "niv": "N4",
-     "mean": "« commencer à (faire) »"
+     "struct": "V(ます形の語幹) ＋ はじめる",
+     "mean": "« commencer à (faire) »",
+     "examples": [
+      {
+       "jp": "桜が咲きはじめた。",
+       "ro": "sakura ga sakihajimeta.",
+       "fr": "Les cerisiers ont commencé à fleurir.",
+       "an": [
+        "桜（さくら）« cerisier »",
+        "が « sujet »",
+        "咲く（さく）→咲き « fleurir »",
+        "はじめた « commencer à » → « les cerisiers ont commencé à fleurir »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:おわる",
      "form": "〜おわる",
-     "niv": "N4",
-     "mean": "« finir de (faire) »"
+     "struct": "V(ます形の語幹) ＋ おわる",
+     "mean": "« finir de (faire) »",
+     "examples": [
+      {
+       "jp": "やっと宿題をやりおわった。",
+       "ro": "yatto shukudai o yariowatta.",
+       "fr": "J'ai enfin fini de faire mes devoirs.",
+       "an": [
+        "やっと « enfin »",
+        "宿題（しゅくだい）« devoirs »",
+        "を « COD »",
+        "やる→やり « faire »",
+        "おわった « finir de » → « j'ai enfin fini de faire mes devoirs »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:つづける",
      "form": "〜つづける",
-     "niv": "N4",
-     "mean": "« continuer à (faire) »"
+     "struct": "V(ます形の語幹) ＋ つづける",
+     "mean": "« continuer à (faire) »",
+     "examples": [
+      {
+       "jp": "彼は三時間も走りつづけた。",
+       "ro": "kare wa sanjikan mo hashiritsuzuketa.",
+       "fr": "Il a continué à courir pendant trois heures.",
+       "an": [
+        "彼（かれ）« il »",
+        "は « thème »",
+        "三時間（さんじかん）« trois heures »",
+        "も « même (insistance) »",
+        "走る（はしる）→走り « courir »",
+        "つづけた « continuer à » → « il a continué à courir pendant trois heures »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:きった",
      "form": "〜きった",
-     "niv": "N3",
-     "mean": "« faire complètement, jusqu'au bout »"
+     "struct": "V(ます形の語幹) ＋ きる（→きった）",
+     "mean": "« faire complètement, jusqu'au bout »",
+     "examples": [
+      {
+       "jp": "彼は長い距離を走りきった。",
+       "ro": "kare wa nagai kyori o hashirikitta.",
+       "fr": "Il a couru toute la longue distance jusqu'au bout.",
+       "an": [
+        "彼（かれ）« il »",
+        "は « thème »",
+        "長い（ながい）« longue »",
+        "距離（きょり）« distance »",
+        "を « COD »",
+        "走る（はしる）→走りきった « base ます ＋きった = faire jusqu'au bout / complètement » → « il a couru toute la longue distance jusqu'au bout »."
+       ]
+      }
+     ],
+     "niv": "N3"
     }
    ]
   },
@@ -1292,20 +1753,69 @@
     {
      "id": "gram:（さ）せられる",
      "form": "〜（さ）せられる",
-     "niv": "N4",
-     "mean": "causatif-passif : « être obligé de »"
+     "struct": "V使役＋られる ／ G1短縮：あ段＋される ／ する→させられる ・ 来る→来させられる",
+     "mean": "causatif-passif : « être obligé de »",
+     "examples": [
+      {
+       "jp": "私は先輩にお酒を飲まされた。",
+       "ro": "watashi wa senpai ni osake o nomasareta.",
+       "fr": "Mon aîné m'a forcé à boire de l'alcool.",
+       "an": [
+        "私（わたし）« je »",
+        "は « thème »",
+        "先輩（せんぱい）« aîné (senpai) »",
+        "に « agent, celui qui contraint »",
+        "お酒（おさけ）« alcool, saké »",
+        "を « COD »",
+        "飲む（のむ）→飲まされた « causatif-passif, forme courte 〜される = a été contraint de boire » → « mon aîné m'a forcé à boire de l'alcool »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:（さ）せる",
      "form": "〜（さ）せる",
-     "niv": "N4",
-     "mean": "causatif : « faire / laisser faire »"
+     "struct": "G1：あ段＋せる ／ G2：〜させる ／ する→させる ・ 来る→来させる（こさせる）",
+     "mean": "causatif : « faire / laisser faire »",
+     "examples": [
+      {
+       "jp": "母は弟に部屋を掃除させた。",
+       "ro": "haha wa otōto ni heya o sōji saseta.",
+       "fr": "Ma mère a fait ranger la chambre à mon petit frère.",
+       "an": [
+        "母（はは）« ma mère »",
+        "は « thème »",
+        "弟（おとうと）« petit frère »",
+        "に « celui qu'on fait agir »",
+        "部屋（へや）« chambre »",
+        "を « COD »",
+        "掃除する（そうじする）→掃除させた « causatif passé = a fait ranger/nettoyer » → « ma mère a fait ranger la chambre à mon petit frère »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:（ら）れる",
      "form": "〜（ら）れる",
-     "niv": "N4",
-     "mean": "passif : « être …é »"
+     "struct": "G1：あ段＋れる ／ G2：〜られる ／ する→される ・ 来る→来られる（こられる）",
+     "mean": "passif : « être …é »",
+     "examples": [
+      {
+       "jp": "私は先生に褒められた。",
+       "ro": "watashi wa sensei ni homerareta.",
+       "fr": "J'ai été félicité par le professeur.",
+       "an": [
+        "私（わたし）« je »",
+        "は « thème »",
+        "先生（せんせい）« professeur »",
+        "に « agent du passif (par) »",
+        "褒める（ほめる）→褒められた « passif passé = ai été félicité » → « j'ai été félicité par le professeur »."
+       ]
+      }
+     ],
+     "niv": "N4"
     }
    ]
   },
@@ -1637,50 +2147,173 @@
     {
      "id": "gram:でしょう",
      "form": "〜でしょう",
-     "niv": "N4",
-     "mean": "probabilité : « sans doute »"
+     "struct": "名詞（めいし）／形容詞（けいようし）／動詞（どうし）＋ でしょう",
+     "mean": "probabilité : « sans doute »",
+     "examples": [
+      {
+       "jp": "明日は雨でしょう。",
+       "ro": "ashita wa ame deshō.",
+       "fr": "Demain il pleuvra sans doute.",
+       "an": [
+        "明日（あした）« demain »",
+        "は « thème »",
+        "雨（あめ）« pluie »",
+        "でしょう « sans doute » → « demain il pleuvra sans doute »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:だろう",
      "form": "だろう",
-     "niv": "N4",
-     "mean": "probabilité : « sans doute »"
+     "struct": "名／な-adj／い-adj／V（普通形）＋ だろう",
+     "mean": "probabilité : « sans doute »",
+     "examples": [
+      {
+       "jp": "明日はたぶん寒いだろう。",
+       "ro": "ashita wa tabun samui darō.",
+       "fr": "Demain il fera sans doute froid.",
+       "an": [
+        "明日（あした）« demain »",
+        "は « thème »",
+        "たぶん « probablement »",
+        "寒い（さむい）« froid »",
+        "だろう « sans doute (conjecture, forme neutre) » → « demain il fera sans doute froid »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:によると",
      "form": "〜によると",
-     "niv": "N4",
-     "mean": "« selon, d’après »"
+     "struct": "N ＋ によると（＋ 伝聞：〜そうだ／らしい）",
+     "mean": "« selon, d’après »",
+     "examples": [
+      {
+       "jp": "天気予報によると、明日は雨だそうだ。",
+       "ro": "tenki yohō ni yoru to, ashita wa ame da sō da.",
+       "fr": "D'après la météo, il pleuvra demain.",
+       "an": [
+        "天気予報（てんきよほう）« prévisions météo »",
+        "によると « selon, d'après »",
+        "、",
+        "明日（あした）« demain »",
+        "は « thème »",
+        "雨（あめ）« pluie »",
+        "だそうだ « il paraît que (ouï-dire) » → « d'après la météo, il pleuvra demain »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:みたい",
      "form": "〜みたい",
-     "niv": "N4",
-     "mean": "comparaison : « comme, on dirait »"
+     "struct": "N／V・い-adj（普通形）／な-adj語幹 ＋ みたい（だ）",
+     "mean": "comparaison : « comme, on dirait »",
+     "examples": [
+      {
+       "jp": "彼はまるで子供みたいだ。",
+       "ro": "kare wa marude kodomo mitai da.",
+       "fr": "Il est comme un enfant.",
+       "an": [
+        "彼（かれ）« il »",
+        "は « thème »",
+        "まるで « exactement, on dirait »",
+        "子供（こども）« enfant »",
+        "みたいだ « on dirait, comme (comparaison) » → « il est comme un enfant »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:がする",
      "form": "〜がする",
-     "niv": "N4",
-     "mean": "« 味/におい/音/気 がする : avoir une sensation »"
+     "struct": "N（におい・音・味・感じ 等）＋ がする",
+     "mean": "« 味/におい/音/気 がする : avoir une sensation »",
+     "examples": [
+      {
+       "jp": "いいにおいがする。",
+       "ro": "ii nioi ga suru.",
+       "fr": "Ça sent bon.",
+       "an": [
+        "いい « bonne »",
+        "におい « odeur »",
+        "がする « se sentir » → « ça sent bon »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:かねない",
      "form": "〜かねない",
-     "niv": "N3",
-     "mean": "« risquer de, il se pourrait bien que (négatif) »"
+     "struct": "V（ます形の語幹）＋ かねない",
+     "mean": "« risquer de, il se pourrait bien que (négatif) »",
+     "examples": [
+      {
+       "jp": "そんなに無理をすると、病気になりかねない。",
+       "ro": "sonna ni muri o suru to, byōki ni narikanenai.",
+       "fr": "Si tu forces autant, tu risques de tomber malade.",
+       "an": [
+        "そんなに « autant »",
+        "無理（むり）« excès, forcer »",
+        "を « COD »",
+        "する→すると « si tu fais »",
+        "、",
+        "病気（びょうき）« maladie »",
+        "に « à »",
+        "なる→なりかねない « forme ます-radical ＋かねない = risquer de (issue négative) » → « si tu forces autant, tu risques de tomber malade »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:たがらない",
      "form": "〜たがらない",
-     "niv": "N4",
-     "mean": "« (3e personne) vouloir / ne pas vouloir »"
+     "struct": "V（ます形の語幹）＋ たがる（否定：〜たがらない）",
+     "mean": "« (3e personne) vouloir / ne pas vouloir »",
+     "examples": [
+      {
+       "jp": "弟は野菜を食べたがらない。",
+       "ro": "otōto wa yasai o tabetagaranai.",
+       "fr": "Mon petit frère ne veut pas manger de légumes.",
+       "an": [
+        "弟（おとうと）« petit frère »",
+        "は « thème »",
+        "野菜（やさい）« légumes »",
+        "を « COD »",
+        "食べる（たべる）→食べたがらない « forme ます-radical ＋たがらない = (3ᵉ pers.) ne pas vouloir » → « mon petit frère ne veut pas manger de légumes »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:のような",
      "form": "〜のような",
-     "niv": "N4",
-     "mean": "« (une chose) telle que…, comme… »"
+     "struct": "N ＋ のような ＋ N",
+     "mean": "« (une chose) telle que…, comme… »",
+     "examples": [
+      {
+       "jp": "富士山のような高い山に登りたい。",
+       "ro": "fujisan no yō na takai yama ni noboritai.",
+       "fr": "Je veux gravir une haute montagne comme le mont Fuji.",
+       "an": [
+        "富士山（ふじさん）« le mont Fuji »",
+        "のような « telle que, comme »",
+        "高い（たかい）« haute »",
+        "山（やま）« montagne »",
+        "に « à »",
+        "登る（のぼる）→登りたい « vouloir gravir » → « je veux gravir une haute montagne comme le mont Fuji »."
+       ]
+      }
+     ],
+     "niv": "N4"
     }
    ]
   },
@@ -1846,8 +2479,24 @@
     {
      "id": "gram:あまり",
      "form": "〜あまり",
-     "niv": "N3",
-     "mean": "« à force de, tellement… que »"
+     "struct": "V辞書形／Nの／な形＋な ＋ あまり",
+     "mean": "« à force de, tellement… que »",
+     "examples": [
+      {
+       "jp": "緊張のあまり、声が震えた。",
+       "ro": "kinchō no amari, koe ga furueta.",
+       "fr": "Sous l'effet du trac, ma voix a tremblé.",
+       "an": [
+        "緊張（きんちょう）« trac »",
+        "のあまり « tellement… que »",
+        "、",
+        "声（こえ）« voix »",
+        "が « sujet »",
+        "震える（ふるえる）→震えた « s'est mise à trembler » → « sous l'effet du trac, ma voix a tremblé »."
+       ]
+      }
+     ],
+     "niv": "N3"
     }
    ]
   },
@@ -2105,50 +2754,176 @@
     {
      "id": "gram:たりたりする",
      "form": "〜たり〜たりする",
-     "niv": "N4",
-     "mean": "énumération : « tantôt… tantôt »"
+     "struct": "V(た形)＋り ＋ V(た形)＋り ＋ する（動作・状態の列挙／交替）",
+     "mean": "énumération : « tantôt… tantôt »",
+     "examples": [
+      {
+       "jp": "赤ちゃんは泣いたり笑ったりする。",
+       "ro": "akachan wa naitari warattari suru.",
+       "fr": "Le bébé tantôt pleure, tantôt rit.",
+       "an": [
+        "赤ちゃん（あかちゃん）« bébé »",
+        "は « thème »",
+        "泣く（なく）→泣いたり « tantôt pleurer »",
+        "笑う（わらう）→笑ったりする « tantôt rire (する clôt l'énumération) » → « le bébé tantôt pleure, tantôt rit »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:たりたり",
      "form": "〜たり〜たり",
-     "niv": "N4",
-     "mean": "« faire ceci, faire cela (actions représentatives) »"
+     "struct": "V(た形)＋り ＋ V(た形)＋り ＋ する",
+     "mean": "« faire ceci, faire cela (actions représentatives) »",
+     "examples": [
+      {
+       "jp": "休みの日は本を読んだり音楽を聞いたりする。",
+       "ro": "yasumi no hi wa hon o yondari ongaku o kiitari suru.",
+       "fr": "Les jours de congé, je lis, j'écoute de la musique, etc.",
+       "an": [
+        "休み（やすみ）« congé »",
+        "の « de »",
+        "日（ひ）« jour »",
+        "は « thème »",
+        "本（ほん）« livre »",
+        "を « COD »",
+        "読む（よむ）→読んだり « lire, entre autres »",
+        "音楽（おんがく）« musique »",
+        "を « COD »",
+        "聞く（きく）→聞いたりする « écouter, etc. » → « les jours de congé, je lis, j'écoute de la musique, etc. »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:など",
      "form": "〜など",
-     "niv": "N4",
-     "mean": "« et cetera ; (dépréciatif) des choses comme »"
+     "struct": "N ＋ など ／ V(辞書形) ＋ など",
+     "mean": "« et cetera ; (dépréciatif) des choses comme »",
+     "examples": [
+      {
+       "jp": "お金など要らない。",
+       "ro": "okane nado iranai.",
+       "fr": "Je n'ai pas besoin de choses comme l'argent.",
+       "an": [
+        "お金（おかね）« argent »",
+        "など « des choses comme (dédain) »",
+        "要る（いる）→要らない « ne pas avoir besoin » → « je n'ai pas besoin de choses comme l'argent »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:にすぎない",
      "form": "〜にすぎない",
-     "niv": "N3",
-     "mean": "« ne… que, n'être rien de plus que »"
+     "struct": "V・A(普通形)・Na・N ＋ にすぎない",
+     "mean": "« ne… que, n'être rien de plus que »",
+     "examples": [
+      {
+       "jp": "それは言い訳にすぎない。",
+       "ro": "sore wa iiwake ni suginai.",
+       "fr": "Ce n'est rien de plus qu'une excuse.",
+       "an": [
+        "それ « cela »",
+        "は « thème »",
+        "言い訳（いいわけ）« excuse »",
+        "にすぎない « n'est rien de plus que » → « ce n'est rien de plus qu'une excuse »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:に加えて",
      "form": "〜に加えて",
-     "niv": "N3",
-     "mean": "« en plus de, outre »"
+     "struct": "N ＋ に加えて ／ V(普通形)＋のに加えて",
+     "mean": "« en plus de, outre »",
+     "examples": [
+      {
+       "jp": "雨に加えて風も強くなった。",
+       "ro": "ame ni kuwaete kaze mo tsuyoku natta.",
+       "fr": "En plus de la pluie, le vent aussi s'est renforcé.",
+       "an": [
+        "雨（あめ）« pluie »",
+        "に加えて（にくわえて）« en plus de »",
+        "風（かぜ）« vent »",
+        "も « aussi »",
+        "強い（つよい）→強くなった « être devenu fort » → « en plus de la pluie, le vent aussi s'est renforcé »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:をはじめとする",
      "form": "〜をはじめとする",
-     "niv": "N3",
-     "mean": "« à commencer par, dont notamment »"
+     "struct": "N ＋ をはじめとする ＋ N ／ をはじめ（として）",
+     "mean": "« à commencer par, dont notamment »",
+     "examples": [
+      {
+       "jp": "日本には富士山をはじめとする美しい山が多い。",
+       "ro": "nihon ni wa fujisan o hajime to suru utsukushii yama ga ōi.",
+       "fr": "Au Japon, les belles montagnes sont nombreuses, à commencer par le mont Fuji.",
+       "an": [
+        "日本（にほん）« le Japon »",
+        "に « lieu »",
+        "は « thème »",
+        "富士山（ふじさん）« le mont Fuji »",
+        "をはじめとする « à commencer par »",
+        "美しい（うつくしい）« belles »",
+        "山（やま）« montagnes »",
+        "が « sujet »",
+        "多い（おおい）« nombreuses » → « au Japon, les belles montagnes sont nombreuses, à commencer par le mont Fuji »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:ぬき",
      "form": "〜ぬき",
-     "niv": "N3",
-     "mean": "« sans, en omettant, en se passant de »"
+     "struct": "N ＋ ぬき（の N）／ぬきで／はぬきにして",
+     "mean": "« sans, en omettant, en se passant de »",
+     "examples": [
+      {
+       "jp": "わさび抜きの寿司を注文した。",
+       "ro": "wasabi nuki no sushi o chūmon shita.",
+       "fr": "J'ai commandé des sushis sans wasabi.",
+       "an": [
+        "わさび « wasabi »",
+        "抜き（ぬき）« sans, en omettant »",
+        "の « de (détermination) »",
+        "寿司（すし）« sushi »",
+        "を « COD »",
+        "注文する（ちゅうもんする）→注文した « avoir commandé » → « j'ai commandé des sushis sans wasabi »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:ぬきで",
      "form": "〜ぬきで",
-     "niv": "N3",
-     "mean": "« sans, en omettant, en se passant de »"
+     "struct": "N ＋ ぬきで／ぬきに／はぬきにして",
+     "mean": "« sans, en omettant, en se passant de »",
+     "examples": [
+      {
+       "jp": "朝食ぬきで学校へ行った。",
+       "ro": "chōshoku nuki de gakkō e itta.",
+       "fr": "Je suis allé à l'école sans petit-déjeuner.",
+       "an": [
+        "朝食（ちょうしょく）« petit-déjeuner »",
+        "ぬきで « en se passant de »",
+        "学校（がっこう）« école »",
+        "へ « à »",
+        "行く（いく）→行った « s'est rendu » → « je suis allé à l'école sans petit-déjeuner »."
+       ]
+      }
+     ],
+     "niv": "N3"
     }
    ]
   },
@@ -2262,56 +3037,197 @@
     {
      "id": "gram:ことができる",
      "form": "〜ことができる",
-     "niv": "N4",
-     "mean": "capacité : « pouvoir »"
+     "struct": "V(辞書形) ＋ ことができる",
+     "mean": "capacité : « pouvoir »",
+     "examples": [
+      {
+       "jp": "彼はピアノを弾くことができる。",
+       "ro": "kare wa piano o hiku koto ga dekiru.",
+       "fr": "Il sait jouer du piano.",
+       "an": [
+        "彼（かれ）« il »",
+        "は « thème »",
+        "ピアノ « piano »",
+        "を « COD »",
+        "弾く（ひく）→弾くことができる « forme dictionnaire ＋ことができる = capacité “savoir / pouvoir” » → « il sait jouer du piano »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:のだ",
      "form": "〜のだ",
-     "niv": "N4",
-     "mean": "explication / insistance"
+     "struct": "V・い-adj 普通形 ／ な-adj・名＋な ＋のだ（＝説明・断定、書き言葉／断定的）",
+     "mean": "explication / insistance",
+     "examples": [
+      {
+       "jp": "道が濡れている。雨が降ったのだ。",
+       "ro": "michi ga nurete iru. ame ga futta no da.",
+       "fr": "La route est mouillée : c'est qu'il a plu.",
+       "an": [
+        "道（みち）« la route »",
+        "が « sujet »",
+        "濡れる（ぬれる）→濡れている « forme ている = état résultant (est mouillée) »",
+        "雨（あめ）« la pluie »",
+        "が « sujet »",
+        "降る（ふる）→降ったのだ « forme た ＋のだ = explication / déduction, ton posé ou écrit (c'est qu'il a plu) » → « la route est mouillée : c'est qu'il a plu »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:んだ",
      "form": "んだ",
-     "niv": "N4",
-     "mean": "explication / insistance"
+     "struct": "V・い-adj 普通形 ／ な-adj・名＋な ＋んだ（＝のだ の口語・会話）",
+     "mean": "explication / insistance",
+     "examples": [
+      {
+       "jp": "実は、彼が好きなんだ。",
+       "ro": "jitsu wa, kare ga suki na n da.",
+       "fr": "À vrai dire, le fait est que je l'aime.",
+       "an": [
+        "実は（じつは）« à vrai dire »",
+        "、",
+        "彼（かれ）« lui »",
+        "が « sujet (de 好き) »",
+        "好き（すき）→好きなんだ « な-adj＋な＋んだ = のだ à l'oral familier : “le fait est que…” » → « à vrai dire, le fait est que je l'aime »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:方（かた）",
      "form": "〜方（かた）",
-     "niv": "N4",
-     "mean": "« la manière de… »"
+     "struct": "動詞（ます形）＋ 方（かた）",
+     "mean": "« la manière de… »",
+     "examples": [
+      {
+       "jp": "この漢字の読み方を教えてください。",
+       "ro": "kono kanji no yomikata o oshiete kudasai.",
+       "fr": "Apprenez-moi la façon de lire ce kanji.",
+       "an": [
+        "この « ce »",
+        "漢字（かんじ）« kanji »",
+        "の « de »",
+        "読（よ）み « lire (base ます) »",
+        "方（かた）« façon de »",
+        "を « COD »",
+        "教（おし）えて « apprendre (て形) »",
+        "ください « s'il vous plaît » → « apprenez-moi la façon de lire ce kanji »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:疑問詞＋か",
      "form": "疑問詞＋か",
-     "niv": "N4",
-     "mean": "« (interrogatif) + か : question indirecte / indéterminé »"
+     "struct": "だれ／なに／どこ ＋ か（＝ quelqu'un / quelque chose / quelque part）",
+     "mean": "« (interrogatif) + か : question indirecte / indéterminé »",
+     "examples": [
+      {
+       "jp": "部屋にだれかいますか。",
+       "ro": "heya ni dareka imasu ka.",
+       "fr": "Y a-t-il quelqu'un dans la pièce ?",
+       "an": [
+        "部屋（へや）« pièce »",
+        "に « lieu »",
+        "だれ « qui »",
+        "か « ＝ indéfini (だれか = quelqu'un) »",
+        "います « il y a (poli) »",
+        "か « question » → « y a-t-il quelqu'un dans la pièce ? »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:かどうか",
      "form": "〜かどうか",
-     "niv": "N4",
-     "mean": "« si oui ou non (question indirecte) »"
+     "struct": "V/A(普通形) ＋ かどうか",
+     "mean": "« si oui ou non (question indirecte) »",
+     "examples": [
+      {
+       "jp": "彼が来るかどうか分からない。",
+       "ro": "kare ga kuru ka dō ka wakaranai.",
+       "fr": "Je ne sais pas s'il va venir (ou non).",
+       "an": [
+        "彼（かれ）« il »",
+        "が « sujet »",
+        "来る（くる）« venir »",
+        "かどうか « si (oui ou non) »",
+        "分かる（わかる）→分からない « ne pas savoir » → « je ne sais pas s'il va venir (ou non) »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:ことがある",
      "form": "〜ことがある",
-     "niv": "N4",
-     "mean": "« il arrive que, il m'arrive de »"
+     "struct": "V(辞書形) ＋ ことがある（＝時々ある）",
+     "mean": "« il arrive que, il m'arrive de »",
+     "examples": [
+      {
+       "jp": "時々、電車が遅れることがある。",
+       "ro": "tokidoki, densha ga okureru koto ga aru.",
+       "fr": "Il arrive parfois que le train soit en retard.",
+       "an": [
+        "時々（ときどき）« parfois »",
+        "、",
+        "電車（でんしゃ）« le train »",
+        "が « sujet »",
+        "遅れる（おくれる）→遅れることがある « forme dictionnaire ＋ことがある = il arrive que (occasionnel) » → « il arrive parfois que le train soit en retard »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:んです",
      "form": "〜んです",
-     "niv": "N4",
-     "mean": "« c'est que… (explication, insistance) »"
+     "struct": "V・い-adj 普通形 ／ な-adj・名＋な ＋んです（＝のです の口語、丁寧・会話）",
+     "mean": "« c'est que… (explication, insistance) »",
+     "examples": [
+      {
+       "jp": "すみません、この漢字が読めないんです。",
+       "ro": "sumimasen, kono kanji ga yomenai n desu.",
+       "fr": "Excusez-moi, c'est que je n'arrive pas à lire ce kanji.",
+       "an": [
+        "すみません « excusez-moi »",
+        "、",
+        "この « ce »",
+        "漢字（かんじ）« kanji »",
+        "が « sujet »",
+        "読める（よめる）→読めないんです « potentiel négatif ＋んです = explication polie à l'oral (c'est que je n'arrive pas) » → « excusez-moi, c'est que je n'arrive pas à lire ce kanji »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:のです",
      "form": "〜のです",
-     "niv": "N4",
-     "mean": "« c'est que… (explication, insistance) »"
+     "struct": "V・い-adj 普通形 ／ な-adj・名＋な ＋のです（＝んです より改まった・書き言葉／強調）",
+     "mean": "« c'est que… (explication, insistance) »",
+     "examples": [
+      {
+       "jp": "つまり、努力が大切なのです。",
+       "ro": "tsumari, doryoku ga taisetsu na no desu.",
+       "fr": "Autrement dit, c'est que l'effort est important.",
+       "an": [
+        "つまり « autrement dit »",
+        "、",
+        "努力（どりょく）« l'effort »",
+        "が « sujet »",
+        "大切（たいせつ）→大切なのです « な-adj＋な＋のです = explication / insistance soutenue, ton écrit ou formel (le fait est que…) » → « autrement dit, c'est que l'effort est important »."
+       ]
+      }
+     ],
+     "niv": "N4"
     }
    ]
   },
@@ -2536,32 +3452,99 @@
     {
      "id": "gram:たほうがいい",
      "form": "〜たほうがいい",
-     "niv": "N4",
-     "mean": "conseil : « il vaut mieux »"
+     "struct": "V(た形) ＋ ほうがいい（否定：〜ないほうがいい）",
+     "mean": "conseil : « il vaut mieux »",
+     "examples": [
+      {
+       "jp": "熱があるなら、休んだほうがいい。",
+       "ro": "netsu ga aru nara, yasunda hō ga ii.",
+       "fr": "Si tu as de la fièvre, mieux vaut te reposer.",
+       "an": [
+        "熱（ねつ）« fièvre »",
+        "がある « avoir »",
+        "なら « si »",
+        "休む（やすむ）→休んだほうがいい « forme た ＋ほうがいい = conseil “mieux vaut” » → « si tu as de la fièvre, mieux vaut te reposer »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:てもいい",
      "form": "〜てもいい",
-     "niv": "N4",
-     "mean": "permission : « on peut »"
+     "struct": "V(て形) ＋ もいい",
+     "mean": "permission : « on peut »",
+     "examples": [
+      {
+       "jp": "ここに座ってもいいですか。",
+       "ro": "koko ni suwatte mo ii desu ka.",
+       "fr": "Puis-je m’asseoir ici ?",
+       "an": [
+        "ここ « ici »",
+        "に « lieu »",
+        "座る（すわる）→座ってもいい « forme て ＋もいい = permission “on peut” »",
+        "ですか « interrogation polie » → « puis-je m'asseoir ici ? »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:ないほうがいい",
      "form": "〜ないほうがいい",
-     "niv": "N4",
-     "mean": "conseil : « mieux vaut ne pas »"
+     "struct": "V(ない形) ＋ ほうがいい（否定の助言）",
+     "mean": "conseil : « mieux vaut ne pas »",
+     "examples": [
+      {
+       "jp": "たばこは吸わないほうがいい。",
+       "ro": "tabako wa suwanai hō ga ii.",
+       "fr": "Il vaut mieux ne pas fumer.",
+       "an": [
+        "たばこ « le tabac / la cigarette »",
+        "は « thème »",
+        "吸う（すう）→吸わないほうがいい « forme ない ＋ほうがいい = conseil négatif “mieux vaut ne pas” » → « il vaut mieux ne pas fumer »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:てほしい",
      "form": "〜てほしい",
-     "niv": "N4",
-     "mean": "« vouloir que (quelqu'un) fasse »"
+     "struct": "V(て形) ＋ ほしい",
+     "mean": "« vouloir que (quelqu'un) fasse »",
+     "examples": [
+      {
+       "jp": "手伝ってほしいです。",
+       "ro": "tetsudatte hoshii desu.",
+       "fr": "J'aimerais que tu m'aides.",
+       "an": [
+        "手伝う（てつだう）→手伝って « aider »",
+        "ほしい « vouloir que »",
+        "です « copule polie » → « j'aimerais que tu m'aides »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:な",
      "form": "〜な",
-     "niv": "N4",
-     "mean": "« (辞書形＋な) interdiction brusque : ne… pas ! »"
+     "struct": "V(辞書形) ＋ な",
+     "mean": "« (辞書形＋な) interdiction brusque : ne… pas ! »",
+     "examples": [
+      {
+       "jp": "そこに触るな。",
+       "ro": "soko ni sawaru na.",
+       "fr": "Ne touche pas là !",
+       "an": [
+        "そこ « là »",
+        "に « cible / lieu »",
+        "触る（さわる）→触るな « 辞書形 ＋な = interdiction brusque (ne… pas !) » → « ne touche pas là ! »."
+       ]
+      }
+     ],
+     "niv": "N4"
     }
    ]
   },
@@ -2631,14 +3614,43 @@
     {
      "id": "gram:おする",
      "form": "お〜する",
-     "niv": "N4",
-     "mean": "modestie (kenjōgo)"
+     "struct": "お＋V(ます語幹)＋する（謙譲語：自分側の動作をへりくだる）",
+     "mean": "modestie (kenjōgo)",
+     "examples": [
+      {
+       "jp": "荷物をお持ちします。",
+       "ro": "nimotsu o omochi shimasu.",
+       "fr": "Je porte vos bagages.",
+       "an": [
+        "荷物（にもつ）« bagages »",
+        "を « COD »",
+        "持つ（もつ）→お持ちします « お＋連用形（語幹）＋する = forme humble (kenjōgo), on s’abaisse » → « je porte vos bagages »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:おになる",
      "form": "お〜になる",
-     "niv": "N4",
-     "mean": "respect (sonkeigo)"
+     "struct": "お＋V(ます語幹)＋になる（尊敬語：相手の動作を高める）",
+     "mean": "respect (sonkeigo)",
+     "examples": [
+      {
+       "jp": "先生はこの辞書をお使いになりますか。",
+       "ro": "sensei wa kono jisho o otsukai ni narimasu ka.",
+       "fr": "Professeur, utilisez-vous ce dictionnaire ?",
+       "an": [
+        "先生（せんせい）« professeur »",
+        "は « thème »",
+        "この « ce »",
+        "辞書（じしょ）« dictionnaire »",
+        "を « COD »",
+        "使う（つかう）→お使いになりますか « お＋連用形（語幹）＋になる = forme respectueuse (sonkeigo), on élève l’action d’autrui » → « professeur, utilisez-vous ce dictionnaire ? »."
+       ]
+      }
+     ],
+     "niv": "N4"
     }
    ]
   },
@@ -2734,32 +3746,102 @@
     {
      "id": "gram:つもりだ",
      "form": "〜つもりだ",
-     "niv": "N4",
-     "mean": "intention : « avoir l’intention de »"
+     "struct": "V(辞書形) ＋ つもりだ",
+     "mean": "intention : « avoir l’intention de »",
+     "examples": [
+      {
+       "jp": "夏休みは国へ帰るつもりです。",
+       "ro": "natsuyasumi wa kuni e kaeru tsumori desu.",
+       "fr": "Aux vacances d'été, je compte rentrer au pays.",
+       "an": [
+        "夏休み（なつやすみ）« vacances d'été »",
+        "は « thème »",
+        "国（くに）« pays »",
+        "へ « direction »",
+        "帰る（かえる）→帰るつもりです « forme dictionnaire ＋つもりだ = intention “compter faire” » → « aux vacances d'été, je compte rentrer au pays »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:（よ）う",
      "form": "〜（よ）う",
-     "niv": "N4",
-     "mean": "volitif : « allons / faisons »"
+     "struct": "V(意向形)：う-動詞 語尾→おう（帰る→帰ろう）／る-動詞 語幹＋よう（食べる→食べよう）／する→しよう・来る→こよう",
+     "mean": "volitif : « allons / faisons »",
+     "examples": [
+      {
+       "jp": "一緒に帰ろう。",
+       "ro": "issho ni kaerō.",
+       "fr": "Rentrons ensemble.",
+       "an": [
+        "一緒に（いっしょに）« ensemble »",
+        "帰る（かえる）→帰ろう « forme volitive = allons/faisons (ici : rentrons) » → « rentrons ensemble »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:（よ）うと思う",
      "form": "〜（よ）うと思う",
-     "niv": "N4",
-     "mean": "projet : « je pense faire »"
+     "struct": "V(意向形) ＋ と思う",
+     "mean": "projet : « je pense faire »",
+     "examples": [
+      {
+       "jp": "週末は映画を見ようと思います。",
+       "ro": "shūmatsu wa eiga o miyō to omoimasu.",
+       "fr": "Ce week-end, je pense aller voir un film.",
+       "an": [
+        "週末（しゅうまつ）« week-end »",
+        "は « thème »",
+        "映画（えいが）« film »",
+        "を « COD »",
+        "見る（みる）→見ようと思います « forme volitive よう ＋と思う = intention “je pense faire” » → « ce week-end, je pense aller voir un film »."
+       ]
+      }
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:ようとする",
      "form": "〜ようとする",
-     "niv": "N3",
-     "mean": "« essayer de, être sur le point de »"
+     "struct": "V(意向形) ＋ とする",
+     "mean": "« essayer de, être sur le point de »",
+     "examples": [
+      {
+       "jp": "彼は立とうとした。",
+       "ro": "kare wa tatō to shita.",
+       "fr": "Il a essayé de se lever.",
+       "an": [
+        "彼（かれ）« il »",
+        "は « thème »",
+        "立つ（たつ）→立とうとした « forme volitive ＋とする = essayer de / être sur le point de » → « il a essayé de se lever »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:（よ）うではないか",
      "form": "〜（よ）うではないか",
-     "niv": "N3",
-     "mean": "« faisons donc…, et si nous… (exhortation) »"
+     "struct": "V(意向形) ＋ ではないか／じゃないか",
+     "mean": "« faisons donc…, et si nous… (exhortation) »",
+     "examples": [
+      {
+       "jp": "みんなで力を合わせようではないか。",
+       "ro": "minna de chikara o awaseyō de wa nai ka.",
+       "fr": "Unissons donc nos forces tous ensemble !",
+       "an": [
+        "みんなで « tous ensemble »",
+        "力（ちから）« force »",
+        "を « COD »",
+        "合わせる（あわせる）→合わせよう « unir »",
+        "ではないか « allons donc (exhortation) » → « unissons donc nos forces tous ensemble ! »."
+       ]
+      }
+     ],
+     "niv": "N3"
     }
    ]
   },
@@ -2867,62 +3949,226 @@
     {
      "id": "gram:に比べて",
      "form": "〜に比べて",
-     "niv": "N3",
-     "mean": "« comparé à, par rapport à »"
+     "struct": "N ＋ に比べて",
+     "mean": "« comparé à, par rapport à »",
+     "examples": [
+      {
+       "jp": "去年に比べて、今年は雨が多い。",
+       "ro": "kyonen ni kurabete, kotoshi wa ame ga ōi.",
+       "fr": "Comparé à l'an dernier, il pleut beaucoup cette année.",
+       "an": [
+        "去年（きょねん）« l'an dernier »",
+        "に « à »",
+        "比べる（くらべる）→比べて « comparé à »",
+        "今年（ことし）« cette année »",
+        "は « thème »",
+        "雨（あめ）« pluie »",
+        "が « sujet »",
+        "多い（おおい）« abondante » → « comparé à l'an dernier, il pleut beaucoup cette année »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:ものの",
      "form": "〜ものの",
-     "niv": "N3",
-     "mean": "« bien que, quoique (concession) »"
+     "struct": "V・形容詞(普通形)・N＋である ＋ ものの",
+     "mean": "« bien que, quoique (concession) »",
+     "examples": [
+      {
+       "jp": "引き受けたものの、どうやればいいか分からない。",
+       "ro": "hikiuketa mono no, dō yareba ii ka wakaranai.",
+       "fr": "Bien que j'aie accepté, je ne sais pas comment m'y prendre.",
+       "an": [
+        "引き受ける（ひきうける）→引き受けた « avoir accepté »",
+        "ものの « bien que »",
+        "どう « comment »",
+        "やる→やればいい « faut-il faire »",
+        "か « interrogation »",
+        "分かる（わかる）→分からない « ne pas savoir » → « bien que j'aie accepté, je ne sais pas comment m'y prendre »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:に反して",
      "form": "〜に反して",
-     "niv": "N3",
-     "mean": "« contrairement à, à l'encontre de »"
+     "struct": "N ＋ に反して",
+     "mean": "« contrairement à, à l'encontre de »",
+     "examples": [
+      {
+       "jp": "予想に反して、彼が優勝した。",
+       "ro": "yosō ni hanshite, kare ga yūshō shita.",
+       "fr": "Contre toute attente, c'est lui qui a remporté la victoire.",
+       "an": [
+        "予想（よそう）« prévision »",
+        "に « à »",
+        "反する（はんする）→反して « contrairement à »",
+        "彼（かれ）« il »",
+        "が « sujet »",
+        "優勝する（ゆうしょうする）→優勝した « a gagné » → « contre toute attente, c'est lui qui a remporté la victoire »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:ながらも",
      "form": "〜ながらも",
-     "niv": "N3",
-     "mean": "« bien que, tout en… (concession) »"
+     "struct": "V(ます形)/イ形/ナ形/N ＋ ながらも",
+     "mean": "« bien que, tout en… (concession) »",
+     "examples": [
+      {
+       "jp": "狭いながらも、楽しい我が家だ。",
+       "ro": "semai nagara mo, tanoshii wagaya da.",
+       "fr": "Bien qu'exigu, c'est un foyer où l'on est heureux.",
+       "an": [
+        "狭い（せまい）« exigu »",
+        "ながらも « bien que »",
+        "楽しい（たのしい）« agréable »",
+        "我が家（わがや）« mon foyer »",
+        "だ « copule » → « bien qu'exigu, c'est un foyer où l'on est heureux »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:一方",
      "form": "〜一方",
-     "niv": "N3",
-     "mean": "« d'un côté… de l'autre ; tandis que »"
+     "struct": "V・イ形（普通形）／ナ形＋な・である／名＋である ＋一方",
+     "mean": "« d'un côté… de l'autre ; tandis que »",
+     "examples": [
+      {
+       "jp": "父は厳しい一方、母は優しい。",
+       "ro": "chichi wa kibishii ippō, haha wa yasashii.",
+       "fr": "Alors que mon père est sévère, ma mère est douce.",
+       "an": [
+        "父（ちち）« mon père »",
+        "は « thème »",
+        "厳しい（きびしい）→厳しい一方 « イ形 ＋一方 = tandis que, d'un côté »",
+        "母（はは）« ma mère »",
+        "は « thème »",
+        "優しい（やさしい）« doux » → « alors que mon père est sévère, ma mère est douce »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:一方で",
      "form": "〜一方で",
-     "niv": "N3",
-     "mean": "« d'un côté… de l'autre ; tandis que »"
+     "struct": "V・イ形（普通形）／ナ形＋な・である／名＋である ＋一方で",
+     "mean": "« d'un côté… de l'autre ; tandis que »",
+     "examples": [
+      {
+       "jp": "輸出が増える一方で、輸入は減っている。",
+       "ro": "yushutsu ga fueru ippō de, yunyū wa hette iru.",
+       "fr": "D'un côté les exportations augmentent, de l'autre les importations diminuent.",
+       "an": [
+        "輸出（ゆしゅつ）« exportations »",
+        "が « sujet »",
+        "増える（ふえる）→増える一方で « 辞書形 ＋一方で = d'un côté, tandis que »",
+        "輸入（ゆにゅう）« importations »",
+        "は « thème »",
+        "減る（へる）→減っている « ている = est en train de diminuer » → « d'un côté les exportations augmentent, de l'autre les importations diminuent »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:反面",
      "form": "〜反面",
-     "niv": "N3",
-     "mean": "« en revanche, par contre (deux aspects opposés) »"
+     "struct": "V/イ形/ナ形（な・である）/N（である） ＋ 反面",
+     "mean": "« en revanche, par contre (deux aspects opposés) »",
+     "examples": [
+      {
+       "jp": "この薬はよく効く反面、副作用が強い。",
+       "ro": "kono kusuri wa yoku kiku hanmen, fukusayō ga tsuyoi.",
+       "fr": "Ce médicament est très efficace, mais en revanche il a de forts effets secondaires.",
+       "an": [
+        "この « ce »",
+        "薬（くすり）« médicament »",
+        "は « thème »",
+        "よく « bien »",
+        "効く（きく）« agit »",
+        "反面（はんめん）« en revanche »",
+        "副作用（ふくさよう）« effets secondaires »",
+        "が « sujet »",
+        "強い（つよい）« forts » → « ce médicament est très efficace, mais en revanche il a de forts effets secondaires »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:わけではない",
      "form": "〜わけではない",
-     "niv": "N3",
-     "mean": "« ce n'est pas (forcément) que…, pas totalement »"
+     "struct": "Proposition (forme neutre) ＋ わけではない",
+     "mean": "« ce n'est pas (forcément) que…, pas totalement »",
+     "examples": [
+      {
+       "jp": "野菜が嫌いなわけではないが、あまり食べない。",
+       "ro": "yasai ga kirai na wake de wa nai ga, amari tabenai.",
+       "fr": "Ce n'est pas que je déteste les légumes, mais je n'en mange pas beaucoup.",
+       "an": [
+        "野菜（やさい）« légumes »",
+        "が « sujet »",
+        "嫌い（きらい）« détester »",
+        "な « attributif »",
+        "わけではない « ce n'est pas que »",
+        "が « mais »",
+        "あまり « pas beaucoup »",
+        "食べる（たべる）→食べない « ne pas manger » → « ce n'est pas que je déteste les légumes, mais je n'en mange pas beaucoup »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:わりに",
      "form": "〜わりに",
-     "niv": "N3",
-     "mean": "« pour (un…), contre toute attente »"
+     "struct": "V・イ形（普通形）／ナ形＋な／名＋の ＋わりに",
+     "mean": "« pour (un…), contre toute attente »",
+     "examples": [
+      {
+       "jp": "彼は年のわりに若く見える。",
+       "ro": "kare wa toshi no wari ni wakaku mieru.",
+       "fr": "Il paraît jeune pour son âge.",
+       "an": [
+        "彼（かれ）« il »",
+        "は « thème »",
+        "年（とし）« âge »→年のわりに « 名＋の ＋わりに = pour, compte tenu de (contraste avec l'attente) »",
+        "若い（わかい）→若く « forme adverbiale »",
+        "見える（みえる）« paraître » → « il paraît jeune pour son âge »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:わりには",
      "form": "〜わりには",
-     "niv": "N3",
-     "mean": "« pour (un…), contre toute attente »"
+     "struct": "V・イ形（普通形）／ナ形＋な／名＋の ＋わりには",
+     "mean": "« pour (un…), contre toute attente »",
+     "examples": [
+      {
+       "jp": "たくさん練習したわりには、上手にならない。",
+       "ro": "takusan renshū shita wari ni wa, jōzu ni naranai.",
+       "fr": "Pour tout ce que je m'entraîne, je ne progresse pas.",
+       "an": [
+        "たくさん « beaucoup »",
+        "練習（れんしゅう）する→練習した « avoir pratiqué »→練習したわりには « た形 ＋わりには = pour, compte tenu de »",
+        "上手（じょうず）« habile »",
+        "に « adverbial »",
+        "なる→ならない « ne pas devenir » → « pour tout ce que je m'entraîne, je ne progresse pas »."
+       ]
+      }
+     ],
+     "niv": "N3"
     }
    ]
   },
@@ -3050,14 +4296,45 @@
     {
      "id": "gram:をめぐって",
      "form": "〜をめぐって",
-     "niv": "N3",
-     "mean": "« autour de, au sujet de (débat, conflit) »"
+     "struct": "N ＋ をめぐって／をめぐる",
+     "mean": "« autour de, au sujet de (débat, conflit) »",
+     "examples": [
+      {
+       "jp": "遺産をめぐって兄弟が争った。",
+       "ro": "isan o megutte kyōdai ga arasotta.",
+       "fr": "Les frères se sont disputés au sujet de l'héritage.",
+       "an": [
+        "遺産（いさん）« héritage »",
+        "をめぐって « au sujet de (objet de conflit) »",
+        "兄弟（きょうだい）« frères »",
+        "が « sujet »",
+        "争う（あらそう）→争った « s'être disputés » → « les frères se sont disputés au sujet de l'héritage »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:に関する",
      "form": "〜に関する",
-     "niv": "N3",
-     "mean": "« concernant, au sujet de »"
+     "struct": "名 ＋ に関する＋名（Nに関するN）／に関して（連用）",
+     "mean": "« concernant, au sujet de »",
+     "examples": [
+      {
+       "jp": "環境問題に関する本を読んだ。",
+       "ro": "kankyō mondai ni kansuru hon o yonda.",
+       "fr": "J'ai lu un livre concernant les problèmes environnementaux.",
+       "an": [
+        "環境（かんきょう）« environnement »",
+        "問題（もんだい）« problème »",
+        "に関する（にかんする）« concernant, relatif à »",
+        "本（ほん）« livre »",
+        "を « COD »",
+        "読む（よむ）→読んだ « avoir lu » → « j'ai lu un livre concernant les problèmes environnementaux »."
+       ]
+      }
+     ],
+     "niv": "N3"
     }
    ]
   },
@@ -3220,38 +4497,136 @@
     {
      "id": "gram:わけがない",
      "form": "〜わけがない",
-     "niv": "N3",
-     "mean": "« il est impossible que, aucune raison que »"
+     "struct": "Proposition (forme neutre) ＋ わけがない",
+     "mean": "« il est impossible que, aucune raison que »",
+     "examples": [
+      {
+       "jp": "あんなに練習したのだから、負けるわけがない。",
+       "ro": "annani renshū shita no da kara, makeru wake ga nai.",
+       "fr": "Après s'être autant entraîné, c'est impossible qu'il perde.",
+       "an": [
+        "あんなに « autant »",
+        "練習（れんしゅう）« entraînement »",
+        "する→した « avoir fait »",
+        "の « nominalisateur »",
+        "だから « puisque »",
+        "負ける（まける）« perdre »",
+        "わけがない « impossible que » → « Après s'être autant entraîné, c'est impossible qu'il perde »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:ないわけにはいかない",
      "form": "〜ないわけにはいかない",
-     "niv": "N3",
-     "mean": "« on ne peut pas ne pas…, on est obligé de »"
+     "struct": "V(ない形) ＋ わけにはいかない",
+     "mean": "« on ne peut pas ne pas…, on est obligé de »",
+     "examples": [
+      {
+       "jp": "上司の命令だから、従わないわけにはいかない。",
+       "ro": "jōshi no meirei da kara, shitagawanai wake ni wa ikanai.",
+       "fr": "Comme c'est un ordre du chef, je ne peux pas ne pas obéir.",
+       "an": [
+        "上司（じょうし）« supérieur »",
+        "の « de »",
+        "命令（めいれい）« ordre »",
+        "だから « puisque »",
+        "従う（したがう）→従わない « ne pas obéir »",
+        "わけにはいかない « on ne peut pas » → « Comme c'est un ordre du chef, je ne peux pas ne pas obéir »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:得る",
      "form": "〜得る",
-     "niv": "N3",
-     "mean": "« pouvoir, être possible de (potentialité) »"
+     "struct": "V(ます形の語幹) ＋ 得る（うる／える）",
+     "mean": "« pouvoir, être possible de (potentialité) »",
+     "examples": [
+      {
+       "jp": "そんな失敗は誰にでもあり得る。",
+       "ro": "sonna shippai wa dare ni demo ari uru.",
+       "fr": "Une telle erreur peut arriver à n'importe qui.",
+       "an": [
+        "そんな « une telle »",
+        "失敗（しっぱい）« erreur »",
+        "は « thème »",
+        "誰（だれ）にでも « à n'importe qui »",
+        "ある→あり « survenir (base) »",
+        "得る（うる／える）« forme ます形の語幹 ＋得る = potentialité “peut arriver / il est possible que” » → « Une telle erreur peut arriver à n'importe qui »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:ようがない",
      "form": "〜ようがない",
-     "niv": "N3",
-     "mean": "« il n'y a pas moyen de, impossible de »"
+     "struct": "V(ますstem) ＋ ようがない",
+     "mean": "« il n'y a pas moyen de, impossible de »",
+     "examples": [
+      {
+       "jp": "住所が分からないので、荷物を送りようがない。",
+       "ro": "jūsho ga wakaranai node, nimotsu o okuri yō ga nai.",
+       "fr": "Comme je ne connais pas l'adresse, je n'ai aucun moyen d'envoyer le colis.",
+       "an": [
+        "住所（じゅうしょ）« adresse »",
+        "が « sujet »",
+        "分かる（わかる）→分からない « ne pas savoir »",
+        "ので « comme »",
+        "荷物（にもつ）« colis »",
+        "を « COD »",
+        "送る（おくる）→送りようがない « aucun moyen d'envoyer » → « Comme je ne connais pas l'adresse, je n'ai aucun moyen d'envoyer le colis »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:得ない",
      "form": "〜得ない",
-     "niv": "N3",
-     "mean": "« ne pas pouvoir, impossible de »"
+     "struct": "V(ます形の語幹) ＋ 得ない（えない）",
+     "mean": "« ne pas pouvoir, impossible de »",
+     "examples": [
+      {
+       "jp": "この方法では問題は解決し得ない。",
+       "ro": "kono hōhō de wa mondai wa kaiketsu shi enai.",
+       "fr": "Avec cette méthode, le problème ne peut pas être résolu.",
+       "an": [
+        "この « cette »",
+        "方法（ほうほう）« méthode »",
+        "では « avec (moyen) »",
+        "問題（もんだい）« problème »",
+        "は « thème »",
+        "解決（かいけつ）する→解決し « résoudre (base) »",
+        "得ない（えない）« forme ます形の語幹 ＋得ない = impossibilité “ne peut pas se produire / être fait” » → « Avec cette méthode, le problème ne peut pas être résolu »."
+       ]
+      }
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:かねる",
      "form": "〜かねる",
-     "niv": "N3",
-     "mean": "« ne pas pouvoir (poli : réticence/difficulté) »"
+     "struct": "V(ます形の語幹) ＋ かねる（丁寧：〜かねます）",
+     "mean": "« ne pas pouvoir (poli : réticence/difficulté) »",
+     "examples": [
+      {
+       "jp": "その提案には賛成しかねます。",
+       "ro": "sono teian ni wa sansei shi kanemasu.",
+       "fr": "Je ne peux me résoudre à approuver cette proposition.",
+       "an": [
+        "その « cette »",
+        "提案（ていあん）« proposition »",
+        "には « à (cible + thème) »",
+        "賛成（さんせい）する→賛成し « approuver (base) »",
+        "かねます « forme ます形の語幹 ＋かねる (poli かねます) = “ne pas pouvoir se résoudre à” (réticence, pas impossibilité logique) » → « Je ne peux me résoudre à approuver cette proposition »."
+       ]
+      }
+     ],
+     "niv": "N3"
     }
    ]
   }

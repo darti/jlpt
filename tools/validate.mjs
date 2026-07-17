@@ -97,7 +97,7 @@ for (const id of ['gram', 'vocab', 'kanji', 'method']) {
       if (id === 'gram' && !it.form) errors.push(at + ' : form manquant');
       if (id === 'gram' && it.form) {
         const alts = it.form.split(' / ').map(normGram).filter(Boolean);
-        gramForms.push({ alts, combined: alts.length > 1, at, form: it.form });
+        gramForms.push({ alts, combined: alts.length > 1, at, form: it.form, hasEx: (it.examples?.length || 0) > 0 });
       }
       nItems++;
     });
@@ -112,6 +112,15 @@ for (const id of ['gram', 'vocab', 'kanji', 'method']) {
       if (gf.combined) continue;
       const a = gf.alts[0];
       if (a && combinedAlts.has(a)) errors.push(gf.at + ' : forme "' + gf.form + '" double une variante de la fiche combinée "' + combinedAlts.get(a) + '"');
+    }
+  }
+  // Régression « stub de grammaire » : hors tables de référence (conjugaison de base g1,
+  // verbes keigo g12 dont le `mean` EST le contenu), chaque point doit porter au moins un
+  // exemple. Empêche de ré-introduire des cartes sans struct/examples.
+  if (id === 'gram') {
+    const REF_STUBS = new Set(['動詞 verbe', 'い-adj', 'な-adj', '名 nom', 'する', '行く・来る・いる', '言う', '食べる・飲む', '見る', '知っている']);
+    for (const gf of gramForms) {
+      if (!gf.hasEx && !REF_STUBS.has(gf.form)) errors.push(gf.at + ' : point de grammaire « ' + gf.form + ' » sans exemple (stub) — ajouter struct + examples');
     }
   }
   info.push('cours-' + id + '.json : ' + cat.groups.length + ' groupes, ' + nItems + ' items');
