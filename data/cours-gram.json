@@ -193,7 +193,8 @@
         "行く（いく）→行きます « aller (poli) » → « j'irai même s'il pleut »."
        ]
       }
-     ]
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:たって/だって(口語)",
@@ -211,7 +212,8 @@
         "間に合う（まにあう）→間に合わない « arriver à temps (négatif) » → « même en me pressant maintenant, je n'arriverai pas à temps »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:たらいい/といい/ばいい",
@@ -230,7 +232,8 @@
         "ですか « ＝したらいい = que faut-il faire ? (demande de conseil) » → « qu'est-ce que je devrais faire ? »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:さえば",
@@ -251,48 +254,6 @@
       }
      ],
      "niv": "N3"
-    },
-    {
-     "id": "gram:たって",
-     "form": "〜たって",
-     "niv": "N3",
-     "mean": "« même si » (oral)."
-    },
-    {
-     "id": "gram:だって(口語)",
-     "form": "〜だって (口語)",
-     "niv": "N3",
-     "mean": "« même si » (oral)."
-    },
-    {
-     "id": "gram:たらいい",
-     "form": "〜たらいい",
-     "niv": "N3",
-     "mean": "« il vaudrait / ce serait bien si / j'espère que »."
-    },
-    {
-     "id": "gram:といい",
-     "form": "〜といい",
-     "niv": "N3",
-     "mean": "« il vaudrait / ce serait bien si / j'espère que »."
-    },
-    {
-     "id": "gram:ばいい",
-     "form": "〜ばいい",
-     "niv": "N3",
-     "mean": "« il vaudrait / ce serait bien si / j'espère que »."
-    },
-    {
-     "id": "gram:ても",
-     "form": "〜ても",
-     "niv": "N4",
-     "mean": "« même si »"
-    },
-    {
-     "id": "gram:でも",
-     "form": "〜でも",
-     "niv": "N3",
-     "mean": "« même si »."
     },
     {
      "id": "gram:ばよかった",
@@ -380,7 +341,8 @@
         "中止（ちゅうし）になった « être annulé » → « à cause de la pluie, le match a été annulé »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:によって",
@@ -420,7 +382,8 @@
         "分かる（わかる）→分かりやすい « 連用形 ＋やすい = facile à comprendre » → « en vrai professeur, ses explications sont claires »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:に応じて",
@@ -461,7 +424,8 @@
         "知る（しる）→知った « apprendre, savoir (passé) » → « j'ai appris la nouvelle par la télévision »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:以上(は)",
@@ -484,46 +448,10 @@
      "niv": "N3"
     },
     {
-     "id": "gram:おかげで",
-     "form": "〜おかげで",
-     "niv": "N3",
-     "mean": "« grâce à » / « à cause de (reproche) »."
-    },
-    {
-     "id": "gram:せいで",
-     "form": "〜せいで",
-     "niv": "N3",
-     "mean": "« grâce à » / « à cause de (reproche) »."
-    },
-    {
-     "id": "gram:だけあって",
-     "form": "〜だけあって",
-     "niv": "N3",
-     "mean": "« justement parce que / à la hauteur de » (résultat attendu)."
-    },
-    {
-     "id": "gram:だけに",
-     "form": "〜だけに",
-     "niv": "N3",
-     "mean": "« justement parce que / à la hauteur de » (résultat attendu)."
-    },
-    {
      "id": "gram:ので",
      "form": "〜ので",
      "niv": "N4",
      "mean": "cause polie : « comme, parce que »"
-    },
-    {
-     "id": "gram:を通じて",
-     "form": "〜を通じて",
-     "niv": "N3",
-     "mean": "« par l'intermédiaire de / tout au long de »."
-    },
-    {
-     "id": "gram:を通して",
-     "form": "〜を通して",
-     "niv": "N3",
-     "mean": "« par l'intermédiaire de / tout au long de »."
     },
     {
      "id": "gram:ものだから",
@@ -746,7 +674,8 @@
         "ご注意（ちゅうい）ください « ＝faites attention (honorifique poli) » → « à la descente, attention où vous mettez les pieds »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:最中に",
@@ -806,7 +735,8 @@
         "笑う（わらう）→笑っている « forme ている = état en cours » → « à peine a-t-il pleuré qu'il rit déjà »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:次第",
@@ -846,7 +776,8 @@
         "来る（くる）→来た « venir (passé) » → « juste au moment où j'allais sortir, un visiteur est arrivé »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:とともに",
@@ -910,48 +841,6 @@
       }
      ],
      "niv": "N3"
-    },
-    {
-     "id": "gram:かと思うと",
-     "form": "〜かと思うと",
-     "niv": "N3",
-     "mean": "« à peine… que (changement rapide) »."
-    },
-    {
-     "id": "gram:かと思ったら",
-     "form": "〜かと思ったら",
-     "niv": "N3",
-     "mean": "« à peine… que (changement rapide) »."
-    },
-    {
-     "id": "gram:ところに",
-     "form": "〜ところに",
-     "niv": "N3",
-     "mean": "« juste au moment où »."
-    },
-    {
-     "id": "gram:ところへ",
-     "form": "〜ところへ",
-     "niv": "N3",
-     "mean": "« juste au moment où »."
-    },
-    {
-     "id": "gram:ところを",
-     "form": "〜ところを",
-     "niv": "N3",
-     "mean": "« juste au moment où »."
-    },
-    {
-     "id": "gram:際に",
-     "form": "〜際に",
-     "niv": "N3",
-     "mean": "« lors de / à l'occasion de »."
-    },
-    {
-     "id": "gram:際は",
-     "form": "〜際は",
-     "niv": "N3",
-     "mean": "« lors de / à l'occasion de »."
     },
     {
      "id": "gram:ついでに",
@@ -1043,7 +932,8 @@
         "分かる（わかる）→分かってきた « てきた = évolution jusqu'à présent (en venir à) » → « j'en suis venu à comprendre le japonais petit à petit »."
        ]
       }
-     ]
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:てみる",
@@ -1140,7 +1030,8 @@
         "降る（ふる）→降り出した « 連用形 ＋出す = se mettre à (commencement soudain), au passé » → « il s'est mis à pleuvoir soudainement »."
        ]
       }
-     ]
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:続ける",
@@ -1194,7 +1085,8 @@
         "食べる（たべる）→食べきれない « 連用形 ＋きれない = ne pas pouvoir finir/épuiser (potentiel négatif de 切る) » → « il y en a trop, je ne peux pas tout finir »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:直す",
@@ -1254,46 +1146,10 @@
      "niv": "N3"
     },
     {
-     "id": "gram:きる",
-     "form": "〜きる",
-     "niv": "N3",
-     "mean": "« refaire / re- »."
-    },
-    {
-     "id": "gram:きれない",
-     "form": "〜きれない",
-     "niv": "N3",
-     "mean": "« refaire / re- »."
-    },
-    {
      "id": "gram:たことがある",
      "form": "〜たことがある",
      "niv": "N4",
      "mean": "expérience : « avoir déjà… »"
-    },
-    {
-     "id": "gram:ていく",
-     "form": "〜ていく",
-     "niv": "N4",
-     "mean": "« aller en… » (éloignement / suite)"
-    },
-    {
-     "id": "gram:てくる",
-     "form": "〜てくる",
-     "niv": "N3",
-     "mean": "« comme / conformément à »."
-    },
-    {
-     "id": "gram:始める",
-     "form": "〜始める",
-     "niv": "N4",
-     "mean": "« commencer à… »"
-    },
-    {
-     "id": "gram:出す",
-     "form": "〜出す",
-     "niv": "N3",
-     "mean": "« continuer à »."
     },
     {
      "id": "gram:かけ",
@@ -1531,7 +1387,8 @@
         "疲れる（つかれる）→疲れている « forme ている = état » →みたいだ « みたいだ = apparence familière (a l'air de) » → « il a l'air fatigué »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:らしい",
@@ -1678,7 +1535,8 @@
         "怖い（こわい）→怖がっている « 語幹 ＋がる = manifester un sentiment (d'autrui) ＋ている (état) » → « l'enfant a peur du chien »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:に決まっている",
@@ -1777,18 +1635,6 @@
      ]
     },
     {
-     "id": "gram:がる",
-     "form": "〜がる",
-     "niv": "N3",
-     "mean": "exprime le sentiment/désir d'une 3e personne."
-    },
-    {
-     "id": "gram:たがる",
-     "form": "〜たがる",
-     "niv": "N3",
-     "mean": "exprime le sentiment/désir d'une 3e personne."
-    },
-    {
      "id": "gram:でしょう",
      "form": "〜でしょう",
      "niv": "N4",
@@ -1811,18 +1657,6 @@
      "form": "〜みたい",
      "niv": "N4",
      "mean": "comparaison : « comme, on dirait »"
-    },
-    {
-     "id": "gram:ようだ",
-     "form": "〜ようだ",
-     "niv": "N3",
-     "mean": "« on dirait que / il semble que » — déduction basée sur des indices."
-    },
-    {
-     "id": "gram:みたいだ",
-     "form": "〜みたいだ",
-     "niv": "N3",
-     "mean": "« on dirait que / il semble que » — déduction basée sur des indices."
     },
     {
      "id": "gram:がする",
@@ -1888,7 +1722,8 @@
         "疲れる（つかれる）→疲れた « passé » → « j'étais fatigué au point de ne plus pouvoir me lever »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:やすい/にくい",
@@ -1906,7 +1741,8 @@
         "読む（よむ）→読みやすい « 連用形 ＋やすい = facile à (faire) » → « ce livre est facile à lire »."
        ]
       }
-     ]
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:すぎる",
@@ -2008,30 +1844,6 @@
      "niv": "N4"
     },
     {
-     "id": "gram:にくい",
-     "form": "〜にくい",
-     "niv": "N4",
-     "mean": "difficulté : « difficile à… »"
-    },
-    {
-     "id": "gram:ほど",
-     "form": "〜ほど",
-     "niv": "N3",
-     "mean": "« au point de / à tel point que »."
-    },
-    {
-     "id": "gram:くらい",
-     "form": "〜くらい",
-     "niv": "N3",
-     "mean": "« au point de / à tel point que »."
-    },
-    {
-     "id": "gram:やすい",
-     "form": "〜やすい",
-     "niv": "N4",
-     "mean": "aptitude : « facile à… »"
-    },
-    {
      "id": "gram:あまり",
      "form": "〜あまり",
      "niv": "N3",
@@ -2080,7 +1892,8 @@
         "おいしい « délicieux » → « ce restaurant est bon marché et en plus délicieux »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:し",
@@ -2165,7 +1978,8 @@
         "難しい（むずかしい）« difficile » → « les kanji bien sûr, mais la grammaire aussi est difficile »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:だけ",
@@ -2285,43 +2099,14 @@
         "思う（おもう）→思わなかった « penser (négatif passé) » → « je ne pensais pas qu'il viendrait, lui »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:たりたりする",
      "form": "〜たり〜たりする",
      "niv": "N4",
      "mean": "énumération : « tantôt… tantôt »"
-    },
-    {
-     "id": "gram:なんか",
-     "form": "〜なんか",
-     "niv": "N3",
-     "mean": "dédain, modestie ou surprise."
-    },
-    {
-     "id": "gram:なんて",
-     "form": "〜なんて",
-     "niv": "N3",
-     "mean": "dédain, modestie ou surprise."
-    },
-    {
-     "id": "gram:ばかりでなく",
-     "form": "〜ばかりでなく",
-     "niv": "N3",
-     "mean": "« non seulement… mais aussi »."
-    },
-    {
-     "id": "gram:はもちろん",
-     "form": "〜はもちろん",
-     "niv": "N3",
-     "mean": "« non seulement… mais aussi »."
-    },
-    {
-     "id": "gram:上に",
-     "form": "〜上に",
-     "niv": "N3",
-     "mean": "« de plus / qui plus est » (ajout dans le même sens)."
     },
     {
      "id": "gram:たりたり",
@@ -2389,7 +2174,8 @@
         "難しい（むずかしい）« difficile » → « parler japonais est difficile »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:という",
@@ -2478,18 +2264,6 @@
      "form": "〜ことができる",
      "niv": "N4",
      "mean": "capacité : « pouvoir »"
-    },
-    {
-     "id": "gram:の",
-     "form": "〜の",
-     "niv": "N3",
-     "mean": "transforme une proposition en nom."
-    },
-    {
-     "id": "gram:こと",
-     "form": "〜こと",
-     "niv": "N3",
-     "mean": "transforme une proposition en nom."
     },
     {
      "id": "gram:のだ",
@@ -2582,7 +2356,8 @@
         "撮る（とる）→撮ってはいけない « forme て ＋はいけない = interdiction » → « il est interdit de prendre des photos ici »."
        ]
       }
-     ]
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:てあげる",
@@ -2660,7 +2435,8 @@
         "説明（せつめい）する « expliquer » →説明してくださった « forme て ＋くださる = faire l'honneur de (honorifique, passé) » → « le professeur a eu la gentillesse d'expliquer »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:ていただけませんか",
@@ -2754,49 +2530,14 @@
         "ください « ＋ください = permettez-moi de (demande de permission) » → « permettez-moi de me reposer un peu »."
        ]
       }
-     ]
-    },
-    {
-     "id": "gram:させてください",
-     "form": "〜させてください",
-     "niv": "N3",
-     "mean": "demander la permission de faire (humble)."
-    },
-    {
-     "id": "gram:させていただく",
-     "form": "〜させていただく",
-     "niv": "N3",
-     "mean": "demander la permission de faire (humble)."
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:たほうがいい",
      "form": "〜たほうがいい",
      "niv": "N4",
      "mean": "conseil : « il vaut mieux »"
-    },
-    {
-     "id": "gram:ていただく",
-     "form": "〜ていただく",
-     "niv": "N3",
-     "mean": "versions polies de もらう / くれる."
-    },
-    {
-     "id": "gram:てくださる",
-     "form": "〜てくださる",
-     "niv": "N3",
-     "mean": "versions polies de もらう / くれる."
-    },
-    {
-     "id": "gram:てはいけない",
-     "form": "〜てはいけない",
-     "niv": "N4",
-     "mean": "interdiction : « il ne faut pas »"
-    },
-    {
-     "id": "gram:てはならない",
-     "form": "〜てはならない",
-     "niv": "N3",
-     "mean": "« il ne faut pas / interdiction »."
     },
     {
      "id": "gram:てもいい",
@@ -2949,7 +2690,8 @@
         "住む（すむ）→住むことになった « ことになった = décision extérieure (il a été décidé que) » → « suite à une mutation, je vais habiter à Osaka »."
        ]
       }
-     ]
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:ようになる",
@@ -2988,18 +2730,6 @@
       }
      ],
      "niv": "N4"
-    },
-    {
-     "id": "gram:ことにする",
-     "form": "〜ことにする",
-     "niv": "N4",
-     "mean": "décision personnelle : « décider de »"
-    },
-    {
-     "id": "gram:ことになる",
-     "form": "〜ことになる",
-     "niv": "N3",
-     "mean": "« en venir à / arriver à (changement progressif de capacité/habitude) »."
     },
     {
      "id": "gram:つもりだ",
@@ -3214,7 +2944,8 @@
         "話し合う（はなしあう）→話し合った « discuter ensemble (passé) » → « nous avons discuté du problème environnemental »."
        ]
       }
-     ]
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:として",
@@ -3293,7 +3024,8 @@
         "行う（おこなう）→行われた « passif = se tenir, avoir lieu (passé) » → « la réunion s'est tenue à Osaka »."
        ]
       }
-     ]
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:向き/向け",
@@ -3312,43 +3044,8 @@
         "の本（ほん）だ « livre » → « c'est un livre destiné aux débutants »."
        ]
       }
-     ]
-    },
-    {
-     "id": "gram:において",
-     "form": "〜において",
-     "niv": "N3",
-     "mean": "« à / dans (lieu, domaine) »."
-    },
-    {
-     "id": "gram:における",
-     "form": "〜における",
-     "niv": "N3",
-     "mean": "« à / dans (lieu, domaine) »."
-    },
-    {
-     "id": "gram:について",
-     "form": "〜について",
-     "niv": "N4",
-     "mean": "« au sujet de »"
-    },
-    {
-     "id": "gram:に対して",
-     "form": "〜に対して",
-     "niv": "N3",
-     "mean": "« en tant que »."
-    },
-    {
-     "id": "gram:向き",
-     "form": "〜向き",
-     "niv": "N3",
-     "mean": "on cherche à se rappeler « c'était… déjà ? »."
-    },
-    {
-     "id": "gram:向け",
-     "form": "〜向け",
-     "niv": "N3",
-     "mean": "on cherche à se rappeler « c'était… déjà ? »."
+     ],
+     "niv": "N3"
     },
     {
      "id": "gram:をめぐって",
@@ -3440,7 +3137,8 @@
         "払う（はらう）→払わなければならない « なければならない = obligation (devoir) » → « je dois payer d'ici demain »."
        ]
       }
-     ]
+     ],
+     "niv": "N4"
     },
     {
      "id": "gram:ことだ",
@@ -3518,18 +3216,6 @@
       }
      ],
      "niv": "N3"
-    },
-    {
-     "id": "gram:なければならない",
-     "form": "〜なければならない",
-     "niv": "N4",
-     "mean": "obligation : « devoir, il faut »"
-    },
-    {
-     "id": "gram:なきゃ",
-     "form": "〜なきゃ",
-     "niv": "N3",
-     "mean": "« devoir / être obligé de »."
     },
     {
      "id": "gram:わけがない",

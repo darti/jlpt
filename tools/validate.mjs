@@ -12,6 +12,10 @@ function load(path) {
   catch (e) { errors.push(path + ' : illisible — ' + e.message); return null; }
 }
 
+// Normalise une forme de grammaire comme coursGramIndex.normalizeForm : garde l'après-":",
+// retire 〜 et espaces. Sert à détecter les stubs qui doublent une fiche combinée « 〜A / 〜B ».
+const normGram = (s) => { const c = s.lastIndexOf(':'); return (c >= 0 ? s.slice(c + 1) : s).replace(/〜/g, '').replace(/\s+/g, ''); };
+
 // ---------- dictionnaire ----------
 (function validateDict() {
   const f = load('data/dict.json'); if (!f) return;
@@ -79,6 +83,7 @@ for (const id of ['gram', 'vocab', 'kanji', 'method']) {
   }
   if (!Array.isArray(cat.groups)) { errors.push('cours-' + id + ' : groups doit être un tableau'); continue; }
   const seenId = new Set(); let nItems = 0;
+  const gramForms = []; // grammaire : { alts:[normalisées], combined:bool, at, form } par item
   cat.groups.forEach((g, gi) => {
     if (typeof g.title !== 'string' || !g.title) errors.push('cours-' + id + '.groups[' + gi + '] : title manquant');
     if (!Array.isArray(g.items)) { errors.push('cours-' + id + '.groups[' + gi + '] : items doit être un tableau'); return; }
@@ -90,9 +95,25 @@ for (const id of ['gram', 'vocab', 'kanji', 'method']) {
       if (id === 'vocab' && (!it.mot || typeof it.sens !== 'string')) errors.push(at + ' : mot/sens manquant');
       if (id === 'kanji' && (!it.kanji || typeof it.sens !== 'string')) errors.push(at + ' : kanji/sens manquant');
       if (id === 'gram' && !it.form) errors.push(at + ' : form manquant');
+      if (id === 'gram' && it.form) {
+        const alts = it.form.split(' / ').map(normGram).filter(Boolean);
+        gramForms.push({ alts, combined: alts.length > 1, at, form: it.form });
+      }
       nItems++;
     });
   });
+  // Régression « points de grammaire doublés » : un item mono-forme ne doit pas répéter une
+  // variante déjà couverte par une fiche combinée « 〜A / 〜B » (sinon coursGramIndex, qui
+  // splitte sur " / ", écrase la fiche riche par le stub). Cf. transform-cours Pass A/B.
+  if (id === 'gram') {
+    const combinedAlts = new Map(); // forme normalisée → form de la fiche combinée
+    for (const gf of gramForms) if (gf.combined) for (const a of gf.alts) combinedAlts.set(a, gf.form);
+    for (const gf of gramForms) {
+      if (gf.combined) continue;
+      const a = gf.alts[0];
+      if (a && combinedAlts.has(a)) errors.push(gf.at + ' : forme "' + gf.form + '" double une variante de la fiche combinée "' + combinedAlts.get(a) + '"');
+    }
+  }
   info.push('cours-' + id + '.json : ' + cat.groups.length + ' groupes, ' + nItems + ' items');
 }
 
