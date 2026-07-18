@@ -58,6 +58,18 @@ par tâche = branche + répertoire isolés.
 - **Tailwind vendorisé = sous-ensemble** : toutes les utilités ne sont PAS compilées
   (ex. `animate-spin` absent). Définir les manquantes (keyframes + règle/`@utility`)
   dans `src/styles/tailwind.css` `@layer base` — cf. `.jlpt-spin`, `.vbreak`/`.tok-*`.
+- **Furigana ruby — pas de gros espaces intra-mot** (régression déjà vue, ex. Q#1180
+  « 優　　　勝 » sur iOS). DEUX invariants à préserver ensemble, sinon la base kanji
+  s'étire :
+  1. **`furi()` (`src/lib/dict.ts`)** n'émet en `<rt>` que des lectures **mono-kana propres**
+     (`CLEAN_FURI_RE`). Les entrées **mono-kanji** du dico portent un *vidage* on/kun
+     (« ユウ・やさ(しい)・すぐ(れる) ») ; en furigana c'est absurde ET si large que ça déforme
+     la base. Un mot absent du dico (`優勝`, `競い合う`) ne doit PAS emprunter ces vidages →
+     kanji rendu en clair. Ne jamais retirer ce filtre.
+  2. **CSS `ruby rt` (`src/styles/tailwind.css`)** masque en **`display:none`** (overlay
+     `display:block` sous `[data-furi="on"]`), PAS `visibility:hidden` : WebKit/iOS garde une
+     `<rt>` en `visibility:hidden` dans le calcul de largeur de la base → étirement même
+     invisible (Chromium sort le `rt` absolu du flux, donc le bug ne se voit pas en desktop).
 - **Grep de références** : inclure `.tsx` ET `.ts` (`--include="*.ts"` seul rate les
   composants React → liens/imports morts non détectés, ex. un `href` vers une page supprimée).
 - **Test navigateur (HashRouter)** : changer le hash (`#/x`) ne recharge PAS la page.
