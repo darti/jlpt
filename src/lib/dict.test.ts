@@ -43,6 +43,28 @@ test("furi handles a full stem with several inline readings, no parentheses left
   expect(html).toContain("___");
 });
 
+test("furi ignores dictionary-dump readings (multi on/kun with · or okurigana) — no ruby, plain kanji", () => {
+  // Single-kanji dict entries carry full dumps like « ユウ・やさ(しい)・すぐ(れる) ». Used as
+  // furigana they are both nonsensical and so wide they stretch the base into big gaps on
+  // WebKit. Words absent from the dict (優勝, 競い合う) must NOT borrow these per-kanji dumps.
+  applyDictData({
+    "優": { r: "ユウ・やさ(しい)・すぐ(れる)", m: "excellent" },
+    "勝": { r: "か", m: "victoire" },
+    "競": { r: "キョウ・きそ(う)", m: "rivaliser" },
+    "二": { r: "に", m: "deux" },
+  });
+  const html = furi("優勝___二つのチームが競い合った。");
+  expect(html).not.toContain("ユウ"); // le vidage de dico n'apparaît jamais en ruby
+  expect(html).not.toContain("キョウ");
+  expect(html).not.toContain("(しい)");
+  // 優 et 競 (lectures = vidages) rendus en clair, sans <ruby> parasite
+  expect(html).not.toContain("<ruby>優");
+  expect(html).not.toContain("<ruby>競");
+  // les lectures « propres » mono-kana restent utilisées (勝→か, 二→に)
+  expect(html).toContain("<rt>か</rt>");
+  expect(html).toContain("<rt>に</rt>");
+});
+
 test("lookupDef returns the entry for a known word", () => {
   expect(lookupDef("影響")).toEqual({ w: "影響", r: "えいきょう", m: "influence" });
 });

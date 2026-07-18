@@ -31,6 +31,12 @@ export function applyDictData(data: Dict): void {
 // ---------- furigana (recherche gloutonne du plus long mot) ----------
 const KANJI_RE = /[一-鿿々]/;
 const READING_RE = /^[ぁ-んァ-ンー・]+$/;
+/** Une lecture *utilisable en furigana* est une suite de kana « propre » : pas de « · »
+ *  (qui sépare plusieurs lectures on/kun dans les entrées mono-kanji du dico) ni de
+ *  parenthèses d'okurigana (ex. « ユウ・やさ(しい)・すぐ(れる) »). Ces vidages de dico ne
+ *  sont pas des lectures contextuelles : les afficher en ruby donne un texte absurde ET
+ *  déforme la base (annotation très large → gros espaces intra-mot sur WebKit/iOS). */
+const CLEAN_FURI_RE = /^[ぁ-んァ-ンー]+$/;
 
 export function furi(s: string | null | undefined): string {
   if (s == null) return "";
@@ -61,7 +67,7 @@ export function furi(s: string | null | undefined): string {
         let m: string | null = null;
         for (let L = Math.min(12, end - k); L >= 1; L--) {
           const sub = s.substr(k, L);
-          if (READ[sub]) { m = sub; break; }
+          if (READ[sub] && CLEAN_FURI_RE.test(READ[sub])) { m = sub; break; }
         }
         if (m) { out += "<ruby>" + m + "<rt>" + READ[m] + "</rt></ruby>"; k += m.length; }
         else { out += s[k]; k++; }

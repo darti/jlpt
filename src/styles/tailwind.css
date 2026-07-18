@@ -227,13 +227,16 @@
   /* Furigana: hidden by default; revealed globally via `[data-furi="on"]` on the root
      (the « ふ » toggle in the top nav). Tapping a word opens its definition popup instead
      of toggling furigana, so there is no per-word reveal.
-     The `<rt>` is absolutely positioned — out of flow — so revealing furigana shifts
-     NOTHING: it never widens the base kanji (no intra-word gaps) and never grows the
-     line box (no vertical reflow). A `visibility` toggle swaps the ink in and out of
-     the reserved slot above each word, which stays put whether shown or hidden.
+     The `<rt>` is `display:none` when hidden, then an absolutely-positioned overlay when
+     revealed — out of flow — so it never grows the line box (no vertical reflow) and never
+     widens the base kanji. `display:none` (rather than `visibility:hidden`) is deliberate:
+     WebKit/iOS keeps a `visibility:hidden` ruby annotation in the base-width computation, so
+     a wide `<rt>` still stretched the base into big intra-word gaps (« 優　　　勝 ») even
+     while invisible. Removing it from layout entirely fixes that in every engine.
      Needs `line-height ≥ ~1.8` on the text so the annotation clears the line above. */
   ruby { position: relative; }
   ruby rt {
+    display: none;
     position: absolute;
     left: 50%;
     bottom: 100%;
@@ -243,9 +246,8 @@
     font-weight: 400;
     line-height: 1;
     white-space: nowrap;
-    visibility: hidden;
   }
-  :root[data-furi="on"] ruby rt { visibility: visible; }
+  :root[data-furi="on"] ruby rt { display: block; }
 
   /* Data-embedded emphasis (`<b>`/`<strong>` inside question explanations, rendered via
      dangerouslySetInnerHTML) at a medium weight — full bold on kanji reads poorly. The UI's
