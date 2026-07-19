@@ -2393,5 +2393,6 @@
   "そのうち": {"r":"","m":"un de ces jours, bientôt"},
   "さっき": {"r":"","m":"tout à l'heure (passé proche)"},
   "違い": {"r":"さ / ちがい","m":"écart / différence"},
-  "苦しい": {"r":"くるしい","m":"pénible, douloureux"}
+  "苦しい": {"r":"くるしい","m":"pénible, douloureux"},
+  "優勝": {"r":"ゆうしょう","m":"victoire, titre (compétition)"}
 }
