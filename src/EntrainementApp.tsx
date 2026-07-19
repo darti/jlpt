@@ -14,6 +14,7 @@ import type { Question } from "./types/quiz.ts";
 import type { DiagAnswer } from "./features/quiz/useQuiz.ts";
 import { useCoursGramIndex } from "./features/cours/useCoursGramIndex.ts";
 import { resolveGrammarRappel, type CoursGramIndex } from "./features/cours/coursGramIndex.ts";
+import { BTN_PRIMARY } from "./ui/styles.ts";
 
 /** Pure, prop-driven Entraînement content: the hub (phase "home") or the quiz flow
  *  (question/corrigé/résultats). SSR-renderable — all effects live in the container +
@@ -63,7 +64,7 @@ export function EntrainementAppView(props: {
           <button
             type="button"
             onClick={props.onNext}
-            className="w-full bg-accent text-fg-on-accent border-none rounded-xl px-4 py-3 font-bold text-base cursor-pointer"
+            className={`w-full ${BTN_PRIMARY}`}
           >
             Suivant
           </button>

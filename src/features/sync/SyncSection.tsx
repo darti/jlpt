@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useGistSync, type SyncTone } from "./useGistSync.ts";
+import { PANEL, H2 } from "../../ui/styles.ts";
 
 const TONE_CLASS: Record<SyncTone, string> = {
   ok: "text-status-completed",
@@ -22,8 +23,8 @@ export function SyncSection({ onProgressChanged }: { onProgressChanged: () => vo
   const [gist, setGist] = useState("");
 
   return (
-    <div className="bg-panel border border-line rounded-xl px-6 py-[22px] mb-6 shadow-card surface-blur">
-      <h2 className="mt-0 text-lg text-fg">Synchronisation multi-appareils</h2>
+    <div className={`${PANEL} mb-6`}>
+      <h2 className={H2}>Synchronisation multi-appareils</h2>
       <p className={`text-sm m-0 mb-3 ${TONE_CLASS[tone]}`}>{status}</p>
 
       {!connected && (

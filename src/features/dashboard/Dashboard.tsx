@@ -4,13 +4,11 @@ import { PassGauge } from "./PassGauge.tsx";
 import { CoverageRings } from "./CoverageRings.tsx";
 import type { SkillCoverage } from "../../lib/coverage.ts";
 import type { Skill } from "../../types/progress.ts";
+import { PANEL, H2 } from "../../ui/styles.ts";
 
 const TIER_COLOR = {
   ok: "text-status-completed", warn: "text-prio-high", bad: "text-status-failed",
 } as const;
-
-const CARD = "bg-panel border border-line rounded-xl px-6 py-5 shadow-card surface-blur";
-const HEADING = "text-fg text-lg font-bold mt-0 mb-3";
 
 // Pure presentational component. Model validation (null check, shape verification) is deferred
 // to the parent/caller (see useProgress hook). This component only checks for empty data state.
@@ -20,7 +18,7 @@ export function Dashboard(
 ) {
   if (!model || model.answers === 0) {
     return (
-      <div className={CARD}>
+      <div className={PANEL}>
         <p className="text-fg-dim text-sm m-0">
           Aucune donnée pour l'instant — lance un quiz dans l'entraînement adaptatif
           pour générer ton analyse. ({days} jours avant l'examen)
@@ -34,7 +32,7 @@ export function Dashboard(
   return (
     <div className="flex flex-col gap-6">
       {/* Estimation d'examen : indicateurs clés + jauge de réussite */}
-      <div className={CARD}>
+      <div className={PANEL}>
         <div className="grid grid-cols-2 gap-2 text-center mb-3">
           <div className="bg-surface-2 border border-line rounded-lg py-2 px-1">
             <div className={`text-xl font-bold ${pctColor}`}>{pct}</div>
@@ -60,15 +58,15 @@ export function Dashboard(
       </div>
 
       {/* Maîtrise par compétence : radar (maîtrise + couverture « vu » en surimpression) */}
-      <div className={CARD}>
-        <h2 className={HEADING}>Maîtrise par compétence</h2>
+      <div className={PANEL}>
+        <h2 className={H2}>Maîtrise par compétence</h2>
         <SkillChart mastery={model.barMastery} coverage={coverage} />
       </div>
 
       {/* Couverture du référentiel : anneaux vu / appris */}
       {coverage && (
-        <div className={CARD}>
-          <h2 className={HEADING}>Couverture du référentiel</h2>
+        <div className={PANEL}>
+          <h2 className={H2}>Couverture du référentiel</h2>
           <CoverageRings coverage={coverage} />
         </div>
       )}

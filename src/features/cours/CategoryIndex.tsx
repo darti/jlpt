@@ -1,6 +1,7 @@
 import type { LearnCategory } from "./coursSchema.ts";
 import { groupProgress, type CoursProgress } from "./coursProgress.ts";
 import { Breadcrumb } from "./Breadcrumb.tsx";
+import { TILE } from "../../ui/styles.ts";
 
 /** Niveau 1 : les thèmes d'une catégorie, en cartes, avec ratio de progression. */
 export function CategoryIndex({
@@ -25,10 +26,7 @@ export function CategoryIndex({
             <a
               key={g.id}
               href={`#/cours/${category.id}/${g.id}`}
-              className={
-                "bg-panel border border-line rounded-xl p-3 " +
-                "shadow-card flex flex-col gap-1 no-underline"
-              }
+              className={`${TILE} flex flex-col gap-1 no-underline`}
             >
               <span className="text-fg font-semibold text-sm">
                 {g.title}

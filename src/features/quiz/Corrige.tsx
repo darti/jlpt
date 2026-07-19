@@ -2,6 +2,7 @@ import type { Question } from "../../types/quiz.ts";
 import type { GrammarRappel } from "../cours/coursGramIndex.ts";
 import { grammarPointHref } from "../cours/coursDeepLink.ts";
 import { SentenceAnalysis } from "../../ui/SentenceAnalysis.tsx";
+import { PANEL } from "../../ui/styles.ts";
 
 /** Same SSR-safe furigana guard as `QuestionCard` — see there for rationale. */
 declare const furi: ((s: string) => string) | undefined;
@@ -20,7 +21,7 @@ export function Corrige({ question, correct, rappel }: { question: Question; cor
   const hasScript = question.cat === "ecoute" && script.length > 0;
 
   return (
-    <div className="bg-panel border border-line rounded-xl p-5 shadow-card surface-blur">
+    <div className={PANEL}>
       <p className={`text-lg font-bold mb-3 ${correct ? "text-status-completed" : "text-status-failed"}`}>
         {correct ? (
           "Correct !"

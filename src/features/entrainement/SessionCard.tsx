@@ -1,4 +1,5 @@
 import type { ResumeState } from "../quiz/useQuiz.ts";
+import { PANEL, H2, BTN_PRIMARY, BTN_GHOST } from "../../ui/styles.ts";
 
 const DURATIONS = [5, 10, 15];
 
@@ -18,20 +19,20 @@ export function SessionCard({
   if (resume) {
     const pos = `${Math.min(resume.qi + 1, resume.ids.length)}/${resume.ids.length}`;
     return (
-      <div className="bg-panel border border-line rounded-xl p-5 shadow-card surface-blur">
-        <h2 className="text-fg text-lg font-bold mt-0 mb-1">Reprendre ta session</h2>
+      <div className={PANEL}>
+        <h2 className={H2}>Reprendre ta session</h2>
         <p className="text-fg-dim text-sm mt-0 mb-4">{pos} · {resume.right} bonne(s) réponse(s)</p>
         <button
           type="button"
           onClick={() => onResumeNow()}
-          className="w-full bg-accent text-fg-on-accent border-none rounded-xl px-4 py-3 font-bold text-base cursor-pointer"
+          className={`w-full ${BTN_PRIMARY}`}
         >
           Continuer
         </button>
         <button
           type="button"
           onClick={onDismissResume}
-          className="w-full bg-transparent border border-line text-fg-dim rounded-xl px-4 py-2.5 text-sm cursor-pointer mt-2"
+          className={`w-full ${BTN_GHOST} mt-2`}
         >
           Nouvelle session
         </button>
@@ -40,8 +41,8 @@ export function SessionCard({
   }
 
   return (
-    <div className="bg-panel border border-line rounded-xl p-5 shadow-card surface-blur">
-      <h2 className="text-fg text-lg font-bold mt-0 mb-3">Ta session du moment</h2>
+    <div className={PANEL}>
+      <h2 className={H2}>Ta session du moment</h2>
       <div className="flex items-center gap-2 mb-4">
         <span className="text-fg-dim text-sm">J'ai</span>
         {DURATIONS.map((m) => (
@@ -62,7 +63,7 @@ export function SessionCard({
       <button
         type="button"
         onClick={onStart}
-        className="w-full bg-accent text-fg-on-accent border-none rounded-xl px-4 py-3 font-bold text-base cursor-pointer"
+        className={`w-full ${BTN_PRIMARY}`}
       >
         Commencer
       </button>

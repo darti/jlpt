@@ -2,6 +2,7 @@ import { useState, type ChangeEvent } from "react";
 import { readFs, bumpFs, applyFontScale, type FsKind } from "../../lib/fontscale.ts";
 import { exportJson, importJson, resetProgress } from "../../lib/datajson.ts";
 import type { ThemeName } from "../../lib/theme.ts";
+import { PANEL, H2_TIGHT } from "../../ui/styles.ts";
 
 const CHIP_BASE = "bg-surface-2 border border-line rounded-lg px-3 h-9 text-sm cursor-pointer";
 const CHIP = CHIP_BASE + " text-fg";
@@ -60,8 +61,8 @@ export function Settings({ theme, onToggleTheme }: { theme: ThemeName; onToggleT
   };
 
   return (
-    <div className="bg-panel border border-line rounded-xl p-5 shadow-card surface-blur flex flex-col gap-4">
-      <h2 className="text-fg text-lg font-bold m-0">Réglages</h2>
+    <div className={`${PANEL} flex flex-col gap-4`}>
+      <h2 className={H2_TIGHT}>Réglages</h2>
 
       <section className="flex flex-col gap-2">
         <h3 className="text-fg text-sm font-bold m-0">Police</h3>

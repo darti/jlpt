@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FALLBACK_LINES, SHARE_URL, useInstallPrompt } from "./useInstallPrompt.ts";
+import { BTN_PRIMARY } from "../../ui/styles.ts";
 
 type CopyStatus = "idle" | "copied" | "manual";
 
@@ -86,7 +87,7 @@ export function InstallPrompt() {
     <>
       <button
         type="button" onClick={onInstallClick}
-        className="block w-full mb-4 bg-accent text-fg-on-accent border-none rounded-xl px-3 py-3 font-bold cursor-pointer"
+        className={`block w-full mb-4 ${BTN_PRIMARY}`}
       >
         {label}
       </button>

@@ -14,6 +14,7 @@ import { Breadcrumb } from "./Breadcrumb.tsx";
 import { SpeakButton } from "./SpeakButton.tsx";
 import { SentenceAnalysis } from "../../ui/SentenceAnalysis.tsx";
 import { kanjiExempleJa } from "./coursSpeech.ts";
+import { H2_TIGHT } from "../../ui/styles.ts";
 
 /** Wrapper props shared by every item row so a deep-linked item can be anchored + highlighted. */
 type RowFocus = { focused?: boolean };
@@ -243,7 +244,7 @@ export function GroupDetail({
           <span aria-hidden="true">←</span> Revenir à la question
         </a>
       )}
-      <h2 className="text-fg text-lg font-bold">{group.title}</h2>
+      <h2 className={H2_TIGHT}>{group.title}</h2>
       {group.note && (
         <p className="text-fg-dim text-sm bg-surface-2 border border-line rounded-lg p-2.5">
           {group.note}

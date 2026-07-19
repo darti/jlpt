@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
+import { PANEL, PANEL_BARE, H2_ACCENT } from "../../ui/styles.ts";
 
 type Phase = "p1" | "p2" | "p3" | "p4";
 
-const CARD = "bg-panel border border-line rounded-xl p-5 shadow-card surface-blur";
-const H2 = "text-fg text-lg font-bold border-l-4 border-accent pl-2.5 mt-2 mb-1";
+const SECTION_H2 = `${H2_ACCENT} mt-2 mb-1`;
 const PHASE_CLS: Record<Phase, string> = {
   p1: "bg-surface-2 text-accent",
   p2: "bg-surface-2 text-prio-high",
@@ -29,7 +29,7 @@ const PHASES: [Phase, string, string, string, string][] = [
  *  la routine quotidienne. Contenu d'orientation intemporel récupéré de l'onglet Planning retiré. */
 export function MethodeN3() {
   return (
-    <details className="bg-panel border border-line rounded-xl shadow-card surface-blur overflow-hidden">
+    <details className={`${PANEL_BARE} overflow-hidden`}>
       <summary className="cursor-pointer px-5 py-4 font-bold text-fg text-lg">
         La méthode N3
       </summary>
@@ -37,7 +37,7 @@ export function MethodeN3() {
 
         {/* Ce qu'il faut maîtriser + structure de l'examen */}
         <section>
-          <h2 className={H2}>Ce qu'il faut maîtriser au N3</h2>
+          <h2 className={SECTION_H2}>Ce qu'il faut maîtriser au N3</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-3">
             {STATS.map(([n, l]) => (
               <div key={l} className="bg-surface-2 border border-line rounded-xl p-4">
@@ -46,7 +46,7 @@ export function MethodeN3() {
               </div>
             ))}
           </div>
-          <div className={`${CARD} text-fg-dim text-sm mt-3`}>
+          <div className={`${PANEL} text-fg-dim text-sm mt-3`}>
             <b className="text-fg">Structure de l'examen :</b> 言語知識 (vocabulaire/kanji 30 min) · 言語知識・読解 (grammaire + compréhension écrite 70 min) · 聴解 (compréhension orale 40 min).
             Il faut <b className="text-fg">≥ 19/60 par section</b> ET un total <b className="text-fg">≥ 95/180</b>. Ne néglige aucune section.
           </div>
@@ -54,8 +54,8 @@ export function MethodeN3() {
 
         {/* Les 4 phases */}
         <section>
-          <h2 className={H2}>Les 4 phases</h2>
-          <div className={`${CARD} mt-3 overflow-x-auto`}>
+          <h2 className={SECTION_H2}>Les 4 phases</h2>
+          <div className={`${PANEL} mt-3 overflow-x-auto`}>
             <table className="w-full text-sm border-collapse">
               <thead><tr className="text-fg-dim">{["Phase", "Semaines", "Focus", "But"].map((h) => <th key={h} className="text-left py-2 px-2 border-b border-line font-semibold">{h}</th>)}</tr></thead>
               <tbody>
@@ -74,8 +74,8 @@ export function MethodeN3() {
 
         {/* Routine quotidienne */}
         <section>
-          <h2 className={H2}>Routine quotidienne (≈ 60–90 min/jour)</h2>
-          <div className={`${CARD} mt-3 grid grid-cols-[auto_1fr] gap-x-3.5 gap-y-1.5 text-sm`}>
+          <h2 className={SECTION_H2}>Routine quotidienne (≈ 60–90 min/jour)</h2>
+          <div className={`${PANEL} mt-3 grid grid-cols-[auto_1fr] gap-x-3.5 gap-y-1.5 text-sm`}>
             <b className="text-accent">15 min</b><span className="text-fg-dim"><Link to="/entrainement" className="text-accent">Entraînement</Link> — un quiz du jour (kanji + vocabulaire), puis « Réviser mes erreurs ».</span>
             <b className="text-accent">20 min</b><span className="text-fg-dim"><Link to="/cours" className="text-accent">Cours de grammaire</Link> : 1 à 2 nouveaux points + écris 2 phrases à toi avec chacun.</span>
             <b className="text-accent">20 min</b><span className="text-fg-dim">Compréhension écrite : relis les exemples du cours à voix haute, puis quiz « 読解 » de l'app.</span>

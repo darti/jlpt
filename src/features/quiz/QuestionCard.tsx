@@ -1,4 +1,5 @@
 import type { Question } from "../../types/quiz.ts";
+import { PANEL } from "../../ui/styles.ts";
 
 /** Furigana rendering hook, provided globally by `dict.js` (loaded by `quiz.html`).
  * `typeof` guard keeps this module SSR-safe: `renderToStaticMarkup` (no `dict.js`
@@ -25,7 +26,7 @@ export function QuestionCard({
   const stemHtml = furiOrPlain(question.q).replace("___", '<span class="blank">？</span>');
 
   return (
-    <div className="bg-panel border border-line rounded-xl p-5 shadow-card surface-blur">
+    <div className={PANEL}>
       {/* Identifiant discret de la question — permet de pointer précisément un item à corriger. */}
       <div className="text-fg-muted text-meta text-right mb-1 select-all font-mono">#{question.id}</div>
       {question.cat === "lecture" && passage && (

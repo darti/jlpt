@@ -5,6 +5,7 @@ import { QuestionCard } from "./QuestionCard.tsx";
 import { Corrige } from "./Corrige.tsx";
 import { speakQuestion } from "../../lib/tts.ts";
 import { resolveGrammarRappel, type CoursGramIndex } from "../cours/coursGramIndex.ts";
+import { PANEL, BTN_PRIMARY } from "../../ui/styles.ts";
 
 const SKILL_LABELS: Record<Skill, string> = {
   grammaire: "Grammaire", vocabulaire: "Vocab", kanji: "Kanji", lecture: "Lecture", ecoute: "Écoute",
@@ -31,7 +32,7 @@ export function DiagnosticResults({
     .filter((r) => r.total > 0);
   return (
     <div className="flex flex-col gap-4">
-      <div className="bg-panel border border-line rounded-xl p-6 shadow-card surface-blur text-center">
+      <div className={`${PANEL} text-center`}>
         <p className="text-fg-dim text-sm mb-1">Ton niveau estimé</p>
         <p className="text-4xl font-bold text-accent mb-1">{model.level}</p>
         <p className="text-fg-dim text-sm mb-3">
@@ -56,7 +57,7 @@ export function DiagnosticResults({
       <button
         type="button"
         onClick={onDone}
-        className="w-full bg-accent text-fg-on-accent border-none rounded-xl px-4 py-3 font-bold text-base cursor-pointer"
+        className={`w-full ${BTN_PRIMARY}`}
       >
         Terminé
       </button>

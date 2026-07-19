@@ -1,5 +1,6 @@
 import type { CoursCategory } from "./coursSchema.ts";
 import { categoryProgress, type CoursProgress } from "./coursProgress.ts";
+import { TILE, H2_ACCENT } from "../../ui/styles.ts";
 
 /** Niveau 0 : cartes de catégories (learn = ratio global ; method = page conseils). */
 export function CoursHub({
@@ -11,7 +12,7 @@ export function CoursHub({
 }) {
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-fg text-lg font-bold border-l-4 border-accent pl-2.5">
+      <h2 className={H2_ACCENT}>
         Cours
       </h2>
       <div className="grid gap-3 [grid-template-columns:repeat(auto-fill,minmax(210px,1fr))]">
@@ -22,10 +23,7 @@ export function CoursHub({
             <a
               key={c.id}
               href={`#/cours/${c.id}`}
-              className={
-                "bg-panel border border-line rounded-xl p-4 " +
-                "shadow-card flex flex-col gap-1 no-underline"
-              }
+              className={`${TILE} flex flex-col gap-1 no-underline`}
             >
               <span className="text-fg font-bold">{c.title}</span>
               <span className="text-fg-muted text-meta">
