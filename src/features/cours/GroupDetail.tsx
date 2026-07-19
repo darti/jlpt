@@ -15,6 +15,7 @@ import { SpeakButton } from "./SpeakButton.tsx";
 import { SentenceAnalysis } from "../../ui/SentenceAnalysis.tsx";
 import { kanjiExempleJa } from "./coursSpeech.ts";
 import { H2_TIGHT } from "../../ui/styles.ts";
+import { furi } from "../../lib/dict.ts";
 
 /** Wrapper props shared by every item row so a deep-linked item can be anchored + highlighted. */
 type RowFocus = { focused?: boolean };
@@ -42,10 +43,6 @@ export function splitStruct(struct: string): string[] {
 
 /** Ring + soft background applied to the deep-linked item (`?focus=<id>`). */
 const FOCUS_RING = "ring-2 ring-accent rounded-lg bg-surface-2/60";
-
-declare const furi: ((s: string) => string) | undefined;
-const furiOrPlain = (t: string): string =>
-  typeof furi === "function" ? furi(t) : t;
 
 const STATE_LABEL: Record<"new" | ItemState, string> = {
   new: "○",
@@ -86,7 +83,7 @@ function Example({ ex }: { ex: CoursExample }) {
       <div className="flex items-start gap-2">
         <div
           className="text-fg text-xl flex-1 min-w-0"
-          dangerouslySetInnerHTML={{ __html: furiOrPlain(ex.jp) }}
+          dangerouslySetInnerHTML={{ __html: furi(ex.jp) }}
         />
         <SpeakButton text={ex.jp} />
       </div>
@@ -118,7 +115,7 @@ function VocabRow({
       <div className="flex-1 min-w-0">
         <span
           className="text-fg text-xl"
-          dangerouslySetInnerHTML={{ __html: furiOrPlain(it.mot) }}
+          dangerouslySetInnerHTML={{ __html: furi(it.mot) }}
         />
         <span className="text-fg-muted text-base ml-2">{it.lecture}</span>
         <div className="text-fg-dim text-sm">{it.sens}</div>
@@ -152,7 +149,7 @@ function KanjiRow({
         {it.exemple && (
           <div
             className="text-fg-muted text-base"
-            dangerouslySetInnerHTML={{ __html: furiOrPlain(it.exemple) }}
+            dangerouslySetInnerHTML={{ __html: furi(it.exemple) }}
           />
         )}
       </div>

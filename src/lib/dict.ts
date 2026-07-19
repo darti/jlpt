@@ -275,14 +275,18 @@ export function initDefs(_opts?: { singleTap?: boolean }): void {
 }
 
 /**
- * Browser entry point: expose the dict functions as globals (React consumers read
- * `window.furi`/`visualBreak`/`initDefs`; the popup's inline handlers need
- * `hideDef`/`jlptSay`), then load the dictionary data from JSON. Best-effort — if the
- * fetch fails (offline first visit), furigana/lookups simply return plain text.
+ * Browser entry point: install the popup's inline handlers, then load the dictionary data
+ * from JSON. Best-effort — if the fetch fails (offline first visit), furigana/lookups simply
+ * return plain text.
+ *
+ * Seuls `hideDef`/`jlptSay` sont exposés en globales : le popup de définition est construit
+ * en HTML brut (`_SPK`, `showDef`) avec des attributs `onclick=` qui les appellent par nom.
+ * `furi`/`visualBreak`/`initDefs` ne le sont plus — les composants les importent directement
+ * depuis ce module (une seule instance, donc le même DICT chargé au runtime).
  */
 export async function setupDict(url = "data/dict.json"): Promise<void> {
   const w = window as unknown as Record<string, unknown>;
-  w.furi = furi; w.visualBreak = visualBreak; w.initDefs = initDefs; w.hideDef = hideDef; w.jlptSay = jlptSay;
+  w.hideDef = hideDef; w.jlptSay = jlptSay;
   // Attach tap-to-define gestures app-wide: a single tap/click on a word opens the definition
   // popup (reading + meaning + TTS) — same gesture on mobile and desktop, no long-press/double-click.
   // Furigana are no longer toggled per-word; they are revealed only by the global menu (`[data-furi="on"]`).

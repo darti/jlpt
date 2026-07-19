@@ -3,12 +3,7 @@ import type { GrammarRappel } from "../cours/coursGramIndex.ts";
 import { grammarPointHref } from "../cours/coursDeepLink.ts";
 import { SentenceAnalysis } from "../../ui/SentenceAnalysis.tsx";
 import { PANEL } from "../../ui/styles.ts";
-
-/** Same SSR-safe furigana guard as `QuestionCard` — see there for rationale. */
-declare const furi: ((s: string) => string) | undefined;
-function furiOrPlain(text: string): string {
-  return typeof furi === "function" ? furi(text) : text;
-}
+import { furi } from "../../lib/dict.ts";
 
 /** Port of the legacy corrigé block from `answer()` (app-n3.html:937-957):
  * correct/incorrect banner, rule explanation, grammar decomposition, and the
@@ -27,7 +22,7 @@ export function Corrige({ question, correct, rappel }: { question: Question; cor
           "Correct !"
         ) : (
           <>
-            Faux. Réponse : <span className="text-fg" dangerouslySetInnerHTML={{ __html: furiOrPlain(correctAnswer) }} />
+            Faux. Réponse : <span className="text-fg" dangerouslySetInnerHTML={{ __html: furi(correctAnswer) }} />
           </>
         )}
       </p>
@@ -39,7 +34,7 @@ export function Corrige({ question, correct, rappel }: { question: Question; cor
           <p className="text-accent text-sm font-bold mb-1">Transcription</p>
           <div
             className="text-fg-dim text-sm leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: furiOrPlain(script) }}
+            dangerouslySetInnerHTML={{ __html: furi(script) }}
           />
         </div>
       )}
@@ -59,9 +54,9 @@ export function Corrige({ question, correct, rappel }: { question: Question; cor
                 className={`text-sm ${i === question.a ? "text-status-completed" : "text-fg-dim"}`}
               >
                 <span aria-hidden="true">{i === question.a ? "✓" : "✗"}</span>{" "}
-                <span dangerouslySetInnerHTML={{ __html: furiOrPlain(opt) }} />
+                <span dangerouslySetInnerHTML={{ __html: furi(opt) }} />
                 {" — "}
-                <span dangerouslySetInnerHTML={{ __html: furiOrPlain(od[i]) }} />
+                <span dangerouslySetInnerHTML={{ __html: furi(od[i]) }} />
               </li>
             ))}
           </ul>
@@ -72,7 +67,7 @@ export function Corrige({ question, correct, rappel }: { question: Question; cor
           <p className="text-accent text-sm font-bold mb-1">Rappel de cours</p>
           {rappel ? (
             <p className="text-fg-dim text-sm m-0">
-              <span className="text-fg font-bold" dangerouslySetInnerHTML={{ __html: furiOrPlain(rappel.forme) }} />
+              <span className="text-fg font-bold" dangerouslySetInnerHTML={{ __html: furi(rappel.forme) }} />
               {" "}
               {rappel.niv && `(${rappel.niv})`}
               {rappel.sens && ` — ${rappel.sens}`}

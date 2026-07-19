@@ -1,13 +1,6 @@
 import type { Question } from "../../types/quiz.ts";
 import { PANEL } from "../../ui/styles.ts";
-
-/** Furigana rendering hook, provided globally by `dict.js` (loaded by `quiz.html`).
- * `typeof` guard keeps this module SSR-safe: `renderToStaticMarkup` (no `dict.js`
- * on the server) falls back to the raw text instead of throwing. */
-declare const furi: ((s: string) => string) | undefined;
-function furiOrPlain(text: string): string {
-  return typeof furi === "function" ? furi(text) : text;
-}
+import { furi } from "../../lib/dict.ts";
 
 /** Port of legacy `renderQ` (app-n3.html:906-935): stem + options, in original
  * order — `onChoose(i)` must receive the ORIGINAL index into `question.o` since
@@ -23,7 +16,7 @@ export function QuestionCard({
   onSpeak: () => void;
 }) {
   const passage = typeof question.passage === "string" ? question.passage : null;
-  const stemHtml = furiOrPlain(question.q).replace("___", '<span class="blank">？</span>');
+  const stemHtml = furi(question.q).replace("___", '<span class="blank">？</span>');
 
   return (
     <div className={PANEL}>
@@ -32,7 +25,7 @@ export function QuestionCard({
       {question.cat === "lecture" && passage && (
         <div
           className="text-fg text-base mb-3 leading-loose"
-          dangerouslySetInnerHTML={{ __html: furiOrPlain(passage) }}
+          dangerouslySetInnerHTML={{ __html: furi(passage) }}
         />
       )}
       <div
@@ -66,7 +59,7 @@ export function QuestionCard({
               disabled={answered}
               onClick={() => onChoose(i)}
               className={`text-left rounded-lg px-4 py-2.5 text-base cursor-pointer ${cls}`}
-              dangerouslySetInnerHTML={{ __html: furiOrPlain(opt) }}
+              dangerouslySetInnerHTML={{ __html: furi(opt) }}
             />
           );
         })}
