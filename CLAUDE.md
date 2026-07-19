@@ -31,8 +31,10 @@ par tâche = branche + répertoire isolés.
   (police/thème/données/synchro), `/cours`. `/quiz` **redirige** vers `/entrainement`
   (compat, query préservée) ; `/planning` **redirige** vers `/` (compat, méthode rapatriée sur l'Accueil) ; `quiz.html`/`app-n3.html` = **stubs de redirection** (anciennes
   URL/bookmarks → routes hash). Le shell (thème/SW/police/dict) est dans `AppShell` (montage unique).
-- Contenu chargé au runtime : `data/dict.json` (furigana + tap-pour-définir, `src/lib/dict.ts`),
-  `data/cours-*.json` (route `/cours`, `src/features/cours`), `data/bank-*.json` (quiz).
+- Qui charge quoi : `src/lib/dict.ts` (furigana + tap-pour-définir), `src/features/cours`
+  (route `/cours`), `src/lib/bank.ts` (pools du quiz).
+- **Date de l'examen = une seule constante** : `EXAM_DATE` (`src/lib/scoring.ts`, 2026-12-06).
+  Compte à rebours, phases de la méthode et score projeté en dérivent tous.
 - Styles : tokens oku (Tailwind v4) compilés dans `src/styles/styles.gen.css` ; look Nord via
   `[data-theme]` (`themes.css`). Furigana masqués par défaut (tap pour révéler / bascule `ふ`).
 - **Moteur quiz = 3 couches pures + 1 hook à effets.** `src/lib/elo.ts` (Elo par compétence,
@@ -58,6 +60,12 @@ par tâche = branche + répertoire isolés.
     bun tools/validate.mjs            # valide les data/*.json sources (exit 1 si KO)
     bun tools/split-bank.mjs          # data/bank.json → data/bank-*.json + bank-index.json
     bun tools/split-bank.mjs --check  # exit 1 si les dérivés sont désynchronisés
+
+⚠ **Aucune CI ne lance les tests ni le typecheck** — `validate.yml` ne valide que `data/*.json`,
+`deploy.yml` ne fait que `bun run build`, et **`bun build` ne typecheck pas**. Un test rouge ou une
+erreur de type part en prod sans qu'aucun check ne rougisse. `bun test` + `bun run typecheck` avant
+de commiter = le seul garde-fou. **Pas de linter** dans le projet (ni eslint, ni prettier, ni
+biome) : ne pas en chercher un, ne pas en ajouter sans demande explicite.
 
 ## Données — sources vs dérivés (ne JAMAIS éditer un dérivé)
 
@@ -95,6 +103,10 @@ décale tous les ids suivants → progression des utilisateurs corrompue. **Ajou
 - **`tools/*.mjs` = Node-compatible OBLIGATOIRE** : malgré la règle « bun exclusivement »,
   `.github/workflows/validate.yml` exécute `node tools/validate.mjs` (setup-node 20). Aucune
   API `Bun.*` là-dedans — la CI contenu casserait, et c'est invisible en local.
+- **ECharts DOIT rester en `import()` dynamique** : `ProgressChart`, `PassGauge` et `SkillChart`
+  chargent `echarts/core` + leurs modules via `await import(...)` (renderer SVG). Un `import`
+  statique en tête de fichier bascule toute la lib dans le chunk d'entrée — aucun test ni CI ne
+  le détecte, seule la taille de `_site/*.js` bouge.
 - **Tailwind vendorisé = sous-ensemble** : toutes les utilités ne sont PAS compilées
   (ex. `animate-spin` absent). Définir les manquantes (keyframes + règle/`@utility`)
   dans `src/styles/tailwind.css` `@layer base` — cf. `.jlpt-spin`, `.vbreak`/`.tok-*`.
