@@ -203,10 +203,26 @@ function jpRunAt(x: number, y: number): { run: string; rel: number } | null {
   if (doc.caretRangeFromPoint) range = doc.caretRangeFromPoint(x, y);
   else if (doc.caretPositionFromPoint) { const p = doc.caretPositionFromPoint(x, y); if (p) { range = document.createRange(); range.setStart(p.offsetNode, p.offset); range.collapse(true); } }
   if (!range) return null;
-  let node: Node | null = range.startContainer;
-  if (node && node.nodeType === 3 && node.parentNode && node.parentNode.nodeName === "RT") {
-    const ruby = node.parentNode.parentNode;
-    if (ruby) { const base = ([] as Node[]).slice.call(ruby.childNodes).filter((n) => n.nodeName !== "RT").map((n) => n.textContent).join(""); if (/[一-鿿]/.test(base)) return { run: base, rel: 0 }; }
+  const node: Node | null = range.startContainer;
+  // Un mot du dico est rendu en UN seul <ruby> (ex. <ruby>優勝<rt>ゆうしょう</rt></ruby>). Dès que
+  // le tap tombe quelque part dans ce ruby — base, <rt>, ou l'élément lui-même — on prend TOUTE la
+  // base comme unité de recherche. Sinon, selon le moteur (WebKit/iOS résout le caret au kanji sous
+  // le doigt), on ne récupérait qu'un kanji isolé au lieu du mot entier (bug signalé).
+  const startEl: Element | null = node ? (node.nodeType === 1 ? (node as Element) : (node.parentNode as Element | null)) : null;
+  const ruby = startEl && startEl.closest ? startEl.closest("ruby") : null;
+  if (ruby) {
+    const baseNodes = ([] as Node[]).slice.call(ruby.childNodes).filter((n) => n.nodeName !== "RT");
+    const base = baseNodes.map((n) => n.textContent || "").join("");
+    if (/[一-鿿]/.test(base)) {
+      // Position du caractère tapé dans la base (0 si le tap a atterri sur le <rt>).
+      let rel = 0;
+      if (node && node.nodeType === 3 && node.parentNode && node.parentNode.nodeName !== "RT") {
+        let acc = 0;
+        for (const n of baseNodes) { if (n === node) { acc += range.startOffset; break; } acc += (n.textContent || "").length; }
+        rel = Math.max(0, Math.min(acc, base.length - 1));
+      }
+      return { run: base, rel };
+    }
   }
   if (!node || node.nodeType !== 3) return null;
   const t = node.textContent || ""; let i = range.startOffset;
