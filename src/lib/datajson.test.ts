@@ -1,13 +1,7 @@
 import { test, expect } from "bun:test";
 import { exportJson, importJson, resetProgress } from "./datajson.ts";
+import { memStore } from "../testing/memStore.ts";
 
-function memStore(init: Record<string, string> = {}) {
-  const m = new Map(Object.entries(init));
-  return { getItem: (k: string) => (m.has(k) ? (m.get(k) as string) : null),
-           setItem: (k: string, v: string) => void m.set(k, v),
-           removeItem: (k: string) => void m.delete(k),
-           key: (i: number) => [...m.keys()][i] ?? null, get length() { return m.size; }, _dump: () => Object.fromEntries(m) };
-}
 
 test("exportJson round-trips progress but NEVER carries the GitHub token (C1)", () => {
   const src = memStore({ jlptN3adapt_v2: JSON.stringify({ total: 7, skill: {} }), jlptN3_theme: "dark", jlptN3_gh: JSON.stringify({ token: "SECRET" }) });

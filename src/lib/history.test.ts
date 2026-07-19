@@ -1,10 +1,7 @@
 import { test, expect } from "bun:test";
 import { readSessionScores } from "./history.ts";
+import { memStore } from "../testing/memStore.ts";
 
-function memStore(init: Record<string, string> = {}) {
-  const m = new Map(Object.entries(init));
-  return { getItem: (k: string) => (m.has(k) ? (m.get(k) as string) : null) };
-}
 
 test("readSessionScores returns each history entry's numeric score in order", () => {
   const s = memStore({ jlptN3adapt_v2: JSON.stringify({ history: [{ score: 80 }, { score: 110 }] }) });

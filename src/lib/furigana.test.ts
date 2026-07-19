@@ -1,14 +1,7 @@
 import { test, expect } from "bun:test";
 import { readFuri, writeFuri, applyFuri } from "./furigana.ts";
+import { memStore } from "../testing/memStore.ts";
 
-function memStore(init: Record<string, string> = {}) {
-  const m = new Map(Object.entries(init));
-  return {
-    getItem: (k: string) => (m.has(k) ? (m.get(k) as string) : null),
-    setItem: (k: string, v: string) => void m.set(k, v),
-    _get: (k: string) => m.get(k),
-  };
-}
 
 test("readFuri defaults to false (hidden), true only when 'on'", () => {
   expect(readFuri(memStore())).toBe(false);

@@ -1,11 +1,7 @@
 import { test, expect } from "bun:test";
 import { readFs, bumpFs, applyFontScale } from "./fontscale.ts";
+import { memStore } from "../testing/memStore.ts";
 
-function memStore(init: Record<string, string> = {}) {
-  const m = new Map(Object.entries(init));
-  return { getItem: (k: string) => (m.has(k) ? (m.get(k) as string) : null),
-           setItem: (k: string, v: string) => void m.set(k, v), _get: (k: string) => m.get(k) };
-}
 
 test("readFs defaults to 1 when unset or out of range", () => {
   expect(readFs("Ui", memStore())).toBe(1);

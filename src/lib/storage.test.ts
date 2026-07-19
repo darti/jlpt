@@ -1,5 +1,6 @@
 import { test, expect } from "bun:test";
 import { readProgress, writeProgress, readRawProgress } from "./storage.ts";
+import { memStore } from "../testing/memStore.ts";
 
 const fake = (v: string | null) => ({ getItem: (_k: string) => v });
 
@@ -30,14 +31,6 @@ test("returns null when getItem throws", () => {
   expect(readProgress(badStore)).toBeNull();
 });
 
-function memStore(init: Record<string, string> = {}) {
-  const m = new Map(Object.entries(init));
-  return {
-    getItem: (k: string) => (m.has(k) ? (m.get(k) as string) : null),
-    setItem: (k: string, v: string) => void m.set(k, v),
-    _get: (k: string) => m.get(k),
-  };
-}
 
 test("writeProgress merges onto the existing blob, preserving unmanaged fields (gram/streak)", () => {
   const store = memStore({
