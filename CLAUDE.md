@@ -32,11 +32,19 @@ par tâche = branche + répertoire isolés.
   (compat, query préservée) ; `/planning` **redirige** vers `/` (compat, méthode rapatriée sur l'Accueil) ; `quiz.html`/`app-n3.html` = **stubs de redirection** (anciennes
   URL/bookmarks → routes hash). Le shell (thème/SW/police/dict) est dans `AppShell` (montage unique).
 - Qui charge quoi : `src/lib/dict.ts` (furigana + tap-pour-définir), `src/features/cours`
-  (route `/cours`), `src/lib/bank.ts` (pools du quiz).
+  (route `/cours`), `src/lib/bank.ts` (pools du quiz). ⚠ `furi`/`visualBreak` s'**importent**
+  depuis `dict.ts` (module unique, donc même DICT chargé au runtime) — il n'y a plus de
+  `window.furi` ni de garde `typeof furi === "function"` : vestiges du `dict.js` vanilla
+  supprimé. `setupDict` n'expose plus que `hideDef`/`jlptSay`, appelés par nom depuis les
+  `onclick=` du popup de définition, construit en HTML brut.
 - **Date de l'examen = une seule constante** : `EXAM_DATE` (`src/lib/scoring.ts`, 2026-12-06).
   Compte à rebours, phases de la méthode et score projeté en dérivent tous.
 - Styles : tokens oku (Tailwind v4) compilés dans `src/styles/styles.gen.css` ; look Nord via
   `[data-theme]` (`themes.css`). Furigana masqués par défaut (tap pour révéler / bascule `ふ`).
+  ⚠ Les **chaînes d'utilitaires récurrentes** (carte, titre, bouton) vivent dans
+  `src/ui/styles.ts` — `PANEL` / `PANEL_BARE` / `TILE`, `H2` / `H2_TIGHT` / `H2_ACCENT`,
+  `BTN_PRIMARY` / `BTN_GHOST`. Ne pas retaper le squelette en dur dans un composant : c'est
+  exactement comme ça que quinze cartes ont fini avec cinq paddings différents.
 - **Moteur quiz = 3 couches pures + 1 hook à effets.** `src/lib/elo.ts` (Elo par compétence,
   R borné 1200–2000 ; d=1/2/3 ↔ 1400/1600/1800 ; K=40 puis 24 après 10 réponses),
   `src/lib/bank.ts` (chargement/mémoïsation des pools + `pickAdaptive` / `selectDiagnostic` /
@@ -103,10 +111,15 @@ décale tous les ids suivants → progression des utilisateurs corrompue. **Ajou
 - **`tools/*.mjs` = Node-compatible OBLIGATOIRE** : malgré la règle « bun exclusivement »,
   `.github/workflows/validate.yml` exécute `node tools/validate.mjs` (setup-node 20). Aucune
   API `Bun.*` là-dedans — la CI contenu casserait, et c'est invisible en local.
-- **ECharts DOIT rester en `import()` dynamique** : `ProgressChart`, `PassGauge` et `SkillChart`
-  chargent `echarts/core` + leurs modules via `await import(...)` (renderer SVG). Un `import`
-  statique en tête de fichier bascule toute la lib dans le chunk d'entrée — aucun test ni CI ne
-  le détecte, seule la taille de `_site/*.js` bouge.
+- **ECharts DOIT rester en `import()` dynamique** : l'invariant vit dans **un seul** endroit,
+  le hook `useEChart` (`src/features/dashboard/useEChart.ts`), que `ProgressChart`, `PassGauge`
+  et `SkillChart` partagent — il fait le `await import("echarts/core")`, le `init` (renderer SVG),
+  le resize et le dispose. Chaque graphe ne fournit que ses modules (`load`) et ses options.
+  Un `import` statique en tête de fichier bascule toute la lib dans le chunk d'entrée — aucun
+  test ni CI ne le détecte, seule la taille de `_site/*.js` bouge. Les imports **de type**
+  (`import type { EChartsCoreOption } from "echarts/core"`) sont sûrs : effacés au build.
+  ⚠ `bun build` ne nettoie pas `_site` : pour mesurer, comparer la sortie du build (elle liste
+  les chunks émis), pas `du` sur le dossier — il accumule les chunks des builds précédents.
 - **Tailwind vendorisé = sous-ensemble** : toutes les utilités ne sont PAS compilées
   (ex. `animate-spin` absent). Définir les manquantes (keyframes + règle/`@utility`)
   dans `src/styles/tailwind.css` `@layer base` — cf. `.jlpt-spin`, `.vbreak`/`.tok-*`.
@@ -127,11 +140,16 @@ décale tous les ids suivants → progression des utilisateurs corrompue. **Ajou
 - **Test navigateur (HashRouter)** : changer le hash (`#/x`) ne recharge PAS la page.
   Pour charger un nouveau bundle après `bun run build`, faire un vrai `location.reload()`
   (le HTML est network-first, donc pas besoin de bumper `sw.js`).
-- **Persistance** : localStorage même origine, partagé entre toutes les routes —
-  `jlptN3adapt_v2` (blob de progression), `jlptN3quiz_resume` (session en cours, purgée >2 j),
-  `jlptN3_cours_v1` (avancement cours), `jlptN3_theme`, `jlptN3_furi`, `jlptN3_fsUi`/`_fsJp`
-  (échelles de police), `jlptN3_updatedAt` (horodatage de la sync), `jlptN3_gh` (PAT Gist),
-  `jlptN3_pending`. Sync multi-appareils optionnelle via Gist (PAT scope `gist`).
+- **Persistance** : localStorage même origine, partagé entre toutes les routes. **Les clés sont
+  énumérées une seule fois dans `src/lib/keys.ts`** — ne jamais réécrire un littéral `"jlptN3…"`
+  ailleurs (une clé retapée à un caractère près = donnée utilisateur perdue, sans erreur) :
+  `PROGRESS_KEY` (blob de progression), `RESUME_KEY` (session en cours, purgée >2 j),
+  `COURS_KEY` (avancement cours), `THEME_KEY`, `FURI_KEY`, `fsKey("Ui"|"Jp")` (échelles de
+  police), `UPDATED_KEY` (horodatage de la sync — écrire via `stampUpdated(store)`),
+  `GH_CFG_KEY` (PAT Gist), `PENDING_KEY`. ⚠ Toute clé applicative nouvelle doit porter le
+  préfixe `KEY_PREFIX` (`jlptN3`) : `gist.ts#collectData` balaie le store dessus pour bâtir la
+  sauvegarde, donc une clé sans préfixe n'est **jamais** synchronisée.
+  Sync multi-appareils optionnelle via Gist (PAT scope `gist`).
   ⚠ Écrire la progression **uniquement** via `writeProgress()` (`src/lib/storage.ts`) : c'est un
   **patch fusionné** sur le blob existant (deep-merge de `skill`). Réécrire le blob entier efface
   les champs des autres features.
