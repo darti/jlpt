@@ -1,15 +1,11 @@
 import type { DashboardModel } from "../../lib/scoring.ts";
-import { SKILLS, type Skill } from "../../types/progress.ts";
+import { SKILLS, SKILL_LABELS } from "../../types/progress.ts";
 import type { Question } from "../../types/quiz.ts";
 import { QuestionCard } from "./QuestionCard.tsx";
 import { Corrige } from "./Corrige.tsx";
 import { speakQuestion } from "../../lib/tts.ts";
 import { resolveGrammarRappel, type CoursGramIndex } from "../cours/coursGramIndex.ts";
 import { PANEL, BTN_PRIMARY } from "../../ui/styles.ts";
-
-const SKILL_LABELS: Record<Skill, string> = {
-  grammaire: "Grammaire", vocabulaire: "Vocab", kanji: "Kanji", lecture: "Lecture", ecoute: "Écoute",
-};
 
 /** Diagnostic report: estimated level (from `dashboardModel`) + a per-skill score derived from
  *  THIS test's answers (covers all 5 tested categories — `barMastery` omits `ecoute`, MAJOR #3) +

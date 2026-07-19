@@ -1,9 +1,6 @@
-import { BAR_SKILLS, type Skill } from "../../types/progress.ts";
+import { BAR_SKILLS, SKILL_LABELS, type Skill } from "../../types/progress.ts";
 import type { SkillCoverage } from "../../lib/coverage.ts";
 
-const LABELS: Record<Skill, string> = {
-  grammaire: "Grammaire", vocabulaire: "Vocab", kanji: "Kanji", lecture: "Lecture", ecoute: "Écoute",
-};
 // Outer ring hue = per-skill identity token; inner ring = accent (mastered).
 const SKILL_VAR: Record<Skill, string> = {
   grammaire: "--color-skill-grammaire", vocabulaire: "--color-skill-vocabulaire",
@@ -26,7 +23,7 @@ export function CoverageRings({ coverage }: { coverage: Record<Skill, SkillCover
           <div key={s} className="flex flex-col items-center gap-1 text-center">
             <svg
               width="52" height="52" viewBox="0 0 52 52"
-              role="img" aria-label={`${LABELS[s]} : vu ${cov.seenN} sur ${cov.total}, appris ${cov.masteredN}`}
+              role="img" aria-label={`${SKILL_LABELS[s]} : vu ${cov.seenN} sur ${cov.total}, appris ${cov.masteredN}`}
             >
               <circle cx="26" cy="26" r={R_OUT} fill="none" strokeWidth="4" style={{ stroke: TRACK }} />
               <circle
@@ -43,7 +40,7 @@ export function CoverageRings({ coverage }: { coverage: Record<Skill, SkillCover
                 style={{ stroke: "var(--color-accent)" }}
               />
             </svg>
-            <span className="text-meta text-fg-dim">{LABELS[s]}</span>
+            <span className="text-meta text-fg-dim">{SKILL_LABELS[s]}</span>
             <span className="text-meta text-fg-dim">
               vu <b className="text-fg">{cov.seenN}</b> · appris <b className="text-fg">{cov.masteredN}</b>
             </span>
