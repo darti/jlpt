@@ -3,12 +3,11 @@
  * Pur + localStorage.
  */
 import type { CoursGroup, LearnCategory } from "./coursSchema.ts";
-import { COURS_KEY } from "../../lib/keys.ts";
+import { COURS_KEY, stampUpdated } from "../../lib/keys.ts";
 
 export type ItemState = "known" | "review";
 export type CoursProgress = Record<string, ItemState>;
 export interface GroupStats { known: number; review: number; total: number; }
-
 
 export function groupProgress(group: CoursGroup, p: CoursProgress): GroupStats {
   let known = 0, review = 0;
@@ -63,9 +62,16 @@ export function loadCoursProgress(
   } catch { return {}; }
 }
 
+/** Persiste l'avancement **et** horodate l'écriture : `cloudPull()` compare `jlptN3_updatedAt`
+ *  local et distant, donc sans ce tampon un appareil où seul le cours a bougé perd la
+ *  comparaison et se fait écraser par la version en ligne. N'est appelée que depuis le
+ *  toggle utilisateur (jamais au montage), le tampon reste donc fidèle. */
 export function saveCoursProgress(
   p: CoursProgress,
   store: Pick<Storage, "setItem"> = globalThis.localStorage
 ): void {
-  try { store.setItem(COURS_KEY, JSON.stringify(p)); } catch { /* best-effort */ }
+  try {
+    store.setItem(COURS_KEY, JSON.stringify(p));
+    stampUpdated(store);
+  } catch { /* best-effort */ }
 }

@@ -4,6 +4,8 @@ import {
   loadCoursProgress, saveCoursProgress, type CoursProgress,
 } from "./coursProgress.ts";
 import type { CoursGroup, LearnCategory } from "./coursSchema.ts";
+import { memStore } from "../../testing/memStore.ts";
+import { UPDATED_KEY } from "../../lib/keys.ts";
 
 const g = (id: string, ...ids: string[]): CoursGroup =>
   ({ id, title: id, items: ids.map((x) => ({ id: x, mot: x, lecture: "", sens: "" })) });
@@ -50,4 +52,13 @@ test("load/save : round-trip, JSON invalide → {}, valeurs inconnues filtrées"
   expect(loadCoursProgress(store)).toEqual({});
   mem["jlptN3_cours_v1"] = JSON.stringify({ a: "known", c: "bidon" });
   expect(loadCoursProgress(store)).toEqual({ a: "known" }); // "bidon" ignoré
+});
+
+test("saveCoursProgress horodate la dernière écriture (sinon la synchro perd l'avancement du cours)", () => {
+  // Régression : theme/fontscale/progress horodataient tous jlptN3_updatedAt, pas le cours.
+  // Un appareil dont SEUL l'avancement du cours avait bougé perdait donc la comparaison
+  // local vs distant de cloudPull() et se faisait écraser par la version en ligne.
+  const store = memStore();
+  saveCoursProgress({ a: "known" }, store);
+  expect(store._get(UPDATED_KEY)).toMatch(/^\d{4}-\d{2}-\d{2}T/);
 });
