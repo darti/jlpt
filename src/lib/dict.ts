@@ -104,6 +104,16 @@ function splitVerbLead(jp: string, gloss: string): Tok[] {
   out.push({ jp, gloss, role: "verb" });
   return out;
 }
+/** Rubification d'un jeton d'analyse : furigana SYSTÉMATIQUES. Toute lecture inline « mot（かな） »
+ *  — y compris les mots à okurigana (少しずつ, 良い), pas seulement les runs de kanji purs — devient
+ *  un ruby sur le mot entier ; les kanji restants sans lecture inline reçoivent le furigana du dico
+ *  (`furi()`), sans jamais retoucher un `<ruby>` déjà posé. Avant, seuls les mots finissant par un
+ *  kanji étaient rubifiés → les autres restaient en « （かな） » littéral (incohérent). */
+const INLINE_READ_RE = /([一-鿿々ぁ-ゖァ-ヺー]*[一-鿿々][一-鿿々ぁ-ゖァ-ヺー]*)（([ぁ-んァ-ンー・]+)）/g;
+function rubifyAnalyse(jp: string): string {
+  const withInline = jp.replace(INLINE_READ_RE, (_m, w, r) => "<ruby>" + w + "<rt>" + r + "</rt></ruby>");
+  return withInline.split(/(<ruby>[\s\S]*?<\/ruby>)/g).map((seg) => seg.slice(0, 6) === "<ruby>" ? seg : furi(seg)).join("");
+}
 export function visualBreak(str: string, opts?: { legend?: boolean }): string {
   if (!str) return "";
   const parts = String(str).split(" · ");
@@ -131,7 +141,7 @@ export function visualBreak(str: string, opts?: { legend?: boolean }): string {
     toks.forEach((t) => {
       if (!t.jp) return;
       if (t.role === "part") hasPart = true; else if (t.role === "verb") hasVerb = true; else if (t.role === "adj") hasAdj = true; else if (t.role === "adjna") hasAdjNa = true; else if (t.role === "adv") hasAdv = true; else hasNoun = true;
-      const jpHtml = t.jp.replace(/([一-鿿々]+)（([ぁ-んァ-ンー・]+)）/g, "<ruby>$1<rt>$2</rt></ruby>");
+      const jpHtml = rubifyAnalyse(t.jp);
       pills += '<span class="tok tok-' + t.role + '"><span class="tok-jp">' + jpHtml + "</span>" + (t.gloss ? '<span class="tok-g">' + t.gloss + "</span>" : "") + "</span>";
     });
   });

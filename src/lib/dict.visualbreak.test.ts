@@ -26,6 +26,17 @@ test("a → conjugation segment is coloured as a verb/form", () => {
   expect(visualBreak("出る→出たきり « forme た ＋きり »")).toContain("tok-verb");
 });
 
+test("furigana systématiques : un mot à okurigana （少しずつ, 良い） devient aussi un ruby", () => {
+  // avant, seuls les mots finissant par un kanji étaient rubifiés → 少しずつ（すこしずつ） restait
+  // en parenthèses littérales. Désormais la lecture inline couvre le mot entier.
+  const a = visualBreak("少しずつ（すこしずつ） « peu à peu »");
+  expect(a).toContain("<ruby>少しずつ<rt>すこしずつ</rt></ruby>");
+  expect(a).not.toContain("（すこしずつ）");
+  const b = visualBreak("良い（よい）→良くなり « s'améliorer »");
+  expect(b).toContain("<ruby>良い<rt>よい</rt></ruby>");
+  expect(b).not.toContain("（よい）");
+});
+
 test("legend:false suppresses the role legend even with multiple roles", () => {
   const withLegend = visualBreak("朝（あさ） « matin » · を « COD »");
   const noLegend = visualBreak("朝（あさ） « matin » · を « COD »", { legend: false });
