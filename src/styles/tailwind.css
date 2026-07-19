@@ -268,9 +268,12 @@
   }
   .vbreak .tok-jp { font-size: 1rem; line-height: 1.6; text-align: center; overflow-wrap: anywhere; }
   .vbreak .tok-jp rt {
-    /* `display: revert` restaure le rendu ruby natif (annotation au-dessus) : la règle
-       globale `ruby rt { display:none }` (furigana masqués de l'app) s'appliquerait sinon
-       ici aussi et masquerait les lectures de l'analyse, qui elles sont TOUJOURS visibles. */
+    /* Restaure le rendu ruby natif (annotation au-dessus) : la règle globale
+       `ruby rt { display:none }` (furigana masqués de l'app) s'appliquerait sinon ici aussi et
+       masquerait les lectures de l'analyse, qui elles sont TOUJOURS visibles. Double déclaration :
+       `ruby-text` (valeur explicite, comprise par WebKit/iOS anciens) puis `revert` (Safari 15.4+,
+       repli sur la valeur UA = ruby-text). Les navigateurs sans `revert` gardent `ruby-text`. */
+    display: ruby-text;
     display: revert;
     position: static; transform: none; margin: 0; visibility: visible;
     font-size: 0.5em; line-height: 1; color: rgba(255, 255, 255, 0.8);
