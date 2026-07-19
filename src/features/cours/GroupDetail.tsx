@@ -9,10 +9,10 @@ import type {
   CoursExample,
 } from "./coursSchema.ts";
 import { type CoursProgress, type ItemState } from "./coursProgress.ts";
-import { visualBreak } from "../../lib/dict.ts";
 import { quizResumeHref } from "./coursDeepLink.ts";
 import { Breadcrumb } from "./Breadcrumb.tsx";
 import { SpeakButton } from "./SpeakButton.tsx";
+import { SentenceAnalysis } from "../../ui/SentenceAnalysis.tsx";
 import { kanjiExempleJa } from "./coursSpeech.ts";
 
 /** Wrapper props shared by every item row so a deep-linked item can be anchored + highlighted. */
@@ -92,12 +92,7 @@ function Example({ ex }: { ex: CoursExample }) {
       <div className="text-fg-muted text-meta">{ex.ro}</div>
       <div className="text-fg-dim">{ex.fr}</div>
       {ex.an && ex.an.length > 0 && (
-        <div
-          className="text-lg"
-          dangerouslySetInnerHTML={{
-            __html: visualBreak(ex.an.join(" · "), { legend: false }),
-          }}
-        />
+        <SentenceAnalysis source={ex.an.join(" · ")} />
       )}
     </div>
   );

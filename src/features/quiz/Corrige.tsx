@@ -1,18 +1,12 @@
 import type { Question } from "../../types/quiz.ts";
 import type { GrammarRappel } from "../cours/coursGramIndex.ts";
 import { grammarPointHref } from "../cours/coursDeepLink.ts";
+import { SentenceAnalysis } from "../../ui/SentenceAnalysis.tsx";
 
 /** Same SSR-safe furigana guard as `QuestionCard` — see there for rationale. */
 declare const furi: ((s: string) => string) | undefined;
 function furiOrPlain(text: string): string {
   return typeof furi === "function" ? furi(text) : text;
-}
-
-/** `window.visualBreak` (dict.js:75/236) renders `q.g`'s `·`-separated decomposition as
- * colored role-tagged token pills + legend — legacy `app-n3.html:954`. SSR-guarded like `furi`. */
-declare const visualBreak: ((s: string) => string) | undefined;
-function visualBreakOrPlain(text: string): string {
-  return typeof visualBreak === "function" ? visualBreak(text) : furiOrPlain(text);
 }
 
 /** Port of the legacy corrigé block from `answer()` (app-n3.html:937-957):
@@ -51,10 +45,7 @@ export function Corrige({ question, correct, rappel }: { question: Question; cor
       {question.g && (
         <div className="mb-3">
           <p className="text-accent text-sm font-bold mb-1">Analyse de la phrase</p>
-          <div
-            className="text-fg-dim text-sm leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: visualBreakOrPlain(question.g) }}
-          />
+          <SentenceAnalysis source={question.g} />
         </div>
       )}
       {!correct && hasOd && (
