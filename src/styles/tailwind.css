@@ -266,16 +266,18 @@
     color: #fff; padding: 5px 10px; border-radius: 11px;
     max-width: 100%; box-sizing: border-box; min-width: 0;
   }
-  .vbreak .tok-jp { font-size: 1rem; line-height: 1.6; text-align: center; overflow-wrap: anywhere; }
+  /* `padding-top` réserve la bande où le furigana (overlay absolu) se pose, sinon il déborderait
+     du haut de la pastille. */
+  .vbreak .tok-jp { font-size: 1rem; line-height: 1.6; text-align: center; overflow-wrap: anywhere; padding-top: 0.9em; }
   .vbreak .tok-jp rt {
-    /* Restaure le rendu ruby natif (annotation au-dessus) : la règle globale
-       `ruby rt { display:none }` (furigana masqués de l'app) s'appliquerait sinon ici aussi et
-       masquerait les lectures de l'analyse, qui elles sont TOUJOURS visibles. Double déclaration :
-       `ruby-text` (valeur explicite, comprise par WebKit/iOS anciens) puis `revert` (Safari 15.4+,
-       repli sur la valeur UA = ruby-text). Les navigateurs sans `revert` gardent `ruby-text`. */
-    display: ruby-text;
-    display: revert;
-    position: static; transform: none; margin: 0; visibility: visible;
+    /* Les furigana de l'analyse sont TOUJOURS visibles. On réutilise EXACTEMENT le mécanisme des
+       furigana révélés de l'app — overlay en `position:absolute` hérité de la règle globale
+       `ruby rt` — au lieu du ruby natif (`display:ruby-text`/`revert`), que WebKit/iOS ne restaure
+       PAS après un `display:none`. On se contente donc de ré-afficher (`display:block`) et de
+       neutraliser le décalage vertical ; position/bottom/left/transform viennent de `ruby rt`. */
+    display: block;
+    visibility: visible;
+    margin-bottom: 0;
     font-size: 0.5em; line-height: 1; color: rgba(255, 255, 255, 0.8);
   }
   .vbreak .tok-g { font-size: 0.7rem; color: rgba(255, 255, 255, 0.86); text-align: center; line-height: 1.3; }
