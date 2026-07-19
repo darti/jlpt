@@ -21,8 +21,9 @@ par tâche = branche + répertoire isolés.
 
 ## Architecture (non évidente — lire avant d'éditer)
 
-- **Source de vérité = `data/*.json`** (bank, dict, cours, kanji, grammar, vocab).
-  Tout est **chargé au runtime** par le React (`fetch`) — plus aucun inline, plus de `sync-*.mjs`.
+- **Contenu = `data/*.json`**, **chargé au runtime** par le React (`fetch`) — plus aucun inline,
+  plus de `sync-*.mjs`. ⚠ Tous ces fichiers ne sont PAS des sources : cf. **Données — sources vs
+  dérivés** plus bas AVANT d'éditer quoi que ce soit dans `data/`.
 - **Une seule SPA** : `index.html` monte un `HashRouter` (react-router-dom, `src/AppShell.tsx`).
   Routes : `/` (Accueil : dashboard + graphe de progression), `/entrainement` (**onglet unique
   fusionné** — hub reprise/démarrage **et** moteur quiz adaptatif type Elo inline, piloté par
@@ -34,16 +35,48 @@ par tâche = branche + répertoire isolés.
   `data/cours-*.json` (route `/cours`, `src/features/cours`), `data/bank-*.json` (quiz).
 - Styles : tokens oku (Tailwind v4) compilés dans `src/styles/styles.gen.css` ; look Nord via
   `[data-theme]` (`themes.css`). Furigana masqués par défaut (tap pour révéler / bascule `ふ`).
+- **Moteur quiz = 3 couches pures + 1 hook à effets.** `src/lib/elo.ts` (Elo par compétence,
+  R borné 1200–2000 ; d=1/2/3 ↔ 1400/1600/1800 ; K=40 puis 24 après 10 réponses),
+  `src/lib/bank.ts` (chargement/mémoïsation des pools + `pickAdaptive` / `selectDiagnostic` /
+  `composeSession` / `allocate`, toutes pures et injectables via `rng`), `src/lib/scoring.ts`
+  (score estimé /180 + probabilité de réussite), puis `src/features/quiz/useQuiz.ts` — **seule**
+  couche à effets (phases, reprise, persistance). Toute règle nouvelle va dans les couches
+  pures : c'est là que sont les tests.
 
 ## Commandes (bun uniquement)
 
-    bun tools/validate.mjs            # valide les data/*.json sources (exit 1 si KO)
+    bun install
+    bun test                          # toute la suite (*.test.ts/tsx, côte à côte)
+    bun test src/lib/elo.test.ts      # UN seul fichier
+    bun test -t "diagnostic"          # UN seul cas (filtre sur le nom du test)
+    bun run typecheck                 # tsc --noEmit
+    bun run dev                       # Tailwind CLI (watch) + SPA Bun (HMR) sur :3030
+                                      #   PORT=xxxx bun run dev  → autre port
+    bun run css                       # recompile src/styles/styles.gen.css seul
+    bun run build                     # CSS minifié + bun build ./index.html (--splitting) → _site/
     bunx serve _site                  # servir le build (http, requis pour SW + fetch)
+    bun tools/validate.mjs            # valide les data/*.json sources (exit 1 si KO)
+    bun tools/split-bank.mjs          # data/bank.json → data/bank-*.json + bank-index.json
+    bun tools/split-bank.mjs --check  # exit 1 si les dérivés sont désynchronisés
+
+## Données — sources vs dérivés (ne JAMAIS éditer un dérivé)
+
+| Fichier | Rôle |
+|---|---|
+| `data/bank.json` | **Source** des questions — éditer ICI. Jamais livrée. |
+| `data/bank-*.json` + `bank-index.json` | **Dérivés** (`tools/split-bank.mjs`). Seuls fetchés au runtime (`src/lib/bank.ts`). Régénérer après toute édition, sinon l'app sert l'ancien contenu. |
+| `data/dict.json`, `data/cours-*.json` | Sources **et** fichiers livrés (fetchés tels quels). `dict.json` a un schéma : `schema/dict.schema.json`. |
+| `data/grammar.json`, `kanji.json`, `vocab.json` | Sources d'auteur : **validées** par `tools/validate.mjs`, mais jamais servies ni fetchées. |
+
+⚠ **`id` = index global dans `bank.json`, et il doit rester stable** : `wrong[]` (erreurs) et
+`jlptN3quiz_resume.ids` persistés en localStorage y réfèrent. Insérer une question au milieu
+décale tous les ids suivants → progression des utilisateurs corrompue. **Ajouter en fin de tableau.**
 
 ## Gotchas
 
 - **SW / cache** : après modif d'un asset livré (icônes, `sw.js`, `data/*.json`),
-  bumper `CACHE` dans `sw.js` (ex. `jlpt-n3-v87` → v88) pour forcer la MAJ clients.
+  incrémenter la valeur courante de `CACHE` dans `sw.js` (`jlpt-n3-vN` → `vN+1`) pour
+  forcer la MAJ clients.
 - **bun bundle HTML** : `bun build ./x.html` **bundle** un `<script src="y.js">` classique
   dans le chunk JS de l'entrée (retire la balise du HTML mais **exécute** le code — ne le
   supprime PAS). Pour voir ce qu'une page embarque, greper `_site/*.js`, PAS le HTML
@@ -51,10 +84,17 @@ par tâche = branche + répertoire isolés.
   ne nettoie pas `--outdir` → chunks périmés possibles dans `_site`.
 - **Fichiers livrés** : `bun run build` bundle `index.html` **puis** copie les fichiers
   livrés (`sw.js`, manifest, icônes, stubs `quiz`/`app-n3.html`, `data/*.json`) dans `_site`
-  via **`tools/copy-static.mjs`** — inventaire **unique** aussi utilisé par `deploy.yml`.
-  Tout nouveau fichier livré s'ajoute là (`ROOT` ou `isServedData`), sinon absent en local
-  **et** en prod. Sans cette copie, `bunx serve _site` sert un `_site` périmé (vieux `sw.js`
-  → « Forcer la mise à jour » sans effet). Push sur `main` → Pages (https://darti.github.io/jlpt/).
+  via **`tools/copy-static.mjs`** — inventaire commun à `bun run build` et `deploy.yml`.
+  Sans cette copie, `bunx serve _site` sert un `_site` périmé (vieux `sw.js` → « Forcer la mise
+  à jour » sans effet). Push sur `main` → Pages (https://darti.github.io/jlpt/).
+- **TROIS inventaires de fichiers livrés à garder synchro** — ajouter un asset impose de toucher
+  les trois, sinon la panne est silencieuse et locale à un seul contexte :
+  `tools/copy-static.mjs` (`ROOT` / `isServedData` → build + prod ; gardé par `copy-static.test.ts`),
+  `scripts/dev.ts` `STATIC_FILES` (allowlist du serveur de dev → sinon 404 en `bun run dev` seulement),
+  et `sw.js` `SHELL` (précache PWA → sinon absent hors ligne seulement).
+- **`tools/*.mjs` = Node-compatible OBLIGATOIRE** : malgré la règle « bun exclusivement »,
+  `.github/workflows/validate.yml` exécute `node tools/validate.mjs` (setup-node 20). Aucune
+  API `Bun.*` là-dedans — la CI contenu casserait, et c'est invisible en local.
 - **Tailwind vendorisé = sous-ensemble** : toutes les utilités ne sont PAS compilées
   (ex. `animate-spin` absent). Définir les manquantes (keyframes + règle/`@utility`)
   dans `src/styles/tailwind.css` `@layer base` — cf. `.jlpt-spin`, `.vbreak`/`.tok-*`.
@@ -75,15 +115,21 @@ par tâche = branche + répertoire isolés.
 - **Test navigateur (HashRouter)** : changer le hash (`#/x`) ne recharge PAS la page.
   Pour charger un nouveau bundle après `bun run build`, faire un vrai `location.reload()`
   (le HTML est network-first, donc pas besoin de bumper `sw.js`).
-- **Persistance** : localStorage même origine, partagé entre pages —
-  `jlptN3adapt_v2` (progression), `jlptN3_theme`, `jlptN3_updatedAt`.
-  Sync multi-appareils optionnelle via Gist (PAT scope `gist`).
+- **Persistance** : localStorage même origine, partagé entre toutes les routes —
+  `jlptN3adapt_v2` (blob de progression), `jlptN3quiz_resume` (session en cours, purgée >2 j),
+  `jlptN3_cours_v1` (avancement cours), `jlptN3_theme`, `jlptN3_furi`, `jlptN3_fsUi`/`_fsJp`
+  (échelles de police), `jlptN3_updatedAt` (horodatage de la sync), `jlptN3_gh` (PAT Gist),
+  `jlptN3_pending`. Sync multi-appareils optionnelle via Gist (PAT scope `gist`).
+  ⚠ Écrire la progression **uniquement** via `writeProgress()` (`src/lib/storage.ts`) : c'est un
+  **patch fusionné** sur le blob existant (deep-merge de `skill`). Réécrire le blob entier efface
+  les champs des autres features.
 
 ## Migration React (terminée)
 
 Portage strangler vanilla → **React + TS, bundlé par Bun** : **terminé**. Toutes les pages sont
 des routes de la SPA ; les fichiers vanilla (`dict.js`, `theme.css`, `progress.js`, `cours-n3.html`…)
-et les `sync-*.mjs` ont été supprimés. `data/*.json` = source de vérité, chargée au runtime.
+et les `sync-*.mjs` ont été supprimés. Le contenu vit dans `data/` et est chargé au runtime
+(cf. **Données — sources vs dérivés**).
 
 - **Styles** : tokens Tailwind v4 vendorisés dans `src/styles/` (`tailwind.css` = `@theme`
   + shims + règles de base ; `themes.css` = Nord `[data-theme]`). Compilé par
@@ -93,9 +139,6 @@ et les `sync-*.mjs` ont été supprimés. `data/*.json` = source de vérité, ch
   effets/DOM/montage réel → **happy-dom** (`bunfig.toml [test] preload = happydom.ts`,
   `createRoot` + `act`). Router : envelopper dans `<MemoryRouter>`. ⚠ `renderToStaticMarkup`
   échappe les apostrophes (`'` → `&#x27;`) — asserter sur des sous-chaînes sans apostrophe.
-
-    bun install
-    bun run dev        # Tailwind CLI (watch) + serveur SPA Bun (HMR)
-    bun run build      # CSS minifié + bun build ./index.html (--splitting) → _site/
-    bun test           # tests TDD (*.test.ts, côte à côte)
-    bun run typecheck  # tsc --noEmit
+  ⚠ `happydom.ts` est préchargé pour **toute** la suite (`bunfig.toml`) : `document`/`localStorage`
+  existent même dans un test « pur ». Isoler explicitement l'état partagé (cf.
+  `clearCategoryCache()` / `clearBankIndexCache()` dans `src/lib/bank.ts`).
