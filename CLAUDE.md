@@ -61,11 +61,11 @@ par tâche = branche + répertoire isolés.
     bun tools/split-bank.mjs          # data/bank.json → data/bank-*.json + bank-index.json
     bun tools/split-bank.mjs --check  # exit 1 si les dérivés sont désynchronisés
 
-⚠ **Aucune CI ne lance les tests ni le typecheck** — `validate.yml` ne valide que `data/*.json`,
-`deploy.yml` ne fait que `bun run build`, et **`bun build` ne typecheck pas**. Un test rouge ou une
-erreur de type part en prod sans qu'aucun check ne rougisse. `bun test` + `bun run typecheck` avant
-de commiter = le seul garde-fou. **Pas de linter** dans le projet (ni eslint, ni prettier, ni
-biome) : ne pas en chercher un, ne pas en ajouter sans demande explicite.
+**CI** = `.github/workflows/validate.yml` (push + PR), et lui seul : contenu `data/*.json`,
+banques dérivées (`split-bank --check`), `typecheck`, `bun test`. `deploy.yml` ne fait que
+`bun run build` — et **`bun build` ne typecheck pas**, il n'est donc jamais un garde-fou.
+**Pas de linter** dans le projet (ni eslint, ni prettier, ni biome) : ne pas en chercher un,
+ne pas en ajouter sans demande explicite — `typecheck` + `bun test` font foi.
 
 ## Données — sources vs dérivés (ne JAMAIS éditer un dérivé)
 

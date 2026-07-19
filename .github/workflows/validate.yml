@@ -1,15 +1,23 @@
-name: Validation du contenu
+name: Qualité — contenu, types, tests
 
-# Vérifie la source de vérité du contenu (data/*.json) à chaque push / PR :
-#  - data/dict.json respecte les règles (pas de niveau JLPT comme définition,
-#    pas de clé dupliquée, champs r/m présents…) ;
-#  - bank/grammar/kanji/vocab.json : structure, bornes, options valides.
-# Ne bloque pas le déploiement (workflow séparé) mais signale toute régression.
+# Garde-fou unique du dépôt, à chaque push / PR. Avant, ce workflow ne validait QUE
+# data/*.json : un test rouge ou une erreur de type partait en prod sans qu'aucun check
+# ne rougisse (deploy.yml ne fait que `bun run build`, et `bun build` NE TYPECHECK PAS).
+#
+#  1. data/*.json  : dict (pas de niveau JLPT comme définition, pas de clé dupliquée,
+#                    champs r/m…), bank/grammar/kanji/vocab (structure, bornes, options) ;
+#  2. dérivés      : data/bank-*.json + bank-index.json toujours en phase avec bank.json ;
+#  3. types        : tsc --noEmit sur src/ + scripts/ ;
+#  4. tests        : la suite bun test.
 
 on:
   push:
   pull_request:
   workflow_dispatch:
+
+# Ce job ne fait que lire le dépôt et lancer des checks : aucun droit d'écriture.
+permissions:
+  contents: read
 
 jobs:
   validate:
@@ -18,7 +26,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Node
+      # Node est VOLONTAIRE ici : tools/*.mjs doit rester exécutable sous node (aucune API
+      # Bun.*). Faire tourner validate.mjs sous node est ce qui vérifie cet invariant —
+      # ne pas « harmoniser » cette étape vers bun, on perdrait le seul détecteur. Le reste
+      # du dépôt est bun-only (cf. CLAUDE.md).
+      - name: Node (pour tools/*.mjs uniquement)
         uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -26,6 +38,19 @@ jobs:
       - name: Valider tout le contenu (data/*.json)
         run: node tools/validate.mjs
 
-      # Migration SPA terminée : dict.js/cours-n3.html/examples.json + leurs sync-*.mjs
-      # ont été supprimés (le runtime React charge data/dict.json et data/cours-*.json
-      # directement). Seule la validation des sources data/*.json reste pertinente.
+      - name: Installer Bun
+        uses: oven-sh/setup-bun@v2
+
+      # bank-*.json / bank-index.json sont DÉRIVÉS de bank.json. Éditer un dérivé (ou
+      # oublier de régénérer après édition de la source) partait sinon en prod tel quel.
+      - name: Vérifier les banques dérivées (bank-*.json)
+        run: bun tools/split-bank.mjs --check
+
+      - name: Installer les dépendances
+        run: bun install --frozen-lockfile
+
+      - name: Typecheck
+        run: bun run typecheck
+
+      - name: Tests
+        run: bun test
