@@ -29,10 +29,6 @@ export function speak(text: string): void {
     speechSynthesis.speak(u);
   } catch { /* ignore */ }
 }
-export function stopSpeak(): void {
-  try { if (typeof speechSynthesis !== "undefined") speechSynthesis.cancel(); } catch { /* ignore */ }
-}
-
 /** The Japanese text to speak for a question: the listening script (or the stem) for ecoute,
  *  else the sentence rebuilt from the grammar decomposition `g`. Pure. */
 export function speechTextFor(question: Question): string {
