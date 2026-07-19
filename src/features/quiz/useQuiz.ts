@@ -451,7 +451,6 @@ export function useQuiz() {
     right: rightRef.current,
     minutes,
     resume,
-    answered,
     chosen,
     mode,
     diagAnswers,

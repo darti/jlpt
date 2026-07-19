@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { EntrainementHome } from "./features/entrainement/EntrainementHome.tsx";
+import { SessionCard } from "./features/entrainement/SessionCard.tsx";
 import { QuestionCard } from "./features/quiz/QuestionCard.tsx";
 import { Corrige } from "./features/quiz/Corrige.tsx";
 import { SessionProgress } from "./features/quiz/SessionProgress.tsx";
@@ -22,7 +22,7 @@ import { BTN_PRIMARY } from "./ui/styles.ts";
 export function EntrainementAppView(props: {
   phase: Phase; question: Question | null; count: number; right: number;
   minutes: number; resume: ResumeState | null;
-  answered: boolean; chosen: number | null;
+  chosen: number | null;
   index?: number;
   mode?: "normal" | "diagnostic"; diagAnswers?: DiagAnswer[]; diagModel?: DashboardModel | null;
   coursIndex?: CoursGramIndex | null;
@@ -35,12 +35,16 @@ export function EntrainementAppView(props: {
   const onSpeak = () => { if (question) speakQuestion(question); };
 
   if (props.phase === "home") {
+    // Le hub, c'est cette carte et rien d'autre : réglages et synchro vivent sur
+    // Paramétrage, stats et courbe de progression sur l'Accueil.
     return (
-      <EntrainementHome
-        minutes={props.minutes} resume={props.resume}
-        onSetMinutes={props.onSetMinutes} onStart={props.onStart}
-        onResumeNow={props.onResumeNow} onDismissResume={props.onDismissResume}
-      />
+      <div className="flex flex-col gap-6">
+        <SessionCard
+          minutes={props.minutes} resume={props.resume}
+          onSetMinutes={props.onSetMinutes} onStart={props.onStart}
+          onResumeNow={props.onResumeNow} onDismissResume={props.onDismissResume}
+        />
+      </div>
     );
   }
 
@@ -96,7 +100,7 @@ export default function EntrainementApp() {
       phase={quiz.phase} question={quiz.question} count={quiz.count} right={quiz.right} index={quiz.index}
       minutes={quiz.minutes}
       resume={resumeDismissed ? null : quiz.resume}
-      answered={quiz.answered} chosen={quiz.chosen}
+      chosen={quiz.chosen}
       mode={quiz.mode} diagAnswers={quiz.diagAnswers} diagModel={diagModel}
       coursIndex={coursIndex}
       onStart={quiz.start} onChoose={quiz.choose} onNext={quiz.next} onRestart={quiz.restart}

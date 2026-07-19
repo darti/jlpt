@@ -19,7 +19,7 @@ function view(phase: Phase, question: Question | null) {
     <EntrainementAppView
       phase={phase} question={question} count={1} right={0}
       minutes={10} resume={null}
-      answered={false} chosen={null}
+      chosen={null}
       {...handlers}
     />,
   );
