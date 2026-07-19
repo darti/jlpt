@@ -1,4 +1,4 @@
-const FURI_KEY = "jlptN3_furi";
+import { FURI_KEY } from "./keys.ts";
 
 /** Whether furigana are globally revealed (persisted). Default false — hidden, tap a word
  *  to reveal. Complements the per-word `.show` toggle from dict `furi()`. */

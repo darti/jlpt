@@ -3,12 +3,12 @@
  * Pur + localStorage.
  */
 import type { CoursGroup, LearnCategory } from "./coursSchema.ts";
+import { COURS_KEY } from "../../lib/keys.ts";
 
 export type ItemState = "known" | "review";
 export type CoursProgress = Record<string, ItemState>;
 export interface GroupStats { known: number; review: number; total: number; }
 
-const KEY = "jlptN3_cours_v1";
 
 export function groupProgress(group: CoursGroup, p: CoursProgress): GroupStats {
   let known = 0, review = 0;
@@ -50,7 +50,7 @@ export function loadCoursProgress(
   store: Pick<Storage, "getItem"> = globalThis.localStorage
 ): CoursProgress {
   let raw: string | null;
-  try { raw = store.getItem(KEY); } catch { return {}; }
+  try { raw = store.getItem(COURS_KEY); } catch { return {}; }
   if (raw === null) return {};
   try {
     const parsed: unknown = JSON.parse(raw);
@@ -67,5 +67,5 @@ export function saveCoursProgress(
   p: CoursProgress,
   store: Pick<Storage, "setItem"> = globalThis.localStorage
 ): void {
-  try { store.setItem(KEY, JSON.stringify(p)); } catch { /* best-effort */ }
+  try { store.setItem(COURS_KEY, JSON.stringify(p)); } catch { /* best-effort */ }
 }

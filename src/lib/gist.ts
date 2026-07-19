@@ -1,4 +1,5 @@
 import { readProgress } from "./storage.ts";
+import { KEY_PREFIX, GH_CFG_KEY, PENDING_KEY, UPDATED_KEY } from "./keys.ts";
 
 /** Config persisted at `jlptN3_gh`. `gist` may be `""` before a Gist has been found/created. */
 export interface GistCfg { token: string; gist: string }
@@ -6,10 +7,7 @@ export interface GistCfg { token: string; gist: string }
 /** The whole-app snapshot stored as the Gist file's content. */
 export interface SyncPayload { app: string; updatedAt: string; store: Record<string, string> }
 
-const GH_CFG_KEY = "jlptN3_gh";
 const GIST_FILE = "jlpt-n3-progress.json";
-const PENDING_KEY = "jlptN3_pending";
-const UPDATED_KEY = "jlptN3_updatedAt";
 const API = "https://api.github.com";
 
 export const CONFIRM_OVERWRITE_MESSAGE =
@@ -85,7 +83,7 @@ export function collectData(store: GistStore = globalThis.localStorage, nowIso: 
   const data: Record<string, string> = {};
   for (let i = 0; i < store.length; i++) {
     const k = store.key(i);
-    if (k && k.startsWith("jlptN3") && k !== GH_CFG_KEY) {
+    if (k && k.startsWith(KEY_PREFIX) && k !== GH_CFG_KEY) {
       const v = store.getItem(k);
       if (v !== null) data[k] = v;
     }

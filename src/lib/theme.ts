@@ -1,6 +1,5 @@
+import { THEME_KEY, stampUpdated } from "./keys.ts";
 export type ThemeName = "light" | "dark";
-const THEME_KEY = "jlptN3_theme";
-const UPDATED_KEY = "jlptN3_updatedAt";
 
 export function readTheme(store: Pick<Storage, "getItem"> = globalThis.localStorage): ThemeName {
   try { return store.getItem(THEME_KEY) === "light" ? "light" : "dark"; }
@@ -19,6 +18,6 @@ export function applyTheme(
   root.setAttribute("data-theme", t);
   try {
     store.setItem(THEME_KEY, t);
-    store.setItem(UPDATED_KEY, new Date().toISOString());
+    stampUpdated(store);
   } catch { /* best-effort */ }
 }

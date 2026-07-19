@@ -1,9 +1,8 @@
 import { collectData, applyData, type SyncPayload } from "./gist.ts";
 import { blankSkills } from "./elo.ts";
+import { PROGRESS_KEY, GH_CFG_KEY, stampUpdated } from "./keys.ts";
 
 type Store = Pick<Storage, "getItem" | "setItem"> & Partial<Pick<Storage, "removeItem" | "key" | "length">>;
-const PROGRESS_KEY = "jlptN3adapt_v2";
-const UPDATED_KEY = "jlptN3_updatedAt";
 
 /** Pure. `{app, updatedAt, store}` over every `jlptN3*` key — collectData already
  *  excludes `jlptN3_gh` (C1: backups must never carry the GitHub token). */
@@ -25,9 +24,9 @@ export function importJson(
   try {
     // M1: never import a GitHub-token config from an untrusted file.
     const safe = { ...payload, store: { ...payload.store } };
-    delete safe.store.jlptN3_gh;
+    delete safe.store[GH_CFG_KEY];
     applyData(store as Storage, safe as unknown as SyncPayload);
-    store.setItem(UPDATED_KEY, new Date().toISOString());
+    stampUpdated(store);
     return true;
   } catch { return false; }
 }
@@ -39,6 +38,6 @@ export function resetProgress(store: Store = globalThis.localStorage): void {
   const blank = { skill: blankSkills(), total: 0, right: 0, bestStreak: 0, streak: 0, wrong: [], history: [], lastDiag: null, gram: {}, seen: "", mastered: "" };
   try {
     store.setItem(PROGRESS_KEY, JSON.stringify(blank));
-    store.setItem(UPDATED_KEY, new Date().toISOString());
+    stampUpdated(store);
   } catch { /* best-effort */ }
 }

@@ -12,6 +12,7 @@ import { decodeBits, encodeBits, setBit, hasBit, countUnseen } from "../../lib/c
 import { dashboardModel, masteryOf } from "../../lib/scoring.ts";
 import { cloudPush, type GistDeps } from "../../lib/gist.ts";
 import { pickSessionPlan, BUILT_CAPS } from "../entrainement/sessionPlan.ts";
+import { RESUME_KEY } from "../../lib/keys.ts";
 
 export type Phase = "home" | "question" | "corrige" | "results" | "diag-intro" | "diag-results";
 
@@ -35,7 +36,6 @@ export interface DiagAnswer { question: Question; chosen: number; }
 // Deliberately separate from vanilla `app-n3`'s `jlptN3_resume` key so the two
 // apps never clobber each other's in-progress session — within-app resume
 // still round-trips.
-const RESUME_KEY = "jlptN3quiz_resume";
 const DAY_MS = 864e5;
 const RESUME_MAX_AGE_MS = 2 * DAY_MS; // 2 days — mirrors legacy getResume()
 const PUSH_DEBOUNCE_MS = 1500;

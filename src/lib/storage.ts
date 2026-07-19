@@ -1,7 +1,6 @@
 import type { Progress } from "../types/progress.ts";
+import { PROGRESS_KEY, stampUpdated } from "./keys.ts";
 
-const PROGRESS_KEY = "jlptN3adapt_v2";
-const UPDATED_KEY = "jlptN3_updatedAt";
 
 // Lenient on purpose: the legacy blob format defaults missing skills to R=1450/t=0,
 // so individual skills need NOT be present here — only `total` (number) and `skill`
@@ -58,6 +57,6 @@ export function writeProgress(
       next.skill = { ...curSkill, ...(patch.skill as Record<string, unknown>) };
     }
     store.setItem(PROGRESS_KEY, JSON.stringify(next));
-    store.setItem(UPDATED_KEY, new Date().toISOString());
+    stampUpdated(store);
   } catch { /* best-effort: silently ignore all storage errors */ }
 }
