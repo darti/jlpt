@@ -4,7 +4,7 @@ import { SKILLS, type Progress, type Skill } from "../../types/progress.ts";
 import type { Question, SkillState } from "../../types/quiz.ts";
 import { updateRating } from "../../lib/elo.ts";
 import {
-  questionCount, allocateCount, loadCategory, pickAdaptive,
+  questionCount, allocateCount, loadAllCategories, pickAdaptive,
   questionsForIds, selectRecentErrors, composeSession, selectDiagnostic,
 } from "../../lib/bank.ts";
 import { readRawProgress, writeProgress } from "../../lib/storage.ts";
@@ -33,9 +33,6 @@ export interface ResumeState {
 /** One answered diagnostic item, kept for the end-of-test corrigé. */
 export interface DiagAnswer { question: Question; chosen: number; }
 
-// Deliberately separate from vanilla `app-n3`'s `jlptN3_resume` key so the two
-// apps never clobber each other's in-progress session — within-app resume
-// still round-trips.
 const DAY_MS = 864e5;
 const RESUME_MAX_AGE_MS = 2 * DAY_MS; // 2 days — mirrors legacy getResume()
 const PUSH_DEBOUNCE_MS = 1500;
@@ -66,23 +63,20 @@ function numField(raw: Record<string, unknown> | null, key: string): number {
   return typeof v === "number" ? v : 0;
 }
 
+/** La table `skill` du blob brut, ou `{}` si absente / malformée. */
+function skillMap(raw: Record<string, unknown> | null): Record<string, unknown> {
+  const s = raw?.skill;
+  return s && typeof s === "object" && !Array.isArray(s) ? (s as Record<string, unknown>) : {};
+}
+
 /** Builds the minimal `Progress`-shaped view of the raw blob that `scoring.ts#masteryOf` reads. */
 function asProgress(raw: Record<string, unknown> | null): Progress {
-  const skillRaw = raw?.skill;
-  const skill =
-    skillRaw && typeof skillRaw === "object" && !Array.isArray(skillRaw)
-      ? (skillRaw as Progress["skill"])
-      : {};
-  return { total: numField(raw, "total"), skill };
+  return { total: numField(raw, "total"), skill: skillMap(raw) as Progress["skill"] };
 }
 
 /** Full `{R,t,r}` skill state for one category from the raw blob — defaults to a blank skill (R:1450). */
 function skillStateOf(raw: Record<string, unknown> | null, cat: Skill): SkillState {
-  const skillRaw = raw?.skill;
-  const skill = skillRaw && typeof skillRaw === "object" && !Array.isArray(skillRaw)
-    ? (skillRaw as Record<string, unknown>)
-    : {};
-  const s = skill[cat];
+  const s = skillMap(raw)[cat];
   if (s && typeof s === "object") {
     const o = s as Record<string, unknown>;
     return {
@@ -96,6 +90,33 @@ function skillStateOf(raw: Record<string, unknown> | null, cat: Skill): SkillSta
 
 function asWrong(raw: Record<string, unknown> | null): number[] {
   return Array.isArray(raw?.wrong) ? (raw.wrong as number[]) : [];
+}
+
+/**
+ * Pioche `alloc[cat]` questions par catégorie via `pickAdaptive`, au niveau (R) de la
+ * compétence. `exclude` est muté au fil de l'eau : aucune question ne sort deux fois dans
+ * la même session, y compris entre deux tranches successives.
+ *
+ * `poolOf` laisse l'appelant restreindre le vivier — la tranche « apprendre » le filtre sur
+ * le non-vu, la tranche adaptative prend le pool entier. C'est la seule différence entre les
+ * deux, avec `wrong` (le bonus +150 n'a de sens que là où des erreurs peuvent apparaître).
+ */
+function pickSlice(
+  alloc: Record<Skill, number>,
+  poolOf: (cat: Skill) => Question[],
+  raw: Record<string, unknown> | null,
+  exclude: Set<number>,
+  wrong: number[],
+): Question[] {
+  const out: Question[] = [];
+  for (const cat of SKILLS) {
+    const n = alloc[cat];
+    if (!n) continue;
+    const picks = pickAdaptive(poolOf(cat), skillStateOf(raw, cat).R, exclude, wrong).slice(0, n);
+    for (const q of picks) exclude.add(q.id);
+    out.push(...picks);
+  }
+  return out;
 }
 
 /** Reads + validates the persisted `jlptN3quiz_resume` session (clears it if >2 days
@@ -215,9 +236,7 @@ export function useQuiz() {
     );
 
     if (plan.kind === "diagnostic") {
-      const poolsBySkill = {} as Record<Skill, Question[]>;
-      await Promise.all(SKILLS.map(async (s) => { poolsBySkill[s] = await loadCategory(s); }));
-      const session = selectDiagnostic(poolsBySkill, total, Math.random);
+      const session = selectDiagnostic(await loadAllCategories(), total, Math.random);
       if (!session.length) return;
       // Starting a diagnostic abandons any pending normal session — clear its resume so a stale
       // "Reprendre" card can't resurface on a later reload (MAJOR #5b).
@@ -244,39 +263,31 @@ export function useQuiz() {
     const errorQs = idx ? await questionsForIds(errorIds, idx) : [];
     const exclude = new Set<number>(errorQs.map((q) => q.id));
 
+    // Les deux tranches piochent dans les mêmes viviers : les charger en parallèle une fois
+    // plutôt qu'au fil de deux boucles `await` (jusqu'à dix allers-retours sérialisés à froid).
+    const pools = await loadAllCategories();
+
     // Learn slice: never-seen items, distributed by mastery and picked near the level. Each category's
     // pool is filtered to unseen; unseen-thin categories simply contribute fewer (adaptive covers the
     // shortfall below — budget still `total`).
-    const learnQs: Question[] = [];
-    if (plan.alloc.learn > 0) {
-      const learnAlloc = allocateCount((c) => masteryOf(progress, c), plan.alloc.learn);
-      for (const cat of SKILLS) {
-        const n = learnAlloc[cat];
-        if (!n) continue;
-        const pool = await loadCategory(cat);
-        const unseen = pool.filter((q) => !hasBit(seen, q.id));
-        const R = skillStateOf(raw, cat).R;
-        // wrong ⊆ seen (choose() sets the seen bit when appending to wrong[]), so no wrong id is ever
-        // in `unseen` — pass [] rather than a dead +150 boost that can't fire here.
-        const picks = pickAdaptive(unseen, R, exclude, []).slice(0, n);
-        for (const q of picks) exclude.add(q.id);
-        learnQs.push(...picks);
-      }
-    }
+    // wrong ⊆ seen (choose() sets the seen bit when appending to wrong[]), so no wrong id is ever
+    // dans `unseen` — on passe [] plutôt qu'un bonus +150 qui ne peut pas se déclencher ici.
+    const learnQs = plan.alloc.learn > 0
+      ? pickSlice(
+          allocateCount((c) => masteryOf(progress, c), plan.alloc.learn),
+          (cat) => pools[cat].filter((q) => !hasBit(seen, q.id)),
+          raw, exclude, [],
+        )
+      : [];
 
     // Adaptive fills the remaining budget (weighted by mastery), from the full pools.
+    // `wrong` conservé → bonus +150 (plancher souple sur les erreurs passées).
     const adaptiveTarget = Math.max(0, total - errorQs.length - learnQs.length);
-    const alloc = allocateCount((c) => masteryOf(progress, c), adaptiveTarget);
-    const picked: Question[] = [];
-    for (const cat of SKILLS) {
-      const n = alloc[cat];
-      if (!n) continue;
-      const pool = await loadCategory(cat);
-      const R = skillStateOf(raw, cat).R;
-      const picks = pickAdaptive(pool, R, exclude, wrong).slice(0, n); // wrong kept → +150 boost (soft floor)
-      for (const q of picks) exclude.add(q.id);
-      picked.push(...picks);
-    }
+    const picked = pickSlice(
+      allocateCount((c) => masteryOf(progress, c), adaptiveTarget),
+      (cat) => pools[cat],
+      raw, exclude, wrong,
+    );
 
     // Guaranteed slices (errors + learn) + adaptive fill → composeSession reconciles the budget.
     const session = composeSession([...errorQs, ...learnQs], picked, total, Math.random);

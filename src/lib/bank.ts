@@ -47,6 +47,16 @@ export function loadCategory(cat: Skill, fetchImpl: FetchLike = fetch as FetchLi
   return p;
 }
 
+/** Les cinq pools, chargés **en parallèle**. Une session composée a besoin de toutes les
+ *  catégories : les charger au fil d'une boucle `await` sérialise jusqu'à cinq allers-retours
+ *  réseau au premier démarrage. Les promesses restent mémoïsées par `loadCategory`. */
+export async function loadAllCategories(
+  fetchImpl: FetchLike = fetch as FetchLike,
+): Promise<Record<Skill, Question[]>> {
+  const pools = await Promise.all(SKILLS.map((s) => loadCategory(s, fetchImpl)));
+  return Object.fromEntries(SKILLS.map((s, i) => [s, pools[i]])) as Record<Skill, Question[]>;
+}
+
 /** Resolve `ids → Question[]` by loading the pools of the categories the ids belong to (per `idx`).
  *  Order follows `ids`; ids absent from the pools are dropped. Shared by resume + the errors slice. */
 export async function questionsForIds(

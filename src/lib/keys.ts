@@ -20,7 +20,9 @@ export const PROGRESS_KEY = "jlptN3adapt_v2";
 /** Horodatage ISO de la dernière écriture locale — arbitre local vs distant à la synchro. */
 export const UPDATED_KEY = "jlptN3_updatedAt";
 
-/** Session de quiz en cours. Volontairement distincte du `jlptN3_resume` du vanilla. */
+/** Session de quiz en cours (purgée au-delà de 2 jours). Volontairement distincte du
+ *  `jlptN3_resume` du vanilla `app-n3` : les deux applications ne doivent jamais écraser
+ *  la session en cours l'une de l'autre, la reprise interne fonctionnant par ailleurs. */
 export const RESUME_KEY = "jlptN3quiz_resume";
 
 /** Avancement du cours (état par item). */

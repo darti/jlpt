@@ -2,7 +2,7 @@ import { test, expect } from "bun:test";
 import {
   shuffle, pickAdaptive, allocate, allocateCount, questionCount, loadCategory, loadBankIndex,
   clearBankIndexCache, clearCategoryCache, selectRecentErrors, composeSession, questionsForIds,
-  selectDiagnostic,
+  selectDiagnostic, loadAllCategories,
 } from "./bank.ts";
 import type { FetchLike } from "./bank.ts";
 import type { Question } from "../types/quiz.ts";
@@ -177,4 +177,32 @@ test("selectDiagnostic skips empty skills and never exceeds total", () => {
 
 test("selectDiagnostic returns [] for total<=0", () => {
   expect(selectDiagnostic({}, 0, () => 0)).toEqual([]);
+});
+
+test("loadAllCategories charge les cinq pools et les indexe par compétence", async () => {
+  clearCategoryCache();
+  const fetchImpl: FetchLike = async (url) => ({
+    json: async () => [{ id: url.includes("kanji") ? 42 : 1, cat: "kanji", d: 1, q: "", o: [], a: 0 }],
+  });
+  const pools = await loadAllCategories(fetchImpl);
+  expect(Object.keys(pools).sort()).toEqual(
+    ["ecoute", "grammaire", "kanji", "lecture", "vocabulaire"],
+  );
+  expect(pools.kanji[0].id).toBe(42); // chaque compétence reçoit BIEN son propre pool
+  clearCategoryCache();
+});
+
+test("loadAllCategories lance les cinq fetch en parallèle, pas en cascade", async () => {
+  clearCategoryCache();
+  let inFlight = 0, peak = 0;
+  const fetchImpl: FetchLike = async () => {
+    peak = Math.max(peak, ++inFlight);
+    await new Promise((r) => setTimeout(r, 5));
+    inFlight--;
+    return { json: async () => [] };
+  };
+  await loadAllCategories(fetchImpl);
+  // En cascade le pic vaudrait 1 : c'est exactement la régression que ce test garde.
+  expect(peak).toBe(5);
+  clearCategoryCache();
 });
