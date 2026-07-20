@@ -40,6 +40,13 @@ const DEMANDE_ECRITURE = /を漢字で書くと/;
  *  Ne reconnaître que l'ASCII ferait réclamer l'arbitrage de 256 questions DÉJÀ à trou. */
 const TROU = /_{3,}|＿+/;
 
+/** Une lecture est du kana, point. `word.jsonld` porte pourtant des PLACEHOLDERS dans ce
+ *  champ : « — » (4 entrées), « さ / ちがい », « ことし（特別な読み） ». Sans ce filtre,
+ *  deux mots qui partagent le placeholder « — » passent pour homophones — c'est ainsi que
+ *  しっかり et すっかり ont été déclarés de même lecture. Un placeholder n'est pas une
+ *  donnée : mieux vaut n'en rien conclure. */
+const EST_KANA = /^[ぁ-ゖァ-ヺー゛゜]+$/;
+
 /** Un énoncé est désambiguïsé s'il porte un trou ou la glose de sens 「…の意味」.
  *  Les deux formes préexistent dans le corpus ; on reconnaît les deux pour ne pas
  *  redemander l'arbitrage de ce qui est déjà arbitré. */
@@ -69,7 +76,7 @@ export function readingIndex(sujets) {
     const nom = s["schema:name"];
     const lecture = s["jlpt:reading"];
     const glose = String(s["schema:description"] ?? "").trim();
-    if (typeof nom === "string" && typeof lecture === "string" && lecture && glose) {
+    if (typeof nom === "string" && EST_KANA.test(String(lecture ?? "")) && glose) {
       idx.set(nom, lecture);
     }
   }

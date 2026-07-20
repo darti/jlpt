@@ -71,6 +71,24 @@ test("readingIndex n'indexe que les jlpt:Word porteurs d'une lecture", () => {
   expect(idx.has("明")).toBe(false); // un kanji n'est pas un mot
 });
 
+test("readingIndex écarte une lecture qui n'est pas du kana", () => {
+  // Régression : quatre entrées de word.jsonld portent « — » en guise de lecture. Deux
+  // mots partageant ce placeholder passaient pour homophones — しっかり a ainsi été
+  // déclaré de même lecture que すっかり. Un placeholder n'est pas une donnée.
+  const idx = readingIndex([
+    mot("しっかり", "—", "fermement"),
+    mot("今年", "ことし（特別な読み）", "cette année"),
+    mot("差", "さ / ちがい", "différence"),
+    mot("明ける", "あける", "se lever"),
+    mot("コーヒー", "コーヒー", "café"), // katakana et ー restent valides
+  ]);
+  expect(idx.has("しっかり")).toBe(false);
+  expect(idx.has("今年")).toBe(false);
+  expect(idx.has("差")).toBe(false);
+  expect(idx.get("明ける")).toBe("あける");
+  expect(idx.get("コーヒー")).toBe("コーヒー");
+});
+
 test("readingIndex écarte les entrées SANS GLOSE — distracteurs fabriqués", () => {
   // Régression : word.jsonld porte 約速、役束、約則 avec la lecture やくそく recopiée de
   // 約束 et aucune glose. Les indexer faisait passer 「やくそく」の漢字は？ pour ambiguë
