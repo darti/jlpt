@@ -27,27 +27,34 @@ test("decodeBits is best-effort on empty and garbage input", () => {
   expect(hasBit(decodeBits("@@@ not base64 @@@"), 0)).toBe(false);
 });
 
-test("coverageBySkill buckets denominators and numerators per skill", () => {
-  const idx: Record<number, Skill> = { 0: "grammaire", 1: "grammaire", 2: "kanji" };
+test("coverageBySkill compte vu/appris par compétence via les intervalles", () => {
+  const ranges = [
+    { skill: "grammaire" as const, from: 0, count: 2 },
+    { skill: "kanji" as const, from: 2, count: 2 },
+  ];
   let seen = emptyBits(); seen = setBit(seen, 0); seen = setBit(seen, 2);
   let mastered = emptyBits(); mastered = setBit(mastered, 0);
-  const cov = coverageBySkill(seen, mastered, idx);
-  expect(cov.grammaire).toEqual({ seen: 50, mastered: 50, seenN: 1, masteredN: 1, total: 2 });
-  expect(cov.kanji).toEqual({ seen: 100, mastered: 0, seenN: 1, masteredN: 0, total: 1 });
+  const c = coverageBySkill(seen, mastered, ranges);
+  expect(c.grammaire).toEqual({ seen: 50, mastered: 50, seenN: 1, masteredN: 1, total: 2 });
+  expect(c.kanji.seenN).toBe(1);
+  expect(c.kanji.masteredN).toBe(0);
 });
 
-test("countUnseen counts bank-index ids whose seen bit is 0", () => {
-  const idx = { 1: "kanji", 2: "grammaire", 5: "kanji" } as Record<number, Skill>;
-  expect(countUnseen(emptyBits(), idx)).toBe(3); // none seen
-  let seen = setBit(emptyBits(), 2);
-  seen = setBit(seen, 5);
-  expect(countUnseen(seen, idx)).toBe(1); // only id 1 still unseen
-  seen = setBit(setBit(setBit(emptyBits(), 1), 2), 5);
-  expect(countUnseen(seen, idx)).toBe(0); // all seen
+test("coverageBySkill rend 0 % sur un intervalle vide sans diviser par zéro", () => {
+  const c = coverageBySkill(emptyBits(), emptyBits(), [{ skill: "ecoute", from: 0, count: 0 }]);
+  expect(c.ecoute).toEqual({ seen: 0, mastered: 0, seenN: 0, masteredN: 0, total: 0 });
 });
 
-test("countUnseen ignores seen bits for ids not in the index", () => {
-  const idx = { 3: "kanji" } as Record<number, Skill>;
-  const seen = setBit(emptyBits(), 99); // 99 not in idx
-  expect(countUnseen(seen, idx)).toBe(1); // id 3 still unseen
+test("countUnseen compte les ordinaux du corpus dont le bit seen est absent", () => {
+  const ranges = [{ skill: "kanji" as const, from: 0, count: 4 }];
+  let seen = emptyBits(); seen = setBit(seen, 1);
+  expect(countUnseen(seen, ranges)).toBe(3);
+});
+
+test("countUnseen ignore les bits vus hors du corpus", () => {
+  // Un bit posé au-delà des intervalles (corpus rétréci depuis) ne doit pas se soustraire
+  // du décompte : seuls les ordinaux réellement décrits comptent.
+  const ranges = [{ skill: "kanji" as const, from: 0, count: 2 }];
+  const seen = setBit(emptyBits(), 99);
+  expect(countUnseen(seen, ranges)).toBe(2);
 });

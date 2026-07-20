@@ -1,4 +1,5 @@
 import type { Skill } from "../types/progress.ts";
+import type { SkillRange } from "./graph.ts";
 
 /** Empty bitset — grows on demand via setBit. */
 export function emptyBits(): Uint8Array {
@@ -55,34 +56,32 @@ export interface SkillCoverage {
   total: number;
 }
 
-/** Per-skill coverage % from the seen/mastered bitsets, bucketed via bank-index. One O(N) pass. */
+/** Couverture par compétence depuis les bitsets vu/appris, bucketée par les intervalles du
+ *  corpus (`corpus.jsonld`). Les ordinaux étant groupés par compétence, un intervalle suffit
+ *  là où il fallait parcourir les 10 307 entrées de `bank-index.json`. */
 export function coverageBySkill(
   seen: Uint8Array,
   mastered: Uint8Array,
-  bankIndex: Record<number, Skill>,
+  ranges: SkillRange[],
 ): Record<Skill, SkillCoverage> {
-  const acc = {} as Record<Skill, SkillCoverage>;
-  for (const key in bankIndex) {
-    const id = Number(key);
-    const c = bankIndex[id];
-    const s = (acc[c] ??= { seen: 0, mastered: 0, seenN: 0, masteredN: 0, total: 0 });
-    s.total++;
-    if (hasBit(seen, id)) s.seenN++;
-    if (hasBit(mastered, id)) s.masteredN++;
+  const out = {} as Record<Skill, SkillCoverage>;
+  for (const r of ranges) {
+    let seenN = 0, masteredN = 0;
+    for (let ord = r.from; ord < r.from + r.count; ord++) {
+      if (hasBit(seen, ord)) seenN++;
+      if (hasBit(mastered, ord)) masteredN++;
+    }
+    const pct = (n: number) => (r.count ? Math.round((n / r.count) * 100) : 0);
+    out[r.skill] = { seen: pct(seenN), mastered: pct(masteredN), seenN, masteredN, total: r.count };
   }
-  for (const c in acc) {
-    const s = acc[c as Skill];
-    s.seen = s.total ? Math.round((s.seenN / s.total) * 100) : 0;
-    s.mastered = s.total ? Math.round((s.masteredN / s.total) * 100) : 0;
-  }
-  return acc;
+  return out;
 }
 
-/** Count of bank-index ids whose `seen` bit is unset (never-encountered items). Pure. */
-export function countUnseen(seen: Uint8Array, bankIndex: Record<number, Skill>): number {
+/** Nombre d'ordinaux du corpus dont le bit `seen` est absent (jamais rencontrés). Pur. */
+export function countUnseen(seen: Uint8Array, ranges: SkillRange[]): number {
   let n = 0;
-  for (const key in bankIndex) {
-    if (!hasBit(seen, Number(key))) n++;
+  for (const r of ranges) {
+    for (let ord = r.from; ord < r.from + r.count; ord++) if (!hasBit(seen, ord)) n++;
   }
   return n;
 }

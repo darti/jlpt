@@ -67,7 +67,14 @@ export function loadSkill(
   return p;
 }
 
-/** Les cinq intervalles du corpus, mémoïsés. Remplace la lecture de `bank-index.json`. */
+/**
+ * Les cinq intervalles du corpus, mémoïsés. Remplace la lecture de `bank-index.json`.
+ *
+ * ⚠ La mémoïsation se **purge en cas d'échec**. Une promesse rejetée gardée en cache
+ * condamnerait l'app pour toute la session : sans corpus, ni les anneaux de couverture ni
+ * la reprise de session ne peuvent se reconstruire, et c'est précisément le fetch le plus
+ * susceptible d'échouer (première visite hors ligne). L'appelant suivant retente.
+ */
 export function loadCorpus(fetchImpl: FetchLike = fetch as FetchLike): Promise<SkillRange[]> {
   if (!corpusPromise) {
     corpusPromise = fetchImpl("data/graph/corpus.jsonld")
@@ -76,7 +83,8 @@ export function loadCorpus(fetchImpl: FetchLike = fetch as FetchLike): Promise<S
         skill: s["jlpt:skill"] as Skill,
         from: s["jlpt:from"] as number,
         count: s["jlpt:count"] as number,
-      })));
+      })))
+      .catch((err) => { corpusPromise = null; throw err; });
   }
   return corpusPromise;
 }

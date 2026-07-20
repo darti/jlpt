@@ -7,6 +7,7 @@ import {
   questionCount, allocateCount, loadAllCategories, pickAdaptive,
   questionsForIds, selectRecentErrors, composeSession, selectDiagnostic,
 } from "../../lib/bank.ts";
+import { loadCorpus, type SkillRange } from "../../lib/graph.ts";
 import { readRawProgress, writeProgress } from "../../lib/storage.ts";
 import { decodeBits, encodeBits, setBit, hasBit, countUnseen } from "../../lib/coverage.ts";
 import { dashboardModel, masteryOf } from "../../lib/scoring.ts";
@@ -167,8 +168,8 @@ export function useQuiz() {
   const [diagAnswers, setDiagAnswers] = useState<DiagAnswer[]>([]);
 
   const rightRef = useRef(0);
-  const bankIndexRef = useRef<Record<number, Skill> | null>(null);
-  const bankIndexPromiseRef = useRef<Promise<Record<number, Skill> | null> | null>(null);
+  const corpusRef = useRef<SkillRange[] | null>(null);
+  const corpusPromiseRef = useRef<Promise<SkillRange[] | null> | null>(null);
   const pushTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const didAutoRef = useRef(false);
   const [searchParams] = useSearchParams();
@@ -183,25 +184,25 @@ export function useQuiz() {
     pushTimerRef.current = setTimeout(() => { void cloudPush(gistDeps, false); }, PUSH_DEBOUNCE_MS);
   }, [gistDeps]);
 
-  // Hook-local, useRef-cached, retry-on-failure variant of the id→skill index — distinct from
-  // lib `loadBankIndex` (module-memoized, no retry, shared by the coverage hook; see bank.ts).
-  const ensureBankIndex = useCallback((): Promise<Record<number, Skill> | null> => {
-    if (bankIndexRef.current) return Promise.resolve(bankIndexRef.current);
-    if (!bankIndexPromiseRef.current) {
-      bankIndexPromiseRef.current = fetch("data/bank-index.json")
-        .then((r) => r.json() as Promise<Record<number, Skill>>)
-        .then((idx) => { bankIndexRef.current = idx; return idx; })
-        .catch(() => { bankIndexPromiseRef.current = null; return null; }); // allow a retry on the next call
+  // Hook-local, useRef-cached, retry-on-failure variant des intervalles du corpus — distinct
+  // du `loadCorpus` de graph.ts (mémoïsé au module, sans reprise, partagé par le hook de
+  // couverture). Un échec réseau ici doit pouvoir être retenté à l'appel suivant.
+  const ensureCorpus = useCallback((): Promise<SkillRange[] | null> => {
+    if (corpusRef.current) return Promise.resolve(corpusRef.current);
+    if (!corpusPromiseRef.current) {
+      corpusPromiseRef.current = loadCorpus()
+        .then((ranges) => { corpusRef.current = ranges; return ranges; })
+        .catch(() => { corpusPromiseRef.current = null; return null; }); // allow a retry on the next call
     }
-    return bankIndexPromiseRef.current;
+    return corpusPromiseRef.current;
   }, []);
 
   // On mount: surface a resumable session banner (if any, <2 days old) and prefetch the
-  // id→category index resumeNow() needs to rebuild questions.
+  // corpus ranges resumeNow() needs to rebuild questions.
   useEffect(() => {
     setResume(readResumeState());
-    void ensureBankIndex();
-  }, [ensureBankIndex]);
+    void ensureCorpus();
+  }, [ensureCorpus]);
 
   // Flush the pending debounced push on unmount.
   useEffect(() => () => {
@@ -221,11 +222,11 @@ export function useQuiz() {
     // `skipDiagnostic` ([Plus tard]) forces a recent-diagnostic reading → composed path.
     const daysSinceDiagnostic = opts?.skipDiagnostic ? 0 : daysSince(raw?.diagAt);
 
-    // Coverage: count never-seen items for the learn ingredient (needs the full bank index).
-    // ensureBankIndex is prefetched on mount + cached, so awaiting it here is cheap.
-    const idx = await ensureBankIndex();
+    // Coverage: count never-seen items for the learn ingredient (needs the corpus ranges).
+    // ensureCorpus is prefetched on mount + cached, so awaiting it here is cheap.
+    const ranges = await ensureCorpus();
     const seen = decodeBits(typeof raw?.seen === "string" ? raw.seen : "");
-    const newCoursePoints = idx ? countUnseen(seen, idx) : 0;
+    const newCoursePoints = ranges ? countUnseen(seen, ranges) : 0;
 
     // Consult the decision engine. `resume: false` — "Commencer" always starts fresh; the resume
     // decision is handled at the card level. All four caps are now built.
@@ -258,9 +259,9 @@ export function useQuiz() {
     const progress = asProgress(raw); // MINOR #6: only the composed path needs mastery
 
     // Errors slice: the most-recent wrong[] ids (up to plan.alloc.errors), resolved to questions.
-    // (idx already loaded above; C2 fallback unchanged — null idx → empty errors, session degrades.)
+    // (ranges already loaded above; C2 fallback unchanged — null → empty errors, session degrades.)
     const errorIds = selectRecentErrors(wrong, plan.alloc.errors);
-    const errorQs = idx ? await questionsForIds(errorIds, idx) : [];
+    const errorQs = ranges ? await questionsForIds(errorIds, ranges) : [];
     const exclude = new Set<number>(errorQs.map((q) => q.id));
 
     // Les deux tranches piochent dans les mêmes viviers : les charger en parallèle une fois
@@ -408,10 +409,10 @@ export function useQuiz() {
     // an onClick handler (quiz session card), which would otherwise pass a click event here.
     const r = explicit && Array.isArray(explicit.ids) ? explicit : resume;
     if (!r) return;
-    const idx = await ensureBankIndex();
-    if (!idx) return;
+    const ranges = await ensureCorpus();
+    if (!ranges) return;
 
-    const rebuilt = await questionsForIds(r.ids, idx);
+    const rebuilt = await questionsForIds(r.ids, ranges);
     if (!rebuilt.length) {
       clearResumeState();
       setResume(null);
@@ -428,7 +429,7 @@ export function useQuiz() {
     setAnswered(onCorrige);
     setChosen(onCorrige ? (r.chosen as number) : null);
     setPhase(onCorrige ? "corrige" : "question");
-  }, [resume, ensureBankIndex]);
+  }, [resume, ensureCorpus]);
 
   // One-shot hub → quiz handoff: `?min=N` (router search) auto-starts a session of that
   // length, `?resume=1` auto-resumes an existing quiz. Read from the router + localStorage

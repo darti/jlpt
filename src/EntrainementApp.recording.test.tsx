@@ -4,7 +4,8 @@ import { createRoot, type Root } from "react-dom/client";
 import { MemoryRouter } from "react-router-dom";
 import EntrainementApp from "./EntrainementApp.tsx";
 import { SKILLS, type Skill } from "./types/progress.ts";
-import { clearCategoryCache, clearBankIndexCache } from "./lib/bank.ts";
+import { clearCategoryCache } from "./lib/bank.ts";
+import { graphFetch, RANGES } from "./testing/graphFixture.ts";
 import { readRawProgress } from "./lib/storage.ts";
 import { coverageBySkill, decodeBits } from "./lib/coverage.ts";
 
@@ -15,29 +16,12 @@ let container: HTMLDivElement;
 let root: Root;
 let origFetch: typeof fetch;
 
-function pool(cat: string, base: number) {
-  return Array.from({ length: 8 }, (_, i) => ({
-    id: base + i, cat, d: ((i % 3) + 1), q: `Q-${cat}-${i}`, o: ["a", "b", "c", "d"], a: 0,
-  }));
-}
-
-const BANK: Record<string, ReturnType<typeof pool>> = {};
-SKILLS.forEach((c, idx) => { BANK[c] = pool(c, (idx + 1) * 100); });
-const INDEX: Record<number, Skill> = {};
-Object.values(BANK).flat().forEach((q) => { INDEX[q.id] = q.cat as Skill; });
 
 beforeEach(() => {
   localStorage.clear();
   clearCategoryCache();
-  clearBankIndexCache();
   origFetch = globalThis.fetch;
-  globalThis.fetch = (async (url: string) => {
-    const u = String(url);
-    if (u.includes("bank-index")) return { json: async () => INDEX };
-    const m = u.match(/bank-([a-z]+)\.json/);
-    if (m && BANK[m[1]]) return { json: async () => BANK[m[1]] };
-    return { json: async () => ({}) };
-  }) as unknown as typeof fetch;
+  globalThis.fetch = graphFetch();
   container = document.createElement("div");
   document.body.appendChild(container);
   root = createRoot(container);
@@ -48,7 +32,6 @@ afterEach(() => {
   container.remove();
   globalThis.fetch = origFetch;
   clearCategoryCache();
-  clearBankIndexCache();
 });
 
 test("answering a question records it as seen and mastered (correct)", async () => {
@@ -67,7 +50,7 @@ test("answering a question records it as seen and mastered (correct)", async () 
   const cov = coverageBySkill(
     decodeBits(typeof raw.seen === "string" ? raw.seen : ""),
     decodeBits(typeof raw.mastered === "string" ? raw.mastered : ""),
-    INDEX,
+    RANGES,
   );
   const seenN = SKILLS.reduce((n, c) => n + (cov[c]?.seenN ?? 0), 0);
   const masteredN = SKILLS.reduce((n, c) => n + (cov[c]?.masteredN ?? 0), 0);

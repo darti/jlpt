@@ -5,31 +5,17 @@ import { MemoryRouter } from "react-router-dom";
 import EntrainementApp from "./EntrainementApp.tsx";
 import { SKILLS } from "./types/progress.ts";
 import { clearCategoryCache } from "./lib/bank.ts";
+import { graphFetch } from "./testing/graphFixture.ts";
 
 (globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
 let container: HTMLDivElement; let root: Root; let origFetch: typeof fetch;
 
-function pool(cat: string, base: number) {
-  return Array.from({ length: 12 }, (_, i) => ({
-    id: base + i, cat, d: ((i % 3) + 1), q: `Q-${cat}-${i}`, o: ["a", "b", "c", "d"], a: 0,
-  }));
-}
-const BANK: Record<string, ReturnType<typeof pool>> = {};
-SKILLS.forEach((c, idx) => { BANK[c] = pool(c, (idx + 1) * 100); });
-const INDEX: Record<number, string> = {};
-Object.values(BANK).flat().forEach((q) => { INDEX[q.id] = q.cat; });
 
 beforeEach(() => {
   localStorage.clear(); clearCategoryCache();
   origFetch = globalThis.fetch;
-  globalThis.fetch = (async (url: string) => {
-    const u = String(url);
-    if (u.includes("bank-index")) return { json: async () => INDEX };
-    const m = u.match(/bank-([a-z]+)\.json/);
-    if (m && BANK[m[1]]) return { json: async () => BANK[m[1]] };
-    return { json: async () => ({}) };
-  }) as unknown as typeof fetch;
+  globalThis.fetch = graphFetch();
   container = document.createElement("div"); document.body.appendChild(container); root = createRoot(container);
 });
 afterEach(() => { act(() => { root.unmount(); }); container.remove(); globalThis.fetch = origFetch; clearCategoryCache(); });

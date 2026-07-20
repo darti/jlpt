@@ -87,6 +87,23 @@ test("loadCorpus projette les SkillRange et mémoïse", async () => {
   expect(a).toEqual([{ skill: "kanji", from: 3, count: 2 }]);
 });
 
+test("loadCorpus purge sa mémoïsation en cas d'échec, pour laisser retenter", async () => {
+  // Une promesse rejetée gardée en cache condamnerait l'app pour toute la session : sans
+  // corpus, ni les anneaux ni la reprise de session ne se reconstruisent.
+  clearGraphCache();
+  let n = 0;
+  const fetchImpl = async () => {
+    n++;
+    if (n === 1) throw new Error("offline");
+    return { json: async () => ({ "@graph": [
+      { "jlpt:skill": "kanji", "jlpt:from": 0, "jlpt:count": 1 },
+    ] }) };
+  };
+  await expect(loadCorpus(fetchImpl)).rejects.toThrow("offline");
+  expect(await loadCorpus(fetchImpl)).toEqual([{ skill: "kanji", from: 0, count: 1 }]);
+  expect(n).toBe(2);
+});
+
 test("un document vide ne fait pas planter la projection", async () => {
   clearGraphCache();
   const fetchImpl = async () => ({ json: async () => ({}) });
