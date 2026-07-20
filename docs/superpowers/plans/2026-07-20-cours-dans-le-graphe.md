@@ -281,7 +281,7 @@ Expected: PASS — tous les fichiers du répertoire.
 
 - [ ] **Step 7 : Lancer le validateur — un ROUGE délibéré est attendu**
 
-Run: `node tools/validate-graph.mjs`
+Run: `bun tools/validate-graph.mjs`
 Expected: **`✗ 1 erreur(s) : jlpt:lesson/kanji-g35 : la leçon ne couvre aucune entité`**
 
 ⚠ **Correction apportée en cours d'exécution : le plan annonçait ici `✓ graphe valide`, il avait
@@ -616,14 +616,14 @@ Expected: PASS — 11 tests
 
 - [ ] **Step 5 : Exécuter la migration**
 
-Run: `node tools/migrate-cours.mjs`
+Run: `bun tools/migrate-cours.mjs`
 Expected: `✓ zéro orphelin`, avec `kanji : 179 créés`, `exemples 227`, `leçons 92`.
 
 ⚠ Si des orphelins subsistent, le script sort en erreur : **ne pas les contourner**. Chaque orphelin est un item de cours qui disparaîtrait. Corriger `normalizeMot` ou créer l'entité, et remonter le cas.
 
 - [ ] **Step 6 : Valider le graphe**
 
-Run: `node tools/validate-graph.mjs`
+Run: `bun tools/validate-graph.mjs`
 Expected: `✓ graphe valide`, avec `jlpt:Example 227`, `jlpt:MethodNote 2`, `jlpt:Kanji 810`.
 
 - [ ] **Step 7 : Commit**
@@ -1210,7 +1210,7 @@ test("isServedData ne livre plus le contenu de cours en JSON", () => {
 
 - [ ] **Step 4 : Retirer l'étape CI du validateur supprimé**
 
-Dans `.github/workflows/validate.yml`, supprimer l'étape « Valider le contenu de cours » et son `run: node tools/validate.mjs`, et corriger l'en-tête : il ne reste qu'un validateur, `validate-graph.mjs`.
+Dans `.github/workflows/validate.yml`, supprimer l'étape « Valider le contenu de cours » et son `run: bun tools/validate.mjs`, et corriger l'en-tête : il ne reste qu'un validateur, `validate-graph.mjs`.
 
 ⚠ `tools/*.mjs` doit rester exécutable sous `node` : cet invariant était vérifié par l'exécution de `validate.mjs` en CI. Il l'est désormais par `validate-graph.mjs`, lancé sous `node` — vérifier que l'étape le fait bien.
 
@@ -1221,7 +1221,7 @@ Dans la table « Données », supprimer la ligne `data/cours-*.json` et écrire 
 - [ ] **Step 6 : Vérifier**
 
 ```bash
-bun run typecheck && bun test && node tools/validate-graph.mjs && bun run build && ls _site/data/
+bun run typecheck && bun test && bun tools/validate-graph.mjs && bun run build && ls _site/data/
 ```
 
 Expected : typecheck propre, suite verte, `✓ graphe valide`, et `_site/data/` ne contient **que** `graph/`.

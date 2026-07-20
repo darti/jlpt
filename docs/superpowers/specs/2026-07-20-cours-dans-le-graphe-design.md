@@ -198,7 +198,7 @@ doivent perdre `cours-*.json` et gagner `example.jsonld` / `method.jsonld`, et `
 ## Critères de succès
 
 1. `data/` ne contient plus que `graph/`.
-2. `node tools/validate-graph.mjs` passe, avec **0 orphelin** de leçon (contrôle bloquant).
+2. `bun tools/validate-graph.mjs` passe, avec **0 orphelin** de leçon (contrôle bloquant).
 3. `bun test` et `bun run typecheck` passent. Les composants de `src/features/cours/` **et
    leurs tests** n'ont pas été modifiés — seule la couche de chargement change.
 4. Vérification navigateur sur le build servi : les trois pistes affichent leurs items avec
