@@ -2,7 +2,7 @@
  * Furigana + tap-to-define, ported from the vanilla `dict.js` for React pages.
  *
  * Two differences from `dict.js`: (1) the dictionary DATA is NOT inlined — it is
- * fetched from `data/dict.json` at runtime via `setupDict()` (migration principle:
+ * fetched from `data/graph/word.jsonld` at runtime via `setupDict()` (migration principle:
  * data from JSON, not bundled), so this module bundles only the ~logic; (2) the
  * definition-popup CSS uses the oku design tokens (`--color-*`) instead of the
  * vanilla `theme.css` vars. Behaviour is otherwise faithful to the original.
@@ -26,6 +26,28 @@ function rebuildRead(): void {
 export function applyDictData(data: Dict): void {
   DICT = data || {};
   rebuildRead();
+}
+
+/**
+ * Projette les sujets `jlpt:Word` du graphe vers la `Dict` interne (`{mot: {r, m}}`).
+ *
+ * `word.jsonld` absorbe `dict.json` : la contradiction dict ↔ vocab n'a plus de support,
+ * il n'y a qu'UN nœud par mot. Un sujet sans `schema:name` est ignoré — sans clé, il ne
+ * pourrait de toute façon jamais être retrouvé.
+ */
+export function wordsToDict(subjects: Record<string, unknown>[]): Dict {
+  const out: Dict = {};
+  for (const s of subjects) {
+    const w = s["schema:name"];
+    if (typeof w !== "string" || !w) continue;
+    const entry: DictEntry = {};
+    const r = s["jlpt:reading"];
+    if (typeof r === "string") entry.r = r;
+    const m = s["schema:description"];
+    if (typeof m === "string") entry.m = m;
+    out[w] = entry;
+  }
+  return out;
 }
 
 // ---------- furigana (recherche gloutonne du plus long mot) ----------
@@ -284,7 +306,7 @@ export function initDefs(_opts?: { singleTap?: boolean }): void {
  * `furi`/`visualBreak`/`initDefs` ne le sont plus — les composants les importent directement
  * depuis ce module (une seule instance, donc le même DICT chargé au runtime).
  */
-export async function setupDict(url = "data/dict.json"): Promise<void> {
+export async function setupDict(url = "data/graph/word.jsonld"): Promise<void> {
   const w = window as unknown as Record<string, unknown>;
   w.hideDef = hideDef; w.jlptSay = jlptSay;
   // Attach tap-to-define gestures app-wide: a single tap/click on a word opens the definition
@@ -294,6 +316,9 @@ export async function setupDict(url = "data/dict.json"): Promise<void> {
   if ("speechSynthesis" in window) { _pickVoice(); try { speechSynthesis.onvoiceschanged = _pickVoice; } catch { /* ignore */ } }
   try {
     const res = await fetch(url);
-    if (res.ok) applyDictData(await res.json());
+    if (res.ok) {
+      const doc = await res.json() as { "@graph"?: Record<string, unknown>[] };
+      applyDictData(wordsToDict(doc["@graph"] ?? []));
+    }
   } catch { /* offline / missing → degrade to plain text */ }
 }
