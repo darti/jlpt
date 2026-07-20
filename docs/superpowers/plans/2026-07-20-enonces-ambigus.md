@@ -4,9 +4,39 @@
 > (recommandé) ou superpowers:executing-plans pour exécuter ce plan tâche par tâche.
 > Les étapes utilisent la syntaxe case à cocher (`- [ ]`).
 
-**But :** rendre défendable chacune des 585 questions « Xを漢字で書くと？ » dont au moins un
-distracteur est une graphie légitime de la lecture demandée, en les réécrivant en phrase à trou,
-et empêcher la récidive par un contrôle en CI.
+**But :** rendre défendable chacune des questions dont l'énoncé admet plusieurs réponses
+correctes, en les réécrivant en phrase à trou, et empêcher la récidive par un contrôle en CI.
+
+## Révisions du plan (G9 — le plan doit rester exact)
+
+Quatre écarts constatés à l'exécution, tous par mesure et non par supposition. Ils sont
+consignés ici parce que chacun invalidait une hypothèse du plan initial.
+
+**R1 — les chiffres du plan venaient de sondes trop étroites.** « 134 contradictions,
+585 homophones » supposait un balayage limité à `q-vocabulaire` et aux énoncés
+« を漢字で書くと ». Le balayage complet donne **135 groupes contradictoires** (dont un à
+cheval sur deux shards, invisible d'un groupement par fichier) et un périmètre plus large.
+Chiffres courants : voir la sortie de `node tools/graph/audit-stems.mjs`.
+
+**R2 — la détection est à TROIS classes, pas deux, et deux d'entre elles sont des preuves.**
+Le plan ne prévoyait que l'heuristique de prose. `word.jsonld` porte les lectures : un
+distracteur qui partage la `jlpt:reading` de la réponse EST une seconde bonne réponse, sans
+jugement. D'où `contradictions` + `memeLecture` (prouvés, verrou CI possible) et `suspects`
+(heuristique, rapport seulement).
+
+**R3 — l'heuristique de prose change de sens selon le sens de la question.** En
+「X」の読み方は？, une note « homophone » désigne la lecture d'un AUTRE mot (いっぱん = 一般,
+distracteur de 一番) : la question est saine. La restreindre au sens écriture élimine
+36 faux positifs qui auraient bloqué la CI.
+
+**R4 — `word.jsonld` est pollué, et ça corrompait la preuve.** Il contient des distracteurs
+fabriqués importés comme mots (約速、役束、約則 tous « やくそく », aucune glose), qui faisaient
+passer des questions saines pour ambiguës. L'index est restreint aux mots GLOSÉS. La purge du
+dictionnaire fait l'objet d'un lot séparé (cf. tâche 9).
+
+**R5 — le corpus écrit ses trous de deux façons.** `___` ASCII (1529 énoncés) et `＿`
+pleine chasse (256, tous en grammaire). Ne lire que l'ASCII réclamait l'arbitrage de
+questions déjà à trou. On LIT les deux, on n'ÉCRIT que l'ASCII.
 
 **Architecture :** on sépare la **décision** (quelle phrase, quel gloss — jugement humain, non
 mécanisable) de l'**application** (patch idempotent du graphe — code testé). C'est exactement la
@@ -814,7 +844,70 @@ bun test tools/graph/integrity.test.ts
 ```
 Attendu : tous verts.
 
-- [ ] **Étape 5 : ajouter le contrôle « homophone non désambiguïsé »**
+- [ ] **Étape 5 : ajouter le contrôle PROUVÉ « distracteur de même lecture »**
+
+⚠ **Révision R2/R3/R4.** Le plan prévoyait ici un contrôle fondé sur la note « homophone »
+du corrigé. Il ne doit PAS être livré : c'est de la prose, son sens dépend du sens de la
+question, et il produit 36 faux positifs. Le contrôle livré est celui que le graphe prouve.
+
+Il vit dans `checkCorpus` et non `checkQuestion` : il lui faut `word.jsonld`, et
+`validate-graph.mjs:36-37` charge justement tous les documents dans un seul tableau.
+
+```ts
+test("checkCorpus refuse un distracteur qui partage la lecture de la réponse", () => {
+  const q = qq("jlpt:q/4609", 4609, {
+    "jlpt:stem": "「あける」を漢字で書くと？",
+    opts: ["開ける", "明ける"], "jlpt:answer": 1,
+  });
+  const mots = [
+    { "@id": "jlpt:word/明ける", "@type": "jlpt:Word", "schema:name": "明ける",
+      "jlpt:reading": "あける", "schema:description": "(jour) se lever" },
+    { "@id": "jlpt:word/開ける", "@type": "jlpt:Word", "schema:name": "開ける",
+      "jlpt:reading": "あける", "schema:description": "ouvrir" },
+  ];
+  expect(checkCorpus([q, ...mots]).join(" ")).toMatch(/même lecture/i);
+});
+
+test("checkCorpus accepte le même jeu d'options si l'énoncé porte un trou", () => {
+  const q = qq("jlpt:q/4609", 4609, {
+    "jlpt:stem": "夜が___。（あける）", opts: ["開ける", "明ける"], "jlpt:answer": 1,
+  });
+  const mots = [
+    { "@id": "jlpt:word/明ける", "@type": "jlpt:Word", "schema:name": "明ける",
+      "jlpt:reading": "あける", "schema:description": "(jour) se lever" },
+    { "@id": "jlpt:word/開ける", "@type": "jlpt:Word", "schema:name": "開ける",
+      "jlpt:reading": "あける", "schema:description": "ouvrir" },
+  ];
+  expect(checkCorpus([q, ...mots])).toEqual([]);
+});
+```
+
+Dans `tools/graph/integrity.mjs`, importer les deux fonctions déjà écrites et testées —
+**une seule implémentation de la règle**, jamais recopiée :
+
+```js
+import { isDisambiguated, readingIndex, sameReadingConflicts } from "./audit-stems.mjs";
+```
+
+puis, dans `checkCorpus`, après le bloc des contradictions :
+
+```js
+  // --- distracteur de même lecture que la réponse ---
+  // Deux graphies attestées d'une même lecture sont deux réponses correctes tant que
+  // l'énoncé ne tranche pas. La preuve vient de word.jsonld, pas d'une note de corrigé.
+  // ⚠ readingIndex n'indexe que les mots GLOSÉS : word.jsonld porte des distracteurs
+  // fabriqués (約速、役束、約則, lecture recopiée de 約束, aucune glose) qui feraient
+  // condamner des questions saines.
+  for (const c of sameReadingConflicts(questions, readingIndex(subjects))) {
+    if (isDisambiguated(byId.get(c.id)?.["jlpt:stem"])) continue;
+    errs.push(
+      `${c.id} : « ${c.jumeaux.join("、")} » se li(sen)t ${c.lecture} comme la réponse `
+      + `« ${c.answer} » — l'énoncé doit trancher (phrase à trou)`,
+    );
+  }
+```
+
+- [ ] **Étape 5 bis (SUPPRIMÉE) : contrôle « homophone non désambiguïsé »**
 
 Dans `tools/graph/integrity.test.ts`, ajouter :
 
@@ -931,6 +1024,35 @@ Attendu : tout vert.
 git add sw.js CLAUDE.md
 git commit -m "chore: bump cache SW et documente la chaîne d'arbitrage des énoncés"
 ```
+
+---
+
+---
+
+### Task 9 : Purger les non-mots de `word.jsonld` — LOT SÉPARÉ
+
+**Ne pas exécuter dans cette branche.** Décidé avec l'auteur : sujet distinct, revue
+distincte. Consigné ici pour ne pas être perdu.
+
+**Le défaut.** `word.jsonld` contient des distracteurs de quiz importés comme mots par un
+générateur disparu : `約速`, `役束`, `約則`, `経検`, `径験`, `心輩`, `案全`, `便理`, `研宄`…
+Chacun porte la lecture de la **bonne réponse** recopiée, et **aucune glose**. Ce fichier
+est le dictionnaire que l'app sert pour les furigana et le tap-pour-définir.
+
+**Deux effets, l'un déjà neutralisé :**
+- sur la détection d'ambiguïté — neutralisé par le filtre « mot glosé » de `readingIndex` ;
+- sur le dictionnaire livré — **non traité**, ces entrées y sont toujours.
+
+**Le travail.**
+1. Un outil idempotent qui retire les `jlpt:Word` sans glose **jamais réponse d'aucune
+   question**. ⚠ Le critère « sans glose » seul ne suffit pas : il attrape aussi des formes
+   conjuguées légitimes (`食べた`, `行われる`, `食べさせた`), distracteurs de grammaire.
+2. Poser une glose sur les vrais mots à l'entrée incomplète — au moins `始め`, `始めて`,
+   `謝り`, identifiés parce que le filtre les écarte à tort de la détection.
+3. Vérifier ensuite si les 3 faux négatifs connus de `sameReadingConflicts` réapparaissent :
+   `「はじめ」→ 初め vs 始め`, `「はじめて」→ 初めて vs 始めて`, `「あやまり」→ 誤り vs 謝り`
+   sont de vraies ambiguïtés, à traiter comme les autres.
+4. Bumper `CACHE` dans `sw.js` : `word.jsonld` est un asset livré.
 
 ---
 
