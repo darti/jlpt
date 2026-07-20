@@ -24,15 +24,21 @@ const isQuestion = (s) => arr(s["@type"]).includes("jlpt:Question");
 /**
  * Pose les énoncés décidés sur les questions visées.
  *
- * Rend les sujets patchés et quatre rapports : ce qui a été posé, les décisions refusées
- * (cible mal formée), les conflits (le graphe porte un énoncé imprévu) et les décisions
- * sans cible. Seul `poses` écrit ; tout le reste se contente de signaler.
+ * Rend les sujets patchés et cinq rapports : ce qui a été posé, les décisions refusées
+ * (cible mal formée), les conflits (le graphe porte un énoncé imprévu), les décisions
+ * sans cible, et `vus` — les décisions dont la question EXISTE ici, quelle que soit
+ * l'issue. Seul `poses` écrit ; tout le reste se contente de signaler.
+ *
+ * ⚠ `vus` n'est pas redondant avec `poses` : une décision déjà appliquée ne pose rien et
+ * ne refuse rien. Sans lui, un appelant qui balaie plusieurs shards croit la question
+ * introuvable dès le second passage — c'est-à-dire précisément quand tout va bien.
  */
 export function applyStems(sujets, decisions) {
   const vises = new Set(Object.keys(decisions));
   const poses = [];
   const refuses = [];
   const conflits = [];
+  const vus = [];
 
   const out = sujets.map((s) => {
     if (!isQuestion(s)) return s;
@@ -40,6 +46,7 @@ export function applyStems(sujets, decisions) {
     const d = decisions[id];
     if (!d) return s;
     vises.delete(id);
+    vus.push(id);
 
     const cible = norm(d.stem);
     const actuel = norm(s["jlpt:stem"]);
@@ -67,7 +74,7 @@ export function applyStems(sujets, decisions) {
     return { ...s, "jlpt:stem": cible, ...(norm(d.gloss) ? { "jlpt:gloss": norm(d.gloss) } : {}) };
   });
 
-  return { sujets: out, poses: poses.length, questions: poses, refuses, conflits, inconnus: [...vises] };
+  return { sujets: out, poses: poses.length, questions: poses, refuses, conflits, vus, inconnus: [...vises] };
 }
 
 if (process.argv[1]?.endsWith("stems.mjs")) {
@@ -76,6 +83,9 @@ if (process.argv[1]?.endsWith("stems.mjs")) {
 
   let total = 0;
   const refuses = [], conflits = [];
+  // Une décision n'est « sans question » que si AUCUN shard ne l'a vue — pas si le shard
+  // courant ne l'a pas posée. Une décision déjà appliquée ne pose rien : la compter comme
+  // introuvable ferait crier l'outil au second passage, quand justement tout va bien.
   const restants = new Set(Object.keys(decisions));
 
   for (const f of shards) {
@@ -83,7 +93,7 @@ if (process.argv[1]?.endsWith("stems.mjs")) {
     const doc = JSON.parse(readFileSync(chemin, "utf8"));
     const r = applyStems(doc["@graph"] ?? [], decisions);
     if (r.poses) writeFileSync(chemin, JSON.stringify({ ...doc, "@graph": r.sujets }, null, 1) + "\n");
-    for (const id of [...r.questions, ...r.refuses, ...r.conflits]) restants.delete(id);
+    for (const id of r.vus) restants.delete(id);
     refuses.push(...r.refuses);
     conflits.push(...r.conflits);
     total += r.poses;

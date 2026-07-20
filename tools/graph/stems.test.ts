@@ -73,6 +73,17 @@ test("applyStems refuse un énoncé cible dont le trou n'est pas seul sur sa lig
   expect(refuses).toEqual(["jlpt:q/4609"]);
 });
 
+test("applyStems rapporte dans `vus` une décision DÉJÀ appliquée", () => {
+  // Régression : la CLI balaie plusieurs shards et retire de sa liste « introuvables »
+  // ce que chaque shard a vu. Sans `vus`, une décision déjà posée ne pose rien, ne refuse
+  // rien, n'entre en conflit avec rien — et l'outil la déclarait sans question au second
+  // passage, c'est-à-dire exactement quand l'idempotence fonctionne.
+  const { poses, vus, inconnus } = applyStems([q("jlpt:q/4609", NOUVEAU)], dec);
+  expect(poses).toBe(0);
+  expect(vus).toEqual(["jlpt:q/4609"]);
+  expect(inconnus).toEqual([]);
+});
+
 test("applyStems signale une décision qui ne vise aucune question", () => {
   const { poses, inconnus } = applyStems([q("jlpt:q/1", ANCIEN)], dec);
   expect(poses).toBe(0);

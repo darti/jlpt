@@ -1,0 +1,107 @@
+{
+ "jlpt:q/1285": {
+  "from": "「かんじょう」を漢字で書くと？",
+  "stem": "彼は___を顔に出さない。（かんじょう）",
+  "gloss": "彼（かれ）« il » · は « thème » · ___（かんじょう）« sentiment, émotion » · を « COD » · 顔（かお）« visage » · に « à » · 出さない（ださない）« ne montre pas » · 。 « fin »"
+ },
+ "jlpt:q/5285": {
+  "from": "「かんじょう」を漢字で書くと？",
+  "stem": "レストランで___を払った。（かんじょう）",
+  "gloss": "レストラン « restaurant » · で « lieu » · ___（かんじょう）« addition, note » · を « COD » · 払った（はらった）« a payé » · 。 « fin »"
+ },
+ "jlpt:q/1295": {
+  "from": "「けいじ」を漢字で書くと？",
+  "stem": "試験の結果が___板に出ている。（けいじ）",
+  "gloss": "試験（しけん）« examen » · の « de » · 結果（けっか）« résultat » · が « sujet » · ___板（けいじばん）« panneau d'affichage » · に « à » · 出ている（でている）« est affiché » · 。 « fin »"
+ },
+ "jlpt:q/5455": {
+  "from": "「けいじ」を漢字で書くと？",
+  "stem": "___が事件を調べている。（けいじ）",
+  "gloss": "___（けいじ）« inspecteur de police » · が « sujet » · 事件（じけん）« affaire » · を « COD » · 調べている（しらべている）« enquête sur » · 。 « fin »"
+ },
+ "jlpt:q/1314": {
+  "from": "「かんじ」を漢字で書くと？",
+  "stem": "この言葉を___で書いてください。（かんじ）",
+  "gloss": "この « ce » · 言葉（ことば）« mot » · を « COD » · ___（かんじ）« caractère chinois, kanji » · で « en » · 書いてください（かいてください）« veuillez écrire » · 。 « fin »"
+ },
+ "jlpt:q/4393": {
+  "from": "「かんじ」を漢字で書くと？",
+  "stem": "この部屋は暖かい___がする。（かんじ）",
+  "gloss": "この « cette » · 部屋（へや）« pièce » · は « thème » · 暖かい（あたたかい）« chaleureux » · ___（かんじ）« impression, sensation » · がする « donne l'impression » · 。 « fin »"
+ },
+ "jlpt:q/1386": {
+  "from": "「いがい」を漢字で書くと？",
+  "stem": "日曜日___は毎日働く。（いがい）",
+  "gloss": "日曜日（にちようび）« dimanche » · ___（いがい）« sauf, en dehors de » · は « thème » · 毎日（まいにち）« chaque jour » · 働く（はたらく）« travailler » · 。 « fin »"
+ },
+ "jlpt:q/4715": {
+  "from": "「いがい」を漢字で書くと？",
+  "stem": "試験は___に易しかった。（いがい）",
+  "gloss": "試験（しけん）« examen » · は « thème » · ___（いがい）« inattendu, surprenant » · に « adverbial » · 易しかった（やさしかった）« était facile » · 。 « fin »"
+ },
+ "jlpt:q/1400": {
+  "from": "「げんしょう」を漢字で書くと？",
+  "stem": "この町の人口は毎年___している。（げんしょう）",
+  "gloss": "この « cette » · 町（まち）« ville » · の « de » · 人口（じんこう）« population » · は « thème » · 毎年（まいとし）« chaque année » · ___している（げんしょうしている）« diminue » · 。 « fin »"
+ },
+ "jlpt:q/5515": {
+  "from": "「げんしょう」を漢字で書くと？",
+  "stem": "これは珍しい自然___だ。（げんしょう）",
+  "gloss": "これ « ceci » · は « thème » · 珍しい（めずらしい）« rare » · 自然（しぜん）« nature » · ___（げんしょう）« phénomène » · だ « être » · 。 « fin »"
+ },
+ "jlpt:q/1440": {
+  "from": "「じこ」を漢字で書くと？",
+  "stem": "交通___で電車が止まった。（じこ）",
+  "gloss": "交通（こうつう）« circulation » · ___（じこ）« accident » · で « cause » · 電車（でんしゃ）« train » · が « sujet » · 止まった（とまった）« s'est arrêté » · 。 « fin »"
+ },
+ "jlpt:q/3909": {
+  "from": "「じこ」を漢字で書くと？",
+  "stem": "面接で___紹介をした。（じこ）",
+  "gloss": "面接（めんせつ）« entretien » · で « lieu » · ___紹介（じこしょうかい）« présentation de soi » · を « COD » · した « a fait » · 。 « fin »"
+ },
+ "jlpt:q/1456": {
+  "from": "「きのう」を漢字で書くと？",
+  "stem": "___は雨が降っていた。（きのう）",
+  "gloss": "___（きのう）« hier » · は « thème » · 雨（あめ）« pluie » · が « sujet » · 降っていた（ふっていた）« tombait » · 。 « fin »"
+ },
+ "jlpt:q/3819": {
+  "from": "「きのう」を漢字で書くと？",
+  "stem": "この電話には便利な___が多い。（きのう）",
+  "gloss": "この « ce » · 電話（でんわ）« téléphone » · には « à » · 便利な（べんりな）« pratique » · ___（きのう）« fonction » · が « sujet » · 多い（おおい）« nombreuses » · 。 « fin »"
+ },
+ "jlpt:q/1481": {
+  "from": "「きたい」を漢字で書くと？",
+  "stem": "みんなが君の活躍を___している。（きたい）",
+  "gloss": "みんな « tout le monde » · が « sujet » · 君（きみ）« toi » · の « de » · 活躍（かつやく）« performance » · を « COD » · ___している（きたいしている）« attend avec espoir » · 。 « fin »"
+ },
+ "jlpt:q/5367": {
+  "from": "「きたい」を漢字で書くと？",
+  "stem": "水は熱すると___になる。（きたい）",
+  "gloss": "水（みず）« eau » · は « thème » · 熱する（ねっする）→熱すると « quand on chauffe » · ___（きたい）« gaz » · になる « devient » · 。 « fin »"
+ },
+ "jlpt:q/1503": {
+  "from": "「せいかく」を漢字で書くと？",
+  "stem": "妹は明るい___だ。（せいかく）",
+  "gloss": "妹（いもうと）« petite sœur » · は « thème » · 明るい（あかるい）« gai » · ___（せいかく）« caractère, personnalité » · だ « être » · 。 « fin »"
+ },
+ "jlpt:q/1723": {
+  "from": "「せいかく」を漢字で書くと？",
+  "stem": "この時計は___な時間を示す。（せいかく）",
+  "gloss": "この « cette » · 時計（とけい）« horloge » · は « thème » · ___な（せいかくな）« exact, précis » · 時間（じかん）« heure » · を « COD » · 示す（しめす）« indique » · 。 « fin »"
+ },
+ "jlpt:q/1521": {
+  "from": "「きかい」を漢字で書くと？",
+  "stem": "工場の___が動かなくなった。（きかい）",
+  "gloss": "工場（こうじょう）« usine » · の « de » · ___（きかい）« machine » · が « sujet » · 動かなくなった（うごかなくなった）« ne fonctionne plus » · 。 « fin »"
+ },
+ "jlpt:q/2158": {
+  "from": "「きかい」を漢字で書くと？",
+  "stem": "いい___があれば留学したい。（きかい）",
+  "gloss": "いい « bonne » · ___（きかい）« occasion, opportunité » · が « sujet » · あれば « s'il y a » · 留学（りゅうがく）« étudier à l'étranger » · したい « vouloir faire » · 。 « fin »"
+ },
+ "jlpt:q/5321": {
+  "from": "「きかい」を漢字で書くと？",
+  "stem": "体育の授業で___体操をする。（きかい）",
+  "gloss": "体育（たいいく）« éducation physique » · の « de » · 授業（じゅぎょう）« cours » · で « lieu » · ___体操（きかいたいそう）« gymnastique aux agrès » · を « COD » · する « faire » · 。 « fin »"
+ }
+}
