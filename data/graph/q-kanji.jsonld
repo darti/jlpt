@@ -906,6 +906,9 @@
     "約速 : 速 (vitesse) au lieu de 束, erroné",
     "役束 : 役 au lieu de 約, incorrect",
     "約則 : 則 au lieu de 束, incorrect"
+   ],
+   "tests": [
+    "jlpt:word/約束"
    ]
   },
   {
@@ -929,6 +932,9 @@
     "経検 : 検 (inspection) au lieu de 験, erroné",
     "径験 : 径 au lieu de 経, incorrect",
     "経険 : 険 (escarpé) au lieu de 験, erroné"
+   ],
+   "tests": [
+    "jlpt:word/経験"
    ]
   },
   {
@@ -952,6 +958,9 @@
     "必配 : 必 au lieu de 心, incorrect",
     "心輩 : 輩 au lieu de 配, erroné",
     "心酉 : 酉 n'est pas le bon caractère"
+   ],
+   "tests": [
+    "jlpt:word/心配"
    ]
   },
   {
@@ -975,6 +984,9 @@
     "案全 : 案 au lieu de 安, incorrect",
     "安金 : 金 au lieu de 全, erroné",
     "安然 : 然 au lieu de 全, incorrect"
+   ],
+   "tests": [
+    "jlpt:word/安全"
    ]
   },
   {
@@ -998,6 +1010,9 @@
     "使利 : 使 au lieu de 便, incorrect",
     "便理 : 理 au lieu de 利, erroné",
     "弁利 : 弁 au lieu de 便, incorrect"
+   ],
+   "tests": [
+    "jlpt:word/便利"
    ]
   },
   {
@@ -1021,6 +1036,9 @@
     "注異 : 異 au lieu de 意, incorrect",
     "駐意 : 駐 au lieu de 注, erroné",
     "註意 : 註 (variante) inhabituel, non standard ici"
+   ],
+   "tests": [
+    "jlpt:word/注意"
    ]
   },
   {
@@ -1044,6 +1062,9 @@
     "性活 : 性 au lieu de 生, incorrect",
     "生括 : 括 au lieu de 活, erroné",
     "生汚 : 汚 au lieu de 活, incorrect"
+   ],
+   "tests": [
+    "jlpt:word/生活"
    ]
   },
   {
@@ -1561,6 +1582,9 @@
     "教肉 : 肉 (viande) au lieu de 育 (élever)",
     "数育 : 数 (nombre) au lieu de 教 (enseigner)",
     "教郁 : 郁 n'est pas 育, caractère erroné"
+   ],
+   "tests": [
+    "jlpt:word/教育"
    ]
   },
   {
@@ -1584,6 +1608,9 @@
     "研空 : 空 (ciel/vide) au lieu de 究",
     "石究 : 石 (pierre) au lieu de 研",
     "研宄 : 宄 n'est pas 究, caractère erroné"
+   ],
+   "tests": [
+    "jlpt:word/研究"
    ]
   },
   {
@@ -2127,6 +2154,9 @@
     "運働 : 働 (travailler) au lieu de 動 (bouger)",
     "連動 : 連 (relier) au lieu de 運 (transporter)",
     "運道 : 道 (chemin) au lieu de 動"
+   ],
+   "tests": [
+    "jlpt:word/運動"
    ]
   },
   {
@@ -2150,6 +2180,9 @@
     "世会 : 会 (réunion) au lieu de 界",
     "生界 : 生 (vie) au lieu de 世",
     "世解 : 解 (résoudre) au lieu de 界"
+   ],
+   "tests": [
+    "jlpt:word/世界"
    ]
   },
   {
@@ -2173,6 +2206,9 @@
     "方放 : 放 (lâcher) au lieu de 法",
     "放法 : 放 (lâcher) au lieu de 方",
     "万法 : 万 (dix mille) au lieu de 方"
+   ],
+   "tests": [
+    "jlpt:word/方法"
    ]
   },
   {
@@ -2196,6 +2232,9 @@
     "理油 : 油 (huile) au lieu de 由",
     "里由 : 里 (village) au lieu de 理",
     "理田 : 田 (rizière) au lieu de 由"
+   ],
+   "tests": [
+    "jlpt:word/理由"
    ]
   },
   {
@@ -2219,6 +2258,9 @@
     "木的 : 木 (arbre) au lieu de 目",
     "日的 : 日 (jour) au lieu de 目",
     "目敵 : 敵 (ennemi) au lieu de 的"
+   ],
+   "tests": [
+    "jlpt:word/目的"
    ]
   },
   {
@@ -2242,6 +2284,9 @@
     "結課 : 課 (leçon/section) au lieu de 果",
     "詰果 : 詰 (bourrer) au lieu de 結",
     "結菓 : 菓 (confiserie) au lieu de 果"
+   ],
+   "tests": [
+    "jlpt:word/結果"
    ]
   },
   {
@@ -2496,6 +2541,9 @@
     "erreur : 二 = deux",
     "erreur : 三 = trois",
     "erreur : 十 = dix"
+   ],
+   "tests": [
+    "jlpt:word/一"
    ]
   },
   {
@@ -2623,6 +2671,9 @@
     "Correct : 二人（ふたり）= deux personnes",
     "erreur : 三人 = さんにん (trois personnes)",
     "erreur : 五人 = ごにん (cinq personnes)"
+   ],
+   "tests": [
+    "jlpt:word/二"
    ]
   },
   {
@@ -2750,6 +2801,9 @@
     "erreur : 四つ = よっつ (quatre)",
     "Correct : 三つ（みっつ）= trois",
     "erreur : 五つ = いつつ (cinq)"
+   ],
+   "tests": [
+    "jlpt:word/三"
    ]
   },
   {
@@ -2877,6 +2931,9 @@
     "Correct : 四つ（よっつ）= quatre",
     "erreur : 五つ = いつつ (cinq)",
     "erreur : 六つ = むっつ (six)"
+   ],
+   "tests": [
+    "jlpt:word/四"
    ]
   },
   {
@@ -3004,6 +3061,9 @@
     "erreur : 六つ = むっつ (six)",
     "Correct : 五つ（いつつ）= cinq",
     "erreur : 三つ = みっつ (trois)"
+   ],
+   "tests": [
+    "jlpt:word/五"
    ]
   },
   {
@@ -3131,6 +3191,9 @@
     "erreur : 七つ = ななつ (sept)",
     "Correct : 六つ（むっつ）= six",
     "erreur : 八つ = やっつ (huit)"
+   ],
+   "tests": [
+    "jlpt:word/六"
    ]
   },
   {
@@ -3258,6 +3321,9 @@
     "erreur : 八つ = やっつ (huit)",
     "erreur : 九つ = ここのつ (neuf)",
     "Correct : 七つ（ななつ）= sept"
+   ],
+   "tests": [
+    "jlpt:word/七"
    ]
   },
   {
@@ -3385,6 +3451,9 @@
     "erreur : 九つ = ここのつ (neuf)",
     "erreur : 六つ = むっつ (six)",
     "Correct : 八つ（やっつ）= huit"
+   ],
+   "tests": [
+    "jlpt:kanji/八"
    ]
   },
   {
@@ -3512,6 +3581,9 @@
     "erreur : 十 = とお (dix)",
     "Correct : 九つ（ここのつ）= neuf",
     "erreur : 七つ = ななつ (sept)"
+   ],
+   "tests": [
+    "jlpt:word/九"
    ]
   },
   {
@@ -3639,6 +3711,9 @@
     "erreur : 千 = せん (mille)",
     "erreur : 百 = ひゃく (cent)",
     "Correct : 十（とお・じゅう）= dix"
+   ],
+   "tests": [
+    "jlpt:word/十"
    ]
   },
   {
@@ -3766,6 +3841,9 @@
     "erreur : 万 = まん (dix mille)",
     "Correct : 百円（ひゃくえん）= cent yens",
     "erreur : 十円 = じゅうえん (dix yens)"
+   ],
+   "tests": [
+    "jlpt:word/百"
    ]
   },
   {
@@ -3893,6 +3971,9 @@
     "erreur : 万 = まん (dix mille)",
     "erreur : 十円 = じゅうえん (dix yens)",
     "Correct : 千円（せんえん）= mille yens"
+   ],
+   "tests": [
+    "jlpt:word/千"
    ]
   },
   {
@@ -4020,6 +4101,9 @@
     "erreur : 百 = ひゃく (cent)",
     "erreur : 十 = じゅう (dix)",
     "Correct : 一万円（いちまんえん）= dix mille yens"
+   ],
+   "tests": [
+    "jlpt:word/万"
    ]
   },
   {
@@ -4144,6 +4228,9 @@
     "erreur : 万 = dix mille, pas l'unité yen",
     "Correct : 円（えん）= yen. 三百円 = さんびゃくえん",
     "erreur : 千 = mille, pas l'unité yen"
+   ],
+   "tests": [
+    "jlpt:word/円"
    ]
   },
   {
@@ -4271,6 +4358,9 @@
     "erreur : 水曜日 = すいようび (mercredi)",
     "erreur : 月曜日 = げつようび (lundi)",
     "Correct : 日曜日（にちようび）= dimanche"
+   ],
+   "tests": [
+    "jlpt:word/日"
    ]
   },
   {
@@ -4372,6 +4462,9 @@
     "erreur : le kanji « 水 » ne convient pas ici",
     "erreur : le kanji « 木 » ne convient pas ici",
     "Correct : le kanji 月 complète 月曜日（げつようび）"
+   ],
+   "tests": [
+    "jlpt:word/月"
    ]
   },
   {
@@ -4499,6 +4592,9 @@
     "erreur : le kanji « 水 » ne convient pas ici",
     "Correct : le kanji 火 complète 火曜日（かようび）",
     "erreur : le kanji « 金 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/火"
    ]
   },
   {
@@ -4626,6 +4722,9 @@
     "Correct : le kanji 水 complète 水曜日（すいようび）",
     "erreur : le kanji « 木 » ne convient pas ici",
     "erreur : le kanji « 土 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/水"
    ]
   },
   {
@@ -4753,6 +4852,9 @@
     "erreur : le kanji « 水 » ne convient pas ici",
     "erreur : le kanji « 金 » ne convient pas ici",
     "erreur : le kanji « 土 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/木"
    ]
   },
   {
@@ -4880,6 +4982,9 @@
     "erreur : le kanji « 土 » ne convient pas ici",
     "erreur : le kanji « 月 » ne convient pas ici",
     "Correct : le kanji 金 complète 金曜日（きんようび）"
+   ],
+   "tests": [
+    "jlpt:word/金"
    ]
   },
   {
@@ -5007,6 +5112,9 @@
     "erreur : le kanji « 月 » ne convient pas ici",
     "Correct : le kanji 土 complète 土曜日（どようび）",
     "erreur : le kanji « 火 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/土"
    ]
   },
   {
@@ -5134,6 +5242,9 @@
     "Correct : le kanji 年 complète 今年（ことし）",
     "erreur : le kanji « 間 » ne convient pas ici",
     "erreur : le kanji « 分 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/年"
    ]
   },
   {
@@ -5261,6 +5372,9 @@
     "erreur : le kanji « 分 » ne convient pas ici",
     "erreur : le kanji « 半 » ne convient pas ici",
     "erreur : le kanji « 間 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/時"
    ]
   },
   {
@@ -5388,6 +5502,9 @@
     "erreur : le kanji « 時 » ne convient pas ici",
     "erreur : le kanji « 半 » ne convient pas ici",
     "Correct : le kanji 分 complète 五分（ごふん）"
+   ],
+   "tests": [
+    "jlpt:word/分"
    ]
   },
   {
@@ -5515,6 +5632,9 @@
     "erreur : le kanji « 今 » ne convient pas ici",
     "Correct : le kanji 半 complète 半分（はんぶん）",
     "erreur : le kanji « 前 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/半"
    ]
   },
   {
@@ -5642,6 +5762,9 @@
     "Correct : le kanji 今 complète 今日（きょう）",
     "erreur : le kanji « 後 » ne convient pas ici",
     "erreur : le kanji « 午 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/今"
    ]
   },
   {
@@ -5769,6 +5892,9 @@
     "erreur : le kanji « 後 » ne convient pas ici",
     "erreur : le kanji « 今 » ne convient pas ici",
     "erreur : le kanji « 間 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/前"
    ]
   },
   {
@@ -5896,6 +6022,9 @@
     "erreur : le kanji « 今 » ne convient pas ici",
     "erreur : le kanji « 間 » ne convient pas ici",
     "Correct : le kanji 後 complète 午後（ごご）"
+   ],
+   "tests": [
+    "jlpt:word/後"
    ]
   },
   {
@@ -6023,6 +6152,9 @@
     "erreur : le kanji « 前 » ne convient pas ici",
     "Correct : le kanji 午 complète 午前中（ごぜんちゅう）",
     "erreur : le kanji « 後 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/午"
    ]
   },
   {
@@ -6150,6 +6282,9 @@
     "Correct : le kanji 間 complète 人間（にんげん）",
     "erreur : le kanji « 分 » ne convient pas ici",
     "erreur : le kanji « 半 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/間"
    ]
   },
   {
@@ -6303,6 +6438,9 @@
     "erreur : « 海 » n'est pas le bon kanji ici",
     "Correct : le kanji est 毎",
     "erreur : « 年 » n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:kanji/毎"
    ]
   },
   {
@@ -6430,6 +6568,9 @@
     "erreur : « 左 » n'est pas le bon kanji ici",
     "erreur : « 右 » n'est pas le bon kanji ici",
     "Correct : le kanji est 上"
+   ],
+   "tests": [
+    "jlpt:word/上"
    ]
   },
   {
@@ -6557,6 +6698,9 @@
     "erreur : « 上 » n'est pas le bon kanji ici",
     "erreur : « 中 » n'est pas le bon kanji ici",
     "erreur : « 左 » n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/下"
    ]
   },
   {
@@ -6684,6 +6828,9 @@
     "Correct : le kanji est 中",
     "erreur : « 大 » n'est pas le bon kanji ici",
     "erreur : « 小 » n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/中"
    ]
   },
   {
@@ -6811,6 +6958,9 @@
     "erreur : « 上 » n'est pas le bon kanji ici",
     "Correct : le kanji est 左",
     "erreur : « 下 » n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/左"
    ]
   },
   {
@@ -6938,6 +7088,9 @@
     "erreur : « 上 » n'est pas le bon kanji ici",
     "erreur : « 下 » n'est pas le bon kanji ici",
     "Correct : le kanji est 右"
+   ],
+   "tests": [
+    "jlpt:word/右"
    ]
   },
   {
@@ -7065,6 +7218,9 @@
     "erreur : « 西 » n'est pas le bon kanji ici",
     "erreur : « 南 » n'est pas le bon kanji ici",
     "erreur : « 北 » n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/東"
    ]
   },
   {
@@ -7192,6 +7348,9 @@
     "Correct : le kanji est 西",
     "erreur : « 南 » n'est pas le bon kanji ici",
     "erreur : « 北 » n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/西"
    ]
   },
   {
@@ -7319,6 +7478,9 @@
     "erreur : « 東 » n'est pas le bon kanji ici",
     "Correct : le kanji est 南",
     "erreur : « 西 » n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/南"
    ]
   },
   {
@@ -7446,6 +7608,9 @@
     "erreur : « 西 » n'est pas le bon kanji ici",
     "erreur : « 中 » n'est pas le bon kanji ici",
     "Correct : le kanji est 北"
+   ],
+   "tests": [
+    "jlpt:word/北"
    ]
   },
   {
@@ -7573,6 +7738,9 @@
     "erreur : « 中 » n'est pas le bon kanji ici",
     "erreur : « 大 » n'est pas le bon kanji ici",
     "erreur : « 高 » n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/外"
    ]
   },
   {
@@ -7700,6 +7868,9 @@
     "Correct : le kanji est 大",
     "erreur : « 中 » n'est pas le bon kanji ici",
     "erreur : « 高 » n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/大"
    ]
   },
   {
@@ -7827,6 +7998,9 @@
     "erreur : « 中 » n'est pas le bon kanji ici",
     "Correct : le kanji est 小",
     "erreur : « 高 » n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/小"
    ]
   },
   {
@@ -7954,6 +8128,9 @@
     "erreur : « 小 » n'est pas le bon kanji ici",
     "erreur : « 安 » n'est pas le bon kanji ici",
     "Correct : le kanji est 高"
+   ],
+   "tests": [
+    "jlpt:word/高"
    ]
   },
   {
@@ -8081,6 +8258,9 @@
     "erreur : « 高 » n'est pas le bon kanji ici",
     "erreur : « 小 » n'est pas le bon kanji ici",
     "erreur : « 中 » n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/安"
    ]
   },
   {
@@ -8208,6 +8388,9 @@
     "Correct : le kanji manquant est 長 (社長)",
     "erreur : 町 n'est pas le bon kanji ici",
     "erreur : 朝 n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/長"
    ]
   },
   {
@@ -8335,6 +8518,9 @@
     "erreur : 森 n'est pas le bon kanji ici",
     "Correct : le kanji manquant est 新 (新聞)",
     "erreur : 身 n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/新"
    ]
   },
   {
@@ -8462,6 +8648,9 @@
     "erreur : 湖 n'est pas le bon kanji ici",
     "erreur : 個 n'est pas le bon kanji ici",
     "Correct : le kanji manquant est 古 (中古)"
+   ],
+   "tests": [
+    "jlpt:kanji/古"
    ]
   },
   {
@@ -8589,6 +8778,9 @@
     "erreur : 百 n'est pas le bon kanji ici",
     "erreur : 自 n'est pas le bon kanji ici",
     "erreur : 目 n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/白"
    ]
   },
   {
@@ -8716,6 +8908,9 @@
     "Correct : le kanji manquant est 人 (日本人)",
     "erreur : 大 n'est pas le bon kanji ici",
     "erreur : 八 n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/人"
    ]
   },
   {
@@ -8843,6 +9038,9 @@
     "erreur : 力 n'est pas le bon kanji ici",
     "Correct : le kanji manquant est 男 (男の子)",
     "erreur : 勇 n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/男"
    ]
   },
   {
@@ -8970,6 +9168,9 @@
     "erreur : 好 n'est pas le bon kanji ici",
     "erreur : 母 n'est pas le bon kanji ici",
     "Correct : le kanji manquant est 女 (女の子)"
+   ],
+   "tests": [
+    "jlpt:word/女"
    ]
   },
   {
@@ -9094,6 +9295,9 @@
     "erreur : 字 n'est pas le bon kanji ici",
     "erreur : 学 n'est pas le bon kanji ici",
     "erreur : 好 n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:kanji/子"
    ]
   },
   {
@@ -9221,6 +9425,9 @@
     "Correct : le kanji manquant est 父 (お父さん)",
     "erreur : 交 n'est pas le bon kanji ici",
     "erreur : 文 n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/父"
    ]
   },
   {
@@ -9348,6 +9555,9 @@
     "erreur : 海 n'est pas le bon kanji ici",
     "Correct : le kanji manquant est 母 (お母さん)",
     "erreur : 父 n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/母"
    ]
   },
   {
@@ -9472,6 +9682,9 @@
     "erreur : 右 n'est pas le bon kanji ici",
     "erreur : 左 n'est pas le bon kanji ici",
     "Correct : le kanji manquant est 友 (友だち)"
+   ],
+   "tests": [
+    "jlpt:kanji/友"
    ]
   },
   {
@@ -9599,6 +9812,9 @@
     "erreur : 生 n'est pas le bon kanji ici",
     "erreur : 失 n'est pas le bon kanji ici",
     "erreur : 洗 n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/先"
    ]
   },
   {
@@ -9726,6 +9942,9 @@
     "Correct : le kanji manquant est 生 (学生)",
     "erreur : 性 n'est pas le bon kanji ici",
     "erreur : 星 n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:word/生"
    ]
   },
   {
@@ -9853,6 +10072,9 @@
     "erreur : 各 n'est pas le bon kanji ici",
     "Correct : le kanji manquant est 名 (名前)",
     "erreur : 多 n'est pas le bon kanji ici"
+   ],
+   "tests": [
+    "jlpt:kanji/名"
    ]
   },
   {
@@ -9980,6 +10202,9 @@
     "erreur : 楽 n'est pas le bon kanji ici",
     "erreur : 字 n'est pas le bon kanji ici",
     "Correct : le kanji manquant est 学 (学校)"
+   ],
+   "tests": [
+    "jlpt:kanji/学"
    ]
   },
   {
@@ -10107,6 +10332,9 @@
     "Correct : le kanji manquant est 校",
     "erreur : le kanji 語 ne convient pas ici",
     "erreur : le kanji 国 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/校"
    ]
   },
   {
@@ -10234,6 +10462,9 @@
     "erreur : le kanji 語 ne convient pas ici",
     "erreur : le kanji 国 ne convient pas ici",
     "Correct : le kanji manquant est 本"
+   ],
+   "tests": [
+    "jlpt:word/本"
    ]
   },
   {
@@ -10361,6 +10592,9 @@
     "Correct : le kanji manquant est 語",
     "erreur : le kanji 本 ne convient pas ici",
     "erreur : le kanji 国 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/語"
    ]
   },
   {
@@ -10488,6 +10722,9 @@
     "erreur : le kanji 本 ne convient pas ici",
     "erreur : le kanji 語 ne convient pas ici",
     "Correct : le kanji manquant est 国"
+   ],
+   "tests": [
+    "jlpt:word/国"
    ]
   },
   {
@@ -10615,6 +10852,9 @@
     "Correct : le kanji manquant est 山",
     "erreur : le kanji 本 ne convient pas ici",
     "erreur : le kanji 語 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/山"
    ]
   },
   {
@@ -10742,6 +10982,9 @@
     "erreur : le kanji 本 ne convient pas ici",
     "erreur : le kanji 語 ne convient pas ici",
     "Correct : le kanji manquant est 川"
+   ],
+   "tests": [
+    "jlpt:word/川"
    ]
   },
   {
@@ -10866,6 +11109,9 @@
     "Correct : le kanji manquant est 田",
     "erreur : le kanji 本 ne convient pas ici",
     "erreur : le kanji 語 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/田"
    ]
   },
   {
@@ -10993,6 +11239,9 @@
     "erreur : le kanji 本 ne convient pas ici",
     "erreur : le kanji 語 ne convient pas ici",
     "Correct : le kanji manquant est 天"
+   ],
+   "tests": [
+    "jlpt:kanji/天"
    ]
   },
   {
@@ -11120,6 +11369,9 @@
     "Correct : le kanji manquant est 気",
     "erreur : le kanji 本 ne convient pas ici",
     "erreur : le kanji 語 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/気"
    ]
   },
   {
@@ -11247,6 +11499,9 @@
     "erreur : le kanji 本 ne convient pas ici",
     "erreur : le kanji 語 ne convient pas ici",
     "Correct : le kanji manquant est 雨"
+   ],
+   "tests": [
+    "jlpt:word/雨"
    ]
   },
   {
@@ -11374,6 +11629,9 @@
     "Correct : le kanji manquant est 花",
     "erreur : le kanji 本 ne convient pas ici",
     "erreur : le kanji 語 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/花"
    ]
   },
   {
@@ -11501,6 +11759,9 @@
     "erreur : le kanji 本 ne convient pas ici",
     "erreur : le kanji 語 ne convient pas ici",
     "Correct : le kanji manquant est 空"
+   ],
+   "tests": [
+    "jlpt:word/空"
    ]
   },
   {
@@ -11628,6 +11889,9 @@
     "Correct : le kanji manquant est 目",
     "erreur : le kanji 本 ne convient pas ici",
     "erreur : le kanji 語 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/目"
    ]
   },
   {
@@ -11755,6 +12019,9 @@
     "erreur : le kanji 本 ne convient pas ici",
     "erreur : le kanji 語 ne convient pas ici",
     "Correct : le kanji manquant est 耳"
+   ],
+   "tests": [
+    "jlpt:word/耳"
    ]
   },
   {
@@ -11882,6 +12149,9 @@
     "Correct : le kanji manquant est 口",
     "erreur : le kanji 本 ne convient pas ici",
     "erreur : le kanji 語 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/口"
    ]
   },
   {
@@ -12009,6 +12279,9 @@
     "Correct : le kanji est 手 (main)",
     "erreur : « 力 » ne convient pas ici",
     "erreur : « 行 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/手"
    ]
   },
   {
@@ -12136,6 +12409,9 @@
     "erreur : « 力 » ne convient pas ici",
     "erreur : « 行 » ne convient pas ici",
     "Correct : le kanji est 足 (pied / jambe)"
+   ],
+   "tests": [
+    "jlpt:word/足"
    ]
   },
   {
@@ -12263,6 +12539,9 @@
     "Correct : le kanji est 力 (force)",
     "erreur : « 足 » ne convient pas ici",
     "erreur : « 行 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/力"
    ]
   },
   {
@@ -12390,6 +12669,9 @@
     "erreur : « 足 » ne convient pas ici",
     "erreur : « 力 » ne convient pas ici",
     "Correct : le kanji est 行 (aller)"
+   ],
+   "tests": [
+    "jlpt:word/行"
    ]
   },
   {
@@ -12517,6 +12799,9 @@
     "Correct : le kanji est 来 (venir)",
     "erreur : « 足 » ne convient pas ici",
     "erreur : « 力 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/来"
    ]
   },
   {
@@ -12644,6 +12929,9 @@
     "erreur : « 足 » ne convient pas ici",
     "erreur : « 力 » ne convient pas ici",
     "Correct : le kanji est 帰 (rentrer)"
+   ],
+   "tests": [
+    "jlpt:word/帰"
    ]
   },
   {
@@ -12771,6 +13059,9 @@
     "Correct : le kanji est 見 (voir / regarder)",
     "erreur : « 足 » ne convient pas ici",
     "erreur : « 力 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/見"
    ]
   },
   {
@@ -12898,6 +13189,9 @@
     "erreur : « 足 » ne convient pas ici",
     "erreur : « 力 » ne convient pas ici",
     "Correct : le kanji est 聞 (écouter / entendre)"
+   ],
+   "tests": [
+    "jlpt:word/聞"
    ]
   },
   {
@@ -13025,6 +13319,9 @@
     "Correct : le kanji est 食 (manger / nourriture)",
     "erreur : « 足 » ne convient pas ici",
     "erreur : « 力 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/食"
    ]
   },
   {
@@ -13152,6 +13449,9 @@
     "erreur : « 足 » ne convient pas ici",
     "erreur : « 力 » ne convient pas ici",
     "Correct : le kanji est 飲 (boire)"
+   ],
+   "tests": [
+    "jlpt:word/飲"
    ]
   },
   {
@@ -13279,6 +13579,9 @@
     "Correct : le kanji est 買 (acheter)",
     "erreur : « 足 » ne convient pas ici",
     "erreur : « 力 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/買"
    ]
   },
   {
@@ -13406,6 +13709,9 @@
     "erreur : « 足 » ne convient pas ici",
     "erreur : « 力 » ne convient pas ici",
     "Correct : le kanji est 読 (lire)"
+   ],
+   "tests": [
+    "jlpt:word/読"
    ]
   },
   {
@@ -13533,6 +13839,9 @@
     "Correct : le kanji est 書 (écrire)",
     "erreur : « 足 » ne convient pas ici",
     "erreur : « 力 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/書"
    ]
   },
   {
@@ -13660,6 +13969,9 @@
     "erreur : « 足 » ne convient pas ici",
     "erreur : « 力 » ne convient pas ici",
     "Correct : le kanji est 話 (parler / histoire)"
+   ],
+   "tests": [
+    "jlpt:word/話"
    ]
   },
   {
@@ -13787,6 +14099,9 @@
     "Correct : le kanji est 言 (dire / parole)",
     "erreur : « 足 » ne convient pas ici",
     "erreur : « 力 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/言"
    ]
   },
   {
@@ -13914,6 +14229,9 @@
     "erreur : 入 signifie « entrer »",
     "erreur : 立 signifie « se tenir debout »",
     "erreur : 休 signifie « se reposer »"
+   ],
+   "tests": [
+    "jlpt:word/出"
    ]
   },
   {
@@ -14041,6 +14359,9 @@
     "erreur : 出 signifie « sortir »",
     "erreur : 立 signifie « se tenir debout »",
     "erreur : 会 signifie « rencontrer »"
+   ],
+   "tests": [
+    "jlpt:word/入"
    ]
   },
   {
@@ -14168,6 +14489,9 @@
     "erreur : 入 signifie « entrer »",
     "erreur : 出 signifie « sortir »",
     "erreur : 休 signifie « se reposer »"
+   ],
+   "tests": [
+    "jlpt:word/立"
    ]
   },
   {
@@ -14295,6 +14619,9 @@
     "erreur : 立 signifie « se tenir debout »",
     "erreur : 出 signifie « sortir »",
     "erreur : 会 signifie « rencontrer »"
+   ],
+   "tests": [
+    "jlpt:word/休"
    ]
   },
   {
@@ -14422,6 +14749,9 @@
     "erreur : 入 signifie « entrer »",
     "erreur : 休 signifie « se reposer »",
     "erreur : 車 signifie « voiture »"
+   ],
+   "tests": [
+    "jlpt:word/会"
    ]
   },
   {
@@ -14679,6 +15009,9 @@
     "erreur : 電 signifie « électricité »",
     "erreur : 会 signifie « rencontrer »",
     "erreur : 社 signifie « société »"
+   ],
+   "tests": [
+    "jlpt:word/車"
    ]
   },
   {
@@ -14936,6 +15269,9 @@
     "erreur : 会 signifie « rencontrer »",
     "erreur : 車 signifie « voiture »",
     "erreur : 音 signifie « son »"
+   ],
+   "tests": [
+    "jlpt:word/何"
    ]
   },
   {
@@ -15193,6 +15529,9 @@
     "erreur : 文 signifie « phrase »",
     "erreur : 会 signifie « rencontrer »",
     "erreur : 電 signifie « électricité »"
+   ],
+   "tests": [
+    "jlpt:word/音"
    ]
   },
   {
@@ -15320,6 +15659,9 @@
     "erreur : 多 signifie « nombreux »",
     "erreur : 出 signifie « sortir »",
     "erreur : 立 signifie « se tenir debout »"
+   ],
+   "tests": [
+    "jlpt:word/少"
    ]
   },
   {
@@ -15447,6 +15789,9 @@
     "erreur : 少 signifie « peu »",
     "erreur : 休 signifie « se reposer »",
     "erreur : 会 signifie « rencontrer »"
+   ],
+   "tests": [
+    "jlpt:word/多"
    ]
   },
   {
@@ -15574,6 +15919,9 @@
     "erreur : 多 signifie « nombreux »",
     "erreur : 少 signifie « peu »",
     "erreur : 立 signifie « se tenir debout »"
+   ],
+   "tests": [
+    "jlpt:word/早"
    ]
   },
   {
@@ -15701,6 +16049,9 @@
     "erreur : le kanji « 悲 » ne convient pas ici",
     "Correct : le kanji 悪",
     "erreur : le kanji « 要 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/悪"
    ]
   },
   {
@@ -15828,6 +16179,9 @@
     "erreur : le kanji « 晴 » ne convient pas ici",
     "erreur : le kanji « 音 » ne convient pas ici",
     "Correct : le kanji 暗"
+   ],
+   "tests": [
+    "jlpt:word/暗"
    ]
   },
   {
@@ -15955,6 +16309,9 @@
     "erreur : le kanji « 似 » ne convient pas ici",
     "erreur : le kanji « 意 » ne convient pas ici",
     "erreur : le kanji « 目 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/以"
    ]
   },
   {
@@ -16082,6 +16439,9 @@
     "Correct : le kanji 意",
     "erreur : le kanji « 億 » ne convient pas ici",
     "erreur : le kanji « 以 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/意"
    ]
   },
   {
@@ -16209,6 +16569,9 @@
     "erreur : le kanji « 意 » ne convient pas ici",
     "Correct : le kanji 医",
     "erreur : le kanji « 区 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/医"
    ]
   },
   {
@@ -16336,6 +16699,9 @@
     "erreur : le kanji « 割 » ne convient pas ici",
     "erreur : le kanji « 弓 » ne convient pas ici",
     "Correct : le kanji 引"
+   ],
+   "tests": [
+    "jlpt:word/引"
    ]
   },
   {
@@ -16463,6 +16829,9 @@
     "erreur : le kanji « 店 » ne convient pas ici",
     "erreur : le kanji « 貝 » ne convient pas ici",
     "erreur : le kanji « 負 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/員"
    ]
   },
   {
@@ -16590,6 +16959,9 @@
     "Correct : le kanji 院",
     "erreur : le kanji « 陽 » ne convient pas ici",
     "erreur : le kanji « 病 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/院"
    ]
   },
   {
@@ -16717,6 +17089,9 @@
     "erreur : le kanji « 軍 » ne convient pas ici",
     "Correct : le kanji 運",
     "erreur : le kanji « 動 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/運"
    ]
   },
   {
@@ -16844,6 +17219,9 @@
     "erreur : le kanji « 昨 » ne convient pas ici",
     "erreur : le kanji « 画 » ne convient pas ici",
     "Correct : le kanji 映"
+   ],
+   "tests": [
+    "jlpt:word/映"
    ]
   },
   {
@@ -16971,6 +17349,9 @@
     "erreur : le kanji « 映 » ne convient pas ici",
     "erreur : le kanji « 茶 » ne convient pas ici",
     "erreur : le kanji « 語 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/英"
    ]
   },
   {
@@ -17098,6 +17479,9 @@
     "Correct : le kanji 駅",
     "erreur : le kanji « 馬 » ne convient pas ici",
     "erreur : le kanji « 前 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/駅"
    ]
   },
   {
@@ -17225,6 +17609,9 @@
     "erreur : le kanji « 家 » ne convient pas ici",
     "Correct : le kanji 屋",
     "erreur : le kanji « 室 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/屋"
    ]
   },
   {
@@ -17349,6 +17736,9 @@
     "erreur : le kanji « 代 » ne convient pas ici",
     "erreur : le kanji « 文 » ne convient pas ici",
     "Correct : le kanji 化"
+   ],
+   "tests": [
+    "jlpt:word/化"
    ]
   },
   {
@@ -17476,6 +17866,9 @@
     "erreur : le kanji « 苛 » ne convient pas ici",
     "erreur : le kanji « 物 » ne convient pas ici",
     "erreur : le kanji « 何 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/荷"
    ]
   },
   {
@@ -17603,6 +17996,9 @@
     "Correct : le kanji 界",
     "erreur : le kanji « 畑 » ne convient pas ici",
     "erreur : le kanji « 国 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/界"
    ]
   },
   {
@@ -17730,6 +18126,9 @@
     "Correct : 開ける = ouvrir",
     "erreur : 店 signifie « magasin »",
     "erreur : 館 signifie « bâtiment »"
+   ],
+   "tests": [
+    "jlpt:word/開"
    ]
   },
   {
@@ -17857,6 +18256,9 @@
     "erreur : 楽 est déjà présent (がく)",
     "erreur : 気 signifie « esprit »",
     "erreur : 客 signifie « client »"
+   ],
+   "tests": [
+    "jlpt:word/音"
    ]
   },
   {
@@ -17984,6 +18386,9 @@
     "erreur : 感 signifie « sentiment »",
     "erreur : 館 signifie « bâtiment »",
     "Correct : 寒い = froid"
+   ],
+   "tests": [
+    "jlpt:word/寒"
    ]
   },
   {
@@ -18111,6 +18516,9 @@
     "erreur : 館 signifie « bâtiment »",
     "Correct : 感動 = émotion",
     "erreur : 漢 signifie « Han, Chine »"
+   ],
+   "tests": [
+    "jlpt:word/感"
    ]
   },
   {
@@ -18238,6 +18646,9 @@
     "erreur : 漢 signifie « Han »",
     "erreur : 間 signifie « intervalle »",
     "erreur : 感 signifie « sentiment »"
+   ],
+   "tests": [
+    "jlpt:word/館"
    ]
   },
   {
@@ -18365,6 +18776,9 @@
     "Correct : 漢字 = kanji",
     "erreur : 感 signifie « sentiment »",
     "erreur : 寒 signifie « froid »"
+   ],
+   "tests": [
+    "jlpt:word/漢"
    ]
   },
   {
@@ -18492,6 +18906,9 @@
     "erreur : 橋 signifie « pont »",
     "Correct : 海岸 = côte",
     "erreur : 客 signifie « client »"
+   ],
+   "tests": [
+    "jlpt:word/岸"
    ]
   },
   {
@@ -18619,6 +19036,9 @@
     "erreur : 急 signifie « urgent »",
     "erreur : 去 signifie « partir »",
     "Correct : 起きる = se lever"
+   ],
+   "tests": [
+    "jlpt:word/起"
    ]
   },
   {
@@ -18746,6 +19166,9 @@
     "erreur : 気 signifie « esprit »",
     "erreur : 客 signifie « client »",
     "erreur : 級 signifie « classe »"
+   ],
+   "tests": [
+    "jlpt:word/期"
    ]
   },
   {
@@ -18873,6 +19296,9 @@
     "Correct : 乗客 = passager",
     "erreur : 館 signifie « bâtiment »",
     "erreur : 級 signifie « classe »"
+   ],
+   "tests": [
+    "jlpt:word/客"
    ]
   },
   {
@@ -18997,6 +19423,9 @@
     "erreur : 級 signifie « classe »",
     "Correct : 研究 = recherche",
     "erreur : 急 signifie « urgent »"
+   ],
+   "tests": [
+    "jlpt:word/研"
    ]
   },
   {
@@ -19124,6 +19553,9 @@
     "erreur : 球 signifie « balle »",
     "erreur : 究 signifie « rechercher »",
     "Correct : 急ぐ = se dépêcher"
+   ],
+   "tests": [
+    "jlpt:word/急"
    ]
   },
   {
@@ -19251,6 +19683,9 @@
     "Correct : 上級 = niveau avancé",
     "erreur : 球 signifie « balle »",
     "erreur : 究 signifie « rechercher »"
+   ],
+   "tests": [
+    "jlpt:word/級"
    ]
   },
   {
@@ -19502,6 +19937,9 @@
     "erreur : 急 signifie « urgent »",
     "Correct : 去年 = l'année dernière",
     "erreur : 期 signifie « période »"
+   ],
+   "tests": [
+    "jlpt:word/去"
    ]
   },
   {
@@ -19629,6 +20067,9 @@
     "erreur : 海 signifie « mer »",
     "erreur : 川 signifie « rivière »",
     "Correct : 橋 = pont"
+   ],
+   "tests": [
+    "jlpt:word/橋"
    ]
   },
   {
@@ -19886,6 +20327,9 @@
     "erreur : 局 = bureau",
     "erreur : 業 = métier",
     "erreur : 苦 = souffrir"
+   ],
+   "tests": [
+    "jlpt:word/曲"
    ]
   },
   {
@@ -20143,6 +20587,9 @@
     "erreur : 区 = quartier",
     "erreur : 具 = outil",
     "Correct : 銀行、le kanji est 銀"
+   ],
+   "tests": [
+    "jlpt:word/銀"
    ]
   },
   {
@@ -20530,6 +20977,9 @@
     "erreur : 区 = quartier",
     "erreur : 君 = toi",
     "Correct : 道具、le kanji est 具"
+   ],
+   "tests": [
+    "jlpt:word/具"
    ]
   },
   {
@@ -21177,6 +21627,9 @@
     "Correct : 研究、le kanji est 研",
     "erreur : 険 = escarpé/danger",
     "erreur : 血 = sang"
+   ],
+   "tests": [
+    "jlpt:word/研"
    ]
   },
   {
@@ -21564,6 +22017,9 @@
     "erreur : 庫 = entrepôt",
     "erreur : 向 = direction",
     "erreur : 血 = sang"
+   ],
+   "tests": [
+    "jlpt:word/湖"
    ]
   },
   {
@@ -21821,6 +22277,9 @@
     "Correct : le kanji manquant est 幸",
     "erreur : 幹 ne convient pas ici",
     "erreur : 興 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/幸"
    ]
   },
   {
@@ -21948,6 +22407,9 @@
     "erreur : 満 ne convient pas ici",
     "erreur : 構 ne convient pas ici",
     "Correct : le kanji manquant est 港"
+   ],
+   "tests": [
+    "jlpt:word/港"
    ]
   },
   {
@@ -22075,6 +22537,9 @@
     "Correct : le kanji manquant est 号",
     "erreur : 合 ne convient pas ici",
     "erreur : 考 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/号"
    ]
   },
   {
@@ -22202,6 +22667,9 @@
     "erreur : 械 ne convient pas ici",
     "erreur : 樹 ne convient pas ici",
     "Correct : le kanji manquant est 根"
+   ],
+   "tests": [
+    "jlpt:word/根"
    ]
   },
   {
@@ -22329,6 +22797,9 @@
     "Correct : le kanji manquant est 祭",
     "erreur : 察 ne convient pas ici",
     "erreur : 努 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/祭"
    ]
   },
   {
@@ -22456,6 +22927,9 @@
     "erreur : 組 ne convient pas ici",
     "erreur : 絹 ne convient pas ici",
     "Correct : le kanji manquant est 細"
+   ],
+   "tests": [
+    "jlpt:word/細"
    ]
   },
   {
@@ -22583,6 +23057,9 @@
     "Correct : le kanji manquant est 仕",
     "erreur : 住 ne convient pas ici",
     "erreur : 件 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/仕"
    ]
   },
   {
@@ -22710,6 +23187,9 @@
     "erreur : 残 ne convient pas ici",
     "erreur : 処 ne convient pas ici",
     "Correct : le kanji manquant est 死"
+   ],
+   "tests": [
+    "jlpt:word/死"
    ]
   },
   {
@@ -22837,6 +23317,9 @@
     "Correct : le kanji manquant est 使",
     "erreur : 史 ne convient pas ici",
     "erreur : 例 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/使"
    ]
   },
   {
@@ -22964,6 +23447,9 @@
     "erreur : 治 ne convient pas ici",
     "erreur : 姓 ne convient pas ici",
     "Correct : le kanji manquant est 始"
+   ],
+   "tests": [
+    "jlpt:word/始"
    ]
   },
   {
@@ -23091,6 +23577,9 @@
     "Correct : le kanji manquant est 指",
     "erreur : 押 ne convient pas ici",
     "erreur : 措 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/指"
    ]
   },
   {
@@ -23218,6 +23707,9 @@
     "erreur : 菌 ne convient pas ici",
     "erreur : 齢 ne convient pas ici",
     "Correct : le kanji manquant est 歯"
+   ],
+   "tests": [
+    "jlpt:word/歯"
    ]
   },
   {
@@ -23345,6 +23837,9 @@
     "Correct : le kanji manquant est 事",
     "erreur : 仕 ne convient pas ici",
     "erreur : 務 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/事"
    ]
   },
   {
@@ -23472,6 +23967,9 @@
     "erreur : 特 ne convient pas ici",
     "erreur : 時 ne convient pas ici",
     "Correct : le kanji manquant est 持"
+   ],
+   "tests": [
+    "jlpt:word/持"
    ]
   },
   {
@@ -23599,6 +24097,9 @@
     "Correct : le kanji manquant est 式",
     "erreur : 武 ne convient pas ici",
     "erreur : 弐 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/式"
    ]
   },
   {
@@ -23726,6 +24227,9 @@
     "erreur : 突 ne convient pas ici",
     "erreur : 案 ne convient pas ici",
     "Correct : le kanji manquant est 実"
+   ],
+   "tests": [
+    "jlpt:word/実"
    ]
   },
   {
@@ -23853,6 +24357,9 @@
     "erreur : 「主」 ne convient pas ici",
     "Correct : le kanji est 写",
     "erreur : 「守」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/写"
    ]
   },
   {
@@ -23980,6 +24487,9 @@
     "erreur : 「守」 ne convient pas ici",
     "erreur : 「取」 ne convient pas ici",
     "Correct : le kanji est 者"
+   ],
+   "tests": [
+    "jlpt:word/者"
    ]
   },
   {
@@ -24107,6 +24617,9 @@
     "erreur : 「守」 ne convient pas ici",
     "erreur : 「取」 ne convient pas ici",
     "erreur : 「酒」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/主"
    ]
   },
   {
@@ -24234,6 +24747,9 @@
     "Correct : le kanji est 守",
     "erreur : 「酒」 ne convient pas ici",
     "erreur : 「受」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/守"
    ]
   },
   {
@@ -24361,6 +24877,9 @@
     "erreur : 「受」 ne convient pas ici",
     "Correct : le kanji est 取",
     "erreur : 「終」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/取"
    ]
   },
   {
@@ -24488,6 +25007,9 @@
     "erreur : 「終」 ne convient pas ici",
     "erreur : 「習」 ne convient pas ici",
     "Correct : le kanji est 酒"
+   ],
+   "tests": [
+    "jlpt:word/酒"
    ]
   },
   {
@@ -24615,6 +25137,9 @@
     "erreur : 「終」 ne convient pas ici",
     "erreur : 「習」 ne convient pas ici",
     "erreur : 「集」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/受"
    ]
   },
   {
@@ -24742,6 +25267,9 @@
     "Correct : le kanji est 終",
     "erreur : 「集」 ne convient pas ici",
     "erreur : 「住」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/終"
    ]
   },
   {
@@ -24869,6 +25397,9 @@
     "erreur : 「住」 ne convient pas ici",
     "Correct : le kanji est 習",
     "erreur : 「重」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/習"
    ]
   },
   {
@@ -24996,6 +25527,9 @@
     "erreur : 「重」 ne convient pas ici",
     "erreur : 「宿」 ne convient pas ici",
     "Correct : le kanji est 集"
+   ],
+   "tests": [
+    "jlpt:word/集"
    ]
   },
   {
@@ -25123,6 +25657,9 @@
     "erreur : 「重」 ne convient pas ici",
     "erreur : 「宿」 ne convient pas ici",
     "erreur : 「所」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/住"
    ]
   },
   {
@@ -25250,6 +25787,9 @@
     "Correct : le kanji est 重",
     "erreur : 「所」 ne convient pas ici",
     "erreur : 「暑」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/重"
    ]
   },
   {
@@ -25377,6 +25917,9 @@
     "erreur : 「暑」 ne convient pas ici",
     "Correct : le kanji est 宿",
     "erreur : 「助」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/宿"
    ]
   },
   {
@@ -25504,6 +26047,9 @@
     "erreur : 「助」 ne convient pas ici",
     "erreur : 「写」 ne convient pas ici",
     "Correct : le kanji est 所"
+   ],
+   "tests": [
+    "jlpt:word/所"
    ]
   },
   {
@@ -25631,6 +26177,9 @@
     "erreur : 「助」 ne convient pas ici",
     "erreur : 「写」 ne convient pas ici",
     "erreur : 「者」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/暑"
    ]
   },
   {
@@ -25758,6 +26307,9 @@
     "Correct : le kanji est 助",
     "erreur : 「者」 ne convient pas ici",
     "erreur : 「主」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/助"
    ]
   },
   {
@@ -25885,6 +26437,9 @@
     "erreur : le kanji « 昭 » ne convient pas ici",
     "Correct : le kanji manquant est 商（商品）",
     "erreur : le kanji « 唱 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/商"
    ]
   },
   {
@@ -26012,6 +26567,9 @@
     "erreur : le kanji « 肖 » ne convient pas ici",
     "erreur : le kanji « 昭 » ne convient pas ici",
     "Correct : le kanji manquant est 消（消化）"
+   ],
+   "tests": [
+    "jlpt:word/消"
    ]
   },
   {
@@ -26139,6 +26697,9 @@
     "erreur : le kanji « 照 » ne convient pas ici",
     "erreur : le kanji « 招 » ne convient pas ici",
     "erreur : le kanji « 消 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/昭"
    ]
   },
   {
@@ -26266,6 +26827,9 @@
     "Correct : le kanji manquant est 乗（乗車）",
     "erreur : le kanji « 乖 » ne convient pas ici",
     "erreur : le kanji « 来 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/乗"
    ]
   },
   {
@@ -26393,6 +26957,9 @@
     "erreur : le kanji « 直 » ne convient pas ici",
     "Correct : le kanji manquant est 植（植物）",
     "erreur : le kanji « 殖 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/植"
    ]
   },
   {
@@ -26520,6 +27087,9 @@
     "erreur : le kanji « 由 » ne convient pas ici",
     "erreur : le kanji « 田 » ne convient pas ici",
     "Correct : le kanji manquant est 申（申告）"
+   ],
+   "tests": [
+    "jlpt:word/申"
    ]
   },
   {
@@ -26647,6 +27217,9 @@
     "erreur : le kanji « 体 » ne convient pas ici",
     "erreur : le kanji « 自 » ne convient pas ici",
     "erreur : le kanji « 者 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/身"
    ]
   },
   {
@@ -26774,6 +27347,9 @@
     "Correct : le kanji manquant est 神（神社）",
     "erreur : le kanji « 礼 » ne convient pas ici",
     "erreur : le kanji « 福 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/神"
    ]
   },
   {
@@ -26901,6 +27477,9 @@
     "erreur : le kanji « 具 » ne convient pas ici",
     "Correct : le kanji manquant est 真（真実）",
     "erreur : le kanji « 県 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/真"
    ]
   },
   {
@@ -27028,6 +27607,9 @@
     "erreur : le kanji « 浅 » ne convient pas ici",
     "erreur : le kanji « 渋 » ne convient pas ici",
     "Correct : le kanji manquant est 深（深夜）"
+   ],
+   "tests": [
+    "jlpt:word/深"
    ]
   },
   {
@@ -27155,6 +27737,9 @@
     "erreur : le kanji « 建 » ne convient pas ici",
     "erreur : le kanji « 推 » ne convient pas ici",
     "erreur : le kanji « 准 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/進"
    ]
   },
   {
@@ -27282,6 +27867,9 @@
     "Correct : le kanji manquant est 世（世代）",
     "erreur : le kanji « 古 » ne convient pas ici",
     "erreur : le kanji « 昔 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/世"
    ]
   },
   {
@@ -27409,6 +27997,9 @@
     "erreur : le kanji « 措 » ne convient pas ici",
     "Correct : le kanji manquant est 昔（昔話）",
     "erreur : le kanji « 普 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/昔"
    ]
   },
   {
@@ -27536,6 +28127,9 @@
     "erreur : le kanji « 会 » ne convient pas ici",
     "erreur : le kanji « 合 » ne convient pas ici",
     "Correct : le kanji manquant est 全（全部）"
+   ],
+   "tests": [
+    "jlpt:word/全"
    ]
   },
   {
@@ -27663,6 +28257,9 @@
     "erreur : le kanji « 想 » ne convient pas ici",
     "erreur : le kanji « 箱 » ne convient pas ici",
     "erreur : le kanji « 机 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/相"
    ]
   },
   {
@@ -27790,6 +28387,9 @@
     "Correct : le kanji manquant est 送（放送）",
     "erreur : le kanji « 速 » ne convient pas ici",
     "erreur : le kanji « 返 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/送"
    ]
   },
   {
@@ -27891,6 +28491,9 @@
     "族 = famille, hors sujet",
     "鉄 = fer",
     "庭 = jardin"
+   ],
+   "tests": [
+    "jlpt:word/速"
    ]
   },
   {
@@ -28018,6 +28621,9 @@
     "Correct : 族 complète le mot (famille)",
     "談 = conversation",
     "題 = sujet"
+   ],
+   "tests": [
+    "jlpt:word/族"
    ]
   },
   {
@@ -28145,6 +28751,9 @@
     "対 = opposé",
     "Correct : 他 complète le mot (autrui)",
     "待 = attendre"
+   ],
+   "tests": [
+    "jlpt:word/他"
    ]
   },
   {
@@ -28272,6 +28881,9 @@
     "他 = autre",
     "族 = famille",
     "Correct : 打 complète le mot (batteur)"
+   ],
+   "tests": [
+    "jlpt:word/打"
    ]
   },
   {
@@ -28399,6 +29011,9 @@
     "待 = attendre",
     "族 = famille",
     "談 = conversation"
+   ],
+   "tests": [
+    "jlpt:word/対"
    ]
   },
   {
@@ -28526,6 +29141,9 @@
     "Correct : 待 complète le mot (espoir, attente)",
     "対 = opposé",
     "第 = ordinal"
+   ],
+   "tests": [
+    "jlpt:word/待"
    ]
   },
   {
@@ -28653,6 +29271,9 @@
     "対 = opposé",
     "Correct : 代 complète le mot (époque)",
     "題 = sujet"
+   ],
+   "tests": [
+    "jlpt:word/代"
    ]
   },
   {
@@ -28780,6 +29401,9 @@
     "題 = sujet",
     "談 = conversation",
     "Correct : 第 complète le mot (premier)"
+   ],
+   "tests": [
+    "jlpt:word/第"
    ]
   },
   {
@@ -28907,6 +29531,9 @@
     "第 = ordinal",
     "代 = génération",
     "談 = conversation"
+   ],
+   "tests": [
+    "jlpt:word/題"
    ]
   },
   {
@@ -29034,6 +29661,9 @@
     "Correct : 短 complète le mot (défaut)",
     "族 = famille",
     "庭 = jardin"
+   ],
+   "tests": [
+    "jlpt:word/短"
    ]
   },
   {
@@ -29161,6 +29791,9 @@
     "題 = sujet",
     "Correct : 談 complète le mot (consultation)",
     "第 = ordinal"
+   ],
+   "tests": [
+    "jlpt:word/談"
    ]
   },
   {
@@ -29288,6 +29921,9 @@
     "待 = attendre",
     "注 = verser",
     "Correct : 着 complète le mot (arrivée)"
+   ],
+   "tests": [
+    "jlpt:word/着"
    ]
   },
   {
@@ -29415,6 +30051,9 @@
     "着 = arriver",
     "定 = fixer",
     "対 = opposé"
+   ],
+   "tests": [
+    "jlpt:word/注"
    ]
   },
   {
@@ -29542,6 +30181,9 @@
     "Correct : 定 complète le mot (programme)",
     "対 = opposé",
     "題 = sujet"
+   ],
+   "tests": [
+    "jlpt:word/定"
    ]
   },
   {
@@ -29669,6 +30311,9 @@
     "題 = sujet",
     "Correct : 庭 complète le mot (foyer)",
     "鉄 = fer"
+   ],
+   "tests": [
+    "jlpt:word/庭"
    ]
   },
   {
@@ -29796,6 +30441,9 @@
     "定 = fixer",
     "談 = conversation",
     "Correct : 鉄 complète le mot (métro)"
+   ],
+   "tests": [
+    "jlpt:word/鉄"
    ]
   },
   {
@@ -29949,6 +30597,9 @@
     "Correct : le kanji manquant est 転",
     "erreur : 度 ne convient pas ici",
     "erreur : 島 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/転"
    ]
   },
   {
@@ -30076,6 +30727,9 @@
     "erreur : 度 ne convient pas ici",
     "erreur : 島 ne convient pas ici",
     "Correct : le kanji manquant est 都"
+   ],
+   "tests": [
+    "jlpt:word/都"
    ]
   },
   {
@@ -30203,6 +30857,9 @@
     "Correct : le kanji manquant est 度",
     "erreur : 都 ne convient pas ici",
     "erreur : 島 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/度"
    ]
   },
   {
@@ -30330,6 +30987,9 @@
     "erreur : 都 ne convient pas ici",
     "erreur : 度 ne convient pas ici",
     "Correct : le kanji manquant est 島"
+   ],
+   "tests": [
+    "jlpt:word/島"
    ]
   },
   {
@@ -30457,6 +31117,9 @@
     "Correct : le kanji manquant est 登",
     "erreur : 都 ne convient pas ici",
     "erreur : 度 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/登"
    ]
   },
   {
@@ -30584,6 +31247,9 @@
     "erreur : 都 ne convient pas ici",
     "erreur : 度 ne convient pas ici",
     "Correct : le kanji manquant est 等"
+   ],
+   "tests": [
+    "jlpt:word/等"
    ]
   },
   {
@@ -30711,6 +31377,9 @@
     "Correct : le kanji manquant est 動",
     "erreur : 都 ne convient pas ici",
     "erreur : 度 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/動"
    ]
   },
   {
@@ -30838,6 +31507,9 @@
     "erreur : 都 ne convient pas ici",
     "erreur : 度 ne convient pas ici",
     "Correct : le kanji manquant est 働"
+   ],
+   "tests": [
+    "jlpt:word/働"
    ]
   },
   {
@@ -30965,6 +31637,9 @@
     "Correct : le kanji manquant est 特",
     "erreur : 都 ne convient pas ici",
     "erreur : 度 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/特"
    ]
   },
   {
@@ -31092,6 +31767,9 @@
     "erreur : 都 ne convient pas ici",
     "erreur : 度 ne convient pas ici",
     "Correct : le kanji manquant est 内"
+   ],
+   "tests": [
+    "jlpt:word/内"
    ]
   },
   {
@@ -31219,6 +31897,9 @@
     "Correct : le kanji manquant est 波",
     "erreur : 都 ne convient pas ici",
     "erreur : 度 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/波"
    ]
   },
   {
@@ -31346,6 +32027,9 @@
     "erreur : 都 ne convient pas ici",
     "erreur : 度 ne convient pas ici",
     "Correct : le kanji manquant est 配"
+   ],
+   "tests": [
+    "jlpt:word/配"
    ]
   },
   {
@@ -31473,6 +32157,9 @@
     "Correct : le kanji manquant est 倍",
     "erreur : 都 ne convient pas ici",
     "erreur : 度 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/倍"
    ]
   },
   {
@@ -31600,6 +32287,9 @@
     "erreur : 都 ne convient pas ici",
     "erreur : 度 ne convient pas ici",
     "Correct : le kanji manquant est 箱"
+   ],
+   "tests": [
+    "jlpt:word/箱"
    ]
   },
   {
@@ -31727,6 +32417,9 @@
     "Correct : le kanji manquant est 発",
     "erreur : 都 ne convient pas ici",
     "erreur : 度 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/発"
    ]
   },
   {
@@ -31854,6 +32547,9 @@
     "erreur : 都 ne convient pas ici",
     "erreur : 度 ne convient pas ici",
     "Correct : le kanji manquant est 反"
+   ],
+   "tests": [
+    "jlpt:word/反"
    ]
   },
   {
@@ -31981,6 +32677,9 @@
     "erreur : 坂 = pente, pas planche",
     "Correct : le kanji manquant est 板 (黒板 = こくばん)",
     "erreur : 版 = édition, pas planche"
+   ],
+   "tests": [
+    "jlpt:word/板"
    ]
   },
   {
@@ -32108,6 +32807,9 @@
     "Correct : le kanji manquant est 皮 (毛皮 = けがわ)",
     "erreur : 破 = déchirer, pas peau",
     "erreur : 彼 = lui, pas peau"
+   ],
+   "tests": [
+    "jlpt:word/皮"
    ]
   },
   {
@@ -32235,6 +32937,9 @@
     "erreur : 罪 = crime, pas triste",
     "Correct : le kanji manquant est 悲 (悲劇 = ひげき)",
     "erreur : 想 = pensée, pas triste"
+   ],
+   "tests": [
+    "jlpt:word/悲"
    ]
   },
   {
@@ -32362,6 +33067,9 @@
     "Correct : le kanji manquant est 美 (美人 = びじん)",
     "erreur : 義 = justice, pas beau",
     "erreur : 羊 = mouton, pas beau"
+   ],
+   "tests": [
+    "jlpt:word/美"
    ]
   },
   {
@@ -32489,6 +33197,9 @@
     "erreur : 界 = monde, pas nez",
     "Correct : le kanji manquant est 鼻 (鼻血 = はなぢ)",
     "erreur : 具 = outil, pas nez"
+   ],
+   "tests": [
+    "jlpt:word/鼻"
    ]
   },
   {
@@ -32616,6 +33327,9 @@
     "Correct : le kanji manquant est 氷 (氷山 = ひょうざん)",
     "erreur : 永 = éternité, pas glace",
     "erreur : 木 = arbre, pas glace"
+   ],
+   "tests": [
+    "jlpt:word/氷"
    ]
   },
   {
@@ -32743,6 +33457,9 @@
     "erreur : 面 = face/masque, sens proche mais faux ici",
     "Correct : le kanji manquant est 表 (発表 = はっぴょう)",
     "erreur : 発 = émettre, pas surface"
+   ],
+   "tests": [
+    "jlpt:word/表"
    ]
   },
   {
@@ -32870,6 +33587,9 @@
     "Correct : le kanji manquant est 病 (病気 = びょうき)",
     "erreur : 疲 = fatigue, pas maladie",
     "erreur : 疾 = affection, sens proche mais faux ici"
+   ],
+   "tests": [
+    "jlpt:word/病"
    ]
   },
   {
@@ -32997,6 +33717,9 @@
     "erreur : 昌 = prospérité, pas article",
     "Correct : le kanji manquant est 品 (作品 = さくひん)",
     "erreur : 唱 = chanter, pas article"
+   ],
+   "tests": [
+    "jlpt:word/品"
    ]
   },
   {
@@ -33124,6 +33847,9 @@
     "Correct : le kanji manquant est 負 (勝負 = しょうぶ)",
     "erreur : 買 = acheter, pas perdre",
     "erreur : 貧 = pauvre, pas perdre"
+   ],
+   "tests": [
+    "jlpt:word/負"
    ]
   },
   {
@@ -33225,6 +33951,9 @@
     "erreur : 分 = diviser, pas département",
     "erreur : 課 = section (poste), pas 部",
     "erreur : 局 = bureau, pas 部"
+   ],
+   "tests": [
+    "jlpt:word/部"
    ]
   },
   {
@@ -33248,6 +33977,9 @@
     "erreur : 都 = capitale, pas département",
     "Correct : le kanji manquant est 部 (部分 = ぶぶん)",
     "erreur : 陪 = accompagner, pas département"
+   ],
+   "tests": [
+    "jlpt:word/部"
    ]
   },
   {
@@ -33349,6 +34081,9 @@
     "erreur : 復 = revenir, pas vêtement",
     "erreur : 報 = informer, pas vêtement",
     "Correct : 服 signifie « vêtement »"
+   ],
+   "tests": [
+    "jlpt:word/服"
    ]
   },
   {
@@ -33372,6 +34107,9 @@
     "Correct : le kanji manquant est 服 (洋服 = ようふく)",
     "erreur : 般 = sorte, pas vêtement",
     "erreur : 復 = revenir, pas vêtement"
+   ],
+   "tests": [
+    "jlpt:word/服"
    ]
   },
   {
@@ -33473,6 +34211,9 @@
     "erreur : 副 = secondaire, pas bonheur",
     "erreur : 富 = richesse, pas bonheur",
     "erreur : 幅 = largeur, pas bonheur"
+   ],
+   "tests": [
+    "jlpt:word/福"
    ]
   },
   {
@@ -33496,6 +34237,9 @@
     "erreur : 富 = richesse, pas bonheur",
     "Correct : le kanji manquant est 福 (祝福 = しゅくふく)",
     "erreur : 幅 = largeur, pas bonheur"
+   ],
+   "tests": [
+    "jlpt:word/福"
    ]
   },
   {
@@ -33623,6 +34367,9 @@
     "Correct : le kanji manquant est 物 (品物 = しなもの)",
     "erreur : 牛 = vache, pas chose",
     "erreur : 場 = lieu, pas chose"
+   ],
+   "tests": [
+    "jlpt:word/物"
    ]
   },
   {
@@ -33750,6 +34497,9 @@
     "erreur : 兵 = soldat, pas plat",
     "Correct : le kanji manquant est 平 (平和 = へいわ)",
     "erreur : 年 = année, pas plat"
+   ],
+   "tests": [
+    "jlpt:word/平"
    ]
   },
   {
@@ -33877,6 +34627,9 @@
     "Correct : le kanji manquant est 返 (返事 = へんじ)",
     "erreur : 近 = proche, pas rendre",
     "erreur : 遠 = loin, pas rendre"
+   ],
+   "tests": [
+    "jlpt:word/返"
    ]
   },
   {
@@ -34004,6 +34757,9 @@
     "Correct : le kanji 「勉」 complète 勉強（べんきょう）",
     "Le kanji 「勤」 ne convient pas ici",
     "Le kanji 「勇」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/勉"
    ]
   },
   {
@@ -34131,6 +34887,9 @@
     "Le kanji 「故」 ne convient pas ici",
     "Le kanji 「教」 ne convient pas ici",
     "Correct : le kanji 「放」 complète 開放（かいほう）"
+   ],
+   "tests": [
+    "jlpt:word/放"
    ]
   },
   {
@@ -34258,6 +35017,9 @@
     "Correct : le kanji 「味」 complète 意味（いみ）",
     "Le kanji 「末」 ne convient pas ici",
     "Le kanji 「妹」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/味"
    ]
   },
   {
@@ -34385,6 +35147,9 @@
     "Le kanji 「合」 ne convient pas ici",
     "Le kanji 「念」 ne convient pas ici",
     "Correct : le kanji 「命」 complète 生命（せいめい）"
+   ],
+   "tests": [
+    "jlpt:word/命"
    ]
   },
   {
@@ -34512,6 +35277,9 @@
     "Correct : le kanji 「面」 complète 表面（ひょうめん）",
     "Le kanji 「両」 ne convient pas ici",
     "Le kanji 「雨」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/面"
    ]
   },
   {
@@ -34639,6 +35407,9 @@
     "Le kanji 「間」 ne convient pas ici",
     "Le kanji 「聞」 ne convient pas ici",
     "Correct : le kanji 「問」 complète 質問（しつもん）"
+   ],
+   "tests": [
+    "jlpt:word/問"
    ]
   },
   {
@@ -34766,6 +35537,9 @@
     "Correct : le kanji 「役」 complète 役所（やくしょ）",
     "Le kanji 「没」 ne convient pas ici",
     "Le kanji 「設」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/役"
    ]
   },
   {
@@ -34893,6 +35667,9 @@
     "Le kanji 「草」 ne convient pas ici",
     "Le kanji 「菜」 ne convient pas ici",
     "Correct : le kanji 「薬」 complète 薬局（やっきょく）"
+   ],
+   "tests": [
+    "jlpt:word/薬"
    ]
   },
   {
@@ -35020,6 +35797,9 @@
     "Correct : le kanji 「由」 complète 理由（りゆう）",
     "Le kanji 「田」 ne convient pas ici",
     "Le kanji 「甲」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/由"
    ]
   },
   {
@@ -35147,6 +35927,9 @@
     "Le kanji 「治」 ne convient pas ici",
     "Le kanji 「池」 ne convient pas ici",
     "Correct : le kanji 「油」 complète 石油（せきゆ）"
+   ],
+   "tests": [
+    "jlpt:word/油"
    ]
   },
   {
@@ -35274,6 +36057,9 @@
     "Correct : le kanji 「有」 complète 有名（ゆうめい）",
     "Le kanji 「存」 ne convient pas ici",
     "Le kanji 「在」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/有"
    ]
   },
   {
@@ -35401,6 +36187,9 @@
     "Le kanji 「遠」 ne convient pas ici",
     "Le kanji 「道」 ne convient pas ici",
     "Correct : le kanji 「遊」 complète 遊園地（ゆうえんち）"
+   ],
+   "tests": [
+    "jlpt:word/遊"
    ]
   },
   {
@@ -35528,6 +36317,9 @@
     "Correct : le kanji 「予」 complète 予約（よやく）",
     "Le kanji 「子」 ne convient pas ici",
     "Le kanji 「野」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/予"
    ]
   },
   {
@@ -35655,6 +36447,9 @@
     "Le kanji 「様」 ne convient pas ici",
     "Le kanji 「注」 ne convient pas ici",
     "Correct : le kanji 「洋」 complète 西洋（せいよう）"
+   ],
+   "tests": [
+    "jlpt:word/洋"
    ]
   },
   {
@@ -35782,6 +36577,9 @@
     "Correct : le kanji 「様」 complète 様子（ようす）",
     "Le kanji 「羊」 ne convient pas ici",
     "Le kanji 「横」 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/様"
    ]
   },
   {
@@ -35909,6 +36707,9 @@
     "Le kanji 「客」 ne convient pas ici",
     "Le kanji 「絡」 ne convient pas ici",
     "Correct : le kanji 「落」 complète 落下（らっか）"
+   ],
+   "tests": [
+    "jlpt:word/落"
    ]
   },
   {
@@ -36010,6 +36811,9 @@
     "erreur : 消 ne convient pas ici",
     "erreur : 池 ne convient pas ici",
     "Correct : le kanji 流 complète 流行"
+   ],
+   "tests": [
+    "jlpt:word/流"
    ]
   },
   {
@@ -36137,6 +36941,9 @@
     "erreur : 族 ne convient pas ici",
     "erreur : 旋 ne convient pas ici",
     "erreur : 施 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/旅"
    ]
   },
   {
@@ -36264,6 +37071,9 @@
     "Correct : le kanji 両 complète 両親",
     "erreur : 面 ne convient pas ici",
     "erreur : 南 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/両"
    ]
   },
   {
@@ -36391,6 +37201,9 @@
     "erreur : 材 ne convient pas ici",
     "Correct : le kanji 料 complète 料理",
     "erreur : 斜 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/料"
    ]
   },
   {
@@ -36518,6 +37331,9 @@
     "erreur : 緑 ne convient pas ici",
     "erreur : 錬 ne convient pas ici",
     "Correct : le kanji 練 complète 訓練"
+   ],
+   "tests": [
+    "jlpt:word/練"
    ]
   },
   {
@@ -36645,6 +37461,9 @@
     "erreur : 略 ne convient pas ici",
     "erreur : 踏 ne convient pas ici",
     "erreur : 格 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/路"
    ]
   },
   {
@@ -36772,6 +37591,9 @@
     "Correct : le kanji 和 complète 和食",
     "erreur : 私 ne convient pas ici",
     "erreur : 秋 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/和"
    ]
   },
   {
@@ -36899,6 +37721,9 @@
     "erreur : 律 ne convient pas ici",
     "Correct : le kanji 建 complète 建物",
     "erreur : 延 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/建"
    ]
   },
   {
@@ -37026,6 +37851,9 @@
     "erreur : 険 ne convient pas ici",
     "erreur : 馬 ne convient pas ici",
     "Correct : le kanji 験 complète 試験"
+   ],
+   "tests": [
+    "jlpt:word/験"
    ]
   },
   {
@@ -37153,6 +37981,9 @@
     "erreur : 誠 ne convient pas ici",
     "erreur : 詩 ne convient pas ici",
     "erreur : 話 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/試"
    ]
   },
   {
@@ -37280,6 +38111,9 @@
     "Correct : le kanji 洗 complète 洗濯",
     "erreur : 流 ne convient pas ici",
     "erreur : 汁 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/洗"
    ]
   },
   {
@@ -37407,6 +38241,9 @@
     "erreur : 治 ne convient pas ici",
     "Correct : le kanji 台 complète 台所",
     "erreur : 怠 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/台"
    ]
   },
   {
@@ -37534,6 +38371,9 @@
     "erreur : 代 ne convient pas ici",
     "erreur : 貨 ne convient pas ici",
     "Correct : le kanji 貸 complète 賃貸"
+   ],
+   "tests": [
+    "jlpt:kanji/貸"
    ]
   },
   {
@@ -37661,6 +38501,9 @@
     "erreur : 貸 ne convient pas ici",
     "erreur : 昔 ne convient pas ici",
     "erreur : 惜 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/借"
    ]
   },
   {
@@ -37788,6 +38631,9 @@
     "Correct : le kanji 産 complète 産業",
     "erreur : 彦 ne convient pas ici",
     "erreur : 立 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/産"
    ]
   },
   {
@@ -37915,6 +38761,9 @@
     "erreur : 例 ne convient pas ici",
     "Correct : le kanji 別 complète 区別",
     "erreur : 利 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/別"
    ]
   },
   {
@@ -38068,6 +38917,9 @@
     "erreur : 恋 (amour) ne convient pas",
     "Correct : 大変（たいへん）utilise 変",
     "erreur : 婆 (vieille femme) ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/変"
    ]
   },
   {
@@ -38192,6 +39044,9 @@
     "erreur : 門 (portail) ne convient pas",
     "Correct : 閉店（へいてん）utilise 閉",
     "erreur : 閑 (calme) ne convient pas"
+   ],
+   "tests": [
+    "jlpt:kanji/閉"
    ]
   },
   {
@@ -38319,6 +39174,9 @@
     "erreur : 耳 (oreille) ne convient pas",
     "Correct : 大声（おおごえ）utilise 声",
     "erreur : 古 (vieux) ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/声"
    ]
   },
   {
@@ -38446,6 +39304,9 @@
     "erreur : 次 (suivant) ne convient pas",
     "erreur : 快 (agréable) ne convient pas",
     "erreur : 欠 (manquer) ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/決"
    ]
   },
   {
@@ -38573,6 +39434,9 @@
     "erreur : 服 ne convient pas ici",
     "erreur : 告 ne convient pas ici",
     "erreur : 板 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/報"
    ]
   },
   {
@@ -38700,6 +39564,9 @@
     "Correct : le kanji manquant est 情",
     "erreur : 精 ne convient pas ici",
     "erreur : 清 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/情"
    ]
   },
   {
@@ -38827,6 +39694,9 @@
     "erreur : 掌 ne convient pas ici",
     "Correct : le kanji manquant est 常",
     "erreur : 賞 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/常"
    ]
   },
   {
@@ -38954,6 +39824,9 @@
     "erreur : 飛 ne convient pas ici",
     "erreur : 罪 ne convient pas ici",
     "Correct : le kanji manquant est 非"
+   ],
+   "tests": [
+    "jlpt:word/非"
    ]
   },
   {
@@ -39081,6 +39954,9 @@
     "erreur : 努 ne convient pas ici",
     "erreur : 勤 ne convient pas ici",
     "erreur : 霧 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/務"
    ]
   },
   {
@@ -39182,6 +40058,9 @@
     "erreur : 情 ne signifie pas « fonctionnaire »",
     "erreur : 税 ne signifie pas « fonctionnaire »",
     "erreur : 形 ne signifie pas « fonctionnaire »"
+   ],
+   "tests": [
+    "jlpt:word/官"
    ]
   },
   {
@@ -39205,6 +40084,9 @@
     "Correct : le kanji manquant est 官",
     "erreur : 管 ne convient pas ici",
     "erreur : 館 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/官"
    ]
   },
   {
@@ -39332,6 +40214,9 @@
     "erreur : 視 ne convient pas ici",
     "Correct : le kanji manquant est 現",
     "erreur : 規 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/現"
    ]
   },
   {
@@ -39459,6 +40344,9 @@
     "erreur : 財 ne convient pas ici",
     "erreur : 存 ne convient pas ici",
     "Correct : le kanji manquant est 在"
+   ],
+   "tests": [
+    "jlpt:word/在"
    ]
   },
   {
@@ -39560,6 +40448,9 @@
     "erreur : 領 ne signifie pas « discipline »",
     "erreur : 形 ne signifie pas « discipline »",
     "Correct : « discipline » s'écrit 科"
+   ],
+   "tests": [
+    "jlpt:kanji/科"
    ]
   },
   {
@@ -39583,6 +40474,9 @@
     "erreur : 化 ne convient pas ici",
     "erreur : 料 ne convient pas ici",
     "erreur : 割 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/科"
    ]
   },
   {
@@ -39684,6 +40578,9 @@
     "erreur : 束 ne signifie pas « promesse »",
     "erreur : 資 ne signifie pas « promesse »",
     "erreur : 税 ne signifie pas « promesse »"
+   ],
+   "tests": [
+    "jlpt:word/約"
    ]
   },
   {
@@ -39707,6 +40604,9 @@
     "Correct : le kanji manquant est 約",
     "erreur : 薬 ne convient pas ici",
     "erreur : 紙 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/約"
    ]
   },
   {
@@ -39834,6 +40734,9 @@
     "erreur : 東 ne convient pas ici",
     "Correct : le kanji manquant est 束",
     "erreur : 頼 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/束"
    ]
   },
   {
@@ -39935,6 +40838,9 @@
     "erreur : 形 ne signifie pas « capital »",
     "Correct : « capital » s'écrit 資",
     "erreur : 情 ne signifie pas « capital »"
+   ],
+   "tests": [
+    "jlpt:word/資"
    ]
   },
   {
@@ -39958,6 +40864,9 @@
     "erreur : 質 ne convient pas ici",
     "erreur : 賃 ne convient pas ici",
     "Correct : le kanji manquant est 資"
+   ],
+   "tests": [
+    "jlpt:word/資"
    ]
   },
   {
@@ -40059,6 +40968,9 @@
     "erreur : 科 ne signifie pas « impôt »",
     "erreur : 束 ne signifie pas « impôt »",
     "Correct : « impôt » s'écrit 税"
+   ],
+   "tests": [
+    "jlpt:word/税"
    ]
   },
   {
@@ -40082,6 +40994,9 @@
     "erreur : 説 ne convient pas ici",
     "erreur : 現 ne convient pas ici",
     "erreur : 領 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/税"
    ]
   },
   {
@@ -40183,6 +41098,9 @@
     "erreur : 税 ne signifie pas « territoire »",
     "erreur : 資 ne signifie pas « territoire »",
     "erreur : 官 ne signifie pas « territoire »"
+   ],
+   "tests": [
+    "jlpt:kanji/領"
    ]
   },
   {
@@ -40206,6 +41124,9 @@
     "Correct : le kanji manquant est 領",
     "erreur : 額 ne convient pas ici",
     "erreur : 順 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/領"
    ]
   },
   {
@@ -40333,6 +41254,9 @@
     "erreur : 影 ne convient pas ici",
     "Correct : le kanji manquant est 形",
     "erreur : 刑 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/形"
    ]
   },
   {
@@ -40460,6 +41384,9 @@
     "erreur : 熱 ne convient pas ici",
     "erreur : 状 ne convient pas ici",
     "Correct : le kanji manquant est 然"
+   ],
+   "tests": [
+    "jlpt:word/然"
    ]
   },
   {
@@ -40587,6 +41514,9 @@
     "erreur : 危 ne forme pas 保存",
     "erreur : 備 ne forme pas 保存",
     "erreur : 準 ne forme pas 保存"
+   ],
+   "tests": [
+    "jlpt:word/存"
    ]
   },
   {
@@ -40714,6 +41644,9 @@
     "Correct : le kanji manquant est 保（保険）",
     "erreur : 準 ne forme pas 保険",
     "erreur : 査 ne forme pas 保険"
+   ],
+   "tests": [
+    "jlpt:kanji/保"
    ]
   },
   {
@@ -40841,6 +41774,9 @@
     "erreur : 査 ne forme pas 危険",
     "Correct : le kanji manquant est 険（危険）",
     "erreur : 検 ne forme pas 危険"
+   ],
+   "tests": [
+    "jlpt:word/険"
    ]
   },
   {
@@ -40968,6 +41904,9 @@
     "erreur : 検 ne forme pas 危険",
     "erreur : 済 ne forme pas 危険",
     "Correct : le kanji manquant est 危（危険）"
+   ],
+   "tests": [
+    "jlpt:word/危"
    ]
   },
   {
@@ -41095,6 +42034,9 @@
     "erreur : 検 ne forme pas 準備",
     "erreur : 済 ne forme pas 準備",
     "erreur : 際 ne forme pas 準備"
+   ],
+   "tests": [
+    "jlpt:word/備"
    ]
   },
   {
@@ -41222,6 +42164,9 @@
     "Correct : le kanji manquant est 準（準備）",
     "erreur : 際 ne forme pas 準備",
     "erreur : 供 ne forme pas 準備"
+   ],
+   "tests": [
+    "jlpt:word/準"
    ]
   },
   {
@@ -41349,6 +42294,9 @@
     "erreur : 供 ne forme pas 検査",
     "Correct : le kanji manquant est 査（検査）",
     "erreur : 史 ne forme pas 検査"
+   ],
+   "tests": [
+    "jlpt:word/査"
    ]
   },
   {
@@ -41476,6 +42424,9 @@
     "erreur : 史 ne forme pas 検査",
     "erreur : 歴 ne forme pas 検査",
     "Correct : le kanji manquant est 検（検査）"
+   ],
+   "tests": [
+    "jlpt:word/検"
    ]
   },
   {
@@ -41603,6 +42554,9 @@
     "erreur : 史 ne forme pas 経済",
     "erreur : 歴 ne forme pas 経済",
     "erreur : 共 ne forme pas 経済"
+   ],
+   "tests": [
+    "jlpt:word/済"
    ]
   },
   {
@@ -41730,6 +42684,9 @@
     "Correct : le kanji manquant est 際（国際）",
     "erreur : 共 ne forme pas 国際",
     "erreur : 党 ne forme pas 国際"
+   ],
+   "tests": [
+    "jlpt:word/際"
    ]
   },
   {
@@ -41857,6 +42814,9 @@
     "erreur : 党 ne forme pas 子供",
     "Correct : le kanji manquant est 供（子供）",
     "erreur : 民 ne forme pas 子供"
+   ],
+   "tests": [
+    "jlpt:word/供"
    ]
   },
   {
@@ -41984,6 +42944,9 @@
     "erreur : 民 ne forme pas 歴史",
     "erreur : 存 ne forme pas 歴史",
     "Correct : le kanji manquant est 史（歴史）"
+   ],
+   "tests": [
+    "jlpt:word/史"
    ]
   },
   {
@@ -42111,6 +43074,9 @@
     "erreur : 民 ne forme pas 歴史",
     "erreur : 存 ne forme pas 歴史",
     "erreur : 保 ne forme pas 歴史"
+   ],
+   "tests": [
+    "jlpt:kanji/歴"
    ]
   },
   {
@@ -42238,6 +43204,9 @@
     "Correct : le kanji manquant est 共（共通）",
     "erreur : 保 ne forme pas 共通",
     "erreur : 険 ne forme pas 共通"
+   ],
+   "tests": [
+    "jlpt:word/共"
    ]
   },
   {
@@ -42365,6 +43334,9 @@
     "erreur : 険 ne forme pas 政党",
     "Correct : le kanji manquant est 党（政党）",
     "erreur : 危 ne forme pas 政党"
+   ],
+   "tests": [
+    "jlpt:word/党"
    ]
   },
   {
@@ -42492,6 +43464,9 @@
     "erreur : 危 ne forme pas 国民",
     "erreur : 備 ne forme pas 国民",
     "Correct : le kanji manquant est 民（国民）"
+   ],
+   "tests": [
+    "jlpt:word/民"
    ]
   },
   {
@@ -42567,6 +43542,9 @@
     "erreur : le kanji « 場 » ne convient pas ici",
     "Correct : le kanji 境 complète 環境",
     "erreur : le kanji « 増 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/境"
    ]
   },
   {
@@ -42694,6 +43672,9 @@
     "erreur : le kanji « 還 » ne convient pas ici",
     "erreur : le kanji « 輪 » ne convient pas ici",
     "Correct : le kanji 環 complète 環境"
+   ],
+   "tests": [
+    "jlpt:word/環"
    ]
   },
   {
@@ -42821,6 +43802,9 @@
     "erreur : le kanji « 宙 » ne convient pas ici",
     "erreur : le kanji « 字 » ne convient pas ici",
     "erreur : le kanji « 守 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/宇"
    ]
   },
   {
@@ -42948,6 +43932,9 @@
     "Correct : le kanji 宙 complète 宇宙",
     "erreur : le kanji « 抽 » ne convient pas ici",
     "erreur : le kanji « 申 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/宙"
    ]
   },
   {
@@ -43075,6 +44062,9 @@
     "erreur : le kanji « 完 » ne convient pas ici",
     "Correct : le kanji 宗 complète 宗教",
     "erreur : le kanji « 宮 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/宗"
    ]
   },
   {
@@ -43202,6 +44192,9 @@
     "erreur : le kanji « 官 » ne convient pas ici",
     "erreur : le kanji « 士 » ne convient pas ici",
     "Correct : le kanji 師 complète 教師"
+   ],
+   "tests": [
+    "jlpt:kanji/師"
    ]
   },
   {
@@ -43329,6 +44322,9 @@
     "erreur : le kanji « 識 » ne convient pas ici",
     "erreur : le kanji « 織 » ne convient pas ici",
     "erreur : le kanji « 業 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/職"
    ]
   },
   {
@@ -43456,6 +44452,9 @@
     "Correct : le kanji 農 complète 農業",
     "erreur : le kanji « 震 » ne convient pas ici",
     "erreur : le kanji « 業 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/農"
    ]
   },
   {
@@ -43583,6 +44582,9 @@
     "erreur : le kanji « 抗 » ne convient pas ici",
     "Correct : le kanji 航 complète 航空",
     "erreur : le kanji « 坑 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/航"
    ]
   },
   {
@@ -43710,6 +44712,9 @@
     "erreur : le kanji « 巷 » ne convient pas ici",
     "erreur : le kanji « 勝 » ne convient pas ici",
     "Correct : le kanji 券 complète 旅券"
+   ],
+   "tests": [
+    "jlpt:word/券"
    ]
   },
   {
@@ -43837,6 +44842,9 @@
     "erreur : le kanji « 板 » ne convient pas ici",
     "erreur : le kanji « 阪 » ne convient pas ici",
     "erreur : le kanji « 反 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/坂"
    ]
   },
   {
@@ -43964,6 +44972,9 @@
     "Correct : le kanji 浅 complète 浅瀬",
     "erreur : le kanji « 銭 » ne convient pas ici",
     "erreur : le kanji « 洗 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/浅"
    ]
   },
   {
@@ -44091,6 +45102,9 @@
     "erreur : le kanji « 岸 » ne convient pas ici",
     "Correct : le kanji 岩 complète 岩石",
     "erreur : le kanji « 炭 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/岩"
    ]
   },
   {
@@ -44218,6 +45232,9 @@
     "erreur : le kanji « 泣 » ne convient pas ici",
     "erreur : le kanji « 算 » ne convient pas ici",
     "Correct : le kanji 笑 complète 笑顔"
+   ],
+   "tests": [
+    "jlpt:word/笑"
    ]
   },
   {
@@ -44345,6 +45362,9 @@
     "erreur : le kanji « 願 » ne convient pas ici",
     "erreur : le kanji « 顕 » ne convient pas ici",
     "erreur : le kanji « 頭 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/顔"
    ]
   },
   {
@@ -44472,6 +45492,9 @@
     "Correct : le kanji 泣 complète 泣虫",
     "erreur : le kanji « 位 » ne convient pas ici",
     "erreur : le kanji « 笑 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/泣"
    ]
   },
   {
@@ -44625,6 +45648,9 @@
     "erreur : « 奴 » n'est pas la bonne réponse",
     "erreur : « 忘 » n'est pas la bonne réponse",
     "Correct : 怒鳴る s'écrit avec 怒"
+   ],
+   "tests": [
+    "jlpt:word/怒"
    ]
   },
   {
@@ -44749,6 +45775,9 @@
     "erreur : « 善 » n'est pas la bonne réponse",
     "erreur : « 幸 » n'est pas la bonne réponse",
     "erreur : « 楽 » n'est pas la bonne réponse"
+   ],
+   "tests": [
+    "jlpt:word/喜"
    ]
   },
   {
@@ -44876,6 +45905,9 @@
     "erreur : « 恐 » n'est pas la bonne réponse",
     "erreur : « 怒 » n'est pas la bonne réponse",
     "Correct : 怖い s'écrit avec 怖"
+   ],
+   "tests": [
+    "jlpt:kanji/怖"
    ]
   },
   {
@@ -45000,6 +46032,9 @@
     "Correct : 恐ろしい s'écrit avec 恐",
     "erreur : « 怒 » n'est pas la bonne réponse",
     "erreur : « 怖 » n'est pas la bonne réponse"
+   ],
+   "tests": [
+    "jlpt:kanji/恐"
    ]
   },
   {
@@ -45127,6 +46162,9 @@
     "Correct : 愛する s'écrit avec 愛",
     "erreur : « 愉 » n'est pas la bonne réponse",
     "erreur : « 恋 » n'est pas la bonne réponse"
+   ],
+   "tests": [
+    "jlpt:word/愛"
    ]
   },
   {
@@ -45254,6 +46292,9 @@
     "Correct : 恋 s'écrit avec 恋",
     "erreur : « 亦 » n'est pas la bonne réponse",
     "erreur : « 愛 » n'est pas la bonne réponse"
+   ],
+   "tests": [
+    "jlpt:word/恋"
    ]
   },
   {
@@ -45381,6 +46422,9 @@
     "erreur : « 疲 » n'est pas la bonne réponse",
     "erreur : « 通 » n'est pas la bonne réponse",
     "Correct : 痛い s'écrit avec 痛"
+   ],
+   "tests": [
+    "jlpt:word/痛"
    ]
   },
   {
@@ -45508,6 +46552,9 @@
     "erreur : « 波 » n'est pas la bonne réponse",
     "erreur : « 被 » n'est pas la bonne réponse",
     "erreur : « 痛 » n'est pas la bonne réponse"
+   ],
+   "tests": [
+    "jlpt:word/疲"
    ]
   },
   {
@@ -45635,6 +46682,9 @@
     "Correct : 過労 s'écrit avec 労",
     "erreur : « 努 » n'est pas la bonne réponse",
     "erreur : « 協 » n'est pas la bonne réponse"
+   ],
+   "tests": [
+    "jlpt:word/労"
    ]
   },
   {
@@ -45762,6 +46812,9 @@
     "Correct : 健康 s'écrit avec 康",
     "erreur : « 唐 » n'est pas la bonne réponse",
     "erreur : « 慷 » n'est pas la bonne réponse"
+   ],
+   "tests": [
+    "jlpt:word/康"
    ]
   },
   {
@@ -45889,6 +46942,9 @@
     "erreur : « 建 » n'est pas la bonne réponse",
     "erreur : « 康 » n'est pas la bonne réponse",
     "erreur : « 鍵 » n'est pas la bonne réponse"
+   ],
+   "tests": [
+    "jlpt:word/健"
    ]
   },
   {
@@ -46016,6 +47072,9 @@
     "erreur : « 夜 » n'est pas la bonne réponse",
     "erreur : « 腋 » n'est pas la bonne réponse",
     "erreur : « 汗 » n'est pas la bonne réponse"
+   ],
+   "tests": [
+    "jlpt:kanji/液"
    ]
   },
   {
@@ -46143,6 +47202,9 @@
     "Correct : 息 s'écrit avec 息",
     "erreur : « 恵 » n'est pas la bonne réponse",
     "erreur : « 休 » n'est pas la bonne réponse"
+   ],
+   "tests": [
+    "jlpt:word/息"
    ]
   },
   {
@@ -46270,6 +47332,9 @@
     "Correct : 眠る s'écrit avec 眠",
     "erreur : « 睡 » n'est pas la bonne réponse",
     "erreur : « 民 » n'est pas la bonne réponse"
+   ],
+   "tests": [
+    "jlpt:word/眠"
    ]
   },
   {
@@ -46397,6 +47462,9 @@
     "erreur : « 学 » n'est pas la bonne réponse",
     "erreur : « 党 » n'est pas la bonne réponse",
     "erreur : « 覧 » n'est pas la bonne réponse"
+   ],
+   "tests": [
+    "jlpt:word/覚"
    ]
   },
   {
@@ -46521,6 +47589,9 @@
     "Correct : 夢 s'écrit avec 夢",
     "erreur : « 務 » n'est pas la bonne réponse",
     "erreur : « 夜 » n'est pas la bonne réponse"
+   ],
+   "tests": [
+    "jlpt:word/夢"
    ]
   },
   {
@@ -46674,6 +47745,9 @@
     "erreur : 富 ne convient pas dans ___可",
     "Correct : le kanji manquant est 許（許可 se lit きょか）",
     "erreur : 豊 ne convient pas dans ___可"
+   ],
+   "tests": [
+    "jlpt:word/許"
    ]
   },
   {
@@ -46775,6 +47849,9 @@
     "erreur : 価（prix）n'a pas ce sens",
     "erreur : 得（obtenir）n'a pas ce sens",
     "erreur : 与（donner）n'a pas ce sens"
+   ],
+   "tests": [
+    "jlpt:word/可"
    ]
   },
   {
@@ -46798,6 +47875,9 @@
     "erreur : 豊 ne convient pas dans 許___",
     "erreur : 貧 ne convient pas dans 許___",
     "Correct : le kanji manquant est 可（許可 se lit きょか）"
+   ],
+   "tests": [
+    "jlpt:word/可"
    ]
   },
   {
@@ -46925,6 +48005,9 @@
     "erreur : 豊 ne convient pas dans 価___",
     "erreur : 貧 ne convient pas dans 価___",
     "erreur : 乏 ne convient pas dans 価___"
+   ],
+   "tests": [
+    "jlpt:word/値"
    ]
   },
   {
@@ -47026,6 +48109,9 @@
     "erreur : 富（richesse）n'a pas ce sens",
     "Correct : 価 exprime « prix »",
     "erreur : 豊（abondant）n'a pas ce sens"
+   ],
+   "tests": [
+    "jlpt:word/価"
    ]
   },
   {
@@ -47049,6 +48135,9 @@
     "Correct : le kanji manquant est 価（価値 se lit かち）",
     "erreur : 乏 ne convient pas dans ___値",
     "erreur : 困 ne convient pas dans ___値"
+   ],
+   "tests": [
+    "jlpt:word/価"
    ]
   },
   {
@@ -47176,6 +48265,9 @@
     "erreur : 困 ne convient pas dans ___意",
     "Correct : le kanji manquant est 得（得意 se lit とくい）",
     "erreur : 難 ne convient pas dans ___意"
+   ],
+   "tests": [
+    "jlpt:word/得"
    ]
   },
   {
@@ -47303,6 +48395,9 @@
     "erreur : 難 ne convient pas dans ___党",
     "erreur : 易 ne convient pas dans ___党",
     "Correct : le kanji manquant est 与（与党 se lit よとう）"
+   ],
+   "tests": [
+    "jlpt:word/与"
    ]
   },
   {
@@ -47430,6 +48525,9 @@
     "erreur : 難 ne convient pas dans 豊___",
     "erreur : 易 ne convient pas dans 豊___",
     "erreur : 容 ne convient pas dans 豊___"
+   ],
+   "tests": [
+    "jlpt:kanji/富"
    ]
   },
   {
@@ -47557,6 +48655,9 @@
     "Correct : le kanji manquant est 豊（豊富 se lit ほうふ）",
     "erreur : 容 ne convient pas dans ___富",
     "erreur : 単 ne convient pas dans ___富"
+   ],
+   "tests": [
+    "jlpt:kanji/豊"
    ]
   },
   {
@@ -47684,6 +48785,9 @@
     "erreur : 単 ne convient pas dans ___乏",
     "Correct : le kanji manquant est 貧（貧乏 se lit びんぼう）",
     "erreur : 簡 ne convient pas dans ___乏"
+   ],
+   "tests": [
+    "jlpt:kanji/貧"
    ]
   },
   {
@@ -47811,6 +48915,9 @@
     "erreur : 簡 ne convient pas dans 貧___",
     "erreur : 許 ne convient pas dans 貧___",
     "Correct : le kanji manquant est 乏（貧乏 se lit びんぼう）"
+   ],
+   "tests": [
+    "jlpt:kanji/乏"
    ]
   },
   {
@@ -47938,6 +49045,9 @@
     "erreur : 簡 ne convient pas dans ___難",
     "erreur : 許 ne convient pas dans ___難",
     "erreur : 可 ne convient pas dans ___難"
+   ],
+   "tests": [
+    "jlpt:word/困"
    ]
   },
   {
@@ -48065,6 +49175,9 @@
     "Correct : le kanji manquant est 難（困難 se lit こんなん）",
     "erreur : 可 ne convient pas dans 困___",
     "erreur : 値 ne convient pas dans 困___"
+   ],
+   "tests": [
+    "jlpt:word/難"
    ]
   },
   {
@@ -48192,6 +49305,9 @@
     "erreur : 値 ne convient pas dans 容___",
     "Correct : le kanji manquant est 易（容易 se lit ようい）",
     "erreur : 価 ne convient pas dans 容___"
+   ],
+   "tests": [
+    "jlpt:word/易"
    ]
   },
   {
@@ -48293,6 +49409,9 @@
     "erreur : 簡（simple）n'a pas ce sens",
     "erreur : 許（permettre）n'a pas ce sens",
     "erreur : 可（possible）n'a pas ce sens"
+   ],
+   "tests": [
+    "jlpt:word/容"
    ]
   },
   {
@@ -48316,6 +49435,9 @@
     "erreur : 価 ne convient pas dans 内___",
     "erreur : 得 ne convient pas dans 内___",
     "Correct : le kanji manquant est 容（内容 se lit ないよう）"
+   ],
+   "tests": [
+    "jlpt:word/容"
    ]
   },
   {
@@ -48417,6 +49539,9 @@
     "Correct : 単 exprime « simple »",
     "erreur : 可（possible）n'a pas ce sens",
     "erreur : 値（valeur）n'a pas ce sens"
+   ],
+   "tests": [
+    "jlpt:word/単"
    ]
   },
   {
@@ -48440,6 +49565,9 @@
     "erreur : 価 ne convient pas dans 簡___",
     "erreur : 得 ne convient pas dans 簡___",
     "erreur : 与 ne convient pas dans 簡___"
+   ],
+   "tests": [
+    "jlpt:word/単"
    ]
   },
   {
@@ -48541,6 +49669,9 @@
     "erreur : 値（valeur）n'a pas ce sens",
     "Correct : 簡 exprime « simple »",
     "erreur : 価（prix）n'a pas ce sens"
+   ],
+   "tests": [
+    "jlpt:kanji/簡"
    ]
   },
   {
@@ -48564,6 +49695,9 @@
     "Correct : le kanji manquant est 簡（簡単 se lit かんたん）",
     "erreur : 与 ne convient pas dans ___単",
     "erreur : 富 ne convient pas dans ___単"
+   ],
+   "tests": [
+    "jlpt:kanji/簡"
    ]
   },
   {
@@ -48665,6 +49799,9 @@
     "erreur : 腹 ne convient pas dans ___雑.",
     "erreur : 副 ne convient pas dans ___雑.",
     "Correct : le kanji 複 complète 複雑（ふくざつ）."
+   ],
+   "tests": [
+    "jlpt:word/複"
    ]
   },
   {
@@ -48792,6 +49929,9 @@
     "erreur : 離 ne convient pas dans 複___.",
     "erreur : 雅 ne convient pas dans 複___.",
     "erreur : 雄 ne convient pas dans 複___."
+   ],
+   "tests": [
+    "jlpt:word/雑"
    ]
   },
   {
@@ -48919,6 +50059,9 @@
     "Correct : le kanji 印 complète 印象（いんしょう）.",
     "erreur : 卯 ne convient pas dans ___象.",
     "erreur : 即 ne convient pas dans ___象."
+   ],
+   "tests": [
+    "jlpt:word/印"
    ]
   },
   {
@@ -49046,6 +50189,9 @@
     "erreur : 馬 ne convient pas dans 印___.",
     "Correct : le kanji 象 complète 印象（いんしょう）.",
     "erreur : 像 ne convient pas dans 印___."
+   ],
+   "tests": [
+    "jlpt:word/象"
    ]
   },
   {
@@ -49173,6 +50319,9 @@
     "erreur : 熊 ne convient pas dans ___度.",
     "erreur : 罷 ne convient pas dans ___度.",
     "Correct : le kanji 態 complète 態度（たいど）."
+   ],
+   "tests": [
+    "jlpt:word/態"
    ]
   },
   {
@@ -49300,6 +50449,9 @@
     "erreur : 訳 ne convient pas dans 選___.",
     "erreur : 沢 ne convient pas dans 選___.",
     "erreur : 釈 ne convient pas dans 選___."
+   ],
+   "tests": [
+    "jlpt:word/択"
    ]
   },
   {
@@ -49427,6 +50579,9 @@
     "Correct : le kanji 例 complète 例外（れいがい）.",
     "erreur : 列 ne convient pas dans ___外.",
     "erreur : 烈 ne convient pas dans ___外."
+   ],
+   "tests": [
+    "jlpt:word/例"
    ]
   },
   {
@@ -49554,6 +50709,9 @@
     "erreur : 額 ne convient pas dans 依___.",
     "Correct : le kanji 頼 complète 依頼（いらい）.",
     "erreur : 頬 ne convient pas dans 依___."
+   ],
+   "tests": [
+    "jlpt:word/頼"
    ]
   },
   {
@@ -49681,6 +50839,9 @@
     "erreur : 哀 ne convient pas dans ___頼.",
     "erreur : 表 ne convient pas dans ___頼.",
     "Correct : le kanji 依 complète 依頼（いらい）."
+   ],
+   "tests": [
+    "jlpt:kanji/依"
    ]
   },
   {
@@ -49808,6 +50969,9 @@
     "erreur : 球 ne convient pas dans 要___.",
     "erreur : 救 ne convient pas dans 要___.",
     "erreur : 来 ne convient pas dans 要___."
+   ],
+   "tests": [
+    "jlpt:word/求"
    ]
   },
   {
@@ -49935,6 +51099,9 @@
     "Correct : le kanji 要 complète 重要（じゅうよう）.",
     "erreur : 腰 ne convient pas dans 重___.",
     "erreur : 票 ne convient pas dans 重___."
+   ],
+   "tests": [
+    "jlpt:word/要"
    ]
   },
   {
@@ -50062,6 +51229,9 @@
     "erreur : 梨 ne convient pas dans ___用.",
     "Correct : le kanji 利 complète 利用（りよう）.",
     "erreur : 私 ne convient pas dans ___用."
+   ],
+   "tests": [
+    "jlpt:word/利"
    ]
   },
   {
@@ -50189,6 +51359,9 @@
     "erreur : 盛 ne convient pas dans 利___.",
     "erreur : 盗 ne convient pas dans 利___.",
     "Correct : le kanji 益 complète 利益（りえき）."
+   ],
+   "tests": [
+    "jlpt:word/益"
    ]
   },
   {
@@ -50316,6 +51489,9 @@
     "erreur : 貴 ne convient pas dans ___用.",
     "erreur : 賛 ne convient pas dans ___用.",
     "erreur : 資 ne convient pas dans ___用."
+   ],
+   "tests": [
+    "jlpt:word/費"
    ]
   },
   {
@@ -50443,6 +51619,9 @@
     "Correct : le kanji 額 complète 金額（きんがく）.",
     "erreur : 顔 ne convient pas dans 金___.",
     "erreur : 願 ne convient pas dans 金___."
+   ],
+   "tests": [
+    "jlpt:word/額"
    ]
   },
   {
@@ -50570,6 +51749,9 @@
     "erreur : 貨 ne convient pas dans ___金.",
     "Correct : le kanji 貯 complète 貯金（ちょきん）.",
     "erreur : 財 ne convient pas dans ___金."
+   ],
+   "tests": [
+    "jlpt:kanji/貯"
    ]
   },
   {
@@ -50697,6 +51879,9 @@
     "erreur : 仏 ne convient pas dans paiement",
     "erreur : 扱 ne convient pas dans paiement",
     "Correct : le kanji est 払（支払）"
+   ],
+   "tests": [
+    "jlpt:word/払"
    ]
   },
   {
@@ -50824,6 +52009,9 @@
     "erreur : 技 ne convient pas dans domination, contrôle",
     "erreur : 枝 ne convient pas dans domination, contrôle",
     "erreur : 岐 ne convient pas dans domination, contrôle"
+   ],
+   "tests": [
+    "jlpt:word/支"
    ]
   },
   {
@@ -50951,6 +52139,9 @@
     "Correct : le kanji est 域（地域）",
     "erreur : 減 ne convient pas dans région, zone",
     "erreur : 或 ne convient pas dans région, zone"
+   ],
+   "tests": [
+    "jlpt:kanji/域"
    ]
   },
   {
@@ -51078,6 +52269,9 @@
     "erreur : 倫 ne convient pas dans thèse, article scientifique",
     "Correct : le kanji est 論（論文）",
     "erreur : 諭 ne convient pas dans thèse, article scientifique"
+   ],
+   "tests": [
+    "jlpt:word/論"
    ]
   },
   {
@@ -51205,6 +52399,9 @@
     "erreur : 科 ne convient pas dans problème, devoir",
     "erreur : 話 ne convient pas dans problème, devoir",
     "Correct : le kanji est 課（課題）"
+   ],
+   "tests": [
+    "jlpt:word/課"
    ]
   },
   {
@@ -51332,6 +52529,9 @@
     "erreur : 度 ne convient pas dans présence, assister",
     "erreur : 座 ne convient pas dans présence, assister",
     "erreur : 庶 ne convient pas dans présence, assister"
+   ],
+   "tests": [
+    "jlpt:word/席"
    ]
   },
   {
@@ -51459,6 +52659,9 @@
     "Correct : le kanji est 欠（欠席）",
     "erreur : 吹 ne convient pas dans absence",
     "erreur : 歌 ne convient pas dans absence"
+   ],
+   "tests": [
+    "jlpt:word/欠"
    ]
   },
   {
@@ -51586,6 +52789,9 @@
     "erreur : 今 ne convient pas dans ordre, commande",
     "Correct : le kanji est 令（命令）",
     "erreur : 命 ne convient pas dans ordre, commande"
+   ],
+   "tests": [
+    "jlpt:kanji/令"
    ]
   },
   {
@@ -51713,6 +52919,9 @@
     "erreur : 刈 ne convient pas dans impression, imprimerie",
     "erreur : 制 ne convient pas dans impression, imprimerie",
     "Correct : le kanji est 刷（印刷）"
+   ],
+   "tests": [
+    "jlpt:kanji/刷"
    ]
   },
   {
@@ -51840,6 +53049,9 @@
     "erreur : 板 ne convient pas dans publication, édition",
     "erreur : 販 ne convient pas dans publication, édition",
     "erreur : 反 ne convient pas dans publication, édition"
+   ],
+   "tests": [
+    "jlpt:word/版"
    ]
   },
   {
@@ -51967,6 +53179,9 @@
     "Correct : le kanji est 刊（週刊）",
     "erreur : 判 ne convient pas dans hebdomadaire",
     "erreur : 刈 ne convient pas dans hebdomadaire"
+   ],
+   "tests": [
+    "jlpt:kanji/刊"
    ]
   },
   {
@@ -52094,6 +53309,9 @@
     "erreur : 識 ne convient pas dans magazine, revue",
     "Correct : le kanji est 誌（雑誌）",
     "erreur : 志 ne convient pas dans magazine, revue"
+   ],
+   "tests": [
+    "jlpt:word/誌"
    ]
   },
   {
@@ -52221,6 +53439,9 @@
     "erreur : 巷 ne convient pas dans rouleau, parchemin",
     "erreur : 拳 ne convient pas dans rouleau, parchemin",
     "Correct : le kanji est 巻（巻物）"
+   ],
+   "tests": [
+    "jlpt:kanji/巻"
    ]
   },
   {
@@ -52348,6 +53569,9 @@
     "erreur : 珊 ne convient pas dans volume séparé, supplément",
     "erreur : 柵 ne convient pas dans volume séparé, supplément",
     "erreur : 再 ne convient pas dans volume séparé, supplément"
+   ],
+   "tests": [
+    "jlpt:word/冊"
    ]
   },
   {
@@ -52475,6 +53699,9 @@
     "Correct : le kanji est 編（編集）",
     "erreur : 遍 ne convient pas dans édition, montage",
     "erreur : 篇 ne convient pas dans édition, montage"
+   ],
+   "tests": [
+    "jlpt:kanji/編"
    ]
   },
   {
@@ -52602,6 +53829,9 @@
     "erreur : 択 ne convient pas dans traduction",
     "Correct : le kanji est 訳（翻訳）",
     "erreur : 駅 ne convient pas dans traduction"
+   ],
+   "tests": [
+    "jlpt:word/訳"
    ]
   },
   {
@@ -52752,6 +53982,9 @@
     "erreur : 番 « numéro » (ban)",
     "erreur : 反 « opposé » (han)",
     "erreur : 判 « juger » (han)"
+   ],
+   "tests": [
+    "jlpt:kanji/翻"
    ]
   },
   {
@@ -52879,6 +54112,9 @@
     "erreur : 擦 « frotter »",
     "erreur : 際 « occasion » (sai)",
     "erreur : 祭 « fête » (matsuri)"
+   ],
+   "tests": [
+    "jlpt:word/察"
    ]
   },
   {
@@ -53006,6 +54242,9 @@
     "erreur : 歓 « joie »",
     "erreur : 勧 « recommander »",
     "erreur : 権 « droit, pouvoir »"
+   ],
+   "tests": [
+    "jlpt:word/観"
    ]
   },
   {
@@ -53133,6 +54372,9 @@
     "erreur : 敬 « respecter »",
     "erreur : 驚 « surprendre »",
     "erreur : 境 « frontière »"
+   ],
+   "tests": [
+    "jlpt:word/警"
    ]
   },
   {
@@ -53260,6 +54502,9 @@
     "erreur : 妨 « gêner » (samatageru)",
     "erreur : 放 « lâcher » (hanasu)",
     "erreur : 訪 « rendre visite » (otozureru)"
+   ],
+   "tests": [
+    "jlpt:word/防"
    ]
   },
   {
@@ -53387,6 +54632,9 @@
     "erreur : 範 « modèle »",
     "erreur : 版 « édition »",
     "erreur : 販 « vente »"
+   ],
+   "tests": [
+    "jlpt:word/犯"
    ]
   },
   {
@@ -53514,6 +54762,9 @@
     "erreur : 罰 « punition » (batsu)",
     "erreur : 署 « poste, bureau »",
     "erreur : 置 « poser » (oku)"
+   ],
+   "tests": [
+    "jlpt:word/罪"
    ]
   },
   {
@@ -53641,6 +54892,9 @@
     "erreur : 罪 « crime » (tsumi)",
     "erreur : 割 « diviser » (waru)",
     "erreur : 則 « règle » (soku)"
+   ],
+   "tests": [
+    "jlpt:word/罰"
    ]
   },
   {
@@ -53768,6 +55022,9 @@
     "erreur : 補 « compléter » (oginau)",
     "erreur : 浦 « baie » (ura)",
     "erreur : 舗 « boutique »"
+   ],
+   "tests": [
+    "jlpt:kanji/捕"
    ]
   },
   {
@@ -53895,6 +55152,9 @@
     "erreur : 速 « rapide » (hayai)",
     "erreur : 建 « construire » (tateru)",
     "erreur : 違 « différer » (chigau)"
+   ],
+   "tests": [
+    "jlpt:kanji/逮"
    ]
   },
   {
@@ -54022,6 +55282,9 @@
     "erreur : 流 « couler » (nagareru)",
     "erreur : 貿 « commerce »",
     "erreur : 溜 « accumuler »"
+   ],
+   "tests": [
+    "jlpt:kanji/留"
    ]
   },
   {
@@ -54149,6 +55412,9 @@
     "erreur : 紹 « présenter » (紹介)",
     "erreur : 昭 « lumineux » (昭和)",
     "erreur : 照 « éclairer » (terasu)"
+   ],
+   "tests": [
+    "jlpt:word/招"
    ]
   },
   {
@@ -54276,6 +55542,9 @@
     "erreur : 固 « dur » (katai)",
     "erreur : 箇 s'emploie surtout dans 箇所",
     "erreur : 値 « valeur » (ne)"
+   ],
+   "tests": [
+    "jlpt:word/個"
    ]
   },
   {
@@ -54403,6 +55672,9 @@
     "erreur : 格 « rang, statut » (kaku)",
     "erreur : 客 « client » (kyaku)",
     "erreur : 略 « abréger »"
+   ],
+   "tests": [
+    "jlpt:word/各"
    ]
   },
   {
@@ -54530,6 +55802,9 @@
     "erreur : 晋 (nom propre, shin)",
     "erreur : 並 « aligner » (narabu)",
     "erreur : 善 « bien » (yoi)"
+   ],
+   "tests": [
+    "jlpt:word/普"
    ]
   },
   {
@@ -54654,6 +55929,9 @@
     "erreur : 級 « classe, rang »",
     "erreur : 吸 « aspirer » (suu)",
     "erreur : 急 « urgent » (kyuu)"
+   ],
+   "tests": [
+    "jlpt:kanji/及"
    ]
   },
   {
@@ -54755,6 +56033,9 @@
     "erreur : 郡 ne convient pas ici",
     "erreur : 軍 ne convient pas ici",
     "erreur : 訓 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/群"
    ]
   },
   {
@@ -54882,6 +56163,9 @@
     "Correct : le kanji manquant est 衆",
     "erreur : 象 ne convient pas ici",
     "erreur : 終 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/衆"
    ]
   },
   {
@@ -55009,6 +56293,9 @@
     "erreur : 経 ne convient pas ici",
     "Correct : le kanji manquant est 総",
     "erreur : 続 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/総"
    ]
   },
   {
@@ -55136,6 +56423,9 @@
     "erreur : 場 ne convient pas ici",
     "erreur : 地 ne convient pas ici",
     "Correct : le kanji manquant est 均"
+   ],
+   "tests": [
+    "jlpt:kanji/均"
    ]
   },
   {
@@ -55263,6 +56553,9 @@
     "erreur : 緑 ne convient pas ici",
     "erreur : 銀 ne convient pas ici",
     "erreur : 鏡 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/録"
    ]
   },
   {
@@ -55390,6 +56683,9 @@
     "Correct : le kanji manquant est 抜",
     "erreur : 払 ne convient pas ici",
     "erreur : 投 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/抜"
    ]
   },
   {
@@ -55517,6 +56813,9 @@
     "erreur : 忘 ne convient pas ici",
     "Correct : le kanji manquant est 念",
     "erreur : 想 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/念"
    ]
   },
   {
@@ -55644,6 +56943,9 @@
     "erreur : 銭 ne convient pas ici",
     "erreur : 践 ne convient pas ici",
     "Correct : le kanji manquant est 残"
+   ],
+   "tests": [
+    "jlpt:word/残"
    ]
   },
   {
@@ -55771,6 +57073,9 @@
     "erreur : 福 ne convient pas ici",
     "erreur : 幅 ne convient pas ici",
     "erreur : 富 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/副"
    ]
   },
   {
@@ -55898,6 +57203,9 @@
     "Correct : le kanji manquant est 賞",
     "erreur : 資 ne convient pas ici",
     "erreur : 貴 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/賞"
    ]
   },
   {
@@ -56025,6 +57333,9 @@
     "erreur : 装 ne convient pas ici",
     "Correct : le kanji manquant est 状",
     "erreur : 将 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/状"
    ]
   },
   {
@@ -56152,6 +57463,9 @@
     "erreur : 洗 ne convient pas ici",
     "erreur : 沈 ne convient pas ici",
     "Correct : le kanji manquant est 況"
+   ],
+   "tests": [
+    "jlpt:word/況"
    ]
   },
   {
@@ -56279,6 +57593,9 @@
     "erreur : 作 ne convient pas ici",
     "erreur : 昧 ne convient pas ici",
     "erreur : 昭 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/昨"
    ]
   },
   {
@@ -56406,6 +57723,9 @@
     "Correct : le kanji manquant est 差",
     "erreur : 美 ne convient pas ici",
     "erreur : 羊 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/差"
    ]
   },
   {
@@ -56533,6 +57853,9 @@
     "erreur : 化 ne convient pas ici",
     "Correct : le kanji manquant est 比",
     "erreur : 此 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/比"
    ]
   },
   {
@@ -56660,6 +57983,9 @@
     "erreur : 郊 ne convient pas ici",
     "erreur : 交 ne convient pas ici",
     "Correct : le kanji manquant est 較"
+   ],
+   "tests": [
+    "jlpt:word/較"
    ]
   },
   {
@@ -56787,6 +58113,9 @@
     "erreur : 安 ne convient pas dans 提___",
     "erreur : 暗 ne convient pas dans 提___",
     "erreur : 宛 ne convient pas dans 提___"
+   ],
+   "tests": [
+    "jlpt:word/案"
    ]
   },
   {
@@ -56914,6 +58243,9 @@
     "erreur : 仕 ne convient pas dans 地___",
     "Correct : le kanji 位 complète 地位",
     "erreur : 値 ne convient pas dans 地___"
+   ],
+   "tests": [
+    "jlpt:word/位"
    ]
   },
   {
@@ -57041,6 +58373,9 @@
     "erreur : 回 ne convient pas dans 周___",
     "erreur : 固 ne convient pas dans 周___",
     "erreur : 国 ne convient pas dans 周___"
+   ],
+   "tests": [
+    "jlpt:word/囲"
    ]
   },
   {
@@ -57168,6 +58503,9 @@
     "erreur : 冒 ne convient pas dans ___薬",
     "Correct : le kanji 胃 complète 胃薬",
     "erreur : 肖 ne convient pas dans ___薬"
+   ],
+   "tests": [
+    "jlpt:word/胃"
    ]
   },
   {
@@ -57295,6 +58633,9 @@
     "erreur : 依 ne convient pas dans ___服",
     "erreur : 表 ne convient pas dans ___服",
     "erreur : 哀 ne convient pas dans ___服"
+   ],
+   "tests": [
+    "jlpt:kanji/衣"
    ]
   },
   {
@@ -57422,6 +58763,9 @@
     "erreur : 滝 ne convient pas dans ___技",
     "Correct : le kanji 演 complète 演技",
     "erreur : 湾 ne convient pas dans ___技"
+   ],
+   "tests": [
+    "jlpt:kanji/演"
    ]
   },
   {
@@ -57549,6 +58893,9 @@
     "erreur : 煩 ne convient pas dans 禁___",
     "erreur : 燥 ne convient pas dans 禁___",
     "erreur : 炎 ne convient pas dans 禁___"
+   ],
+   "tests": [
+    "jlpt:word/煙"
    ]
   },
   {
@@ -57676,6 +59023,9 @@
     "erreur : 垣 ne convient pas dans ___分",
     "Correct : le kanji 塩 complète 塩分",
     "erreur : 壇 ne convient pas dans ___分"
+   ],
+   "tests": [
+    "jlpt:word/塩"
    ]
   },
   {
@@ -57800,6 +59150,9 @@
     "erreur : 抑 ne convient pas dans ___入れ",
     "erreur : 拘 ne convient pas dans ___入れ",
     "erreur : 抽 ne convient pas dans ___入れ"
+   ],
+   "tests": [
+    "jlpt:word/押"
    ]
   },
   {
@@ -57927,6 +59280,9 @@
     "erreur : 構 ne convient pas dans ___断",
     "Correct : le kanji 横 complète 横断",
     "erreur : 槽 ne convient pas dans ___断"
+   ],
+   "tests": [
+    "jlpt:word/横"
    ]
   },
   {
@@ -58054,6 +59410,9 @@
     "erreur : 憶 ne convient pas dans 一___",
     "erreur : 臆 ne convient pas dans 一___",
     "erreur : 儀 ne convient pas dans 一___"
+   ],
+   "tests": [
+    "jlpt:word/億"
    ]
   },
   {
@@ -58181,6 +59540,9 @@
     "erreur : 菓 ne convient pas dans ___物",
     "Correct : le kanji 果 complète 果物",
     "erreur : 巣 ne convient pas dans ___物"
+   ],
+   "tests": [
+    "jlpt:word/果"
    ]
   },
   {
@@ -58308,6 +59670,9 @@
     "erreur : 貸 ne convient pas dans ___物",
     "erreur : 賃 ne convient pas dans ___物",
     "erreur : 貯 ne convient pas dans ___物"
+   ],
+   "tests": [
+    "jlpt:word/貨"
    ]
   },
   {
@@ -58435,6 +59800,9 @@
     "erreur : 荷 ne convient pas dans 運___",
     "Correct : le kanji 河 complète 運河",
     "erreur : 可 ne convient pas dans 運___"
+   ],
+   "tests": [
+    "jlpt:kanji/河"
    ]
   },
   {
@@ -58562,6 +59930,9 @@
     "erreur : 炭 ne convient pas dans ___色",
     "erreur : 灯 ne convient pas dans ___色",
     "erreur : 反 ne convient pas dans ___色"
+   ],
+   "tests": [
+    "jlpt:word/灰"
    ]
   },
   {
@@ -58689,6 +60060,9 @@
     "erreur : 張 ne convient pas dans ___大",
     "Correct : le kanji 拡 complète 拡大",
     "erreur : 拾 ne convient pas dans ___大"
+   ],
+   "tests": [
+    "jlpt:word/拡"
    ]
   },
   {
@@ -58816,6 +60190,9 @@
     "erreur : 判 ne convient pas ici",
     "erreur : 別 ne convient pas ici",
     "Correct : le kanji manquant est 割"
+   ],
+   "tests": [
+    "jlpt:word/割"
    ]
   },
   {
@@ -58943,6 +60320,9 @@
     "erreur : 官 ne convient pas ici",
     "erreur : 宗 ne convient pas ici",
     "erreur : 元 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/完"
    ]
   },
   {
@@ -59070,6 +60450,9 @@
     "Correct : le kanji manquant est 干",
     "erreur : 午 ne convient pas ici",
     "erreur : 汗 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/干"
    ]
   },
   {
@@ -59197,6 +60580,9 @@
     "erreur : 某 ne convient pas ici",
     "Correct : le kanji manquant est 甘",
     "erreur : 甚 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/甘"
    ]
   },
   {
@@ -59324,6 +60710,9 @@
     "erreur : 汁 ne convient pas ici",
     "erreur : 汚 ne convient pas ici",
     "Correct : le kanji manquant est 汗"
+   ],
+   "tests": [
+    "jlpt:word/汗"
    ]
   },
   {
@@ -59451,6 +60840,9 @@
     "erreur : 今 ne convient pas ici",
     "erreur : 吟 ne convient pas ici",
     "erreur : 念 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/含"
    ]
   },
   {
@@ -59500,6 +60892,9 @@
     "erreur : いくづ n'est pas la bonne lecture",
     "Correct : 幾つ se lit いくつ",
     "erreur : いくち n'est pas la bonne lecture"
+   ],
+   "tests": [
+    "jlpt:word/いくつ"
    ]
   },
   {
@@ -59575,6 +60970,9 @@
     "Correct : le kanji manquant est 幾",
     "erreur : 畿 ne convient pas ici",
     "erreur : 幸 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/幾"
    ]
   },
   {
@@ -59702,6 +61100,9 @@
     "erreur : 黄 ne convient pas ici",
     "Correct : le kanji manquant est 貴",
     "erreur : 責 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/貴"
    ]
   },
   {
@@ -59829,6 +61230,9 @@
     "erreur : 凝 ne convient pas ici",
     "erreur : 議 ne convient pas ici",
     "Correct : le kanji manquant est 疑"
+   ],
+   "tests": [
+    "jlpt:kanji/疑"
    ]
   },
   {
@@ -59956,6 +61360,9 @@
     "erreur : 義 ne convient pas ici",
     "erreur : 議 ne convient pas ici",
     "erreur : 犠 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/儀"
    ]
   },
   {
@@ -60083,6 +61490,9 @@
     "Correct : le kanji manquant est 詰",
     "erreur : 詩 ne convient pas ici",
     "erreur : 結 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/詰"
    ]
   },
   {
@@ -60210,6 +61620,9 @@
     "erreur : 迎 ne convient pas ici",
     "Correct : le kanji manquant est 逆",
     "erreur : 近 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/逆"
    ]
   },
   {
@@ -60337,6 +61750,9 @@
     "erreur : 九 ne convient pas ici",
     "erreur : 勺 ne convient pas ici",
     "Correct : le kanji manquant est 久"
+   ],
+   "tests": [
+    "jlpt:kanji/久"
    ]
   },
   {
@@ -60464,6 +61880,9 @@
     "erreur : 日 ne convient pas ici",
     "erreur : 臼 ne convient pas ici",
     "erreur : 児 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/旧"
    ]
   },
   {
@@ -60591,6 +62010,9 @@
     "Correct : le kanji manquant est 居",
     "erreur : 届 ne convient pas ici",
     "erreur : 尻 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/居"
    ]
   },
   {
@@ -60718,6 +62140,9 @@
     "erreur : 拒 ne convient pas ici",
     "Correct : le kanji manquant est 巨",
     "erreur : 匠 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/巨"
    ]
   },
   {
@@ -60871,6 +62296,9 @@
     "erreur : 処 ne convient pas ici",
     "Correct : le kanji manquant est 拠",
     "erreur : 挙 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/拠"
    ]
   },
   {
@@ -60998,6 +62426,9 @@
     "erreur : 招 ne convient pas ici",
     "erreur : 折 ne convient pas ici",
     "Correct : le kanji manquant est 拒"
+   ],
+   "tests": [
+    "jlpt:kanji/拒"
    ]
   },
   {
@@ -61125,6 +62556,9 @@
     "erreur : 峡 ne convient pas ici",
     "erreur : 挟 ne convient pas ici",
     "erreur : 狩 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/狭"
    ]
   },
   {
@@ -61252,6 +62686,9 @@
     "Correct : le kanji manquant est 響",
     "erreur : 卿 ne convient pas ici",
     "erreur : 饗 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/響"
    ]
   },
   {
@@ -61379,6 +62816,9 @@
     "erreur : 敬 ne convient pas ici",
     "Correct : le kanji manquant est 驚",
     "erreur : 騒 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/驚"
    ]
   },
   {
@@ -61506,6 +62946,9 @@
     "erreur : 防 ne convient pas ici",
     "erreur : 制 ne convient pas ici",
     "Correct : le kanji manquant est 禁"
+   ],
+   "tests": [
+    "jlpt:word/禁"
    ]
   },
   {
@@ -61633,6 +63076,9 @@
     "erreur : 節 ne convient pas ici",
     "erreur : 筒 ne convient pas ici",
     "erreur : 肪 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/筋"
    ]
   },
   {
@@ -61760,6 +63206,9 @@
     "Correct : le kanji manquant est 勤",
     "erreur : 勉 ne convient pas ici",
     "erreur : 動 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/勤"
    ]
   },
   {
@@ -61887,6 +63336,9 @@
     "erreur : 革 ne convient pas ici",
     "Correct : le kanji manquant est 靴",
     "erreur : 鞍 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/靴"
    ]
   },
   {
@@ -62014,6 +63466,9 @@
     "erreur : 順 ne convient pas ici",
     "erreur : 傍 ne convient pas ici",
     "Correct : le kanji manquant est 傾"
+   ],
+   "tests": [
+    "jlpt:kanji/傾"
    ]
   },
   {
@@ -62141,6 +63596,9 @@
     "erreur : 続 ne convient pas ici",
     "erreur : 断 ne convient pas ici",
     "erreur : 縦 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/継"
    ]
   },
   {
@@ -62268,6 +63726,9 @@
     "Correct : le kanji manquant est 迎",
     "erreur : 送 ne convient pas ici",
     "erreur : 逆 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/迎"
    ]
   },
   {
@@ -62395,6 +63856,9 @@
     "erreur : 繋 ne convient pas ici",
     "Correct : le kanji manquant est 撃",
     "erreur : 挙 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/撃"
    ]
   },
   {
@@ -62522,6 +63986,9 @@
     "erreur : 濁 ne convient pas ici",
     "erreur : 敷 ne convient pas ici",
     "Correct : le kanji manquant est 激"
+   ],
+   "tests": [
+    "jlpt:kanji/激"
    ]
   },
   {
@@ -62649,6 +64116,9 @@
     "erreur : 契 ne convient pas ici",
     "erreur : 潤 ne convient pas ici",
     "erreur : 洗 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/潔"
    ]
   },
   {
@@ -62776,6 +64246,9 @@
     "Correct : le kanji manquant est 件",
     "erreur : 作 ne convient pas ici",
     "erreur : 伴 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/件"
    ]
   },
   {
@@ -62903,6 +64376,9 @@
     "erreur : 肘 ne convient pas ici",
     "erreur : 腕 ne convient pas ici",
     "erreur : 首 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/肩"
    ]
   },
   {
@@ -63004,6 +64480,9 @@
     "erreur : 権 ne convient pas ici",
     "erreur : 検 ne convient pas ici",
     "erreur : 験 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/憲"
    ]
   },
   {
@@ -63027,6 +64506,9 @@
     "Correct : 法 complète 憲法",
     "erreur : 則 ne convient pas ici",
     "erreur : 規 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/法"
    ]
   },
   {
@@ -63154,6 +64636,9 @@
     "erreur : 緊 ne convient pas ici",
     "Correct : 賢 complète 賢明",
     "erreur : 腎 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/賢"
    ]
   },
   {
@@ -63255,6 +64740,9 @@
     "erreur : 弦 ne convient pas ici",
     "Correct : 玄 complète 玄米",
     "erreur : 率 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/玄"
    ]
   },
   {
@@ -63278,6 +64766,9 @@
     "erreur : 飯 ne convient pas ici",
     "erreur : 粉 ne convient pas ici",
     "Correct : 米 complète 玄米"
+   ],
+   "tests": [
+    "jlpt:word/米"
    ]
   },
   {
@@ -63405,6 +64896,9 @@
     "erreur : 原 ne convient pas ici",
     "erreur : 願 ne convient pas ici",
     "erreur : 減 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/源"
    ]
   },
   {
@@ -63532,6 +65026,9 @@
     "Correct : 厳 complète 厳重",
     "erreur : 岸 ne convient pas ici",
     "erreur : 巌 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/厳"
    ]
   },
   {
@@ -63659,6 +65156,9 @@
     "erreur : 巳 ne convient pas ici",
     "Correct : 己 complète 自己",
     "erreur : 尸 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/己"
    ]
   },
   {
@@ -63786,6 +65286,9 @@
     "erreur : 鳴 ne convient pas ici",
     "erreur : 号 ne convient pas ici",
     "Correct : 呼 complète 呼吸"
+   ],
+   "tests": [
+    "jlpt:word/呼"
    ]
   },
   {
@@ -63913,6 +65416,9 @@
     "erreur : 語 ne convient pas ici",
     "erreur : 悟 ne convient pas ici",
     "erreur : 娯 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/誤"
    ]
   },
   {
@@ -64014,6 +65520,9 @@
     "erreur : 坑 ne convient pas ici",
     "erreur : 航 ne convient pas ici",
     "erreur : 拡 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/抗"
    ]
   },
   {
@@ -64037,6 +65546,9 @@
     "Correct : 反 complète 反抗",
     "erreur : 坂 ne convient pas ici",
     "erreur : 阪 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/反"
    ]
   },
   {
@@ -64164,6 +65676,9 @@
     "erreur : 巧 ne convient pas ici",
     "Correct : 攻 complète 攻撃",
     "erreur : 政 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/攻"
    ]
   },
   {
@@ -64291,6 +65806,9 @@
     "erreur : 再 ne convient pas ici",
     "erreur : 史 ne convient pas ici",
     "Correct : 更 complète 変更"
+   ],
+   "tests": [
+    "jlpt:kanji/更"
    ]
   },
   {
@@ -64418,6 +65936,9 @@
     "erreur : 便 ne convient pas ici",
     "erreur : 鞭 ne convient pas ici",
     "erreur : 梗 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/硬"
    ]
   },
   {
@@ -64545,6 +66066,9 @@
     "Correct : 荒 complète 荒地",
     "erreur : 汚 ne convient pas ici",
     "erreur : 野 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/荒"
    ]
   },
   {
@@ -64646,6 +66170,9 @@
     "Correct : 講 complète 講演",
     "erreur : 溝 ne convient pas ici",
     "erreur : 購 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/講"
    ]
   },
   {
@@ -64669,6 +66196,9 @@
     "erreur : 延 ne convient pas ici",
     "Correct : 演 complète 講演",
     "erreur : 宴 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/演"
    ]
   },
   {
@@ -64767,6 +66297,9 @@
     "erreur : 迅 ne convient pas ici",
     "Correct : 込 complète 申込み",
     "erreur : 辺 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/込"
    ]
   },
   {
@@ -64790,6 +66323,9 @@
     "erreur : 甲 ne convient pas ici",
     "erreur : 田 ne convient pas ici",
     "Correct : 申 complète 申込み"
+   ],
+   "tests": [
+    "jlpt:word/申"
    ]
   },
   {
@@ -64891,6 +66427,9 @@
     "erreur : 混 ne convient pas",
     "erreur : 座 est un autre kanji",
     "erreur : 再 ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/婚"
    ]
   },
   {
@@ -65018,6 +66557,9 @@
     "Correct : 混 complète 混合（こんごう）",
     "erreur : 座 est un autre kanji",
     "erreur : 再 ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/混"
    ]
   },
   {
@@ -65145,6 +66687,9 @@
     "erreur : 混 est un autre kanji",
     "Correct : 座 complète 座席（ざせき）",
     "erreur : 再 ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/座"
    ]
   },
   {
@@ -65272,6 +66817,9 @@
     "erreur : 混 est un autre kanji",
     "erreur : 座 ne convient pas",
     "Correct : 再 complète 再会（さいかい）"
+   ],
+   "tests": [
+    "jlpt:kanji/再"
    ]
   },
   {
@@ -65399,6 +66947,9 @@
     "erreur : 婚 ne convient pas",
     "erreur : 混 est un autre kanji",
     "erreur : 座 ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/妻"
    ]
   },
   {
@@ -65526,6 +67077,9 @@
     "Correct : 採 complète 採用（さいよう）",
     "erreur : 混 est un autre kanji",
     "erreur : 座 ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/採"
    ]
   },
   {
@@ -65653,6 +67207,9 @@
     "erreur : 混 est un autre kanji",
     "Correct : 災 complète 災害（さいがい）",
     "erreur : 座 ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/災"
    ]
   },
   {
@@ -65780,6 +67337,9 @@
     "erreur : 混 est un autre kanji",
     "erreur : 座 ne convient pas",
     "Correct : 財 complète 財布（さいふ）"
+   ],
+   "tests": [
+    "jlpt:word/財"
    ]
   },
   {
@@ -65904,6 +67464,9 @@
     "erreur : 婚 ne convient pas",
     "erreur : 混 est un autre kanji",
     "erreur : 座 ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/咲"
    ]
   },
   {
@@ -66028,6 +67591,9 @@
     "Correct : 撮 complète 撮影（さつえい）",
     "erreur : 混 est un autre kanji",
     "erreur : 座 ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/撮"
    ]
   },
   {
@@ -66155,6 +67721,9 @@
     "erreur : 混 est un autre kanji",
     "Correct : 参 complète 参加（さんか）",
     "erreur : 座 ne convient pas"
+   ],
+   "tests": [
+    "jlpt:kanji/参"
    ]
   },
   {
@@ -66282,6 +67851,9 @@
     "erreur : 混 est un autre kanji",
     "erreur : 座 ne convient pas",
     "Correct : 散 complète 散歩（さんぽ）"
+   ],
+   "tests": [
+    "jlpt:word/散"
    ]
   },
   {
@@ -66409,6 +67981,9 @@
     "erreur : 婚 ne convient pas",
     "erreur : 混 est un autre kanji",
     "erreur : 座 ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/賛"
    ]
   },
   {
@@ -66536,6 +68111,9 @@
     "Correct : 士 complète 武士（ぶし）",
     "erreur : 混 est un autre kanji",
     "erreur : 座 ne convient pas"
+   ],
+   "tests": [
+    "jlpt:kanji/士"
    ]
   },
   {
@@ -66663,6 +68241,9 @@
     "erreur : 混 est un autre kanji",
     "Correct : 志 complète 意志（いし）",
     "erreur : 座 ne convient pas"
+   ],
+   "tests": [
+    "jlpt:kanji/志"
    ]
   },
   {
@@ -66790,6 +68371,9 @@
     "erreur : 混 est un autre kanji",
     "erreur : 座 ne convient pas",
     "Correct : 枝 complète 小枝（こえだ）"
+   ],
+   "tests": [
+    "jlpt:word/枝"
    ]
   },
   {
@@ -66891,6 +68475,9 @@
     "erreur : le kanji « 飼 » ne convient pas",
     "Correct : le kanji 詞 complète 歌詞（かし）",
     "erreur : le kanji « 訶 » ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/詞"
    ]
   },
   {
@@ -67018,6 +68605,9 @@
     "erreur : le kanji « 飾 » ne convient pas",
     "erreur : le kanji « 司 » ne convient pas",
     "Correct : le kanji 飼 complète 飼育（しいく）"
+   ],
+   "tests": [
+    "jlpt:kanji/飼"
    ]
   },
   {
@@ -67145,6 +68735,9 @@
     "erreur : le kanji « 冗 » ne convient pas",
     "erreur : le kanji « 元 » ne convient pas",
     "erreur : le kanji « 見 » ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/児"
    ]
   },
   {
@@ -67272,6 +68865,9 @@
     "Correct : le kanji 似 complète 類似（るいじ）",
     "erreur : le kanji « 仁 » ne convient pas",
     "erreur : le kanji « 化 » ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/似"
    ]
   },
   {
@@ -67399,6 +68995,9 @@
     "erreur : le kanji « 混 » ne convient pas",
     "Correct : le kanji 湿 complète 湿度（しつど）",
     "erreur : le kanji « 渇 » ne convient pas"
+   ],
+   "tests": [
+    "jlpt:kanji/湿"
    ]
   },
   {
@@ -67526,6 +69125,9 @@
     "erreur : le kanji « 花 » ne convient pas",
     "erreur : le kanji « 草 » ne convient pas",
     "Correct : le kanji 芝 complète 芝生（しばふ）"
+   ],
+   "tests": [
+    "jlpt:kanji/芝"
    ]
   },
   {
@@ -67653,6 +69255,9 @@
     "erreur : le kanji « 者 » ne convient pas",
     "erreur : le kanji « 舗 » ne convient pas",
     "erreur : le kanji « 合 » ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/舎"
    ]
   },
   {
@@ -67777,6 +69382,9 @@
     "Correct : le kanji 捨 complète 使い捨て（つかいすて）",
     "erreur : le kanji « 捕 » ne convient pas",
     "erreur : le kanji « 授 » ne convient pas"
+   ],
+   "tests": [
+    "jlpt:kanji/捨"
    ]
   },
   {
@@ -67901,6 +69509,9 @@
     "erreur : le kanji « 叔 » ne convient pas",
     "Correct : le kanji 寂 complète 静寂（せいじゃく）",
     "erreur : le kanji « 寄 » ne convient pas"
+   ],
+   "tests": [
+    "jlpt:kanji/寂"
    ]
   },
   {
@@ -68028,6 +69639,9 @@
     "erreur : le kanji « 苗 » ne convient pas",
     "erreur : le kanji « 荷 » ne convient pas",
     "Correct : le kanji 若 complète 若者（わかもの）"
+   ],
+   "tests": [
+    "jlpt:kanji/若"
    ]
   },
   {
@@ -68155,6 +69769,9 @@
     "erreur : le kanji « 双 » ne convient pas",
     "erreur : le kanji « 反 » ne convient pas",
     "erreur : le kanji « 叫 » ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/収"
    ]
   },
   {
@@ -68282,6 +69899,9 @@
     "Correct : le kanji 州 complète 九州（きゅうしゅう）",
     "erreur : le kanji « 洲 » ne convient pas",
     "erreur : le kanji « 周 » ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/州"
    ]
   },
   {
@@ -68409,6 +70029,9 @@
     "erreur : le kanji « 神 » ne convient pas",
     "Correct : le kanji 祝 complète 祝日（しゅくじつ）",
     "erreur : le kanji « 視 » ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/祝"
    ]
   },
   {
@@ -68536,6 +70159,9 @@
     "erreur : le kanji « 縦 » ne convient pas",
     "erreur : le kanji « 績 » ne convient pas",
     "Correct : le kanji 縮 complète 縮小（しゅくしょう）"
+   ],
+   "tests": [
+    "jlpt:word/縮"
    ]
   },
   {
@@ -68663,6 +70289,9 @@
     "erreur : le kanji « 熱 » ne convient pas",
     "erreur : le kanji « 塾 » ne convient pas",
     "erreur : le kanji « 執 » ne convient pas"
+   ],
+   "tests": [
+    "jlpt:kanji/熟"
    ]
   },
   {
@@ -68790,6 +70419,9 @@
     "Correct : le kanji 述 complète 記述（きじゅつ）",
     "erreur : le kanji « 迷 » ne convient pas",
     "erreur : le kanji « 込 » ne convient pas"
+   ],
+   "tests": [
+    "jlpt:word/述"
    ]
   },
   {
@@ -68943,6 +70575,9 @@
     "erreur : 述（じゅつ）a un autre sens",
     "erreur : 順 se lit じゅん",
     "erreur : 純 se lit じゅん"
+   ],
+   "tests": [
+    "jlpt:word/術"
    ]
   },
   {
@@ -69070,6 +70705,9 @@
     "Correct : 単純（たんじゅん）s'écrit avec 純",
     "erreur : 順 se lit じゅん aussi mais autre sens",
     "erreur : 準（じゅん）autre kanji"
+   ],
+   "tests": [
+    "jlpt:word/純"
    ]
   },
   {
@@ -69197,6 +70835,9 @@
     "erreur : 巡（じゅん）autre kanji",
     "Correct : 順番（じゅんばん）s'écrit avec 順",
     "erreur : 純 se lit じゅん mais autre sens"
+   ],
+   "tests": [
+    "jlpt:word/順"
    ]
   },
   {
@@ -69324,6 +70965,9 @@
     "erreur : 険 se lit けん",
     "erreur : 助 se lit じょ mais « aider »",
     "Correct : 掃除（そうじ）s'écrit avec 除"
+   ],
+   "tests": [
+    "jlpt:word/除"
    ]
   },
   {
@@ -69451,6 +71095,9 @@
     "erreur : 昇 se lit しょう « monter »",
     "erreur : 招 se lit しょう « inviter »",
     "erreur : 証 se lit しょう « preuve »"
+   ],
+   "tests": [
+    "jlpt:kanji/承"
    ]
   },
   {
@@ -69578,6 +71225,9 @@
     "Correct : 上昇（じょうしょう）s'écrit avec 昇",
     "erreur : 招 se lit しょう « inviter »",
     "erreur : 昭 se lit しょう « clair »"
+   ],
+   "tests": [
+    "jlpt:kanji/昇"
    ]
   },
   {
@@ -69705,6 +71355,9 @@
     "erreur : 杉（すぎ）« cèdre »",
     "Correct : 松林（まつばやし）s'écrit avec 松",
     "erreur : 竹（たけ）« bambou »"
+   ],
+   "tests": [
+    "jlpt:kanji/松"
    ]
   },
   {
@@ -69832,6 +71485,9 @@
     "erreur : 昭 se lit しょう « clair »",
     "erreur : 証 se lit しょう « preuve »",
     "Correct : 照明（しょうめい）s'écrit avec 照"
+   ],
+   "tests": [
+    "jlpt:kanji/照"
    ]
   },
   {
@@ -69959,6 +71615,9 @@
     "erreur : 証 se lit しょう « preuve »",
     "erreur : 障 se lit しょう « obstacle »",
     "erreur : 昇 se lit しょう « monter »"
+   ],
+   "tests": [
+    "jlpt:kanji/症"
    ]
   },
   {
@@ -70086,6 +71745,9 @@
     "Correct : 故障（こしょう）s'écrit avec 障",
     "erreur : 城 se lit じょう « château »",
     "erreur : 症 se lit しょう « symptôme »"
+   ],
+   "tests": [
+    "jlpt:kanji/障"
    ]
   },
   {
@@ -70213,6 +71875,9 @@
     "erreur : 招 se lit しょう « inviter »",
     "Correct : 詳細（しょうさい）s'écrit avec 詳",
     "erreur : 昭 se lit しょう « clair »"
+   ],
+   "tests": [
+    "jlpt:word/詳"
    ]
   },
   {
@@ -70340,6 +72005,9 @@
     "erreur : 蒸 se lit じょう « vapeur »",
     "erreur : 上 se lit じょう « haut »",
     "Correct : 丈夫（じょうぶ）s'écrit avec 丈"
+   ],
+   "tests": [
+    "jlpt:kanji/丈"
    ]
   },
   {
@@ -70467,6 +72135,9 @@
     "erreur : 丈 se lit じょう « taille »",
     "erreur : 蒸 se lit じょう « vapeur »",
     "erreur : 場 se lit じょう « lieu »"
+   ],
+   "tests": [
+    "jlpt:word/城"
    ]
   },
   {
@@ -70594,6 +72265,9 @@
     "Correct : 蒸気（じょうき）s'écrit avec 蒸",
     "erreur : 城 se lit じょう « château »",
     "erreur : 丈 se lit じょう « taille »"
+   ],
+   "tests": [
+    "jlpt:word/蒸"
    ]
   },
   {
@@ -70721,6 +72395,9 @@
     "erreur : 触 se lit しょく « toucher »",
     "Correct : 組織（そしき）s'écrit avec 織",
     "erreur : 職 se lit しょく « emploi »"
+   ],
+   "tests": [
+    "jlpt:word/織"
    ]
   },
   {
@@ -70848,6 +72525,9 @@
     "erreur : 織 se lit しき « tisser »",
     "erreur : 続 se lit ぞく « continuer »",
     "Correct : 接触（せっしょく）s'écrit avec 触"
+   ],
+   "tests": [
+    "jlpt:word/触"
    ]
   },
   {
@@ -70975,6 +72655,9 @@
     "erreur : 睡 ne signifie pas « confiance, croire »",
     "erreur : 制 ne signifie pas « confiance, croire »",
     "Correct : 信 signifie « confiance, croire »"
+   ],
+   "tests": [
+    "jlpt:word/信"
    ]
   },
   {
@@ -70998,6 +72681,9 @@
     "erreur : 針 ne complète pas 信用",
     "erreur : 震 ne complète pas 信用",
     "erreur : 吹 ne complète pas 信用"
+   ],
+   "tests": [
+    "jlpt:word/信"
    ]
   },
   {
@@ -71125,6 +72811,9 @@
     "Correct : 針 complète 針金（はりがね）",
     "erreur : 震 ne complète pas 針金",
     "erreur : 吹 ne complète pas 針金"
+   ],
+   "tests": [
+    "jlpt:word/針"
    ]
   },
   {
@@ -71252,6 +72941,9 @@
     "erreur : 針 ne complète pas 地震",
     "Correct : 震 complète 地震（じしん）",
     "erreur : 吹 ne complète pas 地震"
+   ],
+   "tests": [
+    "jlpt:word/震"
    ]
   },
   {
@@ -71379,6 +73071,9 @@
     "erreur : 針 ne complète pas 吹雪",
     "erreur : 震 ne complète pas 吹雪",
     "Correct : 吹 complète 吹雪（ふぶき）"
+   ],
+   "tests": [
+    "jlpt:kanji/吹"
    ]
   },
   {
@@ -71506,6 +73201,9 @@
     "erreur : 信 ne complète pas 推理",
     "erreur : 針 ne complète pas 推理",
     "erreur : 震 ne complète pas 推理"
+   ],
+   "tests": [
+    "jlpt:word/推"
    ]
   },
   {
@@ -71607,6 +73305,9 @@
     "erreur : 吹 ne signifie pas « sommeil »",
     "erreur : 推 ne signifie pas « sommeil »",
     "erreur : 制 ne signifie pas « sommeil »"
+   ],
+   "tests": [
+    "jlpt:kanji/睡"
    ]
   },
   {
@@ -71630,6 +73331,9 @@
     "Correct : 睡 complète 睡眠（すいみん）",
     "erreur : 針 ne complète pas 睡眠",
     "erreur : 震 ne complète pas 睡眠"
+   ],
+   "tests": [
+    "jlpt:kanji/睡"
    ]
   },
   {
@@ -71731,6 +73435,9 @@
     "Correct : 制 signifie « régime, système, régler »",
     "erreur : 推 ne signifie pas « régime, système, régler »",
     "erreur : 睡 ne signifie pas « régime, système, régler »"
+   ],
+   "tests": [
+    "jlpt:word/制"
    ]
   },
   {
@@ -71754,6 +73461,9 @@
     "erreur : 針 ne complète pas 制度",
     "Correct : 制 complète 制度（せいど）",
     "erreur : 震 ne complète pas 制度"
+   ],
+   "tests": [
+    "jlpt:word/制"
    ]
   },
   {
@@ -71881,6 +73591,9 @@
     "erreur : 針 ne complète pas 反省",
     "erreur : 震 ne complète pas 反省",
     "Correct : 省 complète 反省（はんせい）"
+   ],
+   "tests": [
+    "jlpt:kanji/省"
    ]
   },
   {
@@ -72008,6 +73721,9 @@
     "erreur : 信 ne complète pas 清掃",
     "erreur : 針 ne complète pas 清掃",
     "erreur : 震 ne complète pas 清掃"
+   ],
+   "tests": [
+    "jlpt:word/清"
    ]
   },
   {
@@ -72135,6 +73851,9 @@
     "Correct : 盛 complète 盛大（せいだい）",
     "erreur : 針 ne complète pas 盛大",
     "erreur : 震 ne complète pas 盛大"
+   ],
+   "tests": [
+    "jlpt:word/盛"
    ]
   },
   {
@@ -72262,6 +73981,9 @@
     "erreur : 針 ne complète pas 勢力",
     "Correct : 勢 complète 勢力（せいりょく）",
     "erreur : 震 ne complète pas 勢力"
+   ],
+   "tests": [
+    "jlpt:kanji/勢"
    ]
   },
   {
@@ -72389,6 +74111,9 @@
     "erreur : 針 ne complète pas 誠実",
     "erreur : 震 ne complète pas 誠実",
     "Correct : 誠 complète 誠実（せいじつ）"
+   ],
+   "tests": [
+    "jlpt:kanji/誠"
    ]
   },
   {
@@ -72490,6 +74215,9 @@
     "erreur : 推 ne signifie pas « esprit, raffiné, énergie »",
     "erreur : 睡 ne signifie pas « esprit, raffiné, énergie »",
     "Correct : 精 signifie « esprit, raffiné, énergie »"
+   ],
+   "tests": [
+    "jlpt:word/精"
    ]
   },
   {
@@ -72513,6 +74241,9 @@
     "erreur : 信 ne complète pas 精神",
     "erreur : 針 ne complète pas 精神",
     "erreur : 震 ne complète pas 精神"
+   ],
+   "tests": [
+    "jlpt:word/精"
    ]
   },
   {
@@ -72614,6 +74345,9 @@
     "erreur : 吹 ne signifie pas « fabriquer, produit »",
     "erreur : 推 ne signifie pas « fabriquer, produit »",
     "erreur : 睡 ne signifie pas « fabriquer, produit »"
+   ],
+   "tests": [
+    "jlpt:word/製"
    ]
   },
   {
@@ -72637,6 +74371,9 @@
     "Correct : 製 complète 製品（せいひん）",
     "erreur : 針 ne complète pas 製品",
     "erreur : 震 ne complète pas 製品"
+   ],
+   "tests": [
+    "jlpt:word/製"
    ]
   },
   {
@@ -72764,6 +74501,9 @@
     "erreur : 針 ne complète pas 面積",
     "Correct : 積 complète 面積（めんせき）",
     "erreur : 震 ne complète pas 面積"
+   ],
+   "tests": [
+    "jlpt:kanji/積"
    ]
   },
   {
@@ -72865,6 +74605,9 @@
     "erreur : 推 ne signifie pas « résultat, mérite »",
     "Correct : 績 signifie « résultat, mérite »",
     "erreur : 睡 ne signifie pas « résultat, mérite »"
+   ],
+   "tests": [
+    "jlpt:word/績"
    ]
   },
   {
@@ -72888,6 +74631,9 @@
     "erreur : 針 ne complète pas 成績",
     "erreur : 震 ne complète pas 成績",
     "Correct : 績 complète 成績（せいせき）"
+   ],
+   "tests": [
+    "jlpt:word/績"
    ]
   },
   {
@@ -72989,6 +74735,9 @@
     "erreur : 積 ne convient pas ici",
     "erreur : 績 ne convient pas ici",
     "erreur : 債 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/責"
    ]
   },
   {
@@ -73116,6 +74865,9 @@
     "erreur : 設 ne convient pas ici",
     "Correct : le kanji 接 complète 面接",
     "erreur : 節 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/接"
    ]
   },
   {
@@ -73243,6 +74995,9 @@
     "erreur : 接 ne convient pas ici",
     "erreur : 折 ne convient pas ici",
     "erreur : 節 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/設"
    ]
   },
   {
@@ -73370,6 +75125,9 @@
     "erreur : 設 ne convient pas ici",
     "Correct : le kanji 折 complète 骨折",
     "erreur : 節 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/折"
    ]
   },
   {
@@ -73497,6 +75255,9 @@
     "erreur : 接 ne convient pas ici",
     "erreur : 折 ne convient pas ici",
     "erreur : 設 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/節"
    ]
   },
   {
@@ -73624,6 +75385,9 @@
     "erreur : 活 ne convient pas ici",
     "Correct : le kanji 舌 complète 舌先",
     "erreur : 話 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/舌"
    ]
   },
   {
@@ -73748,6 +75512,9 @@
     "erreur : 経 ne convient pas ici",
     "erreur : 続 ne convient pas ici",
     "erreur : 結 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/絶"
    ]
   },
   {
@@ -73875,6 +75642,9 @@
     "erreur : 点 ne convient pas ici",
     "Correct : le kanji 占 complète 独占",
     "erreur : 店 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/占"
    ]
   },
   {
@@ -74002,6 +75772,9 @@
     "erreur : 宜 ne convient pas ici",
     "erreur : 官 ne convient pas ici",
     "erreur : 宗 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/宣"
    ]
   },
   {
@@ -74129,6 +75902,9 @@
     "erreur : 伝 ne convient pas ici",
     "Correct : le kanji 専 complète 専門",
     "erreur : 転 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/専"
    ]
   },
   {
@@ -74256,6 +76032,9 @@
     "erreur : 線 ne convient pas ici",
     "erreur : 泳 ne convient pas ici",
     "erreur : 湯 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/泉"
    ]
   },
   {
@@ -74383,6 +76162,9 @@
     "erreur : 深 ne convient pas ici",
     "Correct : le kanji 染 complète 染物",
     "erreur : 汚 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/染"
    ]
   },
   {
@@ -74510,6 +76292,9 @@
     "erreur : 線 ne convient pas ici",
     "erreur : 浅 ne convient pas ici",
     "erreur : 残 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/銭"
    ]
   },
   {
@@ -74637,6 +76422,9 @@
     "erreur : 美 ne convient pas ici",
     "Correct : le kanji 善 complète 改善",
     "erreur : 義 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/善"
    ]
   },
   {
@@ -74764,6 +76552,9 @@
     "erreur : 粗 ne convient pas ici",
     "erreur : 租 ne convient pas ici",
     "erreur : 組 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/祖"
    ]
   },
   {
@@ -74891,6 +76682,9 @@
     "erreur : 系 ne convient pas ici",
     "Correct : le kanji 素 complète 素材",
     "erreur : 姿 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/素"
    ]
   },
   {
@@ -75018,6 +76812,9 @@
     "erreur : 層 ne convient pas dans 競争",
     "erreur : 倉 ne convient pas dans 競争",
     "erreur : 蔵 ne convient pas dans 競争"
+   ],
+   "tests": [
+    "jlpt:word/争"
    ]
   },
   {
@@ -75145,6 +76942,9 @@
     "Correct : le kanji manquant est 倉",
     "erreur : 層 ne convient pas dans 倉庫",
     "erreur : 想 ne convient pas dans 倉庫"
+   ],
+   "tests": [
+    "jlpt:kanji/倉"
    ]
   },
   {
@@ -75272,6 +77072,9 @@
     "erreur : 倉 ne convient pas dans 想像",
     "Correct : le kanji manquant est 想",
     "erreur : 層 ne convient pas dans 想像"
+   ],
+   "tests": [
+    "jlpt:word/想"
    ]
   },
   {
@@ -75399,6 +77202,9 @@
     "erreur : 想 ne convient pas dans 階層",
     "erreur : 造 ne convient pas dans 階層",
     "Correct : le kanji manquant est 層"
+   ],
+   "tests": [
+    "jlpt:word/層"
    ]
   },
   {
@@ -75526,6 +77332,9 @@
     "erreur : 想 ne convient pas dans 掃除",
     "erreur : 倉 ne convient pas dans 掃除",
     "erreur : 層 ne convient pas dans 掃除"
+   ],
+   "tests": [
+    "jlpt:kanji/掃"
    ]
   },
   {
@@ -75653,6 +77462,9 @@
     "Correct : le kanji manquant est 造",
     "erreur : 蔵 ne convient pas dans 製造",
     "erreur : 臓 ne convient pas dans 製造"
+   ],
+   "tests": [
+    "jlpt:word/造"
    ]
   },
   {
@@ -75780,6 +77592,9 @@
     "erreur : 蔵 ne convient pas dans 画像",
     "Correct : le kanji manquant est 像",
     "erreur : 想 ne convient pas dans 画像"
+   ],
+   "tests": [
+    "jlpt:word/像"
    ]
   },
   {
@@ -75907,6 +77722,9 @@
     "erreur : 像 ne convient pas dans 冷蔵庫",
     "erreur : 臓 ne convient pas dans 冷蔵庫",
     "Correct : le kanji manquant est 蔵"
+   ],
+   "tests": [
+    "jlpt:word/蔵"
    ]
   },
   {
@@ -76034,6 +77852,9 @@
     "erreur : 蔵 ne convient pas dans 心臓",
     "erreur : 像 ne convient pas dans 心臓",
     "erreur : 造 ne convient pas dans 心臓"
+   ],
+   "tests": [
+    "jlpt:word/臓"
    ]
   },
   {
@@ -76161,6 +77982,9 @@
     "Correct : le kanji manquant est 測",
     "erreur : 則 ne convient pas dans 予測",
     "erreur : 想 ne convient pas dans 予測"
+   ],
+   "tests": [
+    "jlpt:word/測"
    ]
   },
   {
@@ -76288,6 +78112,9 @@
     "erreur : 想 ne convient pas dans 尊敬",
     "Correct : le kanji manquant est 尊",
     "erreur : 造 ne convient pas dans 尊敬"
+   ],
+   "tests": [
+    "jlpt:word/尊"
    ]
   },
   {
@@ -76415,6 +78242,9 @@
     "erreur : 像 ne convient pas dans 損害",
     "erreur : 蔵 ne convient pas dans 損害",
     "Correct : le kanji manquant est 損"
+   ],
+   "tests": [
+    "jlpt:word/損"
    ]
   },
   {
@@ -76542,6 +78372,9 @@
     "erreur : 退 ne convient pas dans 両替",
     "erreur : 隊 ne convient pas dans 両替",
     "erreur : 脱 ne convient pas dans 両替"
+   ],
+   "tests": [
+    "jlpt:kanji/替"
    ]
   },
   {
@@ -76669,6 +78502,9 @@
     "Correct : le kanji manquant est 退",
     "erreur : 隊 ne convient pas dans 引退",
     "erreur : 脱 ne convient pas dans 引退"
+   ],
+   "tests": [
+    "jlpt:word/退"
    ]
   },
   {
@@ -76796,6 +78632,9 @@
     "erreur : 替 ne convient pas dans 軍隊",
     "Correct : le kanji manquant est 隊",
     "erreur : 脱 ne convient pas dans 軍隊"
+   ],
+   "tests": [
+    "jlpt:word/隊"
    ]
   },
   {
@@ -76923,6 +78762,9 @@
     "erreur : 隊 ne convient pas dans 脱出",
     "erreur : 替 ne convient pas dans 脱出",
     "Correct : le kanji manquant est 脱"
+   ],
+   "tests": [
+    "jlpt:kanji/脱"
    ]
   },
   {
@@ -77076,6 +78918,9 @@
     "Correct : le kanji 担",
     "Erreur : 胆 ne convient pas ici",
     "Erreur : 坦 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/担"
    ]
   },
   {
@@ -77203,6 +79048,9 @@
     "Erreur : 採 ne convient pas ici",
     "Correct : le kanji 探",
     "Erreur : 媒 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/探"
    ]
   },
   {
@@ -77330,6 +79178,9 @@
     "Erreur : 踹 ne convient pas ici",
     "Erreur : 湍 ne convient pas ici",
     "Correct : le kanji 端"
+   ],
+   "tests": [
+    "jlpt:word/端"
    ]
   },
   {
@@ -77431,6 +79282,9 @@
     "Erreur : 誠 ne signifie pas « naissance »",
     "Correct : 誕 signifie « naissance »",
     "Erreur : 証 ne signifie pas « naissance »"
+   ],
+   "tests": [
+    "jlpt:kanji/誕"
    ]
   },
   {
@@ -77454,6 +79308,9 @@
     "Erreur : 延 ne convient pas ici",
     "Erreur : 誠 ne convient pas ici",
     "Erreur : 証 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/誕"
    ]
   },
   {
@@ -77555,6 +79412,9 @@
     "Erreur : 困 ne signifie pas « groupe, corps, troupe »",
     "Erreur : 回 ne signifie pas « groupe, corps, troupe »",
     "Correct : 団 signifie « groupe, corps, troupe »"
+   ],
+   "tests": [
+    "jlpt:kanji/団"
    ]
   },
   {
@@ -77578,6 +79438,9 @@
     "Correct : le kanji 団",
     "Erreur : 困 ne convient pas ici",
     "Erreur : 回 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/団"
    ]
   },
   {
@@ -77705,6 +79568,9 @@
     "Erreur : 継 ne convient pas ici",
     "Correct : le kanji 断",
     "Erreur : 絶 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/断"
    ]
   },
   {
@@ -77832,6 +79698,9 @@
     "Erreur : 遂 ne convient pas ici",
     "Erreur : 達 ne convient pas ici",
     "Correct : le kanji 遅"
+   ],
+   "tests": [
+    "jlpt:word/遅"
    ]
   },
   {
@@ -77959,6 +79828,9 @@
     "Erreur : 取 ne convient pas ici",
     "Erreur : 職 ne convient pas ici",
     "Erreur : 聴 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/恥"
    ]
   },
   {
@@ -78086,6 +79958,9 @@
     "Correct : le kanji 築",
     "Erreur : 筑 ne convient pas ici",
     "Erreur : 薬 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/築"
    ]
   },
   {
@@ -78213,6 +80088,9 @@
     "Erreur : 忠 ne convient pas ici",
     "Correct : le kanji 仲",
     "Erreur : 中 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/仲"
    ]
   },
   {
@@ -78340,6 +80218,9 @@
     "Erreur : 往 ne convient pas ici",
     "Erreur : 住 ne convient pas ici",
     "Correct : le kanji 柱"
+   ],
+   "tests": [
+    "jlpt:word/柱"
    ]
   },
   {
@@ -78441,6 +80322,9 @@
     "Erreur : 帽 ne signifie pas « registre, carnet »",
     "Correct : 帳 signifie « registre, carnet »",
     "Erreur : 幅 ne signifie pas « registre, carnet »"
+   ],
+   "tests": [
+    "jlpt:word/帳"
    ]
   },
   {
@@ -78464,6 +80348,9 @@
     "Erreur : 張 ne convient pas ici",
     "Erreur : 帽 ne convient pas ici",
     "Erreur : 幅 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/帳"
    ]
   },
   {
@@ -78591,6 +80478,9 @@
     "Correct : le kanji 張",
     "Erreur : 長 ne convient pas ici",
     "Erreur : 帆 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/張"
    ]
   },
   {
@@ -78718,6 +80608,9 @@
     "Erreur : 頃 ne convient pas ici",
     "Correct : le kanji 頂",
     "Erreur : 預 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/頂"
    ]
   },
   {
@@ -78819,6 +80712,9 @@
     "Correct : 腸 signifie « intestin »",
     "Erreur : 陽 ne signifie pas « intestin »",
     "Erreur : 腹 ne signifie pas « intestin »"
+   ],
+   "tests": [
+    "jlpt:word/腸"
    ]
   },
   {
@@ -78842,6 +80738,9 @@
     "Erreur : 陽 ne convient pas ici",
     "Erreur : 腹 ne convient pas ici",
     "Correct : le kanji 腸"
+   ],
+   "tests": [
+    "jlpt:word/腸"
    ]
   },
   {
@@ -78969,6 +80868,9 @@
     "Erreur : 越 ne convient pas ici",
     "Erreur : 趣 ne convient pas ici",
     "Erreur : 赴 ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/超"
    ]
   },
   {
@@ -79096,6 +80998,9 @@
     "Correct : le kanji « 沈 » complète 沈黙",
     "erreur : le kanji « 賃 » ne convient pas ici",
     "erreur : le kanji « 浸 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/沈"
    ]
   },
   {
@@ -79223,6 +81128,9 @@
     "erreur : le kanji « 賃 » ne convient pas ici",
     "erreur : le kanji « 敵 » ne convient pas ici",
     "Correct : le kanji « 珍 » complète 珍品"
+   ],
+   "tests": [
+    "jlpt:word/珍"
    ]
   },
   {
@@ -79350,6 +81258,9 @@
     "Correct : le kanji « 賃 » complète 家賃",
     "erreur : le kanji « 珍 » ne convient pas ici",
     "erreur : le kanji « 適 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/賃"
    ]
   },
   {
@@ -79477,6 +81388,9 @@
     "erreur : le kanji « 展 » ne convient pas ici",
     "erreur : le kanji « 逃 » ne convient pas ici",
     "Correct : le kanji « 適 » complète 適当"
+   ],
+   "tests": [
+    "jlpt:word/適"
    ]
   },
   {
@@ -79604,6 +81518,9 @@
     "Correct : le kanji « 敵 » complète 無敵",
     "erreur : le kanji « 展 » ne convient pas ici",
     "erreur : le kanji « 沈 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:kanji/敵"
    ]
   },
   {
@@ -79731,6 +81648,9 @@
     "erreur : le kanji « 適 » ne convient pas ici",
     "erreur : le kanji « 逃 » ne convient pas ici",
     "Correct : le kanji « 展 » complète 発展"
+   ],
+   "tests": [
+    "jlpt:word/展"
    ]
   },
   {
@@ -79858,6 +81778,9 @@
     "Correct : le kanji « 逃 » complète 逃走",
     "erreur : le kanji « 敵 » ne convient pas ici",
     "erreur : le kanji « 適 » ne convient pas ici"
+   ],
+   "tests": [
+    "jlpt:word/逃"
    ]
   }
  ]
