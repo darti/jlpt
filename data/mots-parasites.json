@@ -1,0 +1,53 @@
+{
+ "_": [
+  "Décisions de l'auteur sur les entrées de word.jsonld suspectées d'être fabriquées.",
+  "Proposées par `bun tools/graph/purge-words.mjs --proposer`, RELUES une à une.",
+  "",
+  "supprimer : graphies qui n'existent pas en japonais. Ce sont des distracteurs de quiz",
+  "  qu'un générateur disparu a importés comme mots, avec la lecture de la bonne réponse",
+  "  recopiée. Ils restent des distracteurs dans les questions — seule leur entrée de",
+  "  DICTIONNAIRE disparaît.",
+  "  Cas limite assumé : 註意 est une graphie ancienne attestée de 注意, mais hors N3 et",
+  "  sans glose ici. Elle n'a rien à faire dans le dictionnaire que l'app sert.",
+  "",
+  "gloser : vrais mots que l'heuristique proposait à tort, faute de sens renseigné. Leur",
+  "  donner une glose les protège définitivement, et les rend enfin utilisables par le",
+  "  tap-pour-définir et par la détection d'énoncés ambigus (readingIndex)."
+ ],
+ "supprimer": [
+  "jlpt:word/約速",
+  "jlpt:word/役束",
+  "jlpt:word/約則",
+  "jlpt:word/経検",
+  "jlpt:word/径験",
+  "jlpt:word/経険",
+  "jlpt:word/心輩",
+  "jlpt:word/案全",
+  "jlpt:word/安然",
+  "jlpt:word/便理",
+  "jlpt:word/弁利",
+  "jlpt:word/注異",
+  "jlpt:word/駐意",
+  "jlpt:word/註意",
+  "jlpt:word/性活",
+  "jlpt:word/生括",
+  "jlpt:word/教郁",
+  "jlpt:word/研宄",
+  "jlpt:word/運働",
+  "jlpt:word/運道",
+  "jlpt:word/世会",
+  "jlpt:word/世解",
+  "jlpt:word/方放",
+  "jlpt:word/放法",
+  "jlpt:word/里由",
+  "jlpt:word/木的",
+  "jlpt:word/目敵",
+  "jlpt:word/結課",
+  "jlpt:word/結菓"
+ ],
+ "gloser": {
+  "始め": "début, commencement",
+  "始めて": "en commençant (forme en -te de 始める)",
+  "謝り": "excuse, fait de s'excuser"
+ }
+}
