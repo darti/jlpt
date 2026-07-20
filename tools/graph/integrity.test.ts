@@ -88,10 +88,57 @@ test("checkCorpus signale deux questions identiques à réponse contradictoire",
   expect(checkCorpus([a, b]).join(" ")).toMatch(/contradictoire/i);
 });
 
-test("checkCorpus tolère le même énoncé avec des options différentes", () => {
+test("checkCorpus signale le même énoncé à réponses divergentes MÊME si les options diffèrent", () => {
+  // Ce test affirmait l'INVERSE (« tolère ») jusqu'au 2026-07-20. L'hypothèse cachée dans
+  // la clé de groupement était que deux questions ne sont comparables que si elles offrent
+  // les mêmes choix — vrai pour repérer un doublon mal recopié, faux pour une contradiction
+  // pédagogique : l'apprenant ne voit qu'un énoncé, jamais les options de l'autre question.
+  // Cette tolérance laissait passer 135 groupes, dont #2569 et #4609 qui demandaient tous
+  // deux d'écrire 「あける」 en kanji — 開ける pour l'un, 明ける pour l'autre.
   const a = qq("jlpt:q/1", 0, { "jlpt:stem": "同じ", opts: ["A", "B"], "jlpt:answer": 0 });
   const b = qq("jlpt:q/2", 1, { "jlpt:stem": "同じ", opts: ["C", "D"], "jlpt:answer": 0 });
+  expect(checkCorpus([a, b]).join(" ")).toMatch(/contradictoire/i);
+});
+
+test("checkCorpus tolère le même énoncé quand la RÉPONSE est identique", () => {
+  const a = qq("jlpt:q/1", 0, { "jlpt:stem": "同じ", opts: ["A", "B"], "jlpt:answer": 0 });
+  const b = qq("jlpt:q/2", 1, { "jlpt:stem": "同じ", opts: ["A", "C"], "jlpt:answer": 0 });
   expect(checkCorpus([a, b])).toEqual([]);
+});
+
+const motGlose = (nom: string, lecture: string, glose: string) => ({
+  "@id": `jlpt:word/${nom}`, "@type": "jlpt:Word", "schema:name": nom,
+  "jlpt:reading": lecture, "schema:description": glose,
+});
+
+test("checkCorpus refuse un distracteur qui partage la lecture de la réponse", () => {
+  const q = qq("jlpt:q/4609", 0, {
+    "jlpt:stem": "「あける」を漢字で書くと？", opts: ["開ける", "明ける"], "jlpt:answer": 1,
+  });
+  const mots = [motGlose("明ける", "あける", "(jour) se lever"), motGlose("開ける", "あける", "ouvrir")];
+  expect(checkCorpus([q, ...mots]).join(" ")).toMatch(/même lecture|se li/i);
+});
+
+test("checkCorpus accepte le même jeu d'options si l'énoncé porte un trou", () => {
+  const q = qq("jlpt:q/4609", 0, {
+    "jlpt:stem": "夜が___。（あける）", opts: ["開ける", "明ける"], "jlpt:answer": 1,
+  });
+  const mots = [motGlose("明ける", "あける", "(jour) se lever"), motGlose("開ける", "あける", "ouvrir")];
+  expect(checkCorpus([q, ...mots])).toEqual([]);
+});
+
+test("checkCorpus ne condamne pas une question dont les rivaux sont des non-mots", () => {
+  // word.jsonld porte 約速、役束、約則 : distracteurs fabriqués, lecture de 約束 recopiée,
+  // aucune glose. Les compter ferait échouer la CI sur une question parfaitement saine.
+  const q = qq("jlpt:q/1", 0, {
+    "jlpt:stem": "「やくそく」の漢字は？", opts: ["約束", "約速", "役束"], "jlpt:answer": 0,
+  });
+  const mots = [
+    motGlose("約束", "やくそく", "promesse"),
+    { "@id": "jlpt:word/約速", "@type": "jlpt:Word", "schema:name": "約速", "jlpt:reading": "やくそく" },
+    { "@id": "jlpt:word/役束", "@type": "jlpt:Word", "schema:name": "役束", "jlpt:reading": "やくそく" },
+  ];
+  expect(checkCorpus([q, ...mots])).toEqual([]);
 });
 
 test("checkCorpus tolère le même énoncé, mêmes options, MÊME réponse dans un ordre différent", () => {
