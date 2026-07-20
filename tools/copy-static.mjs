@@ -18,15 +18,15 @@ export const ROOT = [
 ];
 
 // Données chargées au runtime par le React : documents du graphe (questions, corpus, mots,
-// entités), banques du quiz (+ index), dictionnaire, cours.
-// (Même sélection que scripts/dev.ts STATIC_FILES — grammar/kanji/vocab.json ne sont pas servis.)
+// entités) et contenu de cours.
+// (Même sélection que scripts/dev.ts STATIC_FILES — bank.json, dict.json et les sources
+// d'auteur grammar/kanji/vocab.json ne sont PAS servis : le runtime lit data/graph/.)
 //
 // ⚠ Les `.jsonld` vivent dans le SOUS-répertoire data/graph/, pas à la racine de data/ :
 // `copyStatic` l'énumère à part et repasse par ce même prédicat. Un seul inventaire, donc,
 // et le test qui garde ce prédicat garde vraiment ce qui est livré.
 export const isServedData = (f) =>
-  /^bank-.*\.json$/.test(f) || f === "dict.json" || /^cours-.*\.json$/.test(f)
-  || /\.jsonld$/.test(f);
+  /^cours-.*\.json$/.test(f) || /\.jsonld$/.test(f);
 
 export function copyStatic() {
   mkdirSync(`${OUT}/data`, { recursive: true });

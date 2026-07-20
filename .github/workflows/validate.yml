@@ -9,9 +9,11 @@ name: Qualité — contenu, types, tests
 #  1bis. data/graph/ : shapes SHACL (sous-ensemble Oku) + contrôles impératifs — bornes de
 #                    answer, alignement optionNote, ordinaux denses, IRIs pendantes,
 #                    réponses contradictoires ;
-#  2. dérivés      : data/bank-*.json + bank-index.json toujours en phase avec bank.json ;
-#  3. types        : tsc --noEmit sur src/ + scripts/ ;
-#  4. tests        : la suite bun test.
+#  2. types        : tsc --noEmit sur src/ + scripts/ ;
+#  3. tests        : la suite bun test.
+#
+# L'étape « banques dérivées » a disparu avec data/bank-*.json : l'app lit data/graph/,
+# et un fichier qui n'existe plus ne peut pas se désynchroniser.
 
 on:
   push:
@@ -41,19 +43,13 @@ jobs:
       - name: Valider tout le contenu (data/*.json)
         run: node tools/validate.mjs
 
-      # Le graphe JSON-LD coexiste avec l ancien modèle tant que l app sert bank-*.json :
-      # cette étape valide data/graph/ sans rien retirer. Sous node pour la même raison
-      # que ci-dessus — tools/*.mjs doit rester exécutable sans bun.
+      # data/graph/ est ce que l app lit au runtime depuis le lot 2. Sous node pour la même
+      # raison que ci-dessus — tools/*.mjs doit rester exécutable sans bun.
       - name: Valider le graphe JSON-LD (data/graph/)
         run: node tools/validate-graph.mjs
 
       - name: Installer Bun
         uses: oven-sh/setup-bun@v2
-
-      # bank-*.json / bank-index.json sont DÉRIVÉS de bank.json. Éditer un dérivé (ou
-      # oublier de régénérer après édition de la source) partait sinon en prod tel quel.
-      - name: Vérifier les banques dérivées (bank-*.json)
-        run: bun tools/split-bank.mjs --check
 
       - name: Installer les dépendances
         run: bun install --frozen-lockfile
