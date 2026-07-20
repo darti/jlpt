@@ -8,7 +8,9 @@
 // ne le régénère.
 //
 // Node pur : la CI exécute `node`, jamais `bun`.
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+
+const ARBITRAGES = "data/lectures-arbitrees.json";
 
 const KANA_ONLY = /^[ぁ-んァ-ヴー]+$/;
 
@@ -71,6 +73,10 @@ export function buildEntities() {
   const gramSrc = J("data/grammar.json");
   const coursGram = J("data/cours-gram.json");
   const conflicts = [];
+  // Décisions de l'auteur sur les lectures (cf. tools/jmdict/propose.mjs). C'est la
+  // SEULE voie par laquelle une lecture proposée entre dans le graphe : JMdict n'est
+  // jamais lu ici, seulement ce fichier, écrit et relu par un humain.
+  const arbitrees = existsSync(ARBITRAGES) ? J(ARBITRAGES) : {};
 
   // --- kanji ---
   const kanji = kanjiSrc.map((k) => ({
@@ -132,7 +138,7 @@ export function buildEntities() {
     if (estMotifGrammatical(w)) { ecartes++; continue; }
     const dictR = norm(dict[w]?.r) || null;
     const { reading, conflict, needsArbitration } = resolveReading(w, {
-      author: authorReading.get(w) ?? null,
+      author: authorReading.get(w) ?? arbitrees[w] ?? null,
       dict: dictR,
     });
     if (conflict) conflicts.push({ mot: w, auteur: authorReading.get(w), dict: dictR, retenu: reading });
@@ -153,6 +159,119 @@ export function buildEntities() {
   return { kanji, word, gram: [...gram.values()], conflicts, ecartes };
 }
 
+
+/** Sujet testé, extrait des 「…」 de l'énoncé. 80 % des questions en portent un. */
+export function subjectOf(q) {
+  const m = /「([^」]+)」/.exec(String(q.q ?? ""));
+  return m ? m[1] : null;
+}
+
+/** Forme de grammaire testée = contenu du premier <b> du corrigé. C'est l'heuristique
+ *  qu'utilisait coursGramIndex À L'EXÉCUTION, à 48,7 % de résolution. Ici elle ne sert
+ *  qu'UNE fois, à la migration, et son résultat devient une arête explicite : ce qui
+ *  échoue devient un trou mesurable au lieu d'un échec silencieux de correspondance. */
+export function gramFormOf(q) {
+  const m = /<b>([\s\S]*?)<\/b>/.exec(String(q.e ?? ""));
+  if (!m) return null;
+  const form = m[1].replace(/<[^>]*>/g, "").trim();
+  return form || null;
+}
+
+
+// Corrections de contenu établies par l'audit du 2026-07-20, appliquées À LA GÉNÉRATION
+// plutôt que dans bank.json : elles restent ainsi lisibles comme un ensemble, et les
+// contrôles de tools/graph/integrity.mjs prouvent qu'elles ont pris. Clé = position
+// d'origine dans bank.json.
+const FIXES = {
+  // « なながつ » figurait deux fois : la question n'avait que 3 options réelles.
+  1381: (q) => ({ ...q, o: ["しちがつ", "なながつ", "しちげつ", "ななつき"] }),
+  // Cinq paires d'homophones proposaient les MÊMES options et désignaient une bonne
+  // réponse différente : aucune des deux n'était défendable. On désambiguïse l'énoncé
+  // par le sens visé, ce qui rend chaque question répondable sans en supprimer aucune.
+  5884: (q) => ({ ...q, q: "「いる」（存在する）を漢字で書くと？" }),
+  5886: (q) => ({ ...q, q: "「いる」（必要だ）を漢字で書くと？" }),
+  6182: (q) => ({ ...q, q: "「さす」（傘を〜）を漢字で書くと？" }),
+  9014: (q) => ({ ...q, q: "「さす」（針で〜）を漢字で書くと？" }),
+  6348: (q) => ({ ...q, q: "「つく」（到着する）を漢字で書くと？" }),
+  6862: (q) => ({ ...q, q: "「つく」（明かりが〜）を漢字で書くと？" }),
+  7594: (q) => ({ ...q, q: "「かてい」（家族の〜）を漢字で書くと？" }),
+  8448: (q) => ({ ...q, q: "「かてい」（もし〜すれば）を漢字で書くと？" }),
+  7618: (q) => ({ ...q, q: "「かみ」（頭の〜）を漢字で書くと？" }),
+  8468: (q) => ({ ...q, q: "「かみ」（神社の〜）を漢字で書くと？" }),
+};
+
+/** Doublons purs inter-catégories : même énoncé, mêmes options, même réponse, rangés
+ *  dans deux compétences. On garde l'occurrence kanji et on écarte celle de vocabulaire —
+ *  ce sont des questions de lecture de kanji. */
+const DROP = new Set([4530, 4696, 5108]);
+
+export function applyFixes(q, ord) {
+  const fix = FIXES[ord];
+  return fix ? fix(q) : q;
+}
+
+export function isDropped(ord) {
+  return DROP.has(ord);
+}
+
+const SKILLS = ["grammaire", "vocabulaire", "kanji", "lecture", "ecoute"];
+const arrOf = (v) => (Array.isArray(v) ? v : v === undefined ? [] : [v]);
+
+/** Les 10310 questions de bank.json en sujets jlpt:Question, shardés par compétence.
+ *  L'ordinal est l'index du tableau — il indexe le bitset de couverture, et il est
+ *  DÉRIVÉ ici une fois pour toutes, jamais saisi à la main. */
+export function buildQuestions({ kanji, word, gram }) {
+  const bank = J("data/bank.json");
+  const known = new Set([...kanji, ...word, ...gram].map((s) => s["@id"]));
+  const gramByForm = new Map();
+  for (const g of gram) {
+    gramByForm.set(slugify(g["jlpt:form"]), g["@id"]);
+    for (const alt of arrOf(g["jlpt:altForm"])) gramByForm.set(slugify(alt), g["@id"]);
+  }
+
+  const bySkill = Object.fromEntries(SKILLS.map((s) => [s, []]));
+  let linked = 0;
+
+  // L'ordinal est RÉATTRIBUÉ après filtrage : écarter une question laisserait sinon un
+  // trou, et checkCorpus exige des ordinaux denses (ils indexent le bitset de couverture).
+  let ord = 0;
+  for (const [source, brut] of bank.entries()) {
+    if (isDropped(source)) continue;
+    const q = applyFixes(brut, source);
+    const tests = [];
+    if (q.cat === "grammaire") {
+      const f = gramFormOf(q);
+      const id = f ? gramByForm.get(slugify(f)) : undefined;
+      if (id) tests.push(id);
+    } else {
+      const sujet = subjectOf(q);
+      if (sujet) {
+        for (const cand of [`jlpt:word/${sujet}`, `jlpt:kanji/${sujet}`]) {
+          if (known.has(cand)) { tests.push(cand); break; }
+        }
+      }
+    }
+    if (tests.length) linked++;
+
+    bySkill[q.cat].push({
+      "@id": `jlpt:q/${ord}`, "@type": "jlpt:Question",
+      "jlpt:skill": q.cat, "jlpt:difficulty": q.d, "jlpt:ord": ord,
+      "jlpt:stem": q.q,
+      opts: q.o,
+      "jlpt:answer": q.a,
+      ...(q.e ? { "schema:description": q.e } : {}),
+      ...(q.g ? { "jlpt:gloss": q.g } : {}),
+      ...(q.od ? { "jlpt:optionNote": q.od } : {}),
+      ...(q.script ? { "jlpt:script": q.script } : {}),
+      ...(q.passage ? { "jlpt:passage": q.passage } : {}),
+      ...(tests.length ? { tests } : {}),
+    });
+    ord++;
+  }
+
+  return { bySkill, linkRate: ord ? linked / ord : 0, total: ord };
+}
+
 if (process.argv[1]?.endsWith("migrate-to-graph.mjs")) {
   const { kanji, word, gram, conflicts, ecartes } = buildEntities();
   writeFileSync("data/graph/kanji.jsonld", doc(kanji));
@@ -168,8 +287,14 @@ if (process.argv[1]?.endsWith("migrate-to-graph.mjs")) {
     + `mono-kana ; sinon rien n'est tranché et la ligne porte « (à arbitrer) ».\n\n`
     + `| mot | lecture auteur | lecture dict | retenu |\n|---|---|---|---|\n${lignes.join("\n")}\n`);
 
+  const { bySkill, linkRate, total } = buildQuestions({ kanji, word, gram });
+  for (const [skill, sujets] of Object.entries(bySkill)) {
+    writeFileSync(`data/graph/q-${skill}.jsonld`, doc(sujets));
+  }
+
   const aArbitrer = conflicts.filter((c) => c.retenu === "(à arbitrer)").length;
   console.log(`kanji ${kanji.length} · mots ${word.length} · grammaire ${gram.length}`);
   console.log(`${ecartes} motifs grammaticaux écartés des mots (ils appartiennent à la grammaire)`);
   console.log(`conflits ${conflicts.length} (dont ${aArbitrer} non tranchés)`);
+  console.log(`questions ${total} · arêtes tests ${(linkRate * 100).toFixed(1)} %`);
 }

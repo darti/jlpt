@@ -12,3 +12,4 @@ Tasks 5-6: complete (8898e27, 17 tests, verifies sur bank.json reel)
 Task 7: complete (1b77d52, 3 tests exit-code, CI cablee)
 Task 8: complete (e2e9945, entites generees, 280 conflits a arbitrer)
 JMdict: propositions generees (137/180 du trou reel), rien de redistribue
+Tasks 9+11: complete (612735b, 10307 questions, 59.1% aretes, graphe valide)

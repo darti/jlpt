@@ -1,0 +1,1226 @@
+{
+ "@context": "context.jsonld",
+ "@graph": [
+  {
+   "@id": "jlpt:q/25",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 1,
+   "jlpt:ord": 25,
+   "jlpt:stem": "「申し込みは明日までです」＝締め切りは？",
+   "opts": [
+    "今日",
+    "明日",
+    "明後日",
+    "来週"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>〜までです</b> = limite demain inclus.",
+   "jlpt:gloss": "申し込み（もうしこみ）« inscription / candidature » · は « thème » · 明日（あした）« demain » · まで « jusqu'à » · です « être (poli) »",
+   "jlpt:optionNote": [
+    "今日 « aujourd'hui » : trop tôt, la limite indiquée est demain, pas ce jour",
+    "明日 « demain » : までです fixe l'échéance à demain inclus — convient ici",
+    "明後日 « après-demain » : un jour trop tard par rapport à la limite annoncée",
+    "来週 « la semaine prochaine » : bien au-delà de l'échéance de demain"
+   ]
+  },
+  {
+   "@id": "jlpt:q/26",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 1,
+   "jlpt:ord": 26,
+   "jlpt:stem": "「会議は中止になりました」＝会議は…",
+   "opts": [
+    "行われる",
+    "行われない",
+    "延期だけ",
+    "時間変更"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>中止</b> = annulation → la réunion n'aura pas lieu.",
+   "jlpt:gloss": "会議（かいぎ）« réunion » · は « thème » · 中止（ちゅうし）« annulation » · に « devenir (に) » · なる（なる）→なりました « devenir, passé poli »",
+   "jlpt:optionNote": [
+    "中止 = annulation → la réunion n'aura pas lieu — convient",
+    "contraire : 中止 signifie justement qu'elle n'a PAS lieu",
+    "延期 « report » serait un autre mot ; 中止 = pure annulation",
+    "中止 ne concerne pas un changement d'horaire"
+   ]
+  },
+  {
+   "@id": "jlpt:q/27",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 27,
+   "jlpt:stem": "「お先に失礼します」を言う場面は？",
+   "opts": [
+    "食事の前",
+    "先に帰るとき",
+    "謝るとき",
+    "店に入るとき"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "Dit quand on <b>part avant les autres</b> (travail).",
+   "jlpt:gloss": "お « préfixe poli » · 先（さき）« avant » · に « adverbial » · 失礼（しつれい）« impolitesse » · する（する）→します « faire (poli) »",
+   "jlpt:optionNote": [
+    "食事の前 « avant le repas » : on dirait plutôt une formule de politesse à table, pas celle-ci",
+    "先に帰るとき « quand on part avant les autres » : sens exact de お先に失礼します — convient ici",
+    "謝るとき « quand on s'excuse » : 失礼 signifie ici « je prends congé », pas une excuse",
+    "店に入るとき « en entrant dans un magasin » : contexte d'accueil, sans rapport avec le départ"
+   ]
+  },
+  {
+   "@id": "jlpt:q/28",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 28,
+   "jlpt:stem": "「雨が降りそうだ」＝何を見て言った？",
+   "opts": [
+    "天気予報",
+    "空の様子",
+    "友達の話",
+    "新聞"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>そうだ (apparence)</b> = jugement visuel immédiat.",
+   "jlpt:gloss": "雨（あめ）« pluie » · が « sujet » · 降る（ふる）→降り « tomber, base connective » · そう « ＋そう (apparence imminente) » · だ « assertif »",
+   "jlpt:optionNote": [
+    "天気予報 « prévisions météo » : information rapportée, ce serait そうだ de ouï-dire, pas d'apparence",
+    "空の様子 « l'aspect du ciel » : jugement visuel immédiat propre au そうだ d'apparence — convient ici",
+    "友達の話 « les propos d'un ami » : source rapportée, relève du そうだ de ouï-dire",
+    "新聞 « le journal » : source écrite rapportée, pas une observation directe du ciel"
+   ]
+  },
+  {
+   "@id": "jlpt:q/29",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 29,
+   "jlpt:stem": "「ご覧ください」は誰の動作？",
+   "opts": [
+    "自分が見る",
+    "相手が見る",
+    "一緒に見る",
+    "誰も見ない"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>ご覧になる</b> = respectueux de 見る → action de l'interlocuteur.",
+   "jlpt:gloss": "ご « préfixe honorifique » · 覧（らん）« voir (racine honorifique) » · ください « veuillez » · 誰（だれ）« qui » · の « génitif » · 動作（どうさ）« action »",
+   "jlpt:optionNote": [
+    "自分が見る « c'est soi qui regarde » : ご覧 est honorifique, il vise l'autre et non soi-même",
+    "相手が見る « c'est l'interlocuteur qui regarde » : ご覧になる honore son action — convient ici",
+    "一緒に見る « regarder ensemble » : la forme honorifique cible seulement l'interlocuteur",
+    "誰も見ない « personne ne regarde » : l'invitation ください demande justement à l'autre de regarder"
+   ]
+  },
+  {
+   "@id": "jlpt:q/30",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 30,
+   "jlpt:stem": "「行かないこともない」＝話し手は？",
+   "opts": [
+    "絶対行かない",
+    "行く可能性がある",
+    "もう行った",
+    "行きたくない"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "Double négation <b>〜ないこともない</b> = « il n'est pas exclu que », donc possibilité d'y aller.",
+   "jlpt:gloss": "行く（いく）→行かない « aller, forme négative » · こと « nominalisateur » · も « même » · ない « ne pas exister » · 話し手（はなして）« locuteur » · は « thème »",
+   "jlpt:optionNote": [
+    "double négation 〜ないこともない = « il n'est pas exclu » → possibilité d'y aller — convient",
+    "contraire : la double négation atténue, n'exprime pas un refus absolu",
+    "ne marque pas le passé ; il s'agit d'une éventualité future",
+    "contraire : exprime une possibilité d'y aller, pas un refus"
+   ]
+  },
+  {
+   "@id": "jlpt:q/66",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 1,
+   "jlpt:ord": 66,
+   "jlpt:stem": "「ご自由にお取りください」＝どうすればいい？",
+   "opts": [
+    "取ってはいけない",
+    "自由に取っていい",
+    "店員に頼む",
+    "お金を払う"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>ご自由に</b> = librement → on peut se servir gratuitement.",
+   "jlpt:gloss": "ご « préfixe poli » · 自由（じゆう）« liberté » · に « adverbial » · お « préfixe poli » · 取る（とる）→お取り « prendre, forme honorifique » · ください « veuillez »",
+   "jlpt:optionNote": [
+    "取ってはいけない « il est interdit de prendre » : sens contraire, ご自由に autorise justement à se servir",
+    "自由に取っていい « on peut se servir librement » : sens exact de ご自由にお取りください — convient ici",
+    "店員に頼む « demander au vendeur » : inutile puisque l'on peut se servir soi-même librement",
+    "お金を払う « payer » : rien n'indique un paiement, l'accès est libre et gratuit"
+   ]
+  },
+  {
+   "@id": "jlpt:q/67",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 1,
+   "jlpt:ord": 67,
+   "jlpt:stem": "「準備中」の店に入れる？",
+   "opts": [
+    "入れる",
+    "入れない",
+    "予約だけ",
+    "店員のみ"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>準備中 (じゅんびちゅう)</b> = en préparation → pas encore ouvert.",
+   "jlpt:gloss": "準備（じゅんび）« préparation » · 中（ちゅう）« en cours » · の « génitif » · 店（みせ）« magasin » · に « lieu » · 入る（はいる）→入れる « entrer, potentiel »",
+   "jlpt:optionNote": [
+    "準備中 = « en préparation » → pas encore ouvert, on ne peut pas entrer — convient",
+    "contraire : « en préparation » signifie qu'on ne peut pas encore entrer",
+    "準備中 ne signifie pas « sur réservation seulement »",
+    "準備中 ne signifie pas « réservé au personnel »"
+   ]
+  },
+  {
+   "@id": "jlpt:q/68",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 68,
+   "jlpt:stem": "「遅れる場合はご連絡ください」＝いつ連絡？",
+   "opts": [
+    "毎日",
+    "遅れるとき",
+    "早く着くとき",
+    "来ないとき"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>〜場合は</b> = « dans le cas où » : seulement si on est en retard.",
+   "jlpt:gloss": "遅れる（おくれる）« être en retard » · 場合（ばあい）« cas » · は « thème » · ご « préfixe poli » · 連絡（れんらく）« contact » · ください « veuillez »",
+   "jlpt:optionNote": [
+    "毎日 « chaque jour » : 場合は pose une condition, on ne contacte pas systématiquement",
+    "遅れるとき « quand on est en retard » : 場合は « dans le cas où » vise ce seul cas — convient ici",
+    "早く着くとき « quand on arrive tôt » : condition inverse de celle énoncée dans la phrase",
+    "来ないとき « quand on ne vient pas » : la consigne concerne le retard, pas l'absence"
+   ]
+  },
+  {
+   "@id": "jlpt:q/69",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 69,
+   "jlpt:stem": "「タバコはご遠慮ください」の意味は？",
+   "opts": [
+    "吸ってもいい",
+    "吸わないで",
+    "灰皿あり",
+    "外で吸う"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>ご遠慮ください</b> = formule polie pour « veuillez vous abstenir » → ne pas fumer.",
+   "jlpt:gloss": "タバコ « cigarette » · は « thème » · ご « préfixe poli » · 遠慮（えんりょ）« retenue / abstention » · ください « veuillez »",
+   "jlpt:optionNote": [
+    "ご遠慮ください = formule polie « veuillez vous abstenir » → ne pas fumer — convient",
+    "contraire : la formule interdit poliment de fumer",
+    "hors sujet : il n'est pas question de cendrier",
+    "non : on demande de s'abstenir, pas de fumer dehors"
+   ]
+  },
+  {
+   "@id": "jlpt:q/70",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 70,
+   "jlpt:stem": "「在庫切れ」の商品は？",
+   "opts": [
+    "買える",
+    "売り切れ",
+    "割引中",
+    "新発売"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>在庫切れ (ざいこぎれ)</b> = rupture de stock → indisponible.",
+   "jlpt:gloss": "在庫（ざいこ）« stock » · 切れ（ぎれ）« épuisement » · の « génitif » · 商品（しょうひん）« marchandise » · は « thème »",
+   "jlpt:optionNote": [
+    "« on peut acheter » : contredit « rupture de stock »",
+    "« épuisé / en rupture » : correspond à 在庫切れ",
+    "« en promotion » : parle du prix, pas de la disponibilité",
+    "« nouveauté » : produit récent, sans rapport avec le stock"
+   ]
+  },
+  {
+   "@id": "jlpt:q/71",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 71,
+   "jlpt:stem": "「やむを得ず中止した」＝なぜ中止？",
+   "opts": [
+    "したくてした",
+    "仕方なくした",
+    "喜んでした",
+    "間違えてした"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>やむを得ず</b> = « contraint et forcé / sans avoir le choix ».",
+   "jlpt:gloss": "やむを得ず（やむをえず）« inévitablement / à contrecœur » · 中止（ちゅうし）« annulation » · する（する）→した « faire, passé » · なぜ « pourquoi » · 中止（ちゅうし）« annulation »",
+   "jlpt:optionNote": [
+    "« l'a fait par envie » : contraire de やむを得ず",
+    "« l'a fait faute de mieux » : sens de やむを得ず",
+    "« l'a fait avec joie » : oppose la contrainte exprimée",
+    "« l'a fait par erreur » : pas l'idée de contrainte"
+   ]
+  },
+  {
+   "@id": "jlpt:q/72",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 72,
+   "jlpt:stem": "「努力したかいがあって合格した」＝努力は？",
+   "opts": [
+    "無駄だった",
+    "報われた",
+    "足りなかった",
+    "関係ない"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>〜かいがある</b> = « ça en valait la peine » → l'effort a porté ses fruits.",
+   "jlpt:gloss": "努力（どりょく）« effort » · する（する）→した « faire, passé » · かい（甲斐）« valeur / résultat » · が « sujet » · ある（ある）→あって « il y a, forme て » · 合格（ごうかく）« réussite » · する（する）→した « faire, passé »",
+   "jlpt:optionNote": [
+    "« c'était inutile » : contraire de かいがある",
+    "« a été récompensé » : sens de 〜かいがあって",
+    "« était insuffisant » : ne traduit pas « ça valait la peine »",
+    "« sans rapport » : ne correspond pas au succès obtenu"
+   ]
+  },
+  {
+   "@id": "jlpt:q/73",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 73,
+   "jlpt:stem": "「彼が来るとは限らない」＝彼は？",
+   "opts": [
+    "必ず来る",
+    "来ないかもしれない",
+    "もう来た",
+    "来てほしい"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>〜とは限らない</b> = « ce n'est pas forcément le cas » → il ne viendra pas nécessairement.",
+   "jlpt:gloss": "彼（かれ）« il » · が « sujet » · 来る（くる）« venir » · と « citation » · は « thème » · 限る（かぎる）→限らない « se limiter, négatif (pas forcément) »",
+   "jlpt:optionNote": [
+    "« vient forcément » : contraire de とは限らない",
+    "« ne viendra peut-être pas » : sens de とは限らない",
+    "« est déjà venu » : passé, pas une incertitude future",
+    "« on aimerait qu'il vienne » : un souhait, pas une probabilité"
+   ]
+  },
+  {
+   "@id": "jlpt:q/74",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 74,
+   "jlpt:stem": "「先着順」のイベント、確実に入るには？",
+   "opts": [
+    "早く行く",
+    "遅く行く",
+    "予約する",
+    "お金を払う"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "<b>先着順 (せんちゃくじゅん)</b> = par ordre d'arrivée → venir tôt.",
+   "jlpt:gloss": "先着（せんちゃく）« premier arrivé » · 順（じゅん）« ordre » · の « génitif » · イベント « événement » · 確実（かくじつ）« sûr / certain » · に « adverbial » · 入る（はいる）« entrer » · には « pour (but) »",
+   "jlpt:optionNote": [
+    "« arriver tôt » : 先着順 = par ordre d'arrivée",
+    "« arriver tard » : contraire du premier arrivé premier servi",
+    "« réserver » : 先着順 ne fonctionne pas par réservation",
+    "« payer » : l'argent ne garantit pas la place ici"
+   ]
+  },
+  {
+   "@id": "jlpt:q/75",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 1,
+   "jlpt:ord": 75,
+   "jlpt:stem": "「無料」のサービスはいくら？",
+   "opts": [
+    "高い",
+    "0円",
+    "割引",
+    "未定"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>無料 (むりょう)</b> = gratuit.",
+   "jlpt:gloss": "無料（むりょう）« gratuit » · の « génitif » · サービス « service » · は « thème » · いくら « combien »",
+   "jlpt:optionNote": [
+    "« cher » : contraire de 無料 (gratuit)",
+    "« 0 yen » : 無料 signifie gratuit",
+    "« réduction » : un prix réduit reste payant",
+    "« indéterminé » : 無料 fixe bien le prix à zéro"
+   ],
+   "tests": [
+    "jlpt:word/無料"
+   ]
+  },
+  {
+   "@id": "jlpt:q/112",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 112,
+   "jlpt:stem": "メール：「明日の会議は10時から3時に変更になりました」＝会議は何時から？",
+   "opts": [
+    "3時",
+    "10時",
+    "変更なし",
+    "中止"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "<b>10時から3時に変更</b> → la nouvelle heure est 15 h.",
+   "jlpt:gloss": "明日（あした）« demain » · の « génitif » · 会議（かいぎ）« réunion » · は « thème » · 10時（じゅうじ）« 10 heures » · から « à partir de » · 3時（さんじ）« 3 heures » · に « vers (résultat) » · 変更（へんこう）« changement » · なる（なる）→になりました « devenir, passé poli »",
+   "jlpt:optionNote": [
+    "« 15 h » : la réunion passe de 10 h à 3 h (15 h)",
+    "« 10 h » : ancienne heure, justement modifiée",
+    "« inchangé » : contredit « 変更になりました »",
+    "« annulé » : il s'agit d'un changement d'heure, pas d'annulation"
+   ]
+  },
+  {
+   "@id": "jlpt:q/113",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 113,
+   "jlpt:stem": "お知らせ：「雨天の場合は中止します」＝雨が降ったら？",
+   "opts": [
+    "中止",
+    "実施",
+    "延期",
+    "室内で実施"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "<b>雨天の場合は中止</b> → annulé s'il pleut.",
+   "jlpt:gloss": "雨天（うてん）« temps pluvieux » · の « génitif » · 場合（ばあい）« cas » · は « thème » · 中止（ちゅうし）« annulation » · する（する）→します « faire (poli) »",
+   "jlpt:optionNote": [
+    "« annulé » : 雨天の場合は中止 = annulé s'il pleut",
+    "« maintenu » : contraire de 中止",
+    "« reporté » : le texte dit annulé, pas reporté",
+    "« en intérieur » : non prévu, le texte annule"
+   ]
+  },
+  {
+   "@id": "jlpt:q/114",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 114,
+   "jlpt:stem": "掲示：「関係者以外立入禁止」＝入れるのは？",
+   "opts": [
+    "関係者だけ",
+    "誰でも",
+    "客だけ",
+    "子供だけ"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "<b>関係者以外立入禁止</b> = entrée interdite sauf personnes concernées.",
+   "jlpt:gloss": "関係者（かんけいしゃ）« personnes concernées » · 以外（いがい）« excepté » · 立入（たちいり）« accès » · 禁止（きんし）« interdiction » · 入る（はいる）→入れる « entrer, potentiel » · の « nominalisateur »",
+   "jlpt:optionNote": [
+    "« seulement les personnes concernées » : sens de 関係者以外立入禁止",
+    "« n'importe qui » : contredit l'interdiction sauf concernés",
+    "« seulement les clients » : pas la catégorie visée",
+    "« seulement les enfants » : sans rapport avec le texte"
+   ],
+   "tests": [
+    "jlpt:word/関係者以外立入禁止"
+   ]
+  },
+  {
+   "@id": "jlpt:q/115",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 115,
+   "jlpt:stem": "注意書き：「使用後は元の場所に戻してください」＝使った後どうする？",
+   "opts": [
+    "元の場所に戻す",
+    "捨てる",
+    "洗う",
+    "そのままにする"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "<b>元の場所に戻す</b> = remettre à sa place.",
+   "jlpt:gloss": "使用（しよう）« utilisation » · 後（ご）« après » · は « thème » · 元（もと）« emplacement initial » · の « génitif » · 場所（ばしょ）« endroit » · に « direction » · 戻す（もどす）→戻して « remettre, forme て » · ください « veuillez »",
+   "jlpt:optionNote": [
+    "« remettre à sa place » : 元の場所に戻す, instruction donnée",
+    "« jeter » : contraire de remettre en place",
+    "« laver » : non demandé par la consigne",
+    "« laisser tel quel » : contredit « remettre à sa place »"
+   ]
+  },
+  {
+   "@id": "jlpt:q/116",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 116,
+   "jlpt:stem": "説明：「この薬は食後に飲んでください」＝いつ飲む？",
+   "opts": [
+    "食事の後",
+    "食事の前",
+    "寝る前",
+    "朝だけ"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "<b>食後 (しょくご)</b> = après le repas.",
+   "jlpt:gloss": "この « ce » · 薬（くすり）« médicament » · は « thème » · 食後（しょくご）« après le repas » · に « moment » · 飲む（のむ）→飲んで « prendre, forme て » · ください « veuillez »",
+   "jlpt:optionNote": [
+    "« après le repas » : 食後 = après manger",
+    "« avant le repas » : contraire de 食後",
+    "« avant de dormir » : non indiqué dans le texte",
+    "« seulement le matin » : pas ce que dit 食後"
+   ]
+  },
+  {
+   "@id": "jlpt:q/117",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 117,
+   "jlpt:stem": "案内：「定員に達し次第、締め切ります」＝いつ締め切る？",
+   "opts": [
+    "定員になったら",
+    "毎日",
+    "来月",
+    "未定"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "<b>〜次第 (しだい)</b> = « dès que ».",
+   "jlpt:gloss": "定員（ていいん）« nombre de places » · に « atteindre (に) » · 達する（たっする）→達し « atteindre, base connective » · 次第（しだい）« dès que » · 締め切る（しめきる）→締め切ります « clôturer (poli) »",
+   "jlpt:optionNote": [
+    "« quand l'effectif est atteint » : 定員に達し次第",
+    "« chaque jour » : pas la condition de clôture",
+    "« le mois prochain » : aucune date fixe, c'est conditionnel",
+    "« indéterminé » : la clôture dépend de l'effectif atteint"
+   ]
+  },
+  {
+   "@id": "jlpt:q/118",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 118,
+   "jlpt:stem": "案内：「お問い合わせはメールでお願いします」＝どうやって問い合わせる？",
+   "opts": [
+    "メールで",
+    "電話で",
+    "直接行く",
+    "FAXで"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "<b>メールでお願いします</b> → les demandes se font par e-mail.",
+   "jlpt:gloss": "お問い合わせ（おといあわせ）« demande de renseignements » · は « thème » · メール « e-mail » · で « moyen » · お願い（おねがい）« demande » · する（する）→します « faire (poli) »",
+   "jlpt:optionNote": [
+    "« par e-mail » : メールでお願いします",
+    "« par téléphone » : contredit « par e-mail »",
+    "« en y allant » : non prévu par la consigne",
+    "« par fax » : le texte demande un e-mail"
+   ]
+  },
+  {
+   "@id": "jlpt:q/119",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 1,
+   "jlpt:ord": 119,
+   "jlpt:stem": "広告：「割引は本日限り」＝割引はいつまで？",
+   "opts": [
+    "今日まで",
+    "明日まで",
+    "来週まで",
+    "ずっと"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "<b>本日限り (ほんじつかぎり)</b> = aujourd'hui seulement.",
+   "jlpt:gloss": "割引（わりびき）« réduction » · は « thème » · 本日（ほんじつ）« aujourd'hui » · 限り（かぎり）« uniquement / limité à » · いつ « quand » · まで « jusqu'à »",
+   "jlpt:optionNote": [
+    "« jusqu'à aujourd'hui » : 本日限り = aujourd'hui seulement",
+    "« jusqu'à demain » : contredit « aujourd'hui seulement »",
+    "« jusqu'à la semaine prochaine » : trop long",
+    "« toujours » : contraire de 本日限り"
+   ]
+  },
+  {
+   "@id": "jlpt:q/120",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 120,
+   "jlpt:stem": "短文：「日本語は勉強すればするほど面白くなってきた」＝筆者は今どう感じている？",
+   "opts": [
+    "面白いと感じている",
+    "つまらない",
+    "やめたい",
+    "変わらない"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "<b>面白くなってきた</b> = en est venu à trouver ça intéressant.",
+   "jlpt:gloss": "日本語（にほんご）« japonais » · は « thème » · 勉強（べんきょう）« étude » · する（する）→すれば « faire, conditionnel ば » · する（する）→するほど « faire, ＋ほど (plus... plus) » · 面白い（おもしろい）→面白く « intéressant, forme adverbiale » · なる（なる）→なってきた « devenir, ＋てきた (progression) »",
+   "jlpt:optionNote": [
+    "« trouve cela intéressant » : 面白くなってきた, ressenti actuel",
+    "« ennuyeux » : contraire de 面白い",
+    "« veut arrêter » : contredit le plaisir croissant",
+    "« inchangé » : 〜てきた marque un changement"
+   ]
+  },
+  {
+   "@id": "jlpt:q/121",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 121,
+   "jlpt:stem": "案内：「準備が整い次第、ご案内します」＝いつ案内される？",
+   "opts": [
+    "準備ができたら",
+    "すぐ今",
+    "明日",
+    "来週"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "<b>整い次第 (ととのいしだい)</b> = dès que c'est prêt.",
+   "jlpt:gloss": "準備（じゅんび）« préparation » · が « sujet » · 整う（ととのう）→整い « être prêt, base connective » · 次第（しだい）« dès que » · ご « préfixe poli » · 案内（あんない）« guidage » · する（する）→します « faire (poli) »",
+   "jlpt:optionNote": [
+    "« quand ce sera prêt » : 整い次第 = dès que c'est prêt",
+    "« tout de suite » : la condition est que ce soit prêt",
+    "« demain » : aucune date fixe, c'est conditionnel",
+    "« la semaine prochaine » : dépend de l'achèvement, pas d'une date"
+   ]
+  },
+  {
+   "@id": "jlpt:q/219",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 219,
+   "jlpt:stem": "筆者が読書を続けられた一番の理由は何ですか。",
+   "opts": [
+    "時間を短く決めたから",
+    "面白い本を選んだから",
+    "友達と一緒に読んだから",
+    "長い時間読んだから"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "「一日三十分だけ」と短く決めたことで無理なく習慣になった、と述べている。",
+   "jlpt:gloss": "一日（いちにち）« un jour » · 三十分（さんじゅっぷん）« trente minutes » · だけ « seulement » · と « citation » · 決める（きめる）→決めて « décider, forme て » · から « après que » · は « thème » · 無理（むり）« excès / forcer » · なく « sans (adverbial négatif) » · 習慣（しゅうかん）« habitude » · に « devenir (に) » · なる（なる）→なった « devenir, passé »",
+   "jlpt:optionNote": [
+    "Le texte dit qu'avoir décidé « seulement 30 min » l'a rendu durable",
+    "Le choix d'un livre intéressant n'est pas évoqué dans le texte",
+    "Lire avec un ami n'apparaît pas dans le texte",
+    "Au contraire, lire longtemps empêche de tenir, dit-il"
+   ],
+   "jlpt:passage": "私は毎晩、寝る前に三十分だけ本を読むことにしている。最初はなかなか続かなかったが、「一日三十分だけ」と決めてからは、無理なく習慣になった。長い時間やろうとすると、かえって続かないものだ。大切なのは、少しでも毎日続けることだと思う。"
+  },
+  {
+   "@id": "jlpt:q/220",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 220,
+   "jlpt:stem": "筆者の考えに最も合うものはどれですか。",
+   "opts": [
+    "毎日少しずつ続けることが大切だ",
+    "一度にたくさん読むほうがよい",
+    "読む時間は関係ない",
+    "読書より勉強を優先すべきだ"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "「少しでも毎日続けることが大切」が筆者の主張。",
+   "jlpt:gloss": "大切（たいせつ）« important » · な « attributif » · の « nominalisateur » · は « thème » · 少し（すこし）« un peu » · でも « même » · 毎日（まいにち）« chaque jour » · 続ける（つづける）« continuer » · こと « nominalisateur » · だ « être » · と « citation » · 思う（おもう）« penser »",
+   "jlpt:optionNote": [
+    "C'est la thèse : « continuer chaque jour, même un peu, est important »",
+    "Le texte dit l'inverse : trop lire d'un coup ne tient pas",
+    "Faux : selon lui durer chaque jour compte, donc le temps importe",
+    "Le texte ne compare jamais lecture et études"
+   ],
+   "jlpt:passage": "私は毎晩、寝る前に三十分だけ本を読むことにしている。最初はなかなか続かなかったが、「一日三十分だけ」と決めてからは、無理なく習慣になった。長い時間やろうとすると、かえって続かないものだ。大切なのは、少しでも毎日続けることだと思う。"
+  },
+  {
+   "@id": "jlpt:q/221",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 221,
+   "jlpt:stem": "休館の間、本を返したいときはどうしますか。",
+   "opts": [
+    "入口横の返却ポストに入れる",
+    "受付の人に直接渡す",
+    "工事が終わるまで待つ",
+    "メールで連絡する"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "「返却は入口の横にある返却ポストへ」と書かれている。",
+   "jlpt:gloss": "本（ほん）« livre » · の « génitif » · 返却（へんきゃく）« restitution » · は « thème » · 入口（いりぐち）« entrée » · の « génitif » · 横（よこ）« côté » · に « lieu » · ある（ある）« se trouver » · ポスト « boîte de retour » · へ « direction » · お願い（おねがい）します « veuillez »",
+   "jlpt:optionNote": [
+    "L'avis dit : déposer les retours dans la boîte près de l'entrée",
+    "Remettre en main propre n'est pas demandé pendant la fermeture",
+    "Attendre la fin des travaux : non, une boîte de retour est prévue",
+    "Contacter par mail n'est pas mentionné pour les retours"
+   ],
+   "jlpt:passage": "みどり図書館からのお知らせ。来週の月曜日から水曜日まで、館内の工事のため休館します。本の返却は、入口の横にある返却ポストへお願いします。なお、インターネットでの予約や貸出期間の延長は、いつも通りご利用いただけます。"
+  },
+  {
+   "@id": "jlpt:q/222",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 222,
+   "jlpt:stem": "休館中でもできることは何ですか。",
+   "opts": [
+    "インターネットで予約する",
+    "館内で本を読む",
+    "新しい本を借りる",
+    "イベントに参加する"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "「ネットでの予約や延長はいつも通り利用できる」とある。",
+   "jlpt:gloss": "インターネット « Internet » · で « moyen » · の « génitif » · 予約（よやく）« réservation » · や « et (liste) » · 貸出（かしだし）« prêt » · 期間（きかん）« période » · の « génitif » · 延長（えんちょう）« prolongation » · は « thème » · いつも通り（いつもどおり）« comme d'habitude » · ご利用（ごりよう）« utilisation (poli) » · いただける « pouvoir recevoir (humble potentiel) »",
+   "jlpt:optionNote": [
+    "Réserver sur internet reste possible comme d'habitude, dit l'avis",
+    "Lire sur place est impossible : la bibliothèque est fermée",
+    "Emprunter un livre n'est pas possible pendant la fermeture",
+    "Aucun événement n'est mentionné dans l'avis"
+   ],
+   "jlpt:passage": "みどり図書館からのお知らせ。来週の月曜日から水曜日まで、館内の工事のため休館します。本の返却は、入口の横にある返却ポストへお願いします。なお、インターネットでの予約や貸出期間の延長は、いつも通りご利用いただけます。"
+  },
+  {
+   "@id": "jlpt:q/223",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 223,
+   "jlpt:stem": "田中さんがお願いしているのは何ですか。",
+   "opts": [
+    "打ち合わせを水曜に変えること",
+    "打ち合わせを中止すること",
+    "資料を送ること",
+    "火曜の朝に集まること"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "火曜が無理なので「水曜の同じ時間に変更を」と頼んでいる。",
+   "jlpt:gloss": "水曜日（すいようび）« mercredi » · の « génitif » · 同じ（おなじ）« même » · 時間（じかん）« heure » · に « moment » · 変更（へんこう）« changement » · する（する）→して « faire, forme て » · いただけない « ne pas pouvoir recevoir (humble) » · でしょうか « n'est-ce pas ? (poli) »",
+   "jlpt:optionNote": [
+    "Il demande de déplacer la réunion à mercredi (même heure)",
+    "Annuler la réunion : non, il propose seulement un report",
+    "Envoyer des documents n'est pas évoqué dans le message",
+    "Se réunir mardi matin : non, c'est mardi qui ne va pas"
+   ],
+   "jlpt:passage": "山田さんへ。お疲れさまです。来週の打ち合わせの件ですが、火曜日の午後はどうしても都合がつかなくなってしまいました。申し訳ありませんが、水曜日の同じ時間に変更していただけないでしょうか。もし難しいようでしたら、ご都合のよい日をいくつか教えてください。田中"
+  },
+  {
+   "@id": "jlpt:q/224",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 224,
+   "jlpt:stem": "水曜日も難しい場合、山田さんはどうすればよいですか。",
+   "opts": [
+    "都合のよい日をいくつか伝える",
+    "返事をしなくてよい",
+    "火曜日に行う",
+    "打ち合わせをやめる"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "「難しいようなら、都合のよい日をいくつか教えて」とある。",
+   "jlpt:gloss": "もし « si » · 難しい（むずかしい）« difficile » · よう « semble / le cas » · でしたら « si c'est (poli) » · ご都合（ごつごう）« disponibilité (poli) » · の « génitif » · よい « bon » · 日（ひ）« jour » · を « COD » · いくつか « quelques-uns » · 教える（おしえる）→教えて « indiquer, forme て » · ください « veuillez »",
+   "jlpt:optionNote": [
+    "Si mercredi ne va pas, indiquer plusieurs dates qui conviennent",
+    "Ne pas répondre : faux, une réponse est attendue",
+    "Faire mardi : non, c'est justement mardi qui pose problème",
+    "Annuler la réunion n'est pas proposé"
+   ],
+   "jlpt:passage": "山田さんへ。お疲れさまです。来週の打ち合わせの件ですが、火曜日の午後はどうしても都合がつかなくなってしまいました。申し訳ありませんが、水曜日の同じ時間に変更していただけないでしょうか。もし難しいようでしたら、ご都合のよい日をいくつか教えてください。田中"
+  },
+  {
+   "@id": "jlpt:q/225",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 225,
+   "jlpt:stem": "筆者は雨の日、どうやって通勤しますか。",
+   "opts": [
+    "電車で通勤する",
+    "自転車で通勤する",
+    "歩いて通勤する",
+    "会社を休む"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "「晴れた日は自転車、雨の日は電車と決めている」。",
+   "jlpt:gloss": "私（わたし）« je » · は « thème » · 晴れる（はれる）→晴れた « faire beau, passé (attributif) » · 日（ひ）« jour » · は « thème » · 自転車（じてんしゃ）« vélo » · 雨（あめ）« pluie » · の « génitif » · 日（ひ）« jour » · は « thème » · 電車（でんしゃ）« train » · と « citation » · 決める（きめる）→決めている « décider, forme ている »",
+   "jlpt:optionNote": [
+    "Il a décidé : vélo les jours de beau, train les jours de pluie",
+    "Le vélo, c'est par beau temps, pas sous la pluie",
+    "Aller à pied n'est pas évoqué dans le texte",
+    "Prendre congé n'est pas mentionné"
+   ],
+   "jlpt:passage": "最近、自転車で通勤する人が増えている。電車のように混まず、運動にもなるからだ。ただし、雨の日は危ないので無理をしないほうがいい。私は、晴れた日は自転車、雨の日は電車、と決めている。天気に合わせて方法を変えると、続けやすい。"
+  },
+  {
+   "@id": "jlpt:q/226",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 226,
+   "jlpt:stem": "自転車通勤が増えている理由として本文に合うものは？",
+   "opts": [
+    "混まず、運動にもなるから",
+    "お金がかからないから",
+    "速くて便利だから",
+    "会社が勧めているから"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "「電車のように混まず、運動にもなるから」と説明されている。",
+   "jlpt:gloss": "電車（でんしゃ）« train » · の « génitif » · ように « comme » · 混む（こむ）→混まず « être bondé, forme négative ず » · 運動（うんどう）« exercice » · に « devenir (に) » · も « aussi » · なる（なる）« devenir » · から « parce que » · だ « assertif »",
+   "jlpt:optionNote": [
+    "Le texte dit : pas de foule comme le train, et ça fait du sport",
+    "« Pas de frais » n'est pas la raison donnée dans le texte",
+    "« Rapide et pratique » n'est pas mentionné",
+    "Aucune recommandation de l'entreprise n'apparaît"
+   ],
+   "jlpt:passage": "最近、自転車で通勤する人が増えている。電車のように混まず、運動にもなるからだ。ただし、雨の日は危ないので無理をしないほうがいい。私は、晴れた日は自転車、雨の日は電車、と決めている。天気に合わせて方法を変えると、続けやすい。"
+  },
+  {
+   "@id": "jlpt:q/301",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 301,
+   "jlpt:stem": "筆者が予定より遅く着いたのはなぜですか。",
+   "opts": [
+    "雨で電車が止まり、車の道も込んでいたから",
+    "温泉でゆっくりしすぎたから",
+    "朝早く出発できなかったから",
+    "家族の準備が遅かったから"
+   ],
+   "jlpt:answer": 0,
+   "schema:description": "<b>電車が止まった</b>ため車に変え、さらに<b>道が込んでいた</b>ことで三時間遅れた、と述べている。",
+   "jlpt:gloss": "当日（とうじつ）« ce jour-là » · は « thème » · 朝（あさ）« matin » · から « depuis » · 大雨（おおあめ）« grosse pluie » · で « cause » · 電車（でんしゃ）« train » · が « sujet » · 止まる（とまる）→止まってしまった « s'arrêter, forme てしまった » · 道（みち）« route » · が « sujet » · とても « très » · 込む（こむ）→込んでいて « être encombré, forme ていて »",
+   "jlpt:optionNote": [
+    "Le texte dit : train arrêté par la pluie, puis route encombrée — exact",
+    "« trop profité du onsen » : le onsen est après l'arrivée, pas la cause",
+    "« pas pu partir tôt » : non mentionné comme cause du retard",
+    "« famille lente à se préparer » : non évoqué dans le texte"
+   ],
+   "jlpt:passage": "先週、家族で温泉に旅行に行った。電車で行く予定だったが、当日は朝から大雨で、電車が止まってしまった。仕方なく車で出発したが、道がとても込んでいて、着いたのは予定より三時間も遅かった。それでも、夜の温泉はとても気持ちがよく、疲れがすっかり取れた。次に行くときは、天気をよく調べてから出かけたいと思う。"
+  },
+  {
+   "@id": "jlpt:q/302",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 302,
+   "jlpt:stem": "筆者は次の旅行でどうしたいと考えていますか。",
+   "opts": [
+    "車ではなく電車で行きたい",
+    "出発前に天気をよく調べたい",
+    "もっと早く起きたい",
+    "温泉に長くいたい"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "最後の文で<b>天気をよく調べてから出かけたい</b>と述べている。",
+   "jlpt:gloss": "次（つぎ）« prochaine fois » · に « moment » · 行く（いく）→行くとき « aller, quand » · は « thème » · 天気（てんき）« météo » · を « COD » · よく « bien » · 調べる（しらべる）→調べてから « vérifier, forme てから (après avoir) » · 出かける（でかける）→出かけたい « sortir, désidératif たい » · と « citation » · 思う（おもう）« penser »",
+   "jlpt:optionNote": [
+    "« voyager en train plutôt qu'en voiture » : non, ce n'est pas son souhait final",
+    "Dernière phrase : « bien vérifier la météo avant de partir » — exact",
+    "« se lever plus tôt » : non mentionné comme souhait",
+    "« rester longtemps au onsen » : non évoqué comme intention future"
+   ],
+   "jlpt:passage": "先週、家族で温泉に旅行に行った。電車で行く予定だったが、当日は朝から大雨で、電車が止まってしまった。仕方なく車で出発したが、道がとても込んでいて、着いたのは予定より三時間も遅かった。それでも、夜の温泉はとても気持ちがよく、疲れがすっかり取れた。次に行くときは、天気をよく調べてから出かけたいと思う。"
+  },
+  {
+   "@id": "jlpt:q/303",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 303,
+   "jlpt:stem": "この店は休業中、どんなサービスが使えますか。",
+   "opts": [
+    "店内での買い物",
+    "電話での注文",
+    "インターネットでの注文",
+    "商品の配達"
+   ],
+   "jlpt:answer": 2,
+   "schema:description": "最後の文に<b>インターネットでのご注文は休業中もご利用いただけます</b>とある。",
+   "jlpt:gloss": "インターネット « Internet » · で « moyen » · の « de » · ご注文（ごちゅうもん）« commande (poli) » · は « thème » · 休業中（きゅうぎょうちゅう）« pendant la fermeture » · も « aussi » · ご利用（ごりよう）« utilisation (poli) » · いただけます « pouvoir bénéficier (humble poli) »",
+   "jlpt:optionNote": [
+    "« achats en magasin » : impossible, le magasin est fermé pour travaux",
+    "« commande par téléphone » : non mentionnée dans l'annonce",
+    "Dernière phrase : « les commandes par Internet restent disponibles » — exact",
+    "« livraison des produits » : non évoquée dans l'annonce"
+   ],
+   "jlpt:passage": "お客様各位　いつもご利用ありがとうございます。当店は店内の工事のため、七月一日から七月五日まで休業させていただきます。なお、七月六日からは新しくなった店内で営業を再開いたします。ご不便をおかけしますが、よろしくお願いいたします。インターネットでのご注文は休業中もご利用いただけます。"
+  },
+  {
+   "@id": "jlpt:q/304",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 304,
+   "jlpt:stem": "店が再び開くのはいつですか。",
+   "opts": [
+    "七月一日",
+    "七月五日",
+    "七月六日",
+    "七月十日"
+   ],
+   "jlpt:answer": 2,
+   "schema:description": "<b>七月六日からは…営業を再開いたします</b>とあるので、再開は七月六日。",
+   "jlpt:gloss": "七月六日（しちがつむいか）« 6 juillet » · から « à partir de » · は « thème » · 新しい（あたらしい）→新しくなった « devenu nouveau » · 店内（てんない）« intérieur du magasin » · で « lieu » · 営業（えいぎょう）« activité commerciale » · を « COD » · 再開（さいかい）« reprise » · いたします « faire (humble poli) »",
+   "jlpt:optionNote": [
+    "« 1er juillet » : début de la fermeture, pas la réouverture",
+    "« 5 juillet » : dernier jour de fermeture, pas la réouverture",
+    "Texte : « à partir du 6 juillet… réouverture » — exact",
+    "« 10 juillet » : date non mentionnée dans l'annonce"
+   ],
+   "jlpt:passage": "お客様各位　いつもご利用ありがとうございます。当店は店内の工事のため、七月一日から七月五日まで休業させていただきます。なお、七月六日からは新しくなった店内で営業を再開いたします。ご不便をおかけしますが、よろしくお願いいたします。インターネットでのご注文は休業中もご利用いただけます。"
+  },
+  {
+   "@id": "jlpt:q/305",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 305,
+   "jlpt:stem": "田中さんは資料を何部用意しますか。",
+   "opts": [
+    "十部",
+    "二十部",
+    "三十部",
+    "五十部"
+   ],
+   "jlpt:answer": 2,
+   "schema:description": "<b>二十部ではなく三十部</b>用意するよう書かれている。",
+   "jlpt:gloss": "人数（にんずう）« nombre de personnes » · が « sujet » · 増える（ふえる）→増えた « avoir augmenté » · ので « parce que » · 二十部（にじゅうぶ）« vingt exemplaires » · ではなく « pas ... mais » · 三十部（さんじゅうぶ）« trente exemplaires » · 用意（ようい）« préparation » · する（する）→してください « faire, demande てください »",
+   "jlpt:optionNote": [
+    "« 10 exemplaires » : chiffre non mentionné dans la note",
+    "« 20 exemplaires » : ancien nombre, justement remplacé",
+    "Texte : « non pas 20 mais 30 exemplaires » — exact",
+    "« 50 exemplaires » : chiffre non mentionné dans la note"
+   ],
+   "jlpt:passage": "田中さんへ　明日の会議の資料ですが、人数が増えたので、二十部ではなく三十部用意してください。それから、会議室は三階から五階に変わりました。エアコンの調子が悪いので、上着を持って来たほうがいいかもしれません。準備をよろしくお願いします。何か分からないことがあれば、私の携帯に連絡してください。　佐藤"
+  },
+  {
+   "@id": "jlpt:q/306",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 306,
+   "jlpt:stem": "上着を持って来たほうがいい理由は何ですか。",
+   "opts": [
+    "外が寒いから",
+    "エアコンの調子が悪いから",
+    "会議が長いから",
+    "五階は暗いから"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>エアコンの調子が悪い</b>ため、上着を持って来たほうがいいと書かれている。",
+   "jlpt:gloss": "エアコン « climatiseur » · の « de » · 調子（ちょうし）« état / condition » · が « sujet » · 悪い（わるい）« mauvais » · ので « parce que » · 上着（うわぎ）« veste » · を « COD » · 持って来る（もってくる）→持って来た « apporter, forme た » · ほうがいい « il vaut mieux » · かもしれません « peut-être (poli) »",
+   "jlpt:optionNote": [
+    "« il fait froid dehors » : la cause donnée est la climatisation, pas le dehors",
+    "Texte : « la climatisation marche mal » → apporter une veste — exact",
+    "« la réunion est longue » : non mentionné comme raison",
+    "« le 5e étage est sombre » : non évoqué dans la note"
+   ],
+   "jlpt:passage": "田中さんへ　明日の会議の資料ですが、人数が増えたので、二十部ではなく三十部用意してください。それから、会議室は三階から五階に変わりました。エアコンの調子が悪いので、上着を持って来たほうがいいかもしれません。準備をよろしくお願いします。何か分からないことがあれば、私の携帯に連絡してください。　佐藤"
+  },
+  {
+   "@id": "jlpt:q/307",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 307,
+   "jlpt:stem": "筆者が運動を楽しく続けられるようになったのはなぜですか。",
+   "opts": [
+    "体が強くなったから",
+    "一緒に通う友人ができたから",
+    "ジムが近いから",
+    "回数を減らしたから"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>同じ時間に通う友人ができてから</b>楽しく続けられるようになったと述べている。",
+   "jlpt:gloss": "同じ（おなじ）« même » · 時間（じかん）« heure » · に « moment » · 通う（かよう）« fréquenter » · 友人（ゆうじん）« ami » · が « sujet » · できる（できる）→できてから « se faire, après que » · 楽しい（たのしい）→楽しく « joyeusement (forme adverbiale) » · 続ける（つづける）→続けられる « continuer, potentiel » · ようになった « en venir à »",
+   "jlpt:optionNote": [
+    "« le corps s'est renforcé » : non donné comme raison du plaisir",
+    "Texte : « depuis qu'un ami fréquente aux mêmes heures » — exact",
+    "« la salle est proche » : mentionné mais pas comme cause du plaisir",
+    "« réduit le nombre de séances » : non évoqué dans le texte"
+   ],
+   "jlpt:passage": "私は去年から週に二回、近くのジムに通っている。最初は体を動かすのがつらくて、行きたくない日も多かった。しかし、同じ時間に通う友人ができてから、楽しく続けられるようになった。一人だと休んでしまうが、待っている人がいると思うと、自然と足が向く。健康のためだけでなく、人とのつながりも大切だと感じている。"
+  },
+  {
+   "@id": "jlpt:q/308",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 308,
+   "jlpt:stem": "この文章で筆者が一番言いたいことは何ですか。",
+   "opts": [
+    "運動は一人でするべきだ",
+    "人とのつながりも大切だ",
+    "ジムは高い",
+    "週二回では足りない"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "最後の文で<b>人とのつながりも大切だ</b>と感じていると述べており、これが主題。",
+   "jlpt:gloss": "健康（けんこう）« santé » · の « de » · ため « pour » · だけでなく « pas seulement » · 人（ひと）« gens » · と « avec » · の « de » · つながり « lien » · も « aussi » · 大切（たいせつ）« important » · だ « (copule) » · と « citation » · 感じる（かんじる）→感じている « ressentir, forme ている »",
+   "jlpt:optionNote": [
+    "« faire du sport seul » : contraire au message du texte",
+    "Dernière phrase : « les liens avec les autres comptent aussi » — idée centrale",
+    "« la salle est chère » : non mentionné dans le texte",
+    "« deux fois par semaine ne suffit pas » : non évoqué"
+   ],
+   "jlpt:passage": "私は去年から週に二回、近くのジムに通っている。最初は体を動かすのがつらくて、行きたくない日も多かった。しかし、同じ時間に通う友人ができてから、楽しく続けられるようになった。一人だと休んでしまうが、待っている人がいると思うと、自然と足が向く。健康のためだけでなく、人とのつながりも大切だと感じている。"
+  },
+  {
+   "@id": "jlpt:q/309",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 1,
+   "jlpt:ord": 309,
+   "jlpt:stem": "「ただいま満席です」＝店の様子は？",
+   "opts": [
+    "空いている",
+    "席がいっぱい",
+    "閉まっている",
+    "安い"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>満席（まんせき）</b> = toutes les places sont occupées.",
+   "jlpt:gloss": "ただいま « en ce moment » · 満席（まんせき）« complet / toutes places occupées » · です « (poli) » · 店（みせ）« magasin » · の « de » · 様子（ようす）« état / situation » · は « thème »",
+   "jlpt:optionNote": [
+    "« c'est vide » : contraire au sens de 満席",
+    "満席（まんせき）: toutes les places sont occupées — exact",
+    "« c'est fermé » : 満席 ne signifie pas la fermeture",
+    "« c'est bon marché » : sans rapport avec 満席"
+   ]
+  },
+  {
+   "@id": "jlpt:q/310",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 310,
+   "jlpt:stem": "「お会計はあちらでお願いします」＝何をする？",
+   "opts": [
+    "注文する",
+    "料理を待つ",
+    "お金を払う",
+    "席を選ぶ"
+   ],
+   "jlpt:answer": 2,
+   "schema:description": "<b>お会計（おかいけい）</b> = le paiement / l'addition.",
+   "jlpt:gloss": "お会計（おかいけい）« l'addition » · は « thème » · あちら « là-bas » · で « lieu » · お願いする（おねがいする）→お願いします « demander (poli) » · 何（なに）« quoi » · を « COD » · する（する）« faire »",
+   "jlpt:optionNote": [
+    "« commander » : ce n'est pas le sens de お会計",
+    "« attendre le plat » : sans rapport avec お会計",
+    "お会計（おかいけい）: régler l'addition, payer — exact",
+    "« choisir une place » : sans rapport avec le paiement"
+   ]
+  },
+  {
+   "@id": "jlpt:q/311",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 311,
+   "jlpt:stem": "「電源を切ってください」＝どうする？",
+   "opts": [
+    "音を大きくする",
+    "電気を消す",
+    "窓を開ける",
+    "声を出す"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>電源を切る（でんげんをきる）</b> = éteindre l'appareil.",
+   "jlpt:gloss": "電源（でんげん）« alimentation / courant » · を « COD » · 切る（きる）→切って « couper, forme て » · ください « s'il vous plaît » · どう « comment » · する（する）« faire »",
+   "jlpt:optionNote": [
+    "« monter le son » : contraire à 電源を切る",
+    "電源を切る（でんげんをきる）: éteindre l'appareil — exact",
+    "« ouvrir la fenêtre » : sans rapport avec couper l'alimentation",
+    "« faire du bruit » : sans rapport avec 電源を切る"
+   ]
+  },
+  {
+   "@id": "jlpt:q/312",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 312,
+   "jlpt:stem": "「雨が降りそうだ」＝話し手の予想は？",
+   "opts": [
+    "もう降っている",
+    "降るかもしれない",
+    "晴れている",
+    "雪が降る"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>〜そうだ</b> (apparence) = il semble que / on dirait qu'il va pleuvoir.",
+   "jlpt:gloss": "雨（あめ）« pluie » · が « sujet » · 降る（ふる）→降りそう « tomber, apparence そう » · だ « (copule) » · 話し手（はなして）« locuteur » · の « de » · 予想（よそう）« prévision » · は « thème »",
+   "jlpt:optionNote": [
+    "« il pleut déjà » : そうだ exprime une prévision, pas un fait constaté",
+    "〜そうだ (apparence) : « il risque de pleuvoir » — exact",
+    "« il fait beau » : contraire à la prévision de pluie",
+    "« il va neiger » : il s'agit de pluie (雨), pas de neige"
+   ]
+  },
+  {
+   "@id": "jlpt:q/313",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 313,
+   "jlpt:stem": "「この薬は食後に飲んでください」＝いつ飲む？",
+   "opts": [
+    "食事の前",
+    "食事の後",
+    "寝る前",
+    "起きてすぐ"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>食後（しょくご）</b> = après le repas.",
+   "jlpt:gloss": "この « ce » · 薬（くすり）« médicament » · は « thème » · 食後（しょくご）« après le repas » · に « moment » · 飲む（のむ）→飲んで « boire, forme て » · ください « s'il vous plaît »",
+   "jlpt:optionNote": [
+    "« avant le repas » : 食後 signifie après, pas avant",
+    "食後（しょくご）: après le repas — exact",
+    "« avant de dormir » : sans rapport avec 食後",
+    "« dès le réveil » : sans rapport avec 食後"
+   ]
+  },
+  {
+   "@id": "jlpt:q/314",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 314,
+   "jlpt:stem": "「立入禁止」＝この場所は？",
+   "opts": [
+    "入ってもよい",
+    "入ってはいけない",
+    "写真が撮れる",
+    "休める"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>立入禁止（たちいりきんし）</b> = entrée interdite.",
+   "jlpt:gloss": "立入（たちいり）« accès / entrée » · 禁止（きんし）« interdiction » · この « ce » · 場所（ばしょ）« endroit » · は « thème »",
+   "jlpt:optionNote": [
+    "« on peut entrer » : contraire à 立入禁止",
+    "立入禁止（たちいりきんし）: entrée interdite — exact",
+    "« on peut photographier » : sans rapport avec l'interdiction d'entrée",
+    "« on peut se reposer » : sans rapport avec 立入禁止"
+   ],
+   "tests": [
+    "jlpt:word/立入禁止"
+   ]
+  },
+  {
+   "@id": "jlpt:q/315",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 315,
+   "jlpt:stem": "「遅れる場合は必ず連絡してください」＝遅れそうな時は？",
+   "opts": [
+    "黙って待つ",
+    "急いで来る",
+    "連絡する",
+    "休む"
+   ],
+   "jlpt:answer": 2,
+   "schema:description": "<b>必ず連絡してください</b> = il faut absolument prévenir.",
+   "jlpt:gloss": "遅れる（おくれる）« être en retard » · 場合（ばあい）« cas » · は « thème » · 必ず（かならず）« absolument » · 連絡（れんらく）« contact » · する（する）→してください « faire, demande てください »",
+   "jlpt:optionNote": [
+    "« attendre en silence » : contraire à « prévenir absolument »",
+    "« venir vite » : non, on demande de prévenir, pas de se presser",
+    "必ず連絡してください : il faut prévenir / contacter — exact",
+    "« se reposer » : sans rapport avec l'obligation de prévenir"
+   ]
+  },
+  {
+   "@id": "jlpt:q/316",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 316,
+   "jlpt:stem": "「席を譲りましょう」＝どうする？",
+   "opts": [
+    "席に座る",
+    "席を代わってあげる",
+    "席を増やす",
+    "席を予約する"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>席を譲る（せきをゆずる）</b> = céder sa place.",
+   "jlpt:gloss": "席（せき）« place / siège » · を « COD » · 譲る（ゆずる）→譲りましょう « céder, ましょう (proposition) » · どう « comment » · する（する）« faire »",
+   "jlpt:optionNote": [
+    "« s'asseoir » : contraire à céder sa place",
+    "席を譲る（せきをゆずる）: céder sa place à autrui — exact",
+    "« ajouter des sièges » : sans rapport avec 譲る",
+    "« réserver une place » : sans rapport avec céder sa place"
+   ]
+  },
+  {
+   "@id": "jlpt:q/317",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 317,
+   "jlpt:stem": "「準備が整い次第、始めます」＝いつ始める？",
+   "opts": [
+    "今すぐ",
+    "準備ができたらすぐ",
+    "明日",
+    "終わってから"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>〜次第（しだい）</b> = dès que / aussitôt que.",
+   "jlpt:gloss": "準備（じゅんび）« préparation » · が « sujet » · 整う（ととのう）→整い次第 « être prêt, dès que (次第) » · 始める（はじめる）→始めます « commencer, forme polie » · いつ « quand » · 始める（はじめる）« commencer »",
+   "jlpt:optionNote": [
+    "« tout de suite maintenant » : non, seulement une fois prêt",
+    "〜次第（しだい）: dès que c'est prêt, on commence — exact",
+    "« demain » : non, dès que la préparation est faite",
+    "« après la fin » : contraire au sens de 次第"
+   ]
+  },
+  {
+   "@id": "jlpt:q/318",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 318,
+   "jlpt:stem": "「品切れ中です」＝その商品は？",
+   "opts": [
+    "安くなっている",
+    "今ない",
+    "新しい",
+    "人気がない"
+   ],
+   "jlpt:answer": 1,
+   "schema:description": "<b>品切れ（しなぎれ）</b> = en rupture de stock.",
+   "jlpt:gloss": "品切れ（しなぎれ）« rupture de stock » · 中（ちゅう）« en cours » · です « (poli) » · その « ce » · 商品（しょうひん）« produit » · は « thème »",
+   "jlpt:optionNote": [
+    "« c'est en promotion » : sans rapport avec 品切れ",
+    "品切れ（しなぎれ）: en rupture de stock, indisponible — exact",
+    "« c'est nouveau » : sans rapport avec la rupture de stock",
+    "« ce n'est pas populaire » : 品切れ n'indique pas l'impopularité"
+   ]
+  }
+ ]
+}

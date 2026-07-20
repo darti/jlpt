@@ -239,7 +239,7 @@ fichiers et qui en est mort. Le graphe devient la source ; rien ne le régénèr
 
 | arête | méthode | rendement mesuré |
 |---|---|---|
-| `tests` (kanji, vocab) | sujet extrait de 「…」 | 8 188 / 9 052 (90 %) |
+| `tests` (kanji, vocab) | sujet extrait de 「…」 **et existant comme entité** | 5 460 / 9 052 (60 %) |
 | `tests` (grammaire) | `<b>` du corrigé contre référentiel fusionné | 636 / 1 174 (54 %) |
 | `usesKanji` | balayage des caractères du mot | intégral |
 | `ord` | index courant du tableau | intégral |
@@ -268,8 +268,21 @@ mécaniquement puis vérifiée à la main sur les écarts :
 | `cours-method.json` | conservé tel quel — contenu rédactionnel, pas des entités |
 | `grammar.json`, `vocab.json`, `kanji.json` | absorbés puis supprimés |
 
-Les 538 questions de grammaire et ~864 de vocab/kanji sans arête **restent sans arête**. Une
-question sans `tests` est valide (`minCount 0`) mais compte dans la métrique de couverture.
+Taux d'arêtes réel, mesuré : **59,1 %**. L'estimation initiale de 90 % sur vocab/kanji
+confondait « sujet extractible de 「…」 » et « sujet existant comme entité » : 8 278 sujets
+sont extractibles, seuls 5 462 correspondent à une entité.
+
+⚠ **Ne PAS fabriquer d'entités depuis les sujets non résolus**, contrairement à ce que
+cette spec affirmait d'abord (« le sujet extrait EST le mot-vedette »). Sur les 2 560
+sujets sans entité, 998 sont des phrases entières (「申し込みは明日までです」), et une bonne
+part du reste n'est pas lexicale non plus : marqueurs de trou (`___日`, `___手`) ou
+lectures en kana que la question demande justement d'écrire en kanji (`やくそく`). En faire
+des entités injecterait `jlpt:word/___日` dans le graphe — exactement le genre de déchet
+que ce modèle doit empêcher.
+
+Les questions sans arête **restent sans arête**. Une question sans `tests` est valide
+(`minCount 0`) mais compte dans la métrique de couverture : le graphe rend le trou
+mesurable, il ne le comble pas.
 
 Corrections appliquées pendant la migration : l'option dupliquée de `#1381`, les 5 paires
 homophones (désambiguïsation de l'énoncé), les 3 doublons purs inter-catégories, les 36

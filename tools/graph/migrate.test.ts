@@ -69,3 +69,65 @@ test("buildEntities produit des @id uniques par type", () => {
     expect(new Set(ids).size, `doublon d'@id dans ${nom}`).toBe(ids.length);
   }
 });
+
+// --- extraction des arêtes depuis l'ancien format -------------------------------
+
+import { subjectOf, gramFormOf } from "../migrate-to-graph.mjs";
+
+test("subjectOf extrait le sujet testé d'un énoncé 「…」", () => {
+  expect(subjectOf({ q: "「政治」の読み方は？" })).toBe("政治");
+});
+
+test("subjectOf rend null quand l'énoncé n'a pas de 「…」", () => {
+  expect(subjectOf({ q: "家に帰っ___、電話します。" })).toBeNull();
+});
+
+test("gramFormOf lit la forme du premier <b> du corrigé", () => {
+  expect(gramFormOf({ e: "<b>〜たら</b> = « quand »." })).toBe("〜たら");
+});
+
+test("gramFormOf ignore le balisage imbriqué", () => {
+  expect(gramFormOf({ e: "<b><i>〜ば</i></b> …" })).toBe("〜ば");
+});
+
+test("gramFormOf rend null sans <b>", () => {
+  expect(gramFormOf({ e: "pas de forme en gras" })).toBeNull();
+});
+
+// --- corrections de contenu ----------------------------------------------------
+
+import { applyFixes, isDropped, buildQuestions } from "../migrate-to-graph.mjs";
+
+test("applyFixes remplace l'option dupliquée de la question 1381", () => {
+  const q = { q: "「七月」の読み方は？", o: ["しちがつ", "なながつ", "しちげつ", "なながつ"], a: 0, cat: "kanji", d: 1 };
+  const out = applyFixes(q, 1381);
+  expect(new Set(out.o).size).toBe(4);
+  expect(out.o[out.a]).toBe("しちがつ");
+});
+
+test("applyFixes désambiguïse les deux énoncés d'une paire homophone", () => {
+  const a = applyFixes({ q: "「いる」を漢字で書くと？", o: ["居る", "要る"], a: 0, cat: "vocabulaire", d: 2 }, 5884);
+  const b = applyFixes({ q: "「いる」を漢字で書くと？", o: ["居る", "要る"], a: 1, cat: "vocabulaire", d: 2 }, 5886);
+  expect(a.q).not.toBe(b.q);
+  expect(a.q).toContain("いる");
+});
+
+test("applyFixes laisse intacte une question non listée", () => {
+  const q = { q: "x", o: ["a", "b"], a: 0, cat: "kanji", d: 1 };
+  expect(applyFixes(q, 42)).toEqual(q);
+});
+
+test("isDropped n'écarte que les trois doublons purs inter-catégories", () => {
+  for (const ord of [4530, 4696, 5108]) expect(isDropped(ord)).toBe(true);
+  expect(isDropped(4531)).toBe(false);
+});
+
+test("buildQuestions réattribue des ordinaux denses malgré les questions écartées", () => {
+  // Une suppression laisserait sinon un trou, et checkCorpus refuse les ordinaux non denses.
+  const { bySkill, total } = buildQuestions({ kanji: [], word: [], gram: [] });
+  const ords = Object.values(bySkill).flat().map((q) => q["jlpt:ord"]).sort((a, b) => a - b);
+  expect(ords).toHaveLength(total);
+  expect(ords[0]).toBe(0);
+  expect(ords[ords.length - 1]).toBe(total - 1);
+  expect(new Set(ords).size).toBe(total);
+});
