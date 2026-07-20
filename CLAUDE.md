@@ -19,7 +19,15 @@ par tâche = branche + répertoire isolés.
 
 `.worktrees/` est ignoré par git. Ne jamais faire deux agents sur la même branche/le même répertoire.
 
+⚠ **Avant tout merge, vérifier `git status` dans le répertoire principal** : un autre agent peut
+y avoir laissé des modifications non commitées (déjà rencontré : un document régénéré). Git refuse
+alors le merge — ne jamais stasher ni écraser le travail d'un autre sans demander.
+
 ## Architecture (non évidente — lire avant d'éditer)
+
+**Vue d'ensemble et format du graphe : [`ARCHITECTURE.md`](ARCHITECTURE.md)** — les huit types,
+les alias du `@context`, les deux étages de validation, les couches de projection. Ce qui suit
+n'en garde que ce qui se mord les doigts quand on l'ignore.
 
 - **Contenu = `data/graph/*.jsonld` UNIQUEMENT**, **chargé au runtime** par le React
   (`fetch`) — plus aucun inline, plus de `sync-*.mjs`. ⚠ Les autres fichiers de `data/` ne sont
@@ -82,8 +90,11 @@ fichier livré : il n'y a plus rien à régénérer, donc plus rien qui puisse s
 C'était l'objet de la migration — les trois pannes du modèle précédent avaient toutes la même
 cause, un dérivé que rien ne resynchronisait.
 
-**`data/` ne contient plus QUE `data/graph/`.** Un seul répertoire, un seul validateur
-(`tools/validate-graph.mjs`), et huit types :
+**`data/` = `graph/` (tout le contenu servi) + les fichiers de DÉCISIONS des chaînes
+d'arbitrage** (`lectures-arbitrees.json`, `lectures-kanji-arbitrees.json`,
+`mots-parasites.json`, `enonces-arbitres.json`). Ces derniers ne sont **jamais servis** —
+`isServedData` ne matche que `.jsonld`. Un seul validateur (`tools/validate-graph.mjs`),
+et huit types :
 
 | Type | Document | Rôle |
 |---|---|---|
@@ -162,6 +173,16 @@ réécrire une lecture correcte. Sept entrées en relevaient : quatre portaient 
 note d'auteur (`ことし（特別な読み）`), et 差 / 最大 **deux** lectures dont la seconde
 appartenait à un autre mot (`さいしょう` est celle de 最小, l'antonyme de 最大).
 
+**Arêtes `tests` manquantes — quatrième chaîne**, déterministe et sans arbitrage :
+
+    bun tools/graph/link-answers.mjs   # → pose l'arête depuis la RÉPONSE de la question
+
+⚠ **Chaque piste cherche dans SON référentiel.** La réponse d'une question de grammaire est un
+point de `gram.jsonld` ; la chercher dans `word.jsonld` donne `食べられた`, `お座り`, `撮って` —
+des formes fléchies déposées par le minage des options, qui s'afficheraient comme des mots du
+référentiel. Lecture et écoute sont exclues : leur réponse est un fragment de texte, pas une
+entité. Couverture des arêtes : 59 % → 95,7 %.
+
 ⚠ **`jlpt:ord` = index global dans le corpus, groupé par compétence, et il doit rester
 stable** : c'est lui qu'indexent le bitset `seen`/`mastered`, `wrong[]` (erreurs) et
 `jlptN3quiz_resume.ids` persistés en localStorage. Renuméroter corrompt la progression des
@@ -219,6 +240,22 @@ utilisateurs. **Ajouter en fin de shard**, et vérifier que `corpus.jsonld` suit
      invisible (Chromium sort le `rt` absolu du flux, donc le bug ne se voit pas en desktop).
 - **Grep de références** : inclure `.tsx` ET `.ts` (`--include="*.ts"` seul rate les
   composants React → liens/imports morts non détectés, ex. un `href` vers une page supprimée).
+- **Vérification navigateur — le chemin qui MARCHE.** L'extension Chrome n'est pas connectée et
+  le MCP Playwright cherche un canal `chrome` absent. Piloter en CDP le Chromium que Playwright
+  a déjà installé :
+      B=~/Library/Caches/ms-playwright/chromium-1200/chrome-mac-arm64/"Google Chrome for Testing.app"/Contents/MacOS/"Google Chrome for Testing"
+      "$B" --headless=new --disable-gpu --remote-debugging-port=9333 --user-data-dir=/tmp/cdp about:blank
+  puis `PUT /json/new?<url>` → WebSocket → `Runtime.evaluate`. ⚠ Le chargement à froid des cinq
+  shards prend ~8 s : attendre moins fait conclure à tort « la session ne démarre pas ».
+- **Ne pas scripter les éditions en `bun -e '…'`** : le contenu du dépôt est en français, et une
+  apostrophe ou un backtick dans la chaîne casse le quoting zsh (`unmatched "`,
+  `command not found: +`). Utiliser l'outil Edit pour toute retouche de texte ; réserver
+  `bun -e` aux mesures en LECTURE seule.
+- **Un test de MESURE a un cycle de vie.** Tant qu'un trou existe, il le fige (« 551 kanji sur
+  810 ont une lecture ») ; une fois comblé, il devient un invariant (« aucun kanji sans
+  lecture »). Et un cliquet (`couverture > 93 %`) doit être **remonté** dès qu'on dépasse le
+  seuil, sinon il cesse de garder quoi que ce soit. Un test de mesure laissé tel quel échoue en
+  annonçant une régression alors qu'il constate un progrès.
 - **Test navigateur (HashRouter)** : changer le hash (`#/x`) ne recharge PAS la page.
   Pour charger un nouveau bundle après `bun run build`, faire un vrai `location.reload()`
   (le HTML est network-first, donc pas besoin de bumper `sw.js`).
