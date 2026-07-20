@@ -6,3 +6,7 @@ src/styles/styles.gen.css
 # Base JMdict : source du GÉNÉRATEUR de propositions de lecture, jamais livrée ni
 # commitée (CC BY-SA 4.0 — on ne redistribue pas ses données, cf. tools/jmdict/).
 .jmdict/
+
+# Rapports d'arbitrage des énoncés — régénérés par tools/graph/audit-stems.mjs
+data/enonces-arbitres.skel.json
+docs/superpowers/enonces-a-arbitrer.md
