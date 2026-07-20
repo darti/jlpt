@@ -79,3 +79,40 @@ test("applyAnswerEdges laisse intact ce qu'il ne sait pas relier", () => {
   expect(sujets[0].tests).toBeUndefined();
   expect(poses).toBe(0);
 });
+
+// --- grammaire : la réponse est un POINT DE GRAMMAIRE, pas un mot ----------------
+
+import { gramIndex } from "./link-answers.mjs";
+
+const gram = [
+  { "@id": "jlpt:gram/ところ", "jlpt:form": "〜ところ" },
+  { "@id": "jlpt:gram/たらいい", "jlpt:form": "〜たらいい", "jlpt:altForm": ["〜といい"] },
+];
+
+test("une réponse de grammaire résout vers le point, pas vers un mot", () => {
+  const g = q({ "jlpt:skill": "grammaire", opts: ["ところ"], "jlpt:answer": 0 });
+  expect(edgeFromAnswer(g, known, gramIndex(gram))).toBe("jlpt:gram/ところ");
+});
+
+test("la forme alternative résout vers le MÊME point", () => {
+  const g = q({ "jlpt:skill": "grammaire", opts: ["といい"], "jlpt:answer": 0 });
+  expect(edgeFromAnswer(g, known, gramIndex(gram))).toBe("jlpt:gram/たらいい");
+});
+
+test("le 〜 de la forme n'empêche pas la résolution", () => {
+  const g = q({ "jlpt:skill": "grammaire", opts: ["〜ところ"], "jlpt:answer": 0 });
+  expect(edgeFromAnswer(g, known, gramIndex(gram))).toBe("jlpt:gram/ところ");
+});
+
+test("une réponse de grammaire ne cherche JAMAIS dans les mots", () => {
+  // C'est l'erreur qui avait fait exclure la grammaire : 食べられた, お座り, 撮って sont
+  // dans word.jsonld par le minage des options. Les lier montrerait une conjugaison comme
+  // s'il s'agissait d'un mot du référentiel.
+  const g = q({ "jlpt:skill": "grammaire", opts: ["影響"], "jlpt:answer": 0 });
+  expect(edgeFromAnswer(g, known, gramIndex(gram))).toBeNull();
+});
+
+test("vocabulaire et kanji ne cherchent JAMAIS dans la grammaire", () => {
+  const v = q({ "jlpt:skill": "vocabulaire", opts: ["ところ"], "jlpt:answer": 0 });
+  expect(edgeFromAnswer(v, known, gramIndex(gram))).toBeNull();
+});
