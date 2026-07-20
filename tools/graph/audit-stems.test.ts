@@ -177,6 +177,14 @@ test("isDisambiguated reconnaît le trou et la glose de sens, pas un énoncé nu
   expect(isDisambiguated("「あける」を漢字で書くと？")).toBe(false);
 });
 
+test("isDisambiguated reconnaît AUSSI le trou en pleine chasse ＿", () => {
+  // Régression : 256 énoncés de grammaire écrivent leur trou en U+FF3F, souvent doublé
+  // seulement (この部屋（へや）は＿＿です。). Une détection limitée au souligné ASCII les
+  // réclamait à l'arbitrage alors qu'ils sont déjà des phrases à trou.
+  expect(isDisambiguated("この部屋（へや）は＿＿です。")).toBe(true);
+  expect(isDisambiguated("家に帰っ＿、電話します。")).toBe(true);
+});
+
 test("auditStems considère un énoncé à trou comme déjà arbitré, même lecture partagée", () => {
   const a = q("jlpt:q/1", 0, {
     "jlpt:stem": "夜が___。（あける）",

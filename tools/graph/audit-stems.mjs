@@ -32,12 +32,20 @@ const isQuestion = (s) => arr(s["@type"]).includes("jlpt:Question");
  *  même lecture sont deux bonnes réponses. */
 const DEMANDE_ECRITURE = /を漢字で書くと/;
 
-/** Un énoncé est désambiguïsé s'il porte un trou (`___`) ou la glose de sens 「…の意味」.
+/** Le corpus écrit ses trous de DEUX façons, et il faut lire les deux :
+ *    · `___` — souligné ASCII, au moins trois : 1529 énoncés (q-grammaire, q-kanji, et
+ *      les questions de vocabulaire réécrites ici). C'est la forme dominante, la seule
+ *      que `stems.mjs` accepte d'écrire — inutile de propager la minoritaire.
+ *    · `＿` / `＿＿` — souligné pleine chasse U+FF3F : 256 énoncés, tous en grammaire.
+ *  Ne reconnaître que l'ASCII ferait réclamer l'arbitrage de 256 questions DÉJÀ à trou. */
+const TROU = /_{3,}|＿+/;
+
+/** Un énoncé est désambiguïsé s'il porte un trou ou la glose de sens 「…の意味」.
  *  Les deux formes préexistent dans le corpus ; on reconnaît les deux pour ne pas
  *  redemander l'arbitrage de ce qui est déjà arbitré. */
 export function isDisambiguated(stem) {
   const s = String(stem ?? "");
-  return /_{3,}/.test(s) || /の意味/.test(s);
+  return TROU.test(s) || /の意味/.test(s);
 }
 
 /** Index mot → lecture, bâti sur les `jlpt:Word` ATTESTÉS du graphe — ceux qui portent
