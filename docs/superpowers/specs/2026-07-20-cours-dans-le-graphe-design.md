@@ -69,14 +69,45 @@ hors `data/graph/`, donc plus de « sauf celui-là » à expliquer.
 Rejeté : créer un type `jlpt:Skill` pour y rattacher les conseils — un type entier pour 12
 conseils, alors que les compétences ne sont aujourd'hui que des chaînes.
 
-### D3 — Les 179 kanji manquants deviennent des entités
+### D3 — Les 179 kanji manquants deviennent des entités, ET le graphe apprend les lectures kanji
 
 Le cours porte déjà `kanji` + `sens` pour chacun. Le référentiel passe de **631 à 810**, et la
 leçon kanji pointe vers **100 % de ses items**.
 
-Les lectures on/kun manqueront sur ces 179 : c'est un **trou mesuré**, pas une perte — le cours
-ne les portait pas non plus. Rejeté : laisser la leçon porter des items inline, ce qui
-réintroduirait la duplication (corriger le sens de 優 se ferait à deux endroits).
+Rejeté : laisser la leçon porter des items inline, ce qui réintroduirait la duplication
+(corriger le sens de 優 se ferait à deux endroits).
+
+**Correction apportée après mesure — la première rédaction de cette spec perdait du contenu.**
+`cours-kanji.json` porte deux champs que `kanji.jsonld` **ne porte pas du tout** :
+
+| Champ du cours | Exemple | Destination |
+|---|---|---|
+| `lecture` (on·kun) | `イ・くらい` | `jlpt:onReading` / `jlpt:kunReading` — **déjà déclarés dans `KanjiShape`**, jamais alimentés |
+| `exemple` (27 items) | `労働 (rōdō) travail` | `jlpt:compound`, chaîne **verbatim** |
+
+Le découpage de `lecture` est déterministe : séparateur `・`, katakana → on, hiragana → kun.
+Mesuré : **551 / 551 se découpent proprement**, zéro irrégularité. Sans cette reprise, migrer
+`/cours` vers le graphe supprimerait la lecture de 551 kanji — exactement la perte silencieuse
+que cette migration existe pour rendre impossible.
+
+`jlpt:compound` reste une chaîne brute : parser `労働 (rōdō) travail` en {mot, rōmaji, sens}
+marcherait sur 26 cas et casserait sur `経済 / 済む (sumu)`. 27 chaînes ne justifient pas une
+heuristique.
+
+⚠ Ces lectures on/kun sont les « vidages » que `CLEAN_FURI_RE` filtre côté furigana
+(cf. CLAUDE.md, régression Q#1180). Aucun risque : `furi()` lit `word.jsonld`, jamais
+`kanji.jsonld`.
+
+### D3bis — Les lectures de vocabulaire : le graphe fait autorité, le cours comble
+
+Mesuré sur les 618 items de `cours-vocab.json` : **561 lectures concordent** avec `word.jsonld`,
+**7 comblent un trou** (524 mots du graphe n'ont aucune lecture), 13 « divergent » — dont 11 sont
+des artefacts de cellules multi-mots (`最初 / 最後` → `さいしょ / さいご` face à l'entité `最初`),
+et 2 de vraies variantes (`明日` あす/あした, `数` かず/すう).
+
+Règle appliquée, identique à celle de `tools/graph/readings.mjs` : **le graphe fait autorité, le
+cours ne fait que combler.** Une divergence n'est jamais résolue en silence — le script de
+migration les liste.
 
 ### D4 — Le script de migration est jetable
 
@@ -124,7 +155,9 @@ retenu : repartir de zéro, comme la progression du quiz au lot 1. `COURS_KEY` s
 | `data/graph/example.jsonld` | 227 `jlpt:Example` |
 | `data/graph/method.jsonld` | 2 `jlpt:MethodNote` |
 
-`kanji.jsonld` passe à 810 sujets ; `lesson.jsonld` est régénéré avec 0 orphelin.
+`kanji.jsonld` passe à 810 sujets et gagne `jlpt:onReading` / `jlpt:kunReading` (551 items) plus
+`jlpt:compound` (27) ; `word.jsonld` gagne 7 lectures ; `lesson.jsonld` est régénéré avec 0
+orphelin.
 
 ### Runtime — `/cours` joint le graphe
 
@@ -169,8 +202,11 @@ doivent perdre `cours-*.json` et gagner `example.jsonld` / `method.jsonld`, et `
 3. `bun test` et `bun run typecheck` passent. Les composants de `src/features/cours/` **et
    leurs tests** n'ont pas été modifiés — seule la couche de chargement change.
 4. Vérification navigateur sur le build servi : les trois pistes affichent leurs items avec
-   sens et lecture, une fiche de grammaire affiche ses exemples avec l'analyse, la méthode
-   affiche ses 12 conseils, et le « Rappel de cours » du quiz fonctionne toujours.
+   sens **et lecture** (y compris les on·kun des kanji, `イ・くらい`), une fiche de grammaire
+   affiche ses exemples avec l'analyse, la méthode affiche ses 12 conseils, et le « Rappel de
+   cours » du quiz fonctionne toujours.
+6. **Aucun champ perdu** : un contrôle compare, pour chaque item du cours d'avant migration,
+   que la vue reconstituée depuis le graphe porte les mêmes `lecture` / `sens` / `niv`.
 5. Aucune requête en échec ni erreur console.
 
 ## Risques
