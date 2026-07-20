@@ -5,6 +5,7 @@ import { MemoryRouter } from "react-router-dom";
 import EntrainementApp from "./EntrainementApp.tsx";
 import { SKILLS } from "./types/progress.ts";
 import { clearCategoryCache } from "./lib/bank.ts";
+import { graphFetch, ALL_ORDS, PER_SKILL } from "./testing/graphFixture.ts";
 
 // Reproduces the hub "Commencer" click: onStart={quiz.start} makes React pass the click
 // event as start's first arg. Guards against the NaN-session regression (resolveMinutes).
@@ -14,28 +15,12 @@ let container: HTMLDivElement;
 let root: Root;
 let origFetch: typeof fetch;
 
-function pool(cat: string, base: number) {
-  return Array.from({ length: 8 }, (_, i) => ({
-    id: base + i, cat, d: ((i % 3) + 1), q: `Q-${cat}-${i}`, o: ["a", "b", "c", "d"], a: 0,
-  }));
-}
-
-const BANK: Record<string, ReturnType<typeof pool>> = {};
-SKILLS.forEach((c, idx) => { BANK[c] = pool(c, (idx + 1) * 100); });
-const INDEX: Record<number, string> = {};
-Object.values(BANK).flat().forEach((q) => { INDEX[q.id] = q.cat; });
 
 beforeEach(() => {
   localStorage.clear();
   clearCategoryCache(); // isolate the shared loadCategory memo from other test files
   origFetch = globalThis.fetch;
-  globalThis.fetch = (async (url: string) => {
-    const u = String(url);
-    if (u.includes("bank-index")) return { json: async () => INDEX };
-    const m = u.match(/bank-([a-z]+)\.json/);
-    if (m && BANK[m[1]]) return { json: async () => BANK[m[1]] };
-    return { json: async () => ({}) };
-  }) as unknown as typeof fetch;
+  globalThis.fetch = graphFetch();
   container = document.createElement("div");
   document.body.appendChild(container);
   root = createRoot(container);
@@ -66,10 +51,11 @@ test("clicking Commencer starts a session (event arg does not NaN the session le
 });
 
 test("a session with stored errors injects the recent wrong ids without duplicates and keeps the budget", async () => {
-  // 4 real ids across 2 categories (grammaire's & vocabulaire's first two, per `pool`'s
-  // id scheme `(catIndex+1)*100 + i`) — all within the 30% cap (floor(0.3*15) = 4), so
-  // every one of them must survive into the session as the "recent errors" slice.
-  const wrongIds = [100, 101, 200, 201];
+  // 4 real ids across 2 categories (les deux premiers de grammaire et de vocabulaire ; les
+  // ordinaux sont GROUPÉS par compétence, donc grammaire occupe [0, 7] et vocabulaire [8, 15])
+  // — tous dans le plafond de 30 % (floor(0.3*15) = 4), donc chacun doit survivre dans la
+  // tranche « erreurs récentes ».
+  const wrongIds = [0, 1, PER_SKILL, PER_SKILL + 1];
   localStorage.setItem("jlptN3adapt_v2", JSON.stringify({ wrong: wrongIds, diagAt: Date.now() }));
 
   act(() => { root.render(<MemoryRouter><EntrainementApp /></MemoryRouter>); });
@@ -91,17 +77,15 @@ test("a session with stored errors injects the recent wrong ids without duplicat
   expect(new Set(resume.ids).size).toBe(resume.ids.length); // no duplicates errors↔adaptive
 });
 
-test("index-fetch failure degrades to an adaptive-only session (no crash, budget kept)", async () => {
-  // Seed errors that would be injected IF the index resolved.
-  const someIds = Object.values(BANK).flat().slice(0, 4).map((q) => q.id);
+test("corpus-fetch failure degrades to an adaptive-only session (no crash, budget kept)", async () => {
+  // Seed errors that would be injected IF the corpus resolved.
+  const someIds = ALL_ORDS.slice(0, 4);
   localStorage.setItem("jlptN3adapt_v2", JSON.stringify({ wrong: someIds, diagAt: Date.now() }));
-  // Override the harness fetch: fail only bank-index, still serve category pools.
+  // Override the harness fetch: fail only corpus.jsonld, still serve the skill shards.
+  const served = graphFetch();
   globalThis.fetch = (async (url: string) => {
-    const u = String(url);
-    if (u.includes("bank-index")) throw new Error("network down");
-    const m = u.match(/bank-([a-z]+)\.json/);
-    if (m && BANK[m[1]]) return { json: async () => BANK[m[1]] };
-    return { json: async () => ({}) };
+    if (String(url).includes("corpus.jsonld")) throw new Error("network down");
+    return served(url as unknown as RequestInfo);
   }) as unknown as typeof fetch;
 
   act(() => { root.render(<MemoryRouter><EntrainementApp /></MemoryRouter>); });

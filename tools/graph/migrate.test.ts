@@ -132,6 +132,33 @@ test("buildQuestions réattribue des ordinaux denses malgré les questions écar
   expect(new Set(ords).size).toBe(total);
 });
 
+// --- ordinaux groupés : le corpus tient en cinq intervalles -------------------
+
+import { buildCorpus } from "../migrate-to-graph.mjs";
+
+test("buildQuestions groupe les ordinaux par compétence, sans trou", () => {
+  const { bySkill, total } = buildQuestions({ kanji: [], word: [], gram: [] });
+  let attendu = 0;
+  for (const skill of ["grammaire", "vocabulaire", "kanji", "lecture", "ecoute"]) {
+    const ords = bySkill[skill].map((q) => q["jlpt:ord"]);
+    expect(ords[0]).toBe(attendu);                        // contigu avec la précédente
+    expect(ords).toEqual(ords.map((_, i) => attendu + i)); // et dense à l'intérieur
+    attendu += ords.length;
+  }
+  expect(attendu).toBe(total);
+});
+
+test("buildCorpus décrit exactement les intervalles produits", () => {
+  const { bySkill } = buildQuestions({ kanji: [], word: [], gram: [] });
+  const corpus = buildCorpus(bySkill);
+  expect(corpus).toHaveLength(5);
+  for (const r of corpus) {
+    const qs = bySkill[r["jlpt:skill"]];
+    expect(r["jlpt:count"]).toBe(qs.length);
+    expect(r["jlpt:from"]).toBe(qs[0]["jlpt:ord"]);
+  }
+});
+
 // --- leçons : le cours ORDONNE, il ne recopie plus ------------------------------
 
 import { lessonId, buildLessons } from "../migrate-to-graph.mjs";

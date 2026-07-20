@@ -1,15 +1,24 @@
 import { test, expect } from "bun:test";
 import {
-  shuffle, pickAdaptive, allocate, allocateCount, questionCount, loadCategory, loadBankIndex,
-  clearBankIndexCache, clearCategoryCache, selectRecentErrors, composeSession, questionsForIds,
+  shuffle, pickAdaptive, allocate, allocateCount, questionCount, loadCategory,
+  clearCategoryCache, selectRecentErrors, composeSession, questionsForIds,
   selectDiagnostic, loadAllCategories,
 } from "./bank.ts";
 import type { FetchLike } from "./bank.ts";
+import type { SkillRange } from "./graph.ts";
 import type { Question } from "../types/quiz.ts";
 import type { Skill } from "../types/progress.ts";
 
 const q = (id: number, d: 1 | 2 | 3): Question =>
   ({ id, cat: "kanji", d, q: "", o: [], a: 0 });
+
+/** Un sujet jlpt:Question tel que le graphe le sert — les tests de CHARGEMENT simulent
+ *  désormais des documents `data/graph/q-<skill>.jsonld`, pas des tableaux bruts. */
+const sujet = (ord: number, skill: Skill, d: 1 | 2 | 3) => ({
+  "@id": `jlpt:q/${ord}`, "@type": "jlpt:Question",
+  "jlpt:skill": skill, "jlpt:difficulty": d, "jlpt:ord": ord,
+  "jlpt:stem": "", opts: [], "jlpt:answer": 0,
+});
 
 test("shuffle returns a permutation without mutating input (seeded rng)", () => {
   const src = [1, 2, 3, 4, 5];
@@ -53,24 +62,20 @@ test("questionCount clamps minutes to [4,45] at ~1.5/min", () => {
   expect(questionCount(999)).toBe(45); // ceil
 });
 
-test("loadCategory fetches the split file and memoizes", async () => {
+test("loadCategory fetches the skill shard and memoizes", async () => {
+  clearCategoryCache();
   let calls = 0;
-  const fetchImpl = async (_url: string) => { calls++; return { json: async () => [q(0, 1)] }; };
+  let url = "";
+  const fetchImpl = async (u: string) => {
+    calls++; url = u;
+    return { json: async () => ({ "@graph": [sujet(0, "kanji", 1)] }) };
+  };
   const a = await loadCategory("kanji", fetchImpl as any);
   const b = await loadCategory("kanji", fetchImpl as any);
+  expect(url).toBe("data/graph/q-kanji.jsonld");
   expect(a).toBe(b);        // same memoized array
   expect(calls).toBe(1);    // fetched once
-});
-
-test("loadBankIndex fetches bank-index.json and memoizes", async () => {
-  clearBankIndexCache();
-  let calls = 0;
-  const fetchImpl = async (_url: string) => { calls++; return { json: async () => ({ 0: "grammaire", 2: "kanji" }) }; };
-  const a = await loadBankIndex(fetchImpl as any);
-  const b = await loadBankIndex(fetchImpl as any);
-  expect(a).toBe(b);
-  expect(calls).toBe(1);
-  expect(a[0]).toBe("grammaire");
+  expect(a[0].id).toBe(0);  // projeté vers le type interne du moteur
 });
 
 test("selectRecentErrors returns [] for empty wrong or non-positive n", () => {
@@ -115,20 +120,26 @@ test("composeSession clamps adaptiveTarget to 0 when errors already exceed total
 
 test("questionsForIds resolves ids across categories, preserves order, drops unknowns", async () => {
   clearCategoryCache();
-  const idx: Record<number, Skill> = { 1: "kanji", 2: "grammaire", 3: "kanji" };
-  const kanjiPool: Question[] = [q(1, 1), q(3, 1)];
-  const grammairePool: Question[] = [{ id: 2, cat: "grammaire", d: 1, q: "", o: [], a: 0 }];
+  // Ordinaux groupés : grammaire occupe [0,1], kanji [2,3]. La compétence d'un id se déduit
+  // des bornes, plus d'un index id→compétence.
+  const ranges: SkillRange[] = [
+    { skill: "grammaire", from: 0, count: 2 },
+    { skill: "kanji", from: 2, count: 2 },
+  ];
   const fetchImpl: FetchLike = async (url) => ({
-    json: async () => (url.includes("kanji") ? kanjiPool : grammairePool),
+    json: async () => ({
+      "@graph": url.includes("kanji")
+        ? [sujet(2, "kanji", 1), sujet(3, "kanji", 1)]
+        : [sujet(0, "grammaire", 1), sujet(1, "grammaire", 1)],
+    }),
   });
-  const out = await questionsForIds([3, 2, 1, 99], idx, fetchImpl);
-  expect(out.map((x) => x.id)).toEqual([3, 2, 1]); // order preserved, 99 (unknown) dropped
+  const out = await questionsForIds([3, 1, 0, 99], ranges, fetchImpl);
+  expect(out.map((x) => x.id)).toEqual([3, 1, 0]); // order preserved, 99 (hors corpus) dropped
 });
 
 test("questionsForIds returns [] for no ids", async () => {
-  const idx: Record<number, Skill> = {};
-  const fetchImpl: FetchLike = async () => ({ json: async () => [] });
-  expect(await questionsForIds([], idx, fetchImpl)).toEqual([]);
+  const fetchImpl: FetchLike = async () => ({ json: async () => ({ "@graph": [] }) });
+  expect(await questionsForIds([], [], fetchImpl)).toEqual([]);
 });
 
 test("selectDiagnostic spreads across skills and difficulties, no duplicates", () => {
@@ -182,7 +193,7 @@ test("selectDiagnostic returns [] for total<=0", () => {
 test("loadAllCategories charge les cinq pools et les indexe par compétence", async () => {
   clearCategoryCache();
   const fetchImpl: FetchLike = async (url) => ({
-    json: async () => [{ id: url.includes("kanji") ? 42 : 1, cat: "kanji", d: 1, q: "", o: [], a: 0 }],
+    json: async () => ({ "@graph": [sujet(url.includes("kanji") ? 42 : 1, "kanji", 1)] }),
   });
   const pools = await loadAllCategories(fetchImpl);
   expect(Object.keys(pools).sort()).toEqual(
@@ -199,7 +210,7 @@ test("loadAllCategories lance les cinq fetch en parallèle, pas en cascade", asy
     peak = Math.max(peak, ++inFlight);
     await new Promise((r) => setTimeout(r, 5));
     inFlight--;
-    return { json: async () => [] };
+    return { json: async () => ({ "@graph": [] }) };
   };
   await loadAllCategories(fetchImpl);
   // En cascade le pic vaudrait 1 : c'est exactement la régression que ce test garde.

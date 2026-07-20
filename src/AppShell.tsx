@@ -19,7 +19,7 @@ export function AppShell() {
   const { updateReady, apply, forceRefresh, version } = useServiceWorker();
 
   useEffect(() => {
-    void setupDict();       // expose window.furi/visualBreak/initDefs + load data/dict.json
+    void setupDict();       // expose hideDef/jlptSay + charge data/graph/word.jsonld
     applyFontScale();       // apply persisted --fs-ui/--fs-jp
     applyFuri();            // apply persisted global furigana visibility (data-furi)
     if (typeof speechSynthesis !== "undefined") {

@@ -22,6 +22,15 @@ const STATIC_FILES = new Set([
   // Dictionnaire (furigana / définition au tap) — le quiz React le fetch au runtime
   // via src/lib/dict.ts (les données ne sont plus inlinées dans le bundle).
   "/data/dict.json",
+  // Graphe JSON-LD — ce que l'app lit RÉELLEMENT depuis le lot 2 : les cinq shards de
+  // questions (src/lib/graph.ts), les intervalles du corpus (couverture + reprise de
+  // session) et les mots (dictionnaire). Les autres documents sont servis pour que le
+  // dev soit identique à la prod.
+  "/data/graph/q-grammaire.jsonld", "/data/graph/q-vocabulaire.jsonld",
+  "/data/graph/q-kanji.jsonld", "/data/graph/q-lecture.jsonld", "/data/graph/q-ecoute.jsonld",
+  "/data/graph/corpus.jsonld", "/data/graph/word.jsonld",
+  "/data/graph/kanji.jsonld", "/data/graph/gram.jsonld", "/data/graph/lesson.jsonld",
+  "/data/graph/context.jsonld", "/data/graph/shapes.jsonld",
   // Contenu du cours (route /cours) — fetché au runtime par src/features/cours.
   "/data/cours-gram.json", "/data/cours-kanji.json", "/data/cours-vocab.json",
   "/data/cours-method.json",

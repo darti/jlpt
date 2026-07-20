@@ -47,6 +47,14 @@
       ]
     },
     {
+      "@id": "jlpt:SkillRangeShape", "@type": "sh:NodeShape", "sh:targetClass": "jlpt:SkillRange",
+      "sh:property": [
+        { "sh:path": "jlpt:skill", "sh:in": ["grammaire", "vocabulaire", "kanji", "lecture", "ecoute"], "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:from", "sh:datatype": "xsd:nonNegativeInteger", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:count", "sh:datatype": "xsd:nonNegativeInteger", "sh:minCount": 1, "sh:maxCount": 1 }
+      ]
+    },
+    {
       "@id": "jlpt:LessonShape", "@type": "sh:NodeShape", "sh:targetClass": "jlpt:Lesson",
       "sh:property": [
         { "sh:path": "schema:name", "sh:datatype": "xsd:string", "sh:minCount": 1, "sh:maxCount": 1 },

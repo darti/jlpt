@@ -1,5 +1,5 @@
 import { test, expect, beforeEach, afterEach } from "bun:test";
-import { setupDict, applyDictData, initDefs, furi } from "./dict.ts";
+import { setupDict, applyDictData, initDefs, furi, wordsToDict } from "./dict.ts";
 
 type W = Record<string, unknown>;
 const origFetch = globalThis.fetch;
@@ -10,11 +10,25 @@ beforeEach(() => {
 });
 afterEach(() => { globalThis.fetch = origFetch; });
 
-test("setupDict loads data from JSON and feeds the imported furi()", async () => {
-  globalThis.fetch = (async () =>
-    new Response(JSON.stringify({ "本": { r: "ほん", m: "livre" } }))) as unknown as typeof fetch;
-  await setupDict("data/dict.json");
+test("setupDict alimente furi() depuis word.jsonld", async () => {
+  applyDictData({});
+  globalThis.fetch = (async () => new Response(JSON.stringify({
+    "@graph": [{ "@id": "jlpt:word/本", "@type": "jlpt:Word",
+                 "schema:name": "本", "jlpt:reading": "ほん", "schema:description": "livre" }],
+  }))) as unknown as typeof fetch;
+  await setupDict("data/graph/word.jsonld");
   expect(furi("本")).toContain("<rt>ほん</rt>"); // data came from the fetch
+});
+
+test("wordsToDict projette les sujets jlpt:Word vers la Dict interne", () => {
+  const d = wordsToDict([
+    { "schema:name": "本", "jlpt:reading": "ほん", "schema:description": "livre" },
+    { "schema:name": "謎" },                                    // ni lecture ni sens
+    { "jlpt:reading": "orpheline" },                            // sans nom → ignorée
+  ]);
+  expect(d["本"]).toEqual({ r: "ほん", m: "livre" });
+  expect(d["謎"]).toEqual({});
+  expect(Object.keys(d)).toHaveLength(2);
 });
 
 test("setupDict n'expose en globales que les handlers inline du popup", async () => {

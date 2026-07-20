@@ -1,6 +1,7 @@
 import { SKILLS, type Skill } from "../types/progress.ts";
 import { DRATING } from "./elo.ts";
 import type { Question } from "../types/quiz.ts";
+import { clearGraphCache, loadSkill, skillOfOrd, type SkillRange } from "./graph.ts";
 
 export type FetchLike = (url: string) => Promise<{ json: () => Promise<unknown> }>;
 
@@ -13,38 +14,18 @@ export function shuffle<T>(a: T[], rng: () => number = Math.random): T[] {
   return out;
 }
 
-const cache = new Map<Skill, Promise<Question[]>>();
-
 /** Clears the memoized category pools. Tests that drive `loadCategory` with a mocked
- *  fetch call this to isolate the shared module cache from other test files. */
+ *  fetch call this to isolate the shared module cache from other test files.
+ *  Délègue à `graph.ts`, qui porte désormais la mémoïsation. */
 export function clearCategoryCache(): void {
-  cache.clear();
+  clearGraphCache();
 }
 
-let bankIndexPromise: Promise<Record<number, Skill>> | null = null;
-
-/** Clears the memoized bank-index. Mirrors clearCategoryCache for test isolation. */
-export function clearBankIndexCache(): void {
-  bankIndexPromise = null;
-}
-
-/** Cached id→skill index (`data/bank-index.json`). Shared by the coverage hook. */
-export function loadBankIndex(fetchImpl: FetchLike = fetch as FetchLike): Promise<Record<number, Skill>> {
-  if (!bankIndexPromise) {
-    bankIndexPromise = fetchImpl("data/bank-index.json").then(
-      (r) => r.json() as Promise<Record<number, Skill>>,
-    );
-  }
-  return bankIndexPromise;
-}
-
+/** Le pool d'une compétence. Passe par le graphe (`q-<skill>.jsonld`) : la projection
+ *  JSON-LD → `Question` vit dans `graph.ts`, pas ici, pour que les couches pures de ce
+ *  module ne sachent rien du format des documents. */
 export function loadCategory(cat: Skill, fetchImpl: FetchLike = fetch as FetchLike): Promise<Question[]> {
-  let p = cache.get(cat);
-  if (!p) {
-    p = fetchImpl(`data/bank-${cat}.json`).then((r) => r.json() as Promise<Question[]>);
-    cache.set(cat, p);
-  }
-  return p;
+  return loadSkill(cat, fetchImpl);
 }
 
 /** Les cinq pools, chargés **en parallèle**. Une session composée a besoin de toutes les
@@ -57,14 +38,16 @@ export async function loadAllCategories(
   return Object.fromEntries(SKILLS.map((s, i) => [s, pools[i]])) as Record<Skill, Question[]>;
 }
 
-/** Resolve `ids → Question[]` by loading the pools of the categories the ids belong to (per `idx`).
- *  Order follows `ids`; ids absent from the pools are dropped. Shared by resume + the errors slice. */
+/** Resolve `ids → Question[]` by loading the pools of the categories the ids belong to.
+ *  La compétence d'un id se déduit des intervalles du corpus (`skillOfOrd`) au lieu d'un
+ *  index id→compétence de 190 Ko. Order follows `ids`; ids absent from the pools are dropped.
+ *  Shared by resume + the errors slice. */
 export async function questionsForIds(
-  ids: number[], idx: Record<number, Skill>, fetchImpl: FetchLike = fetch as FetchLike,
+  ids: number[], ranges: SkillRange[], fetchImpl: FetchLike = fetch as FetchLike,
 ): Promise<Question[]> {
   if (!ids.length) return [];
   const catsNeeded = new Set<Skill>();
-  for (const id of ids) { const c = idx[id]; if (c) catsNeeded.add(c); }
+  for (const id of ids) { const c = skillOfOrd(id, ranges); if (c) catsNeeded.add(c); }
   const pools = await Promise.all([...catsNeeded].map((c) => loadCategory(c, fetchImpl)));
   const byId = new Map<number, Question>();
   for (const pool of pools) for (const p of pool) byId.set(p.id, p);

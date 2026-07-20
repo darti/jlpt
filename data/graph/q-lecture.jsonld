@@ -2,11 +2,11 @@
  "@context": "context.jsonld",
  "@graph": [
   {
-   "@id": "jlpt:q/25",
+   "@id": "jlpt:q/10223",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 25,
+   "jlpt:ord": 10223,
    "jlpt:stem": "「申し込みは明日までです」＝締め切りは？",
    "opts": [
     "今日",
@@ -25,11 +25,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/26",
+   "@id": "jlpt:q/10224",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 26,
+   "jlpt:ord": 10224,
    "jlpt:stem": "「会議は中止になりました」＝会議は…",
    "opts": [
     "行われる",
@@ -48,11 +48,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/27",
+   "@id": "jlpt:q/10225",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 27,
+   "jlpt:ord": 10225,
    "jlpt:stem": "「お先に失礼します」を言う場面は？",
    "opts": [
     "食事の前",
@@ -71,11 +71,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/28",
+   "@id": "jlpt:q/10226",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 28,
+   "jlpt:ord": 10226,
    "jlpt:stem": "「雨が降りそうだ」＝何を見て言った？",
    "opts": [
     "天気予報",
@@ -94,11 +94,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/29",
+   "@id": "jlpt:q/10227",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 29,
+   "jlpt:ord": 10227,
    "jlpt:stem": "「ご覧ください」は誰の動作？",
    "opts": [
     "自分が見る",
@@ -117,11 +117,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/30",
+   "@id": "jlpt:q/10228",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 30,
+   "jlpt:ord": 10228,
    "jlpt:stem": "「行かないこともない」＝話し手は？",
    "opts": [
     "絶対行かない",
@@ -140,11 +140,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/66",
+   "@id": "jlpt:q/10229",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 66,
+   "jlpt:ord": 10229,
    "jlpt:stem": "「ご自由にお取りください」＝どうすればいい？",
    "opts": [
     "取ってはいけない",
@@ -163,11 +163,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/67",
+   "@id": "jlpt:q/10230",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 67,
+   "jlpt:ord": 10230,
    "jlpt:stem": "「準備中」の店に入れる？",
    "opts": [
     "入れる",
@@ -186,11 +186,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/68",
+   "@id": "jlpt:q/10231",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 68,
+   "jlpt:ord": 10231,
    "jlpt:stem": "「遅れる場合はご連絡ください」＝いつ連絡？",
    "opts": [
     "毎日",
@@ -209,11 +209,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/69",
+   "@id": "jlpt:q/10232",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 69,
+   "jlpt:ord": 10232,
    "jlpt:stem": "「タバコはご遠慮ください」の意味は？",
    "opts": [
     "吸ってもいい",
@@ -232,11 +232,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/70",
+   "@id": "jlpt:q/10233",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 70,
+   "jlpt:ord": 10233,
    "jlpt:stem": "「在庫切れ」の商品は？",
    "opts": [
     "買える",
@@ -255,11 +255,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/71",
+   "@id": "jlpt:q/10234",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 71,
+   "jlpt:ord": 10234,
    "jlpt:stem": "「やむを得ず中止した」＝なぜ中止？",
    "opts": [
     "したくてした",
@@ -278,11 +278,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/72",
+   "@id": "jlpt:q/10235",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 72,
+   "jlpt:ord": 10235,
    "jlpt:stem": "「努力したかいがあって合格した」＝努力は？",
    "opts": [
     "無駄だった",
@@ -301,11 +301,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/73",
+   "@id": "jlpt:q/10236",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 73,
+   "jlpt:ord": 10236,
    "jlpt:stem": "「彼が来るとは限らない」＝彼は？",
    "opts": [
     "必ず来る",
@@ -324,11 +324,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/74",
+   "@id": "jlpt:q/10237",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 74,
+   "jlpt:ord": 10237,
    "jlpt:stem": "「先着順」のイベント、確実に入るには？",
    "opts": [
     "早く行く",
@@ -347,11 +347,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/75",
+   "@id": "jlpt:q/10238",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 75,
+   "jlpt:ord": 10238,
    "jlpt:stem": "「無料」のサービスはいくら？",
    "opts": [
     "高い",
@@ -373,11 +373,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/112",
+   "@id": "jlpt:q/10239",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 112,
+   "jlpt:ord": 10239,
    "jlpt:stem": "メール：「明日の会議は10時から3時に変更になりました」＝会議は何時から？",
    "opts": [
     "3時",
@@ -396,11 +396,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/113",
+   "@id": "jlpt:q/10240",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 113,
+   "jlpt:ord": 10240,
    "jlpt:stem": "お知らせ：「雨天の場合は中止します」＝雨が降ったら？",
    "opts": [
     "中止",
@@ -419,11 +419,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/114",
+   "@id": "jlpt:q/10241",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 114,
+   "jlpt:ord": 10241,
    "jlpt:stem": "掲示：「関係者以外立入禁止」＝入れるのは？",
    "opts": [
     "関係者だけ",
@@ -445,11 +445,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/115",
+   "@id": "jlpt:q/10242",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 115,
+   "jlpt:ord": 10242,
    "jlpt:stem": "注意書き：「使用後は元の場所に戻してください」＝使った後どうする？",
    "opts": [
     "元の場所に戻す",
@@ -468,11 +468,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/116",
+   "@id": "jlpt:q/10243",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 116,
+   "jlpt:ord": 10243,
    "jlpt:stem": "説明：「この薬は食後に飲んでください」＝いつ飲む？",
    "opts": [
     "食事の後",
@@ -491,11 +491,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/117",
+   "@id": "jlpt:q/10244",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 117,
+   "jlpt:ord": 10244,
    "jlpt:stem": "案内：「定員に達し次第、締め切ります」＝いつ締め切る？",
    "opts": [
     "定員になったら",
@@ -514,11 +514,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/118",
+   "@id": "jlpt:q/10245",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 118,
+   "jlpt:ord": 10245,
    "jlpt:stem": "案内：「お問い合わせはメールでお願いします」＝どうやって問い合わせる？",
    "opts": [
     "メールで",
@@ -537,11 +537,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/119",
+   "@id": "jlpt:q/10246",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 119,
+   "jlpt:ord": 10246,
    "jlpt:stem": "広告：「割引は本日限り」＝割引はいつまで？",
    "opts": [
     "今日まで",
@@ -560,11 +560,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/120",
+   "@id": "jlpt:q/10247",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 120,
+   "jlpt:ord": 10247,
    "jlpt:stem": "短文：「日本語は勉強すればするほど面白くなってきた」＝筆者は今どう感じている？",
    "opts": [
     "面白いと感じている",
@@ -583,11 +583,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/121",
+   "@id": "jlpt:q/10248",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 121,
+   "jlpt:ord": 10248,
    "jlpt:stem": "案内：「準備が整い次第、ご案内します」＝いつ案内される？",
    "opts": [
     "準備ができたら",
@@ -606,11 +606,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/219",
+   "@id": "jlpt:q/10249",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 219,
+   "jlpt:ord": 10249,
    "jlpt:stem": "筆者が読書を続けられた一番の理由は何ですか。",
    "opts": [
     "時間を短く決めたから",
@@ -630,11 +630,11 @@
    "jlpt:passage": "私は毎晩、寝る前に三十分だけ本を読むことにしている。最初はなかなか続かなかったが、「一日三十分だけ」と決めてからは、無理なく習慣になった。長い時間やろうとすると、かえって続かないものだ。大切なのは、少しでも毎日続けることだと思う。"
   },
   {
-   "@id": "jlpt:q/220",
+   "@id": "jlpt:q/10250",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 220,
+   "jlpt:ord": 10250,
    "jlpt:stem": "筆者の考えに最も合うものはどれですか。",
    "opts": [
     "毎日少しずつ続けることが大切だ",
@@ -654,11 +654,11 @@
    "jlpt:passage": "私は毎晩、寝る前に三十分だけ本を読むことにしている。最初はなかなか続かなかったが、「一日三十分だけ」と決めてからは、無理なく習慣になった。長い時間やろうとすると、かえって続かないものだ。大切なのは、少しでも毎日続けることだと思う。"
   },
   {
-   "@id": "jlpt:q/221",
+   "@id": "jlpt:q/10251",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 221,
+   "jlpt:ord": 10251,
    "jlpt:stem": "休館の間、本を返したいときはどうしますか。",
    "opts": [
     "入口横の返却ポストに入れる",
@@ -678,11 +678,11 @@
    "jlpt:passage": "みどり図書館からのお知らせ。来週の月曜日から水曜日まで、館内の工事のため休館します。本の返却は、入口の横にある返却ポストへお願いします。なお、インターネットでの予約や貸出期間の延長は、いつも通りご利用いただけます。"
   },
   {
-   "@id": "jlpt:q/222",
+   "@id": "jlpt:q/10252",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 222,
+   "jlpt:ord": 10252,
    "jlpt:stem": "休館中でもできることは何ですか。",
    "opts": [
     "インターネットで予約する",
@@ -702,11 +702,11 @@
    "jlpt:passage": "みどり図書館からのお知らせ。来週の月曜日から水曜日まで、館内の工事のため休館します。本の返却は、入口の横にある返却ポストへお願いします。なお、インターネットでの予約や貸出期間の延長は、いつも通りご利用いただけます。"
   },
   {
-   "@id": "jlpt:q/223",
+   "@id": "jlpt:q/10253",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 223,
+   "jlpt:ord": 10253,
    "jlpt:stem": "田中さんがお願いしているのは何ですか。",
    "opts": [
     "打ち合わせを水曜に変えること",
@@ -726,11 +726,11 @@
    "jlpt:passage": "山田さんへ。お疲れさまです。来週の打ち合わせの件ですが、火曜日の午後はどうしても都合がつかなくなってしまいました。申し訳ありませんが、水曜日の同じ時間に変更していただけないでしょうか。もし難しいようでしたら、ご都合のよい日をいくつか教えてください。田中"
   },
   {
-   "@id": "jlpt:q/224",
+   "@id": "jlpt:q/10254",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 224,
+   "jlpt:ord": 10254,
    "jlpt:stem": "水曜日も難しい場合、山田さんはどうすればよいですか。",
    "opts": [
     "都合のよい日をいくつか伝える",
@@ -750,11 +750,11 @@
    "jlpt:passage": "山田さんへ。お疲れさまです。来週の打ち合わせの件ですが、火曜日の午後はどうしても都合がつかなくなってしまいました。申し訳ありませんが、水曜日の同じ時間に変更していただけないでしょうか。もし難しいようでしたら、ご都合のよい日をいくつか教えてください。田中"
   },
   {
-   "@id": "jlpt:q/225",
+   "@id": "jlpt:q/10255",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 225,
+   "jlpt:ord": 10255,
    "jlpt:stem": "筆者は雨の日、どうやって通勤しますか。",
    "opts": [
     "電車で通勤する",
@@ -774,11 +774,11 @@
    "jlpt:passage": "最近、自転車で通勤する人が増えている。電車のように混まず、運動にもなるからだ。ただし、雨の日は危ないので無理をしないほうがいい。私は、晴れた日は自転車、雨の日は電車、と決めている。天気に合わせて方法を変えると、続けやすい。"
   },
   {
-   "@id": "jlpt:q/226",
+   "@id": "jlpt:q/10256",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 226,
+   "jlpt:ord": 10256,
    "jlpt:stem": "自転車通勤が増えている理由として本文に合うものは？",
    "opts": [
     "混まず、運動にもなるから",
@@ -798,11 +798,11 @@
    "jlpt:passage": "最近、自転車で通勤する人が増えている。電車のように混まず、運動にもなるからだ。ただし、雨の日は危ないので無理をしないほうがいい。私は、晴れた日は自転車、雨の日は電車、と決めている。天気に合わせて方法を変えると、続けやすい。"
   },
   {
-   "@id": "jlpt:q/301",
+   "@id": "jlpt:q/10257",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 301,
+   "jlpt:ord": 10257,
    "jlpt:stem": "筆者が予定より遅く着いたのはなぜですか。",
    "opts": [
     "雨で電車が止まり、車の道も込んでいたから",
@@ -822,11 +822,11 @@
    "jlpt:passage": "先週、家族で温泉に旅行に行った。電車で行く予定だったが、当日は朝から大雨で、電車が止まってしまった。仕方なく車で出発したが、道がとても込んでいて、着いたのは予定より三時間も遅かった。それでも、夜の温泉はとても気持ちがよく、疲れがすっかり取れた。次に行くときは、天気をよく調べてから出かけたいと思う。"
   },
   {
-   "@id": "jlpt:q/302",
+   "@id": "jlpt:q/10258",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 302,
+   "jlpt:ord": 10258,
    "jlpt:stem": "筆者は次の旅行でどうしたいと考えていますか。",
    "opts": [
     "車ではなく電車で行きたい",
@@ -846,11 +846,11 @@
    "jlpt:passage": "先週、家族で温泉に旅行に行った。電車で行く予定だったが、当日は朝から大雨で、電車が止まってしまった。仕方なく車で出発したが、道がとても込んでいて、着いたのは予定より三時間も遅かった。それでも、夜の温泉はとても気持ちがよく、疲れがすっかり取れた。次に行くときは、天気をよく調べてから出かけたいと思う。"
   },
   {
-   "@id": "jlpt:q/303",
+   "@id": "jlpt:q/10259",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 303,
+   "jlpt:ord": 10259,
    "jlpt:stem": "この店は休業中、どんなサービスが使えますか。",
    "opts": [
     "店内での買い物",
@@ -870,11 +870,11 @@
    "jlpt:passage": "お客様各位　いつもご利用ありがとうございます。当店は店内の工事のため、七月一日から七月五日まで休業させていただきます。なお、七月六日からは新しくなった店内で営業を再開いたします。ご不便をおかけしますが、よろしくお願いいたします。インターネットでのご注文は休業中もご利用いただけます。"
   },
   {
-   "@id": "jlpt:q/304",
+   "@id": "jlpt:q/10260",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 304,
+   "jlpt:ord": 10260,
    "jlpt:stem": "店が再び開くのはいつですか。",
    "opts": [
     "七月一日",
@@ -894,11 +894,11 @@
    "jlpt:passage": "お客様各位　いつもご利用ありがとうございます。当店は店内の工事のため、七月一日から七月五日まで休業させていただきます。なお、七月六日からは新しくなった店内で営業を再開いたします。ご不便をおかけしますが、よろしくお願いいたします。インターネットでのご注文は休業中もご利用いただけます。"
   },
   {
-   "@id": "jlpt:q/305",
+   "@id": "jlpt:q/10261",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 305,
+   "jlpt:ord": 10261,
    "jlpt:stem": "田中さんは資料を何部用意しますか。",
    "opts": [
     "十部",
@@ -918,11 +918,11 @@
    "jlpt:passage": "田中さんへ　明日の会議の資料ですが、人数が増えたので、二十部ではなく三十部用意してください。それから、会議室は三階から五階に変わりました。エアコンの調子が悪いので、上着を持って来たほうがいいかもしれません。準備をよろしくお願いします。何か分からないことがあれば、私の携帯に連絡してください。　佐藤"
   },
   {
-   "@id": "jlpt:q/306",
+   "@id": "jlpt:q/10262",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 306,
+   "jlpt:ord": 10262,
    "jlpt:stem": "上着を持って来たほうがいい理由は何ですか。",
    "opts": [
     "外が寒いから",
@@ -942,11 +942,11 @@
    "jlpt:passage": "田中さんへ　明日の会議の資料ですが、人数が増えたので、二十部ではなく三十部用意してください。それから、会議室は三階から五階に変わりました。エアコンの調子が悪いので、上着を持って来たほうがいいかもしれません。準備をよろしくお願いします。何か分からないことがあれば、私の携帯に連絡してください。　佐藤"
   },
   {
-   "@id": "jlpt:q/307",
+   "@id": "jlpt:q/10263",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 307,
+   "jlpt:ord": 10263,
    "jlpt:stem": "筆者が運動を楽しく続けられるようになったのはなぜですか。",
    "opts": [
     "体が強くなったから",
@@ -966,11 +966,11 @@
    "jlpt:passage": "私は去年から週に二回、近くのジムに通っている。最初は体を動かすのがつらくて、行きたくない日も多かった。しかし、同じ時間に通う友人ができてから、楽しく続けられるようになった。一人だと休んでしまうが、待っている人がいると思うと、自然と足が向く。健康のためだけでなく、人とのつながりも大切だと感じている。"
   },
   {
-   "@id": "jlpt:q/308",
+   "@id": "jlpt:q/10264",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 308,
+   "jlpt:ord": 10264,
    "jlpt:stem": "この文章で筆者が一番言いたいことは何ですか。",
    "opts": [
     "運動は一人でするべきだ",
@@ -990,11 +990,11 @@
    "jlpt:passage": "私は去年から週に二回、近くのジムに通っている。最初は体を動かすのがつらくて、行きたくない日も多かった。しかし、同じ時間に通う友人ができてから、楽しく続けられるようになった。一人だと休んでしまうが、待っている人がいると思うと、自然と足が向く。健康のためだけでなく、人とのつながりも大切だと感じている。"
   },
   {
-   "@id": "jlpt:q/309",
+   "@id": "jlpt:q/10265",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 309,
+   "jlpt:ord": 10265,
    "jlpt:stem": "「ただいま満席です」＝店の様子は？",
    "opts": [
     "空いている",
@@ -1013,11 +1013,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/310",
+   "@id": "jlpt:q/10266",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 310,
+   "jlpt:ord": 10266,
    "jlpt:stem": "「お会計はあちらでお願いします」＝何をする？",
    "opts": [
     "注文する",
@@ -1036,11 +1036,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/311",
+   "@id": "jlpt:q/10267",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 311,
+   "jlpt:ord": 10267,
    "jlpt:stem": "「電源を切ってください」＝どうする？",
    "opts": [
     "音を大きくする",
@@ -1059,11 +1059,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/312",
+   "@id": "jlpt:q/10268",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 312,
+   "jlpt:ord": 10268,
    "jlpt:stem": "「雨が降りそうだ」＝話し手の予想は？",
    "opts": [
     "もう降っている",
@@ -1082,11 +1082,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/313",
+   "@id": "jlpt:q/10269",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 313,
+   "jlpt:ord": 10269,
    "jlpt:stem": "「この薬は食後に飲んでください」＝いつ飲む？",
    "opts": [
     "食事の前",
@@ -1105,11 +1105,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/314",
+   "@id": "jlpt:q/10270",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 314,
+   "jlpt:ord": 10270,
    "jlpt:stem": "「立入禁止」＝この場所は？",
    "opts": [
     "入ってもよい",
@@ -1131,11 +1131,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/315",
+   "@id": "jlpt:q/10271",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 315,
+   "jlpt:ord": 10271,
    "jlpt:stem": "「遅れる場合は必ず連絡してください」＝遅れそうな時は？",
    "opts": [
     "黙って待つ",
@@ -1154,11 +1154,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/316",
+   "@id": "jlpt:q/10272",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 316,
+   "jlpt:ord": 10272,
    "jlpt:stem": "「席を譲りましょう」＝どうする？",
    "opts": [
     "席に座る",
@@ -1177,11 +1177,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/317",
+   "@id": "jlpt:q/10273",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 317,
+   "jlpt:ord": 10273,
    "jlpt:stem": "「準備が整い次第、始めます」＝いつ始める？",
    "opts": [
     "今すぐ",
@@ -1200,11 +1200,11 @@
    ]
   },
   {
-   "@id": "jlpt:q/318",
+   "@id": "jlpt:q/10274",
    "@type": "jlpt:Question",
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 318,
+   "jlpt:ord": 10274,
    "jlpt:stem": "「品切れ中です」＝その商品は？",
    "opts": [
     "安くなっている",

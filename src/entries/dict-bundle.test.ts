@@ -1,7 +1,7 @@
 import { test, expect } from "bun:test";
 
 // The single SPA entry bundles the dict *logic* (from src/lib/dict.ts, loaded by AppShell)
-// but NOT the ~120 KB dictionary *data*, which is fetched from data/dict.json at runtime.
+// but NOT the ~120 KB dictionary *data*, which is fetched from data/graph/word.jsonld at runtime.
 // Keyed on a logic-only string (`caretRangeFromPoint`) and a data-only reading (`えいきょう`).
 async function entryBundleText(entry: string): Promise<string> {
   const out = await Bun.build({ entrypoints: [entry], target: "browser" });
@@ -13,5 +13,5 @@ async function entryBundleText(entry: string): Promise<string> {
 test("the SPA entry bundles dict LOGIC but not the dictionary DATA", async () => {
   const js = await entryBundleText("src/entries/index.tsx");
   expect(js).toContain("caretRangeFromPoint"); // logic is bundled (via AppShell → setupDict)
-  expect(js).not.toContain("えいきょう");        // data is NOT bundled (fetched from data/dict.json)
+  expect(js).not.toContain("えいきょう");        // data is NOT bundled (fetched from data/graph/word.jsonld)
 });

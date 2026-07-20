@@ -3,18 +3,21 @@ import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { useCoverage } from "./useCoverage.ts";
 import { setBit, encodeBits, emptyBits, type SkillCoverage } from "../../lib/coverage.ts";
-import { clearBankIndexCache } from "../../lib/bank.ts";
+import { clearGraphCache } from "../../lib/graph.ts";
 import type { Progress, Skill } from "../../types/progress.ts";
 
 (globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
 const origFetch = globalThis.fetch;
-afterEach(() => { globalThis.fetch = origFetch; clearBankIndexCache(); });
+afterEach(() => { globalThis.fetch = origFetch; clearGraphCache(); });
 
-test("useCoverage returns per-skill % once the bank-index loads", async () => {
-  clearBankIndexCache();
+test("useCoverage returns per-skill % once the corpus loads", async () => {
+  clearGraphCache();
   globalThis.fetch = (() =>
-    Promise.resolve({ json: () => Promise.resolve({ 0: "grammaire", 1: "grammaire", 2: "kanji" } as Record<number, Skill>) })
+    Promise.resolve({ json: () => Promise.resolve({ "@graph": [
+      { "jlpt:skill": "grammaire", "jlpt:from": 0, "jlpt:count": 2 },
+      { "jlpt:skill": "kanji", "jlpt:from": 2, "jlpt:count": 1 },
+    ] }) })
   ) as unknown as typeof fetch;
 
   let seen = emptyBits(); seen = setBit(seen, 0); // 1 of 2 grammaire ids seen
@@ -26,7 +29,7 @@ test("useCoverage returns per-skill % once the bank-index loads", async () => {
   const host = document.createElement("div");
   const root: Root = createRoot(host);
   await act(async () => { root.render(<Probe />); });
-  await act(async () => { await Promise.resolve(); }); // flush the index promise → re-render
+  await act(async () => { await Promise.resolve(); }); // flush the corpus promise → re-render
 
   expect(captured).not.toBeNull();
   expect(captured!.grammaire.seen).toBe(50);
@@ -34,8 +37,8 @@ test("useCoverage returns per-skill % once the bank-index loads", async () => {
   await act(async () => { root.unmount(); });
 });
 
-test("useCoverage returns null before the index resolves / when progress is null", () => {
-  clearBankIndexCache();
+test("useCoverage returns null before the corpus resolves / when progress is null", () => {
+  clearGraphCache();
   globalThis.fetch = (() => new Promise(() => {})) as unknown as typeof fetch; // never resolves
 
   let captured: Record<Skill, SkillCoverage> | null | undefined;

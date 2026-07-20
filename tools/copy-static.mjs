@@ -17,21 +17,33 @@ export const ROOT = [
   "README.md",
 ];
 
-// Données chargées au runtime par le React : banques du quiz (+ index), dictionnaire, cours.
+// Données chargées au runtime par le React : documents du graphe (questions, corpus, mots,
+// entités), banques du quiz (+ index), dictionnaire, cours.
 // (Même sélection que scripts/dev.ts STATIC_FILES — grammar/kanji/vocab.json ne sont pas servis.)
+//
+// ⚠ Les `.jsonld` vivent dans le SOUS-répertoire data/graph/, pas à la racine de data/ :
+// `copyStatic` l'énumère à part et repasse par ce même prédicat. Un seul inventaire, donc,
+// et le test qui garde ce prédicat garde vraiment ce qui est livré.
 export const isServedData = (f) =>
-  /^bank-.*\.json$/.test(f) || f === "dict.json" || /^cours-.*\.json$/.test(f);
+  /^bank-.*\.json$/.test(f) || f === "dict.json" || /^cours-.*\.json$/.test(f)
+  || /\.jsonld$/.test(f);
 
 export function copyStatic() {
   mkdirSync(`${OUT}/data`, { recursive: true });
-  const dataFiles = readdirSync("data").filter(isServedData);
+  mkdirSync(`${OUT}/data/graph`, { recursive: true });
+  const dataFiles = readdirSync("data").filter((f) => f !== "graph").filter(isServedData);
+  const graphFiles = existsSync("data/graph") ? readdirSync("data/graph").filter(isServedData) : [];
   let n = 0;
   for (const f of ROOT) {
     if (!existsSync(f)) { console.warn(`  ⚠ ${f} absent — ignoré`); continue; }
     copyFileSync(f, `${OUT}/${f}`); n++;
   }
   for (const f of dataFiles) { copyFileSync(`data/${f}`, `${OUT}/data/${f}`); n++; }
-  console.log(`✓ ${n} fichiers livrés copiés dans ${OUT}/ (dont data/ : ${dataFiles.length})`);
+  for (const f of graphFiles) { copyFileSync(`data/graph/${f}`, `${OUT}/data/graph/${f}`); n++; }
+  console.log(
+    `✓ ${n} fichiers livrés copiés dans ${OUT}/ `
+    + `(dont data/ : ${dataFiles.length}, data/graph/ : ${graphFiles.length})`,
+  );
   return n;
 }
 

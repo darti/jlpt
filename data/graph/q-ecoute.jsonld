@@ -2,11 +2,11 @@
  "@context": "context.jsonld",
  "@graph": [
   {
-   "@id": "jlpt:q/227",
+   "@id": "jlpt:q/10275",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 227,
+   "jlpt:ord": 10275,
    "jlpt:stem": "道を聞きました。どこで曲がりますか。",
    "opts": [
     "二つ目の信号を右",
@@ -26,11 +26,11 @@
    "jlpt:script": "すみません、駅はどこですか。… まっすぐ行って、二つ目の信号を右に曲がってください。"
   },
   {
-   "@id": "jlpt:q/228",
+   "@id": "jlpt:q/10276",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 228,
+   "jlpt:ord": 10276,
    "jlpt:stem": "同僚が先に帰ります。何と答えますか。",
    "opts": [
     "お疲れさまでした",
@@ -50,11 +50,11 @@
    "jlpt:script": "お先に失礼します。"
   },
   {
-   "@id": "jlpt:q/229",
+   "@id": "jlpt:q/10277",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 229,
+   "jlpt:ord": 10277,
    "jlpt:stem": "会議について正しいのはどれですか。",
    "opts": [
     "時間が変わった",
@@ -74,11 +74,11 @@
    "jlpt:script": "明日の会議ですが、午後二時から三時に変更になりました。場所は変わりません。"
   },
   {
-   "@id": "jlpt:q/230",
+   "@id": "jlpt:q/10278",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 230,
+   "jlpt:ord": 10278,
    "jlpt:stem": "レポートはどうすればいいですか。",
    "opts": [
     "金曜までにメールで送る",
@@ -98,11 +98,11 @@
    "jlpt:script": "レポートは金曜日までにメールで送ってください。印刷しなくていいです。"
   },
   {
-   "@id": "jlpt:q/231",
+   "@id": "jlpt:q/10279",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 231,
+   "jlpt:ord": 10279,
    "jlpt:stem": "席が空いています。何と言いますか。",
    "opts": [
     "ええ、どうぞ",
@@ -122,11 +122,11 @@
    "jlpt:script": "すみません、この席、空いていますか。"
   },
   {
-   "@id": "jlpt:q/232",
+   "@id": "jlpt:q/10280",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 232,
+   "jlpt:ord": 10280,
    "jlpt:stem": "明日の午後の天気はどうなりますか。",
    "opts": [
     "晴れ",
@@ -146,11 +146,11 @@
    "jlpt:script": "天気予報によると、明日は午前中は雨で、午後から晴れるそうです。"
   },
   {
-   "@id": "jlpt:q/233",
+   "@id": "jlpt:q/10281",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 233,
+   "jlpt:ord": 10281,
    "jlpt:stem": "まず何をしますか。",
    "opts": [
     "名前と住所を書く",
@@ -170,11 +170,11 @@
    "jlpt:script": "では、お名前とご住所をこちらに書いてから、二番の窓口へお願いします。"
   },
   {
-   "@id": "jlpt:q/234",
+   "@id": "jlpt:q/10282",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 234,
+   "jlpt:ord": 10282,
    "jlpt:stem": "声が小さいと言われました。どう答えますか。",
    "opts": [
     "失礼しました。もう少し大きく話します",
@@ -194,11 +194,11 @@
    "jlpt:script": "すみません、少し声が小さいです。"
   },
   {
-   "@id": "jlpt:q/235",
+   "@id": "jlpt:q/10283",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 235,
+   "jlpt:ord": 10283,
    "jlpt:stem": "電車は今どうなっていますか。",
    "opts": [
     "十五分ほど遅れる",
@@ -218,11 +218,11 @@
    "jlpt:script": "お客様にお知らせします。電車が事故のため遅れており、十五分ほど遅れる見込みです。"
   },
   {
-   "@id": "jlpt:q/236",
+   "@id": "jlpt:q/10284",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 236,
+   "jlpt:ord": 10284,
    "jlpt:stem": "お茶を断ります。ていねいに何と言いますか。",
    "opts": [
     "いえ、結構です。ありがとうございます",
@@ -242,11 +242,11 @@
    "jlpt:script": "お茶でもいかがですか。"
   },
   {
-   "@id": "jlpt:q/237",
+   "@id": "jlpt:q/10285",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 237,
+   "jlpt:ord": 10285,
    "jlpt:stem": "エレベーターを降りたら、どう行きますか。",
    "opts": [
     "左にまっすぐ行って右側",
@@ -266,11 +266,11 @@
    "jlpt:script": "会議室は三階です。エレベーターを降りて、左にまっすぐ行くと、右側にあります。"
   },
   {
-   "@id": "jlpt:q/238",
+   "@id": "jlpt:q/10286",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 238,
+   "jlpt:ord": 10286,
    "jlpt:stem": "美術館へ行くにはどうしますか。",
    "opts": [
     "次のバスに乗る",
@@ -290,11 +290,11 @@
    "jlpt:script": "このバスは図書館は通りますが、美術館へは行きません。美術館へは次のバスです。"
   },
   {
-   "@id": "jlpt:q/239",
+   "@id": "jlpt:q/10287",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 239,
+   "jlpt:ord": 10287,
    "jlpt:stem": "手伝いを申し出られました。お願いする時は？",
    "opts": [
     "ありがとうございます。お願いします",
@@ -314,11 +314,11 @@
    "jlpt:script": "重そうですね。手伝いましょうか。"
   },
   {
-   "@id": "jlpt:q/240",
+   "@id": "jlpt:q/10288",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 240,
+   "jlpt:ord": 10288,
    "jlpt:stem": "今日はいつから薬を飲みますか。",
    "opts": [
     "今日の昼（食後）から",
@@ -338,11 +338,11 @@
    "jlpt:script": "この薬は一日三回、食後に飲んでください。今日はお昼から始めてください。"
   },
   {
-   "@id": "jlpt:q/319",
+   "@id": "jlpt:q/10289",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 319,
+   "jlpt:ord": 10289,
    "jlpt:stem": "女の人は何を買いますか。",
    "opts": [
     "りんご三つと牛乳一本",
@@ -362,11 +362,11 @@
    "jlpt:script": "いらっしゃいませ。… りんごを三つと、牛乳を一本ください。… かしこまりました。"
   },
   {
-   "@id": "jlpt:q/320",
+   "@id": "jlpt:q/10290",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 320,
+   "jlpt:ord": 10290,
    "jlpt:stem": "男の人は何時に起きますか。",
    "opts": [
     "六時半",
@@ -386,11 +386,11 @@
    "jlpt:script": "毎朝何時に起きますか。… いつもは七時ですが、明日は六時半に起きます。"
   },
   {
-   "@id": "jlpt:q/321",
+   "@id": "jlpt:q/10291",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 321,
+   "jlpt:ord": 10291,
    "jlpt:stem": "今日の天気はどうですか。",
    "opts": [
     "午後から雨",
@@ -410,11 +410,11 @@
    "jlpt:script": "今日の天気をお伝えします。… 午前中は晴れますが、午後から雨が降るでしょう。"
   },
   {
-   "@id": "jlpt:q/322",
+   "@id": "jlpt:q/10292",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 322,
+   "jlpt:ord": 10292,
    "jlpt:stem": "男の人はどこへ行きますか。",
    "opts": [
     "階段を上って右",
@@ -434,11 +434,11 @@
    "jlpt:script": "すみません、トイレはどこですか。… あちらの階段を上って、右側にありますよ。"
   },
   {
-   "@id": "jlpt:q/323",
+   "@id": "jlpt:q/10293",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 323,
+   "jlpt:ord": 10293,
    "jlpt:stem": "女の人は何を注文しますか。",
    "opts": [
     "コーヒーとケーキ",
@@ -458,11 +458,11 @@
    "jlpt:script": "ご注文は？… コーヒーを一つと、ケーキを一つお願いします。… 以上でよろしいですか。… はい。"
   },
   {
-   "@id": "jlpt:q/324",
+   "@id": "jlpt:q/10294",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 1,
-   "jlpt:ord": 324,
+   "jlpt:ord": 10294,
    "jlpt:stem": "電車は何番線から出ますか。",
    "opts": [
     "三番線",
@@ -482,11 +482,11 @@
    "jlpt:script": "まもなく、三番線に電車が参ります。… 大阪行きの電車は、三番線からの発車です。"
   },
   {
-   "@id": "jlpt:q/325",
+   "@id": "jlpt:q/10295",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 325,
+   "jlpt:ord": 10295,
    "jlpt:stem": "男の人はこのあと何をしますか。",
    "opts": [
     "部屋の準備をする",
@@ -506,11 +506,11 @@
    "jlpt:script": "会議の資料、もうできた？… すみません、まだコピーが終わっていません。… じゃあ、先に部屋の準備をしてくれる？コピーは私がやるから。… はい、わかりました。"
   },
   {
-   "@id": "jlpt:q/326",
+   "@id": "jlpt:q/10296",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 326,
+   "jlpt:ord": 10296,
    "jlpt:stem": "待ち合わせの場所はどこに変わりましたか。",
    "opts": [
     "図書館の入り口",
@@ -530,11 +530,11 @@
    "jlpt:script": "もしもし、明日の件だけど、駅前のカフェじゃなくて、図書館の入り口で待ち合わせにしよう。… 時間は同じ十時でいい？… うん、大丈夫。"
   },
   {
-   "@id": "jlpt:q/327",
+   "@id": "jlpt:q/10297",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 327,
+   "jlpt:ord": 10297,
    "jlpt:stem": "店は何時に閉まりますか。",
    "opts": [
     "九時",
@@ -554,11 +554,11 @@
    "jlpt:script": "本日はご来店ありがとうございます。… 当店は午後八時に閉店いたしますが、本日は特別に九時まで営業しております。"
   },
   {
-   "@id": "jlpt:q/328",
+   "@id": "jlpt:q/10298",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 328,
+   "jlpt:ord": 10298,
    "jlpt:stem": "女の人はどの電車に乗りますか。",
    "opts": [
     "急行",
@@ -578,11 +578,11 @@
    "jlpt:script": "すみません、横浜に行きたいんですが。… 各駅停車だと時間がかかりますよ。次の急行に乗ったほうが早いです。… じゃあ、そうします。"
   },
   {
-   "@id": "jlpt:q/329",
+   "@id": "jlpt:q/10299",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 329,
+   "jlpt:ord": 10299,
    "jlpt:stem": "男の人は天気が悪いので何を持っていきますか。",
    "opts": [
     "レインコート",
@@ -602,11 +602,11 @@
    "jlpt:script": "明日、山に登る予定なんだ。… 天気予報では午後から雨だって。傘より、レインコートのほうがいいよ。両手が使えるから。… そうだね、そうするよ。"
   },
   {
-   "@id": "jlpt:q/330",
+   "@id": "jlpt:q/10300",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 330,
+   "jlpt:ord": 10300,
    "jlpt:stem": "会議は何曜日に変わりましたか。",
    "opts": [
     "木曜日",
@@ -626,11 +626,11 @@
    "jlpt:script": "来週の会議のことですが、水曜日は社長が出張で出られないそうです。… それでは、木曜日に変更しましょう。みなさんに連絡してください。… 承知しました。"
   },
   {
-   "@id": "jlpt:q/331",
+   "@id": "jlpt:q/10301",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 331,
+   "jlpt:ord": 10301,
    "jlpt:stem": "女の人は男の人に何を頼みましたか。",
    "opts": [
     "書類を部長に渡す",
@@ -650,11 +650,11 @@
    "jlpt:script": "田中さん、ちょっとお願いがあるんですが。… この書類を山田部長に渡してもらえますか。私、これから外出するので。… わかりました、お預かりします。"
   },
   {
-   "@id": "jlpt:q/332",
+   "@id": "jlpt:q/10302",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 2,
-   "jlpt:ord": 332,
+   "jlpt:ord": 10302,
    "jlpt:stem": "電話の用件は何ですか。",
    "opts": [
     "予約の時間を変えたい",
@@ -674,11 +674,11 @@
    "jlpt:script": "もしもし、佐藤です。明日の三時の予約ですが、急に都合が悪くなってしまって。… 申し訳ないですが、四時に変更していただけますか。"
   },
   {
-   "@id": "jlpt:q/333",
+   "@id": "jlpt:q/10303",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 333,
+   "jlpt:ord": 10303,
    "jlpt:stem": "女の人は結局どの色を買いますか。",
    "opts": [
     "赤",
@@ -698,11 +698,11 @@
    "jlpt:script": "このセーター、青と赤、どっちがいいかな。… 青も似合うけど、赤は持ってる服に合わせにくいかも。… そうね、でも今日は明るい色がほしい気分だから、やっぱり赤にする。"
   },
   {
-   "@id": "jlpt:q/334",
+   "@id": "jlpt:q/10304",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 334,
+   "jlpt:ord": 10304,
    "jlpt:stem": "男の人はどうして遅れますか。",
    "opts": [
     "電車が止まっているから",
@@ -722,11 +722,11 @@
    "jlpt:script": "もしもし、本当にごめん。電車が事故で止まってて、まだ駅にいるんだ。… バスで行こうと思ったけど、道も混んでるみたいで。… たぶん三十分くらい遅れそう。"
   },
   {
-   "@id": "jlpt:q/335",
+   "@id": "jlpt:q/10305",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 335,
+   "jlpt:ord": 10305,
    "jlpt:stem": "お知らせによると、明日できないことは何ですか。",
    "opts": [
     "二階のエレベーターを使うこと",
@@ -746,11 +746,11 @@
    "jlpt:script": "ご利用のお客様にお知らせします。… 明日は工事のため、二階のエレベーターがご利用いただけません。階段または三階のエレベーターをご利用ください。"
   },
   {
-   "@id": "jlpt:q/336",
+   "@id": "jlpt:q/10306",
    "@type": "jlpt:Question",
    "jlpt:skill": "ecoute",
    "jlpt:difficulty": 3,
-   "jlpt:ord": 336,
+   "jlpt:ord": 10306,
    "jlpt:stem": "二人は週末に何をすることにしましたか。",
    "opts": [
     "海に行く",

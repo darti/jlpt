@@ -217,9 +217,46 @@ export function isDropped(ord) {
 const SKILLS = ["grammaire", "vocabulaire", "kanji", "lecture", "ecoute"];
 const arrOf = (v) => (Array.isArray(v) ? v : v === undefined ? [] : [v]);
 
+/** Arêtes `tests` d'une question : la forme de grammaire du corrigé, ou le sujet 「…」
+ *  de l'énoncé résolu vers un mot puis un kanji. Extrait de la boucle de buildQuestions
+ *  pour que la double passe sur les ordinaux reste lisible — même code, déplacé. */
+export function edgesFor(q, { known, gramByForm }) {
+  const tests = [];
+  if (q.cat === "grammaire") {
+    const f = gramFormOf(q);
+    const id = f ? gramByForm.get(slugify(f)) : undefined;
+    if (id) tests.push(id);
+  } else {
+    const sujet = subjectOf(q);
+    if (sujet) {
+      for (const cand of [`jlpt:word/${sujet}`, `jlpt:kanji/${sujet}`]) {
+        if (known.has(cand)) { tests.push(cand); break; }
+      }
+    }
+  }
+  return tests;
+}
+
+/** Une question de bank.json en sujet jlpt:Question. */
+export function sujetQuestion(q, ord, tests) {
+  return {
+    "@id": `jlpt:q/${ord}`, "@type": "jlpt:Question",
+    "jlpt:skill": q.cat, "jlpt:difficulty": q.d, "jlpt:ord": ord,
+    "jlpt:stem": q.q,
+    opts: q.o,
+    "jlpt:answer": q.a,
+    ...(q.e ? { "schema:description": q.e } : {}),
+    ...(q.g ? { "jlpt:gloss": q.g } : {}),
+    ...(q.od ? { "jlpt:optionNote": q.od } : {}),
+    ...(q.script ? { "jlpt:script": q.script } : {}),
+    ...(q.passage ? { "jlpt:passage": q.passage } : {}),
+    ...(tests.length ? { tests } : {}),
+  };
+}
+
 /** Les 10310 questions de bank.json en sujets jlpt:Question, shardés par compétence.
- *  L'ordinal est l'index du tableau — il indexe le bitset de couverture, et il est
- *  DÉRIVÉ ici une fois pour toutes, jamais saisi à la main. */
+ *  L'ordinal est DÉRIVÉ ici une fois pour toutes, jamais saisi à la main : il indexe le
+ *  bitset de couverture. */
 export function buildQuestions({ kanji, word, gram }) {
   const bank = J("data/bank.json");
   const known = new Set([...kanji, ...word, ...gram].map((s) => s["@id"]));
@@ -229,47 +266,49 @@ export function buildQuestions({ kanji, word, gram }) {
     for (const alt of arrOf(g["jlpt:altForm"])) gramByForm.set(slugify(alt), g["@id"]);
   }
 
-  const bySkill = Object.fromEntries(SKILLS.map((s) => [s, []]));
-  let linked = 0;
-
-  // L'ordinal est RÉATTRIBUÉ après filtrage : écarter une question laisserait sinon un
-  // trou, et checkCorpus exige des ordinaux denses (ils indexent le bitset de couverture).
-  let ord = 0;
-  for (const [source, brut] of bank.entries()) {
+  // Deux passes : on range d'abord par compétence, on numérote ensuite. L'ordinal groupé
+  // permet à corpus.jsonld de décrire tout le corpus en 5 intervalles au lieu d'un index de
+  // 190 Ko — et un index absent ne peut pas se désynchroniser.
+  //
+  // L'ordinal est aussi RÉATTRIBUÉ après filtrage : écarter une question laisserait sinon
+  // un trou, et checkCorpus exige des ordinaux denses.
+  const brut = Object.fromEntries(SKILLS.map((s) => [s, []]));
+  for (const [source, q0] of bank.entries()) {
     if (isDropped(source)) continue;
-    const q = applyFixes(brut, source);
-    const tests = [];
-    if (q.cat === "grammaire") {
-      const f = gramFormOf(q);
-      const id = f ? gramByForm.get(slugify(f)) : undefined;
-      if (id) tests.push(id);
-    } else {
-      const sujet = subjectOf(q);
-      if (sujet) {
-        for (const cand of [`jlpt:word/${sujet}`, `jlpt:kanji/${sujet}`]) {
-          if (known.has(cand)) { tests.push(cand); break; }
-        }
-      }
-    }
-    if (tests.length) linked++;
-
-    bySkill[q.cat].push({
-      "@id": `jlpt:q/${ord}`, "@type": "jlpt:Question",
-      "jlpt:skill": q.cat, "jlpt:difficulty": q.d, "jlpt:ord": ord,
-      "jlpt:stem": q.q,
-      opts: q.o,
-      "jlpt:answer": q.a,
-      ...(q.e ? { "schema:description": q.e } : {}),
-      ...(q.g ? { "jlpt:gloss": q.g } : {}),
-      ...(q.od ? { "jlpt:optionNote": q.od } : {}),
-      ...(q.script ? { "jlpt:script": q.script } : {}),
-      ...(q.passage ? { "jlpt:passage": q.passage } : {}),
-      ...(tests.length ? { tests } : {}),
-    });
-    ord++;
+    brut[q0.cat].push(applyFixes(q0, source));
   }
 
+  const bySkill = Object.fromEntries(SKILLS.map((s) => [s, []]));
+  let ord = 0;
+  let linked = 0;
+  for (const skill of SKILLS) {
+    for (const q of brut[skill]) {
+      const tests = edgesFor(q, { known, gramByForm });
+      if (tests.length) linked++;
+      bySkill[skill].push(sujetQuestion(q, ord, tests));
+      ord++;
+    }
+  }
   return { bySkill, linkRate: ord ? linked / ord : 0, total: ord };
+}
+
+/** Décrit le corpus en 5 intervalles. Remplace bank-index.json (190 Ko) : avec des
+ *  ordinaux groupés, « à quelle compétence appartient l'id N » est une comparaison de
+ *  bornes. checkCorpus vérifie ces intervalles contre les questions réelles — c'est ce
+ *  qui rend la désynchronisation impossible, et non seulement improbable. */
+export function buildCorpus(bySkill) {
+  const out = [];
+  for (const skill of SKILLS) {
+    const qs = bySkill[skill];
+    if (!qs.length) continue;
+    out.push({
+      "@id": `jlpt:corpus/${skill}`, "@type": "jlpt:SkillRange",
+      "jlpt:skill": skill,
+      "jlpt:from": qs[0]["jlpt:ord"],
+      "jlpt:count": qs.length,
+    });
+  }
+  return out;
 }
 
 
@@ -345,6 +384,7 @@ if (process.argv[1]?.endsWith("migrate-to-graph.mjs")) {
   for (const [skill, sujets] of Object.entries(bySkill)) {
     writeFileSync(`data/graph/q-${skill}.jsonld`, doc(sujets));
   }
+  writeFileSync("data/graph/corpus.jsonld", doc(buildCorpus(bySkill)));
 
   const aArbitrer = conflicts.filter((c) => c.retenu === "(à arbitrer)").length;
   console.log(`kanji ${kanji.length} · mots ${word.length} · grammaire ${gram.length}`);

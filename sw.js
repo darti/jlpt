@@ -6,7 +6,7 @@
      au bundle courant → plantage (category.groups.map sur undefined). Repli cache hors ligne ;
    - autres ressources same-origin (icônes, manifest, bundle hashé) : cache-first avec mise à jour ;
    - tout le cross-origin (api.github.com, etc.) : réseau direct. */
-const CACHE = 'jlpt-n3-v106';
+const CACHE = 'jlpt-n3-v107';
 const SHELL = [
   './',
   'index.html',
@@ -17,11 +17,36 @@ const SHELL = [
   'icon-192.png',
   'icon-512.png'
 ];
+// Documents du graphe : tout le contenu de l'app (~10 Mo décompressés, ~1,3 Mo sur le fil).
+// Précachés pour que le hors ligne soit complet DÈS la première visite, y compris sur des
+// questions jamais ouvertes.
+const GRAPH = [
+  'data/graph/context.jsonld',
+  'data/graph/corpus.jsonld',
+  'data/graph/word.jsonld',
+  'data/graph/kanji.jsonld',
+  'data/graph/gram.jsonld',
+  'data/graph/lesson.jsonld',
+  'data/graph/q-grammaire.jsonld',
+  'data/graph/q-vocabulaire.jsonld',
+  'data/graph/q-kanji.jsonld',
+  'data/graph/q-lecture.jsonld',
+  'data/graph/q-ecoute.jsonld'
+];
 
 self.addEventListener('install', e => {
   // on n'active PAS tout de suite : la page affiche un bandeau « Nouvelle version »
   // et appelle skipWaiting au clic de l'utilisateur (voir message ci-dessous).
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)));
+  //
+  // DEUX listes, et c'est délibéré. addAll() est ATOMIQUE : une seule requête en échec
+  // rejette tout. Pour la coquille c'est le bon comportement (un SW sans index.html ne
+  // sert à rien). Pour les 10 Mo du graphe ce serait un piège : une coupure réseau au
+  // milieu de q-vocabulaire ferait échouer l'install entière → AUCUN service worker
+  // activé, donc plus de hors ligne du tout. Le contenu se précache donc en best-effort,
+  // et ce qui a raté sera repris au premier fetch (network-first, cf. isData plus bas).
+  e.waitUntil(caches.open(CACHE).then(c =>
+    c.addAll(SHELL).then(() => Promise.allSettled(GRAPH.map(u => c.add(u))))
+  ));
 });
 
 // la page demande l'activation immédiate quand l'utilisateur clique « Recharger »
@@ -43,8 +68,12 @@ self.addEventListener('fetch', e => {
   const url = new URL(req.url);
   if (req.method !== 'GET' || url.origin !== self.location.origin) return;
   const isHTML = req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html');
-  // data/*.json = contenu qui évolue entre versions → network-first comme le HTML.
-  const isData = url.pathname.includes('/data/') && url.pathname.endsWith('.json');
+  // data/* = contenu qui évolue entre versions → network-first comme le HTML.
+  // ⚠ `.jsonld` DOIT être couvert : sans lui les documents du graphe tombaient dans la
+  // branche cache-first (celle des icônes) et le corpus restait figé à vie chez le client,
+  // exactement la panne décrite en tête de ce fichier. `.jsonld` ne finit pas par `.json`.
+  const isData = url.pathname.includes('/data/')
+    && (url.pathname.endsWith('.json') || url.pathname.endsWith('.jsonld'));
 
   if (isHTML || isData) {
     // network-first ; on ne met en cache QUE les réponses OK (jamais un 404 → pas de

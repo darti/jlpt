@@ -90,6 +90,29 @@ export function checkCorpus(subjects) {
     }
   }
 
+  // --- cohérence des SkillRange ---
+  // corpus.jsonld décrit le corpus ; s'il ment, l'app résout les ids vers la mauvaise
+  // compétence sans la moindre erreur. On le confronte donc aux questions réelles.
+  const ranges = subjects.filter((s) => arr(s["@type"]).includes("jlpt:SkillRange"));
+  if (ranges.length) {
+    const parSkill = new Map();
+    for (const q of questions) {
+      const s = q["jlpt:skill"];
+      if (!parSkill.has(s)) parSkill.set(s, []);
+      parSkill.get(s).push(q["jlpt:ord"]);
+    }
+    for (const r of ranges) {
+      const ords = (parSkill.get(r["jlpt:skill"]) ?? []).sort((a, b) => a - b);
+      const from = r["jlpt:from"];
+      const count = r["jlpt:count"];
+      if (ords.length !== count) {
+        errs.push(`SkillRange ${r["jlpt:skill"]} : count ${count}, mais ${ords.length} questions`);
+      } else if (ords.length && (ords[0] !== from || ords[ords.length - 1] !== from + count - 1)) {
+        errs.push(`SkillRange ${r["jlpt:skill"]} : intervalle [${from}, ${from + count - 1}] ≠ réel [${ords[0]}, ${ords[ords.length - 1]}]`);
+      }
+    }
+  }
+
   // --- intégrité référentielle ---
   // Classe d'erreur qu'AUCUN mécanisme ne pouvait détecter avant que le lien ne devienne
   // une donnée : le rappel de cours était deviné en parsant la prose du corrigé.
