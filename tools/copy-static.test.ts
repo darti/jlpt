@@ -1,4 +1,5 @@
 import { expect, test } from "bun:test";
+import { readdirSync, readFileSync } from "node:fs";
 import { ROOT, isServedData } from "./copy-static.mjs";
 
 // Regression guard: `bun run build` once shipped an _site/ without sw.js, so the served
@@ -16,9 +17,56 @@ test("isServedData selects the runtime-fetched data files", () => {
   }
 });
 
+test("isServedData livre les documents du graphe", () => {
+  for (const f of ["q-kanji.jsonld", "corpus.jsonld", "word.jsonld", "context.jsonld"]) {
+    expect(isServedData(f), `${f} doit être livré`).toBe(true);
+  }
+});
+
 test("isServedData excludes lesson-source and non-served files", () => {
   // grammar/kanji/vocab.json are validated but NOT fetched at runtime (cf. scripts/dev.ts).
   for (const f of ["grammar.json", "kanji.json", "vocab.json", "examples.json", "README.md", "styles.gen.css"]) {
     expect(isServedData(f)).toBe(false);
   }
+});
+
+// --- les TROIS inventaires de fichiers livrés ----------------------------------
+//
+// Ajouter un document au graphe impose de toucher copy-static.mjs (build + prod),
+// scripts/dev.ts STATIC_FILES (sinon 404 en `bun run dev` SEULEMENT) et sw.js GRAPH
+// (sinon absent hors ligne SEULEMENT). Chaque oubli est une panne silencieuse et locale
+// à un seul contexte — donc invisible tant qu'on ne se place pas exactement dans ce
+// contexte-là. Ce test lit les trois et les confronte au contenu réel de data/graph/.
+
+const graphDocs = readdirSync("data/graph").filter((f) => f.endsWith(".jsonld"));
+
+test("data/graph n'est pas vide (sinon les contrôles suivants ne prouvent rien)", () => {
+  expect(graphDocs.length).toBeGreaterThan(5);
+});
+
+test("inventaire 1 — copy-static livre tous les documents du graphe", () => {
+  for (const f of graphDocs) expect(isServedData(f), `${f} absent du build`).toBe(true);
+});
+
+test("inventaire 2 — scripts/dev.ts sert tous les documents du graphe", () => {
+  const dev = readFileSync("scripts/dev.ts", "utf8");
+  for (const f of graphDocs) {
+    expect(dev.includes(`"/data/graph/${f}"`), `${f} absent de STATIC_FILES → 404 en dev`).toBe(true);
+  }
+});
+
+test("inventaire 3 — sw.js précache les documents du graphe fetchés au runtime", () => {
+  const sw = readFileSync("sw.js", "utf8");
+  // shapes.jsonld ne sert qu'à la validation hors ligne de build : il n'est jamais fetché.
+  for (const f of graphDocs.filter((f) => f !== "shapes.jsonld")) {
+    expect(sw.includes(`'data/graph/${f}'`), `${f} absent du GRAPH du SW → manquant hors ligne`).toBe(true);
+  }
+});
+
+test("sw.js traite les .jsonld en network-first, pas en cache-first", () => {
+  // Sans ça, les documents du graphe tombent dans la branche des icônes et le corpus reste
+  // figé à vie chez le client — la panne exacte décrite en tête de sw.js.
+  const sw = readFileSync("sw.js", "utf8");
+  const isData = /const isData = ([\s\S]*?);\n/.exec(sw)?.[1] ?? "";
+  expect(isData).toContain(".jsonld");
 });
