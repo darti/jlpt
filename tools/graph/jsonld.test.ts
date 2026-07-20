@@ -1,6 +1,6 @@
-import { test, expect } from "bun:test";
-import { expandIri, isSafeIri, readContext, readDoc } from "./jsonld.mjs";
-import { mkdtempSync, writeFileSync } from "node:fs";
+import { test, expect, afterAll } from "bun:test";
+import { expandIri, isSafeIri, parseContext, readContext, readDoc } from "./jsonld.mjs";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -91,3 +91,38 @@ test("expandIri laisse passer une valeur non-chaîne sans planter", () => {
   expect(expandIri(42 as unknown as string, prefixes)).toBe(42 as unknown as string);
   expect(expandIri(":sansPrefixe", prefixes)).toBe(":sansPrefixe");
 });
+
+// --- durcissement (trouvailles de revue, chacune vérifiée reproductible) -------
+
+test("isSafeIri rejette les contrôles C1, pas seulement l'ASCII 7 bits", () => {
+  // NEL U+0085 est un contrôle de saut de ligne, catégorie Cc comme C0.
+  expect(isSafeIri("urn:oku:" + String.fromCharCode(0x85))).toBe(false);
+  expect(isSafeIri("urn:oku:" + String.fromCharCode(0x9f))).toBe(false);
+});
+
+test("isSafeIri accepte toujours l'ASCII imprimable et le japonais", () => {
+  // Garde anti-régression : replier C0+DEL+C1 en un seul intervalle U+0000-U+009F
+  // avalerait lettres, « : » et « / », donc TOUTES nos IRIs.
+  expect(isSafeIri("jlpt:word/影響")).toBe(true);
+  expect(isSafeIri("jlpt:gram/ようだ-みたいだ")).toBe(true);
+});
+
+test("parseContext ne se laisse pas échanger son prototype par une clé __proto__", () => {
+  const ctx = JSON.parse('{"__proto__": {"@id": "jlpt:evil", "@type": "@id"}}');
+  const { terms, prefixes } = parseContext(ctx);
+  expect(Object.getPrototypeOf(terms)).toBeNull();
+  expect(Object.getPrototypeOf(prefixes)).toBeNull();
+});
+
+test("expandIri traite __proto__ comme un préfixe inconnu, pas comme Object.prototype", () => {
+  expect(expandIri("__proto__:x", {})).toBe("__proto__:x");
+});
+
+test("readDoc refuse un @context qui sort du dossier du document", () => {
+  // Le chemin vient du CONTENU du document : sans borne, il ferait lire n'importe
+  // quel fichier accessible au processus.
+  writeFileSync(join(tmp, "evil.jsonld"), JSON.stringify({ "@context": "../../../../etc/hostname", "@graph": [] }));
+  expect(() => readDoc(join(tmp, "evil.jsonld"))).toThrow(/sort du dossier/);
+});
+
+afterAll(() => rmSync(tmp, { recursive: true, force: true }));
