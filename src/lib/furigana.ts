@@ -1,7 +1,7 @@
 import { FURI_KEY } from "./keys.ts";
 
-/** Whether furigana are globally revealed (persisted). Default false — hidden, tap a word
- *  to reveal. Complements the per-word `.show` toggle from dict `furi()`. */
+/** Whether furigana are globally revealed (persisted). Default false — masqués ; taper un
+ *  mot ouvre sa définition (il n'y a plus de révélation mot à mot). */
 export function readFuri(store: Pick<Storage, "getItem"> = globalThis.localStorage): boolean {
   try { return store.getItem(FURI_KEY) === "on"; } catch { return false; }
 }
@@ -13,7 +13,7 @@ export function writeFuri(on: boolean, store: Pick<Storage, "getItem" | "setItem
 }
 
 /** Apply the persisted global furigana state to the root via `data-furi` (CSS reveals
- *  all `<rt>` when `[data-furi="on"]`). */
+ *  every `.furi-rt` annotation when `[data-furi="on"]`). */
 export function applyFuri(root: HTMLElement = document.documentElement, store: Pick<Storage, "getItem"> = globalThis.localStorage): void {
   if (readFuri(store)) root.setAttribute("data-furi", "on");
   else root.removeAttribute("data-furi");

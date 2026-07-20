@@ -5,9 +5,11 @@ import { Corrige } from "./Corrige.tsx";
 import { Results } from "./Results.tsx";
 import type { Question } from "../../types/quiz.ts";
 
-/** Texte de base (kanji + kana) sans les lectures furigana : retire les <rt>…</rt> puis toute
- *  balise. Rend les assertions robustes au ruby (le furigana peut couper une sous-chaîne JP). */
-const baseText = (h: string): string => h.replace(/<rt>.*?<\/rt>/g, "").replace(/<[^>]+>/g, "");
+/** Texte de base (kanji + kana) sans les lectures furigana : retire les annotations
+ *  `.furi-rt` puis toute balise. Rend les assertions robustes au furigana (qui peut couper
+ *  une sous-chaîne JP, et dont l'annotation PRÉCÈDE la base dans le DOM). */
+const baseText = (h: string): string =>
+  h.replace(/<span class="furi-rt">.*?<\/span>/g, "").replace(/<[^>]+>/g, "");
 
 const q: Question = { id: 0, cat: "grammaire", d: 1, q: "家に帰っ___、電話します。",
   o: ["たら", "なら", "ば", "と"], a: 0, e: "<b>〜たら</b> = quand/dès que.", g: "帰る→帰ったら", od: ["ok", "b", "c", "d"] };

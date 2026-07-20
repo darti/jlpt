@@ -246,18 +246,21 @@ utilisateurs. **Ajouter en fin de shard**, et vérifier que `corpus.jsonld` suit
 - **Tailwind vendorisé = sous-ensemble** : toutes les utilités ne sont PAS compilées
   (ex. `animate-spin` absent). Définir les manquantes (keyframes + règle/`@utility`)
   dans `src/styles/tailwind.css` `@layer base` — cf. `.jlpt-spin`, `.vbreak`/`.tok-*`.
-- **Furigana ruby — pas de gros espaces intra-mot** (régression déjà vue, ex. Q#1180
-  « 優　　　勝 » sur iOS). DEUX invariants à préserver ensemble, sinon la base kanji
-  s'étire :
-  1. **`furi()` (`src/lib/dict.ts`)** n'émet en `<rt>` que des lectures **mono-kana propres**
-     (`CLEAN_FURI_RE`). Les entrées **mono-kanji** du dico portent un *vidage* on/kun
-     (« ユウ・やさ(しい)・すぐ(れる) ») ; en furigana c'est absurde ET si large que ça déforme
-     la base. Un mot absent du dico (`優勝`, `競い合う`) ne doit PAS emprunter ces vidages →
-     kanji rendu en clair. Ne jamais retirer ce filtre.
-  2. **CSS `ruby rt` (`src/styles/tailwind.css`)** masque en **`display:none`** (overlay
-     `display:block` sous `[data-furi="on"]`), PAS `visibility:hidden` : WebKit/iOS garde une
-     `<rt>` en `visibility:hidden` dans le calcul de largeur de la base → étirement même
-     invisible (Chromium sort le `rt` absolu du flux, donc le bug ne se voit pas en desktop).
+- **Furigana : `<span class="furi">`, JAMAIS `<ruby>`/`<rt>`.** L'annotation est un
+  `<span class="furi-rt">` émis par `annote()` (`src/lib/dict.ts`), stylé en overlay absolu par
+  `.furi > .furi-rt` (`src/styles/tailwind.css`). Trois invariants, tous **mesurés dans les deux
+  moteurs** — pas de raisonnement à partir de la spec :
+  1. **Pas de ruby natif.** WebKit calcule `position: static` sur un `<rt>` malgré
+     `position:absolute` → l'annotation retombe dans le flux, superposée au kanji (les furigana
+     « disparus » d'iOS/Safari). Et en ruby natif, c'est **Blink** qui élargit la base
+     (16 → 72 px, le « 優　　　勝 »). Aucune des huit valeurs de `display` testées n'est verte
+     des deux côtés — trois correctifs successifs s'y sont cassé les dents avant qu'on mesure.
+  2. **`display:none` pour masquer**, jamais `visibility:hidden` : une annotation seulement
+     invisible compte encore dans la largeur de la base.
+  3. **`furi()` n'annote qu'avec des lectures mono-kana propres** (`CLEAN_FURI_RE`). Les entrées
+     **mono-kanji** du dico portent un *vidage* on/kun (« ユウ・やさ(しい)・すぐ(れる) ») : en
+     furigana c'est absurde ET si large que ça déforme la base. Un mot absent du dico (`優勝`,
+     `競い合う`) ne doit PAS emprunter ces vidages → kanji rendu en clair. Ne jamais retirer ce filtre.
 - **Grep de références** : inclure `.tsx` ET `.ts` (`--include="*.ts"` seul rate les
   composants React → liens/imports morts non détectés, ex. un `href` vers une page supprimée).
 - **Vérification navigateur — le chemin qui MARCHE.** L'extension Chrome n'est pas connectée et
@@ -267,6 +270,18 @@ utilisateurs. **Ajouter en fin de shard**, et vérifier que `corpus.jsonld` suit
       "$B" --headless=new --disable-gpu --remote-debugging-port=9333 --user-data-dir=/tmp/cdp about:blank
   puis `PUT /json/new?<url>` → WebSocket → `Runtime.evaluate`. ⚠ Le chargement à froid des cinq
   shards prend ~8 s : attendre moins fait conclure à tort « la session ne démarre pas ».
+- **Vérifier dans WebKit aussi** (tout ce qui touche au rendu du japonais : furigana, ruby,
+  césure, largeur de base). Playwright a déjà installé le build : `bun add playwright-core` dans
+  le scratchpad, puis `webkit.launch({ executablePath: "~/Library/Caches/ms-playwright/webkit-2311/pw_run.sh" })`
+  (idem chromium avec `chromium-1200/…/Google Chrome for Testing`). Passer `executablePath`
+  contourne le contrôle de révision de playwright-core.
+  ⚠ **Valider le HARNAIS avant de croire un résultat rouge** — quatre faux négatifs déjà payés,
+  tous dans le harnais, aucun dans l'app : page de test sans `<meta charset>` (WebKit lit le
+  fichier en latin-1 → mojibake → toutes les largeurs fausses) ; `<script type="module">` sur
+  `file://` (WebKit refuse, origine opaque → aucun JS ne s'exécute) ; texte en `y=0` (l'overlay
+  du furigana tombe hors viewport, le clic n'atteint rien) ; deux clics d'affilée (le second
+  REFERME le popup — recharger la page entre deux mesures). Comparer aussi des éléments de même
+  `font-size` : un 20 px vs 16 px avait déjà invalidé une mesure entière.
 - **Ne pas scripter les éditions en `bun -e '…'`** : le contenu du dépôt est en français, et une
   apostrophe ou un backtick dans la chaîne casse le quoting zsh (`unmatched "`,
   `command not found: +`). Utiliser l'outil Edit pour toute retouche de texte ; réserver

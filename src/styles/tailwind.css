@@ -224,18 +224,30 @@
     font-family: var(--font-sans);
   }
 
-  /* Furigana: hidden by default; revealed globally via `[data-furi="on"]` on the root
-     (the « ふ » toggle in the top nav). Tapping a word opens its definition popup instead
-     of toggling furigana, so there is no per-word reveal.
-     The `<rt>` is `display:none` when hidden, then an absolutely-positioned overlay when
-     revealed — out of flow — so it never grows the line box (no vertical reflow) and never
-     widens the base kanji. `display:none` (rather than `visibility:hidden`) is deliberate:
-     WebKit/iOS keeps a `visibility:hidden` ruby annotation in the base-width computation, so
-     a wide `<rt>` still stretched the base into big intra-word gaps (« 優　　　勝 ») even
-     while invisible. Removing it from layout entirely fixes that in every engine.
-     Needs `line-height ≥ ~1.8` on the text so the annotation clears the line above. */
-  ruby { position: relative; }
-  ruby rt {
+  /* Furigana: masqués par défaut, révélés globalement via `[data-furi="on"]` sur la racine
+     (la bascule « ふ » de la nav). Taper un mot ouvre sa définition — pas de révélation
+     mot à mot.
+
+     ⚠ PAS de `<ruby>/<rt>` : l'enveloppe est un `<span class="furi">` et l'annotation un
+     `<span class="furi-rt">` (émis par `annote()` dans src/lib/dict.ts). Le ruby natif est
+     inutilisable ici, et c'est MESURÉ dans les deux moteurs :
+       — WebKit calcule `position: static` sur un `<rt>` malgré `position:absolute` : l'overlay
+         retombait dans le flux, superposé au kanji → furigana « disparus » sur iOS/Safari ;
+       — Blink, lui, ÉLARGIT la base quand le `<rt>` est dans le flux (16 → 72 px).
+     Aucune des huit valeurs de `display` testées ne satisfait « masquable · au-dessus de la
+     base · base non élargie » des deux côtés. Un `<span>` n'a pas de comportement de mise en
+     page spécial à restaurer : il se comporte à l'identique partout. Ne pas revenir au ruby.
+
+     L'annotation est `display:none` quand masquée, puis un overlay `position:absolute` quand
+     révélée — hors flux — donc elle n'agrandit jamais la boîte de ligne ni la base.
+     `display:none` (et non `visibility:hidden`) reste délibéré : une annotation seulement
+     invisible participe encore au calcul de largeur.
+     `inline-block` sur l'enveloppe est nécessaire : il fait d'elle un bloc conteneur non
+     fragmentable, sinon un mot coupé en fin de ligne centrerait son annotation sur l'union
+     des deux fragments.
+     Demande `line-height ≥ ~1.8` sur le texte pour que l'annotation dégage la ligne du dessus. */
+  .furi { position: relative; display: inline-block; }
+  .furi > .furi-rt {
     display: none;
     position: absolute;
     left: 50%;
@@ -247,7 +259,7 @@
     line-height: 1;
     white-space: nowrap;
   }
-  :root[data-furi="on"] ruby rt { display: block; }
+  :root[data-furi="on"] .furi > .furi-rt { display: block; }
 
   /* Data-embedded emphasis (`<b>`/`<strong>` inside question explanations, rendered via
      dangerouslySetInnerHTML) at a medium weight — full bold on kanji reads poorly. The UI's
@@ -259,7 +271,7 @@
      visualBreak() (src/lib/dict.ts) et injecté dans le cours. Restauré depuis la page vanilla —
      le port React n'affichait qu'une liste de texte à plat, la coloration avait sauté.
      Les lectures restent visibles ici (l'annotation les portait déjà en clair « 漢字（かな） »),
-     rendues en ruby normal plutôt qu'en furigana masqué/positionné de l'app. */
+     à la différence du furigana masqué par défaut du reste de l'app. */
   .vbreak { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; align-items: stretch; }
   .vbreak .tok {
     display: flex; flex-direction: column; gap: 3px; align-items: center;
@@ -269,14 +281,12 @@
   /* `padding-top` réserve la bande où le furigana (overlay absolu) se pose, sinon il déborderait
      du haut de la pastille. */
   .vbreak .tok-jp { font-size: 1rem; line-height: 1.6; text-align: center; overflow-wrap: anywhere; padding-top: 0.9em; }
-  .vbreak .tok-jp rt {
-    /* Les furigana de l'analyse sont TOUJOURS visibles. On réutilise EXACTEMENT le mécanisme des
-       furigana révélés de l'app — overlay en `position:absolute` hérité de la règle globale
-       `ruby rt` — au lieu du ruby natif (`display:ruby-text`/`revert`), que WebKit/iOS ne restaure
-       PAS après un `display:none`. On se contente donc de ré-afficher (`display:block`) et de
-       neutraliser le décalage vertical ; position/bottom/left/transform viennent de `ruby rt`. */
+  .vbreak .tok-jp .furi-rt {
+    /* Les furigana de l'analyse sont TOUJOURS visibles, quelle que soit la bascule « ふ ». On
+       réutilise EXACTEMENT le mécanisme de l'app — overlay `position:absolute` hérité de la
+       règle globale `.furi > .furi-rt` — et on se contente de ré-afficher (`display:block`) et
+       de neutraliser le décalage vertical ; position/bottom/left/transform viennent de là. */
     display: block;
-    visibility: visible;
     margin-bottom: 0;
     font-size: 0.5em; line-height: 1; color: rgba(255, 255, 255, 0.8);
   }

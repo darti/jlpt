@@ -5,9 +5,11 @@ import { GroupDetail, splitStruct } from "./GroupDetail.tsx";
 import { MethodPage } from "./MethodPage.tsx";
 import type { LearnCategory, MethodCategory, CoursGroup } from "./coursSchema.ts";
 
-/** Texte de base sans les lectures furigana : retire les <rt>…</rt> puis toute balise.
- *  Rend l'assertion robuste au ruby (furi() peut couper une sous-chaîne japonaise). */
-const baseText = (h: string): string => h.replace(/<rt>.*?<\/rt>/g, "").replace(/<[^>]+>/g, "");
+/** Texte de base sans les lectures furigana : retire les annotations `.furi-rt` puis toute
+ *  balise. Rend l'assertion robuste au furigana (furi() peut couper une sous-chaîne japonaise,
+ *  et l'annotation PRÉCÈDE la base dans le DOM). */
+const baseText = (h: string): string =>
+  h.replace(/<span class="furi-rt">.*?<\/span>/g, "").replace(/<[^>]+>/g, "");
 
 const vocabCat: LearnCategory = {
   id: "vocab",

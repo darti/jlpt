@@ -11,7 +11,7 @@ test("le vrai word.jsonld pilote furigana + lookup de bout en bout", async () =>
   applyDictData(realDict);
 
   expect(Object.keys(realDict).length).toBeGreaterThan(2000);
-  expect(furi("影響")).toContain("<rt>えいきょう</rt>");        // furigana from real data
+  expect(furi("影響")).toContain(`<span class="furi-rt">えいきょう</span>`); // furigana from real data
   expect(lookupDef("日本語")).toMatchObject({ w: "日本語", r: "にほんご" }); // tap-to-define lookup
   expect(lookupDef("影響力")?.w).toBe("影響");                  // longest-prefix fallback on real data
   expect(visualBreak("影響 «influence» · を «COD»")).toContain('class="vbreak"'); // Corrige analysis

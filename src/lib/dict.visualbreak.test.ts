@@ -18,7 +18,7 @@ test("a particle segment is coloured as a particle", () => {
 test("a noun segment renders furigana ruby from 漢字（かな）", () => {
   const html = visualBreak("朝（あさ） « le matin »");
   expect(html).toContain("tok-noun");
-  expect(html).toContain("<ruby>朝<rt>あさ</rt></ruby>");
+  expect(html).toContain(`<span class="furi"><span class="furi-rt">あさ</span>朝</span>`);
   expect(html).toContain("le matin");
 });
 
@@ -30,10 +30,10 @@ test("furigana systématiques : un mot à okurigana （少しずつ, 良い） d
   // avant, seuls les mots finissant par un kanji étaient rubifiés → 少しずつ（すこしずつ） restait
   // en parenthèses littérales. Désormais la lecture inline couvre le mot entier.
   const a = visualBreak("少しずつ（すこしずつ） « peu à peu »");
-  expect(a).toContain("<ruby>少しずつ<rt>すこしずつ</rt></ruby>");
+  expect(a).toContain(`<span class="furi"><span class="furi-rt">すこしずつ</span>少しずつ</span>`);
   expect(a).not.toContain("（すこしずつ）");
   const b = visualBreak("良い（よい）→良くなり « s'améliorer »");
-  expect(b).toContain("<ruby>良い<rt>よい</rt></ruby>");
+  expect(b).toContain(`<span class="furi"><span class="furi-rt">よい</span>良い</span>`);
   expect(b).not.toContain("（よい）");
 });
 

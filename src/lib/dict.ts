@@ -60,6 +60,44 @@ const READING_RE = /^[ぁ-んァ-ンー・]+$/;
  *  déforme la base (annotation très large → gros espaces intra-mot sur WebKit/iOS). */
 const CLEAN_FURI_RE = /^[ぁ-んァ-ンー]+$/;
 
+/** Classe de l'enveloppe furigana, et de l'annotation. Les deux servent aussi au CSS
+ *  (`src/styles/tailwind.css`) et au tap-pour-définir (`jpRunAt`). */
+export const FURI_CLASS = "furi";
+export const FURI_RT_CLASS = "furi-rt";
+
+/**
+ * Une base annotée de sa lecture, en `<span>` — **jamais** en `<ruby>`/`<rt>`.
+ *
+ * ⚠ Ce n'est pas un choix esthétique, c'est le seul rendu qui marche dans les deux moteurs.
+ * Mesuré (WebKit 26.5 vs Chromium 143), sur les trois exigences « masquable · au-dessus de la
+ * base · base non élargie » :
+ *
+ *   - **WebKit IGNORE `position:absolute` sur un `<rt>`** (position calculée = `static`) :
+ *     l'annotation retombe dans le flux et se superpose au kanji — c'est le bug qui a motivé
+ *     cette réécriture ;
+ *   - en ruby **natif**, c'est **Chromium** qui élargit la base (16 → 72 px, le fameux
+ *     « 優　　　勝 ») ; WebKit, lui, laisse déborder proprement ;
+ *   - masquer puis restaurer par `display:` échoue partout : `ruby-text` reste invisible en
+ *     WebKit, `revert` élargit la base des deux côtés, et toutes les autres valeurs rendent
+ *     l'annotation EN LIGNE au lieu de la poser au-dessus.
+ *
+ * Aucune des huit valeurs de `display` testées n'est verte des deux côtés. Un `<span>`, lui,
+ * honore `position:relative`/`absolute` dans tous les moteurs.
+ *
+ * La lecture précède la base dans le DOM : elle est en `position:absolute`, donc l'ordre
+ * n'affecte pas le rendu, mais la base reste ainsi le dernier nœud texte — ce dont `jpRunAt`
+ * tire le mot tapé.
+ *
+ * Accessibilité : on perd la sémantique `ruby` (un lecteur d'écran lira « えいきょう影響 » là
+ * où il lisait le mot seul). Pas d'`aria-hidden` sur l'annotation pour autant, délibérément :
+ * masquée — l'état par DÉFAUT — elle est en `display:none`, donc déjà hors de l'arbre
+ * d'accessibilité ; révélée, c'est que l'utilisateur a demandé les lectures. Sur une app
+ * d'apprentissage du japonais, les annoncer est alors une aide, pas du bruit.
+ */
+function annote(base: string, lecture: string): string {
+  return `<span class="${FURI_CLASS}"><span class="${FURI_RT_CLASS}">${lecture}</span>${base}</span>`;
+}
+
 export function furi(s: string | null | undefined): string {
   if (s == null) return "";
   let out = "", i = 0;
@@ -70,14 +108,14 @@ export function furi(s: string | null | undefined): string {
       let end = i;
       while (end < s.length && KANJI_RE.test(s[end])) end++;
 
-      // Explicit inline reading right after the run — 漢字（かな） — is turned into ruby: the
-      // parentheses disappear from view and the reading becomes real furigana (hidden by default,
-      // revealed via the ふ toggle). The bank data carries these redundant readings inline; this
-      // strips the clutter while keeping the reading. Mirrors the cours renderer (line ~103).
+      // Explicit inline reading right after the run — 漢字（かな） — becomes furigana : the
+      // parentheses disappear from view and the reading devient une vraie annotation (masquée
+      // par défaut, révélée par la bascule ふ). Les données portent ces lectures inline ; on
+      // retire l'encombrement en gardant la lecture.
       if (s[end] === "（") {
         const close = s.indexOf("）", end + 1);
         if (close > end && READING_RE.test(s.slice(end + 1, close))) {
-          out += "<ruby>" + s.slice(i, end) + "<rt>" + s.slice(end + 1, close) + "</rt></ruby>";
+          out += annote(s.slice(i, end), s.slice(end + 1, close));
           i = close + 1;
           continue;
         }
@@ -91,7 +129,7 @@ export function furi(s: string | null | undefined): string {
           const sub = s.substr(k, L);
           if (READ[sub] && CLEAN_FURI_RE.test(READ[sub])) { m = sub; break; }
         }
-        if (m) { out += "<ruby>" + m + "<rt>" + READ[m] + "</rt></ruby>"; k += m.length; }
+        if (m) { out += annote(m, READ[m]); k += m.length; }
         else { out += s[k]; k++; }
       }
       i = end;
@@ -128,13 +166,18 @@ function splitVerbLead(jp: string, gloss: string): Tok[] {
 }
 /** Rubification d'un jeton d'analyse : furigana SYSTÉMATIQUES. Toute lecture inline « mot（かな） »
  *  — y compris les mots à okurigana (少しずつ, 良い), pas seulement les runs de kanji purs — devient
- *  un ruby sur le mot entier ; les kanji restants sans lecture inline reçoivent le furigana du dico
- *  (`furi()`), sans jamais retoucher un `<ruby>` déjà posé. Avant, seuls les mots finissant par un
- *  kanji étaient rubifiés → les autres restaient en « （かな） » littéral (incohérent). */
+ *  une annotation sur le mot entier ; les kanji restants sans lecture inline reçoivent le furigana
+ *  du dico (`furi()`), sans jamais retoucher une enveloppe déjà posée. Avant, seuls les mots à
+ *  finale kanji étaient annotés → les autres restaient en « （かな） » littéral (incohérent). */
 const INLINE_READ_RE = /([一-鿿々ぁ-ゖァ-ヺー]*[一-鿿々][一-鿿々ぁ-ゖァ-ヺー]*)（([ぁ-んァ-ンー・]+)）/g;
 function rubifyAnalyse(jp: string): string {
-  const withInline = jp.replace(INLINE_READ_RE, (_m, w, r) => "<ruby>" + w + "<rt>" + r + "</rt></ruby>");
-  return withInline.split(/(<ruby>[\s\S]*?<\/ruby>)/g).map((seg) => seg.slice(0, 6) === "<ruby>" ? seg : furi(seg)).join("");
+  const withInline = jp.replace(INLINE_READ_RE, (_m, w, r) => annote(w, r));
+  // On découpe sur les enveloppes déjà posées pour ne PAS les repasser dans furi() — sinon
+  // la base serait ré-annotée depuis le dico, par-dessus la lecture inline qui fait autorité.
+  return withInline
+    .split(new RegExp(`(<span class="${FURI_CLASS}">[\\s\\S]*?</span></span>)`, "g"))
+    .map((seg) => (seg.startsWith(`<span class="${FURI_CLASS}">`) ? seg : furi(seg)))
+    .join("");
 }
 export function visualBreak(str: string, opts?: { legend?: boolean }): string {
   if (!str) return "";
@@ -236,19 +279,22 @@ function jpRunAt(x: number, y: number): { run: string; rel: number } | null {
   else if (doc.caretPositionFromPoint) { const p = doc.caretPositionFromPoint(x, y); if (p) { range = document.createRange(); range.setStart(p.offsetNode, p.offset); range.collapse(true); } }
   if (!range) return null;
   const node: Node | null = range.startContainer;
-  // Un mot du dico est rendu en UN seul <ruby> (ex. <ruby>優勝<rt>ゆうしょう</rt></ruby>). Dès que
-  // le tap tombe quelque part dans ce ruby — base, <rt>, ou l'élément lui-même — on prend TOUTE la
-  // base comme unité de recherche. Sinon, selon le moteur (WebKit/iOS résout le caret au kanji sous
-  // le doigt), on ne récupérait qu'un kanji isolé au lieu du mot entier (bug signalé).
+  // Un mot du dico est rendu en UNE seule enveloppe `.furi` (cf. `annote`). Dès que le tap
+  // tombe quelque part dedans — base, annotation, ou l'élément lui-même — on prend TOUTE la
+  // base comme unité de recherche. Sinon, selon le moteur (WebKit résout le caret au kanji
+  // sous le doigt), on ne récupérait qu'un kanji isolé au lieu du mot entier (bug 16ca9cc).
   const startEl: Element | null = node ? (node.nodeType === 1 ? (node as Element) : (node.parentNode as Element | null)) : null;
-  const ruby = startEl && startEl.closest ? startEl.closest("ruby") : null;
-  if (ruby) {
-    const baseNodes = ([] as Node[]).slice.call(ruby.childNodes).filter((n) => n.nodeName !== "RT");
+  const enveloppe = startEl && startEl.closest ? startEl.closest(`.${FURI_CLASS}`) : null;
+  if (enveloppe) {
+    const baseNodes = ([] as Node[]).slice.call(enveloppe.childNodes)
+      .filter((n) => !(n.nodeType === 1 && (n as Element).classList.contains(FURI_RT_CLASS)));
     const base = baseNodes.map((n) => n.textContent || "").join("");
     if (/[一-鿿]/.test(base)) {
-      // Position du caractère tapé dans la base (0 si le tap a atterri sur le <rt>).
+      // Position du caractère tapé dans la base (0 si le tap a atterri sur l'annotation).
       let rel = 0;
-      if (node && node.nodeType === 3 && node.parentNode && node.parentNode.nodeName !== "RT") {
+      const dansAnnotation = node?.parentNode instanceof Element
+        && (node.parentNode as Element).classList.contains(FURI_RT_CLASS);
+      if (node && node.nodeType === 3 && node.parentNode && !dansAnnotation) {
         let acc = 0;
         for (const n of baseNodes) { if (n === node) { acc += range.startOffset; break; } acc += (n.textContent || "").length; }
         rel = Math.max(0, Math.min(acc, base.length - 1));
