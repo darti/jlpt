@@ -4,7 +4,7 @@ import type { Question } from "../../types/quiz.ts";
 import { QuestionCard } from "./QuestionCard.tsx";
 import { Corrige } from "./Corrige.tsx";
 import { speakQuestion } from "../../lib/tts.ts";
-import { resolveGrammarRappel, type CoursGramIndex } from "../cours/coursGramIndex.ts";
+import { resolveRappel, type RappelIndex } from "./rappel.ts";
 import { PANEL, BTN_PRIMARY } from "../../ui/styles.ts";
 
 /** Diagnostic report: estimated level (from `dashboardModel`) + a per-skill score derived from
@@ -16,7 +16,7 @@ export function DiagnosticResults({
   model: DashboardModel;
   answers: { question: Question; chosen: number }[];
   onDone: () => void;
-  coursIndex?: CoursGramIndex | null;
+  coursIndex?: RappelIndex | null;
 }) {
   const right = answers.filter((a) => a.chosen === a.question.a).length;
   // Per-skill breakdown from the answers themselves — every tested category appears, in SKILLS order.
@@ -47,7 +47,7 @@ export function DiagnosticResults({
       {answers.map((a) => (
         <div key={a.question.id} className="flex flex-col gap-2">
           <QuestionCard question={a.question} chosen={a.chosen} answered={true} onChoose={() => {}} onSpeak={() => speakQuestion(a.question)} />
-          <Corrige question={a.question} correct={a.chosen === a.question.a} rappel={resolveGrammarRappel(a.question, coursIndex ?? null)} />
+          <Corrige question={a.question} correct={a.chosen === a.question.a} rappel={resolveRappel(a.question, coursIndex ?? null)} />
         </div>
       ))}
       <button

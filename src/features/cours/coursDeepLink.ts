@@ -6,7 +6,7 @@
  *  « Revenir à la question » back-link (`quizResumeHref`) that re-opens the corrigé the user
  *  left (the quiz persists its phase in the resume state — see useQuiz). Pure string logic,
  *  SSR-safe, so both the corrigé leaf and the cours page can import it. */
-import type { GrammarRappel } from "./coursGramIndex.ts";
+import type { Rappel } from "../quiz/rappel.ts";
 
 /** Hash URL to a specific cours item (group + item id), optionally flagged as coming from the
  *  quiz so the destination shows a return link. Item ids carry `:`/kana, so `focus` is encoded. */
@@ -22,9 +22,13 @@ export function coursItemHref(
   return `#/cours/${category}/${group}?${q.toString()}`;
 }
 
-/** Deep link to the grammar point of a resolved « Rappel de cours », coming from the quiz. */
-export function grammarPointHref(rappel: GrammarRappel): string {
-  return coursItemHref("gram", rappel.group, rappel.id, { fromQuiz: true });
+/** Lien profond vers l'entité d'un rappel résolu, en venant du quiz.
+ *
+ *  `null` quand aucune leçon ne couvre l'entité : mieux vaut pas de lien qu'un lien mort vers
+ *  `/cours/<cat>/` — 45 % des questions testent une notion que le cours n'enseigne pas. */
+export function rappelHref(rappel: Rappel): string | null {
+  if (!rappel.group || !rappel.coursCat) return null;
+  return coursItemHref(rappel.coursCat, rappel.group, rappel.iri, { fromQuiz: true });
 }
 
 /** URL that re-enters the Entraînement route and resumes the interrupted session, restoring the

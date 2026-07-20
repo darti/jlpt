@@ -12,8 +12,8 @@ import { readProgress } from "./lib/storage.ts";
 import { speakQuestion } from "./lib/tts.ts";
 import type { Question } from "./types/quiz.ts";
 import type { DiagAnswer } from "./features/quiz/useQuiz.ts";
-import { useCoursGramIndex } from "./features/cours/useCoursGramIndex.ts";
-import { resolveGrammarRappel, type CoursGramIndex } from "./features/cours/coursGramIndex.ts";
+import { useRappelIndex } from "./features/quiz/useRappelIndex.ts";
+import { resolveRappel, type RappelIndex } from "./features/quiz/rappel.ts";
 import { BTN_PRIMARY } from "./ui/styles.ts";
 
 /** Pure, prop-driven Entraînement content: the hub (phase "home") or the quiz flow
@@ -25,7 +25,7 @@ export function EntrainementAppView(props: {
   chosen: number | null;
   index?: number;
   mode?: "normal" | "diagnostic"; diagAnswers?: DiagAnswer[]; diagModel?: DashboardModel | null;
-  coursIndex?: CoursGramIndex | null;
+  coursIndex?: RappelIndex | null;
   onStart: () => void; onChoose: (i: number) => void; onNext: () => void; onRestart: () => void;
   onSetMinutes: (m: number) => void;
   onResumeNow: () => void; onDismissResume: () => void;
@@ -64,7 +64,7 @@ export function EntrainementAppView(props: {
         <div className="flex flex-col gap-4">
           <SessionProgress index={props.index ?? 0} count={props.count} mode={props.mode} right={props.right} answered={(props.index ?? 0) + 1} />
           <QuestionCard question={question} chosen={props.chosen} answered={true} onChoose={() => {}} onSpeak={onSpeak} />
-          <Corrige question={question} correct={props.chosen != null && props.chosen === question.a} rappel={resolveGrammarRappel(question, props.coursIndex ?? null)} />
+          <Corrige question={question} correct={props.chosen != null && props.chosen === question.a} rappel={resolveRappel(question, props.coursIndex ?? null)} />
           <button
             type="button"
             onClick={props.onNext}
@@ -89,7 +89,7 @@ export function EntrainementAppView(props: {
 export default function EntrainementApp() {
   const quiz = useQuiz();
   const [resumeDismissed, setResumeDismissed] = useState(false);
-  const coursIndex = useCoursGramIndex();
+  const coursIndex = useRappelIndex();
 
   const diagModel: DashboardModel | null = quiz.phase === "diag-results"
     ? dashboardModel(readProgress() ?? { total: 0, skill: {} }, new Date())

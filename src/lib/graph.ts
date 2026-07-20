@@ -37,6 +37,10 @@ export function toQuestion(s: Sujet): Question {
   const od = list(s["jlpt:optionNote"]); if (od !== undefined) q.od = od;
   const script = str(s["jlpt:script"]); if (script !== undefined) q.script = script;
   const passage = str(s["jlpt:passage"]); if (passage !== undefined) q.passage = passage;
+  // Les arêtes `tests` — l'IRI de l'entité que la question teste. C'est elles qui permettent
+  // au corrigé d'afficher un rappel SANS deviner la notion en parsant son HTML
+  // (cf. src/features/quiz/rappel.ts).
+  const tests = list(s.tests); if (tests !== undefined) q.tests = tests;
   return q;
 }
 
