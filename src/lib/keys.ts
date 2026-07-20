@@ -26,7 +26,9 @@ export const UPDATED_KEY = "jlptN3_updatedAt";
 export const RESUME_KEY = "jlptN3quiz_resume";
 
 /** Avancement du cours (état par item). */
-export const COURS_KEY = "jlptN3_cours_v1";
+// v2 : les ids d items sont devenus des IRIs du graphe (jlpt:gram/X) quand les cours y sont
+// entrés. Relire une progression v1 (clés « gram:X ») afficherait 0 % partout, sans erreur.
+export const COURS_KEY = "jlptN3_cours_v2";
 
 export const THEME_KEY = "jlptN3_theme";
 

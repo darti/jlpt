@@ -22,10 +22,8 @@ const STATIC_FILES = new Set([
   "/data/graph/q-kanji.jsonld", "/data/graph/q-lecture.jsonld", "/data/graph/q-ecoute.jsonld",
   "/data/graph/corpus.jsonld", "/data/graph/word.jsonld",
   "/data/graph/kanji.jsonld", "/data/graph/gram.jsonld", "/data/graph/lesson.jsonld",
+  "/data/graph/example.jsonld", "/data/graph/method.jsonld",
   "/data/graph/context.jsonld", "/data/graph/shapes.jsonld",
-  // Contenu du cours (route /cours) — fetché au runtime par src/features/cours.
-  "/data/cours-gram.json", "/data/cours-kanji.json", "/data/cours-vocab.json",
-  "/data/cours-method.json",
 ]);
 
 // One-shot CSS build so styles.gen.css exists before the first request…

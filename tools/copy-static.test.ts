@@ -11,9 +11,9 @@ test("ROOT ledger includes the service worker and PWA/stub assets", () => {
   }
 });
 
-test("isServedData selects the runtime-fetched data files", () => {
-  for (const f of ["cours-gram.json", "cours-method.json"]) {
-    expect(isServedData(f)).toBe(true);
+test("isServedData ne livre que les documents du graphe", () => {
+  for (const f of ["q-kanji.jsonld", "corpus.jsonld", "example.jsonld", "method.jsonld"]) {
+    expect(isServedData(f), `${f} doit être livré`).toBe(true);
   }
 });
 

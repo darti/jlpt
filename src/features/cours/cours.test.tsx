@@ -11,28 +11,30 @@ afterEach(() => {
   try { globalThis.localStorage.clear(); } catch { /* noop */ }
 });
 
+// Documents du graphe : c est ce que useCours fetche depuis la migration des cours.
 const CATS: Record<string, unknown> = {
-  "data/cours-gram.json": {
-    id: "gram", title: "文法 — Grammaire", kind: "learn",
-    groups: [{
-      id: "g1", title: "Conditionnels",
-      items: [{ id: "gram:ば", form: "〜ば", mean: "si" }],
-    }],
-  },
-  "data/cours-vocab.json": { id: "vocab", title: "語彙", kind: "learn", groups: [] },
-  "data/cours-kanji.json": {
-    id: "kanji", title: "漢字", kind: "learn",
-    groups: [{
-      id: "k1", title: "Eau",
-      items: [{ id: "kanji:水", kanji: "水", lecture: "みず", sens: "eau" }],
-    }],
-  },
-  "data/cours-method.json": { id: "method", title: "Méthode", kind: "method", sections: [] },
+  "data/graph/lesson.jsonld": { "@graph": [
+    { "@id": "jlpt:lesson/gram-g1", "@type": "jlpt:Lesson", "schema:name": "Conditionnels",
+      "jlpt:order": 0, "jlpt:track": "gram", covers: ["jlpt:gram/ば"] },
+    { "@id": "jlpt:lesson/kanji-k1", "@type": "jlpt:Lesson", "schema:name": "Eau",
+      "jlpt:order": 0, "jlpt:track": "kanji", covers: ["jlpt:kanji/水"] },
+  ] },
+  "data/graph/gram.jsonld": { "@graph": [
+    { "@id": "jlpt:gram/ば", "@type": "jlpt:GrammarPoint", "jlpt:form": "〜ば",
+      "schema:description": "si" },
+  ] },
+  "data/graph/kanji.jsonld": { "@graph": [
+    { "@id": "jlpt:kanji/水", "@type": "jlpt:Kanji", "schema:name": "水",
+      "schema:description": "eau", "jlpt:kunReading": ["みず"] },
+  ] },
+  "data/graph/word.jsonld": { "@graph": [] },
+  "data/graph/example.jsonld": { "@graph": [] },
+  "data/graph/method.jsonld": { "@graph": [] },
 };
 
 async function mountAt(path: string): Promise<{ host: HTMLElement; root: Root }> {
   globalThis.fetch = ((url: string) =>
-    Promise.resolve({ json: () => Promise.resolve(CATS[url]) })) as unknown as typeof fetch;
+    Promise.resolve({ json: () => Promise.resolve(CATS[url] ?? { "@graph": [] }) })) as unknown as typeof fetch;
   const host = document.createElement("div"); const root = createRoot(host);
   await act(async () => {
     root.render(
@@ -55,11 +57,11 @@ test("Cours /cours → hub des catégories", async () => {
 test("Cours /cours/gram/g1 → détail + toggle qui persiste", async () => {
   const { host, root } = await mountAt("/cours/gram/g1");
   expect(host.innerHTML).toContain("〜ば");
-  const btn = host.querySelector('[data-item-id="gram:ば"]') as HTMLButtonElement;
+  const btn = host.querySelector('[data-item-id="jlpt:gram/ば"]') as HTMLButtonElement;
   expect(btn).not.toBeNull();
   await act(async () => { btn.click(); }); // neuf → known
-  const raw = globalThis.localStorage.getItem("jlptN3_cours_v1");
-  expect(JSON.parse(raw!)).toEqual({ "gram:ば": "known" });
+  const raw = globalThis.localStorage.getItem("jlptN3_cours_v2");
+  expect(JSON.parse(raw!)).toEqual({ "jlpt:gram/ば": "known" });
   await act(async () => { root.unmount(); });
 });
 

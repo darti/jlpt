@@ -17,16 +17,13 @@ export const ROOT = [
   "README.md",
 ];
 
-// Données chargées au runtime par le React : documents du graphe (questions, corpus, mots,
-// entités) et contenu de cours.
-// (Même sélection que scripts/dev.ts STATIC_FILES — bank.json, dict.json et les sources
-// d'auteur grammar/kanji/vocab.json ne sont PAS servis : le runtime lit data/graph/.)
+// Données chargées au runtime par le React : les documents du graphe, et RIEN d'autre.
+// `data/` ne contient plus que `data/graph/` — cf. CLAUDE.md.
 //
 // ⚠ Les `.jsonld` vivent dans le SOUS-répertoire data/graph/, pas à la racine de data/ :
 // `copyStatic` l'énumère à part et repasse par ce même prédicat. Un seul inventaire, donc,
 // et le test qui garde ce prédicat garde vraiment ce qui est livré.
-export const isServedData = (f) =>
-  /^cours-.*\.json$/.test(f) || /\.jsonld$/.test(f);
+export const isServedData = (f) => /\.jsonld$/.test(f);
 
 export function copyStatic() {
   mkdirSync(`${OUT}/data`, { recursive: true });

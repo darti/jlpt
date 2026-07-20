@@ -1,11 +1,12 @@
 {
- "id": "method",
- "title": "読解・聴解 — Méthode",
- "kind": "method",
- "sections": [
+ "@context": "context.jsonld",
+ "@graph": [
   {
-   "title": "読解 — Méthode compréhension écrite",
-   "tips": [
+   "@id": "jlpt:method/dokkai",
+   "@type": "jlpt:MethodNote",
+   "schema:name": "読解 — Méthode compréhension écrite",
+   "jlpt:order": 0,
+   "jlpt:tip": [
     "<b>Lis la question d'abord</b>, puis cherche l'info dans le texte (surtout pour 情報検索, repérage d'info).",
     "Repère les <b>connecteurs</b> (しかし, つまり, だから) : ils signalent où est la réponse.",
     "Le 指示語 (こそあど : これ・それ・あれ) renvoie toujours à un mot proche avant — sache à quoi il réfère.",
@@ -15,8 +16,11 @@
    ]
   },
   {
-   "title": "聴解 — Méthode compréhension orale",
-   "tips": [
+   "@id": "jlpt:method/choukai",
+   "@type": "jlpt:MethodNote",
+   "schema:name": "聴解 — Méthode compréhension orale",
+   "jlpt:order": 1,
+   "jlpt:tip": [
     "5 formats : 課題理解 (tâche à faire), 概要理解 (idée générale), 発話表現 (quoi dire), 即時応答 (réponse immédiate).",
     "<b>Shadowing</b> : répète à voix haute par-dessus l'audio → améliore écoute ET prononciation.",
     "Écoute du japonais <b>tous les jours</b>, même passivement (podcast, anime sans sous-titres FR).",

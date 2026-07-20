@@ -416,7 +416,8 @@
     "jlpt:word/眠い",
     "jlpt:word/眠る",
     "jlpt:word/歯",
-    "jlpt:word/太る"
+    "jlpt:word/太る",
+    "jlpt:word/予防"
    ]
   },
   {
@@ -547,6 +548,8 @@
     "jlpt:word/積もる",
     "jlpt:word/天気予報",
     "jlpt:word/濡れる",
+    "jlpt:word/発生",
+    "jlpt:word/保護",
     "jlpt:word/星",
     "jlpt:word/湖",
     "jlpt:word/緑",
@@ -566,6 +569,7 @@
    "covers": [
     "jlpt:word/明日",
     "jlpt:word/一度",
+    "jlpt:word/延期",
     "jlpt:word/遅れる",
     "jlpt:word/終わり",
     "jlpt:word/期限",
@@ -574,6 +578,8 @@
     "jlpt:word/今度",
     "jlpt:word/今夜",
     "jlpt:word/最近",
+    "jlpt:word/最初",
+    "jlpt:word/最後",
     "jlpt:word/週末",
     "jlpt:word/祝日",
     "jlpt:word/正月",
@@ -625,13 +631,16 @@
     "jlpt:word/点数",
     "jlpt:word/入学",
     "jlpt:word/能力",
+    "jlpt:word/発見",
     "jlpt:word/範囲",
     "jlpt:word/評価",
     "jlpt:word/不合格",
     "jlpt:word/理解",
     "jlpt:word/留学",
     "jlpt:word/理論",
-    "jlpt:word/歴史"
+    "jlpt:word/歴史",
+    "jlpt:word/得意",
+    "jlpt:word/苦手"
    ]
   },
   {
@@ -646,9 +655,11 @@
     "jlpt:word/営業",
     "jlpt:word/応募",
     "jlpt:word/会議",
+    "jlpt:word/改善",
     "jlpt:word/係",
     "jlpt:word/確認",
     "jlpt:word/課長",
+    "jlpt:word/管理",
     "jlpt:word/機械",
     "jlpt:word/協調",
     "jlpt:word/協力",
@@ -664,14 +675,18 @@
     "jlpt:word/就職",
     "jlpt:word/出席",
     "jlpt:word/出張",
+    "jlpt:word/処理",
     "jlpt:word/書類",
     "jlpt:word/資料",
     "jlpt:word/上司",
     "jlpt:word/生産",
     "jlpt:word/製品",
     "jlpt:word/責任",
+    "jlpt:word/対応",
     "jlpt:word/退職",
     "jlpt:word/担当",
+    "jlpt:word/調整",
+    "jlpt:word/提案",
     "jlpt:word/同僚",
     "jlpt:word/働く",
     "jlpt:word/部下",
@@ -731,6 +746,8 @@
    "jlpt:order": 10,
    "jlpt:track": "vocab",
    "covers": [
+    "jlpt:word/安全",
+    "jlpt:word/危険",
     "jlpt:word/改革",
     "jlpt:word/火事",
     "jlpt:word/基準",
@@ -742,6 +759,8 @@
     "jlpt:word/公務員",
     "jlpt:word/国際",
     "jlpt:word/差別",
+    "jlpt:word/賛成",
+    "jlpt:word/支持",
     "jlpt:word/市民",
     "jlpt:word/社会",
     "jlpt:word/証拠",
@@ -758,7 +777,9 @@
     "jlpt:word/調査",
     "jlpt:word/泥棒",
     "jlpt:word/盗む",
+    "jlpt:word/発達",
     "jlpt:word/発展",
+    "jlpt:word/反対",
     "jlpt:word/平等",
     "jlpt:word/法律",
     "jlpt:word/マナー"
@@ -786,6 +807,7 @@
     "jlpt:word/誤解",
     "jlpt:word/質問",
     "jlpt:word/失礼",
+    "jlpt:word/主張",
     "jlpt:word/紹介",
     "jlpt:word/承知",
     "jlpt:word/新聞",
@@ -827,21 +849,27 @@
     "jlpt:word/感謝",
     "jlpt:word/感じる",
     "jlpt:word/感想",
+    "jlpt:word/我慢",
+    "jlpt:word/期待",
     "jlpt:word/気分",
+    "jlpt:word/希望",
     "jlpt:word/気持ち",
     "jlpt:word/興味",
     "jlpt:word/緊張",
     "jlpt:word/疑問",
     "jlpt:word/癖",
+    "jlpt:word/苦労",
     "jlpt:word/後悔",
     "jlpt:word/心",
     "jlpt:word/寂しい",
     "jlpt:word/親切",
+    "jlpt:word/心配",
     "jlpt:word/信頼",
     "jlpt:word/性格",
     "jlpt:word/尊敬",
     "jlpt:word/態度",
     "jlpt:word/丁寧",
+    "jlpt:word/努力",
     "jlpt:word/苦手",
     "jlpt:word/熱心",
     "jlpt:word/反省",
@@ -850,13 +878,15 @@
     "jlpt:word/不満",
     "jlpt:word/褒める",
     "jlpt:word/真面目",
+    "jlpt:word/満足",
     "jlpt:word/優しい",
     "jlpt:word/油断",
     "jlpt:word/夢",
     "jlpt:word/喜ぶ",
     "jlpt:word/笑う",
     "jlpt:word/落ち着く",
-    "jlpt:word/厳しい"
+    "jlpt:word/厳しい",
+    "jlpt:word/怖い"
    ]
   },
   {
@@ -930,11 +960,23 @@
     "jlpt:word/浅い",
     "jlpt:word/生きる",
     "jlpt:word/硬い",
+    "jlpt:word/継続",
+    "jlpt:word/減少",
+    "jlpt:word/最大",
+    "jlpt:word/最小",
     "jlpt:word/下がる",
     "jlpt:word/進む",
+    "jlpt:word/増加",
     "jlpt:word/増減",
     "jlpt:word/正しい",
+    "jlpt:word/中止",
+    "jlpt:word/続く",
+    "jlpt:word/続ける",
+    "jlpt:word/増える",
+    "jlpt:word/減る",
     "jlpt:word/深い",
+    "jlpt:word/複雑",
+    "jlpt:word/簡単",
     "jlpt:word/間違える",
     "jlpt:word/戻る"
    ]
@@ -946,11 +988,20 @@
    "jlpt:order": 17,
    "jlpt:track": "vocab",
    "covers": [
+    "jlpt:word/維持",
+    "jlpt:word/変わる",
+    "jlpt:word/変える",
     "jlpt:word/傾向",
+    "jlpt:word/向上",
     "jlpt:word/進歩",
+    "jlpt:word/実行",
+    "jlpt:word/実施",
+    "jlpt:word/実現",
+    "jlpt:word/成長",
     "jlpt:word/慣れる",
     "jlpt:word/始める",
-    "jlpt:word/変化"
+    "jlpt:word/変化",
+    "jlpt:word/変更"
    ]
   },
   {
@@ -982,7 +1033,9 @@
     "jlpt:word/倍",
     "jlpt:word/平均",
     "jlpt:word/両方",
-    "jlpt:word/割合"
+    "jlpt:word/割合",
+    "jlpt:word/差",
+    "jlpt:word/違い"
    ]
   },
   {
@@ -1014,6 +1067,8 @@
     "jlpt:word/珍しい",
     "jlpt:word/役立つ",
     "jlpt:word/チャンス",
+    "jlpt:word/十分",
+    "jlpt:word/正確",
     "jlpt:word/詳しい"
    ]
   },
@@ -1027,6 +1082,9 @@
     "jlpt:word/選ぶ",
     "jlpt:word/解決",
     "jlpt:word/考える",
+    "jlpt:word/決まる",
+    "jlpt:word/決める",
+    "jlpt:word/工夫",
     "jlpt:word/区別",
     "jlpt:word/決定",
     "jlpt:word/決断",
@@ -1046,11 +1104,11 @@
     "jlpt:word/矛盾",
     "jlpt:word/目的",
     "jlpt:word/目標",
+    "jlpt:word/要求",
     "jlpt:word/要望",
     "jlpt:word/予想",
     "jlpt:word/予測",
     "jlpt:word/思い出す",
-    "jlpt:word/決める",
     "jlpt:word/断る"
    ]
   },
@@ -1071,6 +1129,8 @@
     "jlpt:word/加える",
     "jlpt:word/騒ぐ",
     "jlpt:word/触る",
+    "jlpt:word/支援",
+    "jlpt:word/修正",
     "jlpt:word/準備",
     "jlpt:word/足す",
     "jlpt:word/助ける",
@@ -1081,6 +1141,7 @@
     "jlpt:word/拾う",
     "jlpt:word/含む",
     "jlpt:word/踏む",
+    "jlpt:word/防止",
     "jlpt:word/守る",
     "jlpt:word/用意",
     "jlpt:word/利用",
@@ -1098,6 +1159,7 @@
     "jlpt:word/一生懸命",
     "jlpt:word/必ず",
     "jlpt:word/きちんと",
+    "jlpt:word/急",
     "jlpt:word/しっかり",
     "jlpt:word/実際",
     "jlpt:word/実は",
@@ -1110,6 +1172,8 @@
     "jlpt:word/特に",
     "jlpt:word/普段",
     "jlpt:word/普通",
+    "jlpt:word/やはり",
+    "jlpt:word/やっぱり",
     "jlpt:word/わざわざ",
     "jlpt:word/たとえば",
     "jlpt:word/つまり",
@@ -1119,6 +1183,7 @@
     "jlpt:word/ただし",
     "jlpt:word/かえって",
     "jlpt:word/さすが",
+    "jlpt:gram/なかなかない",
     "jlpt:word/そろそろ",
     "jlpt:word/ますます",
     "jlpt:word/はっきり",
@@ -1128,6 +1193,7 @@
     "jlpt:word/もしかしたら",
     "jlpt:word/できるだけ",
     "jlpt:word/わざと",
+    "jlpt:word/偶然",
     "jlpt:word/そのうち"
    ]
   },
@@ -1154,22 +1220,29 @@
     "jlpt:kanji/億",
     "jlpt:kanji/化",
     "jlpt:kanji/供",
+    "jlpt:kanji/偶",
     "jlpt:kanji/係",
     "jlpt:kanji/件",
     "jlpt:kanji/健",
     "jlpt:kanji/個",
+    "jlpt:kanji/傷",
     "jlpt:kanji/信",
     "jlpt:kanji/使",
     "jlpt:kanji/仕",
     "jlpt:kanji/住",
+    "jlpt:kanji/仁",
     "jlpt:kanji/似",
     "jlpt:kanji/像",
     "jlpt:kanji/他",
     "jlpt:kanji/代",
     "jlpt:kanji/仲",
     "jlpt:kanji/値",
+    "jlpt:kanji/停",
+    "jlpt:kanji/任",
+    "jlpt:kanji/俳",
     "jlpt:kanji/倍",
     "jlpt:kanji/備",
+    "jlpt:kanji/優",
     "jlpt:kanji/例",
     "jlpt:kanji/働",
     "jlpt:kanji/価"
@@ -1182,6 +1255,8 @@
    "jlpt:order": 1,
    "jlpt:track": "kanji",
    "covers": [
+    "jlpt:kanji/泳",
+    "jlpt:kanji/温",
     "jlpt:kanji/漢",
     "jlpt:kanji/泣",
     "jlpt:kanji/況",
@@ -1193,11 +1268,15 @@
     "jlpt:kanji/消",
     "jlpt:kanji/深",
     "jlpt:kanji/準",
+    "jlpt:kanji/治",
     "jlpt:kanji/清",
     "jlpt:kanji/測",
     "jlpt:kanji/注",
     "jlpt:kanji/沈",
+    "jlpt:kanji/湯",
+    "jlpt:kanji/濃",
     "jlpt:kanji/波",
+    "jlpt:kanji/法",
     "jlpt:kanji/油",
     "jlpt:kanji/洋",
     "jlpt:kanji/流",
@@ -1213,11 +1292,16 @@
    "jlpt:track": "kanji",
    "covers": [
     "jlpt:kanji/案",
+    "jlpt:kanji/栄",
     "jlpt:kanji/横",
     "jlpt:kanji/果",
     "jlpt:kanji/橋",
+    "jlpt:kanji/極",
+    "jlpt:kanji/机",
+    "jlpt:kanji/機",
     "jlpt:kanji/業",
     "jlpt:kanji/検",
+    "jlpt:kanji/権",
     "jlpt:kanji/構",
     "jlpt:kanji/根",
     "jlpt:kanji/査",
@@ -1227,8 +1311,11 @@
     "jlpt:kanji/相",
     "jlpt:kanji/築",
     "jlpt:kanji/柱",
+    "jlpt:kanji/杯",
     "jlpt:kanji/箱",
     "jlpt:kanji/板",
+    "jlpt:kanji/梅",
+    "jlpt:kanji/標",
     "jlpt:kanji/様"
    ]
   },
@@ -1239,18 +1326,27 @@
    "jlpt:order": 3,
    "jlpt:track": "kanji",
    "covers": [
+    "jlpt:kanji/回",
     "jlpt:kanji/各",
     "jlpt:kanji/含",
+    "jlpt:kanji/吸",
+    "jlpt:kanji/器",
+    "jlpt:kanji/句",
     "jlpt:kanji/君",
     "jlpt:kanji/群",
     "jlpt:kanji/向",
+    "jlpt:kanji/告",
+    "jlpt:kanji/固",
     "jlpt:kanji/号",
     "jlpt:kanji/史",
+    "jlpt:kanji/司",
     "jlpt:kanji/舎",
     "jlpt:kanji/商",
+    "jlpt:kanji/辞",
     "jlpt:kanji/舌",
     "jlpt:kanji/善",
     "jlpt:kanji/品",
+    "jlpt:kanji/否",
     "jlpt:kanji/味",
     "jlpt:kanji/命",
     "jlpt:kanji/喜"
@@ -1265,17 +1361,25 @@
    "covers": [
     "jlpt:kanji/課",
     "jlpt:kanji/許",
+    "jlpt:kanji/記",
     "jlpt:kanji/議",
     "jlpt:kanji/警",
     "jlpt:kanji/講",
+    "jlpt:kanji/護",
+    "jlpt:kanji/詩",
     "jlpt:kanji/詞",
     "jlpt:kanji/誌",
     "jlpt:kanji/識",
+    "jlpt:kanji/謝",
+    "jlpt:kanji/諸",
+    "jlpt:kanji/証",
     "jlpt:kanji/試",
     "jlpt:kanji/設",
     "jlpt:kanji/談",
     "jlpt:kanji/調",
+    "jlpt:kanji/討",
     "jlpt:kanji/認",
+    "jlpt:kanji/評",
     "jlpt:kanji/論"
    ]
   },
@@ -1286,6 +1390,7 @@
    "jlpt:order": 5,
    "jlpt:track": "kanji",
    "covers": [
+    "jlpt:kanji/紀",
     "jlpt:kanji/級",
     "jlpt:kanji/経",
     "jlpt:kanji/結",
@@ -1298,8 +1403,12 @@
     "jlpt:kanji/絶",
     "jlpt:kanji/総",
     "jlpt:kanji/素",
+    "jlpt:kanji/続",
+    "jlpt:kanji/統",
     "jlpt:kanji/約",
-    "jlpt:kanji/練"
+    "jlpt:kanji/緑",
+    "jlpt:kanji/練",
+    "jlpt:kanji/給"
    ]
   },
   {
@@ -1310,13 +1419,23 @@
    "jlpt:track": "kanji",
    "covers": [
     "jlpt:kanji/暗",
+    "jlpt:kanji/影",
+    "jlpt:kanji/景",
+    "jlpt:kanji/最",
     "jlpt:kanji/昨",
     "jlpt:kanji/者",
+    "jlpt:kanji/署",
     "jlpt:kanji/昭",
     "jlpt:kanji/暑",
+    "jlpt:kanji/晴",
+    "jlpt:kanji/星",
     "jlpt:kanji/昔",
+    "jlpt:kanji/是",
+    "jlpt:kanji/暖",
+    "jlpt:kanji/曇",
     "jlpt:kanji/普",
-    "jlpt:kanji/増"
+    "jlpt:kanji/増",
+    "jlpt:kanji/量"
    ]
   },
   {
@@ -1336,7 +1455,10 @@
     "jlpt:kanji/造",
     "jlpt:kanji/退",
     "jlpt:kanji/達",
+    "jlpt:kanji/追",
     "jlpt:kanji/適",
+    "jlpt:kanji/導",
+    "jlpt:kanji/避",
     "jlpt:kanji/返",
     "jlpt:kanji/遊",
     "jlpt:kanji/過",
@@ -1352,15 +1474,22 @@
    "covers": [
     "jlpt:kanji/拡",
     "jlpt:kanji/採",
+    "jlpt:kanji/拾",
     "jlpt:kanji/招",
     "jlpt:kanji/指",
     "jlpt:kanji/持",
     "jlpt:kanji/推",
     "jlpt:kanji/接",
+    "jlpt:kanji/操",
     "jlpt:kanji/損",
     "jlpt:kanji/探",
     "jlpt:kanji/担",
-    "jlpt:kanji/打"
+    "jlpt:kanji/打",
+    "jlpt:kanji/提",
+    "jlpt:kanji/投",
+    "jlpt:kanji/拝",
+    "jlpt:kanji/批",
+    "jlpt:kanji/技"
    ]
   },
   {
@@ -1380,7 +1509,9 @@
     "jlpt:kanji/想",
     "jlpt:kanji/息",
     "jlpt:kanji/態",
+    "jlpt:kanji/忠",
     "jlpt:kanji/念",
+    "jlpt:kanji/悩",
     "jlpt:kanji/必",
     "jlpt:kanji/悲",
     "jlpt:kanji/怒",
@@ -1397,13 +1528,19 @@
     "jlpt:kanji/安",
     "jlpt:kanji/完",
     "jlpt:kanji/官",
+    "jlpt:kanji/管",
     "jlpt:kanji/寒",
+    "jlpt:kanji/害",
     "jlpt:kanji/客",
+    "jlpt:kanji/宮",
+    "jlpt:kanji/寄",
     "jlpt:kanji/察",
     "jlpt:kanji/宿",
     "jlpt:kanji/守",
+    "jlpt:kanji/寝",
     "jlpt:kanji/実",
     "jlpt:kanji/定",
+    "jlpt:kanji/寧",
     "jlpt:kanji/容"
    ]
   },
@@ -1419,11 +1556,16 @@
     "jlpt:kanji/賛",
     "jlpt:kanji/財",
     "jlpt:kanji/資",
+    "jlpt:kanji/質",
     "jlpt:kanji/賞",
     "jlpt:kanji/責",
+    "jlpt:kanji/則",
     "jlpt:kanji/賃",
+    "jlpt:kanji/敗",
+    "jlpt:kanji/販",
     "jlpt:kanji/費",
-    "jlpt:kanji/負"
+    "jlpt:kanji/負",
+    "jlpt:kanji/貿"
    ]
   },
   {
@@ -1434,13 +1576,17 @@
    "jlpt:track": "kanji",
    "covers": [
     "jlpt:kanji/院",
+    "jlpt:kanji/階",
     "jlpt:kanji/響",
+    "jlpt:kanji/郡",
     "jlpt:kanji/険",
+    "jlpt:kanji/限",
     "jlpt:kanji/除",
     "jlpt:kanji/隊",
     "jlpt:kanji/都",
     "jlpt:kanji/部",
     "jlpt:kanji/防",
+    "jlpt:kanji/陽",
     "jlpt:kanji/際"
    ]
   },
@@ -1452,10 +1598,16 @@
    "jlpt:track": "kanji",
    "covers": [
     "jlpt:kanji/胃",
+    "jlpt:kanji/育",
     "jlpt:kanji/期",
+    "jlpt:kanji/骨",
     "jlpt:kanji/臓",
     "jlpt:kanji/腸",
+    "jlpt:kanji/脳",
+    "jlpt:kanji/肺",
+    "jlpt:kanji/背",
     "jlpt:kanji/服",
+    "jlpt:kanji/望",
     "jlpt:kanji/有"
    ]
   },
@@ -1468,10 +1620,14 @@
    "covers": [
     "jlpt:kanji/英",
     "jlpt:kanji/荷",
+    "jlpt:kanji/芽",
     "jlpt:kanji/苦",
+    "jlpt:kanji/芸",
+    "jlpt:kanji/菜",
     "jlpt:kanji/蒸",
     "jlpt:kanji/蔵",
     "jlpt:kanji/薬",
+    "jlpt:kanji/葉",
     "jlpt:kanji/落"
    ]
   },
@@ -1482,11 +1638,17 @@
    "jlpt:order": 15,
    "jlpt:track": "kanji",
    "covers": [
+    "jlpt:kanji/加",
+    "jlpt:kanji/功",
+    "jlpt:kanji/効",
     "jlpt:kanji/勝",
     "jlpt:kanji/助",
     "jlpt:kanji/動",
+    "jlpt:kanji/努",
     "jlpt:kanji/勉",
-    "jlpt:kanji/務"
+    "jlpt:kanji/務",
+    "jlpt:kanji/劣",
+    "jlpt:kanji/協"
    ]
   },
   {
@@ -1497,10 +1659,14 @@
    "jlpt:track": "kanji",
    "covers": [
     "jlpt:kanji/祭",
+    "jlpt:kanji/視",
     "jlpt:kanji/祝",
     "jlpt:kanji/神",
+    "jlpt:kanji/示",
     "jlpt:kanji/祖",
+    "jlpt:kanji/票",
     "jlpt:kanji/福",
+    "jlpt:kanji/礼",
     "jlpt:kanji/社"
    ]
   },
@@ -1513,9 +1679,13 @@
    "covers": [
     "jlpt:kanji/解",
     "jlpt:kanji/割",
+    "jlpt:kanji/型",
     "jlpt:kanji/券",
+    "jlpt:kanji/初",
     "jlpt:kanji/制",
-    "jlpt:kanji/別"
+    "jlpt:kanji/判",
+    "jlpt:kanji/別",
+    "jlpt:kanji/列"
    ]
   },
   {
@@ -1528,6 +1698,9 @@
     "jlpt:kanji/岸",
     "jlpt:kanji/庫",
     "jlpt:kanji/康",
+    "jlpt:kanji/序",
+    "jlpt:kanji/庁",
+    "jlpt:kanji/底",
     "jlpt:kanji/庭",
     "jlpt:kanji/度",
     "jlpt:kanji/産"
@@ -1540,9 +1713,13 @@
    "jlpt:order": 19,
    "jlpt:track": "kanji",
    "covers": [
+    "jlpt:kanji/改",
+    "jlpt:kanji/救",
     "jlpt:kanji/攻",
     "jlpt:kanji/散",
+    "jlpt:kanji/数",
     "jlpt:kanji/政",
+    "jlpt:kanji/整",
     "jlpt:kanji/放"
    ]
   },
@@ -1553,10 +1730,14 @@
    "jlpt:order": 20,
    "jlpt:track": "kanji",
    "covers": [
+    "jlpt:kanji/鏡",
     "jlpt:kanji/銀",
+    "jlpt:kanji/鉱",
     "jlpt:kanji/針",
     "jlpt:kanji/銭",
-    "jlpt:kanji/鉄"
+    "jlpt:kanji/鉄",
+    "jlpt:kanji/銅",
+    "jlpt:kanji/鈍"
    ]
   },
   {
@@ -1566,8 +1747,13 @@
    "jlpt:order": 21,
    "jlpt:track": "kanji",
    "covers": [
+    "jlpt:kanji/営",
     "jlpt:kanji/災",
-    "jlpt:kanji/然"
+    "jlpt:kanji/然",
+    "jlpt:kanji/炭",
+    "jlpt:kanji/灯",
+    "jlpt:kanji/熱",
+    "jlpt:kanji/燃"
    ]
   },
   {
@@ -1581,7 +1767,9 @@
     "jlpt:kanji/局",
     "jlpt:kanji/居",
     "jlpt:kanji/層",
-    "jlpt:kanji/展"
+    "jlpt:kanji/展",
+    "jlpt:kanji/届",
+    "jlpt:kanji/尾"
    ]
   },
   {
@@ -1591,8 +1779,13 @@
    "jlpt:order": 23,
    "jlpt:track": "kanji",
    "covers": [
+    "jlpt:kanji/種",
     "jlpt:kanji/税",
-    "jlpt:kanji/和"
+    "jlpt:kanji/程",
+    "jlpt:kanji/秘",
+    "jlpt:kanji/秒",
+    "jlpt:kanji/和",
+    "jlpt:kanji/移"
    ]
   },
   {
@@ -1605,7 +1798,9 @@
     "jlpt:kanji/界",
     "jlpt:kanji/申",
     "jlpt:kanji/重",
-    "jlpt:kanji/鼻"
+    "jlpt:kanji/畑",
+    "jlpt:kanji/鼻",
+    "jlpt:kanji/略"
    ]
   },
   {
@@ -1616,8 +1811,11 @@
    "jlpt:track": "kanji",
    "covers": [
     "jlpt:kanji/較",
+    "jlpt:kanji/軍",
     "jlpt:kanji/軽",
-    "jlpt:kanji/転"
+    "jlpt:kanji/転",
+    "jlpt:kanji/範",
+    "jlpt:kanji/輸"
    ]
   },
   {
@@ -1628,6 +1826,7 @@
    "jlpt:track": "kanji",
    "covers": [
     "jlpt:kanji/額",
+    "jlpt:kanji/願",
     "jlpt:kanji/順",
     "jlpt:kanji/題",
     "jlpt:kanji/頂",
@@ -1641,9 +1840,11 @@
    "jlpt:order": 27,
    "jlpt:track": "kanji",
    "covers": [
+    "jlpt:kanji/好",
     "jlpt:kanji/婚",
     "jlpt:kanji/妻",
     "jlpt:kanji/始",
+    "jlpt:kanji/姓",
     "jlpt:kanji/要"
    ]
   },
@@ -1657,7 +1858,8 @@
     "jlpt:kanji/球",
     "jlpt:kanji/現",
     "jlpt:kanji/全",
-    "jlpt:kanji/珍"
+    "jlpt:kanji/珍",
+    "jlpt:kanji/班"
    ]
   },
   {
@@ -1669,6 +1871,7 @@
    "covers": [
     "jlpt:kanji/術",
     "jlpt:kanji/待",
+    "jlpt:kanji/彼",
     "jlpt:kanji/役",
     "jlpt:kanji/得"
    ]
@@ -1680,7 +1883,10 @@
    "jlpt:order": 30,
    "jlpt:track": "kanji",
    "covers": [
-    "jlpt:kanji/研"
+    "jlpt:kanji/確",
+    "jlpt:kanji/研",
+    "jlpt:kanji/石",
+    "jlpt:kanji/破"
    ]
   },
   {
@@ -1724,7 +1930,12 @@
    "@type": "jlpt:Lesson",
    "schema:name": "Famille 立 — debout",
    "jlpt:order": 34,
-   "jlpt:track": "kanji"
+   "jlpt:track": "kanji",
+   "covers": [
+    "jlpt:kanji/競",
+    "jlpt:kanji/章",
+    "jlpt:kanji/童"
+   ]
   },
   {
    "@id": "jlpt:lesson/kanji-g36",
@@ -1756,7 +1967,8 @@
    "jlpt:order": 37,
    "jlpt:track": "kanji",
    "covers": [
-    "jlpt:kanji/欠"
+    "jlpt:kanji/欠",
+    "jlpt:kanji/次"
    ]
   },
   {
@@ -1800,11 +2012,15 @@
    "covers": [
     "jlpt:kanji/幸",
     "jlpt:kanji/製",
+    "jlpt:kanji/成",
+    "jlpt:kanji/戦",
     "jlpt:kanji/単",
     "jlpt:kanji/反",
     "jlpt:kanji/氷",
     "jlpt:kanji/由",
-    "jlpt:kanji/比"
+    "jlpt:kanji/未",
+    "jlpt:kanji/比",
+    "jlpt:kanji/失"
    ]
   },
   {
@@ -1816,19 +2032,27 @@
    "covers": [
     "jlpt:kanji/以",
     "jlpt:kanji/因",
+    "jlpt:kanji/基",
+    "jlpt:kanji/義",
     "jlpt:kanji/具",
     "jlpt:kanji/形",
+    "jlpt:kanji/興",
+    "jlpt:kanji/互",
     "jlpt:kanji/差",
     "jlpt:kanji/在",
     "jlpt:kanji/残",
     "jlpt:kanji/式",
+    "jlpt:kanji/釈",
     "jlpt:kanji/象",
     "jlpt:kanji/状",
     "jlpt:kanji/事",
     "jlpt:kanji/節",
     "jlpt:kanji/世",
+    "jlpt:kanji/率",
     "jlpt:kanji/存",
     "jlpt:kanji/対",
+    "jlpt:kanji/典",
+    "jlpt:kanji/般",
     "jlpt:kanji/表",
     "jlpt:kanji/面",
     "jlpt:kanji/予",
@@ -1854,6 +2078,8 @@
     "jlpt:kanji/触",
     "jlpt:kanji/支",
     "jlpt:kanji/受",
+    "jlpt:kanji/垂",
+    "jlpt:kanji/弾",
     "jlpt:kanji/張",
     "jlpt:kanji/配"
    ]
@@ -1866,6 +2092,7 @@
    "jlpt:track": "kanji",
    "covers": [
     "jlpt:kanji/駅",
+    "jlpt:kanji/央",
     "jlpt:kanji/区",
     "jlpt:kanji/県",
     "jlpt:kanji/州",
@@ -1887,14 +2114,19 @@
    "jlpt:order": 45,
    "jlpt:track": "kanji",
    "covers": [
+    "jlpt:kanji/希",
     "jlpt:kanji/危",
     "jlpt:kanji/真",
     "jlpt:kanji/常",
     "jlpt:kanji/短",
+    "jlpt:kanji/当",
     "jlpt:kanji/特",
+    "jlpt:kanji/独",
     "jlpt:kanji/難",
+    "jlpt:kanji/博",
     "jlpt:kanji/複",
-    "jlpt:kanji/平"
+    "jlpt:kanji/平",
+    "jlpt:kanji/良"
    ]
   },
   {
@@ -1904,8 +2136,17 @@
    "jlpt:order": 46,
    "jlpt:track": "kanji",
    "covers": [
+    "jlpt:kanji/酸",
+    "jlpt:kanji/装",
+    "jlpt:kanji/帯",
+    "jlpt:kanji/段",
     "jlpt:kanji/帳",
+    "jlpt:kanji/笛",
+    "jlpt:kanji/豆",
+    "jlpt:kanji/毒",
     "jlpt:kanji/版",
+    "jlpt:kanji/麦",
+    "jlpt:kanji/筆",
     "jlpt:kanji/物"
    ]
   },
@@ -1918,6 +2159,8 @@
    "covers": [
     "jlpt:kanji/罪",
     "jlpt:kanji/主",
+    "jlpt:kanji/臣",
+    "jlpt:kanji/聖",
     "jlpt:kanji/争",
     "jlpt:kanji/尊",
     "jlpt:kanji/族",
@@ -1940,6 +2183,7 @@
     "jlpt:kanji/死",
     "jlpt:kanji/歯",
     "jlpt:kanji/皮",
+    "jlpt:kanji/被",
     "jlpt:kanji/美"
    ]
   },
@@ -1955,6 +2199,7 @@
     "jlpt:kanji/乗",
     "jlpt:kanji/着",
     "jlpt:kanji/登",
+    "jlpt:kanji/突",
     "jlpt:kanji/発",
     "jlpt:kanji/旅"
    ]
@@ -1967,7 +2212,9 @@
    "jlpt:track": "kanji",
    "covers": [
     "jlpt:kanji/共",
+    "jlpt:kanji/寸",
     "jlpt:kanji/第",
+    "jlpt:kanji/丁",
     "jlpt:kanji/等",
     "jlpt:kanji/両"
    ]

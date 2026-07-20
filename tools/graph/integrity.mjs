@@ -51,7 +51,20 @@ const isQuestion = (s) => arr(s["@type"]).includes("jlpt:Question");
 
 /** Prédicats qui portent une référence vers un autre sujet. Écrits en alias dans nos
  *  documents (cf. context.jsonld) — c'est cette forme qu'on lit ici. */
-const REF_PREDICATES = ["tests", "usesKanji", "covers"];
+const REF_PREDICATES = ["tests", "usesKanji", "covers", "illustrates"];
+
+/** Une leçon doit couvrir au moins une entité. Sinon elle rend un groupe VIDE dans la vue :
+ *  du contenu disparu sans la moindre erreur. C'est le garde-fou durable qui remplace le
+ *  décompte d'orphelins de la migration — celui-ci n'avait de sens que face à cours-*.json,
+ *  et une IRI pendante est déjà attrapée par l'intégrité référentielle. */
+export function checkLessonCoverage(subjects) {
+  const errs = [];
+  for (const s of subjects) {
+    if (!arr(s["@type"]).includes("jlpt:Lesson")) continue;
+    if (!arr(s.covers).length) errs.push(`${s["@id"]} : la leçon ne couvre aucune entité`);
+  }
+  return errs;
+}
 
 /** Invariants portant sur l'ensemble du corpus : densité et unicité des ordinaux,
  *  intégrité référentielle, questions contradictoires. */
@@ -148,6 +161,8 @@ export function checkCorpus(subjects) {
       );
     }
   }
+
+  errs.push(...checkLessonCoverage(subjects));
 
   return errs;
 }

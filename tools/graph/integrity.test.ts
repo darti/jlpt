@@ -114,6 +114,34 @@ test("checkCorpus refuse deux sujets partageant le même @id", () => {
   expect(checkCorpus([a, { ...a }]).join(" ")).toMatch(/@id en double/);
 });
 
+// --- exemples et couverture des leçons ------------------------------------------
+
+test("checkCorpus refuse un Example dont illustrates ne pointe vers rien", () => {
+  const ex = {
+    "@id": "jlpt:example/x", "@type": "jlpt:Example",
+    illustrates: "jlpt:gram/inexistant", "jlpt:jp": "文",
+  };
+  expect(checkCorpus([ex]).join(" ")).toMatch(/référence pendante/);
+});
+
+test("checkCorpus refuse une leçon dont un covers ne pointe vers rien", () => {
+  const l = {
+    "@id": "jlpt:lesson/gram-g1", "@type": "jlpt:Lesson",
+    "schema:name": "L", "jlpt:order": 0, "jlpt:track": "gram",
+    covers: ["jlpt:gram/absent"],
+  };
+  expect(checkCorpus([l]).join(" ")).toMatch(/référence pendante/);
+});
+
+test("checkCorpus refuse une leçon qui ne couvre rien", () => {
+  // Une leçon sans covers rend un groupe VIDE dans la vue : du contenu disparu en silence.
+  const l = {
+    "@id": "jlpt:lesson/gram-g9", "@type": "jlpt:Lesson",
+    "schema:name": "L", "jlpt:order": 0, "jlpt:track": "gram",
+  };
+  expect(checkCorpus([l]).join(" ")).toMatch(/ne couvre aucune entité/);
+});
+
 // --- cohérence des SkillRange ---------------------------------------------------
 
 const qr = (ord: number, skill: string) => ({
