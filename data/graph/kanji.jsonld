@@ -1,0 +1,4422 @@
+{
+ "@context": "context.jsonld",
+ "@graph": [
+  {
+   "@id": "jlpt:kanji/政",
+   "@type": "jlpt:Kanji",
+   "schema:name": "政",
+   "schema:description": "politique, gouvernement",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/関",
+   "@type": "jlpt:Kanji",
+   "schema:name": "関",
+   "schema:description": "rapport, barrière",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/議",
+   "@type": "jlpt:Kanji",
+   "schema:name": "議",
+   "schema:description": "délibérer, débattre",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/選",
+   "@type": "jlpt:Kanji",
+   "schema:name": "選",
+   "schema:description": "choisir",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/経",
+   "@type": "jlpt:Kanji",
+   "schema:name": "経",
+   "schema:description": "passer par, gérer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/調",
+   "@type": "jlpt:Kanji",
+   "schema:name": "調",
+   "schema:description": "enquêter, ton",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/結",
+   "@type": "jlpt:Kanji",
+   "schema:name": "結",
+   "schema:description": "nouer, conclure",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/必",
+   "@type": "jlpt:Kanji",
+   "schema:name": "必",
+   "schema:description": "forcément, indispensable",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/性",
+   "@type": "jlpt:Kanji",
+   "schema:name": "性",
+   "schema:description": "nature, caractère, -ité",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/増",
+   "@type": "jlpt:Kanji",
+   "schema:name": "増",
+   "schema:description": "augmenter",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/減",
+   "@type": "jlpt:Kanji",
+   "schema:name": "減",
+   "schema:description": "diminuer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/認",
+   "@type": "jlpt:Kanji",
+   "schema:name": "認",
+   "schema:description": "reconnaître, admettre",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/解",
+   "@type": "jlpt:Kanji",
+   "schema:name": "解",
+   "schema:description": "résoudre, défaire",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/過",
+   "@type": "jlpt:Kanji",
+   "schema:name": "過",
+   "schema:description": "passer, excès",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/規",
+   "@type": "jlpt:Kanji",
+   "schema:name": "規",
+   "schema:description": "norme, règle",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/識",
+   "@type": "jlpt:Kanji",
+   "schema:name": "識",
+   "schema:description": "connaissance, discernement",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/因",
+   "@type": "jlpt:Kanji",
+   "schema:name": "因",
+   "schema:description": "cause",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/達",
+   "@type": "jlpt:Kanji",
+   "schema:name": "達",
+   "schema:description": "atteindre, (pluriel -tachi)",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/構",
+   "@type": "jlpt:Kanji",
+   "schema:name": "構",
+   "schema:description": "structure, bâtir",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/勝",
+   "@type": "jlpt:Kanji",
+   "schema:name": "勝",
+   "schema:description": "victoire, gagner",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/一",
+   "@type": "jlpt:Kanji",
+   "schema:name": "一",
+   "schema:description": "un / 1",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/二",
+   "@type": "jlpt:Kanji",
+   "schema:name": "二",
+   "schema:description": "deux / 2",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/三",
+   "@type": "jlpt:Kanji",
+   "schema:name": "三",
+   "schema:description": "trois / 3",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/四",
+   "@type": "jlpt:Kanji",
+   "schema:name": "四",
+   "schema:description": "quatre / 4",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/五",
+   "@type": "jlpt:Kanji",
+   "schema:name": "五",
+   "schema:description": "cinq / 5",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/六",
+   "@type": "jlpt:Kanji",
+   "schema:name": "六",
+   "schema:description": "six / 6",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/七",
+   "@type": "jlpt:Kanji",
+   "schema:name": "七",
+   "schema:description": "sept / 7",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/八",
+   "@type": "jlpt:Kanji",
+   "schema:name": "八",
+   "schema:description": "huit / 8",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/九",
+   "@type": "jlpt:Kanji",
+   "schema:name": "九",
+   "schema:description": "neuf / 9",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/十",
+   "@type": "jlpt:Kanji",
+   "schema:name": "十",
+   "schema:description": "dix / 10",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/百",
+   "@type": "jlpt:Kanji",
+   "schema:name": "百",
+   "schema:description": "cent / 100",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/千",
+   "@type": "jlpt:Kanji",
+   "schema:name": "千",
+   "schema:description": "mille / 1000",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/万",
+   "@type": "jlpt:Kanji",
+   "schema:name": "万",
+   "schema:description": "dix mille",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/円",
+   "@type": "jlpt:Kanji",
+   "schema:name": "円",
+   "schema:description": "yen / rond",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/日",
+   "@type": "jlpt:Kanji",
+   "schema:name": "日",
+   "schema:description": "jour / soleil",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/月",
+   "@type": "jlpt:Kanji",
+   "schema:name": "月",
+   "schema:description": "lune / mois",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/火",
+   "@type": "jlpt:Kanji",
+   "schema:name": "火",
+   "schema:description": "feu",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/水",
+   "@type": "jlpt:Kanji",
+   "schema:name": "水",
+   "schema:description": "eau",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/木",
+   "@type": "jlpt:Kanji",
+   "schema:name": "木",
+   "schema:description": "arbre / bois",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/金",
+   "@type": "jlpt:Kanji",
+   "schema:name": "金",
+   "schema:description": "or / argent",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/土",
+   "@type": "jlpt:Kanji",
+   "schema:name": "土",
+   "schema:description": "terre / sol",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/年",
+   "@type": "jlpt:Kanji",
+   "schema:name": "年",
+   "schema:description": "année",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/時",
+   "@type": "jlpt:Kanji",
+   "schema:name": "時",
+   "schema:description": "heure / temps",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/分",
+   "@type": "jlpt:Kanji",
+   "schema:name": "分",
+   "schema:description": "minute / part",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/半",
+   "@type": "jlpt:Kanji",
+   "schema:name": "半",
+   "schema:description": "moitié / demi",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/今",
+   "@type": "jlpt:Kanji",
+   "schema:name": "今",
+   "schema:description": "maintenant",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/前",
+   "@type": "jlpt:Kanji",
+   "schema:name": "前",
+   "schema:description": "avant / devant",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/後",
+   "@type": "jlpt:Kanji",
+   "schema:name": "後",
+   "schema:description": "après / arrière",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/午",
+   "@type": "jlpt:Kanji",
+   "schema:name": "午",
+   "schema:description": "midi",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/間",
+   "@type": "jlpt:Kanji",
+   "schema:name": "間",
+   "schema:description": "intervalle / entre",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/毎",
+   "@type": "jlpt:Kanji",
+   "schema:name": "毎",
+   "schema:description": "chaque",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/上",
+   "@type": "jlpt:Kanji",
+   "schema:name": "上",
+   "schema:description": "dessus / haut",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/下",
+   "@type": "jlpt:Kanji",
+   "schema:name": "下",
+   "schema:description": "dessous / bas",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/中",
+   "@type": "jlpt:Kanji",
+   "schema:name": "中",
+   "schema:description": "milieu / dedans",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/左",
+   "@type": "jlpt:Kanji",
+   "schema:name": "左",
+   "schema:description": "gauche",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/右",
+   "@type": "jlpt:Kanji",
+   "schema:name": "右",
+   "schema:description": "droite",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/東",
+   "@type": "jlpt:Kanji",
+   "schema:name": "東",
+   "schema:description": "est",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/西",
+   "@type": "jlpt:Kanji",
+   "schema:name": "西",
+   "schema:description": "ouest",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/南",
+   "@type": "jlpt:Kanji",
+   "schema:name": "南",
+   "schema:description": "sud",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/北",
+   "@type": "jlpt:Kanji",
+   "schema:name": "北",
+   "schema:description": "nord",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/外",
+   "@type": "jlpt:Kanji",
+   "schema:name": "外",
+   "schema:description": "extérieur / dehors",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/大",
+   "@type": "jlpt:Kanji",
+   "schema:name": "大",
+   "schema:description": "grand",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/小",
+   "@type": "jlpt:Kanji",
+   "schema:name": "小",
+   "schema:description": "petit",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/高",
+   "@type": "jlpt:Kanji",
+   "schema:name": "高",
+   "schema:description": "haut / cher",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/安",
+   "@type": "jlpt:Kanji",
+   "schema:name": "安",
+   "schema:description": "bon marché / paisible",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/長",
+   "@type": "jlpt:Kanji",
+   "schema:name": "長",
+   "schema:description": "long / chef",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/新",
+   "@type": "jlpt:Kanji",
+   "schema:name": "新",
+   "schema:description": "nouveau",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/古",
+   "@type": "jlpt:Kanji",
+   "schema:name": "古",
+   "schema:description": "vieux / ancien",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/白",
+   "@type": "jlpt:Kanji",
+   "schema:name": "白",
+   "schema:description": "blanc",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/人",
+   "@type": "jlpt:Kanji",
+   "schema:name": "人",
+   "schema:description": "personne",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/男",
+   "@type": "jlpt:Kanji",
+   "schema:name": "男",
+   "schema:description": "homme",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/女",
+   "@type": "jlpt:Kanji",
+   "schema:name": "女",
+   "schema:description": "femme",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/子",
+   "@type": "jlpt:Kanji",
+   "schema:name": "子",
+   "schema:description": "enfant",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/父",
+   "@type": "jlpt:Kanji",
+   "schema:name": "父",
+   "schema:description": "père",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/母",
+   "@type": "jlpt:Kanji",
+   "schema:name": "母",
+   "schema:description": "mère",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/友",
+   "@type": "jlpt:Kanji",
+   "schema:name": "友",
+   "schema:description": "ami",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/先",
+   "@type": "jlpt:Kanji",
+   "schema:name": "先",
+   "schema:description": "avant / précédent",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/生",
+   "@type": "jlpt:Kanji",
+   "schema:name": "生",
+   "schema:description": "vie / naître",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/名",
+   "@type": "jlpt:Kanji",
+   "schema:name": "名",
+   "schema:description": "nom",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/学",
+   "@type": "jlpt:Kanji",
+   "schema:name": "学",
+   "schema:description": "étude / apprendre",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/校",
+   "@type": "jlpt:Kanji",
+   "schema:name": "校",
+   "schema:description": "école",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/本",
+   "@type": "jlpt:Kanji",
+   "schema:name": "本",
+   "schema:description": "livre / origine",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/語",
+   "@type": "jlpt:Kanji",
+   "schema:name": "語",
+   "schema:description": "langue / mot",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/国",
+   "@type": "jlpt:Kanji",
+   "schema:name": "国",
+   "schema:description": "pays",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/山",
+   "@type": "jlpt:Kanji",
+   "schema:name": "山",
+   "schema:description": "montagne",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/川",
+   "@type": "jlpt:Kanji",
+   "schema:name": "川",
+   "schema:description": "rivière",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/田",
+   "@type": "jlpt:Kanji",
+   "schema:name": "田",
+   "schema:description": "rizière",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/天",
+   "@type": "jlpt:Kanji",
+   "schema:name": "天",
+   "schema:description": "ciel",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/気",
+   "@type": "jlpt:Kanji",
+   "schema:name": "気",
+   "schema:description": "esprit / air",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/雨",
+   "@type": "jlpt:Kanji",
+   "schema:name": "雨",
+   "schema:description": "pluie",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/花",
+   "@type": "jlpt:Kanji",
+   "schema:name": "花",
+   "schema:description": "fleur",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/空",
+   "@type": "jlpt:Kanji",
+   "schema:name": "空",
+   "schema:description": "ciel / vide",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/目",
+   "@type": "jlpt:Kanji",
+   "schema:name": "目",
+   "schema:description": "œil",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/耳",
+   "@type": "jlpt:Kanji",
+   "schema:name": "耳",
+   "schema:description": "oreille",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/口",
+   "@type": "jlpt:Kanji",
+   "schema:name": "口",
+   "schema:description": "bouche",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/手",
+   "@type": "jlpt:Kanji",
+   "schema:name": "手",
+   "schema:description": "main",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/足",
+   "@type": "jlpt:Kanji",
+   "schema:name": "足",
+   "schema:description": "pied / jambe",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/力",
+   "@type": "jlpt:Kanji",
+   "schema:name": "力",
+   "schema:description": "force",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/行",
+   "@type": "jlpt:Kanji",
+   "schema:name": "行",
+   "schema:description": "aller",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/来",
+   "@type": "jlpt:Kanji",
+   "schema:name": "来",
+   "schema:description": "venir",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/帰",
+   "@type": "jlpt:Kanji",
+   "schema:name": "帰",
+   "schema:description": "rentrer",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/見",
+   "@type": "jlpt:Kanji",
+   "schema:name": "見",
+   "schema:description": "voir / regarder",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/聞",
+   "@type": "jlpt:Kanji",
+   "schema:name": "聞",
+   "schema:description": "écouter / entendre",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/食",
+   "@type": "jlpt:Kanji",
+   "schema:name": "食",
+   "schema:description": "manger / nourriture",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/飲",
+   "@type": "jlpt:Kanji",
+   "schema:name": "飲",
+   "schema:description": "boire",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/買",
+   "@type": "jlpt:Kanji",
+   "schema:name": "買",
+   "schema:description": "acheter",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/読",
+   "@type": "jlpt:Kanji",
+   "schema:name": "読",
+   "schema:description": "lire",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/書",
+   "@type": "jlpt:Kanji",
+   "schema:name": "書",
+   "schema:description": "écrire",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/話",
+   "@type": "jlpt:Kanji",
+   "schema:name": "話",
+   "schema:description": "parler / histoire",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/言",
+   "@type": "jlpt:Kanji",
+   "schema:name": "言",
+   "schema:description": "dire / parole",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/出",
+   "@type": "jlpt:Kanji",
+   "schema:name": "出",
+   "schema:description": "sortir",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/入",
+   "@type": "jlpt:Kanji",
+   "schema:name": "入",
+   "schema:description": "entrer",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/立",
+   "@type": "jlpt:Kanji",
+   "schema:name": "立",
+   "schema:description": "se tenir debout",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/休",
+   "@type": "jlpt:Kanji",
+   "schema:name": "休",
+   "schema:description": "repos",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/会",
+   "@type": "jlpt:Kanji",
+   "schema:name": "会",
+   "schema:description": "rencontrer / réunion",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/社",
+   "@type": "jlpt:Kanji",
+   "schema:name": "社",
+   "schema:description": "société / sanctuaire",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/車",
+   "@type": "jlpt:Kanji",
+   "schema:name": "車",
+   "schema:description": "voiture / roue",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/電",
+   "@type": "jlpt:Kanji",
+   "schema:name": "電",
+   "schema:description": "électricité",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/何",
+   "@type": "jlpt:Kanji",
+   "schema:name": "何",
+   "schema:description": "quoi / combien",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/文",
+   "@type": "jlpt:Kanji",
+   "schema:name": "文",
+   "schema:description": "phrase / texte",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/音",
+   "@type": "jlpt:Kanji",
+   "schema:name": "音",
+   "schema:description": "son / bruit",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/少",
+   "@type": "jlpt:Kanji",
+   "schema:name": "少",
+   "schema:description": "peu",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/多",
+   "@type": "jlpt:Kanji",
+   "schema:name": "多",
+   "schema:description": "nombreux",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/早",
+   "@type": "jlpt:Kanji",
+   "schema:name": "早",
+   "schema:description": "tôt / rapide",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:kanji/悪",
+   "@type": "jlpt:Kanji",
+   "schema:name": "悪",
+   "schema:description": "mauvais, mal",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/暗",
+   "@type": "jlpt:Kanji",
+   "schema:name": "暗",
+   "schema:description": "sombre, obscur",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/以",
+   "@type": "jlpt:Kanji",
+   "schema:name": "以",
+   "schema:description": "au moyen de, à partir de",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/意",
+   "@type": "jlpt:Kanji",
+   "schema:name": "意",
+   "schema:description": "idée, pensée",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/医",
+   "@type": "jlpt:Kanji",
+   "schema:name": "医",
+   "schema:description": "médecin, médecine",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/引",
+   "@type": "jlpt:Kanji",
+   "schema:name": "引",
+   "schema:description": "tirer, retirer",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/員",
+   "@type": "jlpt:Kanji",
+   "schema:name": "員",
+   "schema:description": "membre",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/院",
+   "@type": "jlpt:Kanji",
+   "schema:name": "院",
+   "schema:description": "institution, établissement",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/運",
+   "@type": "jlpt:Kanji",
+   "schema:name": "運",
+   "schema:description": "transporter, chance",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/映",
+   "@type": "jlpt:Kanji",
+   "schema:name": "映",
+   "schema:description": "refléter, projeter",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/英",
+   "@type": "jlpt:Kanji",
+   "schema:name": "英",
+   "schema:description": "anglais, brillant",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/駅",
+   "@type": "jlpt:Kanji",
+   "schema:name": "駅",
+   "schema:description": "gare",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/屋",
+   "@type": "jlpt:Kanji",
+   "schema:name": "屋",
+   "schema:description": "magasin, toit",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/化",
+   "@type": "jlpt:Kanji",
+   "schema:name": "化",
+   "schema:description": "transformer, changer",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/荷",
+   "@type": "jlpt:Kanji",
+   "schema:name": "荷",
+   "schema:description": "bagage, charge",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/界",
+   "@type": "jlpt:Kanji",
+   "schema:name": "界",
+   "schema:description": "monde, frontière",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/開",
+   "@type": "jlpt:Kanji",
+   "schema:name": "開",
+   "schema:description": "ouvrir, commencer",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/楽",
+   "@type": "jlpt:Kanji",
+   "schema:name": "楽",
+   "schema:description": "plaisir, aise, musique",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/寒",
+   "@type": "jlpt:Kanji",
+   "schema:name": "寒",
+   "schema:description": "froid",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/感",
+   "@type": "jlpt:Kanji",
+   "schema:name": "感",
+   "schema:description": "sentiment, ressentir",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/館",
+   "@type": "jlpt:Kanji",
+   "schema:name": "館",
+   "schema:description": "bâtiment, grande salle",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/漢",
+   "@type": "jlpt:Kanji",
+   "schema:name": "漢",
+   "schema:description": "Chine, Han",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/岸",
+   "@type": "jlpt:Kanji",
+   "schema:name": "岸",
+   "schema:description": "rive, berge",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/起",
+   "@type": "jlpt:Kanji",
+   "schema:name": "起",
+   "schema:description": "se lever, se produire",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/期",
+   "@type": "jlpt:Kanji",
+   "schema:name": "期",
+   "schema:description": "période, terme",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/客",
+   "@type": "jlpt:Kanji",
+   "schema:name": "客",
+   "schema:description": "client, invité",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/究",
+   "@type": "jlpt:Kanji",
+   "schema:name": "究",
+   "schema:description": "rechercher à fond",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/急",
+   "@type": "jlpt:Kanji",
+   "schema:name": "急",
+   "schema:description": "urgent, rapide, soudain",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/級",
+   "@type": "jlpt:Kanji",
+   "schema:name": "級",
+   "schema:description": "classe, grade",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/球",
+   "@type": "jlpt:Kanji",
+   "schema:name": "球",
+   "schema:description": "balle, sphère",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/去",
+   "@type": "jlpt:Kanji",
+   "schema:name": "去",
+   "schema:description": "partir, passé",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/橋",
+   "@type": "jlpt:Kanji",
+   "schema:name": "橋",
+   "schema:description": "pont",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/業",
+   "@type": "jlpt:Kanji",
+   "schema:name": "業",
+   "schema:description": "métier, industrie",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/曲",
+   "@type": "jlpt:Kanji",
+   "schema:name": "曲",
+   "schema:description": "courber, mélodie",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/局",
+   "@type": "jlpt:Kanji",
+   "schema:name": "局",
+   "schema:description": "bureau, service",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/銀",
+   "@type": "jlpt:Kanji",
+   "schema:name": "銀",
+   "schema:description": "argent (métal)",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/区",
+   "@type": "jlpt:Kanji",
+   "schema:name": "区",
+   "schema:description": "quartier, arrondissement",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/苦",
+   "@type": "jlpt:Kanji",
+   "schema:name": "苦",
+   "schema:description": "souffrir, amer, pénible",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/具",
+   "@type": "jlpt:Kanji",
+   "schema:name": "具",
+   "schema:description": "ustensile, outil",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/君",
+   "@type": "jlpt:Kanji",
+   "schema:name": "君",
+   "schema:description": "toi, monsieur (familier)",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/係",
+   "@type": "jlpt:Kanji",
+   "schema:name": "係",
+   "schema:description": "lien, responsable",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/軽",
+   "@type": "jlpt:Kanji",
+   "schema:name": "軽",
+   "schema:description": "léger",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/血",
+   "@type": "jlpt:Kanji",
+   "schema:name": "血",
+   "schema:description": "sang",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/研",
+   "@type": "jlpt:Kanji",
+   "schema:name": "研",
+   "schema:description": "polir, faire des recherches",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/県",
+   "@type": "jlpt:Kanji",
+   "schema:name": "県",
+   "schema:description": "préfecture",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/庫",
+   "@type": "jlpt:Kanji",
+   "schema:name": "庫",
+   "schema:description": "entrepôt, réserve",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/湖",
+   "@type": "jlpt:Kanji",
+   "schema:name": "湖",
+   "schema:description": "lac",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/向",
+   "@type": "jlpt:Kanji",
+   "schema:name": "向",
+   "schema:description": "direction, se tourner vers",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/幸",
+   "@type": "jlpt:Kanji",
+   "schema:name": "幸",
+   "schema:description": "bonheur",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/港",
+   "@type": "jlpt:Kanji",
+   "schema:name": "港",
+   "schema:description": "port",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/号",
+   "@type": "jlpt:Kanji",
+   "schema:name": "号",
+   "schema:description": "numéro, signe",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/根",
+   "@type": "jlpt:Kanji",
+   "schema:name": "根",
+   "schema:description": "racine",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/祭",
+   "@type": "jlpt:Kanji",
+   "schema:name": "祭",
+   "schema:description": "fête, festival",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/細",
+   "@type": "jlpt:Kanji",
+   "schema:name": "細",
+   "schema:description": "fin, mince, détaillé",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/仕",
+   "@type": "jlpt:Kanji",
+   "schema:name": "仕",
+   "schema:description": "servir, faire",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/死",
+   "@type": "jlpt:Kanji",
+   "schema:name": "死",
+   "schema:description": "mourir",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/使",
+   "@type": "jlpt:Kanji",
+   "schema:name": "使",
+   "schema:description": "utiliser, envoyer",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/始",
+   "@type": "jlpt:Kanji",
+   "schema:name": "始",
+   "schema:description": "commencer",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/指",
+   "@type": "jlpt:Kanji",
+   "schema:name": "指",
+   "schema:description": "doigt, montrer",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/歯",
+   "@type": "jlpt:Kanji",
+   "schema:name": "歯",
+   "schema:description": "dent",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/事",
+   "@type": "jlpt:Kanji",
+   "schema:name": "事",
+   "schema:description": "chose, affaire",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/持",
+   "@type": "jlpt:Kanji",
+   "schema:name": "持",
+   "schema:description": "tenir, porter",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/式",
+   "@type": "jlpt:Kanji",
+   "schema:name": "式",
+   "schema:description": "cérémonie, formule",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/実",
+   "@type": "jlpt:Kanji",
+   "schema:name": "実",
+   "schema:description": "fruit, réalité",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/写",
+   "@type": "jlpt:Kanji",
+   "schema:name": "写",
+   "schema:description": "copier, photographier",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/者",
+   "@type": "jlpt:Kanji",
+   "schema:name": "者",
+   "schema:description": "personne",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/主",
+   "@type": "jlpt:Kanji",
+   "schema:name": "主",
+   "schema:description": "principal, maître",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/守",
+   "@type": "jlpt:Kanji",
+   "schema:name": "守",
+   "schema:description": "protéger, garder",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/取",
+   "@type": "jlpt:Kanji",
+   "schema:name": "取",
+   "schema:description": "prendre",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/酒",
+   "@type": "jlpt:Kanji",
+   "schema:name": "酒",
+   "schema:description": "alcool, saké",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/受",
+   "@type": "jlpt:Kanji",
+   "schema:name": "受",
+   "schema:description": "recevoir",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/終",
+   "@type": "jlpt:Kanji",
+   "schema:name": "終",
+   "schema:description": "finir, terminer",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/習",
+   "@type": "jlpt:Kanji",
+   "schema:name": "習",
+   "schema:description": "apprendre, étudier",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/集",
+   "@type": "jlpt:Kanji",
+   "schema:name": "集",
+   "schema:description": "rassembler, réunir",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/住",
+   "@type": "jlpt:Kanji",
+   "schema:name": "住",
+   "schema:description": "habiter, résider",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/重",
+   "@type": "jlpt:Kanji",
+   "schema:name": "重",
+   "schema:description": "lourd, important",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/宿",
+   "@type": "jlpt:Kanji",
+   "schema:name": "宿",
+   "schema:description": "logement, gîte",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/所",
+   "@type": "jlpt:Kanji",
+   "schema:name": "所",
+   "schema:description": "endroit, lieu",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/暑",
+   "@type": "jlpt:Kanji",
+   "schema:name": "暑",
+   "schema:description": "chaud (climat)",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/助",
+   "@type": "jlpt:Kanji",
+   "schema:name": "助",
+   "schema:description": "aider, secourir",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/商",
+   "@type": "jlpt:Kanji",
+   "schema:name": "商",
+   "schema:description": "commerce",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/消",
+   "@type": "jlpt:Kanji",
+   "schema:name": "消",
+   "schema:description": "éteindre, effacer",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/昭",
+   "@type": "jlpt:Kanji",
+   "schema:name": "昭",
+   "schema:description": "clair, ère Shōwa",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/乗",
+   "@type": "jlpt:Kanji",
+   "schema:name": "乗",
+   "schema:description": "monter (à bord)",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/植",
+   "@type": "jlpt:Kanji",
+   "schema:name": "植",
+   "schema:description": "planter",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/申",
+   "@type": "jlpt:Kanji",
+   "schema:name": "申",
+   "schema:description": "dire (humble)",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/身",
+   "@type": "jlpt:Kanji",
+   "schema:name": "身",
+   "schema:description": "corps, soi",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/神",
+   "@type": "jlpt:Kanji",
+   "schema:name": "神",
+   "schema:description": "dieu, divinité",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/真",
+   "@type": "jlpt:Kanji",
+   "schema:name": "真",
+   "schema:description": "vrai, véritable",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/深",
+   "@type": "jlpt:Kanji",
+   "schema:name": "深",
+   "schema:description": "profond",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/進",
+   "@type": "jlpt:Kanji",
+   "schema:name": "進",
+   "schema:description": "avancer, progresser",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/世",
+   "@type": "jlpt:Kanji",
+   "schema:name": "世",
+   "schema:description": "monde, génération",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/昔",
+   "@type": "jlpt:Kanji",
+   "schema:name": "昔",
+   "schema:description": "autrefois, jadis",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/全",
+   "@type": "jlpt:Kanji",
+   "schema:name": "全",
+   "schema:description": "tout, entier",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/相",
+   "@type": "jlpt:Kanji",
+   "schema:name": "相",
+   "schema:description": "mutuel, aspect",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/送",
+   "@type": "jlpt:Kanji",
+   "schema:name": "送",
+   "schema:description": "envoyer",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/速",
+   "@type": "jlpt:Kanji",
+   "schema:name": "速",
+   "schema:description": "rapide, vitesse",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/族",
+   "@type": "jlpt:Kanji",
+   "schema:name": "族",
+   "schema:description": "tribu, famille",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/他",
+   "@type": "jlpt:Kanji",
+   "schema:name": "他",
+   "schema:description": "autre",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/打",
+   "@type": "jlpt:Kanji",
+   "schema:name": "打",
+   "schema:description": "frapper, taper",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/対",
+   "@type": "jlpt:Kanji",
+   "schema:name": "対",
+   "schema:description": "face à, opposé, paire",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/待",
+   "@type": "jlpt:Kanji",
+   "schema:name": "待",
+   "schema:description": "attendre",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/代",
+   "@type": "jlpt:Kanji",
+   "schema:name": "代",
+   "schema:description": "génération, remplacer",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/第",
+   "@type": "jlpt:Kanji",
+   "schema:name": "第",
+   "schema:description": "ordinal (préfixe), ordre",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/題",
+   "@type": "jlpt:Kanji",
+   "schema:name": "題",
+   "schema:description": "sujet, titre",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/短",
+   "@type": "jlpt:Kanji",
+   "schema:name": "短",
+   "schema:description": "court, bref",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/談",
+   "@type": "jlpt:Kanji",
+   "schema:name": "談",
+   "schema:description": "conversation, entretien",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/着",
+   "@type": "jlpt:Kanji",
+   "schema:name": "着",
+   "schema:description": "porter, arriver",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/注",
+   "@type": "jlpt:Kanji",
+   "schema:name": "注",
+   "schema:description": "verser, attention",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/定",
+   "@type": "jlpt:Kanji",
+   "schema:name": "定",
+   "schema:description": "fixer, décider",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/庭",
+   "@type": "jlpt:Kanji",
+   "schema:name": "庭",
+   "schema:description": "jardin",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/鉄",
+   "@type": "jlpt:Kanji",
+   "schema:name": "鉄",
+   "schema:description": "fer",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/転",
+   "@type": "jlpt:Kanji",
+   "schema:name": "転",
+   "schema:description": "rouler, tourner",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/都",
+   "@type": "jlpt:Kanji",
+   "schema:name": "都",
+   "schema:description": "capitale, métropole",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/度",
+   "@type": "jlpt:Kanji",
+   "schema:name": "度",
+   "schema:description": "degré, fois",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/島",
+   "@type": "jlpt:Kanji",
+   "schema:name": "島",
+   "schema:description": "île",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/登",
+   "@type": "jlpt:Kanji",
+   "schema:name": "登",
+   "schema:description": "grimper, monter",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/等",
+   "@type": "jlpt:Kanji",
+   "schema:name": "等",
+   "schema:description": "égal, etc.",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/動",
+   "@type": "jlpt:Kanji",
+   "schema:name": "動",
+   "schema:description": "bouger, mouvement",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/働",
+   "@type": "jlpt:Kanji",
+   "schema:name": "働",
+   "schema:description": "travailler",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/特",
+   "@type": "jlpt:Kanji",
+   "schema:name": "特",
+   "schema:description": "spécial, particulier",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/内",
+   "@type": "jlpt:Kanji",
+   "schema:name": "内",
+   "schema:description": "intérieur, dedans",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/波",
+   "@type": "jlpt:Kanji",
+   "schema:name": "波",
+   "schema:description": "vague",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/配",
+   "@type": "jlpt:Kanji",
+   "schema:name": "配",
+   "schema:description": "distribuer, répartir",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/倍",
+   "@type": "jlpt:Kanji",
+   "schema:name": "倍",
+   "schema:description": "double, multiple",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/箱",
+   "@type": "jlpt:Kanji",
+   "schema:name": "箱",
+   "schema:description": "boîte, caisse",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/発",
+   "@type": "jlpt:Kanji",
+   "schema:name": "発",
+   "schema:description": "émettre, partir",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/反",
+   "@type": "jlpt:Kanji",
+   "schema:name": "反",
+   "schema:description": "opposé, contre",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/板",
+   "@type": "jlpt:Kanji",
+   "schema:name": "板",
+   "schema:description": "planche, plaque",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/皮",
+   "@type": "jlpt:Kanji",
+   "schema:name": "皮",
+   "schema:description": "peau, cuir",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/悲",
+   "@type": "jlpt:Kanji",
+   "schema:name": "悲",
+   "schema:description": "triste",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/美",
+   "@type": "jlpt:Kanji",
+   "schema:name": "美",
+   "schema:description": "beau, beauté",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/鼻",
+   "@type": "jlpt:Kanji",
+   "schema:name": "鼻",
+   "schema:description": "nez",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/氷",
+   "@type": "jlpt:Kanji",
+   "schema:name": "氷",
+   "schema:description": "glace",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/表",
+   "@type": "jlpt:Kanji",
+   "schema:name": "表",
+   "schema:description": "surface, exprimer, tableau",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/病",
+   "@type": "jlpt:Kanji",
+   "schema:name": "病",
+   "schema:description": "maladie",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/品",
+   "@type": "jlpt:Kanji",
+   "schema:name": "品",
+   "schema:description": "article, qualité",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/負",
+   "@type": "jlpt:Kanji",
+   "schema:name": "負",
+   "schema:description": "perdre, porter (charge)",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/部",
+   "@type": "jlpt:Kanji",
+   "schema:name": "部",
+   "schema:description": "partie, département",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/服",
+   "@type": "jlpt:Kanji",
+   "schema:name": "服",
+   "schema:description": "vêtement",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/福",
+   "@type": "jlpt:Kanji",
+   "schema:name": "福",
+   "schema:description": "bonheur, chance",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/物",
+   "@type": "jlpt:Kanji",
+   "schema:name": "物",
+   "schema:description": "chose, objet",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/平",
+   "@type": "jlpt:Kanji",
+   "schema:name": "平",
+   "schema:description": "plat, paix",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/返",
+   "@type": "jlpt:Kanji",
+   "schema:name": "返",
+   "schema:description": "rendre, retourner",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/勉",
+   "@type": "jlpt:Kanji",
+   "schema:name": "勉",
+   "schema:description": "effort, étude assidue",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/放",
+   "@type": "jlpt:Kanji",
+   "schema:name": "放",
+   "schema:description": "relâcher, lâcher",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/味",
+   "@type": "jlpt:Kanji",
+   "schema:name": "味",
+   "schema:description": "goût, saveur",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/命",
+   "@type": "jlpt:Kanji",
+   "schema:name": "命",
+   "schema:description": "vie, ordre",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/面",
+   "@type": "jlpt:Kanji",
+   "schema:name": "面",
+   "schema:description": "visage, surface, aspect",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/問",
+   "@type": "jlpt:Kanji",
+   "schema:name": "問",
+   "schema:description": "question, interroger",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/役",
+   "@type": "jlpt:Kanji",
+   "schema:name": "役",
+   "schema:description": "rôle, fonction",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/薬",
+   "@type": "jlpt:Kanji",
+   "schema:name": "薬",
+   "schema:description": "médicament",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/由",
+   "@type": "jlpt:Kanji",
+   "schema:name": "由",
+   "schema:description": "raison, motif",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/油",
+   "@type": "jlpt:Kanji",
+   "schema:name": "油",
+   "schema:description": "huile",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/有",
+   "@type": "jlpt:Kanji",
+   "schema:name": "有",
+   "schema:description": "exister, avoir",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/遊",
+   "@type": "jlpt:Kanji",
+   "schema:name": "遊",
+   "schema:description": "jouer, s'amuser",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/予",
+   "@type": "jlpt:Kanji",
+   "schema:name": "予",
+   "schema:description": "à l'avance, prévoir",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/洋",
+   "@type": "jlpt:Kanji",
+   "schema:name": "洋",
+   "schema:description": "océan, occidental",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/様",
+   "@type": "jlpt:Kanji",
+   "schema:name": "様",
+   "schema:description": "manière, monsieur/madame",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/落",
+   "@type": "jlpt:Kanji",
+   "schema:name": "落",
+   "schema:description": "tomber, chuter",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/流",
+   "@type": "jlpt:Kanji",
+   "schema:name": "流",
+   "schema:description": "couler, courant",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/旅",
+   "@type": "jlpt:Kanji",
+   "schema:name": "旅",
+   "schema:description": "voyage",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/両",
+   "@type": "jlpt:Kanji",
+   "schema:name": "両",
+   "schema:description": "les deux, paire",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/料",
+   "@type": "jlpt:Kanji",
+   "schema:name": "料",
+   "schema:description": "frais, matière",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/練",
+   "@type": "jlpt:Kanji",
+   "schema:name": "練",
+   "schema:description": "s'exercer, pétrir",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/路",
+   "@type": "jlpt:Kanji",
+   "schema:name": "路",
+   "schema:description": "route, chemin",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/和",
+   "@type": "jlpt:Kanji",
+   "schema:name": "和",
+   "schema:description": "harmonie, japonais",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/建",
+   "@type": "jlpt:Kanji",
+   "schema:name": "建",
+   "schema:description": "construire, bâtir",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/験",
+   "@type": "jlpt:Kanji",
+   "schema:name": "験",
+   "schema:description": "épreuve, test",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/試",
+   "@type": "jlpt:Kanji",
+   "schema:name": "試",
+   "schema:description": "essayer, tester",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/洗",
+   "@type": "jlpt:Kanji",
+   "schema:name": "洗",
+   "schema:description": "laver",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/台",
+   "@type": "jlpt:Kanji",
+   "schema:name": "台",
+   "schema:description": "support, plateau",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/貸",
+   "@type": "jlpt:Kanji",
+   "schema:name": "貸",
+   "schema:description": "prêter, louer",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/借",
+   "@type": "jlpt:Kanji",
+   "schema:name": "借",
+   "schema:description": "emprunter",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/産",
+   "@type": "jlpt:Kanji",
+   "schema:name": "産",
+   "schema:description": "produire, naissance",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/別",
+   "@type": "jlpt:Kanji",
+   "schema:name": "別",
+   "schema:description": "séparer, différent",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/変",
+   "@type": "jlpt:Kanji",
+   "schema:name": "変",
+   "schema:description": "changer, étrange",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/閉",
+   "@type": "jlpt:Kanji",
+   "schema:name": "閉",
+   "schema:description": "fermer",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/声",
+   "@type": "jlpt:Kanji",
+   "schema:name": "声",
+   "schema:description": "voix",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/決",
+   "@type": "jlpt:Kanji",
+   "schema:name": "決",
+   "schema:description": "décider",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:kanji/報",
+   "@type": "jlpt:Kanji",
+   "schema:name": "報",
+   "schema:description": "informer, récompense",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/情",
+   "@type": "jlpt:Kanji",
+   "schema:name": "情",
+   "schema:description": "émotion, sentiment",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/常",
+   "@type": "jlpt:Kanji",
+   "schema:name": "常",
+   "schema:description": "ordinaire, constant, toujours",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/非",
+   "@type": "jlpt:Kanji",
+   "schema:name": "非",
+   "schema:description": "non, faute, négation",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/務",
+   "@type": "jlpt:Kanji",
+   "schema:name": "務",
+   "schema:description": "devoir, service, tâche",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/官",
+   "@type": "jlpt:Kanji",
+   "schema:name": "官",
+   "schema:description": "fonctionnaire, gouvernement",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/現",
+   "@type": "jlpt:Kanji",
+   "schema:name": "現",
+   "schema:description": "apparaître, actuel, présent",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/在",
+   "@type": "jlpt:Kanji",
+   "schema:name": "在",
+   "schema:description": "exister, se trouver",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/科",
+   "@type": "jlpt:Kanji",
+   "schema:name": "科",
+   "schema:description": "matière, discipline, section",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/約",
+   "@type": "jlpt:Kanji",
+   "schema:name": "約",
+   "schema:description": "promesse, environ, réduire",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/束",
+   "@type": "jlpt:Kanji",
+   "schema:name": "束",
+   "schema:description": "botte, lier, faisceau",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/資",
+   "@type": "jlpt:Kanji",
+   "schema:name": "資",
+   "schema:description": "capital, ressources, fonds",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/税",
+   "@type": "jlpt:Kanji",
+   "schema:name": "税",
+   "schema:description": "impôt, taxe",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/領",
+   "@type": "jlpt:Kanji",
+   "schema:name": "領",
+   "schema:description": "territoire, domaine, recevoir",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/形",
+   "@type": "jlpt:Kanji",
+   "schema:name": "形",
+   "schema:description": "forme, figure",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/然",
+   "@type": "jlpt:Kanji",
+   "schema:name": "然",
+   "schema:description": "ainsi, mais, naturel",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/存",
+   "@type": "jlpt:Kanji",
+   "schema:name": "存",
+   "schema:description": "exister, savoir, conserver",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/保",
+   "@type": "jlpt:Kanji",
+   "schema:name": "保",
+   "schema:description": "protéger, garantir, maintenir",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/険",
+   "@type": "jlpt:Kanji",
+   "schema:name": "険",
+   "schema:description": "danger, escarpé",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/危",
+   "@type": "jlpt:Kanji",
+   "schema:name": "危",
+   "schema:description": "danger, périlleux",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/備",
+   "@type": "jlpt:Kanji",
+   "schema:name": "備",
+   "schema:description": "préparer, équiper",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/準",
+   "@type": "jlpt:Kanji",
+   "schema:name": "準",
+   "schema:description": "niveau, norme, semi-",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/査",
+   "@type": "jlpt:Kanji",
+   "schema:name": "査",
+   "schema:description": "enquête, examiner, inspecter",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/検",
+   "@type": "jlpt:Kanji",
+   "schema:name": "検",
+   "schema:description": "examiner, vérifier, contrôle",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/済",
+   "@type": "jlpt:Kanji",
+   "schema:name": "済",
+   "schema:description": "achever, régler, sauver",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/際",
+   "@type": "jlpt:Kanji",
+   "schema:name": "際",
+   "schema:description": "bord, occasion, moment",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/供",
+   "@type": "jlpt:Kanji",
+   "schema:name": "供",
+   "schema:description": "offrir, accompagner, enfant",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/史",
+   "@type": "jlpt:Kanji",
+   "schema:name": "史",
+   "schema:description": "histoire, chronique",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/歴",
+   "@type": "jlpt:Kanji",
+   "schema:name": "歴",
+   "schema:description": "parcours, histoire, passer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/共",
+   "@type": "jlpt:Kanji",
+   "schema:name": "共",
+   "schema:description": "ensemble, commun, tous",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/党",
+   "@type": "jlpt:Kanji",
+   "schema:name": "党",
+   "schema:description": "parti, faction, groupe",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/民",
+   "@type": "jlpt:Kanji",
+   "schema:name": "民",
+   "schema:description": "peuple, citoyen",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/境",
+   "@type": "jlpt:Kanji",
+   "schema:name": "境",
+   "schema:description": "frontière, limite, milieu",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/環",
+   "@type": "jlpt:Kanji",
+   "schema:name": "環",
+   "schema:description": "anneau, cercle, entourer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/宇",
+   "@type": "jlpt:Kanji",
+   "schema:name": "宇",
+   "schema:description": "univers, ciel, espace",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/宙",
+   "@type": "jlpt:Kanji",
+   "schema:name": "宙",
+   "schema:description": "espace, ciel, air",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/宗",
+   "@type": "jlpt:Kanji",
+   "schema:name": "宗",
+   "schema:description": "religion, secte, origine",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/師",
+   "@type": "jlpt:Kanji",
+   "schema:name": "師",
+   "schema:description": "maître, enseignant, expert",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/職",
+   "@type": "jlpt:Kanji",
+   "schema:name": "職",
+   "schema:description": "emploi, poste, métier",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/農",
+   "@type": "jlpt:Kanji",
+   "schema:name": "農",
+   "schema:description": "agriculture, paysan",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/航",
+   "@type": "jlpt:Kanji",
+   "schema:name": "航",
+   "schema:description": "navigation, vol",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/券",
+   "@type": "jlpt:Kanji",
+   "schema:name": "券",
+   "schema:description": "billet, ticket, coupon",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/坂",
+   "@type": "jlpt:Kanji",
+   "schema:name": "坂",
+   "schema:description": "pente, côte",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/浅",
+   "@type": "jlpt:Kanji",
+   "schema:name": "浅",
+   "schema:description": "peu profond, superficiel",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/岩",
+   "@type": "jlpt:Kanji",
+   "schema:name": "岩",
+   "schema:description": "rocher, roche",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/笑",
+   "@type": "jlpt:Kanji",
+   "schema:name": "笑",
+   "schema:description": "rire, sourire",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/顔",
+   "@type": "jlpt:Kanji",
+   "schema:name": "顔",
+   "schema:description": "visage, expression",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/泣",
+   "@type": "jlpt:Kanji",
+   "schema:name": "泣",
+   "schema:description": "pleurer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/怒",
+   "@type": "jlpt:Kanji",
+   "schema:name": "怒",
+   "schema:description": "colère, se fâcher",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/喜",
+   "@type": "jlpt:Kanji",
+   "schema:name": "喜",
+   "schema:description": "joie, se réjouir",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/怖",
+   "@type": "jlpt:Kanji",
+   "schema:name": "怖",
+   "schema:description": "peur, effrayant",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/恐",
+   "@type": "jlpt:Kanji",
+   "schema:name": "恐",
+   "schema:description": "craindre, redouter",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/愛",
+   "@type": "jlpt:Kanji",
+   "schema:name": "愛",
+   "schema:description": "amour, affection",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/恋",
+   "@type": "jlpt:Kanji",
+   "schema:name": "恋",
+   "schema:description": "amour, être amoureux",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/痛",
+   "@type": "jlpt:Kanji",
+   "schema:name": "痛",
+   "schema:description": "douleur, mal",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/疲",
+   "@type": "jlpt:Kanji",
+   "schema:name": "疲",
+   "schema:description": "fatigue, épuisement",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/労",
+   "@type": "jlpt:Kanji",
+   "schema:name": "労",
+   "schema:description": "labeur, peine, travail",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/康",
+   "@type": "jlpt:Kanji",
+   "schema:name": "康",
+   "schema:description": "santé, paix, bien-être",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/健",
+   "@type": "jlpt:Kanji",
+   "schema:name": "健",
+   "schema:description": "santé, robuste, sain",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/液",
+   "@type": "jlpt:Kanji",
+   "schema:name": "液",
+   "schema:description": "liquide, fluide",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/息",
+   "@type": "jlpt:Kanji",
+   "schema:name": "息",
+   "schema:description": "souffle, respiration, fils",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/眠",
+   "@type": "jlpt:Kanji",
+   "schema:name": "眠",
+   "schema:description": "sommeil, dormir",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/覚",
+   "@type": "jlpt:Kanji",
+   "schema:name": "覚",
+   "schema:description": "se souvenir, se réveiller",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/夢",
+   "@type": "jlpt:Kanji",
+   "schema:name": "夢",
+   "schema:description": "rêve, songe",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/許",
+   "@type": "jlpt:Kanji",
+   "schema:name": "許",
+   "schema:description": "permettre, pardonner",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/可",
+   "@type": "jlpt:Kanji",
+   "schema:name": "可",
+   "schema:description": "possible, approuver",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/値",
+   "@type": "jlpt:Kanji",
+   "schema:name": "値",
+   "schema:description": "valeur, prix",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/価",
+   "@type": "jlpt:Kanji",
+   "schema:name": "価",
+   "schema:description": "prix, valeur",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/得",
+   "@type": "jlpt:Kanji",
+   "schema:name": "得",
+   "schema:description": "obtenir, gain, profit",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/与",
+   "@type": "jlpt:Kanji",
+   "schema:name": "与",
+   "schema:description": "donner, accorder",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/富",
+   "@type": "jlpt:Kanji",
+   "schema:name": "富",
+   "schema:description": "richesse, abondance",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/豊",
+   "@type": "jlpt:Kanji",
+   "schema:name": "豊",
+   "schema:description": "abondant, riche, fertile",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/貧",
+   "@type": "jlpt:Kanji",
+   "schema:name": "貧",
+   "schema:description": "pauvreté, pauvre",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/乏",
+   "@type": "jlpt:Kanji",
+   "schema:name": "乏",
+   "schema:description": "manquer, rare",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/困",
+   "@type": "jlpt:Kanji",
+   "schema:name": "困",
+   "schema:description": "être embarrassé, ennui",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/難",
+   "@type": "jlpt:Kanji",
+   "schema:name": "難",
+   "schema:description": "difficile, malheur",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/易",
+   "@type": "jlpt:Kanji",
+   "schema:name": "易",
+   "schema:description": "facile, simple, aisé",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/容",
+   "@type": "jlpt:Kanji",
+   "schema:name": "容",
+   "schema:description": "contenu, forme, accueillir",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/単",
+   "@type": "jlpt:Kanji",
+   "schema:name": "単",
+   "schema:description": "simple, seul, unique",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/簡",
+   "@type": "jlpt:Kanji",
+   "schema:name": "簡",
+   "schema:description": "simple, bref, concis",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/複",
+   "@type": "jlpt:Kanji",
+   "schema:name": "複",
+   "schema:description": "multiple, double, complexe",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/雑",
+   "@type": "jlpt:Kanji",
+   "schema:name": "雑",
+   "schema:description": "mélange, divers, brut",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/印",
+   "@type": "jlpt:Kanji",
+   "schema:name": "印",
+   "schema:description": "sceau, marque, empreinte",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/象",
+   "@type": "jlpt:Kanji",
+   "schema:name": "象",
+   "schema:description": "phénomène, éléphant, figure",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/態",
+   "@type": "jlpt:Kanji",
+   "schema:name": "態",
+   "schema:description": "état, condition, attitude",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/択",
+   "@type": "jlpt:Kanji",
+   "schema:name": "択",
+   "schema:description": "choisir, sélectionner",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/例",
+   "@type": "jlpt:Kanji",
+   "schema:name": "例",
+   "schema:description": "exemple, coutume, précédent",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/頼",
+   "@type": "jlpt:Kanji",
+   "schema:name": "頼",
+   "schema:description": "compter sur, demander",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/依",
+   "@type": "jlpt:Kanji",
+   "schema:name": "依",
+   "schema:description": "dépendre de, selon",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/求",
+   "@type": "jlpt:Kanji",
+   "schema:name": "求",
+   "schema:description": "chercher, demander, exiger",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/要",
+   "@type": "jlpt:Kanji",
+   "schema:name": "要",
+   "schema:description": "nécessaire, essentiel, point",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/利",
+   "@type": "jlpt:Kanji",
+   "schema:name": "利",
+   "schema:description": "profit, avantage, tranchant",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/益",
+   "@type": "jlpt:Kanji",
+   "schema:name": "益",
+   "schema:description": "bénéfice, profit, gain",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/費",
+   "@type": "jlpt:Kanji",
+   "schema:name": "費",
+   "schema:description": "dépense, frais, coût",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/額",
+   "@type": "jlpt:Kanji",
+   "schema:name": "額",
+   "schema:description": "montant, somme, front",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/貯",
+   "@type": "jlpt:Kanji",
+   "schema:name": "貯",
+   "schema:description": "épargner, accumuler",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/払",
+   "@type": "jlpt:Kanji",
+   "schema:name": "払",
+   "schema:description": "payer, balayer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/支",
+   "@type": "jlpt:Kanji",
+   "schema:name": "支",
+   "schema:description": "soutenir, branche, dépense",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/域",
+   "@type": "jlpt:Kanji",
+   "schema:name": "域",
+   "schema:description": "zone, région, aire",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/論",
+   "@type": "jlpt:Kanji",
+   "schema:name": "論",
+   "schema:description": "théorie, argument, discuter",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/課",
+   "@type": "jlpt:Kanji",
+   "schema:name": "課",
+   "schema:description": "leçon, section, tâche",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/席",
+   "@type": "jlpt:Kanji",
+   "schema:name": "席",
+   "schema:description": "siège, place",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/欠",
+   "@type": "jlpt:Kanji",
+   "schema:name": "欠",
+   "schema:description": "manquer, absence, défaut",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/令",
+   "@type": "jlpt:Kanji",
+   "schema:name": "令",
+   "schema:description": "ordre, commandement, loi",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/刷",
+   "@type": "jlpt:Kanji",
+   "schema:name": "刷",
+   "schema:description": "imprimer, brosser",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/版",
+   "@type": "jlpt:Kanji",
+   "schema:name": "版",
+   "schema:description": "édition, planche, version",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/刊",
+   "@type": "jlpt:Kanji",
+   "schema:name": "刊",
+   "schema:description": "publier, éditer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/誌",
+   "@type": "jlpt:Kanji",
+   "schema:name": "誌",
+   "schema:description": "magazine, revue, annales",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/巻",
+   "@type": "jlpt:Kanji",
+   "schema:name": "巻",
+   "schema:description": "rouleau, volume, enrouler",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/冊",
+   "@type": "jlpt:Kanji",
+   "schema:name": "冊",
+   "schema:description": "compteur de livres, volume",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/編",
+   "@type": "jlpt:Kanji",
+   "schema:name": "編",
+   "schema:description": "compiler, tricoter, rédiger",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/訳",
+   "@type": "jlpt:Kanji",
+   "schema:name": "訳",
+   "schema:description": "traduire, raison, sens",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/翻",
+   "@type": "jlpt:Kanji",
+   "schema:name": "翻",
+   "schema:description": "traduire, retourner",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/察",
+   "@type": "jlpt:Kanji",
+   "schema:name": "察",
+   "schema:description": "deviner, observer, juger",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/観",
+   "@type": "jlpt:Kanji",
+   "schema:name": "観",
+   "schema:description": "observer, apparence, vue",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/警",
+   "@type": "jlpt:Kanji",
+   "schema:name": "警",
+   "schema:description": "avertir, garde, police",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/防",
+   "@type": "jlpt:Kanji",
+   "schema:name": "防",
+   "schema:description": "prévenir, protéger, défendre",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/犯",
+   "@type": "jlpt:Kanji",
+   "schema:name": "犯",
+   "schema:description": "crime, transgresser",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/罪",
+   "@type": "jlpt:Kanji",
+   "schema:name": "罪",
+   "schema:description": "crime, faute, péché",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/罰",
+   "@type": "jlpt:Kanji",
+   "schema:name": "罰",
+   "schema:description": "punition, châtiment",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/捕",
+   "@type": "jlpt:Kanji",
+   "schema:name": "捕",
+   "schema:description": "attraper, capturer, arrêter",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/逮",
+   "@type": "jlpt:Kanji",
+   "schema:name": "逮",
+   "schema:description": "appréhender, atteindre",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/留",
+   "@type": "jlpt:Kanji",
+   "schema:name": "留",
+   "schema:description": "rester, retenir, fixer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/招",
+   "@type": "jlpt:Kanji",
+   "schema:name": "招",
+   "schema:description": "inviter, appeler",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/個",
+   "@type": "jlpt:Kanji",
+   "schema:name": "個",
+   "schema:description": "individuel, compteur d'objets",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/各",
+   "@type": "jlpt:Kanji",
+   "schema:name": "各",
+   "schema:description": "chaque, chacun",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/普",
+   "@type": "jlpt:Kanji",
+   "schema:name": "普",
+   "schema:description": "ordinaire, général, universel",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/及",
+   "@type": "jlpt:Kanji",
+   "schema:name": "及",
+   "schema:description": "atteindre, s'étendre, et",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/群",
+   "@type": "jlpt:Kanji",
+   "schema:name": "群",
+   "schema:description": "groupe, foule, troupeau",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/衆",
+   "@type": "jlpt:Kanji",
+   "schema:name": "衆",
+   "schema:description": "masse, foule, public",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/総",
+   "@type": "jlpt:Kanji",
+   "schema:name": "総",
+   "schema:description": "total, général, tous",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/均",
+   "@type": "jlpt:Kanji",
+   "schema:name": "均",
+   "schema:description": "égal, uniforme, moyenne",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/録",
+   "@type": "jlpt:Kanji",
+   "schema:name": "録",
+   "schema:description": "enregistrer, noter",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/抜",
+   "@type": "jlpt:Kanji",
+   "schema:name": "抜",
+   "schema:description": "extraire, retirer, dépasser",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/念",
+   "@type": "jlpt:Kanji",
+   "schema:name": "念",
+   "schema:description": "pensée, souci, attention",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/残",
+   "@type": "jlpt:Kanji",
+   "schema:name": "残",
+   "schema:description": "rester, reste, cruel",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/副",
+   "@type": "jlpt:Kanji",
+   "schema:name": "副",
+   "schema:description": "vice-, secondaire, adjoint",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/賞",
+   "@type": "jlpt:Kanji",
+   "schema:name": "賞",
+   "schema:description": "prix, récompense, éloge",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/状",
+   "@type": "jlpt:Kanji",
+   "schema:name": "状",
+   "schema:description": "état, condition, lettre",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/況",
+   "@type": "jlpt:Kanji",
+   "schema:name": "況",
+   "schema:description": "situation, circonstance",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/昨",
+   "@type": "jlpt:Kanji",
+   "schema:name": "昨",
+   "schema:description": "hier, précédent, passé",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/差",
+   "@type": "jlpt:Kanji",
+   "schema:name": "差",
+   "schema:description": "différence, écart, insérer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/比",
+   "@type": "jlpt:Kanji",
+   "schema:name": "比",
+   "schema:description": "comparer, rapport, ratio",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/較",
+   "@type": "jlpt:Kanji",
+   "schema:name": "較",
+   "schema:description": "comparer, contraster",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/案",
+   "@type": "jlpt:Kanji",
+   "schema:name": "案",
+   "schema:description": "plan, proposition, idée",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/位",
+   "@type": "jlpt:Kanji",
+   "schema:name": "位",
+   "schema:description": "rang, position, place",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/囲",
+   "@type": "jlpt:Kanji",
+   "schema:name": "囲",
+   "schema:description": "entourer, cerner, périmètre",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/胃",
+   "@type": "jlpt:Kanji",
+   "schema:name": "胃",
+   "schema:description": "estomac",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/衣",
+   "@type": "jlpt:Kanji",
+   "schema:name": "衣",
+   "schema:description": "vêtement, habit",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/演",
+   "@type": "jlpt:Kanji",
+   "schema:name": "演",
+   "schema:description": "jouer, représenter, exposer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/煙",
+   "@type": "jlpt:Kanji",
+   "schema:name": "煙",
+   "schema:description": "fumée",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/塩",
+   "@type": "jlpt:Kanji",
+   "schema:name": "塩",
+   "schema:description": "sel",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/押",
+   "@type": "jlpt:Kanji",
+   "schema:name": "押",
+   "schema:description": "pousser, appuyer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/横",
+   "@type": "jlpt:Kanji",
+   "schema:name": "横",
+   "schema:description": "côté, horizontal, travers",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/億",
+   "@type": "jlpt:Kanji",
+   "schema:name": "億",
+   "schema:description": "cent millions",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/果",
+   "@type": "jlpt:Kanji",
+   "schema:name": "果",
+   "schema:description": "fruit, résultat, accomplir",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/貨",
+   "@type": "jlpt:Kanji",
+   "schema:name": "貨",
+   "schema:description": "marchandise, monnaie",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/河",
+   "@type": "jlpt:Kanji",
+   "schema:name": "河",
+   "schema:description": "fleuve, rivière",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/灰",
+   "@type": "jlpt:Kanji",
+   "schema:name": "灰",
+   "schema:description": "cendre",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/拡",
+   "@type": "jlpt:Kanji",
+   "schema:name": "拡",
+   "schema:description": "étendre, agrandir",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/割",
+   "@type": "jlpt:Kanji",
+   "schema:name": "割",
+   "schema:description": "diviser, proportion, casser",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/完",
+   "@type": "jlpt:Kanji",
+   "schema:name": "完",
+   "schema:description": "achever, complet",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/干",
+   "@type": "jlpt:Kanji",
+   "schema:name": "干",
+   "schema:description": "sécher, assécher",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/甘",
+   "@type": "jlpt:Kanji",
+   "schema:name": "甘",
+   "schema:description": "sucré, doux, indulgent",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/汗",
+   "@type": "jlpt:Kanji",
+   "schema:name": "汗",
+   "schema:description": "sueur, transpiration",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/含",
+   "@type": "jlpt:Kanji",
+   "schema:name": "含",
+   "schema:description": "contenir, inclure",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/幾",
+   "@type": "jlpt:Kanji",
+   "schema:name": "幾",
+   "schema:description": "combien, quelque",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/貴",
+   "@type": "jlpt:Kanji",
+   "schema:name": "貴",
+   "schema:description": "précieux, noble",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/疑",
+   "@type": "jlpt:Kanji",
+   "schema:name": "疑",
+   "schema:description": "douter, soupçonner",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/儀",
+   "@type": "jlpt:Kanji",
+   "schema:name": "儀",
+   "schema:description": "cérémonie, règle, affaire",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/詰",
+   "@type": "jlpt:Kanji",
+   "schema:name": "詰",
+   "schema:description": "remplir, bourrer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/逆",
+   "@type": "jlpt:Kanji",
+   "schema:name": "逆",
+   "schema:description": "inverse, contraire",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/久",
+   "@type": "jlpt:Kanji",
+   "schema:name": "久",
+   "schema:description": "longtemps, durable",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/旧",
+   "@type": "jlpt:Kanji",
+   "schema:name": "旧",
+   "schema:description": "ancien, vieux, ex-",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/居",
+   "@type": "jlpt:Kanji",
+   "schema:name": "居",
+   "schema:description": "résider, être présent",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/巨",
+   "@type": "jlpt:Kanji",
+   "schema:name": "巨",
+   "schema:description": "gigantesque, énorme",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/拠",
+   "@type": "jlpt:Kanji",
+   "schema:name": "拠",
+   "schema:description": "fondement, s'appuyer sur",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/拒",
+   "@type": "jlpt:Kanji",
+   "schema:name": "拒",
+   "schema:description": "refuser, repousser",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/狭",
+   "@type": "jlpt:Kanji",
+   "schema:name": "狭",
+   "schema:description": "étroit, exigu",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/響",
+   "@type": "jlpt:Kanji",
+   "schema:name": "響",
+   "schema:description": "résonner, retentir",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/驚",
+   "@type": "jlpt:Kanji",
+   "schema:name": "驚",
+   "schema:description": "surprendre, s'étonner",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/禁",
+   "@type": "jlpt:Kanji",
+   "schema:name": "禁",
+   "schema:description": "interdire, prohiber",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/筋",
+   "@type": "jlpt:Kanji",
+   "schema:name": "筋",
+   "schema:description": "muscle, tendon, fil",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/勤",
+   "@type": "jlpt:Kanji",
+   "schema:name": "勤",
+   "schema:description": "travailler, service",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/靴",
+   "@type": "jlpt:Kanji",
+   "schema:name": "靴",
+   "schema:description": "chaussure",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/傾",
+   "@type": "jlpt:Kanji",
+   "schema:name": "傾",
+   "schema:description": "pencher, incliner",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/継",
+   "@type": "jlpt:Kanji",
+   "schema:name": "継",
+   "schema:description": "continuer, succéder",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/迎",
+   "@type": "jlpt:Kanji",
+   "schema:name": "迎",
+   "schema:description": "accueillir, aller chercher",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/撃",
+   "@type": "jlpt:Kanji",
+   "schema:name": "撃",
+   "schema:description": "frapper, attaquer, tirer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/激",
+   "@type": "jlpt:Kanji",
+   "schema:name": "激",
+   "schema:description": "violent, intense",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/潔",
+   "@type": "jlpt:Kanji",
+   "schema:name": "潔",
+   "schema:description": "pur, net, irréprochable",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/件",
+   "@type": "jlpt:Kanji",
+   "schema:name": "件",
+   "schema:description": "affaire, cas, sujet",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/肩",
+   "@type": "jlpt:Kanji",
+   "schema:name": "肩",
+   "schema:description": "épaule",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/憲",
+   "@type": "jlpt:Kanji",
+   "schema:name": "憲",
+   "schema:description": "loi fondamentale",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/賢",
+   "@type": "jlpt:Kanji",
+   "schema:name": "賢",
+   "schema:description": "sage, intelligent",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/玄",
+   "@type": "jlpt:Kanji",
+   "schema:name": "玄",
+   "schema:description": "mystère, sombre, profond",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/源",
+   "@type": "jlpt:Kanji",
+   "schema:name": "源",
+   "schema:description": "source, origine",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/厳",
+   "@type": "jlpt:Kanji",
+   "schema:name": "厳",
+   "schema:description": "sévère, strict, solennel",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/己",
+   "@type": "jlpt:Kanji",
+   "schema:name": "己",
+   "schema:description": "soi-même",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/呼",
+   "@type": "jlpt:Kanji",
+   "schema:name": "呼",
+   "schema:description": "appeler, respirer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/誤",
+   "@type": "jlpt:Kanji",
+   "schema:name": "誤",
+   "schema:description": "erreur, se tromper",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/抗",
+   "@type": "jlpt:Kanji",
+   "schema:name": "抗",
+   "schema:description": "résister, s'opposer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/攻",
+   "@type": "jlpt:Kanji",
+   "schema:name": "攻",
+   "schema:description": "attaquer, offensive",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/更",
+   "@type": "jlpt:Kanji",
+   "schema:name": "更",
+   "schema:description": "renouveler, davantage",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/硬",
+   "@type": "jlpt:Kanji",
+   "schema:name": "硬",
+   "schema:description": "dur, rigide",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/荒",
+   "@type": "jlpt:Kanji",
+   "schema:name": "荒",
+   "schema:description": "brut, sauvage, rude",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/講",
+   "@type": "jlpt:Kanji",
+   "schema:name": "講",
+   "schema:description": "exposé, cours, conférence",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/込",
+   "@type": "jlpt:Kanji",
+   "schema:name": "込",
+   "schema:description": "être inclus, se presser",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/婚",
+   "@type": "jlpt:Kanji",
+   "schema:name": "婚",
+   "schema:description": "mariage",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/混",
+   "@type": "jlpt:Kanji",
+   "schema:name": "混",
+   "schema:description": "mélanger, confondre",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/座",
+   "@type": "jlpt:Kanji",
+   "schema:name": "座",
+   "schema:description": "siège, s'asseoir",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/再",
+   "@type": "jlpt:Kanji",
+   "schema:name": "再",
+   "schema:description": "de nouveau, re-",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/妻",
+   "@type": "jlpt:Kanji",
+   "schema:name": "妻",
+   "schema:description": "épouse",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/採",
+   "@type": "jlpt:Kanji",
+   "schema:name": "採",
+   "schema:description": "prélever, adopter, recruter",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/災",
+   "@type": "jlpt:Kanji",
+   "schema:name": "災",
+   "schema:description": "calamité, désastre",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/財",
+   "@type": "jlpt:Kanji",
+   "schema:name": "財",
+   "schema:description": "biens, richesse, fonds",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/咲",
+   "@type": "jlpt:Kanji",
+   "schema:name": "咲",
+   "schema:description": "fleurir, éclore",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/撮",
+   "@type": "jlpt:Kanji",
+   "schema:name": "撮",
+   "schema:description": "photographier, filmer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/参",
+   "@type": "jlpt:Kanji",
+   "schema:name": "参",
+   "schema:description": "participer, se rendre",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/散",
+   "@type": "jlpt:Kanji",
+   "schema:name": "散",
+   "schema:description": "se disperser, éparpiller",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/賛",
+   "@type": "jlpt:Kanji",
+   "schema:name": "賛",
+   "schema:description": "approuver, soutenir",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/士",
+   "@type": "jlpt:Kanji",
+   "schema:name": "士",
+   "schema:description": "homme de métier, guerrier",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/志",
+   "@type": "jlpt:Kanji",
+   "schema:name": "志",
+   "schema:description": "volonté, aspiration",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/枝",
+   "@type": "jlpt:Kanji",
+   "schema:name": "枝",
+   "schema:description": "branche, rameau",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/詞",
+   "@type": "jlpt:Kanji",
+   "schema:name": "詞",
+   "schema:description": "mot, paroles",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/飼",
+   "@type": "jlpt:Kanji",
+   "schema:name": "飼",
+   "schema:description": "élever (un animal)",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/児",
+   "@type": "jlpt:Kanji",
+   "schema:name": "児",
+   "schema:description": "enfant, nourrisson",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/似",
+   "@type": "jlpt:Kanji",
+   "schema:name": "似",
+   "schema:description": "ressembler",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/湿",
+   "@type": "jlpt:Kanji",
+   "schema:name": "湿",
+   "schema:description": "humide",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/芝",
+   "@type": "jlpt:Kanji",
+   "schema:name": "芝",
+   "schema:description": "gazon, pelouse",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/舎",
+   "@type": "jlpt:Kanji",
+   "schema:name": "舎",
+   "schema:description": "bâtiment, logement",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/捨",
+   "@type": "jlpt:Kanji",
+   "schema:name": "捨",
+   "schema:description": "jeter, abandonner",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/寂",
+   "@type": "jlpt:Kanji",
+   "schema:name": "寂",
+   "schema:description": "solitaire, silencieux",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/若",
+   "@type": "jlpt:Kanji",
+   "schema:name": "若",
+   "schema:description": "jeune",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/収",
+   "@type": "jlpt:Kanji",
+   "schema:name": "収",
+   "schema:description": "recueillir, engranger",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/州",
+   "@type": "jlpt:Kanji",
+   "schema:name": "州",
+   "schema:description": "État, province",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/祝",
+   "@type": "jlpt:Kanji",
+   "schema:name": "祝",
+   "schema:description": "célébrer, fêter",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/縮",
+   "@type": "jlpt:Kanji",
+   "schema:name": "縮",
+   "schema:description": "réduire, contracter",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/熟",
+   "@type": "jlpt:Kanji",
+   "schema:name": "熟",
+   "schema:description": "mûrir, maîtriser",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/述",
+   "@type": "jlpt:Kanji",
+   "schema:name": "述",
+   "schema:description": "exposer, énoncer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/術",
+   "@type": "jlpt:Kanji",
+   "schema:name": "術",
+   "schema:description": "technique, art, moyen",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/純",
+   "@type": "jlpt:Kanji",
+   "schema:name": "純",
+   "schema:description": "pur, simple",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/順",
+   "@type": "jlpt:Kanji",
+   "schema:name": "順",
+   "schema:description": "ordre, tour, conforme",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/除",
+   "@type": "jlpt:Kanji",
+   "schema:name": "除",
+   "schema:description": "enlever, exclure",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/承",
+   "@type": "jlpt:Kanji",
+   "schema:name": "承",
+   "schema:description": "accepter, recevoir",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/昇",
+   "@type": "jlpt:Kanji",
+   "schema:name": "昇",
+   "schema:description": "monter, s'élever",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/松",
+   "@type": "jlpt:Kanji",
+   "schema:name": "松",
+   "schema:description": "pin",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/照",
+   "@type": "jlpt:Kanji",
+   "schema:name": "照",
+   "schema:description": "éclairer, illuminer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/症",
+   "@type": "jlpt:Kanji",
+   "schema:name": "症",
+   "schema:description": "symptôme, maladie",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/障",
+   "@type": "jlpt:Kanji",
+   "schema:name": "障",
+   "schema:description": "obstacle, entrave",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/詳",
+   "@type": "jlpt:Kanji",
+   "schema:name": "詳",
+   "schema:description": "détaillé, précis",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/丈",
+   "@type": "jlpt:Kanji",
+   "schema:name": "丈",
+   "schema:description": "taille, hauteur, robuste",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/城",
+   "@type": "jlpt:Kanji",
+   "schema:name": "城",
+   "schema:description": "château, forteresse",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/蒸",
+   "@type": "jlpt:Kanji",
+   "schema:name": "蒸",
+   "schema:description": "vapeur, cuire à la vapeur",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/織",
+   "@type": "jlpt:Kanji",
+   "schema:name": "織",
+   "schema:description": "tisser, organiser",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/触",
+   "@type": "jlpt:Kanji",
+   "schema:name": "触",
+   "schema:description": "toucher, contact",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/信",
+   "@type": "jlpt:Kanji",
+   "schema:name": "信",
+   "schema:description": "confiance, croire",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/針",
+   "@type": "jlpt:Kanji",
+   "schema:name": "針",
+   "schema:description": "aiguille",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/震",
+   "@type": "jlpt:Kanji",
+   "schema:name": "震",
+   "schema:description": "trembler, séisme",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/吹",
+   "@type": "jlpt:Kanji",
+   "schema:name": "吹",
+   "schema:description": "souffler",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/推",
+   "@type": "jlpt:Kanji",
+   "schema:name": "推",
+   "schema:description": "déduire, présumer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/睡",
+   "@type": "jlpt:Kanji",
+   "schema:name": "睡",
+   "schema:description": "sommeil",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/制",
+   "@type": "jlpt:Kanji",
+   "schema:name": "制",
+   "schema:description": "régime, système, régler",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/省",
+   "@type": "jlpt:Kanji",
+   "schema:name": "省",
+   "schema:description": "économiser, réfléchir, ministère",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/清",
+   "@type": "jlpt:Kanji",
+   "schema:name": "清",
+   "schema:description": "pur, net, clair",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/盛",
+   "@type": "jlpt:Kanji",
+   "schema:name": "盛",
+   "schema:description": "abondant, prospère",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/勢",
+   "@type": "jlpt:Kanji",
+   "schema:name": "勢",
+   "schema:description": "force, élan, vigueur",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/誠",
+   "@type": "jlpt:Kanji",
+   "schema:name": "誠",
+   "schema:description": "sincérité",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/精",
+   "@type": "jlpt:Kanji",
+   "schema:name": "精",
+   "schema:description": "esprit, raffiné, énergie",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/製",
+   "@type": "jlpt:Kanji",
+   "schema:name": "製",
+   "schema:description": "fabriquer, produit",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/積",
+   "@type": "jlpt:Kanji",
+   "schema:name": "積",
+   "schema:description": "empiler, accumuler",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/績",
+   "@type": "jlpt:Kanji",
+   "schema:name": "績",
+   "schema:description": "résultat, mérite",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/責",
+   "@type": "jlpt:Kanji",
+   "schema:name": "責",
+   "schema:description": "responsabilité, blâmer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/接",
+   "@type": "jlpt:Kanji",
+   "schema:name": "接",
+   "schema:description": "contact, joindre, recevoir",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/設",
+   "@type": "jlpt:Kanji",
+   "schema:name": "設",
+   "schema:description": "établir, installer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/折",
+   "@type": "jlpt:Kanji",
+   "schema:name": "折",
+   "schema:description": "plier, casser",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/節",
+   "@type": "jlpt:Kanji",
+   "schema:name": "節",
+   "schema:description": "articulation, saison, mesure",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/舌",
+   "@type": "jlpt:Kanji",
+   "schema:name": "舌",
+   "schema:description": "langue",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/絶",
+   "@type": "jlpt:Kanji",
+   "schema:name": "絶",
+   "schema:description": "couper, cesser, absolu",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/占",
+   "@type": "jlpt:Kanji",
+   "schema:name": "占",
+   "schema:description": "occuper, prédire",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/宣",
+   "@type": "jlpt:Kanji",
+   "schema:name": "宣",
+   "schema:description": "déclarer, proclamer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/専",
+   "@type": "jlpt:Kanji",
+   "schema:name": "専",
+   "schema:description": "exclusif, spécial",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/泉",
+   "@type": "jlpt:Kanji",
+   "schema:name": "泉",
+   "schema:description": "source, fontaine",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/染",
+   "@type": "jlpt:Kanji",
+   "schema:name": "染",
+   "schema:description": "teindre, contaminer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/銭",
+   "@type": "jlpt:Kanji",
+   "schema:name": "銭",
+   "schema:description": "argent, monnaie, sou",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/善",
+   "@type": "jlpt:Kanji",
+   "schema:name": "善",
+   "schema:description": "bien, bon, vertu",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/祖",
+   "@type": "jlpt:Kanji",
+   "schema:name": "祖",
+   "schema:description": "ancêtre, aïeul",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/素",
+   "@type": "jlpt:Kanji",
+   "schema:name": "素",
+   "schema:description": "élément, brut, nature",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/争",
+   "@type": "jlpt:Kanji",
+   "schema:name": "争",
+   "schema:description": "se disputer, rivaliser",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/倉",
+   "@type": "jlpt:Kanji",
+   "schema:name": "倉",
+   "schema:description": "grenier, entrepôt",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/想",
+   "@type": "jlpt:Kanji",
+   "schema:name": "想",
+   "schema:description": "penser, imaginer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/層",
+   "@type": "jlpt:Kanji",
+   "schema:name": "層",
+   "schema:description": "couche, strate, classe",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/掃",
+   "@type": "jlpt:Kanji",
+   "schema:name": "掃",
+   "schema:description": "balayer, nettoyer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/造",
+   "@type": "jlpt:Kanji",
+   "schema:name": "造",
+   "schema:description": "fabriquer, construire",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/像",
+   "@type": "jlpt:Kanji",
+   "schema:name": "像",
+   "schema:description": "image, statue, figure",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/蔵",
+   "@type": "jlpt:Kanji",
+   "schema:name": "蔵",
+   "schema:description": "entrepôt, conserver",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/臓",
+   "@type": "jlpt:Kanji",
+   "schema:name": "臓",
+   "schema:description": "organe, viscère",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/測",
+   "@type": "jlpt:Kanji",
+   "schema:name": "測",
+   "schema:description": "mesurer, évaluer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/尊",
+   "@type": "jlpt:Kanji",
+   "schema:name": "尊",
+   "schema:description": "respecter, vénérer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/損",
+   "@type": "jlpt:Kanji",
+   "schema:name": "損",
+   "schema:description": "perte, dommage",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/替",
+   "@type": "jlpt:Kanji",
+   "schema:name": "替",
+   "schema:description": "échanger, remplacer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/退",
+   "@type": "jlpt:Kanji",
+   "schema:name": "退",
+   "schema:description": "reculer, se retirer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/隊",
+   "@type": "jlpt:Kanji",
+   "schema:name": "隊",
+   "schema:description": "troupe, unité",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/脱",
+   "@type": "jlpt:Kanji",
+   "schema:name": "脱",
+   "schema:description": "enlever, s'échapper",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/担",
+   "@type": "jlpt:Kanji",
+   "schema:name": "担",
+   "schema:description": "porter, se charger de",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/探",
+   "@type": "jlpt:Kanji",
+   "schema:name": "探",
+   "schema:description": "chercher, explorer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/端",
+   "@type": "jlpt:Kanji",
+   "schema:name": "端",
+   "schema:description": "extrémité, bord",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/誕",
+   "@type": "jlpt:Kanji",
+   "schema:name": "誕",
+   "schema:description": "naissance",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/団",
+   "@type": "jlpt:Kanji",
+   "schema:name": "団",
+   "schema:description": "groupe, corps, troupe",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/断",
+   "@type": "jlpt:Kanji",
+   "schema:name": "断",
+   "schema:description": "décider, couper, refuser",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/遅",
+   "@type": "jlpt:Kanji",
+   "schema:name": "遅",
+   "schema:description": "tard, lent",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/恥",
+   "@type": "jlpt:Kanji",
+   "schema:name": "恥",
+   "schema:description": "honte",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/築",
+   "@type": "jlpt:Kanji",
+   "schema:name": "築",
+   "schema:description": "bâtir, construire",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/仲",
+   "@type": "jlpt:Kanji",
+   "schema:name": "仲",
+   "schema:description": "relation, entente",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/柱",
+   "@type": "jlpt:Kanji",
+   "schema:name": "柱",
+   "schema:description": "pilier, colonne, poteau",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/帳",
+   "@type": "jlpt:Kanji",
+   "schema:name": "帳",
+   "schema:description": "registre, carnet",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/張",
+   "@type": "jlpt:Kanji",
+   "schema:name": "張",
+   "schema:description": "tendre, étirer, affirmer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/頂",
+   "@type": "jlpt:Kanji",
+   "schema:name": "頂",
+   "schema:description": "sommet, recevoir humblement",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/腸",
+   "@type": "jlpt:Kanji",
+   "schema:name": "腸",
+   "schema:description": "intestin",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/超",
+   "@type": "jlpt:Kanji",
+   "schema:name": "超",
+   "schema:description": "dépasser, super-",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/沈",
+   "@type": "jlpt:Kanji",
+   "schema:name": "沈",
+   "schema:description": "couler, sombrer",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/珍",
+   "@type": "jlpt:Kanji",
+   "schema:name": "珍",
+   "schema:description": "rare, précieux, curieux",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/賃",
+   "@type": "jlpt:Kanji",
+   "schema:name": "賃",
+   "schema:description": "salaire, loyer, tarif",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/適",
+   "@type": "jlpt:Kanji",
+   "schema:name": "適",
+   "schema:description": "convenir, approprié",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/敵",
+   "@type": "jlpt:Kanji",
+   "schema:name": "敵",
+   "schema:description": "ennemi, adversaire",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/展",
+   "@type": "jlpt:Kanji",
+   "schema:name": "展",
+   "schema:description": "déployer, exposition",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:kanji/逃",
+   "@type": "jlpt:Kanji",
+   "schema:name": "逃",
+   "schema:description": "fuir, échapper",
+   "jlpt:level": "N3"
+  }
+ ]
+}

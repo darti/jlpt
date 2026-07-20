@@ -1,0 +1,2783 @@
+{
+ "@context": "context.jsonld",
+ "@graph": [
+  {
+   "@id": "jlpt:gram/たら",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たら",
+   "schema:description": "« quand / si… » — le plus courant à l'oral ; condition + résultat ponctuel.",
+   "jlpt:structure": "V(forme た) ＋ ら",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ば",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ば",
+   "schema:description": "« si… » — condition générale, vérité logique ou naturelle.",
+   "jlpt:structure": "V(forme ば) / い-adj：〜ければ",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/なら",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜なら",
+   "schema:description": "« si c'est le cas de… / dans ce cas » — réagit à ce que dit l'interlocuteur.",
+   "jlpt:structure": "名 / V・adj 普通形 ＋ なら",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/と(条件)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜と (条件)",
+   "schema:description": "« dès que / à chaque fois que » — conséquence automatique et naturelle.",
+   "jlpt:structure": "V/adj 辞書形 ＋ と",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/なければならない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜なければならない",
+   "schema:description": "« devoir / être obligé de ».",
+   "jlpt:structure": "V(ない形 → 〜なければ) ＋ ならない",
+   "jlpt:level": "N4",
+   "jlpt:altForm": [
+    "〜なきゃ"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/てもいい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜てもいい",
+   "schema:description": "permission : « on peut »",
+   "jlpt:structure": "V(て形) ＋ もいい",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/てはいけない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜てはいけない",
+   "schema:description": "« il ne faut pas / interdiction ».",
+   "jlpt:structure": "V(て形) ＋ はいけない",
+   "jlpt:level": "N4",
+   "jlpt:altForm": [
+    "〜てはならない"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/なくてもいい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜なくてもいい",
+   "schema:description": "« pas besoin de ».",
+   "jlpt:structure": "V(ない形 → 〜なくて) ＋ もいい",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/たことがある",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たことがある",
+   "schema:description": "expérience : « avoir déjà… »",
+   "jlpt:structure": "V(た形) ＋ ことがある",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ことができる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ことができる",
+   "schema:description": "capacité : « pouvoir »",
+   "jlpt:structure": "V(辞書形) ＋ ことができる",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/たほうがいい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たほうがいい",
+   "schema:description": "conseil : « il vaut mieux »",
+   "jlpt:structure": "V(た形) ＋ ほうがいい（否定：〜ないほうがいい）",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ながら",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ながら",
+   "schema:description": "« tout en… » — deux actions simultanées par le même sujet.",
+   "jlpt:structure": "V(ます語幹) ＋ ながら",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/つもりだ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜つもりだ",
+   "schema:description": "intention : « avoir l’intention de »",
+   "jlpt:structure": "V(辞書形) ＋ つもりだ",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/（よ）うと思う",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜（よ）うと思う",
+   "schema:description": "projet : « je pense faire »",
+   "jlpt:structure": "V(意向形) ＋ と思う",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/かもしれない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜かもしれない",
+   "schema:description": "« peut-être / il se peut que » — possibilité faible.",
+   "jlpt:structure": "V/adj 普通形 ＋ かもしれない",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/はずだ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜はずだ",
+   "schema:description": "« ça devrait / logiquement » — forte attente fondée.",
+   "jlpt:structure": "V/adj 普通形（名＋の）＋ はずだ",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/のに",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜のに",
+   "schema:description": "« bien que / alors que » — opposition avec déception.",
+   "jlpt:structure": "V/adj 普通形（な-adj・名＋な）＋ のに",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ので",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ので",
+   "schema:description": "cause polie : « comme, parce que »",
+   "jlpt:structure": "V/adj 普通形（な-adj・名＋な）＋ ので",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ようになる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ようになる",
+   "schema:description": "« en venir à / arriver à (changement progressif de capacité/habitude) ».",
+   "jlpt:structure": "V(辞書形/可能形) ＋ ようになる",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ことにする",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ことにする",
+   "schema:description": "décision personnelle : « décider de ».",
+   "jlpt:structure": "V(辞書形/ない形) ＋ ことにする",
+   "jlpt:level": "N4",
+   "jlpt:altForm": [
+    "〜ことになる"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/ことになる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ことになる",
+   "schema:description": "décision/résultat externe : « il est décidé que, il se trouve que ».",
+   "jlpt:structure": "V(辞書形/ない形) ＋ ことになる",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/てしまう",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜てしまう",
+   "schema:description": "« faire complètement » ou regret « finir par (malheureusement) ».",
+   "jlpt:structure": "V(て形) ＋ しまう（口語：〜ちゃう）",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ておく",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ておく",
+   "schema:description": "« faire à l'avance / par anticipation ».",
+   "jlpt:structure": "V(て形) ＋ おく（口語：〜とく）",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/てみる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜てみる",
+   "schema:description": "« essayer de (pour voir) ».",
+   "jlpt:structure": "V(て形) ＋ みる",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/てある",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜てある",
+   "schema:description": "« état résultant d'une action volontaire ».",
+   "jlpt:structure": "V(他動詞の て形) ＋ ある",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/てあげる／くれる／もらう",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜てあげる／くれる／もらう",
+   "schema:description": "verbes de don/faveur : qui rend service à qui.",
+   "jlpt:structure": "てあげる (moi→autrui) / てくれる (autrui→moi) / てもらう (je reçois le service)",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/（ら）れる(受身)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜（ら）れる (受身)",
+   "schema:description": "passif : « être …é » (souvent subir une action).",
+   "jlpt:structure": "Ⅰ群：あ段＋れる / Ⅱ群：〜られる / する→される",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/（さ）せる(使役)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜（さ）せる (使役)",
+   "schema:description": "causatif : « faire faire / laisser faire ».",
+   "jlpt:structure": "Ⅰ群：あ段＋せる / Ⅱ群：〜させる / する→させる",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/（さ）せられる(使役受身)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜（さ）せられる (使役受身)",
+   "schema:description": "causatif-passif : « être obligé/forcé de ».",
+   "jlpt:structure": "使役＋受身：〜させられる（Ⅰ群は〜される短縮あり）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ようだ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ようだ",
+   "schema:description": "« on dirait que / il semble que » — déduction basée sur des indices.",
+   "jlpt:structure": "V/adj 普通形（名＋の・な-adj＋な）＋ ようだ",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜みたいだ"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/そうだ(様態)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜そうだ (様態)",
+   "schema:description": "apparence immédiate : « avoir l’air de, sembler sur le point de ».",
+   "jlpt:structure": "V(ます語幹)／adj語幹 ＋ そうだ",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/そうだ(伝聞)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜そうだ (伝聞)",
+   "schema:description": "ouï-dire : « on dit que, il paraît que » (information rapportée).",
+   "jlpt:structure": "V/adj 普通形 ＋ そうだ",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/らしい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜らしい",
+   "schema:description": "« il paraît que » (info entendue) ou « typique de » (名＋らしい).",
+   "jlpt:structure": "V/adj 普通形（名・な-adj：語幹）＋ らしい",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/みたいだ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜みたいだ",
+   "schema:description": "comparaison/conjecture familière : « comme, on dirait ».",
+   "jlpt:structure": "名／V・adj 普通形 ＋ みたいだ",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/すぎる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜すぎる",
+   "schema:description": "« trop ».",
+   "jlpt:structure": "V(ます語幹)／adj語幹 ＋ すぎる",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/やすい／にくい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜やすい／〜にくい",
+   "schema:description": "facilité ou difficulté à faire : « facile / difficile à… ».",
+   "jlpt:structure": "V(ます語幹) ＋ やすい／にくい",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/おになる／おする",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "お〜になる／お〜する",
+   "schema:description": "keigo : respect (sonkeigo) vs modestie (kenjōgo).",
+   "jlpt:structure": "尊敬：お＋V(ます語幹)＋になる / 謙譲：お＋V(ます語幹)＋する",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/たところだ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たところだ",
+   "schema:description": "« venir juste de (faire) » — action achevée à l’instant.",
+   "jlpt:structure": "V(た形) ＋ ところだ",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/わけだ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜わけだ",
+   "schema:description": "« ça explique que / c'est donc pour ça que » — conclusion logique.",
+   "jlpt:structure": "V/adj 普通形（な-adj＋な・名＋という）＋ わけだ",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ばかり",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ばかり",
+   "schema:description": "« ne faire que / rien que » — restriction ou excès répété.",
+   "jlpt:structure": "V(て形)＋ばかりいる / 名＋ばかり",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/べきだ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜べきだ",
+   "schema:description": "« on doit / il faut (devoir moral) ».",
+   "jlpt:structure": "V(辞書形) ＋ べきだ（する→すべき）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/に対して",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜に対して",
+   "schema:description": "« envers / à l’égard de », ou contraste « tandis que ».",
+   "jlpt:structure": "名 ＋ に対して",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/によって",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜によって",
+   "schema:description": "« selon / par le biais de / par (passif) ».",
+   "jlpt:structure": "名 ＋ によって",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/について",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜について",
+   "schema:description": "« au sujet de, concernant ».",
+   "jlpt:structure": "名 ＋ について",
+   "jlpt:level": "N4",
+   "jlpt:altForm": [
+    "〜に対して"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/ても",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ても",
+   "schema:description": "« même si ».",
+   "jlpt:structure": "V(て形)＋も / い-adj：〜くても / 名・な-adj：〜でも",
+   "jlpt:level": "N4",
+   "jlpt:altForm": [
+    "〜でも"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/です",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "です",
+   "schema:description": "Copule affirmative du présent : « être », place la phrase au registre poli.",
+   "jlpt:structure": "名詞（な形容詞）＋です",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/でした",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "でした",
+   "schema:description": "Copule au passé poli : « était », version passée de です.",
+   "jlpt:structure": "名詞（な形容詞）＋でした",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ではありません／じゃありません",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "ではありません／じゃありません",
+   "schema:description": "Copule négative polie : « n'est pas ». じゃありません est la variante orale.",
+   "jlpt:structure": "名詞＋ではありません（口語：じゃありません）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/は",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "は",
+   "schema:description": "Particule de thème : présente ce dont parle la phrase (prononcée « wa »).",
+   "jlpt:structure": "名詞＋は＋述語",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/が(主語)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "が (主語)",
+   "schema:description": "Particule de sujet : marque l'agent ou une information nouvelle/non thématisée.",
+   "jlpt:structure": "名詞＋が＋述語（存在・出現・情報）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/を",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "を",
+   "schema:description": "Particule du complément d'objet direct (prononcée « o »).",
+   "jlpt:structure": "名詞＋を＋他動詞",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/に(場所・時・方向)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "に (場所・時・方向)",
+   "schema:description": "Particule de lieu d'existence, de temps précis ou de destination/but.",
+   "jlpt:structure": "場所／時間／方向＋に",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/で(場所・手段)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "で (場所・手段)",
+   "schema:description": "Particule du lieu où se déroule l'action, et du moyen/instrument.",
+   "jlpt:structure": "場所／手段＋で＋動作",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/へ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "へ",
+   "schema:description": "Particule de direction : « vers », indique le sens du déplacement (lu « e »).",
+   "jlpt:structure": "方向＋へ＋移動動詞",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/と(並列・共同)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "と (並列・共同)",
+   "schema:description": "Particule « et » (liste exhaustive de noms) et « avec » (accompagnement).",
+   "jlpt:structure": "名詞＋と＋名詞／人＋と＋動作",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/も",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "も",
+   "schema:description": "Particule « aussi, également » ; remplace は/が/を pour marquer l'addition.",
+   "jlpt:structure": "名詞＋も（は／が／をの代わり）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/の(所有・修飾)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "の (所有・修飾)",
+   "schema:description": "Particule reliant deux noms : possession, appartenance ou qualification.",
+   "jlpt:structure": "名詞A＋の＋名詞B（AのB＝BのA）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/から(起点)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "から (起点)",
+   "schema:description": "Particule de point de départ dans l'espace ou le temps : « depuis, à partir de ».",
+   "jlpt:structure": "場所／時間＋から",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/まで",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "まで",
+   "schema:description": "Particule de limite : « jusqu'à » (espace ou temps).",
+   "jlpt:structure": "場所／時間＋まで",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/や",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "や",
+   "schema:description": "Particule d'énumération non exhaustive : « et… (par exemple) », liste incomplète.",
+   "jlpt:structure": "名詞A＋や＋名詞B（＋など）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/か(疑問)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "か (疑問)",
+   "schema:description": "Particule finale interrogative ; aussi « ou » entre deux options.",
+   "jlpt:structure": "文＋か？／名詞A＋か＋名詞B",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ね",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "ね",
+   "schema:description": "Particule finale de recherche d'accord ou de confirmation : « n'est-ce pas ».",
+   "jlpt:structure": "文＋ね",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/よ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "よ",
+   "schema:description": "Particule finale d'assertion : attire l'attention sur une information nouvelle pour l'interlocuteur.",
+   "jlpt:structure": "文＋よ",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ます",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ます",
+   "schema:description": "Terminaison verbale polie au présent/futur affirmatif.",
+   "jlpt:structure": "V（ます形語幹）＋ます",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ません",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ません",
+   "schema:description": "Terminaison verbale polie négative présent/futur.",
+   "jlpt:structure": "Vます → Vません",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ました",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ました",
+   "schema:description": "Terminaison verbale polie au passé affirmatif.",
+   "jlpt:structure": "Vます → Vました",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ませんでした",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ませんでした",
+   "schema:description": "Terminaison verbale polie au passé négatif.",
+   "jlpt:structure": "Vます → Vませんでした",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ませんか",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ませんか",
+   "schema:description": "Invitation polie : « et si l'on… ? / voulez-vous… ? ».",
+   "jlpt:structure": "Vます → Vませんか",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ましょう",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ましょう",
+   "schema:description": "Proposition d'action commune : « faisons… ».",
+   "jlpt:structure": "Vます → Vましょう",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ましょうか",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ましょうか",
+   "schema:description": "Offre d'aide ou proposition : « voulez-vous que je… ? ».",
+   "jlpt:structure": "Vます → Vましょうか",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/てください",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜てください",
+   "schema:description": "Demande ou consigne polie : « veuillez… ».",
+   "jlpt:structure": "Vて形 ＋ ください",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ないでください",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ないでください",
+   "schema:description": "Demande négative polie : « veuillez ne pas… ».",
+   "jlpt:structure": "Vない形 ＋ でください",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ています",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ています",
+   "schema:description": "Action en cours ou état résultant : « être en train de / être dans l'état de ».",
+   "jlpt:structure": "Vて形 ＋ います",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/たいです",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たいです",
+   "schema:description": "Expression du désir du locuteur : « je veux… ».",
+   "jlpt:structure": "Vます stem ＋ たいです",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/たくない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たくない",
+   "schema:description": "Désir négatif : « je ne veux pas… ».",
+   "jlpt:structure": "Vたい → Vたくないです",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/い形容詞",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "い形容詞",
+   "schema:description": "Adjectif en -i : forme et accord de base au présent affirmatif.",
+   "jlpt:structure": "い形容詞 ＋ です",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/くない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜くない",
+   "schema:description": "Forme négative de l'adjectif en -i.",
+   "jlpt:structure": "い形容詞 の い → くないです",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/かった",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜かった",
+   "schema:description": "Forme passée de l'adjectif en -i.",
+   "jlpt:structure": "い形容詞 の い → かったです",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/くなかった",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜くなかった",
+   "schema:description": "Forme passée négative de l'adjectif en -i.",
+   "jlpt:structure": "い形容詞 の い → くなかったです",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/な形容詞",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "な形容詞",
+   "schema:description": "Adjectif nominal (en -na) : accord avec だ/です et épithète en な.",
+   "jlpt:structure": "な形容詞 ＋ です ／ な ＋ 名詞",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/くて／で(形容詞の接続)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜くて／〜で (形容詞の接続)",
+   "schema:description": "Liaison de deux adjectifs ou propositions : « … et… ».",
+   "jlpt:structure": "い形 → 〜くて ／ な形 → 〜で",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/くなる／になる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜くなる／〜になる",
+   "schema:description": "Changement d'état à partir d'un adjectif : « devenir… ».",
+   "jlpt:structure": "い形 → 〜くなる ／ な形・名詞 → 〜になる",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/が好き",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜が好き",
+   "schema:description": "Expression du goût : « aimer… », l'objet est marqué par が.",
+   "jlpt:structure": "名詞 ＋ が ＋ 好（す）きです",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/が上手・下手",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜が上手・下手",
+   "schema:description": "Habileté ou maladresse : « être doué / mauvais en… ».",
+   "jlpt:structure": "名詞 ＋ が ＋ 上手（じょうず）／下手（へた）＋ です",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/がほしい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜がほしい",
+   "schema:description": "Désir d'un objet : « vouloir (une chose) ».",
+   "jlpt:structure": "名詞 ＋ が ＋ ほしい（です）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/がわかる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜がわかる",
+   "schema:description": "Compréhension : « comprendre / savoir », objet en が.",
+   "jlpt:structure": "名詞 ＋ が ＋ わかる／わかります",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ができる(可能・能力)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ができる (可能・能力)",
+   "schema:description": "Capacité ou possibilité : « pouvoir / savoir faire ».",
+   "jlpt:structure": "名詞 ＋ が ＋ できる／できます",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/より",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜より",
+   "schema:description": "Terme de comparaison : « que, par rapport à ».",
+   "jlpt:structure": "A は B より ＋ 形容詞（けいようし）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/のほうが",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜のほうが",
+   "schema:description": "Mise en avant d'un terme comparé : « … est plutôt / davantage ».",
+   "jlpt:structure": "A のほうが B より ＋ 形容詞（けいようし）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/で一番",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜で一番",
+   "schema:description": "Superlatif : « le plus… de (tel ensemble) ».",
+   "jlpt:structure": "範囲（はんい）＋ で ＋ 一番（いちばん）＋ 形容詞（けいようし）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ととどちらが",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜と〜とどちらが",
+   "schema:description": "Question comparative entre deux éléments : « lequel de… ? ».",
+   "jlpt:structure": "A と B と、どちらが ＋ 形容詞（けいようし）＋ ですか",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/から(理由)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "から (理由)",
+   "schema:description": "Conjonction de cause : « parce que ».",
+   "jlpt:structure": "理由（りゆう）＋ から、結果（けっか）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/が(逆接)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "が (逆接)",
+   "schema:description": "Conjonction adversative : « mais ».",
+   "jlpt:structure": "文（ぶん）1 ＋ が、文（ぶん）2",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/けど／けれど",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "けど／けれど",
+   "schema:description": "Conjonction adversative de registre familier : « mais ».",
+   "jlpt:structure": "文（ぶん）1 ＋ けど／けれど、文（ぶん）2",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/とき",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜とき",
+   "schema:description": "Repère temporel : « quand, au moment où ».",
+   "jlpt:structure": "動詞（どうし）／形容詞（けいようし）／名詞（めいし）の ＋ とき",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/前に",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜前に",
+   "schema:description": "Antériorité : « avant de / avant que ».",
+   "jlpt:structure": "動詞（どうし・辞書形）／名詞（めいし）の ＋ 前（まえ）に",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/てから",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜てから",
+   "schema:description": "Succession : « après avoir… (puis) ».",
+   "jlpt:structure": "動詞（どうし）て形（けい）＋ から",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/あとで",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜あとで",
+   "schema:description": "Postériorité : « après (que) ».",
+   "jlpt:structure": "動詞（どうし・た形）／名詞（めいし）の ＋ あとで",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/もう",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "もう",
+   "schema:description": "Adverbe « déjà » (avec affirmatif) ou « plus » (avec négatif).",
+   "jlpt:structure": "もう ＋ 動詞（どうし）（affirmatif = déjà / négatif = ne plus）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/まだ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "まだ",
+   "schema:description": "Adverbe « encore » (affirmatif) ou « pas encore » (négatif).",
+   "jlpt:structure": "まだ ＋ 動詞（どうし）（affirmatif = encore / 〜ていません = pas encore）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/でしょう",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜でしょう",
+   "schema:description": "probabilité : « sans doute »",
+   "jlpt:structure": "名詞（めいし）／形容詞（けいようし）／動詞（どうし）＋ でしょう",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/疑問詞＋か",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "疑問詞＋か",
+   "schema:description": "« (interrogatif) + か : question indirecte / indéterminé »",
+   "jlpt:structure": "だれ／なに／どこ ＋ か（＝ quelqu'un / quelque chose / quelque part）",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/疑問詞＋も＋否定",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "疑問詞＋も＋否定",
+   "schema:description": "Négation totale : « personne / rien / nulle part ».",
+   "jlpt:structure": "疑問詞（だれ・なに・どこ…）＋も＋動詞（否定）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/があります／います",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜があります／います",
+   "schema:description": "Existence : « il y a » (choses inanimées / êtres animés).",
+   "jlpt:structure": "N が あります（物）／N が います（人・動物）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/だけ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜だけ",
+   "schema:description": "« seulement / ne … que ».",
+   "jlpt:structure": "N ＋ だけ",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/しかない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜しか〜ない",
+   "schema:description": "« il ne reste qu'à / seulement ».",
+   "jlpt:structure": "N ＋ しか ＋ 動詞（否定）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ずつ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ずつ",
+   "schema:description": "Distribution : « chacun / à raison de … ».",
+   "jlpt:structure": "数量（数＋助数詞）＋ ずつ",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ごろ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ごろ",
+   "schema:description": "Approximation temporelle : « vers, aux alentours de ».",
+   "jlpt:structure": "時刻（じこく）／時期（じき）＋ ごろ",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ぐらい(数量)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ぐらい (数量)",
+   "schema:description": "Approximation de quantité ou de durée : « environ ».",
+   "jlpt:structure": "数量／期間 ＋ ぐらい（くらい）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/という(名前)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜という (名前)",
+   "schema:description": "Nomination : « appelé, du nom de ».",
+   "jlpt:structure": "名前（なまえ）＋ という ＋ N",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/に行く／来る",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜に行く／来る",
+   "schema:description": "Déplacement dans un but : « aller / venir faire ».",
+   "jlpt:structure": "動詞（ます形）／動作名詞 ＋ に ＋ 行（い）く・来（く）る",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ないで",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ないで",
+   "schema:description": "Action réalisée sans en faire une autre : « sans faire… ».",
+   "jlpt:structure": "動詞（ない形）＋ で",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/とても／あまりない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "とても／あまり〜ない",
+   "schema:description": "Degré : « très » (affirmatif) / « pas très » (négatif).",
+   "jlpt:structure": "とても ＋ 肯定 ／ あまり ＋ 否定",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/で(原因)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "で (原因)",
+   "schema:description": "Particule de cause avec un nom : « à cause de, du fait de ».",
+   "jlpt:structure": "N ＋ で（原因・理由）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/に(頻度)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "に (頻度)",
+   "schema:description": "Particule de fréquence : « par (jour, semaine…) ».",
+   "jlpt:structure": "期間（きかん）＋ に ＋ 回数（かいすう）",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/も(数量強調)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜も (数量強調)",
+   "schema:description": "Emphase sur une grande quantité : « pas moins de, autant que ».",
+   "jlpt:structure": "数量（すうりょう）＋ も",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/方（かた）",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜方（かた）",
+   "schema:description": "« la manière de… »",
+   "jlpt:structure": "動詞（ます形）＋ 方（かた）",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/てもらえますか",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜てもらえますか",
+   "schema:description": "Demande polie d'un service : « pourriez-vous… ? ».",
+   "jlpt:structure": "動詞（て形）＋ もらえますか",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ましょうか(申し出)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ましょうか (申し出)",
+   "schema:description": "Offre de rendre service : « voulez-vous que je… ? ».",
+   "jlpt:structure": "動詞（ます形）＋ ましょうか",
+   "jlpt:level": "N5"
+  },
+  {
+   "@id": "jlpt:gram/ようとする",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ようとする",
+   "schema:description": "« essayer de, être sur le point de »",
+   "jlpt:structure": "V(意向形) ＋ とする",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/がる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜がる",
+   "schema:description": "exprime le sentiment/désir d'une 3e personne.",
+   "jlpt:structure": "形容詞語幹 ＋ がる（第三者の様子）",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜たがる"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/たがる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たがる",
+   "schema:description": "Désir manifesté d'une tierce personne : « (il) veut / a envie de ».",
+   "jlpt:structure": "V(ます形) ＋ たがる（第三者の願望）",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/し",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜し",
+   "schema:description": "exemples non exhaustifs « des choses comme ».",
+   "jlpt:structure": "[普通形] ＋ し、〜",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/たりたり",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たり〜たり",
+   "schema:description": "« faire ceci, faire cela (actions représentatives) »",
+   "jlpt:structure": "V(た形)＋り ＋ V(た形)＋り ＋ する",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/という",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜という",
+   "schema:description": "« appelé / nommé », ou introduit une information.",
+   "jlpt:structure": "[名詞／文] ＋ という ＋ 名詞",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ところ(局面)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ところ (局面)",
+   "schema:description": "Phase d'une action : « sur le point de / en train de / venir juste de ».",
+   "jlpt:structure": "V(辞書形)ところ＝直前／V(ている)ところ＝進行中／V(た形)ところ＝直後",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/まま",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜まま",
+   "schema:description": "« en laissant tel quel / sans changer d'état ».",
+   "jlpt:structure": "V(た形)／V(ない形)／名詞の／形容詞 ＋ まま",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/あいだ／あいだに",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜あいだ／〜あいだに",
+   "schema:description": "Simultanéité : « pendant que » (durée) / « au cours de, avant la fin de » (moment).",
+   "jlpt:structure": "[V(ている)／名詞の] ＋ 間（に）",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/うちに",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜うちに",
+   "schema:description": "« pendant que / avant que (ça change) ».",
+   "jlpt:structure": "[V(ている)／V(ない)／形容詞／名詞の] ＋ うちに",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ように(目的)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ように (目的)",
+   "schema:description": "But avec verbe potentiel ou non volitif : « afin de, de sorte que ».",
+   "jlpt:structure": "V(可能形／ない形／自動詞) ＋ ように",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ように(指示・忠告)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ように (指示・忠告)",
+   "schema:description": "Consigne ou souhait rapporté : « faire en sorte de, veiller à ».",
+   "jlpt:structure": "V(辞書形／ない形) ＋ ように（＋言う／する／なる）",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ために(目的・原因)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ために (目的・原因)",
+   "schema:description": "But ou cause : « pour, afin de » / « en raison de ».",
+   "jlpt:structure": "V(辞書形)／名詞の ＋ ために",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/のような／のように",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜のような／〜のように",
+   "schema:description": "Comparaison ou exemple : « comme, tel que, à la manière de ».",
+   "jlpt:structure": "名詞 ＋ のような ＋ 名詞／名詞 ＋ のように ＋ 述語",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ばほど",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ば〜ほど",
+   "schema:description": "« plus… plus… ».",
+   "jlpt:structure": "V(ば形) ＋ V(辞書形) ＋ ほど",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/てくる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜てくる",
+   "schema:description": "Mouvement vers le locuteur ou apparition/début progressif : « venir en… / se mettre à ».",
+   "jlpt:structure": "V(て形) ＋ くる",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ていく",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ていく",
+   "schema:description": "Mouvement s'éloignant ou évolution future : « aller en… / continuer à ».",
+   "jlpt:structure": "V(て形) ＋ いく",
+   "jlpt:level": "N4",
+   "jlpt:altForm": [
+    "〜てくる"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/ていただく",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ていただく",
+   "schema:description": "versions polies de もらう / くれる.",
+   "jlpt:structure": "V(て形) ＋ いただく",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜てくださる"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/てくださる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜てくださる",
+   "schema:description": "Recevoir un service d'un supérieur (honorifique) : « avoir la bonté de… ».",
+   "jlpt:structure": "V(て形) ＋ くださる",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/させてください",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜させてください",
+   "schema:description": "demander la permission de faire (humble).",
+   "jlpt:structure": "V(使役て形) ＋ ください",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜させていただく"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/な(禁止)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜な (禁止)",
+   "schema:description": "Interdiction brutale : « ne fais pas ! ».",
+   "jlpt:structure": "V(辞書形) ＋ な",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/なさい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜なさい",
+   "schema:description": "ordre doux (parent→enfant, prof→élève).",
+   "jlpt:structure": "V(ます形の語幹) ＋ なさい",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/はじめる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜はじめる",
+   "schema:description": "« commencer à (faire) »",
+   "jlpt:structure": "V(ます形の語幹) ＋ はじめる",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/おわる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜おわる",
+   "schema:description": "« finir de (faire) »",
+   "jlpt:structure": "V(ます形の語幹) ＋ おわる",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/つづける",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜つづける",
+   "schema:description": "« continuer à (faire) »",
+   "jlpt:structure": "V(ます形の語幹) ＋ つづける",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/こと(名詞化)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜こと (名詞化)",
+   "schema:description": "Nominalisation d'une proposition (fait abstrait) : « le fait de… ».",
+   "jlpt:structure": "V(辞書形) ＋ こと",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/の(名詞化)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜の (名詞化)",
+   "schema:description": "Nominalisation d'une proposition (fait concret / perception) : « le fait / l'action de… ».",
+   "jlpt:structure": "V(辞書形) ＋ の",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/んです／のです",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜んです／〜のです",
+   "schema:description": "Explication, mise en contexte ou insistance : « c'est que… ».",
+   "jlpt:structure": "V/A(普通形) ＋ んです",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/かどうか",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜かどうか",
+   "schema:description": "« si oui ou non (question indirecte) »",
+   "jlpt:structure": "V/A(普通形) ＋ かどうか",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/疑問詞＋か(間接疑問)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "疑問詞＋か (間接疑問)",
+   "schema:description": "Interrogative indirecte ouverte : « (savoir) qui / quoi / où… ».",
+   "jlpt:structure": "疑問詞 ＋ V/A(普通形) ＋ か",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/てほしい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜てほしい",
+   "schema:description": "« vouloir que (quelqu'un) fasse »",
+   "jlpt:structure": "V(て形) ＋ ほしい",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ことがある(時々)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ことがある (時々)",
+   "schema:description": "Occurrence occasionnelle : « il arrive que… ».",
+   "jlpt:structure": "V(辞書形) ＋ ことがある",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ずに",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ずに",
+   "schema:description": "« sans (faire) (= 〜ないで, plus écrit) »",
+   "jlpt:structure": "V(ない形の語幹) ＋ ずに（する→せずに）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/までに",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜までに",
+   "schema:description": "« avant (une échéance), d'ici à »",
+   "jlpt:structure": "N／V(辞書形) ＋ までに",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/てもかまわない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜てもかまわない",
+   "schema:description": "Autorisation : « peu importe si / ça ne fait rien de… ».",
+   "jlpt:structure": "V(て形) ＋ もかまわない",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/たらいい／といい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たらいい／〜といい",
+   "schema:description": "Conseil ou souhait : « ce serait bien de / j'espère que… ».",
+   "jlpt:structure": "V(た形) ＋ らいい ／ V(辞書形) ＋ といい",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ばよかった",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ばよかった",
+   "schema:description": "« j'aurais dû / si seulement j'avais… (regret) »",
+   "jlpt:structure": "V(ば形) ＋ よかった",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/（よ）う(意向形)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜（よ）う (意向形)",
+   "schema:description": "Forme volitive : « allons / je vais… » (résolution, proposition).",
+   "jlpt:structure": "V → 意向形（五段：語尾を お段＋う ／ 一段：語幹＋よう）",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/（ら）れる(可能形)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜（ら）れる (可能形)",
+   "schema:description": "Forme potentielle du verbe : « pouvoir, être capable de… ».",
+   "jlpt:structure": "五段：語尾 え段＋る ／ 一段：語幹＋られる ／ する→できる ／ 来る→来られる",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/命令形",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "命令形",
+   "schema:description": "Forme impérative brute : ordre direct.",
+   "jlpt:structure": "五段：語尾 え段 ／ 一段：語幹＋ろ ／ する→しろ ／ 来る→来い",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/がする",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜がする",
+   "schema:description": "« 味/におい/音/気 がする : avoir une sensation »",
+   "jlpt:structure": "N（におい・音・味・感じ 等）＋ がする",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ことになっている",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ことになっている",
+   "schema:description": "« il est convenu/réglé que » — règle, coutume.",
+   "jlpt:structure": "V(辞書形／ない形) ＋ ことになっている",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/って(=という,口語)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜って (=という, 口語)",
+   "schema:description": "Citation ou thématisation orale : « ça veut dire / on dit que… ».",
+   "jlpt:structure": "語／文 ＋ って（＝という／と言っていた／は の口語）",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/わけではない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜わけではない",
+   "schema:description": "« ce n'est pas (forcément) que…, pas totalement »",
+   "jlpt:structure": "Proposition (forme neutre) ＋ わけではない",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/わけがない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜わけがない",
+   "schema:description": "« il est impossible que, aucune raison que »",
+   "jlpt:structure": "Proposition (forme neutre) ＋ わけがない",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ないわけにはいかない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ないわけにはいかない",
+   "schema:description": "« on ne peut pas ne pas…, on est obligé de »",
+   "jlpt:structure": "V(ない形) ＋ わけにはいかない",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/わけにはいかない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜わけにはいかない",
+   "schema:description": "« on ne peut pas se permettre de ».",
+   "jlpt:structure": "V(辞書形) ＋ わけにはいかない",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/っぽい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜っぽい",
+   "schema:description": "« qui a un air de / facilement ».",
+   "jlpt:structure": "N・V(ます形の語幹)・形容詞語幹 ＋ っぽい",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/がち",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜がち",
+   "schema:description": "« avoir tendance à (souvent négatif) ».",
+   "jlpt:structure": "V(ます形の語幹)・N ＋ がち",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/げ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜げ",
+   "schema:description": "Apparence d'un sentiment : « l'air…, d'un air… ».",
+   "jlpt:structure": "形容詞・形容動詞の語幹 ＋ げ",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/きる／きれない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜きる／〜きれない",
+   "schema:description": "Achèvement total ou impossibilité d'achever : « faire jusqu'au bout / ne pas pouvoir totalement… ».",
+   "jlpt:structure": "V(ます形の語幹) ＋ きる／きれない",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/っぱなし",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜っぱなし",
+   "schema:description": "« laissé tel quel (par négligence) ».",
+   "jlpt:structure": "V(ます形の語幹) ＋ っぱなし",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/つつある",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜つつある",
+   "schema:description": "« être en train de (évoluer) ».",
+   "jlpt:structure": "V(ます形の語幹) ＋ つつある",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/つつ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜つつ",
+   "schema:description": "« tout en (faisant) ; bien que (littéraire) »",
+   "jlpt:structure": "V(ます形の語幹) ＋ つつ（も）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ものだ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ものだ",
+   "schema:description": "vérité générale, morale, ou nostalgie (« on a tendance à / c'est ainsi »).",
+   "jlpt:structure": "V・形容詞(辞書形)・N＋な ＋ ものだ",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ものの",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ものの",
+   "schema:description": "« bien que, quoique (concession) »",
+   "jlpt:structure": "V・形容詞(普通形)・N＋である ＋ ものの",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/くせに",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜くせに",
+   "schema:description": "« alors que (avec reproche/mépris) ».",
+   "jlpt:structure": "V・形容詞(普通形)・N＋の ＋ くせに",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/だらけ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜だらけ",
+   "schema:description": "« plein de / couvert de » (négatif).",
+   "jlpt:structure": "N ＋ だらけ",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/向き",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜向き",
+   "schema:description": "Adaptation naturelle : « qui convient à, orienté vers… ».",
+   "jlpt:structure": "N ＋ 向き（むき）",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜向け"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/向け",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜向け",
+   "schema:description": "Destination intentionnelle : « destiné à, à l'intention de… ».",
+   "jlpt:structure": "N ＋ 向け（むけ）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/どころか",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜どころか",
+   "schema:description": "« loin de / bien au contraire ».",
+   "jlpt:structure": "N／な形（-な省く）／V・イ形 普通形 ＋ どころか",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/として",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜として",
+   "schema:description": "« en tant que ».",
+   "jlpt:structure": "N ＋ として（＋は／も／の）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/にとって",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜にとって",
+   "schema:description": "« pour / du point de vue de ».",
+   "jlpt:structure": "N ＋ にとって（＋は／も／の）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/において／における",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜において／〜における",
+   "schema:description": "Cadre spatio-temporel ou domaine (soutenu) : « à, dans, lors de… ».",
+   "jlpt:structure": "N ＋ において（連用）／における ＋ N（連体）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/に関して／に関する",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜に関して／〜に関する",
+   "schema:description": "Sujet traité : « concernant, relatif à… ».",
+   "jlpt:structure": "N ＋ に関して（連用）／に関する ＋ N（連体）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/に応じて",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜に応じて",
+   "schema:description": "« en fonction de / selon ».",
+   "jlpt:structure": "N ＋ に応じて（連用）／に応じた ＋ N（連体）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/につれて",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜につれて",
+   "schema:description": "« à mesure que » (évolutions parallèles).",
+   "jlpt:structure": "V辞書形／N ＋ につれて",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/にしたがって",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜にしたがって",
+   "schema:description": "« à mesure que ; conformément à »",
+   "jlpt:structure": "V辞書形／N ＋ にしたがって",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/にかけて",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜にかけて",
+   "schema:description": "« 〜から〜にかけて : de… à… (période/zone) »",
+   "jlpt:structure": "N（起点）から ＋ N（終点）にかけて",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/をはじめ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜をはじめ",
+   "schema:description": "« à commencer par ».",
+   "jlpt:structure": "N ＋ をはじめ（として）／をはじめとする ＋ N",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/を通して／を通じて",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜を通して／〜を通じて",
+   "schema:description": "Intermédiaire ou durée : « à travers, par l'intermédiaire de, tout au long de… ».",
+   "jlpt:structure": "N ＋ を通して／を通じて",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/最中に",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜最中に",
+   "schema:description": "« en plein milieu de (action en cours interrompue) ».",
+   "jlpt:structure": "V-ている／N の ＋ 最中に",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/たびに",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たびに",
+   "schema:description": "« chaque fois que ».",
+   "jlpt:structure": "V辞書形／N の ＋ たびに",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/次第",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜次第",
+   "schema:description": "« dès que (formel) ».",
+   "jlpt:structure": "V(ます形)＋次第 ／ N ＋ 次第（だ／で）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/あまり",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜あまり",
+   "schema:description": "« à force de, tellement… que »",
+   "jlpt:structure": "V辞書形／Nの／な形＋な ＋ あまり",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ぬきで",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ぬきで",
+   "schema:description": "« sans, en omettant, en se passant de »",
+   "jlpt:structure": "N ＋ ぬきで／ぬきに／はぬきにして",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/さえば",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜さえ〜ば",
+   "schema:description": "« il suffit que / du moment que ».",
+   "jlpt:structure": "N ＋ さえ ＋ V(ば形)／A(ければ)",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/こそ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜こそ",
+   "schema:description": "« c'est précisément / cette fois-ci ».",
+   "jlpt:structure": "N ＋ こそ / V(て形) ＋ こそ",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/など",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜など",
+   "schema:description": "« et cetera ; (dépréciatif) des choses comme »",
+   "jlpt:structure": "N ＋ など / V(辞書形) ＋ など",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/くらい／ぐらい(程度)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜くらい／〜ぐらい (程度)",
+   "schema:description": "Exprime un degré (« au point de ») ou une minimisation (« au moins, tout au plus »).",
+   "jlpt:structure": "N/V(普通形) ＋ くらい／ぐらい",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ほど(程度)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ほど (程度)",
+   "schema:description": "Degré comparatif ou proportionnel : « au point de » / « plus… plus… ».",
+   "jlpt:structure": "N/V(普通形) ＋ ほど",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/まい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜まい",
+   "schema:description": "« ne plus jamais (volonté négative) / sans doute pas ».",
+   "jlpt:structure": "V(辞書形) ＋ まい / V(ます形) ＋ まい",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/（よ）うではないか",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜（よ）うではないか",
+   "schema:description": "« faisons donc…, et si nous… (exhortation) »",
+   "jlpt:structure": "V(意向形) ＋ ではないか／じゃないか",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ものだから",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ものだから",
+   "schema:description": "« c'est parce que… (excuse, justification) »",
+   "jlpt:structure": "V/A(普通形)・Na(な)・N(な) ＋ ものだから",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/おかげで",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜おかげで",
+   "schema:description": "« grâce à » / « à cause de (reproche) ».",
+   "jlpt:structure": "V/A(普通形)・Na(な)・N(の) ＋ おかげで",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜せいで"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/せいで／せいか",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜せいで／〜せいか",
+   "schema:description": "Cause négative : « à cause de… » / « peut-être à cause de… ».",
+   "jlpt:structure": "V/A(普通形)・Na(な)・N(の) ＋ せいで／せいか",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/に違いない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜に違いない",
+   "schema:description": "« ça ne fait aucun doute que / sûrement ».",
+   "jlpt:structure": "V/A(普通形)・Na・N ＋ に違いない",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/に決まっている",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜に決まっている",
+   "schema:description": "« c'est sûr et certain / forcément ».",
+   "jlpt:structure": "V/A(普通形)・Na・N ＋ に決まっている",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/にすぎない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜にすぎない",
+   "schema:description": "« ne… que, n'être rien de plus que »",
+   "jlpt:structure": "V/A(普通形)・Na・N ＋ にすぎない",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/に基づいて",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜に基づいて",
+   "schema:description": "« sur la base de, en se fondant sur »",
+   "jlpt:structure": "N ＋ に基づいて／に基づく",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/をもとに(して)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜をもとに(して)",
+   "schema:description": "Matériau de base : « à partir de, en s'inspirant de… ».",
+   "jlpt:structure": "N ＋ をもとに(して)",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/をこめて",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜をこめて",
+   "schema:description": "« avec (un sentiment) : plein d'amour/de gratitude »",
+   "jlpt:structure": "N ＋ をこめて",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/をめぐって",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜をめぐって",
+   "schema:description": "« autour de, au sujet de (débat, conflit) »",
+   "jlpt:structure": "N ＋ をめぐって／をめぐる",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/に加えて",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜に加えて",
+   "schema:description": "« en plus de, outre »",
+   "jlpt:structure": "N ＋ に加えて／V(普通形)＋のに加えて",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/に反して",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜に反して",
+   "schema:description": "« contrairement à, à l'encontre de »",
+   "jlpt:structure": "N ＋ に反して",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/に比べて",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜に比べて",
+   "schema:description": "« comparé à, par rapport à »",
+   "jlpt:structure": "N ＋ に比べて",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/に沿って",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜に沿って",
+   "schema:description": "« le long de ; conformément à »",
+   "jlpt:structure": "N ＋ に沿って",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/わりに(は)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜わりに(は)",
+   "schema:description": "Disproportion : « pour…, compte tenu de (contre toute attente)… ».",
+   "jlpt:structure": "V/イ形/ナ形（な）/N（の） ＋ わりに(は)",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ながらも",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ながらも",
+   "schema:description": "« bien que, tout en… (concession) »",
+   "jlpt:structure": "V(ます形)/イ形/ナ形/N ＋ ながらも",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ついでに",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ついでに",
+   "schema:description": "« en profiter pour, à l'occasion de »",
+   "jlpt:structure": "V(辞書形/た形)/N（の） ＋ ついでに",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/あげく(に)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜あげく(に)",
+   "schema:description": "Aboutissement négatif : « au bout du compte, après tout ça… (et finalement…) ».",
+   "jlpt:structure": "V(た形)/N（の） ＋ あげく(に)",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/一方(で)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜一方(で)",
+   "schema:description": "Parallèle ou contraste : « d'un côté…, tandis que… ».",
+   "jlpt:structure": "V/イ形/ナ形（な・である）/N（である） ＋ 一方(で)",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/反面",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜反面",
+   "schema:description": "« en revanche, par contre (deux aspects opposés) »",
+   "jlpt:structure": "V/イ形/ナ形（な・である）/N（である） ＋ 反面",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/からには",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜からには",
+   "schema:description": "« puisque, du moment que (→ conséquence logique) »",
+   "jlpt:structure": "V(普通形)/イ形/ナ形（である）/N（である） ＋ からには",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/以上(は)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜以上(は)",
+   "schema:description": "« du moment que / puisque ».",
+   "jlpt:structure": "V(普通形)/イ形/ナ形（である）/N（である） ＋ 以上(は)",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/上で",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜上で",
+   "schema:description": "« après avoir… ; pour ce qui est de… »",
+   "jlpt:structure": "V(た形)/N（の） ＋ 上で",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/たとたん(に)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たとたん(に)",
+   "schema:description": "« à l'instant même où » (juste après, souvent surprise).",
+   "jlpt:structure": "V(た形) ＋ とたん(に)",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/かけ／かける",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜かけ／〜かける",
+   "schema:description": "Action inachevée : « à moitié fait, commencé mais pas fini… ».",
+   "jlpt:structure": "V(ます形) ＋ かけ／かける",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/がたい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜がたい",
+   "schema:description": "« difficile à (littéraire) ».",
+   "jlpt:structure": "V(ます形) ＋ がたい",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/得る／得ない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜得る／〜得ない",
+   "schema:description": "Possibilité théorique : « pouvoir / ne pas pouvoir (concevablement)… ».",
+   "jlpt:structure": "V(ます形) ＋ 得る（うる・える）／得ない（えない）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/かねる／かねない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜かねる／〜かねない",
+   "schema:description": "Impossibilité polie / risque : « ne pas pouvoir se résoudre à / risquer de… ».",
+   "jlpt:structure": "V(ます形) ＋ かねる（ne peut）／かねない（risque de）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ようがない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ようがない",
+   "schema:description": "« il n'y a pas moyen de, impossible de »",
+   "jlpt:structure": "V(ますstem) ＋ ようがない",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/っこない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜っこない",
+   "schema:description": "Impossibilité familière et catégorique : « il n'y a aucune chance que, jamais ».",
+   "jlpt:structure": "V(ますstem) ＋ っこない",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/だけに",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜だけに",
+   "schema:description": "Cause dont découle une conséquence naturellement attendue : « justement parce que, d'autant plus que ».",
+   "jlpt:structure": "N/Na（な）/A/V(普通形) ＋ だけに",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/だけあって",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜だけあって",
+   "schema:description": "« justement parce que / à la hauteur de » (résultat attendu).",
+   "jlpt:structure": "N/Na（な）/A/V(普通形) ＋ だけあって",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜だけに"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/ばかりでなく",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ばかりでなく",
+   "schema:description": "« non seulement… mais aussi ».",
+   "jlpt:structure": "N / V(普通形) / A ＋ ばかりでなく（〜も）",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜はもちろん"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/はもちろん",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜はもちろん",
+   "schema:description": "Évidence plus ajout : « … cela va de soi, mais en plus… ».",
+   "jlpt:structure": "N ＋ はもちろん（〜も）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/はともかく",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜はともかく",
+   "schema:description": "Mise de côté : « laissons de côté…, quoi qu'il en soit de… », pour se concentrer sur autre chose.",
+   "jlpt:structure": "N ＋ はともかく（として）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/といっても",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜といっても",
+   "schema:description": "Nuance restrictive : « même si l'on dit…, en réalité ce n'est pas tant que ça ».",
+   "jlpt:structure": "N/Na/A/V(普通形) ＋ といっても",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/としても",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜としても",
+   "schema:description": "« même si, même en supposant que »",
+   "jlpt:structure": "N/Na/A/V(普通形) ＋ としても",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/にしても",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜にしても",
+   "schema:description": "Concession : « même dans le cas de…, quand bien même… », souvent avec un reproche implicite.",
+   "jlpt:structure": "N / V(普通形) ＋ にしても",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ものか",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ものか",
+   "schema:description": "Refus catégorique rhétorique : « jamais je ne…, il est hors de question que… ».",
+   "jlpt:structure": "V(辞書形) / A / Na（な）＋ ものか（もんか 口語）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/っけ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜っけ",
+   "schema:description": "on cherche à se rappeler « c'était… déjà ? ».",
+   "jlpt:structure": "…だ / …た ＋ っけ（口語）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/とか",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜とか",
+   "schema:description": "Exemples vagues ou ouï-dire : « des choses comme… / il paraît que… ».",
+   "jlpt:structure": "N/句 ＋ とか（〜とか）／…とか（伝聞）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/たって(=ても,口語)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たって (=ても, 口語)",
+   "schema:description": "Concession familière : « même si…, quand bien même… » (équivalent oral de ても).",
+   "jlpt:structure": "V(た形→たって) / A(く＋たって) / N・Na（だって）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ぶり(に)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ぶり(に)",
+   "schema:description": "Laps de temps écoulé avant que quelque chose se reproduise : « après (tant de temps), pour la première fois depuis… ».",
+   "jlpt:structure": "N(期間) ＋ ぶり（に）",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/たものだ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たものだ",
+   "schema:description": "Souvenir d'une habitude passée : « autrefois, on avait l'habitude de… ».",
+   "jlpt:structure": "V(た形) ＋ ものだ",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/動詞verbe",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "動詞 verbe",
+   "schema:description": "行く · 行かない · 行った · 行かなかった"
+  },
+  {
+   "@id": "jlpt:gram/い-adj",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "い-adj",
+   "schema:description": "高い · 高くない · 高かった · 高くなかった"
+  },
+  {
+   "@id": "jlpt:gram/な-adj",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "な-adj",
+   "schema:description": "静かだ · 静かじゃない · 静かだった · 静かじゃなかった"
+  },
+  {
+   "@id": "jlpt:gram/名nom",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "名 nom",
+   "schema:description": "学生だ · 学生じゃない · 学生だった · 学生じゃなかった"
+  },
+  {
+   "@id": "jlpt:gram/と",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜と",
+   "schema:description": "« dès que / à chaque fois que » — conséquence automatique, naturelle.",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/place:場合は",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜place : 〜場合は",
+   "schema:description": "« dans le cas où ».",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/たって",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たって",
+   "schema:description": "« même si » (oral).",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜だって (口語)"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/たらいい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たらいい",
+   "schema:description": "« il vaudrait / ce serait bien si / j'espère que ».",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜といい",
+    "〜ばいい"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/いくらても",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "いくら〜ても",
+   "schema:description": "« même si… beaucoup, peu importe combien »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ために",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ために",
+   "schema:description": "« afin de / à cause de » (but ou cause).",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ように",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ように",
+   "schema:description": "« de sorte que / pour que » (but avec verbe non volontaire/potentiel).",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/を通じて",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜を通じて",
+   "schema:description": "« par l'intermédiaire de / tout au long de ».",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜を通して"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/をもとに",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜をもとに",
+   "schema:description": "« à partir de, en se basant sur »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/をもとにして",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜をもとにして",
+   "schema:description": "« à partir de, en se basant sur »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/からこそ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜からこそ",
+   "schema:description": "« c'est précisément parce que »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ところだ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ところだ",
+   "schema:description": "situer une action dans le temps précis.",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/たばかり",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たばかり",
+   "schema:description": "« venir tout juste de » (ressenti subjectif, peu importe le temps réel).",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/とおりに",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜とおりに",
+   "schema:description": "« comme / conformément à »."
+  },
+  {
+   "@id": "jlpt:gram/際に",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜際に",
+   "schema:description": "« lors de / à l'occasion de ».",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜際は"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/かと思うと",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜かと思うと",
+   "schema:description": "« à peine… que (changement rapide) ».",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜かと思ったら"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/ところに",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ところに",
+   "schema:description": "« juste au moment où ».",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜ところへ",
+    "〜ところを"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/とともに",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜とともに",
+   "schema:description": "« en même temps que / avec ».",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/きり",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜きり",
+   "schema:description": "« depuis que… (et plus rien depuis) ».",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/あげく",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜あげく",
+   "schema:description": "« après (bien des efforts), et finalement… (souvent négatif) »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ないうちに",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ないうちに",
+   "schema:description": "« avant que (ça n'arrive), tant que… ne… pas »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/間に",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜間に",
+   "schema:description": "« pendant que, au cours de (un intervalle) »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ところ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ところ",
+   "schema:description": "« juste au moment de : sur le point de / juste après / en train de »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/始める",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜始める",
+   "jlpt:level": "N4",
+   "jlpt:altForm": [
+    "〜出す"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/続ける",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜続ける",
+   "schema:description": "« continuer à ».",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/終わる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜終わる",
+   "schema:description": "« finir de ».",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/きる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜きる",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜きれない"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/直す",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜直す",
+   "schema:description": "« refaire / re- »."
+  },
+  {
+   "@id": "jlpt:gram/かけ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜かけ",
+   "schema:description": "« à moitié (fait), commencer à… sans finir »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/かける",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜かける",
+   "schema:description": "« à moitié (fait), commencer à… sans finir »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/きった",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜きった",
+   "schema:description": "« faire complètement, jusqu'au bout »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/受身—Passifられる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "受身 — Passif 〜られる",
+   "schema:description": "« être + participe » — souvent passif de désagrément (迷惑の受身).",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/使役—Causatifさせる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "使役 — Causatif 〜させる",
+   "schema:description": "« faire / laisser faire ». Personne forcée → に (autorisation) ou を (ordre).",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/使役受身—Causatif-passifさせられる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "使役受身 — Causatif-passif 〜させられる",
+   "schema:description": "« être obligé de » — on subit une action imposée.",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/（さ）せられる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜（さ）せられる",
+   "schema:description": "causatif-passif : « être obligé de »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/（さ）せる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜（さ）せる",
+   "schema:description": "causatif : « faire / laisser faire »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/（ら）れる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜（ら）れる",
+   "schema:description": "passif : « être …é »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/そうだ(apparence)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜そうだ (apparence)",
+   "schema:description": "« avoir l'air de / sembler sur le point de » — jugement visuel immédiat.",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/そうだ(ouï-dire)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜そうだ (ouï-dire)",
+   "schema:description": "« il paraît que / on dit que » — information rapportée.",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/はずがない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜はずがない",
+   "schema:description": "« il est impossible que » — négation logique.",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/とは限らない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜とは限らない",
+   "schema:description": "« ce n'est pas forcément le cas ».",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ないことはない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ないことはない",
+   "schema:description": "« ce n'est pas impossible / on peut quand même ».",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/だろう",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "だろう",
+   "schema:description": "probabilité : « sans doute »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/によると",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜によると",
+   "schema:description": "« selon, d’après »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/みたい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜みたい",
+   "schema:description": "comparaison : « comme, on dirait »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/かねない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜かねない",
+   "schema:description": "« risquer de, il se pourrait bien que (négatif) »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/たがらない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たがらない",
+   "schema:description": "« (3e personne) vouloir / ne pas vouloir »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/のような",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜のような",
+   "schema:description": "« (une chose) telle que…, comme… »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ほど",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ほど",
+   "schema:description": "« au point de / à tel point que ».",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜くらい"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/やすい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜やすい",
+   "schema:description": "« facile / difficile à ».",
+   "jlpt:level": "N4",
+   "jlpt:altForm": [
+    "〜にくい"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/気味",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜気味",
+   "schema:description": "« un peu / une légère tendance à » (souvent négatif).",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/だけでなくも",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜だけでなく〜も",
+   "schema:description": "« non seulement… mais aussi ».",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/とかとか",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜とか〜とか",
+   "schema:description": "exemples non exhaustifs « des choses comme »."
+  },
+  {
+   "@id": "jlpt:gram/やらやら",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜やら〜やら",
+   "schema:description": "énumération (souvent accablante).",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/に過ぎない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜に過ぎない",
+   "schema:description": "« ce n'est rien de plus que / juste ».",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/なんか",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜なんか",
+   "schema:description": "dédain, modestie ou surprise.",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜なんて"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/たりたりする",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜たり〜たりする",
+   "schema:description": "énumération : « tantôt… tantôt »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/をはじめとする",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜をはじめとする",
+   "schema:description": "« à commencer par, dont notamment »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ぬき",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ぬき",
+   "schema:description": "« sans, en omettant, en se passant de »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/の",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜の",
+   "schema:description": "transforme une proposition en nom.",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜こと"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/ということだ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ということだ",
+   "schema:description": "« cela signifie que » ou « il paraît que ».",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/って(口語)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜って (口語)",
+   "schema:description": "forme orale de という / と.",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/とは",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜とは",
+   "schema:description": "« ce qu'on appelle… c'est », pose un terme à définir.",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/のだ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜のだ",
+   "schema:description": "explication / insistance",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/んだ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "んだ",
+   "schema:description": "explication / insistance",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ことがある",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ことがある",
+   "schema:description": "« il arrive que, il m'arrive de »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/んです",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜んです",
+   "schema:description": "« c'est que… (explication, insistance) »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/のです",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜のです",
+   "schema:description": "« c'est que… (explication, insistance) »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/てあげる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜てあげる",
+   "schema:description": "faire qqch POUR qqn (de soi vers autrui).",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/てくれる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜てくれる",
+   "schema:description": "qqn fait qqch POUR MOI (vers le locuteur).",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/てもらう",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜てもらう",
+   "schema:description": "obtenir/recevoir le service de qqn.",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ていただけませんか",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ていただけませんか",
+   "schema:description": "demande très polie « pourriez-vous… ? ».",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/お／ごください",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "お／ご〜ください",
+   "schema:description": "demande polie (尊敬).",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/な(interdiction)",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜な (interdiction)",
+   "schema:description": "interdiction brusque « ne … pas ! ».",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ないほうがいい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ないほうがいい",
+   "schema:description": "conseil : « mieux vaut ne pas »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/な",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜な",
+   "schema:description": "« (辞書形＋な) interdiction brusque : ne… pas ! »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/お／ごになる・お／ごする",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "お／ご〜になる ・ お／ご〜する",
+   "schema:description": "« ça explique que / c'est donc pour ça que » — conclusion logique.",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/する",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "する",
+   "schema:description": "なさる · いたす"
+  },
+  {
+   "@id": "jlpt:gram/行く・来る・いる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "行く・来る・いる",
+   "schema:description": "いらっしゃる · 参る／伺う"
+  },
+  {
+   "@id": "jlpt:gram/言う",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "言う",
+   "schema:description": "おっしゃる · 申す／申し上げる"
+  },
+  {
+   "@id": "jlpt:gram/食べる・飲む",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "食べる・飲む",
+   "schema:description": "召し上がる · いただく"
+  },
+  {
+   "@id": "jlpt:gram/見る",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "見る",
+   "schema:description": "ご覧になる · 拝見する"
+  },
+  {
+   "@id": "jlpt:gram/知っている",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "知っている",
+   "schema:description": "ご存じだ · 存じておる"
+  },
+  {
+   "@id": "jlpt:gram/おする",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "お〜する",
+   "schema:description": "modestie (kenjōgo)",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/おになる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "お〜になる",
+   "schema:description": "respect (sonkeigo)",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/ようにする",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ようにする",
+   "schema:description": "« s'efforcer de / faire en sorte de ».",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/（よ）う",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜（よ）う",
+   "schema:description": "volitif : « allons / faisons »",
+   "jlpt:level": "N4"
+  },
+  {
+   "@id": "jlpt:gram/にもかかわらず",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜にもかかわらず",
+   "schema:description": "« malgré / bien que ».",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/にしては",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜にしては",
+   "schema:description": "« pour (contrairement à l'attente) ».",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/一方",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜一方",
+   "schema:description": "« d'un côté… de l'autre ; tandis que »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/一方で",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜一方で",
+   "schema:description": "« d'un côté… de l'autre ; tandis que »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/わりに",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜わりに",
+   "schema:description": "« pour (un…), contre toute attente »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/わりには",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜わりには",
+   "schema:description": "« pour (un…), contre toute attente »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/に関して",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜に関して",
+   "schema:description": "« concernant » (plus formel que について).",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/において",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜において",
+   "schema:description": "« à / dans (lieu, domaine) ».",
+   "jlpt:level": "N3",
+   "jlpt:altForm": [
+    "〜における"
+   ]
+  },
+  {
+   "@id": "jlpt:gram/に関する",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜に関する",
+   "schema:description": "« concernant, au sujet de »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ほうがいい",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ほうがいい",
+   "schema:description": "« il vaut mieux (faire / ne pas faire) » — conseil.",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ことだ",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ことだ",
+   "schema:description": "conseil ferme « tu devrais / il faut ».",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/ざるを得ない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜ざるを得ない",
+   "schema:description": "« être contraint de / ne pas pouvoir faire autrement ».",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/得る",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜得る",
+   "schema:description": "« pouvoir, être possible de (potentialité) »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/得ない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜得ない",
+   "schema:description": "« ne pas pouvoir, impossible de »",
+   "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/かねる",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "〜かねる",
+   "schema:description": "« ne pas pouvoir (poli : réticence/difficulté) »",
+   "jlpt:level": "N3"
+  }
+ ]
+}

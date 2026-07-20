@@ -8,6 +8,8 @@
 //
 // Node pur : la CI exécute `node`, jamais `bun`.
 
+import { isSafeIri } from "./jsonld.mjs";
+
 const arr = (v) => (Array.isArray(v) ? v : v === undefined ? [] : [v]);
 const norm = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
 
@@ -56,6 +58,18 @@ const REF_PREDICATES = ["tests", "usesKanji", "covers"];
 export function checkCorpus(subjects) {
   const errs = [];
   const questions = subjects.filter(isQuestion);
+
+  // --- identité des sujets ---
+  // Aucune shape ne contraint le @id : sh:nodeKind ne porte que sur les VALEURS de
+  // prédicats. Or ces IRIs partent dans un store adossé à SQL, et slugify() est la
+  // seule chose entre une forme de grammaire et son @id. On vérifie donc ici.
+  const vus = new Set();
+  for (const s of subjects) {
+    const id = s["@id"];
+    if (!isSafeIri(id)) errs.push(`@id absent ou non sûr : ${JSON.stringify(id)}`);
+    else if (vus.has(id)) errs.push(`@id en double : ${id}`);
+    vus.add(id);
+  }
 
   // --- ordinaux : uniques et denses sur [0, n-1] ---
   // L'ordinal indexe le bitset de couverture (seen/mastered) : un trou décale tout,

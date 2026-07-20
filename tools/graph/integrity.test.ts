@@ -100,3 +100,16 @@ test("checkCorpus tolère le même énoncé, mêmes options, MÊME réponse dans
   const b = qq("jlpt:q/2", 1, { "jlpt:stem": "同じ", opts: ["B", "A"], "jlpt:answer": 1 });
   expect(checkCorpus([a, b])).toEqual([]);
 });
+
+test("checkCorpus refuse un @id non sûr ou absent", () => {
+  // Aucune shape ne contraint le @id — sh:nodeKind ne porte que sur les valeurs de
+  // prédicats. Ces IRIs partent pourtant dans un store adossé à SQL.
+  expect(checkCorpus([{ "@id": "jlpt:gram/a;b", "@type": "jlpt:GrammarPoint" }]).join(" "))
+    .toMatch(/@id absent ou non sûr/);
+  expect(checkCorpus([{ "@type": "jlpt:Word" }]).join(" ")).toMatch(/@id absent ou non sûr/);
+});
+
+test("checkCorpus refuse deux sujets partageant le même @id", () => {
+  const a = { "@id": "jlpt:word/影", "@type": "jlpt:Word" };
+  expect(checkCorpus([a, { ...a }]).join(" ")).toMatch(/@id en double/);
+});
