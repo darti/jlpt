@@ -88,3 +88,32 @@ test("aucun rappel ne propose un lien mort", async () => {
   }
   expect(morts).toEqual([]);
 });
+
+test("le repli sur le Kanji rend 271 rappels de mot moins muets", async () => {
+  // 175 mots du graphe sont un kanji isolé sans lecture ; 172 ont leur entité Kanji.
+  // Ce chiffre fige le bénéfice : s'il tombe, c'est qu'une lecture de kanji a disparu
+  // ou qu'un mot a cessé d'être relié — dans les deux cas un corrigé redevient muet.
+  const idx = await index();
+  const qs = (await Promise.all(
+    ["q-grammaire", "q-vocabulaire", "q-kanji", "q-lecture", "q-ecoute"].map(G),
+  )).flat().map(toQuestion);
+
+  const empruntees = qs.filter((q) => {
+    const r = resolveRappel(q, idx);
+    return r?.kind === "word" && [...r.titre].length === 1 && r.lecture !== "";
+  }).length;
+  expect(empruntees).toBeGreaterThanOrEqual(271);
+});
+
+test("aucun mot de PLUSIEURS caractères n'emprunte une lecture de kanji", async () => {
+  // Garde l'invariant qui empêche 影響 de porter « かげ ». Un mot long dont la lecture serait
+  // celle d'un seul de ses kanji serait faux, et faux EN SILENCE — le corrigé afficherait
+  // une lecture plausible mais erronée, ce qui est pire qu'une case vide.
+  const idx = await index();
+  const source = new Map(
+    (await G("word")).map((w) => [String(w["@id"]), String(w["jlpt:reading"] ?? "")]),
+  );
+  const empruntsIndus = [...idx.values()].filter((r) =>
+    r.kind === "word" && [...r.titre].length > 1 && r.lecture !== "" && !source.get(r.iri));
+  expect(empruntsIndus.map((r) => `${r.titre} → ${r.lecture}`)).toEqual([]);
+});
