@@ -641,6 +641,29 @@ bun run build && bunx serve _site
 
 Consigner ce qui a été vérifié dans le message de commit ou le ledger. Ne pas pousser sans cette étape.
 
+#### Constat du 2026-07-20 — Chromium 143 headless, build servi sur `http://localhost:4173`
+
+L'extension Chrome n'était pas connectée et Playwright ne trouvait pas de canal `chrome` :
+vérification menée en pilotant **directement en CDP** le Chromium installé par Playwright
+(`chromium-1200`). Vraie origine HTTP, vrai service worker, vrai cache.
+
+| Contrôle | Résultat |
+|---|---|
+| Accueil — anneaux de couverture | dénominateurs **1174 / 5901 / 3148 / 52**, soit exactement les 5 `SkillRange` de `corpus.jsonld` |
+| Entraînement — session | démarre, question affichée (`#405`, `Question 1 / 15`) |
+| Entraînement — réponse | corrigé affiché avec explication et « Analyse de la phrase » |
+| Progression écrite | `total: 1`, `skill: ["grammaire"]`, bit `seen` posé sur l'**ordinal 405** |
+| **Boucle fermée** | 405 ∈ intervalle grammaire [0, 1173] selon `corpus.jsonld` **et** compétence écrite = `grammaire` |
+| Ordinaux groupés en vrai | une question d'écoute est sortie en `#10293` ∈ [10275, 10306] |
+| Furigana depuis `word.jsonld` | `<ruby>` posés (`駅えき`, `女おんな`, `人ひと`) ; 4690 mots, 影響 → えいきょう |
+| Cours (non-régression) | les trois pistes s'affichent (222 / 618 / 551 items) |
+| Service worker | cache `jlpt-n3-v107`, **11 documents du graphe précachés**, 28 entrées au total |
+| Hors ligne (`Network.emulateNetworkConditions`) | rechargement OK ; `corpus.jsonld` → 5 sujets, `q-kanji.jsonld` → 3148 sujets **servis depuis le cache** |
+| Console | **aucune erreur ni exception** (seuls les messages React DevTools) |
+
+Non vérifié : le « Rappel de cours » sur une question de grammaire reliée — `toQuestion` ne
+projette pas les arêtes `tests` (lot 3), le mécanisme reste celui d'avant et n'a pas été touché.
+
 ---
 
 ## Fin du lot 2
