@@ -87,6 +87,7 @@ export function proposePurge(sujets) {
 export function applyPurge(sujets, decisions) {
   const aSupprimer = new Set(decisions.supprimer ?? []);
   const aGloser = decisions.gloser ?? {};
+  const aRelire = decisions.lectures ?? {};
   const vises = new Set([...aSupprimer]);
 
   // Qui pointe vers quoi — calculé sur TOUS les sujets, pas seulement les mots.
@@ -97,7 +98,7 @@ export function applyPurge(sujets, decisions) {
     }
   }
 
-  const retires = [], refuses = [], gloses = [], conflits = [];
+  const retires = [], refuses = [], gloses = [], lectures = [], conflits = [];
   const out = [];
   for (const s of sujets) {
     if (!isWord(s)) { out.push(s); continue; }
@@ -111,19 +112,34 @@ export function applyPurge(sujets, decisions) {
     }
 
     const nom = s["schema:name"];
+    let patch = null;
+
     if (nom in aGloser) {
       const veut = String(aGloser[nom] ?? "").trim();
-      if (glose(s)) { if (glose(s) !== veut) conflits.push(nom); out.push(s); continue; }
-      if (!veut) { out.push(s); continue; }
-      gloses.push(nom);
-      out.push({ ...s, "schema:description": veut });
-      continue;
+      if (glose(s)) { if (glose(s) !== veut) conflits.push(nom); }
+      else if (veut) { gloses.push(nom); patch = { ...(patch ?? s), "schema:description": veut }; }
     }
 
-    out.push(s);
+    if (nom in aRelire) {
+      // Invariant qui rend cette correction sûre : on ne remplace QUE ce qui n'est
+      // manifestement pas une lecture. L'outil ne peut donc pas servir à en réécrire une
+      // bonne — 「今年」 portait « ことし（特別な読み） », une note d'auteur logée dans un
+      // champ de donnée ; 「最大」 portait « さいだい / さいしょう », où la seconde est la
+      // lecture de son ANTONYME 最小. Ce sont ces valeurs-là, et elles seules, qu'on écrase.
+      const veut = String(aRelire[nom] ?? "").trim();
+      const actuelle = String(s["jlpt:reading"] ?? "");
+      if (EST_KANA.test(actuelle)) {
+        if (actuelle !== veut) conflits.push(nom);
+      } else if (EST_KANA.test(veut)) {
+        lectures.push(nom);
+        patch = { ...(patch ?? s), "jlpt:reading": veut };
+      }
+    }
+
+    out.push(patch ?? s);
   }
 
-  return { sujets: out, retires, refuses, gloses, conflits, inconnus: [...vises] };
+  return { sujets: out, retires, refuses, gloses, lectures, conflits, inconnus: [...vises] };
 }
 
 if (import.meta.main) {
@@ -150,6 +166,18 @@ if (import.meta.main) {
       "|---|---|---|",
       ...cands.map((c) => `| \`${c.nom}\` | ${c.lecture} | ${c.copieDe} |`),
       "",
+      "## Lectures qui n'en sont pas",
+      "",
+      "`jlpt:reading` doit contenir du kana. Ces entrées y logent autre chose — une note",
+      "d'auteur, un tiret, ou DEUX lectures dont l'une appartient à un autre mot. À",
+      "corriger via la clé `lectures` du fichier de décisions.",
+      "",
+      "| entrée | valeur en place | glose |",
+      "|---|---|---|",
+      ...sujets.filter(isWord)
+        .filter((m) => m["jlpt:reading"] !== undefined && !EST_KANA.test(String(m["jlpt:reading"])))
+        .map((m) => `| \`${m["schema:name"]}\` | \`${m["jlpt:reading"]}\` | ${glose(m) || "—"} |`),
+      "",
     ];
     mkdirSync("docs/superpowers", { recursive: true });
     writeFileSync("docs/superpowers/mots-fabriques.md", L.join("\n") + "\n");
@@ -159,10 +187,11 @@ if (import.meta.main) {
     const decisions = JSON.parse(readFileSync(DECISIONS, "utf8"));
     const doc = JSON.parse(readFileSync(MOTS, "utf8"));
     const r = applyPurge(doc["@graph"] ?? [], decisions);
-    if (r.retires.length || r.gloses.length) {
+    if (r.retires.length || r.gloses.length || r.lectures.length) {
       writeFileSync(MOTS, JSON.stringify({ ...doc, "@graph": r.sujets }, null, 1) + "\n");
     }
-    console.log(`${r.retires.length} entrée(s) retirée(s), ${r.gloses.length} glose(s) posée(s)`);
+    console.log(`${r.retires.length} entrée(s) retirée(s), ${r.gloses.length} glose(s) posée(s), `
+      + `${r.lectures.length} lecture(s) corrigée(s)`);
     if (r.refuses.length) {
       console.log(`⚠ ${r.refuses.length} suppression(s) refusée(s) — quelque chose les référence :`);
       console.log(`  ${r.refuses.join(", ")}`);

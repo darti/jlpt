@@ -1033,8 +1033,8 @@ git commit -m "chore: bump cache SW et documente la chaîne d'arbitrage des éno
 ### Task 9 : Purger les non-mots de `word.jsonld` — FAIT (branche `purge-dictionnaire`)
 
 29 entrées fabriquées retirées, 3 vrais mots glosés (`始め`、`始めて`、`謝り`), chaîne
-`purge-words.mjs` + `data/mots-parasites.json`. Reste non traité : 7 lectures placeholder,
-consignées dans CLAUDE.md.
+`purge-words.mjs` + `data/mots-parasites.json`. Les 7 lectures placeholder ont suivi
+(branche `lectures-placeholder`) : plus aucune `jlpt:reading` hors kana.
 
 **Le défaut.** `word.jsonld` contient des distracteurs de quiz importés comme mots par un
 générateur disparu : `約速`, `役束`, `約則`, `経検`, `径験`, `心輩`, `案全`, `便理`, `研宄`…
