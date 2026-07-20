@@ -1,8 +1,6 @@
-/** Index of N3/N4 grammar points from data/cours-gram.json, keyed by normalized form, so a quiz
- *  corrigé can show a "Rappel de cours" for the tested grammar point. Pure logic + a memoized
- *  loader. data/cours-gram.json is now the unified Category › Group › Item schema
- *  (issu de la conversion vers ce schéma, outil supprimé depuis) : a "learn" category
- *  (form/niv/mean/examples), one item per form. */
+/** Index des points de grammaire du graphe (`gram.jsonld` + `lesson.jsonld`), clé = forme
+ *  normalisée, pour qu'un corrigé de quiz affiche un « Rappel de cours » sur le point testé.
+ *  Logique pure + un loader mémoïsé. */
 import type { Question } from "../../types/quiz.ts";
 
 /** `id`/`group` locate the point in the cours master-detail (`/cours/gram/<group>` + item

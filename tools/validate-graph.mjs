@@ -2,8 +2,7 @@
 // Valide data/graph/ : shapes SHACL (sous-ensemble Oku) + contrôles impératifs.
 // Node pur, zéro dépendance. Exit 1 si invalide.
 //
-// Coexiste avec tools/validate.mjs tant que l'ancien modèle est servi : le lot 1 ne
-// touche pas au runtime, l'app lit toujours bank-*.json. Le lot 4 supprimera l'ancien.
+// SEUL validateur du dépôt : data/ ne contient plus que data/graph/.
 import { existsSync, readdirSync } from "node:fs";
 import { readContext, readDoc } from "./graph/jsonld.mjs";
 import { parseShapes, validateAll } from "./graph/shacl.mjs";

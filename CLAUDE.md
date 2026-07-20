@@ -21,7 +21,7 @@ par tâche = branche + répertoire isolés.
 
 ## Architecture (non évidente — lire avant d'éditer)
 
-- **Contenu = `data/graph/*.jsonld` + `data/cours-*.json`**, **chargé au runtime** par le React
+- **Contenu = `data/graph/*.jsonld` UNIQUEMENT**, **chargé au runtime** par le React
   (`fetch`) — plus aucun inline, plus de `sync-*.mjs`. ⚠ Les autres fichiers de `data/` ne sont
   plus servis du tout : cf. **Données — le graphe est la source** plus bas AVANT d'éditer quoi
   que ce soit dans `data/`.
@@ -66,12 +66,11 @@ par tâche = branche + répertoire isolés.
     bun run css                       # recompile src/styles/styles.gen.css seul
     bun run build                     # CSS minifié + bun build ./index.html (--splitting) → _site/
     bunx serve _site                  # servir le build (http, requis pour SW + fetch)
-    bun tools/validate.mjs            # valide data/cours-*.json (exit 1 si KO)
     bun tools/validate-graph.mjs      # valide data/graph/ — SHACL + contrôles impératifs
     node tools/graph/readings.mjs     # applique data/lectures-arbitrees.json sur word.jsonld
 
-**CI** = `.github/workflows/validate.yml` (push + PR), et lui seul : cours `data/cours-*.json`,
-graphe `data/graph/`, `typecheck`, `bun test`. `deploy.yml` ne fait que
+**CI** = `.github/workflows/validate.yml` (push + PR), et lui seul : graphe `data/graph/`,
+`typecheck`, `bun test`. `deploy.yml` ne fait que
 `bun run build` — et **`bun build` ne typecheck pas**, il n'est donc jamais un garde-fou.
 **Pas de linter** dans le projet (ni eslint, ni prettier, ni biome) : ne pas en chercher un,
 ne pas en ajouter sans demande explicite — `typecheck` + `bun test` font foi.
@@ -83,15 +82,28 @@ fichier livré : il n'y a plus rien à régénérer, donc plus rien qui puisse s
 C'était l'objet de la migration — les trois pannes du modèle précédent avaient toutes la même
 cause, un dérivé que rien ne resynchronisait.
 
-| Fichier | Rôle |
-|---|---|
-| `data/graph/*.jsonld` | **Source ET livré** — éditer ICI. Questions (`q-<compétence>.jsonld`), intervalles du corpus (`corpus.jsonld`), mots/dictionnaire (`word.jsonld`), entités (`kanji`/`gram`), leçons (`lesson`). Validés par `tools/validate-graph.mjs` : shapes SHACL + contrôles impératifs. |
-| `data/cours-*.json` | **Source ET livré** (fetchés tels quels par `/cours`). Validés par `tools/validate.mjs`. |
+**`data/` ne contient plus QUE `data/graph/`.** Un seul répertoire, un seul validateur
+(`tools/validate-graph.mjs`), et huit types :
 
-`bank.json`, `bank-*.json`, `dict.json`, `grammar/kanji/vocab.json`, `split-bank.mjs`,
-`migrate-to-graph.mjs` et `transform-cours.mjs` ont été **supprimés** (lot 4). Il n'existe plus
-aucun script qui réécrive `data/graph/` : **les corrections de contenu se font dans le graphe,
-à la main ou par un outil idempotent.**
+| Type | Document | Rôle |
+|---|---|---|
+| `jlpt:Question` | `q-<compétence>.jsonld` | les 10 307 questions ; `jlpt:ord` groupé par compétence |
+| `jlpt:SkillRange` | `corpus.jsonld` | les 5 intervalles — remplace l'ancien index de 190 Ko |
+| `jlpt:Word` | `word.jsonld` | mots **et** dictionnaire (furigana, tap-pour-définir) |
+| `jlpt:Kanji` | `kanji.jsonld` | 810 kanji, avec `onReading`/`kunReading`/`compound` |
+| `jlpt:GrammarPoint` | `gram.jsonld` | points de grammaire |
+| `jlpt:Example` | `example.jsonld` | 227 phrases d'exemple → `illustrates` un GrammarPoint |
+| `jlpt:Lesson` | `lesson.jsonld` | les 92 leçons : elles **ordonnent** des entités, `covers` |
+| `jlpt:MethodNote` | `method.jsonld` | conseils d'examen (prose, nœuds isolés) |
+
+⚠ **Un exemple est rattaché à l'ENTITÉ, pas à la leçon.** Les questions portent déjà des arêtes
+`tests` vers ces mêmes `GrammarPoint` : un exemple est donc une ressource du référentiel,
+consultable depuis le corrigé du quiz, pas un ornement de leçon.
+
+`bank.json`, `bank-*.json`, `dict.json`, `grammar/kanji/vocab.json`, `cours-*.json`,
+`split-bank.mjs`, `migrate-to-graph.mjs`, `migrate-cours.mjs`, `transform-cours.mjs` et
+`validate.mjs` ont été **supprimés**. Il n'existe plus aucun script qui réécrive `data/graph/` :
+**les corrections de contenu se font dans le graphe**, à la main ou par un outil idempotent.
 
 **Lectures manquantes — la seule chaîne d'écriture outillée**, et elle n'écrase jamais rien :
 
@@ -132,7 +144,7 @@ utilisateurs. **Ajouter en fin de shard**, et vérifier que `corpus.jsonld` suit
   `scripts/dev.ts` `STATIC_FILES` (allowlist du serveur de dev → sinon 404 en `bun run dev` seulement),
   et `sw.js` `SHELL` (précache PWA → sinon absent hors ligne seulement).
 - **`tools/*.mjs` = Node-compatible OBLIGATOIRE** : malgré la règle « bun exclusivement »,
-  `.github/workflows/validate.yml` exécute `node tools/validate.mjs` (setup-node 20). Aucune
+  `.github/workflows/validate.yml` exécute `node tools/validate-graph.mjs` (setup-node 20). Aucune
   API `Bun.*` là-dedans — la CI contenu casserait, et c'est invisible en local.
 - **ECharts DOIT rester en `import()` dynamique** : l'invariant vit dans **un seul** endroit,
   le hook `useEChart` (`src/features/dashboard/useEChart.ts`), que `ProgressChart`, `PassGauge`
@@ -167,7 +179,7 @@ utilisateurs. **Ajouter en fin de shard**, et vérifier que `corpus.jsonld` suit
   énumérées une seule fois dans `src/lib/keys.ts`** — ne jamais réécrire un littéral `"jlptN3…"`
   ailleurs (une clé retapée à un caractère près = donnée utilisateur perdue, sans erreur) :
   `PROGRESS_KEY` (blob de progression), `RESUME_KEY` (session en cours, purgée >2 j),
-  `COURS_KEY` (avancement cours), `THEME_KEY`, `FURI_KEY`, `fsKey("Ui"|"Jp")` (échelles de
+  `COURS_KEY` (avancement cours, v2 : indexé par IRI du graphe), `THEME_KEY`, `FURI_KEY`, `fsKey("Ui"|"Jp")` (échelles de
   police), `UPDATED_KEY` (horodatage de la sync — écrire via `stampUpdated(store)`),
   `GH_CFG_KEY` (PAT Gist), `PENDING_KEY`. ⚠ Toute clé applicative nouvelle doit porter le
   préfixe `KEY_PREFIX` (`jlptN3`) : `gist.ts#collectData` balaie le store dessus pour bâtir la

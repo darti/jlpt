@@ -4,16 +4,15 @@ name: Qualité — contenu, types, tests
 # data/*.json : un test rouge ou une erreur de type partait en prod sans qu'aucun check
 # ne rougisse (deploy.yml ne fait que `bun run build`, et `bun build` NE TYPECHECK PAS).
 #
-#  1. cours        : data/cours-*.json (schéma Category > Group > Item, doublons de
-#                    formes de grammaire, points sans exemple) ;
-#  1bis. data/graph/ : shapes SHACL (sous-ensemble Oku) + contrôles impératifs — bornes de
+#  1. data/graph/  : shapes SHACL (sous-ensemble Oku) + contrôles impératifs — bornes de
 #                    answer, alignement optionNote, ordinaux denses, IRIs pendantes,
-#                    réponses contradictoires ;
+#                    réponses contradictoires, leçons qui ne couvrent rien ;
 #  2. types        : tsc --noEmit sur src/ + scripts/ ;
 #  3. tests        : la suite bun test.
 #
-# L'étape « banques dérivées » a disparu avec data/bank-*.json : l'app lit data/graph/,
-# et un fichier qui n'existe plus ne peut pas se désynchroniser.
+# UN SEUL validateur : data/ ne contient plus que data/graph/. Les étapes « banques
+# dérivées » et « contenu de cours » ont disparu avec les fichiers qu'elles gardaient —
+# ce qui n'existe plus ne peut pas se désynchroniser.
 
 on:
   push:
@@ -32,16 +31,13 @@ jobs:
         uses: actions/checkout@v4
 
       # Node est VOLONTAIRE ici : tools/*.mjs doit rester exécutable sous node (aucune API
-      # Bun.*). Faire tourner validate.mjs sous node est ce qui vérifie cet invariant —
+      # Bun.*). Faire tourner validate-graph.mjs sous node est ce qui vérifie cet invariant —
       # ne pas « harmoniser » cette étape vers bun, on perdrait le seul détecteur. Le reste
       # du dépôt est bun-only (cf. CLAUDE.md).
       - name: Node (pour tools/*.mjs uniquement)
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Valider le contenu de cours (data/cours-*.json)
-        run: node tools/validate.mjs
 
       # data/graph/ est ce que l app lit au runtime depuis le lot 2. Sous node pour la même
       # raison que ci-dessus — tools/*.mjs doit rester exécutable sans bun.
