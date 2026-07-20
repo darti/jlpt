@@ -12,7 +12,14 @@
   "",
   "gloser : vrais mots que l'heuristique proposait à tort, faute de sens renseigné. Leur",
   "  donner une glose les protège définitivement, et les rend enfin utilisables par le",
-  "  tap-pour-définir et par la détection d'énoncés ambigus (readingIndex)."
+  "  tap-pour-définir et par la détection d'énoncés ambigus (readingIndex).",
+  "",
+  "lectures : jlpt:reading doit contenir du kana. Ces sept entrées y logeaient autre chose.",
+  "  Quatre portaient un simple tiret. 今年 y avait une note d'auteur. Les deux dernières",
+  "  sont les plus fautives : 差 et 最大 portaient DEUX lectures, dont la seconde appartient",
+  "  à un autre mot — さいしょう est la lecture de 最小, l'ANTONYME de 最大.",
+  "  L'outil ne remplace que ce qui n'est pas du kana : il ne peut pas réécrire une",
+  "  lecture correcte, même par erreur de saisie ici."
  ],
  "supprimer": [
   "jlpt:word/約速",
@@ -49,5 +56,14 @@
   "始め": "début, commencement",
   "始めて": "en commençant (forme en -te de 始める)",
   "謝り": "excuse, fait de s'excuser"
+ },
+ "lectures": {
+  "今年": "ことし",
+  "すっかり": "すっかり",
+  "やはり": "やはり",
+  "わざわざ": "わざわざ",
+  "しっかり": "しっかり",
+  "差": "さ",
+  "最大": "さいだい"
  }
 }

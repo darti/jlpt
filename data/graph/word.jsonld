@@ -285,7 +285,7 @@
    "@id": "jlpt:word/今年",
    "@type": "jlpt:Word",
    "schema:name": "今年",
-   "jlpt:reading": "ことし（特別な読み）",
+   "jlpt:reading": "ことし",
    "schema:description": "cette année",
    "jlpt:level": "N5",
    "usesKanji": [
@@ -28579,7 +28579,7 @@
    "schema:name": "すっかり",
    "schema:description": "complètement, entièrement, tout à fait",
    "jlpt:level": "N4",
-   "jlpt:reading": "—"
+   "jlpt:reading": "すっかり"
   },
   {
    "@id": "jlpt:word/すり",
@@ -29078,7 +29078,7 @@
    "schema:name": "やはり",
    "schema:description": "comme prévu, quand même",
    "jlpt:level": "N3",
-   "jlpt:reading": "—"
+   "jlpt:reading": "やはり"
   },
   {
    "@id": "jlpt:word/わがまま",
@@ -29100,7 +29100,7 @@
    "schema:name": "わざわざ",
    "schema:description": "exprès, spécialement (en se donnant la peine)",
    "jlpt:level": "N3",
-   "jlpt:reading": "—"
+   "jlpt:reading": "わざわざ"
   },
   {
    "@id": "jlpt:word/アイロン",
@@ -38629,7 +38629,7 @@
    "usesKanji": [
     "jlpt:kanji/差"
    ],
-   "jlpt:reading": "さ / ちがい"
+   "jlpt:reading": "さ"
   },
   {
    "@id": "jlpt:word/財",
@@ -40473,7 +40473,7 @@
    "usesKanji": [
     "jlpt:kanji/大"
    ],
-   "jlpt:reading": "さいだい / さいしょう"
+   "jlpt:reading": "さいだい"
   },
   {
    "@id": "jlpt:word/最小",
@@ -40521,7 +40521,7 @@
    "@type": "jlpt:Word",
    "schema:name": "しっかり",
    "schema:description": "fermement, solidement",
-   "jlpt:reading": "—"
+   "jlpt:reading": "しっかり"
   },
   {
    "@id": "jlpt:word/修正",

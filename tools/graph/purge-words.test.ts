@@ -104,6 +104,45 @@ test("applyPurge n'ÉCRASE JAMAIS une glose existante", () => {
   expect(conflits).toEqual(["初め"]);
 });
 
+// --- correction des lectures placeholder ---------------------------------------------
+
+test("applyPurge remplace une lecture qui n'est pas du kana", () => {
+  // 今年 portait « ことし（特別な読み） » : une note d'auteur logée dans un champ de donnée.
+  const sujets = [mot("今年", { "jlpt:reading": "ことし（特別な読み）", "schema:description": "cette année" })];
+  const { sujets: out, lectures } = applyPurge(sujets, { supprimer: [], gloser: {}, lectures: { "今年": "ことし" } });
+  expect(out[0]["jlpt:reading"]).toBe("ことし");
+  expect(lectures).toEqual(["今年"]);
+});
+
+test("applyPurge REFUSE de remplacer une lecture déjà en kana", () => {
+  // L'invariant qui rend cet outil sûr : il ne peut corriger QUE ce qui n'est
+  // manifestement pas une lecture. Il ne peut donc pas servir à en réécrire une bonne.
+  const sujets = [mot("明ける", { "jlpt:reading": "あける", "schema:description": "se lever" })];
+  const { sujets: out, lectures, conflits } = applyPurge(
+    sujets, { supprimer: [], gloser: {}, lectures: { "明ける": "あく" } });
+  expect(out[0]["jlpt:reading"]).toBe("あける");
+  expect(lectures).toEqual([]);
+  expect(conflits).toEqual(["明ける"]);
+});
+
+test("applyPurge refuse une correction qui n'est pas elle-même du kana", () => {
+  const sujets = [mot("差", { "jlpt:reading": "さ / ちがい", "schema:description": "différence" })];
+  const { sujets: out, lectures } = applyPurge(
+    sujets, { supprimer: [], gloser: {}, lectures: { "差": "さ / ちがい (au choix)" } });
+  expect(out[0]["jlpt:reading"]).toBe("さ / ちがい");
+  expect(lectures).toEqual([]);
+});
+
+test("applyPurge est idempotent sur les corrections de lecture", () => {
+  const sujets = [mot("最大", { "jlpt:reading": "さいだい / さいしょう", "schema:description": "maximum" })];
+  const dec = { supprimer: [], gloser: {}, lectures: { "最大": "さいだい" } };
+  const un = applyPurge(sujets, dec);
+  const deux = applyPurge(un.sujets, dec);
+  expect(deux.sujets).toEqual(un.sujets);
+  expect(deux.lectures).toEqual([]);
+  expect(deux.conflits).toEqual([]); // déjà corrigé n'est pas un conflit
+});
+
 test("applyPurge signale une décision qui ne vise aucune entrée", () => {
   const { retires, inconnus } = applyPurge([mot("約束")], { supprimer: ["jlpt:word/absent"], gloser: {} });
   expect(retires).toEqual([]);

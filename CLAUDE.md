@@ -155,11 +155,12 @@ trois VRAIS mots (`始め`、`始めて`、`謝り`) dont le seul tort était de
 C'est pour ça que la liste passe par un fichier relu. `applyPurge` **refuse** de retirer une
 entrée que quoi que ce soit référence, et n'écrase **jamais** une glose existante.
 
-⚠ Reste un défaut connu, **non traité** : 7 entrées portent un placeholder dans
-`jlpt:reading` (`—` pour すっかり・やはり・わざわざ・しっかり, `ことし（特別な読み）` pour 今年,
-`さ / ちがい` pour 差, `さいだい / さいしょう` pour 最大). Sans effet visible — `EST_KANA` les
-écarte de l'index, et `CLEAN_FURI_RE` (`src/lib/dict.ts`) les empêche de sortir en furigana
-— mais ce sont de fausses données dans un fichier livré.
+Le fichier de décisions porte trois clés : `supprimer` (entrées fabriquées), `gloser` (sens
+manquant) et `lectures` (`jlpt:reading` qui n'est pas du kana). Cette dernière ne remplace
+**que** ce qui n'est manifestement pas une lecture — l'outil ne peut donc pas servir à
+réécrire une lecture correcte. Sept entrées en relevaient : quatre portaient `—`, 今年 une
+note d'auteur (`ことし（特別な読み）`), et 差 / 最大 **deux** lectures dont la seconde
+appartenait à un autre mot (`さいしょう` est celle de 最小, l'antonyme de 最大).
 
 ⚠ **`jlpt:ord` = index global dans le corpus, groupé par compétence, et il doit rester
 stable** : c'est lui qu'indexent le bitset `seen`/`mastered`, `wrong[]` (erreurs) et
