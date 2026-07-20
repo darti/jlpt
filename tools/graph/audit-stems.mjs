@@ -22,7 +22,7 @@
 //     un rapport de relecture — jamais la CI : word.jsonld ne couvre que ~4166 mots, donc
 //     la preuve établit la présence d'ambiguïté, jamais son absence.
 //
-// Node pur : la CI exécute `node`, jamais `bun`.
+// Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
 
 const arr = (v) => (Array.isArray(v) ? v : v === undefined ? [] : [v]);
 const norm = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
@@ -177,8 +177,8 @@ if (process.argv[1]?.endsWith("audit-stems.mjs")) {
   const L = [
     "# Énoncés à arbitrer",
     "",
-    "Généré par `node tools/graph/audit-stems.mjs`. **Ne pas éditer** : consigner les",
-    "décisions dans `data/enonces-arbitres.json`, puis lancer `node tools/graph/stems.mjs`.",
+    "Généré par `bun tools/graph/audit-stems.mjs`. **Ne pas éditer** : consigner les",
+    "décisions dans `data/enonces-arbitres.json`, puis lancer `bun tools/graph/stems.mjs`.",
     "",
     "## Résumé",
     "",

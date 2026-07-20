@@ -16,7 +16,7 @@ consignés ici parce que chacun invalidait une hypothèse du plan initial.
 585 homophones » supposait un balayage limité à `q-vocabulaire` et aux énoncés
 « を漢字で書くと ». Le balayage complet donne **135 groupes contradictoires** (dont un à
 cheval sur deux shards, invisible d'un groupement par fichier) et un périmètre plus large.
-Chiffres courants : voir la sortie de `node tools/graph/audit-stems.mjs`.
+Chiffres courants : voir la sortie de `bun tools/graph/audit-stems.mjs`.
 
 **R2 — la détection est à TROIS classes, pas deux, et deux d'entre elles sont des preuves.**
 Le plan ne prévoyait que l'heuristique de prose. `word.jsonld` porte les lectures : un
@@ -44,8 +44,9 @@ chaîne déjà en place pour les lectures JMdict : `propose` → fichier de déc
 l'auteur → `apply` qui n'écrase jamais rien. Trois modules purs et testables
 (`audit-stems.mjs`, `stems.mjs`, contrôles dans `integrity.mjs`), chacun avec une CLI mince.
 
-**Pile technique :** Node pur pour `tools/**/*.mjs` (la CI exécute `node`, jamais `bun` —
-aucune API `Bun.*`), `bun test` pour les tests, JSON-LD indenté à 1 espace + newline finale.
+**Pile technique :** `bun` pour tout — outils, tests, CI. JSON-LD indenté à 1 espace, newline
+finale. ⚠ Le dépôt est passé bun-only PENDANT l'exécution de ce plan (test `tools/bun-only.test.ts`,
+qui balaie aussi les docs) : les commandes ci-dessous ont été réécrites en conséquence.
 
 ## Contraintes globales
 
@@ -55,7 +56,7 @@ aucune API `Bun.*`), `bun test` pour les tests, JSON-LD indenté à 1 espace + n
 - **`jlpt:answer` et `opts` sont immuables.** La bonne réponse ne change pas ; on ajoute du
   contexte à l'énoncé pour que cette réponse devienne la seule défendable.
 - **`tools/**/*.mjs` = Node-compatible obligatoire.** `.github/workflows/validate.yml` lance
-  `node tools/validate-graph.mjs` (setup-node 20). Aucun `Bun.file`, `Bun.write`, `Bun.$`.
+  `bun tools/validate-graph.mjs` (setup-node 20). Aucun `Bun.file`, `Bun.write`, `Bun.$`.
 - **Écriture JSON-LD :** `JSON.stringify(doc, null, 1) + "\n"`, comme `readings.mjs:72`. Toute
   autre indentation réécrit 4,6 Mo de diff pour rien.
 - **Format de trou :** `___` (trois soulignés ASCII U+005F), jamais `＿＿＿` (U+FF3F). C'est la
@@ -209,7 +210,7 @@ Créer `tools/graph/audit-stems.mjs` :
 //     de la prose française : suffisant pour trier un rapport de relecture, à ne pas
 //     confondre avec une preuve.
 //
-// Node pur : la CI exécute `node`, jamais `bun`.
+// Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
 
 const arr = (v) => (Array.isArray(v) ? v : v === undefined ? [] : [v]);
 const norm = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
@@ -311,8 +312,8 @@ if (process.argv[1]?.endsWith("audit-stems.mjs")) {
   const lignes = [
     "# Énoncés à arbitrer",
     "",
-    "Généré par `node tools/graph/audit-stems.mjs`. **Ne pas éditer** : consigner les",
-    "décisions dans `data/enonces-arbitres.json`, puis lancer `node tools/graph/stems.mjs`.",
+    "Généré par `bun tools/graph/audit-stems.mjs`. **Ne pas éditer** : consigner les",
+    "décisions dans `data/enonces-arbitres.json`, puis lancer `bun tools/graph/stems.mjs`.",
     "",
     `- ${contradictions.length} énoncés contradictoires ` +
       `(${enContradiction.size} questions) — **priorité**, le corpus se contredit`,
@@ -357,7 +358,7 @@ if (process.argv[1]?.endsWith("audit-stems.mjs")) {
 - [ ] **Étape 2 : lancer la CLI et vérifier les nombres**
 
 ```bash
-node tools/graph/audit-stems.mjs
+bun tools/graph/audit-stems.mjs
 ```
 
 Attendu, exactement :
@@ -509,12 +510,12 @@ Créer `tools/graph/stems.mjs` :
 // pas résolu en silence. Le graphe fait autorité.
 //
 // La chaîne :
-//   1. node tools/graph/audit-stems.mjs  → rapport + squelette de décisions
+//   1. bun tools/graph/audit-stems.mjs  → rapport + squelette de décisions
 //   2. l'auteur rédige SES phrases dans data/enonces-arbitres.json
-//   3. node tools/graph/stems.mjs        → patch des shards q-*.jsonld
-//   4. node tools/validate-graph.mjs     → confirme
+//   3. bun tools/graph/stems.mjs        → patch des shards q-*.jsonld
+//   4. bun tools/validate-graph.mjs     → confirme
 //
-// Node pur : la CI exécute `node`, jamais `bun`.
+// Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
 import { readFileSync, writeFileSync } from "node:fs";
 
 const DECISIONS = "data/enonces-arbitres.json";
@@ -586,7 +587,7 @@ if (process.argv[1]?.endsWith("stems.mjs")) {
   if (refuses.length) console.log(`⚠ ${refuses.length} décision(s) refusée(s) (cible sans ___) : ${refuses.join(", ")}`);
   if (conflits.length) console.log(`⚠ ${conflits.length} conflit(s) — le graphe porte un énoncé imprévu : ${conflits.join(", ")}`);
   if (restants.size) console.log(`⚠ ${restants.size} décision(s) sans question : ${[...restants].join(", ")}`);
-  console.log("Relancer `node tools/validate-graph.mjs` pour confirmer.");
+  console.log("Relancer `bun tools/validate-graph.mjs` pour confirmer.");
 }
 ```
 
@@ -623,7 +624,7 @@ c'est 585 phrases à refaire. On fait valider la forme sur 20 d'abord.
 - [ ] **Étape 1 : générer le rapport**
 
 ```bash
-node tools/graph/audit-stems.mjs
+bun tools/graph/audit-stems.mjs
 ```
 
 - [ ] **Étape 2 : rédiger les 20 premières décisions**
@@ -659,14 +660,14 @@ Règles de rédaction, sans exception :
 - [ ] **Étape 3 : poser les décisions**
 
 ```bash
-node tools/graph/stems.mjs
+bun tools/graph/stems.mjs
 ```
 Attendu : `20 énoncé(s) posé(s) au total`, aucun refus, aucun conflit.
 
 - [ ] **Étape 4 : vérifier l'idempotence sur le vrai graphe**
 
 ```bash
-node tools/graph/stems.mjs && git diff --stat data/graph/
+bun tools/graph/stems.mjs && git diff --stat data/graph/
 ```
 Attendu : `0 énoncé(s) posé(s) au total` au second passage, et **aucune ligne ajoutée par
 ce second passage** au-delà du diff du premier.
@@ -674,7 +675,7 @@ ce second passage** au-delà du diff du premier.
 - [ ] **Étape 5 : valider le graphe**
 
 ```bash
-node tools/validate-graph.mjs
+bun tools/validate-graph.mjs
 ```
 Attendu : sortie de succès, exit 0.
 
@@ -707,14 +708,14 @@ git commit -m "fix(data): désambiguïse 20 énoncés contradictoires en phrases
 Pour chaque lot : étendre `data/enonces-arbitres.json`, puis
 
 ```bash
-node tools/graph/stems.mjs && node tools/validate-graph.mjs
+bun tools/graph/stems.mjs && bun tools/validate-graph.mjs
 ```
 Attendu à chaque lot : le nombre posé égale le nombre de décisions ajoutées ; validation OK.
 
 - [ ] **Étape 2 : vérifier qu'il ne reste aucune contradiction**
 
 ```bash
-node tools/graph/audit-stems.mjs
+bun tools/graph/audit-stems.mjs
 ```
 Attendu : `0 contradiction(s), <N> homophone(s)` — le premier nombre **doit** être 0.
 
@@ -741,7 +742,7 @@ git commit -m "fix(data): désambiguïse le lot <n> des énoncés contradictoire
 - [ ] **Étape 2 : vérifier que l'audit est vide**
 
 ```bash
-node tools/graph/audit-stems.mjs
+bun tools/graph/audit-stems.mjs
 ```
 Attendu : `0 contradiction(s), 0 homophone(s)`.
 
@@ -959,7 +960,7 @@ import { isDisambiguated } from "./audit-stems.mjs";
 - [ ] **Étape 6 : lancer la suite complète et la validation**
 
 ```bash
-bun test && bun run typecheck && node tools/validate-graph.mjs && node tools/validate.mjs
+bun test && bun run typecheck && bun tools/validate-graph.mjs && bun tools/validate.mjs
 ```
 Attendu : tout vert, exit 0 partout. Si `validate-graph` signale des questions, c'est
 qu'un cas a été manqué en tâche 5 ou 6 — y retourner, ne pas assouplir le contrôle.
@@ -1001,9 +1002,9 @@ par « la première » et ajouter :
 ```markdown
 **Énoncés ambigus — seconde chaîne d'écriture outillée**, même invariant : elle n'écrase rien.
 
-    node tools/graph/audit-stems.mjs   # → docs/…/enonces-a-arbitrer.md + squelette
+    bun tools/graph/audit-stems.mjs   # → docs/…/enonces-a-arbitrer.md + squelette
     #   … l'auteur rédige SES phrases dans data/enonces-arbitres.json …
-    node tools/graph/stems.mjs         # → pose stem + gloss sur les shards q-*.jsonld
+    bun tools/graph/stems.mjs         # → pose stem + gloss sur les shards q-*.jsonld
 
 Un énoncé « Xを漢字で書くと？ » n'est défendable que si UNE seule option est une graphie
 valide de X. Sinon l'énoncé doit porter un trou (`___`) et un contexte qui tranche.
@@ -1014,7 +1015,7 @@ l'**énoncé seul** : deux questions au même énoncé ne peuvent pas avoir deux
 - [ ] **Étape 3 : vérification finale**
 
 ```bash
-bun test && bun run typecheck && node tools/validate-graph.mjs && bun run build
+bun test && bun run typecheck && bun tools/validate-graph.mjs && bun run build
 ```
 Attendu : tout vert.
 

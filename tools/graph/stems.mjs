@@ -6,12 +6,12 @@
 // pas résolu en silence. Le graphe fait autorité.
 //
 // La chaîne :
-//   1. node tools/graph/audit-stems.mjs  → rapport + squelette de décisions
+//   1. bun tools/graph/audit-stems.mjs  → rapport + squelette de décisions
 //   2. l'auteur rédige SES phrases dans data/enonces-arbitres.json
-//   3. node tools/graph/stems.mjs        → patch des shards q-*.jsonld
-//   4. node tools/validate-graph.mjs     → confirme
+//   3. bun tools/graph/stems.mjs        → patch des shards q-*.jsonld
+//   4. bun tools/validate-graph.mjs     → confirme
 //
-// Node pur : la CI exécute `node`, jamais `bun`.
+// Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 
 const DIR = "data/graph";
@@ -110,5 +110,5 @@ if (process.argv[1]?.endsWith("stems.mjs")) {
     console.log(`  ${conflits.join(", ")}`);
   }
   if (restants.size) console.log(`⚠ ${restants.size} décision(s) sans question : ${[...restants].join(", ")}`);
-  console.log("Relancer `node tools/validate-graph.mjs` pour confirmer.");
+  console.log("Relancer `bun tools/validate-graph.mjs` pour confirmer.");
 }

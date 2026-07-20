@@ -119,9 +119,9 @@ graphe fait autorité ; un désaccord est signalé, pas résolu en silence).
 
 **Énoncés ambigus — seconde chaîne d'écriture outillée**, même invariant : elle n'écrase rien.
 
-    node tools/graph/audit-stems.mjs   # → docs/…/enonces-a-arbitrer.md + squelette de décisions
+    bun tools/graph/audit-stems.mjs   # → docs/…/enonces-a-arbitrer.md + squelette de décisions
     #   … l'auteur rédige SES phrases dans data/enonces-arbitres.json …
-    node tools/graph/stems.mjs         # → pose stem + gloss sur les shards q-*.jsonld
+    bun tools/graph/stems.mjs         # → pose stem + gloss sur les shards q-*.jsonld
 
 ⚠ **Un énoncé ne doit admettre QU'UNE réponse défendable.** 「あける」を漢字で書くと？ en
 admettait trois (開ける・空ける・明ける). La forme correcte est une phrase à trou dont le
