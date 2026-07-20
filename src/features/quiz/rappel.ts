@@ -89,12 +89,32 @@ export function buildRappelIndex(docs: RappelDocs): RappelIndex {
     });
   };
 
-  for (const s of docs.gram) ajoute(s, "gram", str(s["jlpt:form"]), "");
-  for (const s of docs.word) ajoute(s, "word", str(s["schema:name"]), str(s["jlpt:reading"]));
+  /** Lecture on・kun d'une entité kanji, dans la forme du cours (« シャ・やしろ »). */
+  const lectureKanji = (s: Sujet) =>
+    [...list(s["jlpt:onReading"]), ...list(s["jlpt:kunReading"])].join("・");
+
+  // Lectures des kanji, indexées par caractère — le repli ci-dessous en a besoin, et
+  // `docs.kanji` est parcouru après les mots.
+  const parCaractere = new Map<string, string>();
   for (const s of docs.kanji) {
-    ajoute(s, "kanji", str(s["schema:name"]),
-      [...list(s["jlpt:onReading"]), ...list(s["jlpt:kunReading"])].join("・"));
+    const nom = str(s["schema:name"]);
+    if (nom) parCaractere.set(nom, lectureKanji(s));
   }
+
+  for (const s of docs.gram) ajoute(s, "gram", str(s["jlpt:form"]), "");
+  for (const s of docs.word) {
+    const nom = str(s["schema:name"]);
+    // ⚠ Repli sur l'entité Kanji, et UNIQUEMENT pour un caractère unique. 175 mots du graphe
+    // sont un kanji isolé sans lecture, dont 172 ont pourtant leur Kanji renseigné : sans ce
+    // repli, 271 corrigés affichent un rappel muet alors que la lecture est là, à une arête.
+    //
+    // Strictement mono-caractère : 影響 n'a pas d'entité « 影響 », et lui prêter la lecture
+    // de 影 serait faux. Et jamais en remplacement — une lecture de mot fait autorité.
+    const lecture = str(s["jlpt:reading"])
+      || ([...nom].length === 1 ? (parCaractere.get(nom) ?? "") : "");
+    ajoute(s, "word", nom, lecture);
+  }
+  for (const s of docs.kanji) ajoute(s, "kanji", str(s["schema:name"]), lectureKanji(s));
   return index;
 }
 

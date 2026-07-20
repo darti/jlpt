@@ -89,3 +89,49 @@ test("une entité qu'aucune leçon ne couvre rend un rappel SANS lien profond", 
   expect(r?.group).toBe("");
   expect(r?.sens).toBe("politique"); // le contenu reste utile
 });
+
+// --- repli sur l'entité Kanji ---------------------------------------------------
+
+test("un mot d'UN caractère sans lecture emprunte celle de son Kanji", () => {
+  // 175 mots du graphe sont un kanji isolé sans lecture, et 172 ont pourtant leur entité
+  // Kanji renseignée. Sans ce repli, 271 corrigés affichent un rappel muet — alors que la
+  // lecture est là, dans le graphe, à une arête de distance.
+  const docs2: RappelDocs = {
+    ...docs,
+    word: [{ "@id": "jlpt:word/社", "@type": "jlpt:Word", "schema:name": "社",
+             "schema:description": "société, sanctuaire" }],
+    kanji: [{ "@id": "jlpt:kanji/社", "@type": "jlpt:Kanji", "schema:name": "社",
+              "jlpt:onReading": ["シャ"], "jlpt:kunReading": ["やしろ"] }],
+    lesson: [],
+  };
+  const r = resolveRappel(q("vocabulaire", ["jlpt:word/社"]), buildRappelIndex(docs2));
+  expect(r?.kind).toBe("word");
+  expect(r?.lecture).toBe("シャ・やしろ");
+  expect(r?.sens).toBe("société, sanctuaire"); // le sens reste celui du MOT
+});
+
+test("le repli ne s'applique QU'À un caractère unique", () => {
+  // 影響 n'a pas d'entité Kanji « 影響 » : rien à emprunter, et emprunter celle de 影
+  // serait faux. Le repli doit rester strictement mono-caractère.
+  const docs2: RappelDocs = {
+    ...docs,
+    word: [{ "@id": "jlpt:word/影響", "@type": "jlpt:Word", "schema:name": "影響",
+             "schema:description": "influence" }],
+    kanji: [{ "@id": "jlpt:kanji/影", "@type": "jlpt:Kanji", "schema:name": "影",
+              "jlpt:kunReading": ["かげ"] }],
+  };
+  const r = resolveRappel(q("vocabulaire", ["jlpt:word/影響"]), buildRappelIndex(docs2));
+  expect(r?.lecture).toBe("");
+});
+
+test("une lecture de mot existante n'est JAMAIS remplacée par celle du kanji", () => {
+  const docs2: RappelDocs = {
+    ...docs,
+    word: [{ "@id": "jlpt:word/社", "@type": "jlpt:Word", "schema:name": "社",
+             "jlpt:reading": "やしろ", "schema:description": "sanctuaire" }],
+    kanji: [{ "@id": "jlpt:kanji/社", "@type": "jlpt:Kanji", "schema:name": "社",
+              "jlpt:onReading": ["シャ"] }],
+  };
+  const r = resolveRappel(q("vocabulaire", ["jlpt:word/社"]), buildRappelIndex(docs2));
+  expect(r?.lecture).toBe("やしろ");
+});
