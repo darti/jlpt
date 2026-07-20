@@ -279,10 +279,18 @@ et, dans `checkCorpus`, juste avant `return errs;` :
 Run: `bun test tools/graph/`
 Expected: PASS — tous les fichiers du répertoire.
 
-- [ ] **Step 7 : Vérifier que le graphe actuel reste valide**
+- [ ] **Step 7 : Lancer le validateur — un ROUGE délibéré est attendu**
 
 Run: `node tools/validate-graph.mjs`
-Expected: `✓ graphe valide` — les deux shapes nouvelles ne ciblent aucun sujet existant, donc rien ne change encore.
+Expected: **`✗ 1 erreur(s) : jlpt:lesson/kanji-g35 : la leçon ne couvre aucune entité`**
+
+⚠ **Correction apportée en cours d'exécution : le plan annonçait ici `✓ graphe valide`, il avait
+tort.** Le nouveau contrôle trouve un problème **préexistant** : la leçon « Famille 立 — debout »
+enseigne 競 章 童, dont aucun n'existe dans `kanji.jsonld`. `/cours` rend donc aujourd'hui un
+groupe vide, en silence — exactement la panne que ce contrôle existe pour rendre visible.
+
+Ce rouge est le RED de la Task 3 : la migration crée les 179 kanji manquants, dont ces trois,
+et le contrôle repassera au vert. **Ne pas contourner le contrôle pour faire passer cette étape.**
 
 - [ ] **Step 8 : Commit**
 

@@ -9,9 +9,18 @@ const SHAPES = new URL("../../data/graph/shapes.jsonld", import.meta.url).pathna
 
 const shapes = () => parseShapes(readDoc(SHAPES, CONTEXT).subjects, readContext(CONTEXT).prefixes);
 
-test("shapes.jsonld se parse et couvre les six types du domaine", () => {
+test("shapes.jsonld se parse et couvre les huit types du domaine", () => {
   const classes = shapes().map((s) => s.targetClass.split("#").pop()).sort();
-  expect(classes).toEqual(["GrammarPoint", "Kanji", "Lesson", "Question", "SkillRange", "Word"]);
+  expect(classes).toEqual([
+    "Example", "GrammarPoint", "Kanji", "Lesson", "MethodNote", "Question", "SkillRange", "Word",
+  ]);
+});
+
+test("la shape Example impose illustrates et le japonais", () => {
+  const e = shapes().find((s) => s.targetClass.endsWith("#Example"));
+  const paths = e.properties.map((p) => p.path.split("#").pop());
+  for (const p of ["illustrates", "jp"]) expect(paths).toContain(p);
+  expect(e.properties.find((p) => p.path.endsWith("#jp")).minCount).toBe(1);
 });
 
 test("la shape Question impose stem, answer, ord, skill et difficulty", () => {

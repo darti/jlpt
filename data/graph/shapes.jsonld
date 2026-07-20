@@ -8,6 +8,7 @@
         { "sh:path": "schema:description", "sh:datatype": "xsd:string", "sh:minCount": 1, "sh:maxCount": 1 },
         { "sh:path": "jlpt:onReading", "sh:datatype": "xsd:string" },
         { "sh:path": "jlpt:kunReading", "sh:datatype": "xsd:string" },
+        { "sh:path": "jlpt:compound", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
         { "sh:path": "jlpt:level", "sh:in": ["N5", "N4", "N3", "N2", "N1"], "sh:maxCount": 1 }
       ]
     },
@@ -52,6 +53,24 @@
         { "sh:path": "jlpt:skill", "sh:in": ["grammaire", "vocabulaire", "kanji", "lecture", "ecoute"], "sh:minCount": 1, "sh:maxCount": 1 },
         { "sh:path": "jlpt:from", "sh:datatype": "xsd:nonNegativeInteger", "sh:minCount": 1, "sh:maxCount": 1 },
         { "sh:path": "jlpt:count", "sh:datatype": "xsd:nonNegativeInteger", "sh:minCount": 1, "sh:maxCount": 1 }
+      ]
+    },
+    {
+      "@id": "jlpt:ExampleShape", "@type": "sh:NodeShape", "sh:targetClass": "jlpt:Example",
+      "sh:property": [
+        { "sh:path": "jlpt:illustrates", "sh:nodeKind": "sh:IRI", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:jp", "sh:datatype": "xsd:string", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:romaji", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
+        { "sh:path": "schema:description", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
+        { "sh:path": "jlpt:analysis", "sh:datatype": "xsd:string" }
+      ]
+    },
+    {
+      "@id": "jlpt:MethodNoteShape", "@type": "sh:NodeShape", "sh:targetClass": "jlpt:MethodNote",
+      "sh:property": [
+        { "sh:path": "schema:name", "sh:datatype": "xsd:string", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:order", "sh:datatype": "xsd:nonNegativeInteger", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:tip", "sh:datatype": "xsd:string", "sh:minCount": 1 }
       ]
     },
     {
