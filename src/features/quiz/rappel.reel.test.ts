@@ -49,15 +49,14 @@ test("un rappel de kanji ENSEIGNÉ porte sa lecture on・kun", async () => {
   expect(r?.sens).not.toBe("");
 });
 
-test("les kanji hors cours nont pas de lecture — trou MESURÉ, pas silencieux", async () => {
-  // 810 entités, mais seules celles enseignées par le cours ont reçu leur on/kun : les autres
-  // viennent de lancien kanji.json, qui nen portait aucune. La carte dégrade (pas de lecture
-  // affichée) au lieu de mentir.
+test("TOUS les kanji portent une lecture — le trou est comblé", async () => {
+  // Il en manquait 259 : ceux hérités de l'ancien kanji.json, que le cours n'enseigne pas.
+  // Comblés depuis KANJIDIC2, via l'arbitrage de l'auteur (data/lectures-kanji-arbitrees.json).
+  // Ce test empêche la régression : un kanji ajouté sans lecture rendrait un rappel muet.
   const idx = await index();
   const kanji = [...idx.values()].filter((r) => r.kind === "kanji");
-  const avecLecture = kanji.filter((r) => r.lecture !== "").length;
   expect(kanji.length).toBe(810);
-  expect(avecLecture).toBe(551);
+  expect(kanji.filter((r) => r.lecture === "").map((r) => r.titre)).toEqual([]);
 });
 
 test("556 questions de grammaire peuvent montrer une phrase d'exemple", async () => {
