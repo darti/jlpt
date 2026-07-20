@@ -63,3 +63,35 @@ test("formatLecture assemble on et kun comme le graphe les attend", () => {
   expect(formatLecture(["イ"], [])).toBe("イ");
   expect(formatLecture([], [])).toBe("");
 });
+
+// --- élagage : de la liste exhaustive à une proposition utilisable -------------
+
+import { elaguer } from "./parse.mjs";
+
+test("elaguer ne garde que la première lecture on", () => {
+  // KANJIDIC liste toutes les lectures attestées ; 101 des 259 kanji en ont plusieurs.
+  expect(elaguer(["イチ", "イツ"], [])).toEqual({ on: ["イチ"], kun: [] });
+});
+
+test("elaguer écarte les formes préfixe/suffixe marquées par un tiret", () => {
+  // « ひと- » est un préfixe, pas une lecture autonome : le cours ne l'écrirait pas.
+  expect(elaguer(["イチ"], ["ひと-", "ひと.つ"])).toEqual({ on: ["イチ"], kun: ["ひと(つ)"] });
+});
+
+test("elaguer garde la première lecture kun autonome", () => {
+  expect(elaguer(["ハチ", "ハツ"], ["や", "や.つ", "やっ.つ", "よう"]))
+    .toEqual({ on: ["ハチ"], kun: ["や"] });
+});
+
+test("elaguer rend une liste kun vide si toutes les formes sont des affixes", () => {
+  // Rien plutôt qu'une lecture douteuse : la colonne complète reste sous les yeux de l'auteur.
+  expect(elaguer(["ショウ"], ["-づけ"])).toEqual({ on: ["ショウ"], kun: [] });
+});
+
+test("elaguer sur un kanji sans lecture rend deux listes vides", () => {
+  expect(elaguer([], [])).toEqual({ on: [], kun: [] });
+});
+
+test("elaguer conserve l'okurigana de la lecture retenue", () => {
+  expect(elaguer([], ["あたら.しい", "あら.た"])).toEqual({ on: [], kun: ["あたら(しい)"] });
+});

@@ -52,3 +52,29 @@ export function okuriganaEnParentheses(lecture) {
 export function formatLecture(on, kun) {
   return [...on, ...kun.map(okuriganaEnParentheses)].join("・");
 }
+
+/**
+ * Réduit la liste exhaustive de KANJIDIC à une proposition utilisable.
+ *
+ * KANJIDIC recense TOUTES les lectures attestées, y compris rares : 一 en porte quatre
+ * (`イチ・イツ・ひと-・ひと(つ)`) là où le cours en écrit deux. La règle retenue, volontairement
+ * simple et donc prévisible :
+ *
+ *  - **une seule lecture on**, la première — KANJIDIC les classe par usage ;
+ *  - **une seule lecture kun**, la première qui ne soit pas un affixe.
+ *
+ * Un tiret marque un préfixe (« ひと- ») ou un suffixe (« -づけ ») : ce n'est pas une lecture
+ * autonome, et le cours ne l'écrirait pas. Si toutes les formes kun sont des affixes, on ne
+ * propose rien plutôt qu'une lecture douteuse — la colonne complète reste sous les yeux de
+ * l'auteur, à qui la décision revient.
+ *
+ * ⚠ C'est une AIDE À LA SAISIE, pas une décision. Rien de ce qui sort d'ici n'entre dans le
+ * graphe sans passer par data/lectures-kanji-arbitrees.json, écrit à la main.
+ */
+export function elaguer(on, kun) {
+  const autonome = kun.find((k) => !k.includes("-"));
+  return {
+    on: on.length ? [on[0]] : [],
+    kun: autonome ? [okuriganaEnParentheses(autonome)] : [],
+  };
+}
