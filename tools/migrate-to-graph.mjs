@@ -272,6 +272,60 @@ export function buildQuestions({ kanji, word, gram }) {
   return { bySkill, linkRate: ord ? linked / ord : 0, total: ord };
 }
 
+
+/** Les trois cours ont des ids de groupe indépendants : on préfixe par la piste pour
+ *  qu'un même id dans deux cours ne produise pas une seule leçon. */
+export function lessonId(track, groupId) {
+  return `jlpt:lesson/${track}-${slugify(groupId)}`;
+}
+
+/**
+ * Une leçon ORDONNE des entités existantes ; elle n'en recopie plus mot/lecture/sens.
+ * C'est le cœur de la promesse du graphe : corriger la lecture de 影響 sur son nœud
+ * atteint le quiz, le dictionnaire ET le cours, parce qu'il n'y a qu'un nœud.
+ *
+ * Un item qui ne correspond à aucune entité est ignoré et COMPTÉ — le nombre dit
+ * combien de contenu du cours n'est pas encore adossé au référentiel. C'est une
+ * mesure, pas un échec silencieux.
+ */
+export function buildLessons({ kanji, word, gram }) {
+  const known = new Set([...kanji, ...word, ...gram].map((s) => s["@id"]));
+  const gramByForm = new Map();
+  for (const g of gram) gramByForm.set(slugify(g["jlpt:form"]), g["@id"]);
+
+  const lessons = [];
+  let orphans = 0;
+  for (const track of ["gram", "vocab", "kanji"]) {
+    const src = J(`data/cours-${track}.json`);
+    (src.groups ?? []).forEach((grp, order) => {
+      const covers = [];
+      for (const it of grp.items ?? []) {
+        let iri = null;
+        if (track === "gram" && it.form) {
+          iri = gramByForm.get(slugify(String(it.form).split(" / ")[0])) ?? null;
+        } else if (track === "vocab" && it.mot) {
+          iri = `jlpt:word/${norm(it.mot)}`;
+        } else if (track === "kanji" && it.kanji) {
+          // ⚠ Le champ diffère par piste : « mot » côté vocab, « kanji » côté kanji,
+          // « form » côté grammaire. Réutiliser « mot » ici reliait 0 item sur 551,
+          // en silence — un taux nul est un bug, jamais une donnée.
+          iri = `jlpt:kanji/${norm(it.kanji)}`;
+        }
+        if (iri && known.has(iri)) covers.push(iri);
+        else orphans++;
+      }
+      lessons.push({
+        "@id": lessonId(track, grp.id), "@type": "jlpt:Lesson",
+        "schema:name": norm(grp.title) || grp.id,
+        "jlpt:order": order,
+        "jlpt:track": track,
+        ...(covers.length ? { covers: [...new Set(covers)] } : {}),
+      });
+    });
+  }
+  return { lessons, orphans };
+}
+
 if (process.argv[1]?.endsWith("migrate-to-graph.mjs")) {
   const { kanji, word, gram, conflicts, ecartes } = buildEntities();
   writeFileSync("data/graph/kanji.jsonld", doc(kanji));
@@ -296,5 +350,9 @@ if (process.argv[1]?.endsWith("migrate-to-graph.mjs")) {
   console.log(`kanji ${kanji.length} · mots ${word.length} · grammaire ${gram.length}`);
   console.log(`${ecartes} motifs grammaticaux écartés des mots (ils appartiennent à la grammaire)`);
   console.log(`conflits ${conflicts.length} (dont ${aArbitrer} non tranchés)`);
+  const { lessons, orphans } = buildLessons({ kanji, word, gram });
+  writeFileSync("data/graph/lesson.jsonld", doc(lessons));
+
   console.log(`questions ${total} · arêtes tests ${(linkRate * 100).toFixed(1)} %`);
+  console.log(`leçons ${lessons.length} · items de cours sans entité ${orphans}`);
 }

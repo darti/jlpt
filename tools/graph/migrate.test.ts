@@ -131,3 +131,42 @@ test("buildQuestions réattribue des ordinaux denses malgré les questions écar
   expect(ords[ords.length - 1]).toBe(total - 1);
   expect(new Set(ords).size).toBe(total);
 });
+
+// --- leçons : le cours ORDONNE, il ne recopie plus ------------------------------
+
+import { lessonId, buildLessons } from "../migrate-to-graph.mjs";
+
+test("lessonId préfixe la piste pour éviter les collisions entre cours", () => {
+  expect(lessonId("gram", "conditionnel")).toBe("jlpt:lesson/gram-conditionnel");
+  expect(lessonId("vocab", "conditionnel")).toBe("jlpt:lesson/vocab-conditionnel");
+});
+
+test("buildLessons produit des leçons qui POINTENT au lieu de recopier", () => {
+  const entites = buildEntities();
+  const { lessons } = buildLessons(entites);
+  expect(lessons.length).toBeGreaterThan(20);
+  const connus = new Set([...entites.kanji, ...entites.word, ...entites.gram].map((s) => s["@id"]));
+  for (const l of lessons) {
+    // Aucune leçon ne porte de mot, de lecture ni de sens : ce sont des entités.
+    expect(Object.keys(l).some((k) => /reading|description|form\b/.test(k))).toBe(false);
+    for (const iri of l.covers ?? []) expect(connus.has(iri)).toBe(true);
+  }
+});
+
+test("buildLessons ordonne les notions dans une leçon (covers est une @list)", () => {
+  const { lessons } = buildLessons(buildEntities());
+  const avecPlusieurs = lessons.find((l) => (l.covers ?? []).length > 1);
+  expect(Array.isArray(avecPlusieurs.covers)).toBe(true);
+  expect(avecPlusieurs["jlpt:order"]).toBeGreaterThanOrEqual(0);
+});
+
+test("buildLessons relie les trois pistes, chacune sur SON champ d'item", () => {
+  // Régression : le champ diffère par piste (mot / kanji / form). Réutiliser « mot »
+  // pour les kanji reliait 0 item sur 551, sans erreur — un taux nul est un bug.
+  const { lessons } = buildLessons(buildEntities());
+  for (const track of ["gram", "vocab", "kanji"]) {
+    const relies = lessons.filter((l) => l["jlpt:track"] === track)
+      .reduce((n, l) => n + (l.covers ?? []).length, 0);
+    expect(relies, `piste ${track} : aucun item relié`).toBeGreaterThan(0);
+  }
+});
