@@ -14,3 +14,14 @@ Task 8: complete (e2e9945, entites generees, 280 conflits a arbitrer)
 JMdict: propositions generees (137/180 du trou reel), rien de redistribue
 Tasks 9+11: complete (612735b, 10307 questions, 59.1% aretes, graphe valide)
 Task 10: complete (1d3eaea) — LOT 1 TERMINE, 16072 sujets, graphe valide
+
+# Lot confusion — feat/graphe-confusion
+
+Plan : docs/superpowers/plans/2026-07-21-graphe-confusion.md (7 taches)
+Pre-vol : tsconfig ne couvre que src+scripts (import .mjs sur tools OK). Task 5 etape 2 = garde-fou, peut passer d emblee.
+Base de branche : 47f02ed
+Task 1: revue = 1 Critique (erreur ?: avalait 427 notes de SENS en lecture-erronee), 1 Important (poli/registre sans limite de mot), 1 Mineur = DEFAUT DU PLAN (le cliquet mesure "pas autre", pas "bien classe" -> aveugle au Critique). Correctifs dispatches.
+A FAIRE EN FIN DE LOT : corriger les chiffres de couverture de la spec (1 et 3.2) une fois les cliquets re-etalonnes.
+Task 1 revue 2 (sur 5c62a58) : defauts 1 et 3 OK. Regression sur le garde `registre` (2 cas justes perdus), `but\b` matche "debut" (8 notes), `inexistant` capture des LECTURES inexistantes (8 notes), chiffre 427 faux (reel 535 occ / 482 notes). Correctifs 2 dispatches.
+NOTE : la reco du relecteur "flag u pour \b unicode" est FAUSSE en JS (\w reste [A-Za-z0-9_]) — corrigee avant transmission.
+SEUIL : si une 3e ronde trouve encore des collisions, arreter et remonter a l auteur (approche par regex peut-etre a sa limite).
