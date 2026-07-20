@@ -1,6 +1,6 @@
 # Lectures à arbitrer
 
-524 mots du graphe sont sans lecture. JMdict en propose 137.
+517 mots du graphe sont sans lecture. JMdict en propose 134.
 
 **Comment s'en servir.** Chaque proposition est une SUGGESTION à valider, pas une
 donnée acquise : reporte les lectures que tu retiens dans `data/lectures-arbitrees.json`, sous la
@@ -254,7 +254,6 @@ forme `{ "影響": "えいきょう" }`. La migration ne lit que ce fichier — 
 | サンダル | — | — |
 | サンドイッチ | — | — |
 | しばらく | — | — |
-| すっかり | — | — |
 | タイプ | — | — |
 | ダンス | — | — |
 | チェック | — | — |
@@ -324,10 +323,8 @@ forme `{ "影響": "えいきょう" }`. La migration ne lit que ce fichier — 
 | もったいない | — | — |
 | もしかしたら | — | — |
 | やがて | — | — |
-| やはり | — | — |
 | わがまま | — | — |
 | わざと | — | — |
-| わざわざ | — | — |
 | アイロン | — | — |
 | アンケート | — | — |
 | インターネット | — | — |
@@ -396,7 +393,6 @@ forme `{ "影響": "えいきょう" }`. La migration ne lit que ce fichier — 
 | 災 | — | — |
 | 酸 | す | さん |
 | 散 | ばら | — |
-| 差 | さ | さし |
 | 財 | たから | ざい |
 | 織 | おり | — |
 | 写 | — | — |
@@ -466,7 +462,6 @@ forme `{ "影響": "えいきょう" }`. La migration ne lit que ce fichier — 
 | 投 | とう | — |
 | 灯 | あかり | ひ · あかし · とう · ともし · とぼし · ともしび |
 | 等 | ら | など · とう |
-| 湯 | ゆ | タン |
 | 導 | しるべ | — |
 | 童 | わらべ | わらんべ · わらわ · わらし · わっぱ |
 | 独 | どく | — |
@@ -518,9 +513,7 @@ forme `{ "影響": "えいきょう" }`. La migration ne lit que ce fichier — 
 | 破 | は | — |
 | 社 | しゃ | やしろ |
 | 失 | しつ | — |
-| 最大 | さいだい | — |
 | 最小 | さいしょう | — |
-| しっかり | — | — |
 | やっぱり | — | — |
 | たとえば | — | — |
 | ところで | — | — |
