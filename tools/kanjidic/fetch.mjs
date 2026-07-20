@@ -12,7 +12,7 @@
 //
 // Ne jamais commiter .kanjidic/, ne jamais le copier dans data/ ni dans _site/.
 //
-// Node pur : la CI exécute `node`, jamais `bun`.
+// Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
 import { createWriteStream, existsSync, mkdirSync, statSync } from "node:fs";
 import { pipeline } from "node:stream/promises";
 import { createGunzip } from "node:zlib";

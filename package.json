@@ -8,7 +8,7 @@
     "build": "bun run css -- --minify && bun build ./index.html --minify --splitting --outdir=_site && bun tools/copy-static.mjs",
     "test": "bun test",
     "typecheck": "tsc --noEmit",
-    "validate:graph": "node tools/validate-graph.mjs"
+    "validate:graph": "bun tools/validate-graph.mjs"
   },
   "dependencies": {
     "echarts": "^6.1.0",

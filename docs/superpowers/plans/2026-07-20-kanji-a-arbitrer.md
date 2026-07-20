@@ -13,8 +13,8 @@ fichier LIVRÉ — sans passer par une saisie à la main dans `data/lectures-kan
    qu'une par type (première lecture on ; première kun qui ne soit pas un affixe).
 2. Copier le bloc ci-dessous dans `data/lectures-kanji-arbitrees.json`, **corriger ce qui doit l'être**, et
    retirer les lignes dont on ne veut pas.
-3. `node tools/graph/readings.mjs` — idempotent, n'écrase jamais une lecture existante.
-4. `node tools/validate-graph.mjs` pour confirmer.
+3. `bun tools/graph/readings.mjs` — idempotent, n'écrase jamais une lecture existante.
+4. `bun tools/validate-graph.mjs` pour confirmer.
 
 <details>
 <summary>Bloc prêt à coller — <strong>à relire avant de valider</strong></summary>

@@ -67,7 +67,7 @@ par tâche = branche + répertoire isolés.
     bun run build                     # CSS minifié + bun build ./index.html (--splitting) → _site/
     bunx serve _site                  # servir le build (http, requis pour SW + fetch)
     bun tools/validate-graph.mjs      # valide data/graph/ — SHACL + contrôles impératifs
-    node tools/graph/readings.mjs     # applique data/lectures-arbitrees.json sur word.jsonld
+    bun tools/graph/readings.mjs      # applique les lectures arbitrées (mots + kanji)
 
 **CI** = `.github/workflows/validate.yml` (push + PR), et lui seul : graphe `data/graph/`,
 `typecheck`, `bun test`. `deploy.yml` ne fait que
@@ -107,10 +107,10 @@ consultable depuis le corrigé du quiz, pas un ornement de leçon.
 
 **Lectures manquantes — la seule chaîne d'écriture outillée**, et elle n'écrase jamais rien :
 
-    node tools/jmdict/fetch.mjs        # → .jmdict/ (hors dépôt, JAMAIS commité)
-    node tools/jmdict/propose.mjs      # → docs/…/lectures-a-arbitrer.md (propositions)
+    bun tools/jmdict/fetch.mjs        # → .jmdict/ (hors dépôt, JAMAIS commité)
+    bun tools/jmdict/propose.mjs      # → docs/…/lectures-a-arbitrer.md (propositions)
     #   … l'auteur relit et consigne SES décisions dans data/lectures-arbitrees.json …
-    node tools/graph/readings.mjs      # → pose les lectures manquantes sur word.jsonld
+    bun tools/graph/readings.mjs      # → pose les lectures manquantes sur word.jsonld
 
 ⚠ Aucune donnée JMdict n'entre dans le graphe : **on ne redistribue pas JMdict, on s'en sert
 pour décider.** C'est ce qui évite l'attribution CC BY-SA sur chaque écran et le ShareAlike sur
@@ -143,9 +143,11 @@ utilisateurs. **Ajouter en fin de shard**, et vérifier que `corpus.jsonld` suit
   `tools/copy-static.mjs` (`ROOT` / `isServedData` → build + prod ; gardé par `copy-static.test.ts`),
   `scripts/dev.ts` `STATIC_FILES` (allowlist du serveur de dev → sinon 404 en `bun run dev` seulement),
   et `sw.js` `SHELL` (précache PWA → sinon absent hors ligne seulement).
-- **`tools/*.mjs` = Node-compatible OBLIGATOIRE** : malgré la règle « bun exclusivement »,
-  `.github/workflows/validate.yml` exécute `node tools/validate-graph.mjs` (setup-node 20). Aucune
-  API `Bun.*` là-dedans — la CI contenu casserait, et c'est invisible en local.
+- **`tools/*.mjs` s'exécutent sous `bun`, comme tout le reste** : `bun tools/validate-graph.mjs`,
+  `bun tools/graph/readings.mjs`… Il n'y a **plus aucune exception** à la règle « bun
+  exclusivement » — l'étape `setup-node` de la CI a été supprimée, et avec elle l'ancienne
+  contrainte « rester exécutable sous node ». Ces fichiers n'utilisent que des builtins `node:`
+  (que bun implémente), donc rien à changer : c'est simplement l'invocation qui est unifiée.
 - **ECharts DOIT rester en `import()` dynamique** : l'invariant vit dans **un seul** endroit,
   le hook `useEChart` (`src/features/dashboard/useEChart.ts`), que `ProgressChart`, `PassGauge`
   et `SkillChart` partagent — il fait le `await import("echarts/core")`, le `init` (renderer SVG),

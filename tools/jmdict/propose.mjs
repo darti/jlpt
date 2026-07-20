@@ -8,7 +8,7 @@
 // passer des obligations CC BY-SA (attribution sur chaque écran, ShareAlike sur le jeu
 // dérivé) : on ne redistribue pas JMdict, on s'en sert pour décider.
 //
-// Node pur : la CI exécute `node`, jamais `bun`.
+// Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
 import { createReadStream, existsSync, writeFileSync } from "node:fs";
 import { createInterface } from "node:readline";
 import { readDoc } from "../graph/jsonld.mjs";
@@ -43,7 +43,7 @@ export async function scanJmdict(path, voulus) {
 
 async function main() {
   if (!existsSync(XML)) {
-    console.error(`✗ ${XML} absent — lancer d'abord : node tools/jmdict/fetch.mjs`);
+    console.error(`✗ ${XML} absent — lancer d'abord : bun tools/jmdict/fetch.mjs`);
     return 1;
   }
   const mots = readDoc("data/graph/word.jsonld", "data/graph/context.jsonld").subjects;

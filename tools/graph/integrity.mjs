@@ -6,7 +6,7 @@
 // ordinaux doivent être denses ». Tout ça vit ici, et y restera même après le passage
 // chez Oku — c'est du code, pas de la déclaration.
 //
-// Node pur : la CI exécute `node`, jamais `bun`.
+// Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
 
 import { isSafeIri } from "./jsonld.mjs";
 

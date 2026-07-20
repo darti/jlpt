@@ -8,7 +8,7 @@
 // permet de se passer des obligations CC BY-SA (attribution sur chaque écran, ShareAlike sur
 // le jeu dérivé) : on ne redistribue pas KANJIDIC, on s'en sert pour décider.
 //
-// Node pur : la CI exécute `node`, jamais `bun`.
+// Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
 import { createReadStream, existsSync, writeFileSync } from "node:fs";
 import { createInterface } from "node:readline";
 import { readDoc } from "../graph/jsonld.mjs";
@@ -40,7 +40,7 @@ export async function scanKanjidic(path, voulus) {
 
 async function main() {
   if (!existsSync(XML)) {
-    console.error(`✗ ${XML} absent — lancer d'abord : node tools/kanjidic/fetch.mjs`);
+    console.error(`✗ ${XML} absent — lancer d'abord : bun tools/kanjidic/fetch.mjs`);
     return 1;
   }
   const kanji = readDoc("data/graph/kanji.jsonld", "data/graph/context.jsonld").subjects;
@@ -79,8 +79,8 @@ async function main() {
     + `   qu'une par type (première lecture on ; première kun qui ne soit pas un affixe).\n`
     + `2. Copier le bloc ci-dessous dans \`${DECISIONS}\`, **corriger ce qui doit l'être**, et\n`
     + `   retirer les lignes dont on ne veut pas.\n`
-    + `3. \`node tools/graph/readings.mjs\` — idempotent, n'écrase jamais une lecture existante.\n`
-    + `4. \`node tools/validate-graph.mjs\` pour confirmer.\n\n`
+    + `3. \`bun tools/graph/readings.mjs\` — idempotent, n'écrase jamais une lecture existante.\n`
+    + `4. \`bun tools/validate-graph.mjs\` pour confirmer.\n\n`
     + `<details>\n<summary>Bloc prêt à coller — <strong>à relire avant de valider</strong></summary>\n\n`
     + "```json\n" + JSON.stringify(elaguees, null, 2) + "\n```\n\n</details>\n\n"
     + `| kanji | sens (graphe) | sens (KANJIDIC) | **proposé** | toutes les lectures KANJIDIC |\n|---|---|---|---|---|\n`
@@ -88,7 +88,7 @@ async function main() {
 
   console.log(`✓ ${SORTIE} — ${lignes.length} propositions`);
   if (sansProposition) console.log(`  ${sansProposition} kanji sans lecture dans KANJIDIC`);
-  console.log(`  Reporter les décisions dans ${DECISIONS}, puis : node tools/graph/readings.mjs`);
+  console.log(`  Reporter les décisions dans ${DECISIONS}, puis : bun tools/graph/readings.mjs`);
   return 0;
 }
 

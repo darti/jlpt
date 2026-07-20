@@ -8,7 +8,7 @@
 // ⚠ Rien de ce qui sort d'ici ne doit être redistribué (CC BY-SA 4.0, cf. fetch.mjs).
 // La sortie est un document d'arbitrage lu par un humain, pas une donnée livrée.
 //
-// Node pur : la CI exécute `node`, jamais `bun`.
+// Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
 
 const KANA_ONLY = /^[ぁ-んァ-ヴー]+$/;
 

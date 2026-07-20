@@ -30,22 +30,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Node est VOLONTAIRE ici : tools/*.mjs doit rester exécutable sous node (aucune API
-      # Bun.*). Faire tourner validate-graph.mjs sous node est ce qui vérifie cet invariant —
-      # ne pas « harmoniser » cette étape vers bun, on perdrait le seul détecteur. Le reste
-      # du dépôt est bun-only (cf. CLAUDE.md).
-      - name: Node (pour tools/*.mjs uniquement)
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      # data/graph/ est ce que l app lit au runtime depuis le lot 2. Sous node pour la même
-      # raison que ci-dessus — tools/*.mjs doit rester exécutable sans bun.
-      - name: Valider le graphe JSON-LD (data/graph/)
-        run: node tools/validate-graph.mjs
-
       - name: Installer Bun
         uses: oven-sh/setup-bun@v2
+
+      # data/graph/ est ce que l app lit au runtime. Sous bun comme TOUT le reste du dépôt :
+      # l installation dun second runtime a disparu, plus rien ici nen exige (cf. CLAUDE.md).
+      - name: Valider le graphe JSON-LD (data/graph/)
+        run: bun tools/validate-graph.mjs
 
       - name: Installer les dépendances
         run: bun install --frozen-lockfile
