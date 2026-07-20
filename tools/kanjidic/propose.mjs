@@ -12,7 +12,7 @@
 import { createReadStream, existsSync, writeFileSync } from "node:fs";
 import { createInterface } from "node:readline";
 import { readDoc } from "../graph/jsonld.mjs";
-import { readingsOfCharacter, formatLecture } from "./parse.mjs";
+import { readingsOfCharacter, formatLecture, elaguer } from "./parse.mjs";
 
 const XML = ".kanjidic/kanjidic2.xml";
 const SORTIE = "docs/superpowers/plans/2026-07-20-kanji-a-arbitrer.md";
@@ -52,28 +52,38 @@ async function main() {
   const index = await scanKanjidic(XML, voulus);
 
   const lignes = [];
-  const proposees = {};
+  const elaguees = {};
   let sansProposition = 0;
   for (const k of sans) {
     const nom = k["schema:name"];
     const c = index.get(nom);
     if (!c || (!c.on.length && !c.kun.length)) { sansProposition++; continue; }
-    const lecture = formatLecture(c.on, c.kun);
-    proposees[nom] = lecture;
-    lignes.push(`| ${nom} | ${k["schema:description"] ?? ""} | ${c.sens} | \`${lecture}\` |`);
+    const complet = formatLecture(c.on, c.kun);
+    const court = elaguer(c.on, c.kun);
+    const courte = [...court.on, ...court.kun].join("・");
+    if (courte) elaguees[nom] = courte;
+    // La colonne « toutes » reste affichée : c est elle qui permet de contester l élagage.
+    lignes.push(`| ${nom} | ${k["schema:description"] ?? ""} | ${c.sens} | \`${courte}\` | \`${complet}\` |`);
   }
 
   writeFileSync(SORTIE,
     `# Lectures de kanji à arbitrer\n\n`
     + `${sans.length} kanji du graphe n'ont aucune lecture. KANJIDIC2 en propose ${lignes.length}`
     + `${sansProposition ? ` (${sansProposition} sans proposition)` : ""}.\n\n`
-    + `**Ces propositions ne sont PAS dans le graphe.** Relire la colonne « proposé », corriger ce\n`
-    + `qui doit l'être, puis reporter les lectures retenues dans \`${DECISIONS}\` :\n\n`
-    + "```json\n{\n  \"八\": \"ハチ・や・や(つ)\",\n  \"一\": \"イチ・ひと・ひと(つ)\"\n}\n```\n\n"
-    + `puis \`node tools/graph/readings.mjs\`, qui n'écrase jamais une lecture existante.\n\n`
-    + `⚠ KANJIDIC2 liste TOUTES les lectures attestées, y compris rares — le cours n'en garde\n`
-    + `généralement qu'une ou deux par type. Élaguer est le travail d'arbitrage.\n\n`
-    + `| kanji | sens (graphe) | sens (KANJIDIC) | lecture proposée |\n|---|---|---|---|\n`
+    + `**Ces propositions ne sont PAS dans le graphe.** Rien n'entre dans \`kanji.jsonld\` — un\n`
+    + `fichier LIVRÉ — sans passer par une saisie à la main dans \`${DECISIONS}\`. C'est ce qui\n`
+    + `évite l'attribution CC BY-SA sur chaque écran et le ShareAlike sur \`data/graph/\`.\n\n`
+    + `## Marche à suivre\n\n`
+    + `1. Parcourir la colonne **proposé**, en s'aidant de la dernière colonne pour contester\n`
+    + `   l'élagage : KANJIDIC recense TOUTES les lectures attestées, la proposition n'en garde\n`
+    + `   qu'une par type (première lecture on ; première kun qui ne soit pas un affixe).\n`
+    + `2. Copier le bloc ci-dessous dans \`${DECISIONS}\`, **corriger ce qui doit l'être**, et\n`
+    + `   retirer les lignes dont on ne veut pas.\n`
+    + `3. \`node tools/graph/readings.mjs\` — idempotent, n'écrase jamais une lecture existante.\n`
+    + `4. \`node tools/validate-graph.mjs\` pour confirmer.\n\n`
+    + `<details>\n<summary>Bloc prêt à coller — <strong>à relire avant de valider</strong></summary>\n\n`
+    + "```json\n" + JSON.stringify(elaguees, null, 2) + "\n```\n\n</details>\n\n"
+    + `| kanji | sens (graphe) | sens (KANJIDIC) | **proposé** | toutes les lectures KANJIDIC |\n|---|---|---|---|---|\n`
     + `${lignes.join("\n")}\n`);
 
   console.log(`✓ ${SORTIE} — ${lignes.length} propositions`);
