@@ -43,7 +43,7 @@ test("toggle fait cycler l'état d'un item et le persiste", async () => {
     api!.toggle("kanji:政");
   });
   expect(
-    JSON.parse(globalThis.localStorage.getItem("jlptN3_cours_v1")!)
+    JSON.parse(globalThis.localStorage.getItem("jlptN3_cours_v2")!)
   ).toEqual({ "kanji:政": "known" });
   await act(async () => {
     root.unmount();
@@ -53,7 +53,7 @@ test("toggle fait cycler l'état d'un item et le persiste", async () => {
 test("charge la progression depuis localStorage au montage", async () => {
   // seed localStorage avec des données existantes
   globalThis.localStorage.setItem(
-    "jlptN3_cours_v1",
+    "jlptN3_cours_v2",
     JSON.stringify({ "vocab:水": "known", "kanji:火": "review" })
   );
 

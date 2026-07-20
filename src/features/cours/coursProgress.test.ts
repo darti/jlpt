@@ -48,9 +48,9 @@ test("load/save : round-trip, JSON invalide → {}, valeurs inconnues filtrées"
   };
   saveCoursProgress({ a: "known", b: "review" }, store);
   expect(loadCoursProgress(store)).toEqual({ a: "known", b: "review" });
-  mem["jlptN3_cours_v1"] = "{pas du json";
+  mem["jlptN3_cours_v2"] = "{pas du json";
   expect(loadCoursProgress(store)).toEqual({});
-  mem["jlptN3_cours_v1"] = JSON.stringify({ a: "known", c: "bidon" });
+  mem["jlptN3_cours_v2"] = JSON.stringify({ a: "known", c: "bidon" });
   expect(loadCoursProgress(store)).toEqual({ a: "known" }); // "bidon" ignoré
 });
 

@@ -3,7 +3,6 @@
  *  loader. data/cours-gram.json is now the unified Category › Group › Item schema
  *  (issu de la conversion vers ce schéma, outil supprimé depuis) : a "learn" category
  *  (form/niv/mean/examples), one item per form. */
-import type { GramItem, LearnCategory } from "./coursSchema.ts";
 import type { Question } from "../../types/quiz.ts";
 
 /** `id`/`group` locate the point in the cours master-detail (`/cours/gram/<group>` + item
@@ -20,18 +19,41 @@ export function normalizeForm(s: string): string {
   return core.replace(/〜/g, "").replace(/\s+/g, "");
 }
 
-/** Build the form→point index from the cours-gram category. A GramItem's form may be a
- *  compound "〜A / 〜B" of alternative forms (e.g. "〜ようだ / 〜みたいだ") — each alternative
- *  is indexed separately so a quiz testing either one resolves to the same rappel. */
-export function buildCoursGramIndex(category: LearnCategory): CoursGramIndex {
+type Sujet = Record<string, unknown>;
+const g = (v: unknown): string => (typeof v === "string" ? v : "");
+const gl = (v: unknown): string[] =>
+  Array.isArray(v) ? v.filter((x): x is string => typeof x === "string")
+    : (typeof v === "string" ? [v] : []);
+
+/** Build the form→point index from the graph. A form may be a compound "〜A / 〜B"
+ *  (e.g. "〜ようだ / 〜みたいだ") — each alternative is indexed separately so a quiz testing
+ *  either one resolves to the same rappel ; `jlpt:altForm` l est de même.
+ *
+ *  ⚠ Les LEÇONS sont nécessaires : `group` alimente le lien profond /cours/gram/<group>
+ *  (coursDeepLink#coursItemHref), et seule la leçon sait où vit un point de grammaire.
+ *  Le remplir avec une constante produirait une URL morte. */
+export function buildCoursGramIndex(gram: Sujet[], lessons: Sujet[]): CoursGramIndex {
+  const groupOf = new Map<string, string>();
+  for (const les of lessons) {
+    if (g(les["jlpt:track"]) !== "gram") continue;
+    // Même règle que coursFromGraph : on retire le préfixe de piste pour retrouver l id
+    // de groupe d origine, sinon le lien profond pointe vers /cours/gram/gram-g1.
+    const gid = (g(les["@id"]).split("/").pop() ?? "").replace(/^gram-/, "");
+    for (const iri of gl(les.covers)) if (!groupOf.has(iri)) groupOf.set(iri, gid);
+  }
+
   const index: CoursGramIndex = new Map();
-  for (const group of category.groups) {
-    for (const it of group.items as GramItem[]) {
-      if (!it.form) continue;
-      for (const alt of it.form.split(" / ")) {
-        const key = normalizeForm(alt);
-        if (key) index.set(key, { forme: alt.trim(), niv: it.niv ?? "", sens: it.mean ?? "", id: it.id, group: group.id });
-      }
+  for (const p of gram) {
+    const iri = g(p["@id"]);
+    const form = g(p["jlpt:form"]);
+    if (!form) continue;
+    for (const f of [...form.split(" / "), ...gl(p["jlpt:altForm"])]) {
+      const key = normalizeForm(f);
+      if (!key) continue;
+      index.set(key, {
+        forme: f.trim(), niv: g(p["jlpt:level"]), sens: g(p["schema:description"]),
+        id: iri, group: groupOf.get(iri) ?? "",
+      });
     }
   }
   return index;
@@ -58,12 +80,17 @@ let cache: Promise<CoursGramIndex> | null = null;
 /** Clears the memoized index (test isolation). */
 export function clearCoursGramCache(): void { cache = null; }
 
-/** Load + memoize the cours-gram index. Failure → empty index (every grammar corrigé falls back to the link). */
+const graphDoc = (fetchImpl: FetchLike, n: string): Promise<Sujet[]> =>
+  fetchImpl(`data/graph/${n}.jsonld`)
+    .then((r) => r.json() as Promise<{ "@graph"?: Sujet[] }>)
+    .then((d) => d["@graph"] ?? []);
+
+/** Load + memoize the index depuis le graphe. Échec → index vide (chaque corrigé de grammaire
+ *  retombe sur le lien simple). */
 export function loadCoursGramIndex(fetchImpl: FetchLike = fetch as FetchLike): Promise<CoursGramIndex> {
   if (!cache) {
-    cache = fetchImpl("data/cours-gram.json")
-      .then((r) => r.json() as Promise<LearnCategory>)
-      .then(buildCoursGramIndex)
+    cache = Promise.all([graphDoc(fetchImpl, "gram"), graphDoc(fetchImpl, "lesson")])
+      .then(([gr, les]) => buildCoursGramIndex(gr, les))
       .catch(() => new Map<string, GrammarRappel>());
   }
   return cache;

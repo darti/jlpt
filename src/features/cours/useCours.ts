@@ -1,24 +1,27 @@
-/** Charge le contenu de cours (data/cours-*.json, schéma unifié) au runtime.
- *  null = chargement, [] = échec. */
+/** Charge le contenu de cours depuis le graphe (data/graph/*.jsonld) au runtime.
+ *  null = chargement, [] = échec. La projection vit dans coursFromGraph.ts — ce hook ne fait
+ *  que l'alimenter. */
 import { useEffect, useState } from "react";
-import type { CoursCategory, CoursCategoryId } from "./coursSchema.ts";
-import { isCoursCategory } from "./coursValidate.ts";
+import type { CoursCategory } from "./coursSchema.ts";
+import { buildCours, type CoursDocs, type Sujet } from "./coursFromGraph.ts";
 
-const IDS: CoursCategoryId[] = ["gram", "vocab", "kanji", "method"];
+const DOCS = ["lesson", "gram", "kanji", "word", "example", "method"] as const;
 
 export function useCours(): CoursCategory[] | null {
   const [cats, setCats] = useState<CoursCategory[] | null>(null);
   useEffect(() => {
     let alive = true;
+    // En parallèle : six documents chargés au fil d'une boucle `await` sérialiseraient six
+    // allers-retours au premier affichage. Le SW les précache depuis le lot 2.
     Promise.all(
-      IDS.map((id) =>
-        fetch(`data/cours-${id}.json`).then((r) => r.json() as Promise<unknown>)),
+      DOCS.map((n) => fetch(`data/graph/${n}.jsonld`)
+        .then((r) => r.json() as Promise<{ "@graph"?: Sujet[] }>)
+        .then((d) => d["@graph"] ?? [])),
     )
-      .then((c) => {
-        // Rejette toute donnée périmée/malformée (ex. cache SW d'avant lessons→groups) :
-        // mieux vaut « Cours indisponible » qu'un plantage sur `category.groups.map`.
-        if (!c.every(isCoursCategory)) throw new Error("cours: forme de données invalide");
-        if (alive) setCats(c);
+      .then((docs) => {
+        if (!alive) return;
+        const par = Object.fromEntries(DOCS.map((n, i) => [n, docs[i]])) as unknown as CoursDocs;
+        setCats(buildCours(par));
       })
       .catch(() => { if (alive) setCats([]); });
     return () => { alive = false; };

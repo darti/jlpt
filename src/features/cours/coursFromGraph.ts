@@ -100,7 +100,10 @@ export function buildCours(docs: CoursDocs): CoursCategory[] {
       .slice()
       .sort((a, b) => (a["jlpt:order"] as number) - (b["jlpt:order"] as number))
       .map((l) => ({
-        id: str(l["@id"]).split("/").pop() ?? "",
+        // L'IRI est `jlpt:lesson/<piste>-<groupe>` ; on retire le préfixe de piste pour
+        // rendre l'id du groupe d'origine (`g1`). Le garder produirait `/cours/gram/gram-g1`
+        // et casserait les liens profonds déjà partagés (coursDeepLink#coursItemHref).
+        id: (str(l["@id"]).split("/").pop() ?? "").replace(new RegExp(`^${track}-`), ""),
         title: str(l["schema:name"]),
         items: list(l.covers)
           .map((iri) => toItem(track, iri, entites, ex))
