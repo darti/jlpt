@@ -1,5 +1,55 @@
 import { test, expect } from "bun:test";
-import { toHiragana, applyReadings } from "./readings.mjs";
+import { toHiragana, applyReadings, applyKanjiReadings } from "./readings.mjs";
+
+// --- lectures de kanji (on/kun), arbitrées depuis KANJIDIC2 ---------------------
+
+const kanji = (nom: string, on?: string[], kun?: string[]) => ({
+  "@id": `jlpt:kanji/${nom}`, "@type": "jlpt:Kanji", "schema:name": nom,
+  ...(on ? { "jlpt:onReading": on } : {}),
+  ...(kun ? { "jlpt:kunReading": kun } : {}),
+});
+
+test("applyKanjiReadings découpe la décision en on et kun", () => {
+  const { sujets, poses } = applyKanjiReadings([kanji("八")], { "八": "ハチ・や・や(つ)" });
+  expect(sujets[0]["jlpt:onReading"]).toEqual(["ハチ"]);
+  expect(sujets[0]["jlpt:kunReading"]).toEqual(["や", "や(つ)"]);
+  expect(poses).toBe(1);
+});
+
+test("applyKanjiReadings n'ÉCRASE JAMAIS une lecture existante", () => {
+  const { sujets, poses, conflits } = applyKanjiReadings(
+    [kanji("位", ["イ"], ["くらい"])], { "位": "スイ" });
+  expect(sujets[0]["jlpt:onReading"]).toEqual(["イ"]);
+  expect(poses).toBe(0);
+  expect(conflits).toEqual(["位"]);
+});
+
+test("applyKanjiReadings est idempotent", () => {
+  const un = applyKanjiReadings([kanji("八")], { "八": "ハチ・や" });
+  const deux = applyKanjiReadings(un.sujets, { "八": "ハチ・や" });
+  expect(deux.sujets).toEqual(un.sujets);
+  expect(deux.poses).toBe(0);
+});
+
+test("applyKanjiReadings signale une décision qui ne vise aucun kanji du graphe", () => {
+  const { poses, inconnus } = applyKanjiReadings([kanji("八")], { "𠮟": "シツ" });
+  expect(poses).toBe(0);
+  expect(inconnus).toEqual(["𠮟"]);
+});
+
+test("applyKanjiReadings refuse une décision vide", () => {
+  const { sujets, poses } = applyKanjiReadings([kanji("八")], { "八": "  " });
+  expect(sujets[0]["jlpt:onReading"]).toBeUndefined();
+  expect(poses).toBe(0);
+});
+
+test("applyKanjiReadings ne touche pas aux sujets qui ne sont pas des kanji", () => {
+  const mot = { "@id": "jlpt:word/八", "@type": "jlpt:Word", "schema:name": "八" };
+  const { sujets } = applyKanjiReadings([mot], { "八": "ハチ" });
+  expect(sujets[0]["jlpt:onReading"]).toBeUndefined();
+});
+
+// --- lectures de mots ----------------------------------------------------------
 
 // Récupéré de tools/migrate-to-graph.mjs (supprimé au lot 4) : la règle vaut toujours, et
 // c'est le seul endroit du dépôt qui décide comment une lecture entre dans le graphe.

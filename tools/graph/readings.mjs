@@ -16,9 +16,12 @@
 //
 // Node pur : la CI exécute `node`, jamais `bun`.
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { splitOnKun } from "./kana.mjs";
 
 const DECISIONS = "data/lectures-arbitrees.json";
 const MOTS = "data/graph/word.jsonld";
+const DECISIONS_KANJI = "data/lectures-kanji-arbitrees.json";
+const KANJI = "data/graph/kanji.jsonld";
 
 /** Katakana → hiragana. Une lecture de MOT sert de furigana, et les furigana s'écrivent
  *  en hiragana. ⚠ Ne s'applique PAS aux lectures ON d'un kanji, où le katakana est la
@@ -59,24 +62,66 @@ export function applyReadings(sujets, decisions) {
   return { sujets: out, poses: poses.length, mots: poses, conflits, inconnus: [...vises] };
 }
 
-if (process.argv[1]?.endsWith("readings.mjs")) {
-  if (!existsSync(DECISIONS)) {
-    console.error(`✗ ${DECISIONS} absent — produire d'abord les propositions :`);
-    console.error("    node tools/jmdict/fetch.mjs && node tools/jmdict/propose.mjs");
-    process.exit(1);
-  }
-  const decisions = JSON.parse(readFileSync(DECISIONS, "utf8"));
-  const doc = JSON.parse(readFileSync(MOTS, "utf8"));
-  const { sujets, poses, conflits, inconnus } = applyReadings(doc["@graph"] ?? [], decisions);
+/**
+ * Pose les lectures on/kun décidées sur les sujets `jlpt:Kanji` qui n'en portent pas.
+ *
+ * Même invariant que `applyReadings` : on ajoute, on n'écrase jamais. La décision est écrite
+ * dans la forme unique du projet (« ハチ・や・や(つ) ») et découpée par script — c'est
+ * `splitOnKun` qui fait foi, la même fonction que la migration du cours a utilisée.
+ */
+export function applyKanjiReadings(sujets, decisions) {
+  const vises = new Set(Object.keys(decisions));
+  const poses = [];
+  const conflits = [];
+  const out = sujets.map((s) => {
+    if (!arr(s["@type"]).includes("jlpt:Kanji")) return s;
+    const nom = s["schema:name"];
+    if (typeof nom !== "string" || !(nom in decisions)) return s;
+    vises.delete(nom);
+    const { on, kun } = splitOnKun(String(decisions[nom]).trim());
+    if (!on.length && !kun.length) return s;
+    if (arr(s["jlpt:onReading"]).length || arr(s["jlpt:kunReading"]).length) {
+      conflits.push(nom);
+      return s;
+    }
+    poses.push(nom);
+    return {
+      ...s,
+      ...(on.length ? { "jlpt:onReading": on } : {}),
+      ...(kun.length ? { "jlpt:kunReading": kun } : {}),
+    };
+  });
+  return { sujets: out, poses: poses.length, kanji: poses, conflits, inconnus: [...vises] };
+}
 
-  writeFileSync(MOTS, JSON.stringify({ ...doc, "@graph": sujets }, null, 1) + "\n");
-  console.log(`${poses} lecture(s) posée(s) sur ${MOTS}`);
+/** Applique un fichier de décisions sur un document du graphe. Rend le rapport. */
+function passe(fichier, document, apply, quoi) {
+  if (!existsSync(fichier)) return { fait: false };
+  const decisions = JSON.parse(readFileSync(fichier, "utf8"));
+  const doc = JSON.parse(readFileSync(document, "utf8"));
+  const { sujets, poses, conflits, inconnus } = apply(doc["@graph"] ?? [], decisions);
+  writeFileSync(document, JSON.stringify({ ...doc, "@graph": sujets }, null, 1) + "\n");
+
+  console.log(`${poses} lecture(s) de ${quoi} posée(s) sur ${document}`);
   if (conflits.length) {
     console.log(`⚠ ${conflits.length} décision(s) ignorée(s) — le graphe porte déjà une autre`);
     console.log(`  lecture (il fait autorité) : ${conflits.join(", ")}`);
   }
   if (inconnus.length) {
-    console.log(`⚠ ${inconnus.length} décision(s) sans mot correspondant : ${inconnus.join(", ")}`);
+    console.log(`⚠ ${inconnus.length} décision(s) sans ${quoi} correspondant : ${inconnus.join(", ")}`);
+  }
+  return { fait: true };
+}
+
+if (process.argv[1]?.endsWith("readings.mjs")) {
+  const mots = passe(DECISIONS, MOTS, applyReadings, "mot");
+  const kanji = passe(DECISIONS_KANJI, KANJI, applyKanjiReadings, "kanji");
+
+  if (!mots.fait && !kanji.fait) {
+    console.error(`✗ ni ${DECISIONS} ni ${DECISIONS_KANJI} — produire d'abord les propositions :`);
+    console.error("    node tools/jmdict/fetch.mjs   && node tools/jmdict/propose.mjs   # mots");
+    console.error("    node tools/kanjidic/fetch.mjs && node tools/kanjidic/propose.mjs # kanji");
+    process.exit(1);
   }
   console.log("Relancer `node tools/validate-graph.mjs` pour confirmer.");
 }
