@@ -1268,7 +1268,21 @@ bun run build && bunx serve _site
 
 - [ ] **Step 3 : Commit du constat**
 
-Consigner ce qui a été vérifié dans le plan ou le message de commit. Ne pas pousser sans cette étape.
+#### Constat du 2026-07-20 — Chromium 143 headless, build servi sur `http://localhost:4176`
+
+| Contrôle | Résultat |
+|---|---|
+| Cours › Grammaire (`/cours/gram/g3`) | chaque point affiche forme, niveau, structure, sens **et sa phrase d'exemple avec l'analyse jeton par jeton** — 409 `<ruby>` rendus |
+| Cours › Kanji (`/cours/kanji/g35`) | **la leçon « Famille 立 — debout », VIDE avant migration, affiche 競 キョウ・きそ(う) · 章 ショウ · 童 ドウ・わらべ** — lectures on·kun comprises |
+| Cours › Méthode | les deux sections et leurs conseils s'affichent |
+| Rappel de cours (corrigé de quiz) | trouvé : « まで (N5) — Particule de limite… » + lien profond vers le point |
+| `data/cours-gram.json` | **404** — plus servi, comme attendu |
+| Réseau | **aucune requête en échec** |
+| Console | **aucune erreur** |
+
+C'est le contrôle kanji qui compte le plus : il prouve à la fois que les 179 entités créées
+sont bien rattachées, que les lectures on·kun survivent, et qu'un contenu jusque-là **invisible
+dans l'app** est réapparu.
 
 ---
 
