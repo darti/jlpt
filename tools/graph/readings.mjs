@@ -113,14 +113,56 @@ function passe(fichier, document, apply, quoi) {
   return { fait: true };
 }
 
+const PROPOSITIONS_MOTS = "docs/superpowers/plans/2026-07-20-lectures-a-arbitrer.md";
+const PROPOSITIONS_KANJI = "docs/superpowers/plans/2026-07-20-kanji-a-arbitrer.md";
+
+/**
+ * Que dire quand aucun fichier de décisions n'existe.
+ *
+ * ⚠ Le message précédent envoyait relancer `fetch` + `propose`, ce que l'utilisateur venait
+ * de faire — et qui ne pouvait pas aider : `propose.mjs` écrit un DOCUMENT DE PROPOSITIONS
+ * dans docs/, jamais le fichier de décisions dans data/. L'étape manquante est l'ARBITRAGE,
+ * une saisie à la main, et c'est délibéré : c'est elle qui fait que ce qui entre dans le
+ * graphe est une décision de l'auteur et non une extraction d'un jeu sous CC BY-SA.
+ *
+ * Le message doit donc dépendre de l'état réel : renvoyer produire les propositions si elles
+ * manquent, mais pointer l'arbitrage si elles sont déjà là.
+ */
+export function messageAbsence({ propositionsMots, propositionsKanji }) {
+  const l = [`✗ ni ${DECISIONS} ni ${DECISIONS_KANJI}.`, ""];
+  const aArbitrer = [];
+  if (propositionsMots) aArbitrer.push([PROPOSITIONS_MOTS, DECISIONS, "mots"]);
+  if (propositionsKanji) aArbitrer.push([PROPOSITIONS_KANJI, DECISIONS_KANJI, "kanji"]);
+
+  if (aArbitrer.length) {
+    l.push("Les propositions sont DÉJÀ produites — il reste à les arbitrer, à la main :", "");
+    for (const [doc, dec, quoi] of aArbitrer) {
+      l.push(`  ${quoi} : relire les propositions de`, `    ${doc}`,
+        `  puis reporter TES décisions, corrigées, dans`, `    ${dec}`, "");
+    }
+    l.push("Cette étape ne peut pas être automatisée : c'est elle qui fait entrer dans le",
+      "graphe une décision d'auteur, et non une extraction d'un jeu sous CC BY-SA.");
+  }
+
+  const aProduire = [];
+  if (!propositionsMots) aProduire.push("    bun tools/jmdict/fetch.mjs   && bun tools/jmdict/propose.mjs   # mots");
+  if (!propositionsKanji) aProduire.push("    bun tools/kanjidic/fetch.mjs && bun tools/kanjidic/propose.mjs # kanji");
+  if (aProduire.length) {
+    if (aArbitrer.length) l.push("");
+    l.push("Propositions encore à produire :", ...aProduire);
+  }
+  return l;
+}
+
 if (process.argv[1]?.endsWith("readings.mjs")) {
   const mots = passe(DECISIONS, MOTS, applyReadings, "mot");
   const kanji = passe(DECISIONS_KANJI, KANJI, applyKanjiReadings, "kanji");
 
   if (!mots.fait && !kanji.fait) {
-    console.error(`✗ ni ${DECISIONS} ni ${DECISIONS_KANJI} — produire d'abord les propositions :`);
-    console.error("    bun tools/jmdict/fetch.mjs   && bun tools/jmdict/propose.mjs   # mots");
-    console.error("    bun tools/kanjidic/fetch.mjs && bun tools/kanjidic/propose.mjs # kanji");
+    for (const ligne of messageAbsence({
+      propositionsMots: existsSync(PROPOSITIONS_MOTS),
+      propositionsKanji: existsSync(PROPOSITIONS_KANJI),
+    })) console.error(ligne);
     process.exit(1);
   }
   console.log("Relancer `bun tools/validate-graph.mjs` pour confirmer.");
