@@ -46,3 +46,26 @@ test("resolveReading : ni auteur ni dico → pas de lecture, pas d'arbitrage", (
   expect(r.reading).toBeNull();
   expect(r.needsArbitration).toBe(false);
 });
+
+// --- ce que dict.json contient et qui n'est PAS un mot -------------------------
+
+import { buildEntities } from "../migrate-to-graph.mjs";
+
+test("buildEntities n'importe pas les motifs grammaticaux comme des mots", () => {
+  // dict.json est un fourre-tout : 161 de ses entrées sont des motifs (« 〜うちに »,
+  // « お〜する »), dont 129 sont déjà des GrammarPoint. Les importer comme Word
+  // recréerait la duplication que ce graphe doit supprimer.
+  const { word, gram, ecartes } = buildEntities();
+  const motifs = word.filter((w) => /[〜～／]/.test(w["schema:name"]));
+  expect(motifs).toEqual([]);
+  expect(ecartes).toBeGreaterThan(100);
+  expect(gram.length).toBeGreaterThan(300);
+});
+
+test("buildEntities produit des @id uniques par type", () => {
+  const { kanji, word, gram } = buildEntities();
+  for (const [nom, liste] of [["kanji", kanji], ["word", word], ["gram", gram]] as const) {
+    const ids = liste.map((s) => s["@id"]);
+    expect(new Set(ids).size, `doublon d'@id dans ${nom}`).toBe(ids.length);
+  }
+});

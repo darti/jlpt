@@ -81,41 +81,6 @@ export function buildEntities() {
   }));
   const kanjiSet = new Set(kanjiSrc.map((k) => norm(k.k)));
 
-  // --- mots : union vocab.json ∪ dict.json, précédence sur la lecture ---
-  const authorReading = new Map();
-  const authorMeaning = new Map();
-  const authorLevel = new Map();
-  for (const v of vocabSrc) {
-    const k = norm(v.k);
-    const r = readingOf(v);
-    if (r) authorReading.set(k, r);
-    if (norm(v.sens)) authorMeaning.set(k, norm(v.sens));
-    if (norm(v.lvl)) authorLevel.set(k, norm(v.lvl));
-  }
-
-  const word = [];
-  for (const w of new Set([...authorReading.keys(), ...authorMeaning.keys(), ...Object.keys(dict).map(norm)])) {
-    if (!w) continue;
-    const dictR = norm(dict[w]?.r) || null;
-    const { reading, conflict, needsArbitration } = resolveReading(w, {
-      author: authorReading.get(w) ?? null,
-      dict: dictR,
-    });
-    if (conflict) conflicts.push({ mot: w, auteur: authorReading.get(w), dict: dictR, retenu: reading });
-    if (needsArbitration) conflicts.push({ mot: w, auteur: null, dict: dictR, retenu: "(à arbitrer)" });
-
-    const meaning = authorMeaning.get(w) || norm(dict[w]?.m);
-    const uses = [...w].filter((c) => kanjiSet.has(c)).map((c) => `jlpt:kanji/${c}`);
-    word.push({
-      "@id": `jlpt:word/${w}`, "@type": "jlpt:Word",
-      "schema:name": w,
-      ...(reading ? { "jlpt:reading": reading } : {}),
-      ...(meaning ? { "schema:description": meaning } : {}),
-      ...(authorLevel.get(w) ? { "jlpt:level": authorLevel.get(w) } : {}),
-      ...(uses.length ? { usesKanji: [...new Set(uses)] } : {}),
-    });
-  }
-
   // --- grammaire : fusion des deux référentiels ---
   const gram = new Map();
   const put = (form, fields) => {
@@ -144,11 +109,52 @@ export function buildEntities() {
     }
   }
 
-  return { kanji, word, gram: [...gram.values()], conflicts };
+  // --- mots : union vocab.json ∪ dict.json, précédence sur la lecture ---
+  const authorReading = new Map();
+  const authorMeaning = new Map();
+  const authorLevel = new Map();
+  for (const v of vocabSrc) {
+    const k = norm(v.k);
+    const r = readingOf(v);
+    if (r) authorReading.set(k, r);
+    if (norm(v.sens)) authorMeaning.set(k, norm(v.sens));
+    if (norm(v.lvl)) authorLevel.set(k, norm(v.lvl));
+  }
+
+  // Un motif grammatical n'est pas un mot. dict.json en contient 161 (« 〜うちに »,
+  // « お〜する »…), dont 129 sont DÉJÀ des jlpt:GrammarPoint : les importer comme
+  // jlpt:Word recréerait exactement la duplication que ce graphe doit supprimer.
+  const estMotifGrammatical = (w) => /[〜～]/.test(w) || /[／]/.test(w);
+  const word = [];
+  let ecartes = 0;
+  for (const w of new Set([...authorReading.keys(), ...authorMeaning.keys(), ...Object.keys(dict).map(norm)])) {
+    if (!w) continue;
+    if (estMotifGrammatical(w)) { ecartes++; continue; }
+    const dictR = norm(dict[w]?.r) || null;
+    const { reading, conflict, needsArbitration } = resolveReading(w, {
+      author: authorReading.get(w) ?? null,
+      dict: dictR,
+    });
+    if (conflict) conflicts.push({ mot: w, auteur: authorReading.get(w), dict: dictR, retenu: reading });
+    if (needsArbitration) conflicts.push({ mot: w, auteur: null, dict: dictR, retenu: "(à arbitrer)" });
+
+    const meaning = authorMeaning.get(w) || norm(dict[w]?.m);
+    const uses = [...w].filter((c) => kanjiSet.has(c)).map((c) => `jlpt:kanji/${c}`);
+    word.push({
+      "@id": `jlpt:word/${w}`, "@type": "jlpt:Word",
+      "schema:name": w,
+      ...(reading ? { "jlpt:reading": reading } : {}),
+      ...(meaning ? { "schema:description": meaning } : {}),
+      ...(authorLevel.get(w) ? { "jlpt:level": authorLevel.get(w) } : {}),
+      ...(uses.length ? { usesKanji: [...new Set(uses)] } : {}),
+    });
+  }
+
+  return { kanji, word, gram: [...gram.values()], conflicts, ecartes };
 }
 
 if (process.argv[1]?.endsWith("migrate-to-graph.mjs")) {
-  const { kanji, word, gram, conflicts } = buildEntities();
+  const { kanji, word, gram, conflicts, ecartes } = buildEntities();
   writeFileSync("data/graph/kanji.jsonld", doc(kanji));
   writeFileSync("data/graph/word.jsonld", doc(word));
   writeFileSync("data/graph/gram.jsonld", doc(gram));
@@ -164,5 +170,6 @@ if (process.argv[1]?.endsWith("migrate-to-graph.mjs")) {
 
   const aArbitrer = conflicts.filter((c) => c.retenu === "(à arbitrer)").length;
   console.log(`kanji ${kanji.length} · mots ${word.length} · grammaire ${gram.length}`);
+  console.log(`${ecartes} motifs grammaticaux écartés des mots (ils appartiennent à la grammaire)`);
   console.log(`conflits ${conflicts.length} (dont ${aArbitrer} non tranchés)`);
 }
