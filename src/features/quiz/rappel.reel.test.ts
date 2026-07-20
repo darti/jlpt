@@ -29,16 +29,19 @@ test("les questions de grammaire résolvent leur point, exemple compris", async 
   expect(resolus).toBe(636); // identique à l'heuristique : les arêtes en sont issues
 });
 
-test("le VOCABULAIRE gagne un rappel — il n'en avait aucun", async () => {
+test("le VOCABULAIRE est quasi entièrement relié", async () => {
+  // 2969 avant que link-answers.mjs ne dérive l'arête depuis la RÉPONSE : les questions
+  // d'écriture mettent la LECTURE entre 「…」, pas le mot, et la migration cherchait donc
+  // une entité qui n'existait pas.
   const { total, resolus } = await couverture("q-vocabulaire");
   expect(total).toBe(5901);
-  expect(resolus).toBe(2969);
+  expect(resolus).toBe(5899);
 });
 
-test("les KANJI gagnent un rappel — ils n'en avaient aucun", async () => {
+test("les KANJI sont quasi entièrement reliés", async () => {
   const { total, resolus } = await couverture("q-kanji");
   expect(total).toBe(3148);
-  expect(resolus).toBe(2485);
+  expect(resolus).toBe(3126);
 });
 
 test("un rappel de kanji ENSEIGNÉ porte sa lecture on・kun", async () => {
@@ -116,4 +119,18 @@ test("aucun mot de PLUSIEURS caractères n'emprunte une lecture de kanji", async
   const empruntsIndus = [...idx.values()].filter((r) =>
     r.kind === "word" && [...r.titre].length > 1 && r.lecture !== "" && !source.get(r.iri));
   expect(empruntsIndus.map((r) => `${r.titre} → ${r.lecture}`)).toEqual([]);
+});
+
+test("la couverture globale des arêtes ne retombe pas sous 93 %", async () => {
+  // 59,1 % à la migration, 93,8 % depuis link-answers.mjs. Ce seuil est un cliquet : une
+  // arête perdue, une entité renommée, un shard régénéré à l'ancienne le feraient rougir.
+  // Sans lui, la couverture peut fondre sans qu'aucun test ne bouge — chaque question
+  // délaissée retombant simplement sur le lien générique, en silence.
+  const idx = await index();
+  const qs = (await Promise.all(
+    ["q-grammaire", "q-vocabulaire", "q-kanji", "q-lecture", "q-ecoute"].map(G),
+  )).flat().map(toQuestion);
+  const resolus = qs.filter((q) => resolveRappel(q, idx) !== null).length;
+  expect(qs.length).toBe(10307);
+  expect(resolus / qs.length).toBeGreaterThan(0.93);
 });

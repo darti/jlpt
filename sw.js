@@ -6,7 +6,7 @@
      au bundle courant → plantage (category.groups.map sur undefined). Repli cache hors ligne ;
    - autres ressources same-origin (icônes, manifest, bundle hashé) : cache-first avec mise à jour ;
    - tout le cross-origin (api.github.com, etc.) : réseau direct. */
-const CACHE = 'jlpt-n3-v112';
+const CACHE = 'jlpt-n3-v113';
 const SHELL = [
   './',
   'index.html',
