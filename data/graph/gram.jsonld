@@ -2778,6 +2778,12 @@
    "jlpt:form": "〜かねる",
    "schema:description": "« ne pas pouvoir (poli : réticence/difficulté) »",
    "jlpt:level": "N3"
+  },
+  {
+   "@id": "jlpt:gram/なかなかない",
+   "@type": "jlpt:GrammarPoint",
+   "jlpt:form": "なかなか〜ない",
+   "schema:description": "avoir du mal à"
   }
  ]
 }

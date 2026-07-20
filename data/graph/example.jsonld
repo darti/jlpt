@@ -1,0 +1,3267 @@
+{
+ "@context": "context.jsonld",
+ "@graph": [
+  {
+   "@id": "jlpt:example/ば-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ば",
+   "jlpt:jp": "安ければ買います。",
+   "jlpt:romaji": "yasukereba kaimasu.",
+   "schema:description": "Si c'est bon marché, je l'achète.",
+   "jlpt:analysis": [
+    "安い（やすい）→安ければ « forme conditionnelle en ば »",
+    "買う（かう）→買います « acheter (poli) » → « si c'est bon marché, j'achète »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ば-2",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ば",
+   "jlpt:jp": "練習すれば上手になる。",
+   "jlpt:romaji": "renshū sureba jōzu ni naru.",
+   "schema:description": "Si tu t'entraînes, tu deviendras bon.",
+   "jlpt:analysis": [
+    "練習する（れんしゅうする）→練習すれば « conditionnel en ば »",
+    "上手（じょうず）« habile, doué »",
+    "なる « devenir » → « si tu t'entraînes, tu deviendras bon »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/たら-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/たら",
+   "jlpt:jp": "家に帰ったら電話します。",
+   "jlpt:romaji": "ie ni kaettara denwa shimasu.",
+   "schema:description": "Quand je rentrerai, je t'appellerai.",
+   "jlpt:analysis": [
+    "家（いえ）« maison »",
+    "に « particule de destination »",
+    "帰る（かえる）→帰ったら « forme た ＋ら = conditionnel temporel »",
+    "電話する（でんわする）→電話します « téléphoner (poli) » → « quand je rentrerai, je t'appellerai »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/たら-2",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/たら",
+   "jlpt:jp": "時間があったら手伝ってください。",
+   "jlpt:romaji": "jikan ga attara tetsudatte kudasai.",
+   "schema:description": "Si tu as le temps, aide-moi.",
+   "jlpt:analysis": [
+    "時間（じかん）« temps »",
+    "ある→あったら « forme た ＋ら = si »",
+    "手伝う（てつだう）→手伝ってください « forme て ＋ください = demande polie » → « si tu as le temps, aide-moi »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/なら-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/なら",
+   "jlpt:jp": "日本へ行くなら京都がいいよ。",
+   "jlpt:romaji": "nihon e iku nara kyōto ga ii yo.",
+   "schema:description": "Si tu vas au Japon, Kyoto, c'est bien.",
+   "jlpt:analysis": [
+    "日本（にほん）« Japon »",
+    "へ « particule de direction »",
+    "行く（いく）→行くなら « なら = conditionnel de supposition (puisque…) »",
+    "京都（きょうと）« Kyoto »",
+    "いい « bien » → « si tu vas au Japon, Kyoto, c'est bien »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/なら-2",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/なら",
+   "jlpt:jp": "天気がいいなら散歩しよう。",
+   "jlpt:romaji": "tenki ga ii nara sanpo shiyō.",
+   "schema:description": "S'il fait beau, allons nous promener.",
+   "jlpt:analysis": [
+    "天気（てんき）« temps qu'il fait »",
+    "いい→いいなら « なら = conditionnel de supposition »",
+    "散歩する（さんぽする）→散歩しよう « forme volitive = allons » → « s'il fait beau, allons nous promener »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/と-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/と",
+   "jlpt:jp": "このボタンを押すと水が出ます。",
+   "jlpt:romaji": "kono botan o osu to mizu ga demasu.",
+   "schema:description": "Si on appuie sur ce bouton, l'eau coule.",
+   "jlpt:analysis": [
+    "ボタン « bouton »",
+    "を « COD »",
+    "押す（おす）→押すと « と = conséquence automatique (dès que…) »",
+    "水（みず）« eau »",
+    "出る（でる）→出ます « sortir, couler (poli) » → « si on appuie sur ce bouton, l'eau coule »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/と-2",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/と",
+   "jlpt:jp": "春になると花が咲く。",
+   "jlpt:romaji": "haru ni naru to hana ga saku.",
+   "schema:description": "Quand le printemps arrive, les fleurs s'ouvrent.",
+   "jlpt:analysis": [
+    "春（はる）« printemps »",
+    "なる→なると « と = enchaînement naturel (quand…) »",
+    "花（はな）« fleur »",
+    "咲く（さく）« fleurir » → « quand le printemps arrive, les fleurs s'ouvrent »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/place:場合は-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/place:場合は",
+   "jlpt:jp": "遅れる場合は連絡してください。",
+   "jlpt:romaji": "okureru baai wa renraku shite kudasai.",
+   "schema:description": "En cas de retard, prévenez-moi.",
+   "jlpt:analysis": [
+    "遅れる（おくれる）→遅れる場合は « 場合は = dans le cas où »",
+    "連絡する（れんらくする）→連絡してください « forme て ＋ください = demande polie » → « en cas de retard, prévenez-moi »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ても-でも-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ても",
+   "jlpt:jp": "雨が降っても行きます。",
+   "jlpt:romaji": "ame ga futte mo ikimasu.",
+   "schema:description": "J'irai même s'il pleut.",
+   "jlpt:analysis": [
+    "雨（あめ）« la pluie »",
+    "が « sujet »",
+    "降る（ふる）→降っても « forme て ＋も = même si (concession) »",
+    "行く（いく）→行きます « aller (poli) » → « j'irai même s'il pleut »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/たって-だって(口語)-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/たって",
+   "jlpt:jp": "今から急いだって間に合わない。",
+   "jlpt:romaji": "ima kara isoidatte ma ni awanai.",
+   "schema:description": "Même en me pressant maintenant, je n'arriverai pas à temps.",
+   "jlpt:analysis": [
+    "今（いま）から « à partir de maintenant »",
+    "急ぐ（いそぐ）→急いだって « ＝たって ＝forme た+って = même si (concession familière, ＝ても) »",
+    "間に合う（まにあう）→間に合わない « arriver à temps (négatif) » → « même en me pressant maintenant, je n'arriverai pas à temps »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/たらいい-といい-ばいい-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/たらいい",
+   "jlpt:jp": "どうしたらいいですか。",
+   "jlpt:romaji": "dō shitara ii desu ka.",
+   "schema:description": "Qu'est-ce que je devrais faire ?",
+   "jlpt:analysis": [
+    "どう « comment »",
+    "する→したら « forme た ＋ら = conditionnel »",
+    "いい « bon »",
+    "ですか « ＝したらいい = que faut-il faire ? (demande de conseil) » → « qu'est-ce que je devrais faire ? »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/さえば-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/さえば",
+   "jlpt:jp": "薬さえ飲めば治る。",
+   "jlpt:romaji": "kusuri sae nomeba naoru.",
+   "schema:description": "Il suffit de prendre le médicament pour guérir.",
+   "jlpt:analysis": [
+    "薬（くすり）« le médicament »",
+    "さえ « ＝ne serait-ce que, il suffit de »",
+    "飲む（のむ）→飲めば « forme conditionnelle en ば »",
+    "治る（なおる）« guérir » → « il suffit de prendre le médicament pour guérir »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ばよかった-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ばよかった",
+   "jlpt:jp": "もっと早く出ればよかった。",
+   "jlpt:romaji": "motto hayaku dereba yokatta.",
+   "schema:description": "J'aurais dû partir plus tôt.",
+   "jlpt:analysis": [
+    "もっと « plus »",
+    "早く（はやく）« tôt »",
+    "出る（でる）→出ればよかった « j'aurais dû partir » → « j'aurais dû partir plus tôt »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/としても-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/としても",
+   "jlpt:jp": "たとえ雨が降ったとしても、試合は行われる。",
+   "jlpt:romaji": "tatoe ame ga futta to shite mo, shiai wa okonawareru.",
+   "schema:description": "Même à supposer qu'il pleuve, le match aura lieu.",
+   "jlpt:analysis": [
+    "たとえ « même si »",
+    "雨（あめ）« pluie »",
+    "が « sujet »",
+    "降る（ふる）→降った « être tombée »",
+    "としても « même si »",
+    "試合（しあい）« match »",
+    "は « thème »",
+    "行う（おこなう）→行われる « aura lieu » → « même à supposer qu'il pleuve, le match aura lieu »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/いくらても-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/いくらても",
+   "jlpt:jp": "いくら考えても分からない。",
+   "jlpt:romaji": "ikura kangaete mo wakaranai.",
+   "schema:description": "J'ai beau réfléchir, je ne comprends pas.",
+   "jlpt:analysis": [
+    "いくら « peu importe combien, quel que soit le degré »",
+    "考える（かんがえる）→考えても « forme て ＋も = même si » — いくら…ても « j'ai beau… »",
+    "分かる（わかる）→分からない « comprendre (négatif) » → « j'ai beau réfléchir, je ne comprends pas »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ために-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ために",
+   "jlpt:jp": "健康のために毎朝走っている。",
+   "jlpt:romaji": "kenkō no tame ni maiasa hashitte iru.",
+   "schema:description": "Je cours chaque matin pour ma santé.",
+   "jlpt:analysis": [
+    "健康（けんこう）« santé »→健康のために « nom ＋のために = but (pour) »",
+    "毎朝（まいあさ）« chaque matin »",
+    "走る（はしる）→走っている « ている = action habituelle » → « je cours chaque matin pour ma santé »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ように-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ように",
+   "jlpt:jp": "忘れないようにメモします。",
+   "jlpt:romaji": "wasurenai yō ni memo shimasu.",
+   "schema:description": "Je prends note pour ne pas oublier.",
+   "jlpt:analysis": [
+    "忘れる（わすれる）→忘れない « négatif » →忘れないように « ないように = but négatif (pour ne pas) »",
+    "メモする « prendre note » →メモします « poli » → « je prends note pour ne pas oublier »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/おかげで-せいで-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/おかげで",
+   "jlpt:jp": "先生のおかげで合格できた。",
+   "jlpt:romaji": "sensei no okage de gōkaku dekita.",
+   "schema:description": "Grâce au professeur, j'ai réussi.",
+   "jlpt:analysis": [
+    "先生（せんせい）« professeur »→先生のおかげで « のおかげで = grâce à (cause positive) »",
+    "合格する（ごうかくする）→合格できた « potentiel passé = a pu réussir » → « grâce au professeur, j'ai réussi »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/おかげで-せいで-2",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/おかげで",
+   "jlpt:jp": "雨のせいで試合が中止になった。",
+   "jlpt:romaji": "ame no sei de shiai ga chūshi ni natta.",
+   "schema:description": "À cause de la pluie, le match a été annulé.",
+   "jlpt:analysis": [
+    "雨（あめ）« pluie »→雨のせいで « のせいで = à cause de (cause négative) »",
+    "試合（しあい）« match »",
+    "中止（ちゅうし）になった « être annulé » → « à cause de la pluie, le match a été annulé »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/によって-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/によって",
+   "jlpt:jp": "人によって考え方が違う。",
+   "jlpt:romaji": "hito ni yotte kangaekata ga chigau.",
+   "schema:description": "Selon les personnes, la façon de penser diffère.",
+   "jlpt:analysis": [
+    "人（ひと）→人によって « によって = selon, en fonction de »",
+    "考え方（かんがえかた）« façon de penser »",
+    "が « sujet »",
+    "違う（ちがう）« différer » → « selon les personnes, la façon de penser diffère »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/だけあって-だけに-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/だけあって",
+   "jlpt:jp": "先生だけあって、説明が分かりやすい。",
+   "jlpt:romaji": "sensei dake atte, setsumei ga wakariyasui.",
+   "schema:description": "En vrai professeur, ses explications sont claires.",
+   "jlpt:analysis": [
+    "先生（せんせい）« professeur »",
+    "だけあって « ＝à la hauteur de, comme on l'attend de (justification valorisante) »",
+    "説明（せつめい）« explication »",
+    "が « sujet »",
+    "分かる（わかる）→分かりやすい « 連用形 ＋やすい = facile à comprendre » → « en vrai professeur, ses explications sont claires »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/に応じて-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/に応じて",
+   "jlpt:jp": "収入に応じて税金が決まる。",
+   "jlpt:romaji": "shūnyū ni ōjite zeikin ga kimaru.",
+   "schema:description": "L'impôt est fixé selon les revenus.",
+   "jlpt:analysis": [
+    "収入（しゅうにゅう）« les revenus »",
+    "に応じて（におうじて）« ＝selon, en fonction de »",
+    "税金（ぜいきん）« l'impôt »",
+    "が « sujet »",
+    "決まる（きまる）« se décider, être fixé » → « l'impôt est fixé selon les revenus »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/を通じて-を通して-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/を通じて",
+   "jlpt:jp": "テレビを通じてニュースを知った。",
+   "jlpt:romaji": "terebi o tsūjite nyūsu o shitta.",
+   "schema:description": "J'ai appris la nouvelle par la télévision.",
+   "jlpt:analysis": [
+    "テレビ « la télévision »",
+    "を通じて（をつうじて）« ＝par l'intermédiaire de, via »",
+    "ニュース « la nouvelle »",
+    "を « COD »",
+    "知る（しる）→知った « apprendre, savoir (passé) » → « j'ai appris la nouvelle par la télévision »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/以上(は)-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/以上(は)",
+   "jlpt:jp": "引き受けた以上、最後までやる。",
+   "jlpt:romaji": "hikiuketa ijō, saigo made yaru.",
+   "schema:description": "Puisque j'ai accepté, je vais jusqu'au bout.",
+   "jlpt:analysis": [
+    "引き受ける（ひきうける）→引き受けた « forme た »",
+    "以上（いじょう）« ＝た＋以上 = du moment que, puisque (engagement) »",
+    "最後（さいご）まで « jusqu'au bout »",
+    "やる « faire » → « puisque j'ai accepté, je vais jusqu'au bout »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ので-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ので",
+   "jlpt:jp": "雨が降っているので、傘を持っていきます。",
+   "jlpt:romaji": "ame ga futte iru node, kasa o motte ikimasu.",
+   "schema:description": "Comme il pleut, je prends un parapluie.",
+   "jlpt:analysis": [
+    "雨（あめ）« pluie »",
+    "が « sujet »",
+    "降る（ふる）→降っているので « forme て+いる ＋ので = cause objective “comme / parce que” »",
+    "傘（かさ）« parapluie »",
+    "を « COD »",
+    "持っていきます（もっていきます）« emporter » → « comme il pleut, je prends un parapluie »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ものだから-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ものだから",
+   "jlpt:jp": "あまりに寒かったものだから、外に出なかった。",
+   "jlpt:romaji": "amari ni samukatta mono da kara, soto ni denakatta.",
+   "schema:description": "Comme il faisait vraiment trop froid, je ne suis pas sorti.",
+   "jlpt:analysis": [
+    "あまりに « trop »",
+    "寒い（さむい）→寒かった « faisait froid »",
+    "ものだから « c'est que (justification) »",
+    "外（そと）« dehors »",
+    "に « à »",
+    "出る（でる）→出なかった « ne pas être sorti » → « comme il faisait vraiment trop froid, je ne suis pas sorti »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/にしたがって-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/にしたがって",
+   "jlpt:jp": "規則にしたがって行動する。",
+   "jlpt:romaji": "kisoku ni shitagatte kōdō suru.",
+   "schema:description": "Agir conformément au règlement.",
+   "jlpt:analysis": [
+    "規則（きそく）« règlement »",
+    "にしたがって « selon, en suivant »",
+    "行動（こうどう）→行動する « se comporter » → « agir conformément au règlement »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/に基づいて-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/に基づいて",
+   "jlpt:jp": "事実に基づいて報告する。",
+   "jlpt:romaji": "jijitsu ni motozuite hōkoku suru.",
+   "schema:description": "Faire un rapport fondé sur les faits.",
+   "jlpt:analysis": [
+    "事実（じじつ）« faits »",
+    "に基づいて（にもとづいて）« en se fondant sur »",
+    "報告（ほうこく）する→報告する « faire un rapport » → « faire un rapport fondé sur les faits »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/をこめて-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/をこめて",
+   "jlpt:jp": "心をこめて手紙を書いた。",
+   "jlpt:romaji": "kokoro o komete tegami o kaita.",
+   "schema:description": "J'ai écrit une lettre avec tout mon cœur.",
+   "jlpt:analysis": [
+    "心（こころ）« cœur »",
+    "をこめて « en y mettant »",
+    "手紙（てがみ）« lettre »",
+    "を « COD »",
+    "書く（かく）→書いた « avoir écrit » → « j'ai écrit une lettre avec tout mon cœur »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/に沿って-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/に沿って",
+   "jlpt:jp": "川に沿って歩いた。",
+   "jlpt:romaji": "kawa ni sotte aruita.",
+   "schema:description": "J'ai marché le long de la rivière.",
+   "jlpt:analysis": [
+    "川（かわ）« rivière »",
+    "に « à »",
+    "沿う（そう）→沿って « le long de »",
+    "歩く（あるく）→歩いた « j'ai marché » → « j'ai marché le long de la rivière »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/からには-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/からには",
+   "jlpt:jp": "約束したからには、必ず守る。",
+   "jlpt:romaji": "yakusoku shita kara ni wa, kanarazu mamoru.",
+   "schema:description": "Du moment que je l'ai promis, je tiendrai parole coûte que coûte.",
+   "jlpt:analysis": [
+    "約束する（やくそくする）→約束した « avoir promis »",
+    "からには « du moment que »",
+    "必ず（かならず）« sans faute »",
+    "守る（まもる）« tenir parole » → « du moment que je l'ai promis, je tiendrai parole coûte que coûte »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/をもとに-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/をもとに",
+   "jlpt:jp": "この小説は実話をもとに書かれた。",
+   "jlpt:romaji": "kono shōsetsu wa jitsuwa o moto ni kakareta.",
+   "schema:description": "Ce roman a été écrit à partir d'une histoire vraie.",
+   "jlpt:analysis": [
+    "この « ce »",
+    "小説（しょうせつ）« roman »",
+    "は « thème »",
+    "実話（じつわ）« histoire vraie »",
+    "をもとに « en se basant sur, à partir de »",
+    "書く（かく）→書かれた « passif passé = a été écrit » → « ce roman a été écrit à partir d'une histoire vraie »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/をもとにして-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/をもとにして",
+   "jlpt:jp": "アンケートの結果をもとにして計画を立てた。",
+   "jlpt:romaji": "ankēto no kekka o moto ni shite keikaku o tateta.",
+   "schema:description": "J'ai élaboré un plan en me basant sur les résultats du sondage.",
+   "jlpt:analysis": [
+    "アンケート « sondage »",
+    "の « de »",
+    "結果（けっか）« résultats »",
+    "をもとにして « en se basant sur »",
+    "計画（けいかく）« plan »",
+    "を « COD »",
+    "立てる（たてる）→立てた « avoir élaboré (un plan) » → « j'ai élaboré un plan en me basant sur les résultats du sondage »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/からこそ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/からこそ",
+   "jlpt:jp": "君のことを思うからこそ、厳しく言うのだ。",
+   "jlpt:romaji": "kimi no koto o omou kara koso, kibishiku iu no da.",
+   "schema:description": "C'est précisément parce que je me soucie de toi que je te parle durement.",
+   "jlpt:analysis": [
+    "君（きみ）« toi »",
+    "のことを思う（おもう）→思うからこそ « 普通形 ＋からこそ = c'est précisément parce que »",
+    "厳しい（きびしい）→厳しく « durement »",
+    "言う（いう）→言うのだ « dire (＋のだ insistance) » → « c'est précisément parce que je me soucie de toi que je te parle durement »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ところだ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ところだ",
+   "jlpt:jp": "今から出かけるところです。",
+   "jlpt:romaji": "ima kara dekakeru tokoro desu.",
+   "schema:description": "Je suis sur le point de sortir.",
+   "jlpt:analysis": [
+    "今（いま）から « à partir de maintenant »",
+    "出かける（でかける）→出かけるところです « dictionnaire ＋ところ = sur le point de » → « je suis sur le point de sortir »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ところだ-2",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ところだ",
+   "jlpt:jp": "今、食べているところだ。",
+   "jlpt:romaji": "ima, tabete iru tokoro da.",
+   "schema:description": "Je suis en train de manger, là.",
+   "jlpt:analysis": [
+    "今（いま）« maintenant »",
+    "食べる（たべる）→食べているところだ « forme ている ＋ところ = en plein milieu de » → « je suis en train de manger, là »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/たばかり-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/たばかり",
+   "jlpt:jp": "日本に来たばかりで、まだ慣れていない。",
+   "jlpt:romaji": "nihon ni kita bakari de, mada narete inai.",
+   "schema:description": "Je viens d'arriver au Japon, je ne suis pas encore habitué.",
+   "jlpt:analysis": [
+    "日本（にほん）に « destination »",
+    "来る（くる）→来たばかり « forme た ＋ばかり = venir juste de »",
+    "まだ « encore »",
+    "慣れる（なれる）→慣れていない « ている négatif = ne pas être habitué » → « je viens d'arriver au Japon, je ne suis pas encore habitué »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ながら-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ながら",
+   "jlpt:jp": "音楽を聞きながら勉強する。",
+   "jlpt:romaji": "ongaku o kikinagara benkyō suru.",
+   "schema:description": "J'étudie tout en écoutant de la musique.",
+   "jlpt:analysis": [
+    "音楽（おんがく）« musique »",
+    "を « COD »",
+    "聞く（きく）→聞きながら « base en い ＋ながら = simultanéité (tout en…) »",
+    "勉強する（べんきょうする）« étudier » → « j'étudie tout en écoutant de la musique »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/うちに-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/うちに",
+   "jlpt:jp": "熱いうちに食べてください。",
+   "jlpt:romaji": "atsui uchi ni tabete kudasai.",
+   "schema:description": "Mangez tant que c'est chaud.",
+   "jlpt:analysis": [
+    "熱い（あつい）→熱いうちに « adjectif ＋うちに = tant que (pendant que ça dure) »",
+    "食べる（たべる）→食べてください « forme て ＋ください = demande polie » → « mangez tant que c'est chaud »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/たびに-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/たびに",
+   "jlpt:jp": "この写真を見るたびに故郷を思い出す。",
+   "jlpt:romaji": "kono shashin o miru tabi ni furusato o omoidasu.",
+   "schema:description": "Chaque fois que je vois cette photo, je repense à mon pays.",
+   "jlpt:analysis": [
+    "写真（しゃしん）« photo »",
+    "を « COD »",
+    "見る（みる）→見るたびに « dictionnaire ＋たびに = chaque fois que »",
+    "故郷（こきょう）« pays natal »",
+    "思い出す（おもいだす）« se rappeler » → « chaque fois que je vois cette photo, je repense à mon pays »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/とおりに-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/とおりに",
+   "jlpt:jp": "説明書のとおりに組み立てた。",
+   "jlpt:romaji": "setsumeisho no tōri ni kumitateta.",
+   "schema:description": "J'ai monté ça selon la notice.",
+   "jlpt:analysis": [
+    "説明書（せつめいしょ）« notice »→説明書のとおりに « のとおりに = conformément à »",
+    "組み立てる（くみたてる）→組み立てた « assembler (passé) » → « j'ai monté ça selon la notice »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/まま-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/まま",
+   "jlpt:jp": "電気をつけたまま寝てしまった。",
+   "jlpt:romaji": "denki o tsuketa mama nete shimatta.",
+   "schema:description": "Je me suis endormi en laissant la lumière allumée.",
+   "jlpt:analysis": [
+    "電気（でんき）« lumière »",
+    "を « COD »",
+    "つける→つけたまま « forme た ＋まま = état laissé tel quel »",
+    "寝る（ねる）→寝てしまった « てしまった = action accomplie (regret) » → « je me suis endormi en laissant la lumière allumée »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/際に-際は-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/際に",
+   "jlpt:jp": "お降りの際は足元にご注意ください。",
+   "jlpt:romaji": "oori no sai wa ashimoto ni go-chūi kudasai.",
+   "schema:description": "À la descente, attention où vous mettez les pieds.",
+   "jlpt:analysis": [
+    "降りる（おりる）→お降り « nominal poli = la descente »",
+    "の際（さい）は « ＝au moment de, lors de (formel) »",
+    "足元（あしもと）« où l'on met les pieds »",
+    "に « cible »",
+    "ご注意（ちゅうい）ください « ＝faites attention (honorifique poli) » → « à la descente, attention où vous mettez les pieds »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/最中に-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/最中に",
+   "jlpt:jp": "食事の最中に電話が鳴った。",
+   "jlpt:romaji": "shokuji no saichū ni denwa ga natta.",
+   "schema:description": "En plein repas, le téléphone a sonné.",
+   "jlpt:analysis": [
+    "食事（しょくじ）« le repas »",
+    "の最中（さいちゅう）に « ＝en plein milieu de, en pleine action »",
+    "電話（でんわ）« le téléphone »",
+    "が « sujet »",
+    "鳴る（なる）→鳴った « sonner (passé) » → « en plein repas, le téléphone a sonné »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/たとたん(に)-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/たとたん(に)",
+   "jlpt:jp": "立ち上がったとたん、めまいがした。",
+   "jlpt:romaji": "tachiagatta totan, memai ga shita.",
+   "schema:description": "À peine levé, j'ai eu un vertige.",
+   "jlpt:analysis": [
+    "立ち上がる（たちあがる）→立ち上がった « forme た »",
+    "とたん « ＝た+とたん = à l'instant même où, à peine... que »",
+    "めまい « vertige »",
+    "がした « ＝が＋する = s'est produit » → « à peine levé, j'ai eu un vertige »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/かと思うと-かと思ったら-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/かと思うと",
+   "jlpt:jp": "泣いたかと思うと、もう笑っている。",
+   "jlpt:romaji": "naita ka to omou to, mō waratte iru.",
+   "schema:description": "À peine a-t-il pleuré qu'il rit déjà.",
+   "jlpt:analysis": [
+    "泣く（なく）→泣いた « forme た »",
+    "かと思うと（かとおもうと）« ＝た＋かと思うと = à peine... que déjà »",
+    "もう « déjà »",
+    "笑う（わらう）→笑っている « forme ている = état en cours » → « à peine a-t-il pleuré qu'il rit déjà »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/次第-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/次第",
+   "jlpt:jp": "準備ができ次第、出発します。",
+   "jlpt:romaji": "junbi ga deki shidai, shuppatsu shimasu.",
+   "schema:description": "Dès que les préparatifs sont prêts, on part.",
+   "jlpt:analysis": [
+    "準備（じゅんび）« les préparatifs »",
+    "ができ « ＝être prêt (連用形 de できる) »",
+    "次第（しだい）« ＝連用形 ＋次第 = dès que, aussitôt que »",
+    "出発（しゅっぱつ）します « partir (poli) » → « dès que les préparatifs sont prêts, on part »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ところに-ところへ-ところを-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ところに",
+   "jlpt:jp": "出かけようとしたところに客が来た。",
+   "jlpt:romaji": "dekakeyō to shita tokoro ni kyaku ga kita.",
+   "schema:description": "Juste au moment où j'allais sortir, un visiteur est arrivé.",
+   "jlpt:analysis": [
+    "出かける（でかける）→出かけようとした « volitif よう ＋とする = être sur le point de (passé) »",
+    "ところに « ＝juste au moment où (interruption) »",
+    "客（きゃく）« un visiteur »",
+    "が « sujet »",
+    "来る（くる）→来た « venir (passé) » → « juste au moment où j'allais sortir, un visiteur est arrivé »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/とともに-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/とともに",
+   "jlpt:jp": "時代とともに考え方も変わる。",
+   "jlpt:romaji": "jidai to tomo ni kangaekata mo kawaru.",
+   "schema:description": "Les mentalités changent avec l'époque.",
+   "jlpt:analysis": [
+    "時代（じだい）« l'époque »",
+    "とともに « ＝en même temps que, avec »",
+    "考え方（かんがえかた）« la façon de penser »",
+    "も « aussi »",
+    "変わる（かわる）« changer » → « les mentalités changent avec l'époque »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/につれて-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/につれて",
+   "jlpt:jp": "山を登るにつれて寒くなる。",
+   "jlpt:romaji": "yama o noboru ni tsurete samuku naru.",
+   "schema:description": "À mesure qu'on monte, il fait plus froid.",
+   "jlpt:analysis": [
+    "山（やま）« la montagne »",
+    "を « parcours »",
+    "登る（のぼる）→登るにつれて « forme du dictionnaire ＋につれて = à mesure que (proportion) »",
+    "寒い（さむい）→寒くなる « ＋なる = devenir froid » → « à mesure qu'on monte, il fait plus froid »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/きり-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/きり",
+   "jlpt:jp": "朝、家を出たきり、まだ帰っていない。",
+   "jlpt:romaji": "asa, ie o deta kiri, mada kaette inai.",
+   "schema:description": "Sorti le matin, il n'est toujours pas rentré.",
+   "jlpt:analysis": [
+    "朝（あさ）« le matin »",
+    "家（いえ）« la maison »",
+    "を « point de départ »",
+    "出る（でる）→出たきり « forme た ＋きり = depuis que (sans suite, état figé) »",
+    "まだ « encore »",
+    "帰る（かえる）→帰っていない « ＋ていない = ne pas être rentré » → « sorti le matin, il n'est toujours pas rentré »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ついでに-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ついでに",
+   "jlpt:jp": "買い物に行くついでに、手紙を出した。",
+   "jlpt:romaji": "kaimono ni iku tsuide ni, tegami o dashita.",
+   "schema:description": "En allant faire les courses, j'en ai profité pour poster une lettre.",
+   "jlpt:analysis": [
+    "買い物（かいもの）« courses »",
+    "に « à »",
+    "行く（いく）« aller »",
+    "ついでに « par la même occasion »",
+    "、",
+    "手紙（てがみ）« lettre »",
+    "を « COD »",
+    "出す（だす）→出した « ai posté » → « en allant faire les courses, j'en ai profité pour poster une lettre »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/にかけて-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/にかけて",
+   "jlpt:jp": "春から夏にかけて花が咲く。",
+   "jlpt:romaji": "haru kara natsu ni kakete hana ga saku.",
+   "schema:description": "Du printemps à l'été, les fleurs s'épanouissent.",
+   "jlpt:analysis": [
+    "春（はる）« printemps »",
+    "から « depuis »",
+    "夏（なつ）« été »",
+    "にかけて « à »",
+    "花（はな）« fleurs »",
+    "が « sujet »",
+    "咲く（さく）« s'épanouissent » → « du printemps à l'été, les fleurs s'épanouissent »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/あげく-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/あげく",
+   "jlpt:jp": "さんざん悩んだあげく、会社を辞めた。",
+   "jlpt:romaji": "sanzan nayanda ageku, kaisha o yameta.",
+   "schema:description": "Après m'être longuement tourmenté, j'ai fini par démissionner.",
+   "jlpt:analysis": [
+    "さんざん « longuement, à outrance »",
+    "悩む（なやむ）→悩んだあげく « forme た ＋あげく = après (bien des efforts), finalement »",
+    "、",
+    "会社（かいしゃ）« entreprise »",
+    "を « COD »",
+    "辞める（やめる）→辞めた « ai démissionné » → « après m'être longuement tourmenté, j'ai fini par démissionner »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/上で-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/上で",
+   "jlpt:jp": "詳しい説明を聞いた上で、契約するかどうか決めます。",
+   "jlpt:romaji": "kuwashii setsumei o kiita ue de, keiyaku suru ka dō ka kimemasu.",
+   "schema:description": "Après avoir entendu des explications détaillées, je déciderai si je signe ou non.",
+   "jlpt:analysis": [
+    "詳しい（くわしい）« détaillées »",
+    "説明（せつめい）« explications »",
+    "を « COD »",
+    "聞く（きく）→聞いた « avoir entendu »",
+    "上で（うえで）« après avoir »",
+    "、",
+    "契約する（けいやくする）« signer »",
+    "かどうか « si ou non »",
+    "決める（きめる）→決めます « je déciderai » → « après avoir entendu des explications détaillées, je déciderai si je signe ou non »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ずに-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ずに",
+   "jlpt:jp": "朝ごはんを食べずに出かけた。",
+   "jlpt:romaji": "asagohan o tabezu ni dekaketa.",
+   "schema:description": "Il est sorti sans avoir mangé.",
+   "jlpt:analysis": [
+    "朝ごはん（あさごはん）« petit-déjeuner »",
+    "を « COD »",
+    "食べる（たべる）→食べずに « sans manger »",
+    "出かける（でかける）→出かけた « sortir » → « il est sorti sans avoir mangé »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/つつ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/つつ",
+   "jlpt:jp": "悪いと知りつつ、つい嘘をついてしまった。",
+   "jlpt:romaji": "warui to shiritsutsu, tsui uso o tsuite shimatta.",
+   "schema:description": "Tout en sachant que c'était mal, j'ai fini par mentir.",
+   "jlpt:analysis": [
+    "悪い（わるい）« mal »",
+    "と « citation »",
+    "知る（しる）→知りつつ « tout en sachant »",
+    "つい « malgré soi »",
+    "嘘（うそ）« mensonge »",
+    "を « COD »",
+    "つく→ついてしまった « avoir menti » → « tout en sachant que c'était mal, j'ai fini par mentir »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ないうちに-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ないうちに",
+   "jlpt:jp": "暗くならないうちに帰りましょう。",
+   "jlpt:romaji": "kuraku naranai uchi ni kaerimashō.",
+   "schema:description": "Rentrons avant qu'il ne fasse nuit.",
+   "jlpt:analysis": [
+    "暗い（くらい）« sombre »",
+    "なる→暗くならないうちに « ない形 ＋うちに = avant que (ça ne devienne le cas) »",
+    "帰る（かえる）→帰りましょう « rentrons » → « rentrons avant qu'il ne fasse nuit »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/間に-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/間に",
+   "jlpt:jp": "寝ている間に、雨が降り出した。",
+   "jlpt:romaji": "nete iru aida ni, ame ga furidashita.",
+   "schema:description": "Pendant que je dormais, il s'est mis à pleuvoir.",
+   "jlpt:analysis": [
+    "寝る（ねる）→寝ている « être en train de dormir »",
+    "間に（あいだに）« pendant que (au cours de cet intervalle) »",
+    "、",
+    "雨（あめ）« pluie »",
+    "が « sujet »",
+    "降る（ふる）→降り出した « s'est mis à pleuvoir » → « pendant que je dormais, il s'est mis à pleuvoir »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/までに-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/までに",
+   "jlpt:jp": "5時までに帰ってください。",
+   "jlpt:romaji": "goji made ni kaette kudasai.",
+   "schema:description": "Rentre pour 5 heures au plus tard.",
+   "jlpt:analysis": [
+    "5時（ごじ）« cinq heures »",
+    "までに « d'ici à »",
+    "帰る（かえる）→帰って « rentrer »",
+    "ください « s'il vous plaît » → « rentre pour 5 heures au plus tard »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ところ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ところ",
+   "jlpt:jp": "ちょうど今、駅に着いたところです。",
+   "jlpt:romaji": "chōdo ima, eki ni tsuita tokoro desu.",
+   "schema:description": "Je viens juste d'arriver à la gare, à l'instant.",
+   "jlpt:analysis": [
+    "ちょうど « juste, exactement »",
+    "今（いま）« maintenant »",
+    "、",
+    "駅（えき）« gare »",
+    "に « lieu (arrivée) »",
+    "着く（つく）→着いたところ « forme た ＋ところ = venir juste de (à l'instant) »",
+    "です « copule polie » → « je viens juste d'arriver à la gare, à l'instant »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ていく-てくる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ていく",
+   "jlpt:jp": "これから寒くなっていく。",
+   "jlpt:romaji": "kore kara samuku natte iku.",
+   "schema:description": "Il va faire de plus en plus froid désormais.",
+   "jlpt:analysis": [
+    "これから « désormais »",
+    "寒い（さむい）→寒くなって « devenir froid » →なっていく « ていく = évolution future (de plus en plus) » → « il va faire de plus en plus froid désormais »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ていく-てくる-2",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ていく",
+   "jlpt:jp": "だんだん日本語が分かってきた。",
+   "jlpt:romaji": "dandan nihongo ga wakatte kita.",
+   "schema:description": "J'en suis venu à comprendre le japonais petit à petit.",
+   "jlpt:analysis": [
+    "だんだん « petit à petit »",
+    "日本語（にほんご）が « sujet »",
+    "分かる（わかる）→分かってきた « てきた = évolution jusqu'à présent (en venir à) » → « j'en suis venu à comprendre le japonais petit à petit »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/てみる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/てみる",
+   "jlpt:jp": "この料理を作ってみる。",
+   "jlpt:romaji": "kono ryōri o tsukutte miru.",
+   "schema:description": "Je vais essayer de faire ce plat.",
+   "jlpt:analysis": [
+    "料理（りょうり）« plat »",
+    "を « COD »",
+    "作る（つくる）→作ってみる « forme て ＋みる = essayer de » → « je vais essayer de faire ce plat »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ておく-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ておく",
+   "jlpt:jp": "旅行の前に切符を買っておく。",
+   "jlpt:romaji": "ryokō no mae ni kippu o katte oku.",
+   "schema:description": "J'achète le billet à l'avance avant le voyage.",
+   "jlpt:analysis": [
+    "旅行（りょこう）の前に « avant le voyage »",
+    "切符（きっぷ）« billet »",
+    "を « COD »",
+    "買う（かう）→買っておく « forme て ＋おく = action préparatoire (à l'avance) » → « j'achète le billet à l'avance avant le voyage »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/てある-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/てある",
+   "jlpt:jp": "壁に絵が掛けてある。",
+   "jlpt:romaji": "kabe ni e ga kakete aru.",
+   "schema:description": "Un tableau est accroché au mur (qqn l'a fait).",
+   "jlpt:analysis": [
+    "壁（かべ）« mur »",
+    "に « lieu »",
+    "絵（え）« tableau »",
+    "が « sujet »",
+    "掛ける（かける）→掛けてある « forme て ＋ある = état résultant d'une action intentionnelle » → « un tableau est accroché au mur (qqn l'a fait) »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/てしまう-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/てしまう",
+   "jlpt:jp": "財布を忘れてしまった。",
+   "jlpt:romaji": "saifu o wasurete shimatta.",
+   "schema:description": "J'ai (malheureusement) oublié mon portefeuille.",
+   "jlpt:analysis": [
+    "財布（さいふ）« portefeuille »",
+    "を « COD »",
+    "忘れる（わすれる）→忘れてしまった « forme て ＋しまった = action accomplie regrettable » → « j'ai malheureusement oublié mon portefeuille »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/始める-出す-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/始める",
+   "jlpt:jp": "急に雨が降り出した。",
+   "jlpt:romaji": "kyū ni ame ga furidashita.",
+   "schema:description": "Il s'est mis à pleuvoir soudainement.",
+   "jlpt:analysis": [
+    "急（きゅう）に « soudainement »",
+    "雨（あめ）« la pluie »",
+    "が « sujet »",
+    "降る（ふる）→降り出した « 連用形 ＋出す = se mettre à (commencement soudain), au passé » → « il s'est mis à pleuvoir soudainement »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/続ける-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/続ける",
+   "jlpt:jp": "三時間も歩き続けた。",
+   "jlpt:romaji": "sanjikan mo arukitsuzuketa.",
+   "schema:description": "J'ai marché sans arrêt pendant 3 heures.",
+   "jlpt:analysis": [
+    "三時間（さんじかん）« trois heures »",
+    "も « ＝insistance (pas moins de) »",
+    "歩く（あるく）→歩き続けた « 連用形 ＋続ける = continuer à (passé) » → « j'ai marché sans arrêt pendant trois heures »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/終わる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/終わる",
+   "jlpt:jp": "本を読み終わった。",
+   "jlpt:romaji": "hon o yomiowatta.",
+   "schema:description": "J'ai fini de lire le livre.",
+   "jlpt:analysis": [
+    "本（ほん）« le livre »",
+    "を « COD »",
+    "読む（よむ）→読み終わった « 連用形 ＋終わる = finir de (achèvement), au passé » → « j'ai fini de lire le livre »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/きる-きれない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/きる",
+   "jlpt:jp": "多すぎて食べきれない。",
+   "jlpt:romaji": "ōsugite tabekirenai.",
+   "schema:description": "Il y en a trop, je ne peux pas tout finir.",
+   "jlpt:analysis": [
+    "多い（おおい）→多すぎて « 語幹 ＋すぎる = excès, forme て »",
+    "食べる（たべる）→食べきれない « 連用形 ＋きれない = ne pas pouvoir finir/épuiser (potentiel négatif de 切る) » → « il y en a trop, je ne peux pas tout finir »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/直す-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/直す",
+   "jlpt:jp": "レポートを書き直す。",
+   "jlpt:romaji": "repōto o kakinaosu.",
+   "schema:description": "Je réécris le rapport.",
+   "jlpt:analysis": [
+    "レポート « le rapport »",
+    "を « COD »",
+    "書く（かく）→書き直す « 連用形 ＋直す = refaire l'action (re-) » → « je réécris le rapport »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/つつある-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/つつある",
+   "jlpt:jp": "景気は回復しつつある。",
+   "jlpt:romaji": "keiki wa kaifuku shitsutsu aru.",
+   "schema:description": "L'économie est en train de se redresser.",
+   "jlpt:analysis": [
+    "景気（けいき）« la conjoncture économique »",
+    "は « thème »",
+    "回復（かいふく）する « se rétablir » →回復しつつある « 連用形 ＋つつある = être en train de (évolution progressive) » → « l'économie est en train de se redresser »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/っぱなし-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/っぱなし",
+   "jlpt:jp": "電気をつけっぱなしにした。",
+   "jlpt:romaji": "denki o tsukeppanashi ni shita.",
+   "schema:description": "J'ai laissé la lumière allumée.",
+   "jlpt:analysis": [
+    "電気（でんき）« la lumière »",
+    "を « COD »",
+    "つける→つけっぱなし « 連用形 ＋っぱなし = laisser dans un état (sans y mettre fin) »",
+    "にした « ＝にする = mettre dans cet état (passé) » → « j'ai laissé la lumière allumée »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/たことがある-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/たことがある",
+   "jlpt:jp": "日本へ行ったことがあります。",
+   "jlpt:romaji": "nihon e itta koto ga arimasu.",
+   "schema:description": "Je suis déjà allé au Japon.",
+   "jlpt:analysis": [
+    "日本（にほん）« le Japon »",
+    "へ « direction »",
+    "行く（いく）→行ったことがあります « forme た ＋ことがある = expérience passée “avoir déjà fait” » → « je suis déjà allé au Japon »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/かけ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/かけ",
+   "jlpt:jp": "読みかけの本が机の上にある。",
+   "jlpt:romaji": "yomikake no hon ga tsukue no ue ni aru.",
+   "schema:description": "Un livre que j'ai commencé (sans le finir) est sur le bureau.",
+   "jlpt:analysis": [
+    "読む（よむ）→読みかけ « base ます ＋かけ = commencé sans finir »",
+    "の « de (attributif) »",
+    "本（ほん）« livre »",
+    "が « sujet »",
+    "机（つくえ）« bureau »",
+    "の « de »",
+    "上（うえ）« dessus »",
+    "に « lieu »",
+    "ある « il y a » → « un livre que j'ai commencé (sans le finir) est sur le bureau »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/かける-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/かける",
+   "jlpt:jp": "彼は何か言いかけて、やめた。",
+   "jlpt:romaji": "kare wa nanika iikakete, yameta.",
+   "schema:description": "Il a commencé à dire quelque chose, puis s'est arrêté.",
+   "jlpt:analysis": [
+    "彼（かれ）« il »",
+    "は « thème »",
+    "何か（なにか）« quelque chose »",
+    "言う（いう）→言いかけて « base ます ＋かける = commencer à… (interrompu) »",
+    "やめる→やめた « (puis) s'est arrêté » → « il a commencé à dire quelque chose, puis s'est arrêté »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/はじめる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/はじめる",
+   "jlpt:jp": "桜が咲きはじめた。",
+   "jlpt:romaji": "sakura ga sakihajimeta.",
+   "schema:description": "Les cerisiers ont commencé à fleurir.",
+   "jlpt:analysis": [
+    "桜（さくら）« cerisier »",
+    "が « sujet »",
+    "咲く（さく）→咲き « fleurir »",
+    "はじめた « commencer à » → « les cerisiers ont commencé à fleurir »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/おわる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/おわる",
+   "jlpt:jp": "やっと宿題をやりおわった。",
+   "jlpt:romaji": "yatto shukudai o yariowatta.",
+   "schema:description": "J'ai enfin fini de faire mes devoirs.",
+   "jlpt:analysis": [
+    "やっと « enfin »",
+    "宿題（しゅくだい）« devoirs »",
+    "を « COD »",
+    "やる→やり « faire »",
+    "おわった « finir de » → « j'ai enfin fini de faire mes devoirs »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/つづける-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/つづける",
+   "jlpt:jp": "彼は三時間も走りつづけた。",
+   "jlpt:romaji": "kare wa sanjikan mo hashiritsuzuketa.",
+   "schema:description": "Il a continué à courir pendant trois heures.",
+   "jlpt:analysis": [
+    "彼（かれ）« il »",
+    "は « thème »",
+    "三時間（さんじかん）« trois heures »",
+    "も « même (insistance) »",
+    "走る（はしる）→走り « courir »",
+    "つづけた « continuer à » → « il a continué à courir pendant trois heures »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/きった-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/きった",
+   "jlpt:jp": "彼は長い距離を走りきった。",
+   "jlpt:romaji": "kare wa nagai kyori o hashirikitta.",
+   "schema:description": "Il a couru toute la longue distance jusqu'au bout.",
+   "jlpt:analysis": [
+    "彼（かれ）« il »",
+    "は « thème »",
+    "長い（ながい）« longue »",
+    "距離（きょり）« distance »",
+    "を « COD »",
+    "走る（はしる）→走りきった « base ます ＋きった = faire jusqu'au bout / complètement » → « il a couru toute la longue distance jusqu'au bout »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/受身—Passifられる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/受身—Passifられる",
+   "jlpt:jp": "弟にケーキを食べられた。",
+   "jlpt:romaji": "otōto ni kēki o taberareta.",
+   "schema:description": "Mon petit frère m'a mangé mon gâteau (à mon dam).",
+   "jlpt:analysis": [
+    "弟（おとうと）« petit frère »",
+    "に « agent du passif »",
+    "ケーキ « gâteau »",
+    "を « COD »",
+    "食べる（たべる）→食べられた « passif subi (préjudice) » → « mon petit frère m'a mangé mon gâteau, à mon détriment »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/受身—Passifられる-2",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/受身—Passifられる",
+   "jlpt:jp": "この本は多くの人に読まれている。",
+   "jlpt:romaji": "kono hon wa ōku no hito ni yomarete iru.",
+   "schema:description": "Ce livre est lu par beaucoup de gens.",
+   "jlpt:analysis": [
+    "本（ほん）« livre »",
+    "は « thème »",
+    "多くの人（おおくのひと）« beaucoup de gens »",
+    "に « agent du passif »",
+    "読む（よむ）→読まれている « passif ＋ている = état (est lu) » → « ce livre est lu par beaucoup de gens »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/使役—Causatifさせる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/使役—Causatifさせる",
+   "jlpt:jp": "先生は学生に漢字を書かせた。",
+   "jlpt:romaji": "sensei wa gakusei ni kanji o kakaseta.",
+   "schema:description": "Le professeur a fait écrire des kanji aux élèves.",
+   "jlpt:analysis": [
+    "先生（せんせい）« professeur »",
+    "学生（がくせい）« élève »",
+    "に « celui qu'on fait agir »",
+    "漢字（かんじ）« kanji »",
+    "を « COD »",
+    "書く（かく）→書かせた « causatif passé (fit écrire) » → « le professeur a fait écrire des kanji aux élèves »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/使役—Causatifさせる-2",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/使役—Causatifさせる",
+   "jlpt:jp": "子供を公園で遊ばせる。",
+   "jlpt:romaji": "kodomo o kōen de asobaseru.",
+   "schema:description": "Je laisse les enfants jouer au parc.",
+   "jlpt:analysis": [
+    "子供（こども）« enfants »",
+    "を « causé (verbe intransitif) »",
+    "公園（こうえん）« parc »",
+    "で « lieu de l'action »",
+    "遊ぶ（あそぶ）→遊ばせる « causatif = laisser/faire jouer » → « je laisse les enfants jouer au parc »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/使役受身—Causatif-passifさせられる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/使役受身—Causatif-passifさせられる",
+   "jlpt:jp": "毎日残業させられる。",
+   "jlpt:romaji": "mainichi zangyō saserareru.",
+   "schema:description": "On m'oblige à faire des heures sup tous les jours.",
+   "jlpt:analysis": [
+    "毎日（まいにち）« tous les jours »",
+    "残業する（ざんぎょうする）→残業させられる « causatif-passif = être contraint de » → « on m'oblige à faire des heures sup tous les jours »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/使役受身—Causatif-passifさせられる-2",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/使役受身—Causatif-passifさせられる",
+   "jlpt:jp": "子供のとき、野菜を食べさせられた。",
+   "jlpt:romaji": "kodomo no toki, yasai o tabesaserareta.",
+   "schema:description": "Enfant, on me forçait à manger des légumes.",
+   "jlpt:analysis": [
+    "子供（こども）のとき « quand j'étais enfant »",
+    "野菜（やさい）« légumes »",
+    "を « COD »",
+    "食べる（たべる）→食べさせられた « causatif-passif passé = être forcé de manger » → « enfant, on me forçait à manger des légumes »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/（さ）せられる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/（さ）せられる",
+   "jlpt:jp": "私は先輩にお酒を飲まされた。",
+   "jlpt:romaji": "watashi wa senpai ni osake o nomasareta.",
+   "schema:description": "Mon aîné m'a forcé à boire de l'alcool.",
+   "jlpt:analysis": [
+    "私（わたし）« je »",
+    "は « thème »",
+    "先輩（せんぱい）« aîné (senpai) »",
+    "に « agent, celui qui contraint »",
+    "お酒（おさけ）« alcool, saké »",
+    "を « COD »",
+    "飲む（のむ）→飲まされた « causatif-passif, forme courte 〜される = a été contraint de boire » → « mon aîné m'a forcé à boire de l'alcool »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/（さ）せる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/（さ）せる",
+   "jlpt:jp": "母は弟に部屋を掃除させた。",
+   "jlpt:romaji": "haha wa otōto ni heya o sōji saseta.",
+   "schema:description": "Ma mère a fait ranger la chambre à mon petit frère.",
+   "jlpt:analysis": [
+    "母（はは）« ma mère »",
+    "は « thème »",
+    "弟（おとうと）« petit frère »",
+    "に « celui qu'on fait agir »",
+    "部屋（へや）« chambre »",
+    "を « COD »",
+    "掃除する（そうじする）→掃除させた « causatif passé = a fait ranger/nettoyer » → « ma mère a fait ranger la chambre à mon petit frère »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/（ら）れる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/（ら）れる",
+   "jlpt:jp": "私は先生に褒められた。",
+   "jlpt:romaji": "watashi wa sensei ni homerareta.",
+   "schema:description": "J'ai été félicité par le professeur.",
+   "jlpt:analysis": [
+    "私（わたし）« je »",
+    "は « thème »",
+    "先生（せんせい）« professeur »",
+    "に « agent du passif (par) »",
+    "褒める（ほめる）→褒められた « passif passé = ai été félicité » → « j'ai été félicité par le professeur »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/そうだ(apparence)-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/そうだ(apparence)",
+   "jlpt:jp": "この料理はおいしそうだ。",
+   "jlpt:romaji": "kono ryōri wa oishisō da.",
+   "schema:description": "Ce plat a l'air bon.",
+   "jlpt:analysis": [
+    "料理（りょうり）« plat, cuisine »",
+    "は « thème »",
+    "おいしい « bon »→おいしそうだ « radical ＋そうだ = apparence (a l'air de) » → « ce plat a l'air bon »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/そうだ(apparence)-2",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/そうだ(apparence)",
+   "jlpt:jp": "雨が降りそうです。",
+   "jlpt:romaji": "ame ga furisō desu.",
+   "schema:description": "On dirait qu'il va pleuvoir.",
+   "jlpt:analysis": [
+    "雨（あめ）« pluie »",
+    "が « sujet »",
+    "降る（ふる）→降りそうです « base en い ＋そうです = signe imminent (on dirait que…) » → « on dirait qu'il va pleuvoir »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/そうだ(ouï-dire)-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/そうだ(ouï-dire)",
+   "jlpt:jp": "天気予報によると明日は雨だそうだ。",
+   "jlpt:romaji": "tenki yohō ni yoru to ashita wa ame da sō da.",
+   "schema:description": "D'après la météo, il paraît qu'il pleuvra demain.",
+   "jlpt:analysis": [
+    "天気予報（てんきよほう）« prévisions météo »",
+    "によると « selon, d'après »",
+    "明日（あした）« demain »",
+    "雨（あめ）« pluie »→雨だそうだ « ＋そうだ = ouï-dire (il paraît que…) » → « d'après la météo, il paraît qu'il pleuvra demain »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ようだ-みたいだ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ようだ",
+   "jlpt:jp": "誰もいないようだ。",
+   "jlpt:romaji": "dare mo inai yō da.",
+   "schema:description": "On dirait qu'il n'y a personne.",
+   "jlpt:analysis": [
+    "誰（だれ）も « personne (＋négatif) »",
+    "いる→いない « négatif d'existence » →いないようだ « ようだ = impression, déduction (on dirait que…) » → « on dirait qu'il n'y a personne »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ようだ-みたいだ-2",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ようだ",
+   "jlpt:jp": "彼は疲れているみたいだ。",
+   "jlpt:romaji": "kare wa tsukarete iru mitai da.",
+   "schema:description": "Il a l'air fatigué.",
+   "jlpt:analysis": [
+    "彼（かれ）« il »",
+    "は « thème »",
+    "疲れる（つかれる）→疲れている « forme ている = état » →みたいだ « みたいだ = apparence familière (a l'air de) » → « il a l'air fatigué »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/らしい-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/らしい",
+   "jlpt:jp": "来月から値段が上がるらしい。",
+   "jlpt:romaji": "raigetsu kara nedan ga agaru rashii.",
+   "schema:description": "Il paraît que les prix vont monter le mois prochain.",
+   "jlpt:analysis": [
+    "来月（らいげつ）« le mois prochain »",
+    "から « à partir de »",
+    "値段（ねだん）« prix »",
+    "上がる（あがる）→上がるらしい « らしい = information rapportée (il paraît que…) » → « il paraît que les prix vont monter le mois prochain »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/らしい-2",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/らしい",
+   "jlpt:jp": "彼は本当に男らしい。",
+   "jlpt:romaji": "kare wa hontō ni otokorashii.",
+   "schema:description": "Il est vraiment viril (typiquement masculin).",
+   "jlpt:analysis": [
+    "彼（かれ）« il »",
+    "本当に（ほんとうに）« vraiment »",
+    "男（おとこ）« homme »→男らしい « nom ＋らしい = typique de, digne de (suffixe) » → « il est vraiment viril »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/はずだ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/はずだ",
+   "jlpt:jp": "彼はもう着いているはずだ。",
+   "jlpt:romaji": "kare wa mō tsuite iru hazu da.",
+   "schema:description": "Il devrait déjà être arrivé.",
+   "jlpt:analysis": [
+    "彼（かれ）« il »",
+    "もう « déjà »",
+    "着く（つく）→着いている « forme ている = état » →はずだ « はずだ = supposition logique (devrait) » → « il devrait déjà être arrivé »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/はずがない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/はずがない",
+   "jlpt:jp": "そんなことがあるはずがない。",
+   "jlpt:romaji": "sonna koto ga aru hazu ga nai.",
+   "schema:description": "C'est impossible qu'une telle chose arrive.",
+   "jlpt:analysis": [
+    "そんなこと « une telle chose »",
+    "が « sujet »",
+    "ある « exister » →あるはずがない « はずがない = c'est impossible que » → « c'est impossible qu'une telle chose arrive »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/に違いない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/に違いない",
+   "jlpt:jp": "彼が犯人に違いない。",
+   "jlpt:romaji": "kare ga hannin ni chigainai.",
+   "schema:description": "C'est sûrement lui le coupable.",
+   "jlpt:analysis": [
+    "彼（かれ）« il »",
+    "が « sujet emphatique »",
+    "犯人（はんにん）« coupable » →犯人に違いない « に違いない = certitude (sûrement) » → « c'est sûrement lui le coupable »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/かもしれない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/かもしれない",
+   "jlpt:jp": "明日は雪が降るかもしれない。",
+   "jlpt:romaji": "ashita wa yuki ga furu kamoshirenai.",
+   "schema:description": "Il neigera peut-être demain.",
+   "jlpt:analysis": [
+    "明日（あした）« demain »",
+    "は « thème »",
+    "雪（ゆき）« neige »",
+    "降る（ふる）→降るかもしれない « かもしれない = possibilité (peut-être) » → « il neigera peut-être demain »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/っぽい-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/っぽい",
+   "jlpt:jp": "彼は怒りっぽい性格だ。",
+   "jlpt:romaji": "kare wa okorippoi seikaku da.",
+   "schema:description": "Il a un caractère colérique.",
+   "jlpt:analysis": [
+    "彼（かれ）« il »",
+    "は « thème »",
+    "怒る（おこる）→怒りっぽい « base ＋っぽい = porté à se mettre en colère »",
+    "性格（せいかく）« caractère » → « il a un caractère colérique »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/がる-たがる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/がる",
+   "jlpt:jp": "子供が犬を怖がっている。",
+   "jlpt:romaji": "kodomo ga inu o kowagatte iru.",
+   "schema:description": "L'enfant a peur du chien.",
+   "jlpt:analysis": [
+    "子供（こども）« l'enfant »",
+    "が « sujet »",
+    "犬（いぬ）« le chien »",
+    "を « COD »",
+    "怖い（こわい）→怖がっている « 語幹 ＋がる = manifester un sentiment (d'autrui) ＋ている (état) » → « l'enfant a peur du chien »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/に決まっている-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/に決まっている",
+   "jlpt:jp": "そんな話、うそに決まっている。",
+   "jlpt:romaji": "sonna hanashi, uso ni kimatte iru.",
+   "schema:description": "Une telle histoire, c'est forcément un mensonge.",
+   "jlpt:analysis": [
+    "そんな話（はなし）« une telle histoire »",
+    "うそ « mensonge »",
+    "に決まっている（にきまっている）« ＝c'est forcément, à coup sûr (certitude) » → « une telle histoire, c'est forcément un mensonge »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/とは限らない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/とは限らない",
+   "jlpt:jp": "高いものがいいとは限らない。",
+   "jlpt:romaji": "takai mono ga ii to wa kagiranai.",
+   "schema:description": "Ce qui est cher n'est pas forcément bon.",
+   "jlpt:analysis": [
+    "高い（たかい）« cher »",
+    "もの « chose »",
+    "が « sujet »",
+    "いい « bon »",
+    "とは限らない（とはかぎらない）« ＝n'est pas forcément, pas nécessairement » → « ce qui est cher n'est pas forcément bon »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ないことはない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ないことはない",
+   "jlpt:jp": "頑張れば、できないことはない。",
+   "jlpt:romaji": "ganbareba, dekinai koto wa nai.",
+   "schema:description": "Avec des efforts, ce n'est pas impossible.",
+   "jlpt:analysis": [
+    "頑張る（がんばる）→頑張れば « forme conditionnelle en ば »",
+    "できる→できない « potentiel négatif »",
+    "ことはない « ＝ことはない = ce n'est pas le cas que, double négation = ce n'est pas impossible » → « avec des efforts, ce n'est pas impossible »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/まい-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/まい",
+   "jlpt:jp": "二度と遅刻するまい。",
+   "jlpt:romaji": "nidoto chikoku suru mai.",
+   "schema:description": "Je ne serai plus jamais en retard.",
+   "jlpt:analysis": [
+    "二度と（にどと）« plus jamais »",
+    "遅刻（ちこく）する « être en retard » →するまい « ＋まい = volonté négative = ne plus faire (résolution) » → « je ne serai plus jamais en retard »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/っけ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/っけ",
+   "jlpt:jp": "明日は休みだっけ？",
+   "jlpt:romaji": "ashita wa yasumi dakke?",
+   "schema:description": "C'est congé demain, déjà ?",
+   "jlpt:analysis": [
+    "明日（あした）« demain »",
+    "は « thème »",
+    "休み（やすみ）« congé »",
+    "だっけ « ＝だ＋っけ = particule de rappel/vérification (c'était bien... ?) » → « c'est congé demain, déjà ? »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/でしょう-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/でしょう",
+   "jlpt:jp": "明日は雨でしょう。",
+   "jlpt:romaji": "ashita wa ame deshō.",
+   "schema:description": "Demain il pleuvra sans doute.",
+   "jlpt:analysis": [
+    "明日（あした）« demain »",
+    "は « thème »",
+    "雨（あめ）« pluie »",
+    "でしょう « sans doute » → « demain il pleuvra sans doute »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/だろう-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/だろう",
+   "jlpt:jp": "明日はたぶん寒いだろう。",
+   "jlpt:romaji": "ashita wa tabun samui darō.",
+   "schema:description": "Demain il fera sans doute froid.",
+   "jlpt:analysis": [
+    "明日（あした）« demain »",
+    "は « thème »",
+    "たぶん « probablement »",
+    "寒い（さむい）« froid »",
+    "だろう « sans doute (conjecture, forme neutre) » → « demain il fera sans doute froid »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/によると-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/によると",
+   "jlpt:jp": "天気予報によると、明日は雨だそうだ。",
+   "jlpt:romaji": "tenki yohō ni yoru to, ashita wa ame da sō da.",
+   "schema:description": "D'après la météo, il pleuvra demain.",
+   "jlpt:analysis": [
+    "天気予報（てんきよほう）« prévisions météo »",
+    "によると « selon, d'après »",
+    "、",
+    "明日（あした）« demain »",
+    "は « thème »",
+    "雨（あめ）« pluie »",
+    "だそうだ « il paraît que (ouï-dire) » → « d'après la météo, il pleuvra demain »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/みたい-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/みたい",
+   "jlpt:jp": "彼はまるで子供みたいだ。",
+   "jlpt:romaji": "kare wa marude kodomo mitai da.",
+   "schema:description": "Il est comme un enfant.",
+   "jlpt:analysis": [
+    "彼（かれ）« il »",
+    "は « thème »",
+    "まるで « exactement, on dirait »",
+    "子供（こども）« enfant »",
+    "みたいだ « on dirait, comme (comparaison) » → « il est comme un enfant »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/がする-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/がする",
+   "jlpt:jp": "いいにおいがする。",
+   "jlpt:romaji": "ii nioi ga suru.",
+   "schema:description": "Ça sent bon.",
+   "jlpt:analysis": [
+    "いい « bonne »",
+    "におい « odeur »",
+    "がする « se sentir » → « ça sent bon »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/かねない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/かねない",
+   "jlpt:jp": "そんなに無理をすると、病気になりかねない。",
+   "jlpt:romaji": "sonna ni muri o suru to, byōki ni narikanenai.",
+   "schema:description": "Si tu forces autant, tu risques de tomber malade.",
+   "jlpt:analysis": [
+    "そんなに « autant »",
+    "無理（むり）« excès, forcer »",
+    "を « COD »",
+    "する→すると « si tu fais »",
+    "、",
+    "病気（びょうき）« maladie »",
+    "に « à »",
+    "なる→なりかねない « forme ます-radical ＋かねない = risquer de (issue négative) » → « si tu forces autant, tu risques de tomber malade »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/たがらない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/たがらない",
+   "jlpt:jp": "弟は野菜を食べたがらない。",
+   "jlpt:romaji": "otōto wa yasai o tabetagaranai.",
+   "schema:description": "Mon petit frère ne veut pas manger de légumes.",
+   "jlpt:analysis": [
+    "弟（おとうと）« petit frère »",
+    "は « thème »",
+    "野菜（やさい）« légumes »",
+    "を « COD »",
+    "食べる（たべる）→食べたがらない « forme ます-radical ＋たがらない = (3ᵉ pers.) ne pas vouloir » → « mon petit frère ne veut pas manger de légumes »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/のような-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/のような",
+   "jlpt:jp": "富士山のような高い山に登りたい。",
+   "jlpt:romaji": "fujisan no yō na takai yama ni noboritai.",
+   "schema:description": "Je veux gravir une haute montagne comme le mont Fuji.",
+   "jlpt:analysis": [
+    "富士山（ふじさん）« le mont Fuji »",
+    "のような « telle que, comme »",
+    "高い（たかい）« haute »",
+    "山（やま）« montagne »",
+    "に « à »",
+    "登る（のぼる）→登りたい « vouloir gravir » → « je veux gravir une haute montagne comme le mont Fuji »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/がち-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/がち",
+   "jlpt:jp": "冬は風邪をひきがちだ。",
+   "jlpt:romaji": "fuyu wa kaze o hikigachi da.",
+   "schema:description": "En hiver, on attrape facilement froid.",
+   "jlpt:analysis": [
+    "冬（ふゆ）« hiver »",
+    "は « thème »",
+    "風邪（かぜ）をひく « attraper froid » →ひきがちだ « base en い ＋がち = tendance fâcheuse (avoir tendance à) » → « en hiver, on attrape facilement froid »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ほど-くらい-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ほど",
+   "jlpt:jp": "立てないほど疲れた。",
+   "jlpt:romaji": "tatenai hodo tsukareta.",
+   "schema:description": "J'étais fatigué au point de ne plus pouvoir me lever.",
+   "jlpt:analysis": [
+    "立つ（たつ）→立てない « potentiel négatif (ne pas pouvoir se lever) » →立てないほど « ほど = au point de (degré) »",
+    "疲れる（つかれる）→疲れた « passé » → « j'étais fatigué au point de ne plus pouvoir me lever »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/やすい-にくい-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/やすい",
+   "jlpt:jp": "この本は読みやすい。",
+   "jlpt:romaji": "kono hon wa yomiyasui.",
+   "schema:description": "Ce livre est facile à lire.",
+   "jlpt:analysis": [
+    "この本（ほん）« ce livre »",
+    "は « thème »",
+    "読む（よむ）→読みやすい « 連用形 ＋やすい = facile à (faire) » → « ce livre est facile à lire »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/すぎる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/すぎる",
+   "jlpt:jp": "昨日は食べすぎた。",
+   "jlpt:romaji": "kinō wa tabesugita.",
+   "schema:description": "Hier j'ai trop mangé.",
+   "jlpt:analysis": [
+    "昨日（きのう）« hier »",
+    "は « thème »",
+    "食べる（たべる）→食べすぎた « 連用形 ＋すぎる = faire trop (excès), au passé » → « hier j'ai trop mangé »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/気味-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/気味",
+   "jlpt:jp": "今日は風邪気味だ。",
+   "jlpt:romaji": "kyō wa kaze gimi da.",
+   "schema:description": "Aujourd'hui je suis un peu enrhumé.",
+   "jlpt:analysis": [
+    "今日（きょう）« aujourd'hui »",
+    "は « thème »",
+    "風邪（かぜ）« rhume »",
+    "気味（ぎみ）« ＝suffixe = une tendance à, un léger (état naissant) »",
+    "だ « copule » → « aujourd'hui je suis un peu enrhumé »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/がたい-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/がたい",
+   "jlpt:jp": "信じがたい話だ。",
+   "jlpt:romaji": "shinjigatai hanashi da.",
+   "schema:description": "Une histoire difficile à croire.",
+   "jlpt:analysis": [
+    "信じる（しんじる）→信じがたい « 連用形 ＋がたい = difficile à, dur à (faire) »",
+    "話（はなし）« histoire »",
+    "だ « copule » → « une histoire difficile à croire »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/だらけ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/だらけ",
+   "jlpt:jp": "この作文は間違いだらけだ。",
+   "jlpt:romaji": "kono sakubun wa machigai darake da.",
+   "schema:description": "Cette rédaction est pleine de fautes.",
+   "jlpt:analysis": [
+    "この作文（さくぶん）« cette rédaction »",
+    "は « thème »",
+    "間違い（まちがい）« fautes »",
+    "だらけ « ＝nom ＋だらけ = couvert de, plein de (péjoratif) »",
+    "だ « copule » → « cette rédaction est pleine de fautes »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ばほど-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ばほど",
+   "jlpt:jp": "練習すればするほど上手になる。",
+   "jlpt:romaji": "renshū sureba suru hodo jōzu ni naru.",
+   "schema:description": "Plus on s'entraîne, plus on progresse.",
+   "jlpt:analysis": [
+    "練習（れんしゅう）する→すれば « forme conditionnelle en ば »",
+    "するほど « ＝ば＋ほど = plus... plus (proportion croissante) »",
+    "上手（じょうず）になる « devenir habile » → « plus on s'entraîne, plus on progresse »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/あまり-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/あまり",
+   "jlpt:jp": "緊張のあまり、声が震えた。",
+   "jlpt:romaji": "kinchō no amari, koe ga furueta.",
+   "schema:description": "Sous l'effet du trac, ma voix a tremblé.",
+   "jlpt:analysis": [
+    "緊張（きんちょう）« trac »",
+    "のあまり « tellement… que »",
+    "、",
+    "声（こえ）« voix »",
+    "が « sujet »",
+    "震える（ふるえる）→震えた « s'est mise à trembler » → « sous l'effet du trac, ma voix a tremblé »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/だけでなくも-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/だけでなくも",
+   "jlpt:jp": "彼は英語だけでなく中国語も話せる。",
+   "jlpt:romaji": "kare wa eigo dake de naku chūgokugo mo hanaseru.",
+   "schema:description": "Il parle non seulement anglais mais aussi chinois.",
+   "jlpt:analysis": [
+    "彼（かれ）« il »",
+    "英語（えいご）→英語だけでなく « だけでなく…も = non seulement…mais aussi »",
+    "中国語（ちゅうごくご）も « le chinois aussi »",
+    "話す（はなす）→話せる « potentiel = pouvoir parler » → « il parle non seulement anglais mais aussi chinois »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ばかりでなく-上に-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ばかりでなく",
+   "jlpt:jp": "この店は安い上においしい。",
+   "jlpt:romaji": "kono mise wa yasui ue ni oishii.",
+   "schema:description": "Ce restaurant est bon marché et en plus délicieux.",
+   "jlpt:analysis": [
+    "店（みせ）« restaurant, boutique »",
+    "は « thème »",
+    "安い（やすい）→安い上に « 上に = de plus, en outre »",
+    "おいしい « délicieux » → « ce restaurant est bon marché et en plus délicieux »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/し-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/し",
+   "jlpt:jp": "この店は安いし、おいしいし、よく行く。",
+   "jlpt:romaji": "kono mise wa yasui shi, oishii shi, yoku iku.",
+   "schema:description": "Ce resto est bon marché et bon, alors j'y vais souvent.",
+   "jlpt:analysis": [
+    "この店（みせ）« ce magasin »",
+    "は « thème »",
+    "安い（やすい）→安いし « ＝し = énumération de raisons (et puis) »",
+    "おいしい→おいしいし « ＝し = et de plus »",
+    "よく行く（いく）« j'y vais souvent » → « ce resto est bon marché et bon, alors j'y vais souvent »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/とかとか-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/とかとか",
+   "jlpt:jp": "休みは映画とか買い物とかをする。",
+   "jlpt:romaji": "yasumi wa eiga toka kaimono toka o suru.",
+   "schema:description": "En congé je fais des trucs comme le ciné ou les courses.",
+   "jlpt:analysis": [
+    "休み（やすみ）« les congés »",
+    "は « thème »",
+    "映画（えいが）« cinéma »",
+    "とか « ＝énumération non exhaustive (des trucs comme) »",
+    "買い物（かいもの）« courses »",
+    "とか « ＝et autres »",
+    "をする « faire » → « en congé je fais des trucs comme le ciné ou les courses »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/やらやら-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/やらやら",
+   "jlpt:jp": "仕事やら家事やらで忙しい。",
+   "jlpt:romaji": "shigoto yara kaji yara de isogashii.",
+   "schema:description": "Entre le travail, les tâches ménagères, etc., je suis débordé.",
+   "jlpt:analysis": [
+    "仕事（しごと）« travail »",
+    "やら « ＝énumération avec nuance d'accablement (entre... et...) »",
+    "家事（かじ）« tâches ménagères »",
+    "やら « ＝et tout ça »",
+    "で « cause »",
+    "忙しい（いそがしい）« occupé » → « entre le travail, les tâches ménagères, etc., je suis débordé »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ばかりでなく-はもちろん-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ばかりでなく",
+   "jlpt:jp": "漢字はもちろん、文法も難しい。",
+   "jlpt:romaji": "kanji wa mochiron, bunpō mo muzukashii.",
+   "schema:description": "Les kanji bien sûr, mais la grammaire aussi est difficile.",
+   "jlpt:analysis": [
+    "漢字（かんじ）« les kanji »",
+    "はもちろん « ＝non seulement... bien sûr (＝はもちろん) »",
+    "文法（ぶんぽう）« la grammaire »",
+    "も « ＝aussi (mais... aussi) »",
+    "難しい（むずかしい）« difficile » → « les kanji bien sûr, mais la grammaire aussi est difficile »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/だけ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/だけ",
+   "jlpt:jp": "一度だけ会ったことがある。",
+   "jlpt:romaji": "ichido dake atta koto ga aru.",
+   "schema:description": "Je l'ai rencontré une seule fois.",
+   "jlpt:analysis": [
+    "一度（いちど）« une fois »",
+    "だけ « ＝seulement »",
+    "会う（あう）→会ったことがある « forme た ＋ことがある = avoir déjà fait l'expérience de » → « je l'ai rencontré une seule fois »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/こそ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/こそ",
+   "jlpt:jp": "今度こそ頑張ります。",
+   "jlpt:romaji": "kondo koso ganbarimasu.",
+   "schema:description": "Cette fois-ci, je vais vraiment me donner à fond.",
+   "jlpt:analysis": [
+    "今度（こんど）« cette fois »",
+    "こそ « ＝particule d'insistance (c'est bien cette fois que) »",
+    "頑張る（がんばる）→頑張ります « faire de son mieux (poli) » → « cette fois-ci, je vais vraiment me donner à fond »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/しかない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/しかない",
+   "jlpt:jp": "バスがないから歩くしかない。",
+   "jlpt:romaji": "basu ga nai kara aruku shika nai.",
+   "schema:description": "Il n'y a pas de bus, je n'ai qu'à marcher.",
+   "jlpt:analysis": [
+    "バス « le bus »",
+    "が « sujet »",
+    "ない « il n'y en a pas »",
+    "から « cause »",
+    "歩く（あるく）→歩くしかない « forme du dictionnaire ＋しかない = n'avoir d'autre choix que de » → « il n'y a pas de bus, je n'ai qu'à marcher »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/をはじめ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/をはじめ",
+   "jlpt:jp": "東京をはじめ、各地で開催される。",
+   "jlpt:romaji": "tōkyō o hajime, kakuchi de kaisai sareru.",
+   "schema:description": "Cela a lieu à Tokyo et dans diverses régions.",
+   "jlpt:analysis": [
+    "東京（とうきょう）« Tokyo »",
+    "をはじめ « ＝à commencer par, et notamment (suivi d'autres) »",
+    "各地（かくち）« diverses régions »",
+    "で « lieu »",
+    "開催（かいさい）する→開催される « passif = avoir lieu, être organisé » → « cela a lieu à Tokyo et dans diverses régions »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/に過ぎない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/に過ぎない",
+   "jlpt:jp": "それは言い訳に過ぎない。",
+   "jlpt:romaji": "sore wa iiwake ni suginai.",
+   "schema:description": "Ce n'est qu'une excuse.",
+   "jlpt:analysis": [
+    "それ « cela »",
+    "は « thème »",
+    "言い訳（いいわけ）« une excuse »",
+    "に過ぎない（にすぎない）« ＝ne... rien de plus que, ne... qu'une simple » → « ce n'est qu'une excuse »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/なんか-なんて-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/なんか",
+   "jlpt:jp": "彼が来るなんて、思わなかった。",
+   "jlpt:romaji": "kare ga kuru nante, omowanakatta.",
+   "schema:description": "Je ne pensais pas qu'il viendrait, lui.",
+   "jlpt:analysis": [
+    "彼（かれ）« lui »",
+    "が « sujet »",
+    "来る（くる）« venir »",
+    "なんて « ＝marque l'étonnement/incrédulité (l'idée que...) »",
+    "思う（おもう）→思わなかった « penser (négatif passé) » → « je ne pensais pas qu'il viendrait, lui »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/たりたりする-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/たりたりする",
+   "jlpt:jp": "赤ちゃんは泣いたり笑ったりする。",
+   "jlpt:romaji": "akachan wa naitari warattari suru.",
+   "schema:description": "Le bébé tantôt pleure, tantôt rit.",
+   "jlpt:analysis": [
+    "赤ちゃん（あかちゃん）« bébé »",
+    "は « thème »",
+    "泣く（なく）→泣いたり « tantôt pleurer »",
+    "笑う（わらう）→笑ったりする « tantôt rire (する clôt l'énumération) » → « le bébé tantôt pleure, tantôt rit »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/たりたり-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/たりたり",
+   "jlpt:jp": "休みの日は本を読んだり音楽を聞いたりする。",
+   "jlpt:romaji": "yasumi no hi wa hon o yondari ongaku o kiitari suru.",
+   "schema:description": "Les jours de congé, je lis, j'écoute de la musique, etc.",
+   "jlpt:analysis": [
+    "休み（やすみ）« congé »",
+    "の « de »",
+    "日（ひ）« jour »",
+    "は « thème »",
+    "本（ほん）« livre »",
+    "を « COD »",
+    "読む（よむ）→読んだり « lire, entre autres »",
+    "音楽（おんがく）« musique »",
+    "を « COD »",
+    "聞く（きく）→聞いたりする « écouter, etc. » → « les jours de congé, je lis, j'écoute de la musique, etc. »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/など-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/など",
+   "jlpt:jp": "お金など要らない。",
+   "jlpt:romaji": "okane nado iranai.",
+   "schema:description": "Je n'ai pas besoin de choses comme l'argent.",
+   "jlpt:analysis": [
+    "お金（おかね）« argent »",
+    "など « des choses comme (dédain) »",
+    "要る（いる）→要らない « ne pas avoir besoin » → « je n'ai pas besoin de choses comme l'argent »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/にすぎない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/にすぎない",
+   "jlpt:jp": "それは言い訳にすぎない。",
+   "jlpt:romaji": "sore wa iiwake ni suginai.",
+   "schema:description": "Ce n'est rien de plus qu'une excuse.",
+   "jlpt:analysis": [
+    "それ « cela »",
+    "は « thème »",
+    "言い訳（いいわけ）« excuse »",
+    "にすぎない « n'est rien de plus que » → « ce n'est rien de plus qu'une excuse »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/に加えて-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/に加えて",
+   "jlpt:jp": "雨に加えて風も強くなった。",
+   "jlpt:romaji": "ame ni kuwaete kaze mo tsuyoku natta.",
+   "schema:description": "En plus de la pluie, le vent aussi s'est renforcé.",
+   "jlpt:analysis": [
+    "雨（あめ）« pluie »",
+    "に加えて（にくわえて）« en plus de »",
+    "風（かぜ）« vent »",
+    "も « aussi »",
+    "強い（つよい）→強くなった « être devenu fort » → « en plus de la pluie, le vent aussi s'est renforcé »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/をはじめとする-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/をはじめとする",
+   "jlpt:jp": "日本には富士山をはじめとする美しい山が多い。",
+   "jlpt:romaji": "nihon ni wa fujisan o hajime to suru utsukushii yama ga ōi.",
+   "schema:description": "Au Japon, les belles montagnes sont nombreuses, à commencer par le mont Fuji.",
+   "jlpt:analysis": [
+    "日本（にほん）« le Japon »",
+    "に « lieu »",
+    "は « thème »",
+    "富士山（ふじさん）« le mont Fuji »",
+    "をはじめとする « à commencer par »",
+    "美しい（うつくしい）« belles »",
+    "山（やま）« montagnes »",
+    "が « sujet »",
+    "多い（おおい）« nombreuses » → « au Japon, les belles montagnes sont nombreuses, à commencer par le mont Fuji »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ぬき-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ぬき",
+   "jlpt:jp": "わさび抜きの寿司を注文した。",
+   "jlpt:romaji": "wasabi nuki no sushi o chūmon shita.",
+   "schema:description": "J'ai commandé des sushis sans wasabi.",
+   "jlpt:analysis": [
+    "わさび « wasabi »",
+    "抜き（ぬき）« sans, en omettant »",
+    "の « de (détermination) »",
+    "寿司（すし）« sushi »",
+    "を « COD »",
+    "注文する（ちゅうもんする）→注文した « avoir commandé » → « j'ai commandé des sushis sans wasabi »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ぬきで-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ぬきで",
+   "jlpt:jp": "朝食ぬきで学校へ行った。",
+   "jlpt:romaji": "chōshoku nuki de gakkō e itta.",
+   "schema:description": "Je suis allé à l'école sans petit-déjeuner.",
+   "jlpt:analysis": [
+    "朝食（ちょうしょく）« petit-déjeuner »",
+    "ぬきで « en se passant de »",
+    "学校（がっこう）« école »",
+    "へ « à »",
+    "行く（いく）→行った « s'est rendu » → « je suis allé à l'école sans petit-déjeuner »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/の-こと-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/の",
+   "jlpt:jp": "日本語を話すのは難しい。",
+   "jlpt:romaji": "nihongo o hanasu no wa muzukashii.",
+   "schema:description": "Parler japonais est difficile.",
+   "jlpt:analysis": [
+    "日本語（にほんご）« le japonais »",
+    "を « COD »",
+    "話す（はなす）→話すの « nominalisation par の »",
+    "は « thème »",
+    "難しい（むずかしい）« difficile » → « parler japonais est difficile »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/という-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/という",
+   "jlpt:jp": "「金閣寺」というお寺へ行った。",
+   "jlpt:romaji": "\"kinkakuji\" to iu otera e itta.",
+   "schema:description": "Je suis allé à un temple appelé Kinkaku-ji.",
+   "jlpt:analysis": [
+    "金閣寺（きんかくじ）« le Kinkaku-ji »",
+    "という « ＝nommé, appelé (citation+identification) »",
+    "お寺（おてら）« temple »",
+    "へ « direction »",
+    "行く（いく）→行った « forme た = passé » → « je suis allé à un temple appelé Kinkaku-ji »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ということだ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ということだ",
+   "jlpt:jp": "部長は今日来ないということだ。",
+   "jlpt:romaji": "buchō wa kyō konai to iu koto da.",
+   "schema:description": "Il paraît que le chef ne vient pas aujourd'hui.",
+   "jlpt:analysis": [
+    "部長（ぶちょう）« le chef de service »",
+    "は « thème »",
+    "今日（きょう）« aujourd'hui »",
+    "来る（くる）→来ない « négatif »",
+    "ということだ « ＝il paraît que, on dit que (ouï-dire) » → « il paraît que le chef ne vient pas aujourd'hui »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/って(口語)-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/って(口語)",
+   "jlpt:jp": "田中さんって優しいね。",
+   "jlpt:romaji": "tanaka-san tte yasashii ne.",
+   "schema:description": "Ce Tanaka, il est gentil, hein.",
+   "jlpt:analysis": [
+    "田中（たなか）さん « M. Tanaka »",
+    "って « ＝thème oral familier (＝は/というのは) »",
+    "優しい（やさしい）« gentil »",
+    "ね « particule de connivence » → « ce Tanaka, il est gentil, hein »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/とは-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/とは",
+   "jlpt:jp": "幸せとは何だろう。",
+   "jlpt:romaji": "shiawase to wa nan darō.",
+   "schema:description": "Qu'est-ce que le bonheur ?",
+   "jlpt:analysis": [
+    "幸せ（しあわせ）« le bonheur »",
+    "とは « ＝particule de définition (＝quant à la notion de) »",
+    "何（なに）« quoi »",
+    "だろう « ＝supposition/interrogation = je me demande » → « qu'est-ce que le bonheur ? »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ことができる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ことができる",
+   "jlpt:jp": "彼はピアノを弾くことができる。",
+   "jlpt:romaji": "kare wa piano o hiku koto ga dekiru.",
+   "schema:description": "Il sait jouer du piano.",
+   "jlpt:analysis": [
+    "彼（かれ）« il »",
+    "は « thème »",
+    "ピアノ « piano »",
+    "を « COD »",
+    "弾く（ひく）→弾くことができる « forme dictionnaire ＋ことができる = capacité “savoir / pouvoir” » → « il sait jouer du piano »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/のだ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/のだ",
+   "jlpt:jp": "道が濡れている。雨が降ったのだ。",
+   "jlpt:romaji": "michi ga nurete iru. ame ga futta no da.",
+   "schema:description": "La route est mouillée : c'est qu'il a plu.",
+   "jlpt:analysis": [
+    "道（みち）« la route »",
+    "が « sujet »",
+    "濡れる（ぬれる）→濡れている « forme ている = état résultant (est mouillée) »",
+    "雨（あめ）« la pluie »",
+    "が « sujet »",
+    "降る（ふる）→降ったのだ « forme た ＋のだ = explication / déduction, ton posé ou écrit (c'est qu'il a plu) » → « la route est mouillée : c'est qu'il a plu »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/んだ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/んだ",
+   "jlpt:jp": "実は、彼が好きなんだ。",
+   "jlpt:romaji": "jitsu wa, kare ga suki na n da.",
+   "schema:description": "À vrai dire, le fait est que je l'aime.",
+   "jlpt:analysis": [
+    "実は（じつは）« à vrai dire »",
+    "、",
+    "彼（かれ）« lui »",
+    "が « sujet (de 好き) »",
+    "好き（すき）→好きなんだ « な-adj＋な＋んだ = のだ à l'oral familier : “le fait est que…” » → « à vrai dire, le fait est que je l'aime »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/方（かた）-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/方（かた）",
+   "jlpt:jp": "この漢字の読み方を教えてください。",
+   "jlpt:romaji": "kono kanji no yomikata o oshiete kudasai.",
+   "schema:description": "Apprenez-moi la façon de lire ce kanji.",
+   "jlpt:analysis": [
+    "この « ce »",
+    "漢字（かんじ）« kanji »",
+    "の « de »",
+    "読（よ）み « lire (base ます) »",
+    "方（かた）« façon de »",
+    "を « COD »",
+    "教（おし）えて « apprendre (て形) »",
+    "ください « s'il vous plaît » → « apprenez-moi la façon de lire ce kanji »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/疑問詞＋か-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/疑問詞＋か",
+   "jlpt:jp": "部屋にだれかいますか。",
+   "jlpt:romaji": "heya ni dareka imasu ka.",
+   "schema:description": "Y a-t-il quelqu'un dans la pièce ?",
+   "jlpt:analysis": [
+    "部屋（へや）« pièce »",
+    "に « lieu »",
+    "だれ « qui »",
+    "か « ＝ indéfini (だれか = quelqu'un) »",
+    "います « il y a (poli) »",
+    "か « question » → « y a-t-il quelqu'un dans la pièce ? »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/かどうか-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/かどうか",
+   "jlpt:jp": "彼が来るかどうか分からない。",
+   "jlpt:romaji": "kare ga kuru ka dō ka wakaranai.",
+   "schema:description": "Je ne sais pas s'il va venir (ou non).",
+   "jlpt:analysis": [
+    "彼（かれ）« il »",
+    "が « sujet »",
+    "来る（くる）« venir »",
+    "かどうか « si (oui ou non) »",
+    "分かる（わかる）→分からない « ne pas savoir » → « je ne sais pas s'il va venir (ou non) »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ことがある-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ことがある",
+   "jlpt:jp": "時々、電車が遅れることがある。",
+   "jlpt:romaji": "tokidoki, densha ga okureru koto ga aru.",
+   "schema:description": "Il arrive parfois que le train soit en retard.",
+   "jlpt:analysis": [
+    "時々（ときどき）« parfois »",
+    "、",
+    "電車（でんしゃ）« le train »",
+    "が « sujet »",
+    "遅れる（おくれる）→遅れることがある « forme dictionnaire ＋ことがある = il arrive que (occasionnel) » → « il arrive parfois que le train soit en retard »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/んです-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/んです",
+   "jlpt:jp": "すみません、この漢字が読めないんです。",
+   "jlpt:romaji": "sumimasen, kono kanji ga yomenai n desu.",
+   "schema:description": "Excusez-moi, c'est que je n'arrive pas à lire ce kanji.",
+   "jlpt:analysis": [
+    "すみません « excusez-moi »",
+    "、",
+    "この « ce »",
+    "漢字（かんじ）« kanji »",
+    "が « sujet »",
+    "読める（よめる）→読めないんです « potentiel négatif ＋んです = explication polie à l'oral (c'est que je n'arrive pas) » → « excusez-moi, c'est que je n'arrive pas à lire ce kanji »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/のです-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/のです",
+   "jlpt:jp": "つまり、努力が大切なのです。",
+   "jlpt:romaji": "tsumari, doryoku ga taisetsu na no desu.",
+   "schema:description": "Autrement dit, c'est que l'effort est important.",
+   "jlpt:analysis": [
+    "つまり « autrement dit »",
+    "、",
+    "努力（どりょく）« l'effort »",
+    "が « sujet »",
+    "大切（たいせつ）→大切なのです « な-adj＋な＋のです = explication / insistance soutenue, ton écrit ou formel (le fait est que…) » → « autrement dit, c'est que l'effort est important »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/なくてもいい-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/なくてもいい",
+   "jlpt:jp": "急がなくてもいいですよ。",
+   "jlpt:romaji": "isoganakute mo ii desu yo.",
+   "schema:description": "Pas besoin de se presser.",
+   "jlpt:analysis": [
+    "急ぐ（いそぐ）→急がなくてもいい « なくてもいい = absence d'obligation (pas besoin de) »",
+    "です « poli »",
+    "よ « particule rassurante » → « pas besoin de se presser »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/てはいけない-てはならない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/てはいけない",
+   "jlpt:jp": "ここで写真を撮ってはいけない。",
+   "jlpt:romaji": "koko de shashin o totte wa ikenai.",
+   "schema:description": "Il est interdit de prendre des photos ici.",
+   "jlpt:analysis": [
+    "ここ « ici »",
+    "で « lieu »",
+    "写真（しゃしん）« photo »",
+    "を « COD »",
+    "撮る（とる）→撮ってはいけない « forme て ＋はいけない = interdiction » → « il est interdit de prendre des photos ici »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/てあげる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/てあげる",
+   "jlpt:jp": "友達に本を貸してあげた。",
+   "jlpt:romaji": "tomodachi ni hon o kashite ageta.",
+   "schema:description": "J'ai prêté un livre à mon ami.",
+   "jlpt:analysis": [
+    "友達（ともだち）に « bénéficiaire »",
+    "本（ほん）« livre »",
+    "を « COD »",
+    "貸す（かす）→貸してあげた « forme て ＋あげる = faire pour autrui (passé) » → « j'ai prêté un livre à mon ami »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/てくれる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/てくれる",
+   "jlpt:jp": "友達が手伝ってくれた。",
+   "jlpt:romaji": "tomodachi ga tetsudatte kureta.",
+   "schema:description": "Mon ami m'a aidé.",
+   "jlpt:analysis": [
+    "友達（ともだち）« ami »",
+    "が « sujet »",
+    "手伝う（てつだう）→手伝ってくれた « forme て ＋くれる = faire pour moi (passé) » → « mon ami m'a aidé »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/てもらう-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/てもらう",
+   "jlpt:jp": "先生に文法を教えてもらった。",
+   "jlpt:romaji": "sensei ni bunpō o oshiete moratta.",
+   "schema:description": "Je me suis fait expliquer la grammaire par le prof.",
+   "jlpt:analysis": [
+    "先生（せんせい）« le professeur »",
+    "に « marque l'agent du bienfait »",
+    "文法（ぶんぽう）« grammaire »",
+    "を « COD »",
+    "教える（おしえる）→教えてもらった « forme て ＋もらう = recevoir un service de qqn (passé) » → « je me suis fait expliquer la grammaire par le professeur »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ていただく-てくださる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ていただく",
+   "jlpt:jp": "先生が説明してくださった。",
+   "jlpt:romaji": "sensei ga setsumei shite kudasatta.",
+   "schema:description": "Le professeur a eu la gentillesse d'expliquer.",
+   "jlpt:analysis": [
+    "先生（せんせい）« le professeur »",
+    "が « sujet »",
+    "説明（せつめい）する « expliquer » →説明してくださった « forme て ＋くださる = faire l'honneur de (honorifique, passé) » → « le professeur a eu la gentillesse d'expliquer »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ていただけませんか-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ていただけませんか",
+   "jlpt:jp": "少々お待ちいただけますか。",
+   "jlpt:romaji": "shōshō omachi itadakemasu ka.",
+   "schema:description": "Pourriez-vous patienter un instant ?",
+   "jlpt:analysis": [
+    "少々（しょうしょう）« un instant »",
+    "待つ（まつ）→お待ち « base poli en お＋連用形 »",
+    "いただけますか « いただく au potentiel poli = pourriez-vous (humble) » → « pourriez-vous patienter un instant ? »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/お／ごください-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/お／ごください",
+   "jlpt:jp": "こちらにお座りください。",
+   "jlpt:romaji": "kochira ni osuwari kudasai.",
+   "schema:description": "Veuillez vous asseoir ici.",
+   "jlpt:analysis": [
+    "こちら « ici (poli) »",
+    "に « lieu »",
+    "座る（すわる）→お座り « base honorifique お＋連用形 »",
+    "ください « ＋ください = veuillez (requête polie) » → « veuillez vous asseoir ici »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/なさい-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/なさい",
+   "jlpt:jp": "早く寝なさい。",
+   "jlpt:romaji": "hayaku nesai.",
+   "schema:description": "Va te coucher vite.",
+   "jlpt:analysis": [
+    "早い（はやい）→早く « adverbialisé = vite »",
+    "寝る（ねる）→寝なさい « 連用形 ＋なさい = impératif doux (autorité) » → « va te coucher vite »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/な(interdiction)-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/な(interdiction)",
+   "jlpt:jp": "ここに入るな。",
+   "jlpt:romaji": "koko ni hairu na.",
+   "schema:description": "N'entre pas ici !",
+   "jlpt:analysis": [
+    "ここ « ici »",
+    "に « lieu »",
+    "入る（はいる）→入るな « forme du dictionnaire ＋な = impératif négatif (interdiction) » → « n'entre pas ici ! »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/させてください-させていただく-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/させてください",
+   "jlpt:jp": "少し休ませてください。",
+   "jlpt:romaji": "sukoshi yasumasete kudasai.",
+   "schema:description": "Permettez-moi de me reposer un peu.",
+   "jlpt:analysis": [
+    "少し（すこし）« un peu »",
+    "休む（やすむ）→休ませて « causatif させる ＋forme て »",
+    "ください « ＋ください = permettez-moi de (demande de permission) » → « permettez-moi de me reposer un peu »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/たほうがいい-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/たほうがいい",
+   "jlpt:jp": "熱があるなら、休んだほうがいい。",
+   "jlpt:romaji": "netsu ga aru nara, yasunda hō ga ii.",
+   "schema:description": "Si tu as de la fièvre, mieux vaut te reposer.",
+   "jlpt:analysis": [
+    "熱（ねつ）« fièvre »",
+    "がある « avoir »",
+    "なら « si »",
+    "休む（やすむ）→休んだほうがいい « forme た ＋ほうがいい = conseil “mieux vaut” » → « si tu as de la fièvre, mieux vaut te reposer »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/てもいい-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/てもいい",
+   "jlpt:jp": "ここに座ってもいいですか。",
+   "jlpt:romaji": "koko ni suwatte mo ii desu ka.",
+   "schema:description": "Puis-je m’asseoir ici ?",
+   "jlpt:analysis": [
+    "ここ « ici »",
+    "に « lieu »",
+    "座る（すわる）→座ってもいい « forme て ＋もいい = permission “on peut” »",
+    "ですか « interrogation polie » → « puis-je m'asseoir ici ? »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ないほうがいい-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ないほうがいい",
+   "jlpt:jp": "たばこは吸わないほうがいい。",
+   "jlpt:romaji": "tabako wa suwanai hō ga ii.",
+   "schema:description": "Il vaut mieux ne pas fumer.",
+   "jlpt:analysis": [
+    "たばこ « le tabac / la cigarette »",
+    "は « thème »",
+    "吸う（すう）→吸わないほうがいい « forme ない ＋ほうがいい = conseil négatif “mieux vaut ne pas” » → « il vaut mieux ne pas fumer »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/てほしい-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/てほしい",
+   "jlpt:jp": "手伝ってほしいです。",
+   "jlpt:romaji": "tetsudatte hoshii desu.",
+   "schema:description": "J'aimerais que tu m'aides.",
+   "jlpt:analysis": [
+    "手伝う（てつだう）→手伝って « aider »",
+    "ほしい « vouloir que »",
+    "です « copule polie » → « j'aimerais que tu m'aides »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/な-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/な",
+   "jlpt:jp": "そこに触るな。",
+   "jlpt:romaji": "soko ni sawaru na.",
+   "schema:description": "Ne touche pas là !",
+   "jlpt:analysis": [
+    "そこ « là »",
+    "に « cible / lieu »",
+    "触る（さわる）→触るな « 辞書形 ＋な = interdiction brusque (ne… pas !) » → « ne touche pas là ! »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/お／ごになる・お／ごする-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/お／ごになる・お／ごする",
+   "jlpt:jp": "先生はもうお帰りになりました。",
+   "jlpt:romaji": "sensei wa mō okaeri ni narimashita.",
+   "schema:description": "Le professeur est déjà rentré. (respect)",
+   "jlpt:analysis": [
+    "先生（せんせい）« professeur »",
+    "もう « déjà »",
+    "帰る（かえる）→お帰りになりました « お＋base＋になる = honorifique respectueux (sonkeigo) » → « le professeur est déjà rentré (respect) »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/お／ごになる・お／ごする-2",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/お／ごになる・お／ごする",
+   "jlpt:jp": "私がお持ちします。",
+   "jlpt:romaji": "watashi ga omochi shimasu.",
+   "schema:description": "Je vais le porter. (modestie)",
+   "jlpt:analysis": [
+    "私（わたし）« moi »",
+    "が « sujet emphatique »",
+    "持つ（もつ）→お持ちします « お＋base＋する = modeste (kenjōgo) » → « je vais le porter (modestie) »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/おする-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/おする",
+   "jlpt:jp": "荷物をお持ちします。",
+   "jlpt:romaji": "nimotsu o omochi shimasu.",
+   "schema:description": "Je porte vos bagages.",
+   "jlpt:analysis": [
+    "荷物（にもつ）« bagages »",
+    "を « COD »",
+    "持つ（もつ）→お持ちします « お＋連用形（語幹）＋する = forme humble (kenjōgo), on s’abaisse » → « je porte vos bagages »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/おになる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/おになる",
+   "jlpt:jp": "先生はこの辞書をお使いになりますか。",
+   "jlpt:romaji": "sensei wa kono jisho o otsukai ni narimasu ka.",
+   "schema:description": "Professeur, utilisez-vous ce dictionnaire ?",
+   "jlpt:analysis": [
+    "先生（せんせい）« professeur »",
+    "は « thème »",
+    "この « ce »",
+    "辞書（じしょ）« dictionnaire »",
+    "を « COD »",
+    "使う（つかう）→お使いになりますか « お＋連用形（語幹）＋になる = forme respectueuse (sonkeigo), on élève l’action d’autrui » → « professeur, utilisez-vous ce dictionnaire ? »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ことになっている-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ことになっている",
+   "jlpt:jp": "校内では日本語を話すことになっている。",
+   "jlpt:romaji": "kōnai de wa nihongo o hanasu koto ni natte iru.",
+   "schema:description": "Dans l'école, la règle est de parler japonais.",
+   "jlpt:analysis": [
+    "校内（こうない）では « dans l'école »",
+    "日本語（にほんご）« japonais »",
+    "を « COD »",
+    "話す（はなす）→話すことになっている « ことになっている = règle établie » → « dans l'école, la règle est de parler japonais »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ことにする-ことになる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ことにする",
+   "jlpt:jp": "来月から運動することにした。",
+   "jlpt:romaji": "raigetsu kara undō suru koto ni shita.",
+   "schema:description": "J'ai décidé de faire du sport dès le mois prochain.",
+   "jlpt:analysis": [
+    "来月（らいげつ）から « à partir du mois prochain »",
+    "運動する（うんどうする）→運動することにした « ことにした = décision personnelle » → « j'ai décidé de faire du sport dès le mois prochain »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ことにする-ことになる-2",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ことにする",
+   "jlpt:jp": "転勤で大阪に住むことになった。",
+   "jlpt:romaji": "tenkin de ōsaka ni sumu koto ni natta.",
+   "schema:description": "Suite à une mutation, je vais habiter à Osaka.",
+   "jlpt:analysis": [
+    "転勤（てんきん）で « par mutation (cause) »",
+    "大阪（おおさか）に « destination »",
+    "住む（すむ）→住むことになった « ことになった = décision extérieure (il a été décidé que) » → « suite à une mutation, je vais habiter à Osaka »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ようになる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ようになる",
+   "jlpt:jp": "日本語が話せるようになった。",
+   "jlpt:romaji": "nihongo ga hanaseru yō ni natta.",
+   "schema:description": "Je suis devenu capable de parler japonais.",
+   "jlpt:analysis": [
+    "日本語（にほんご）が « sujet »",
+    "話す（はなす）→話せる « potentiel » →話せるようになった « ようになった = changement d'état (en venir à pouvoir) » → « je suis devenu capable de parler japonais »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ようにする-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ようにする",
+   "jlpt:jp": "毎日野菜を食べるようにしている。",
+   "jlpt:romaji": "mainichi yasai o taberu yō ni shite iru.",
+   "schema:description": "Je m'efforce de manger des légumes chaque jour.",
+   "jlpt:analysis": [
+    "毎日（まいにち）« chaque jour »",
+    "野菜（やさい）« légumes »",
+    "を « COD »",
+    "食べる（たべる）→食べるようにしている « ようにしている = effort habituel (s'efforcer de) » → « je m'efforce de manger des légumes chaque jour »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/つもりだ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/つもりだ",
+   "jlpt:jp": "夏休みは国へ帰るつもりです。",
+   "jlpt:romaji": "natsuyasumi wa kuni e kaeru tsumori desu.",
+   "schema:description": "Aux vacances d'été, je compte rentrer au pays.",
+   "jlpt:analysis": [
+    "夏休み（なつやすみ）« vacances d'été »",
+    "は « thème »",
+    "国（くに）« pays »",
+    "へ « direction »",
+    "帰る（かえる）→帰るつもりです « forme dictionnaire ＋つもりだ = intention “compter faire” » → « aux vacances d'été, je compte rentrer au pays »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/（よ）う-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/（よ）う",
+   "jlpt:jp": "一緒に帰ろう。",
+   "jlpt:romaji": "issho ni kaerō.",
+   "schema:description": "Rentrons ensemble.",
+   "jlpt:analysis": [
+    "一緒に（いっしょに）« ensemble »",
+    "帰る（かえる）→帰ろう « forme volitive = allons/faisons (ici : rentrons) » → « rentrons ensemble »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/（よ）うと思う-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/（よ）うと思う",
+   "jlpt:jp": "週末は映画を見ようと思います。",
+   "jlpt:romaji": "shūmatsu wa eiga o miyō to omoimasu.",
+   "schema:description": "Ce week-end, je pense aller voir un film.",
+   "jlpt:analysis": [
+    "週末（しゅうまつ）« week-end »",
+    "は « thème »",
+    "映画（えいが）« film »",
+    "を « COD »",
+    "見る（みる）→見ようと思います « forme volitive よう ＋と思う = intention “je pense faire” » → « ce week-end, je pense aller voir un film »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ようとする-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ようとする",
+   "jlpt:jp": "彼は立とうとした。",
+   "jlpt:romaji": "kare wa tatō to shita.",
+   "schema:description": "Il a essayé de se lever.",
+   "jlpt:analysis": [
+    "彼（かれ）« il »",
+    "は « thème »",
+    "立つ（たつ）→立とうとした « forme volitive ＋とする = essayer de / être sur le point de » → « il a essayé de se lever »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/（よ）うではないか-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/（よ）うではないか",
+   "jlpt:jp": "みんなで力を合わせようではないか。",
+   "jlpt:romaji": "minna de chikara o awaseyō de wa nai ka.",
+   "schema:description": "Unissons donc nos forces tous ensemble !",
+   "jlpt:analysis": [
+    "みんなで « tous ensemble »",
+    "力（ちから）« force »",
+    "を « COD »",
+    "合わせる（あわせる）→合わせよう « unir »",
+    "ではないか « allons donc (exhortation) » → « unissons donc nos forces tous ensemble ! »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/のに-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/のに",
+   "jlpt:jp": "薬を飲んだのに熱が下がらない。",
+   "jlpt:romaji": "kusuri o nonda noni netsu ga sagaranai.",
+   "schema:description": "J'ai pris un médicament, pourtant la fièvre ne baisse pas.",
+   "jlpt:analysis": [
+    "薬（くすり）« médicament »",
+    "を « COD »",
+    "飲む（のむ）→飲んだのに « forme た ＋のに = opposition (pourtant) »",
+    "熱（ねつ）« fièvre »",
+    "下がる（さがる）→下がらない « négatif = ne baisse pas » → « j'ai pris un médicament, pourtant la fièvre ne baisse pas »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/くせに-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/くせに",
+   "jlpt:jp": "知っているくせに教えてくれない。",
+   "jlpt:romaji": "shitte iru kuse ni oshiete kurenai.",
+   "schema:description": "Il le sait pourtant il ne me le dit pas.",
+   "jlpt:analysis": [
+    "知る（しる）→知っている « état (savoir) » →知っているくせに « くせに = bien que (reproche) »",
+    "教える（おしえる）→教えてくれない « くれる négatif = ne me dit pas » → « il le sait pourtant il ne me le dit pas »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/どころか-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/どころか",
+   "jlpt:jp": "謝るどころか、文句を言った。",
+   "jlpt:romaji": "ayamaru dokoro ka, monku o itta.",
+   "schema:description": "Loin de s'excuser, il a râlé.",
+   "jlpt:analysis": [
+    "謝る（あやまる）→謝るどころか « forme du dictionnaire ＋どころか = loin de, bien au contraire »",
+    "文句（もんく）« des plaintes »",
+    "を « COD »",
+    "言う（いう）→言った « dire (passé) » → « loin de s'excuser, il a râlé »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/にもかかわらず-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/にもかかわらず",
+   "jlpt:jp": "努力したにもかかわらず、失敗した。",
+   "jlpt:romaji": "doryoku shita ni mo kakawarazu, shippai shita.",
+   "schema:description": "Malgré mes efforts, j'ai échoué.",
+   "jlpt:analysis": [
+    "努力（どりょく）する→努力した « forme た »",
+    "にもかかわらず « ＝malgré, en dépit de (concession forte) »",
+    "失敗（しっぱい）する→失敗した « échouer (passé) » → « malgré mes efforts, j'ai échoué »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/にしては-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/にしては",
+   "jlpt:jp": "初めてにしては上手だ。",
+   "jlpt:romaji": "hajimete ni shite wa jōzu da.",
+   "schema:description": "Pour une première fois, c'est bien fait.",
+   "jlpt:analysis": [
+    "初めて（はじめて）« une première fois »",
+    "にしては « ＝pour, compte tenu de (contraste avec l'attente) »",
+    "上手（じょうず）だ « habile, bien fait » → « pour une première fois, c'est bien fait »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/に比べて-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/に比べて",
+   "jlpt:jp": "去年に比べて、今年は雨が多い。",
+   "jlpt:romaji": "kyonen ni kurabete, kotoshi wa ame ga ōi.",
+   "schema:description": "Comparé à l'an dernier, il pleut beaucoup cette année.",
+   "jlpt:analysis": [
+    "去年（きょねん）« l'an dernier »",
+    "に « à »",
+    "比べる（くらべる）→比べて « comparé à »",
+    "今年（ことし）« cette année »",
+    "は « thème »",
+    "雨（あめ）« pluie »",
+    "が « sujet »",
+    "多い（おおい）« abondante » → « comparé à l'an dernier, il pleut beaucoup cette année »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ものの-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ものの",
+   "jlpt:jp": "引き受けたものの、どうやればいいか分からない。",
+   "jlpt:romaji": "hikiuketa mono no, dō yareba ii ka wakaranai.",
+   "schema:description": "Bien que j'aie accepté, je ne sais pas comment m'y prendre.",
+   "jlpt:analysis": [
+    "引き受ける（ひきうける）→引き受けた « avoir accepté »",
+    "ものの « bien que »",
+    "どう « comment »",
+    "やる→やればいい « faut-il faire »",
+    "か « interrogation »",
+    "分かる（わかる）→分からない « ne pas savoir » → « bien que j'aie accepté, je ne sais pas comment m'y prendre »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/に反して-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/に反して",
+   "jlpt:jp": "予想に反して、彼が優勝した。",
+   "jlpt:romaji": "yosō ni hanshite, kare ga yūshō shita.",
+   "schema:description": "Contre toute attente, c'est lui qui a remporté la victoire.",
+   "jlpt:analysis": [
+    "予想（よそう）« prévision »",
+    "に « à »",
+    "反する（はんする）→反して « contrairement à »",
+    "彼（かれ）« il »",
+    "が « sujet »",
+    "優勝する（ゆうしょうする）→優勝した « a gagné » → « contre toute attente, c'est lui qui a remporté la victoire »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ながらも-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ながらも",
+   "jlpt:jp": "狭いながらも、楽しい我が家だ。",
+   "jlpt:romaji": "semai nagara mo, tanoshii wagaya da.",
+   "schema:description": "Bien qu'exigu, c'est un foyer où l'on est heureux.",
+   "jlpt:analysis": [
+    "狭い（せまい）« exigu »",
+    "ながらも « bien que »",
+    "楽しい（たのしい）« agréable »",
+    "我が家（わがや）« mon foyer »",
+    "だ « copule » → « bien qu'exigu, c'est un foyer où l'on est heureux »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/一方-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/一方",
+   "jlpt:jp": "父は厳しい一方、母は優しい。",
+   "jlpt:romaji": "chichi wa kibishii ippō, haha wa yasashii.",
+   "schema:description": "Alors que mon père est sévère, ma mère est douce.",
+   "jlpt:analysis": [
+    "父（ちち）« mon père »",
+    "は « thème »",
+    "厳しい（きびしい）→厳しい一方 « イ形 ＋一方 = tandis que, d'un côté »",
+    "母（はは）« ma mère »",
+    "は « thème »",
+    "優しい（やさしい）« doux » → « alors que mon père est sévère, ma mère est douce »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/一方で-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/一方で",
+   "jlpt:jp": "輸出が増える一方で、輸入は減っている。",
+   "jlpt:romaji": "yushutsu ga fueru ippō de, yunyū wa hette iru.",
+   "schema:description": "D'un côté les exportations augmentent, de l'autre les importations diminuent.",
+   "jlpt:analysis": [
+    "輸出（ゆしゅつ）« exportations »",
+    "が « sujet »",
+    "増える（ふえる）→増える一方で « 辞書形 ＋一方で = d'un côté, tandis que »",
+    "輸入（ゆにゅう）« importations »",
+    "は « thème »",
+    "減る（へる）→減っている « ている = est en train de diminuer » → « d'un côté les exportations augmentent, de l'autre les importations diminuent »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/反面-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/反面",
+   "jlpt:jp": "この薬はよく効く反面、副作用が強い。",
+   "jlpt:romaji": "kono kusuri wa yoku kiku hanmen, fukusayō ga tsuyoi.",
+   "schema:description": "Ce médicament est très efficace, mais en revanche il a de forts effets secondaires.",
+   "jlpt:analysis": [
+    "この « ce »",
+    "薬（くすり）« médicament »",
+    "は « thème »",
+    "よく « bien »",
+    "効く（きく）« agit »",
+    "反面（はんめん）« en revanche »",
+    "副作用（ふくさよう）« effets secondaires »",
+    "が « sujet »",
+    "強い（つよい）« forts » → « ce médicament est très efficace, mais en revanche il a de forts effets secondaires »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/わけではない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/わけではない",
+   "jlpt:jp": "野菜が嫌いなわけではないが、あまり食べない。",
+   "jlpt:romaji": "yasai ga kirai na wake de wa nai ga, amari tabenai.",
+   "schema:description": "Ce n'est pas que je déteste les légumes, mais je n'en mange pas beaucoup.",
+   "jlpt:analysis": [
+    "野菜（やさい）« légumes »",
+    "が « sujet »",
+    "嫌い（きらい）« détester »",
+    "な « attributif »",
+    "わけではない « ce n'est pas que »",
+    "が « mais »",
+    "あまり « pas beaucoup »",
+    "食べる（たべる）→食べない « ne pas manger » → « ce n'est pas que je déteste les légumes, mais je n'en mange pas beaucoup »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/わりに-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/わりに",
+   "jlpt:jp": "彼は年のわりに若く見える。",
+   "jlpt:romaji": "kare wa toshi no wari ni wakaku mieru.",
+   "schema:description": "Il paraît jeune pour son âge.",
+   "jlpt:analysis": [
+    "彼（かれ）« il »",
+    "は « thème »",
+    "年（とし）« âge »→年のわりに « 名＋の ＋わりに = pour, compte tenu de (contraste avec l'attente) »",
+    "若い（わかい）→若く « forme adverbiale »",
+    "見える（みえる）« paraître » → « il paraît jeune pour son âge »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/わりには-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/わりには",
+   "jlpt:jp": "たくさん練習したわりには、上手にならない。",
+   "jlpt:romaji": "takusan renshū shita wari ni wa, jōzu ni naranai.",
+   "schema:description": "Pour tout ce que je m'entraîne, je ne progresse pas.",
+   "jlpt:analysis": [
+    "たくさん « beaucoup »",
+    "練習（れんしゅう）する→練習した « avoir pratiqué »→練習したわりには « た形 ＋わりには = pour, compte tenu de »",
+    "上手（じょうず）« habile »",
+    "に « adverbial »",
+    "なる→ならない « ne pas devenir » → « pour tout ce que je m'entraîne, je ne progresse pas »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/について-に対して-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/について",
+   "jlpt:jp": "環境問題について話し合った。",
+   "jlpt:romaji": "kankyō mondai ni tsuite hanashiatta.",
+   "schema:description": "Nous avons discuté du problème environnemental.",
+   "jlpt:analysis": [
+    "環境問題（かんきょうもんだい）« problème environnemental »→について « について = au sujet de »",
+    "話し合う（はなしあう）→話し合った « discuter ensemble (passé) » → « nous avons discuté du problème environnemental »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/として-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/として",
+   "jlpt:jp": "医者として働いている。",
+   "jlpt:romaji": "isha to shite hataraite iru.",
+   "schema:description": "Je travaille en tant que médecin.",
+   "jlpt:analysis": [
+    "医者（いしゃ）« médecin »→医者として « として = en tant que (rôle) »",
+    "働く（はたらく）→働いている « ている = action en cours / habituelle » → « je travaille en tant que médecin »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/にとって-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/にとって",
+   "jlpt:jp": "私にとって家族が一番大切だ。",
+   "jlpt:romaji": "watashi ni totte kazoku ga ichiban taisetsu da.",
+   "schema:description": "Pour moi, la famille est ce qui compte le plus.",
+   "jlpt:analysis": [
+    "私（わたし）« moi »",
+    "にとって « ＝du point de vue de, pour »",
+    "家族（かぞく）« la famille »",
+    "が « sujet »",
+    "一番（いちばん）« le plus »",
+    "大切（たいせつ）だ « précieux » → « pour moi, la famille est ce qui compte le plus »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/に関して-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/に関して",
+   "jlpt:jp": "事故に関して調査中だ。",
+   "jlpt:romaji": "jiko ni kanshite chōsa-chū da.",
+   "schema:description": "Une enquête est en cours concernant l'accident.",
+   "jlpt:analysis": [
+    "事故（じこ）« l'accident »",
+    "に関して（にかんして）« ＝concernant, au sujet de »",
+    "調査（ちょうさ）« enquête »",
+    "中（ちゅう）だ « ＝en cours de » → « une enquête est en cours concernant l'accident »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/において-における-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/において",
+   "jlpt:jp": "会議は大阪において行われた。",
+   "jlpt:romaji": "kaigi wa ōsaka ni oite okonawareta.",
+   "schema:description": "La réunion s'est tenue à Osaka.",
+   "jlpt:analysis": [
+    "会議（かいぎ）« la réunion »",
+    "は « thème »",
+    "大阪（おおさか）« Osaka »",
+    "において « ＝à, dans (lieu, registre formel) »",
+    "行う（おこなう）→行われた « passif = se tenir, avoir lieu (passé) » → « la réunion s'est tenue à Osaka »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/向き-向け-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/向き",
+   "jlpt:jp": "これは初心者向けの本だ。",
+   "jlpt:romaji": "kore wa shoshinsha-muke no hon da.",
+   "schema:description": "C'est un livre destiné aux débutants.",
+   "jlpt:analysis": [
+    "これ « ceci »",
+    "は « thème »",
+    "初心者（しょしんしゃ）« débutants »",
+    "向け（むけ）« ＝nom ＋向け = destiné à, à l'intention de »",
+    "の本（ほん）だ « livre » → « c'est un livre destiné aux débutants »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/をめぐって-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/をめぐって",
+   "jlpt:jp": "遺産をめぐって兄弟が争った。",
+   "jlpt:romaji": "isan o megutte kyōdai ga arasotta.",
+   "schema:description": "Les frères se sont disputés au sujet de l'héritage.",
+   "jlpt:analysis": [
+    "遺産（いさん）« héritage »",
+    "をめぐって « au sujet de (objet de conflit) »",
+    "兄弟（きょうだい）« frères »",
+    "が « sujet »",
+    "争う（あらそう）→争った « s'être disputés » → « les frères se sont disputés au sujet de l'héritage »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/に関する-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/に関する",
+   "jlpt:jp": "環境問題に関する本を読んだ。",
+   "jlpt:romaji": "kankyō mondai ni kansuru hon o yonda.",
+   "schema:description": "J'ai lu un livre concernant les problèmes environnementaux.",
+   "jlpt:analysis": [
+    "環境（かんきょう）« environnement »",
+    "問題（もんだい）« problème »",
+    "に関する（にかんする）« concernant, relatif à »",
+    "本（ほん）« livre »",
+    "を « COD »",
+    "読む（よむ）→読んだ « avoir lu » → « j'ai lu un livre concernant les problèmes environnementaux »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/わけだ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/わけだ",
+   "jlpt:jp": "10年も日本にいたのか。道理で日本語が上手なわけだ。",
+   "jlpt:romaji": "jūnen mo nihon ni ita no ka. dōri de nihongo ga jōzu na wake da.",
+   "schema:description": "Tu es resté 10 ans au Japon ? Pas étonnant que tu parles si bien.",
+   "jlpt:analysis": [
+    "10年（じゅうねん）も « pas moins de 10 ans »",
+    "日本（にほん）にいた « être resté au Japon »",
+    "道理で（どうりで）« pas étonnant que »",
+    "日本語（にほんご）が上手（じょうず）→上手なわけだ « わけだ = conclusion logique (forcément) » → « tu es resté 10 ans au Japon ? Pas étonnant que tu parles si bien »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ものだ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ものだ",
+   "jlpt:jp": "年を取ると忘れっぽくなるものだ。",
+   "jlpt:romaji": "toshi o toru to wasureppoku naru mono da.",
+   "schema:description": "En vieillissant, on a tendance à devenir oublieux.",
+   "jlpt:analysis": [
+    "年を取る（としをとる）→取ると « と = quand »",
+    "忘れる（わすれる）→忘れっぽい « base ＋っぽい = enclin à oublier »",
+    "なる→なるものだ « ものだ = vérité générale » → « en vieillissant, on a tendance à devenir oublieux »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ほうがいい-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ほうがいい",
+   "jlpt:jp": "早く寝たほうがいいよ。",
+   "jlpt:romaji": "hayaku neta hō ga ii yo.",
+   "schema:description": "Tu ferais mieux de te coucher tôt.",
+   "jlpt:analysis": [
+    "早く（はやく）« tôt »",
+    "寝る（ねる）→寝たほうがいい « forme た ＋ほうがいい = conseil (ferais mieux de) »",
+    "よ « particule d'insistance » → « tu ferais mieux de te coucher tôt »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/なければならない-なきゃ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/なければならない",
+   "jlpt:jp": "明日までに払わなければならない。",
+   "jlpt:romaji": "ashita made ni harawanakereba naranai.",
+   "schema:description": "Je dois payer d'ici demain.",
+   "jlpt:analysis": [
+    "明日（あした）→明日までに « までに = limite temporelle (d'ici) »",
+    "払う（はらう）→払わなければならない « なければならない = obligation (devoir) » → « je dois payer d'ici demain »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ことだ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ことだ",
+   "jlpt:jp": "合格したければ、毎日勉強することだ。",
+   "jlpt:romaji": "gōkaku shitakereba, mainichi benkyō suru koto da.",
+   "schema:description": "Si tu veux réussir, il faut étudier tous les jours.",
+   "jlpt:analysis": [
+    "合格（ごうかく）する « réussir » →したければ « ＋たい au conditionnel ば = si l'on veut »",
+    "毎日（まいにち）« chaque jour »",
+    "勉強（べんきょう）する « étudier » →勉強することだ « ＝ことだ = il faut, c'est ce qu'il convient de faire (conseil) » → « si tu veux réussir, il faut étudier tous les jours »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/べきだ-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/べきだ",
+   "jlpt:jp": "約束は守るべきだ。",
+   "jlpt:romaji": "yakusoku wa mamoru beki da.",
+   "schema:description": "On doit tenir ses promesses.",
+   "jlpt:analysis": [
+    "約束（やくそく）« la promesse »",
+    "は « thème »",
+    "守る（まもる）→守るべきだ « forme du dictionnaire ＋べきだ = on doit, il convient de (devoir moral) » → « on doit tenir ses promesses »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ざるを得ない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ざるを得ない",
+   "jlpt:jp": "事実を認めざるを得ない。",
+   "jlpt:romaji": "jijitsu o mitomezaru o enai.",
+   "schema:description": "Je suis bien obligé de reconnaître les faits.",
+   "jlpt:analysis": [
+    "事実（じじつ）« les faits »",
+    "を « COD »",
+    "認める（みとめる）→認めざるを得ない « 未然形 ＋ざるを得ない = ne pas pouvoir faire autrement que de, être obligé de » → « je suis bien obligé de reconnaître les faits »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/わけにはいかない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/わけにはいかない",
+   "jlpt:jp": "大事な会議だから、休むわけにはいかない。",
+   "jlpt:romaji": "daiji na kaigi dakara, yasumu wake ni wa ikanai.",
+   "schema:description": "C'est une réunion importante, je ne peux pas me permettre de manquer.",
+   "jlpt:analysis": [
+    "大事（だいじ）な « important »",
+    "会議（かいぎ）« réunion »",
+    "だから « cause »",
+    "休む（やすむ）→休むわけにはいかない « forme du dictionnaire ＋わけにはいかない = on ne peut pas se permettre de » → « c'est une réunion importante, je ne peux pas me permettre de manquer »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/わけがない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/わけがない",
+   "jlpt:jp": "あんなに練習したのだから、負けるわけがない。",
+   "jlpt:romaji": "annani renshū shita no da kara, makeru wake ga nai.",
+   "schema:description": "Après s'être autant entraîné, c'est impossible qu'il perde.",
+   "jlpt:analysis": [
+    "あんなに « autant »",
+    "練習（れんしゅう）« entraînement »",
+    "する→した « avoir fait »",
+    "の « nominalisateur »",
+    "だから « puisque »",
+    "負ける（まける）« perdre »",
+    "わけがない « impossible que » → « Après s'être autant entraîné, c'est impossible qu'il perde »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ないわけにはいかない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ないわけにはいかない",
+   "jlpt:jp": "上司の命令だから、従わないわけにはいかない。",
+   "jlpt:romaji": "jōshi no meirei da kara, shitagawanai wake ni wa ikanai.",
+   "schema:description": "Comme c'est un ordre du chef, je ne peux pas ne pas obéir.",
+   "jlpt:analysis": [
+    "上司（じょうし）« supérieur »",
+    "の « de »",
+    "命令（めいれい）« ordre »",
+    "だから « puisque »",
+    "従う（したがう）→従わない « ne pas obéir »",
+    "わけにはいかない « on ne peut pas » → « Comme c'est un ordre du chef, je ne peux pas ne pas obéir »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/得る-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/得る",
+   "jlpt:jp": "そんな失敗は誰にでもあり得る。",
+   "jlpt:romaji": "sonna shippai wa dare ni demo ari uru.",
+   "schema:description": "Une telle erreur peut arriver à n'importe qui.",
+   "jlpt:analysis": [
+    "そんな « une telle »",
+    "失敗（しっぱい）« erreur »",
+    "は « thème »",
+    "誰（だれ）にでも « à n'importe qui »",
+    "ある→あり « survenir (base) »",
+    "得る（うる／える）« forme ます形の語幹 ＋得る = potentialité “peut arriver / il est possible que” » → « Une telle erreur peut arriver à n'importe qui »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/ようがない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/ようがない",
+   "jlpt:jp": "住所が分からないので、荷物を送りようがない。",
+   "jlpt:romaji": "jūsho ga wakaranai node, nimotsu o okuri yō ga nai.",
+   "schema:description": "Comme je ne connais pas l'adresse, je n'ai aucun moyen d'envoyer le colis.",
+   "jlpt:analysis": [
+    "住所（じゅうしょ）« adresse »",
+    "が « sujet »",
+    "分かる（わかる）→分からない « ne pas savoir »",
+    "ので « comme »",
+    "荷物（にもつ）« colis »",
+    "を « COD »",
+    "送る（おくる）→送りようがない « aucun moyen d'envoyer » → « Comme je ne connais pas l'adresse, je n'ai aucun moyen d'envoyer le colis »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/得ない-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/得ない",
+   "jlpt:jp": "この方法では問題は解決し得ない。",
+   "jlpt:romaji": "kono hōhō de wa mondai wa kaiketsu shi enai.",
+   "schema:description": "Avec cette méthode, le problème ne peut pas être résolu.",
+   "jlpt:analysis": [
+    "この « cette »",
+    "方法（ほうほう）« méthode »",
+    "では « avec (moyen) »",
+    "問題（もんだい）« problème »",
+    "は « thème »",
+    "解決（かいけつ）する→解決し « résoudre (base) »",
+    "得ない（えない）« forme ます形の語幹 ＋得ない = impossibilité “ne peut pas se produire / être fait” » → « Avec cette méthode, le problème ne peut pas être résolu »."
+   ]
+  },
+  {
+   "@id": "jlpt:example/かねる-1",
+   "@type": "jlpt:Example",
+   "illustrates": "jlpt:gram/かねる",
+   "jlpt:jp": "その提案には賛成しかねます。",
+   "jlpt:romaji": "sono teian ni wa sansei shi kanemasu.",
+   "schema:description": "Je ne peux me résoudre à approuver cette proposition.",
+   "jlpt:analysis": [
+    "その « cette »",
+    "提案（ていあん）« proposition »",
+    "には « à (cible + thème) »",
+    "賛成（さんせい）する→賛成し « approuver (base) »",
+    "かねます « forme ます形の語幹 ＋かねる (poli かねます) = “ne pas pouvoir se résoudre à” (réticence, pas impossibilité logique) » → « Je ne peux me résoudre à approuver cette proposition »."
+   ]
+  }
+ ]
+}
