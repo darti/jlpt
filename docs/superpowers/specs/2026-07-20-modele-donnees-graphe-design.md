@@ -182,12 +182,22 @@ notion → où elle est enseignée.
     { "sh:path": "jlpt:ord",        "sh:datatype": "xsd:nonNegativeInteger", "sh:minCount": 1, "sh:maxCount": 1 },
     { "sh:path": "jlpt:skill",      "sh:in": ["grammaire","vocabulaire","kanji","lecture","ecoute"],
                                                                              "sh:minCount": 1, "sh:maxCount": 1 },
-    { "sh:path": "jlpt:difficulty", "sh:in": [1,2,3],                        "sh:minCount": 1, "sh:maxCount": 1 }
+    { "sh:path": "jlpt:difficulty", "sh:datatype": "xsd:integer",            "sh:minCount": 1, "sh:maxCount": 1 },
+    { "sh:path": "jlpt:tests",      "sh:nodeKind": "sh:IRI" }
   ] }
 ```
 
-Le validateur JS implémente **exactement le sous-ensemble d'Oku** — cardinalité,
-`xsd:datatype`, `sh:in` — pour que les shapes signifient la même chose des deux côtés.
+Le validateur JS implémente **exactement le sous-ensemble d'Oku**, et rien de plus. Vérifié
+dans `domain-bridge/src/shape.rs` : les seules contraintes acceptées sont `sh:path`,
+`sh:datatype`, `sh:minCount`, `sh:maxCount`, `sh:in`, `sh:nodeKind` — toute autre fait
+échouer le parseur (`unsupported constraint`). Donc pas de `sh:pattern`.
+
+⚠ **`sh:in` n'accepte que des littéraux chaîne.** Le parseur d'Oku fait
+`filter_map(|v| v.as_str())` : une valeur numérique est **silencieusement ignorée**, et
+`"sh:in": [1,2,3]` parserait en liste vide. `jlpt:difficulty` utilise donc
+`sh:datatype: xsd:integer`, et sa plage 1–3 est vérifiée côté impératif. Le validateur JS
+doit **rejeter** un `sh:in` contenant un non-string plutôt que de l'ignorer comme Oku :
+mieux vaut échouer ici que produire une shape qui ne veut pas dire la même chose là-bas.
 
 **Impératif — reste du code, parce que SHACL contraint une forme, pas une relation :**
 
@@ -195,6 +205,7 @@ Le validateur JS implémente **exactement le sous-ensemble d'Oku** — cardinali
 |---|---|
 | `answer` dans les bornes de `opts` | arithmétique entre deux propriétés |
 | `optionNote.length === opts.length` | idem |
+| `difficulty` dans 1–3 | `sh:in` numérique impossible (voir ci-dessus) |
 | options identiques dans une question | unicité intra-liste |
 | réponses contradictoires entre questions | inter-sujets |
 | `ord` dense et unique | invariant global |
