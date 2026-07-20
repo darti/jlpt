@@ -937,7 +937,7 @@ git commit -m "feat(graph): invariants globaux (ordinaux, IRIs pendantes, contra
 
 **Interfaces:**
 - Consomme : `readContext`/`readDoc`, `parseShapes`/`validateAll`, `checkQuestion`/`checkCorpus`.
-- Produit : un exécutable `node tools/validate-graph.mjs` — `exit 0` si valide, `exit 1` sinon, rapport lisible sur stdout.
+- Produit : un exécutable `bun tools/validate-graph.mjs` — `exit 0` si valide, `exit 1` sinon, rapport lisible sur stdout.
 
 - [ ] **Step 1: Écrire `tools/validate-graph.mjs`**
 
@@ -996,7 +996,7 @@ console.log("\n✓ graphe valide");
 
 - [ ] **Step 2: Vérifier qu'il échoue proprement sans données**
 
-Run: `node tools/validate-graph.mjs`
+Run: `bun tools/validate-graph.mjs`
 Expected: le script s'exécute et ne plante pas ; il affiche `0 documents, 0 sujets, 5 shapes` puis `✓ graphe valide` (aucune donnée n'est encore migrée — c'est attendu à ce stade).
 
 - [ ] **Step 3: Ajouter le script npm**
@@ -1004,21 +1004,21 @@ Expected: le script s'exécute et ne plante pas ; il affiche `0 documents, 0 suj
 Dans `package.json`, ajouter à `"scripts"` :
 
 ```json
-"validate:graph": "node tools/validate-graph.mjs"
+"validate:graph": "bun tools/validate-graph.mjs"
 ```
 
 - [ ] **Step 4: Brancher la CI**
 
-Dans `.github/workflows/validate.yml`, ajouter une étape **après** l'étape existante qui exécute `node tools/validate.mjs`, sans la remplacer :
+Dans `.github/workflows/validate.yml`, ajouter une étape **après** l'étape existante qui exécute `bun tools/validate.mjs`, sans la remplacer :
 
 ```yaml
       - name: Valider le graphe JSON-LD
-        run: node tools/validate-graph.mjs
+        run: bun tools/validate-graph.mjs
 ```
 
 - [ ] **Step 5: Vérifier que la suite complète passe**
 
-Run: `bun test && bun run typecheck && node tools/validate.mjs && node tools/validate-graph.mjs`
+Run: `bun test && bun run typecheck && bun tools/validate.mjs && bun tools/validate-graph.mjs`
 Expected: tous verts, l'ancien validateur inchangé.
 
 - [ ] **Step 6: Commit**
@@ -1244,12 +1244,12 @@ if (process.argv[1]?.endsWith("migrate-to-graph.mjs")) {
 
 - [ ] **Step 6: Exécuter la migration des entités**
 
-Run: `node tools/migrate-to-graph.mjs`
+Run: `bun tools/migrate-to-graph.mjs`
 Expected: affiche les compteurs ; `data/graph/{kanji,word,gram}.jsonld` créés, plus le rapport de conflits.
 
 - [ ] **Step 7: Valider le graphe partiel**
 
-Run: `node tools/validate-graph.mjs`
+Run: `bun tools/validate-graph.mjs`
 Expected: `✓ graphe valide` — les trois documents d'entités passent les shapes. En cas d'erreur, la corriger dans le script et régénérer, jamais à la main dans les `.jsonld`.
 
 - [ ] **Step 8: Commit**
@@ -1403,7 +1403,7 @@ Expected: PASS — 10 tests (5 de la Task 8 + 5)
 
 - [ ] **Step 5: Exécuter la migration complète et vérifier le taux d'arêtes**
 
-Run: `node tools/migrate-to-graph.mjs && node tools/validate-graph.mjs`
+Run: `bun tools/migrate-to-graph.mjs && bun tools/validate-graph.mjs`
 Expected: `questions 10310`, taux d'arêtes ≥ **75 %** (référence mesurée : 90 % sur vocab/kanji, 54 % sur grammaire, soit ~85 % global). Le validateur affiche `✓ graphe valide`.
 
 Si le validateur signale des erreurs, **corriger le script et régénérer** — ne jamais éditer un `.jsonld` à la main à ce stade.
@@ -1504,7 +1504,7 @@ Expected: PASS — 11 tests
 
 - [ ] **Step 5: Régénérer et valider**
 
-Run: `node tools/migrate-to-graph.mjs && node tools/validate-graph.mjs`
+Run: `bun tools/migrate-to-graph.mjs && bun tools/validate-graph.mjs`
 Expected: `leçons` ≈ 60–80, `✓ graphe valide`. Le compteur d'orphelins mesure ce que le cours enseigne sans que le référentiel le connaisse — le noter, c'est une entrée du travail éditorial.
 
 - [ ] **Step 6: Commit**
@@ -1652,12 +1652,12 @@ Expected: PASS — 14 tests
 
 - [ ] **Step 5: Régénérer et valider — c'est le contrôle final du lot**
 
-Run: `node tools/migrate-to-graph.mjs && node tools/validate-graph.mjs`
+Run: `bun tools/migrate-to-graph.mjs && bun tools/validate-graph.mjs`
 Expected : `questions 10307` (10310 − 3 doublons), `✓ graphe valide`, et **aucune erreur « réponses contradictoires »** ni « options identiques » : les contrôles de la Task 5 et 6 prouvent que les corrections ont pris.
 
 - [ ] **Step 6: Vérifier que rien du runtime n'a bougé**
 
-Run: `bun test && bun run typecheck && node tools/validate.mjs && node tools/split-bank.mjs --check`
+Run: `bun test && bun run typecheck && bun tools/validate.mjs && bun tools/split-bank.mjs --check`
 Expected: tous verts. L'app lit toujours `bank-*.json` : le lot 1 n'a rien changé pour l'utilisateur.
 
 - [ ] **Step 7: Commit**

@@ -244,7 +244,7 @@ Ajouter, après le contrôle des ordinaux :
 
 - [ ] **Step 7: Régénérer et valider**
 
-Run: `node tools/migrate-to-graph.mjs && node tools/validate-graph.mjs`
+Run: `bun tools/migrate-to-graph.mjs && bun tools/validate-graph.mjs`
 Expected: `✓ graphe valide`, avec `jlpt:SkillRange 5` dans le décompte par type.
 
 - [ ] **Step 8: Commit**
