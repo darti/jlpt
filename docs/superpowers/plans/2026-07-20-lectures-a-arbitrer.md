@@ -1,14 +1,184 @@
 # Lectures à arbitrer
 
-524 mots du graphe sont sans lecture. JMdict en propose 137.
+517 mots du graphe sont sans lecture. JMdict en propose 134.
 
-**Comment s'en servir.** Chaque proposition est une SUGGESTION à valider, pas une
-donnée acquise : reporte les lectures que tu retiens dans `data/lectures-arbitrees.json`, sous la
-forme `{ "影響": "えいきょう" }`. La migration ne lit que ce fichier — jamais JMdict.
+**Ces propositions ne sont PAS dans le graphe.** Rien n'entre dans `word.jsonld` — un
+fichier LIVRÉ — sans passer par une saisie à la main dans `data/lectures-arbitrees.json`. C'est ce qui
+évite l'attribution CC BY-SA sur chaque écran et le ShareAlike sur `data/graph/`.
+
+## Marche à suivre
+
+1. Le bloc ci-dessous ne contient QUE les 96 mots dont la lecture
+   ne fait pas de doute : JMdict n'en connaît qu'une, ou en marque une comme nettement
+   plus courante. Le relire, puis le copier dans `data/lectures-arbitrees.json`.
+2. Les 38 mots à lectures **concurrentes** sont listés à part, plus bas.
+   Ils demandent un choix de sens, et aucune heuristique ne peut le faire : départager
+   par « la lecture la plus courte » donnait 構 → かじ, le mûrier à papier, au lieu de
+   かまえ. Choisir à la main, ajouter au même fichier.
+3. `bun tools/graph/readings.mjs` — idempotent, n'écrase jamais une lecture existante.
+4. `bun tools/validate-graph.mjs` pour confirmer.
+
+> ⚠ **JMdict est un dictionnaire de MOTS, et ce qui reste est surtout du kanji isolé.**
+> 94/96 entrées du bloc sont des kanji seuls, pour
+> lesquels JMdict donne la lecture du *nom* — souvent obscure : 温 → ぬく (tiède) plutôt
+> que おん, 覚 → さとり (l'éveil) plutôt que かく. Or leur entité `jlpt:Kanji` porte DÉJÀ
+> ses lectures on/kun, arbitrées depuis KANJIDIC2. Avant de coller, se demander si ces
+> entrées doivent seulement exister comme mots.
+
+<details>
+<summary>Bloc prêt à coller — 96 lectures sans concurrence, <strong>à relire avant de valider</strong></summary>
+
+```json
+{
+  "性": "せい",
+  "似": "に",
+  "語幹": "ごかん",
+  "温": "ぬく",
+  "改": "かい",
+  "覚": "さとり",
+  "確": "たしか",
+  "割": "わり",
+  "荷": "に",
+  "芽": "め",
+  "供": "とも",
+  "響": "ひびき",
+  "極": "ごく",
+  "記": "き",
+  "機": "き",
+  "基": "もと",
+  "業": "ぎょう",
+  "群": "ぐん",
+  "軽": "けい",
+  "欠": "けつ",
+  "血": "ち",
+  "興": "きょう",
+  "根": "ね",
+  "菜": "な",
+  "散": "ばら",
+  "財": "たから",
+  "織": "おり",
+  "州": "しゅう",
+  "祝": "いわい",
+  "縮": "しゅく",
+  "宿": "やど",
+  "震": "しん",
+  "試": "ためし",
+  "支": "し",
+  "死": "し",
+  "仕": "し",
+  "述": "じゅつ",
+  "常": "ただ",
+  "乗": "じょう",
+  "除": "じょ",
+  "事": "こと",
+  "児": "こ",
+  "辞": "ことば",
+  "垂": "たれ",
+  "盛": "もり",
+  "責": "せき",
+  "銭": "せん",
+  "戦": "いくさ",
+  "舌": "した",
+  "絶": "ぜつ",
+  "善": "ぜん",
+  "相": "しょう",
+  "装": "そう",
+  "率": "りつ",
+  "素": "もと",
+  "蔵": "くら",
+  "炭": "すみ",
+  "代": "よ",
+  "築": "ちく",
+  "仲": "なか",
+  "頂": "いただき",
+  "丁": "ちょう",
+  "珍": "ちん",
+  "値": "あたい",
+  "程": "ほど",
+  "投": "とう",
+  "灯": "あかり",
+  "導": "しるべ",
+  "独": "どく",
+  "曇": "くもり",
+  "内": "うち",
+  "拝": "はい",
+  "敗": "はい",
+  "発": "はつ",
+  "犯": "はん",
+  "麦": "むぎ",
+  "氷": "こおり",
+  "悲": "ひ",
+  "皮": "かわ",
+  "被": "ひ",
+  "費": "ひ",
+  "病": "やまい",
+  "美": "び",
+  "尾": "お",
+  "民": "たみ",
+  "面": "つら",
+  "有": "ゆう",
+  "葉": "は",
+  "流": "りゅう",
+  "良": "りょう",
+  "劣": "れつ",
+  "路": "みち",
+  "和": "わ",
+  "破": "は",
+  "失": "しつ",
+  "最小": "さいしょう"
+}
+```
+
+</details>
+
+## 38 mots à trancher — plusieurs lectures attestées
+
+| mot | lectures attestées |
+|---|---|
+| 因 | いん · もと · よし · よすが |
+| 構 | かまえ · かじ |
+| 別 | べつ · べち · わけ |
+| 者 | もの · もん · しゃ |
+| 栄 | ろん · えい · はやし |
+| 益 | えき · やく · よう · ますます |
+| 屋 | や · おく |
+| 球 | まり · きゅう · たま |
+| 宮 | みや · きゅう |
+| 競 | くら · せり |
+| 共 | ども · とも · ごと · ぐち · むた · みた |
+| 居 | きょ · い |
+| 型 | かた · がた |
+| 険 | けん · さが |
+| 幸 | さち · こう · さき |
+| 酸 | さん · す |
+| 初 | はつ · うい · うぶ · ぞめ |
+| 臣 | おみ · しん · やつこ · やつこらま |
+| 清 | しん · さや |
+| 操 | みさお · そう |
+| 尊 | そん · みこと · とうと · たっと |
+| 短 | たん · みじか |
+| 笛 | ふえ · ちゃく |
+| 等 | など · とう · ら |
+| 童 | わらべ · わらんべ · わらわ · わらし · わっぱ |
+| 鈍 | どん · のろ · なまくら |
+| 濃 | のう · こ |
+| 杯 | さかずき · さかづき · はい · つき · はた |
+| 博 | はく · ばく |
+| 判 | はん · ばん |
+| 梅 | うめ · むめ |
+| 筆 | ふで · ひつ |
+| 否 | ひ · いや · いな |
+| 平 | ひら · へい · だいら |
+| 望 | もち · ぼう |
+| 優 | やさ · ゆう |
+| 様 | ざま · さま · よう · ためし |
+| 社 | やしろ · しゃ |
 
 > Propositions établies à partir de JMdict (EDRDG, CC BY-SA 4.0,
 > https://www.edrdg.org/wiki/index.php/JMdict-EDICT_Dictionary_Project). Ce document
 > est un outil de travail : ni JMdict ni ce fichier ne sont livrés avec l'application.
+
+## Toutes les propositions, pour mémoire
 
 | mot | proposition JMdict | autres lectures attestées |
 |---|---|---|
@@ -254,7 +424,6 @@ forme `{ "影響": "えいきょう" }`. La migration ne lit que ce fichier — 
 | サンダル | — | — |
 | サンドイッチ | — | — |
 | しばらく | — | — |
-| すっかり | — | — |
 | タイプ | — | — |
 | ダンス | — | — |
 | チェック | — | — |
@@ -324,10 +493,8 @@ forme `{ "影響": "えいきょう" }`. La migration ne lit que ce fichier — 
 | もったいない | — | — |
 | もしかしたら | — | — |
 | やがて | — | — |
-| やはり | — | — |
 | わがまま | — | — |
 | わざと | — | — |
-| わざわざ | — | — |
 | アイロン | — | — |
 | アンケート | — | — |
 | インターネット | — | — |
@@ -396,7 +563,6 @@ forme `{ "影響": "えいきょう" }`. La migration ne lit que ce fichier — 
 | 災 | — | — |
 | 酸 | す | さん |
 | 散 | ばら | — |
-| 差 | さ | さし |
 | 財 | たから | ざい |
 | 織 | おり | — |
 | 写 | — | — |
@@ -466,7 +632,6 @@ forme `{ "影響": "えいきょう" }`. La migration ne lit que ce fichier — 
 | 投 | とう | — |
 | 灯 | あかり | ひ · あかし · とう · ともし · とぼし · ともしび |
 | 等 | ら | など · とう |
-| 湯 | ゆ | タン |
 | 導 | しるべ | — |
 | 童 | わらべ | わらんべ · わらわ · わらし · わっぱ |
 | 独 | どく | — |
@@ -518,9 +683,7 @@ forme `{ "影響": "えいきょう" }`. La migration ne lit que ce fichier — 
 | 破 | は | — |
 | 社 | しゃ | やしろ |
 | 失 | しつ | — |
-| 最大 | さいだい | — |
 | 最小 | さいしょう | — |
-| しっかり | — | — |
 | やっぱり | — | — |
 | たとえば | — | — |
 | ところで | — | — |
