@@ -7,7 +7,7 @@
 // ici serait rejetée là-bas.
 //
 // Node pur : la CI exécute `node`, jamais `bun`.
-import { expandIri } from "./jsonld.mjs";
+import { expandIri, isSafeIri } from "./jsonld.mjs";
 
 const SUPPORTED = new Set([
   "sh:path", "sh:datatype", "sh:minCount", "sh:maxCount", "sh:in", "sh:nodeKind",
@@ -84,4 +84,88 @@ export function parseShapes(subjects, prefixes) {
     });
   }
   return shapes;
+}
+
+const XSD = "http://www.w3.org/2001/XMLSchema#";
+
+/** Un littéral respecte-t-il le datatype xsd déclaré ? Sous-ensemble : string, integer,
+ *  nonNegativeInteger, boolean. `null` pour un datatype inconnu — c'est une erreur de
+ *  shape, pas de donnée, et il vaut mieux la signaler que la traiter comme valide. */
+function datatypeOk(value, datatype) {
+  switch (datatype) {
+    case `${XSD}string`: return typeof value === "string";
+    case `${XSD}integer`: return Number.isInteger(value);
+    case `${XSD}nonNegativeInteger`: return Number.isInteger(value) && value >= 0;
+    case `${XSD}boolean`: return typeof value === "boolean";
+    default: return null;
+  }
+}
+
+/** Valeurs d'un prédicat, que le document l'écrive en forme préfixée (`jlpt:stem`) ou
+ *  dépliée : le sh:path est déplié, la comparaison doit l'être des deux côtés. */
+function valuesOf(subject, path, prefixes) {
+  const out = [];
+  for (const [k, v] of Object.entries(subject)) {
+    if (k === "@id" || k === "@type") continue;
+    // On ACCUMULE au lieu de rendre la première correspondance : un sujet portant à la
+    // fois « jlpt:stem » et sa forme dépliée verrait sinon l’une des deux disparaître en
+    // silence, et maxCount ne la détecterait pas.
+    if (expandIri(k, prefixes) === path) out.push(...asArray(v));
+  }
+  return out;
+}
+
+/** Valide un sujet contre une shape. Retourne des messages, ne lève pas : une donnée
+ *  invalide est un rapport à lire, pas un plantage. */
+export function validateSubject(subject, shape, prefixes) {
+  const errs = [];
+  const id = subject["@id"] ?? "(sans @id)";
+  for (const p of shape.properties) {
+    const vals = valuesOf(subject, p.path, prefixes);
+    const short = p.path.split(/[#/]/).pop();
+
+    if (p.minCount !== undefined && vals.length < p.minCount) {
+      errs.push(`${id} : ${short} — minCount ${p.minCount}, trouvé ${vals.length}`);
+    }
+    if (p.maxCount !== undefined && vals.length > p.maxCount) {
+      errs.push(`${id} : ${short} — maxCount ${p.maxCount}, trouvé ${vals.length}`);
+    }
+    for (const v of vals) {
+      if (p.datatype !== undefined) {
+        const res = datatypeOk(v, p.datatype);
+        if (res === null) errs.push(`${id} : ${short} — datatype non supporté ${p.datatype}`);
+        else if (!res) errs.push(`${id} : ${short} — attendu ${p.datatype}, reçu ${JSON.stringify(v)}`);
+      }
+      if (p.allowedValues !== undefined && !p.allowedValues.includes(v)) {
+        errs.push(`${id} : ${short} — « ${v} » hors de [${p.allowedValues.join(", ")}]`);
+      }
+      if (p.nodeKind === "IRI") {
+        const iri = typeof v === "object" && v !== null ? v["@id"] : v;
+        if (typeof iri !== "string" || !isSafeIri(iri)) {
+          errs.push(`${id} : ${short} — IRI invalide ou non sûre ${JSON.stringify(v)}`);
+        }
+      }
+    }
+  }
+  return errs;
+}
+
+/** Valide tous les sujets. Un sujet dont le @type n'a aucune shape est signalé : c'est
+ *  presque toujours une faute de frappe, jamais une intention. */
+export function validateAll(subjects, shapes, prefixes) {
+  const byClass = new Map(shapes.map((s) => [s.targetClass, s]));
+  const errs = [];
+  for (const s of subjects) {
+    const types = asArray(s["@type"]);
+    if (types.includes("sh:NodeShape")) continue;
+    let matched = false;
+    for (const t of types) {
+      const shape = byClass.get(expandIri(t, prefixes));
+      if (!shape) continue;
+      matched = true;
+      errs.push(...validateSubject(s, shape, prefixes));
+    }
+    if (!matched) errs.push(`${s["@id"] ?? "(sans @id)"} : aucune shape pour @type ${JSON.stringify(types)}`);
+  }
+  return errs;
 }
