@@ -17,6 +17,51 @@
 - **Ne rien supprimer.** `bank-*.json`, `dict.json` et l'ancien `validate.mjs` restent en place jusqu'au lot 4. On bascule la lecture, on ne fait pas le ménage.
 - **`ord` groupé par compétence** — décision de ce lot, cf. Task 1. Possible uniquement parce que la progression est remise à zéro.
 
+## Amendements du 2026-07-20 (relecture avant exécution)
+
+Six écarts entre le plan et le code réel, arbitrés avant la première ligne. Le plan ci-dessous
+est amendé en conséquence ; ces notes disent **pourquoi**.
+
+1. **`sw.js#isData` ne reconnaît pas `.jsonld`.** Le prédicat est
+   `pathname.includes('/data/') && pathname.endsWith('.json')` : un `.jsonld` tombe dans la
+   branche **cache-first**, celle des icônes — le corpus serait figé à vie chez un client.
+   C'est exactement la panne que le commentaire d'en-tête de `sw.js` décrit avoir déjà coûté un
+   plantage. Task 5 étend le prédicat. **Non négociable, ce n'est pas un choix de politique.**
+
+2. **Précache : `SHELL` atomique + `GRAPH` best-effort.** Le précache complet du graphe est
+   demandé (hors ligne dès la première visite). Mais `cache.addAll()` est **atomique** : un seul
+   404 ou une coupure au milieu des 4,7 Mo de `q-vocabulaire` rejette la promesse → `install`
+   échoue → **aucun** service worker activé, donc plus de hors ligne du tout. Avec 8 petits
+   fichiers le risque était théorique ; avec 10 Mo il ne l'est plus. Deux listes donc :
+   `SHELL` (coquille, `addAll`, échouer est correct si l'index manque) et `GRAPH` (contenu,
+   `allSettled` — un document manquant dégrade le hors ligne, il ne tue pas le SW).
+
+3. **Le poids n'est pas un problème : +18 % sur le fil, pas +55 %.** Brut, le graphe pèse
+   9,82 Mo contre 6,33 Mo pour l'ancien modèle. **Gzippé, 1,26 Mo contre 1,07 Mo** — le JSON-LD
+   verbeux (`"jlpt:difficulty"` × 10 307) est précisément ce que LZ77 mange. Et GitHub Pages
+   compresse bien `application/ld+json` (vérifié sur `w3c.github.io/json-ld-api/tests/*.jsonld` :
+   `content-encoding: gzip`). **Aucune compression applicative** : servir des `.jsonld.gz`
+   décompressés par `DecompressionStream` remplacerait un mécanisme natif et négocié
+   (`Accept-Encoding`, brotli à 0,97 Mo si le serveur le propose) par du code figé. On ne minifie
+   pas non plus : les documents restent relisibles en diff, ce qui compte pour les corrections
+   de contenu. Le vrai coût du graphe est le parse et la mémoire, pas la bande passante.
+
+4. **Task 3 : cinq fichiers de test manquent dans la liste `Files`.** `useCoverage.test.tsx` et
+   `EntrainementApp.{start,recording,learn,diagnostic}.test.tsx` importent `clearBankIndexCache`
+   et simulent l'URL `bank-index.json` ; ils cassent tous. Ce ne sont pas des couches pures —
+   les modifier est légitime — mais l'omission devait être dite plutôt que découverte.
+
+5. **Task 5 Step 1 se contredisait.** Le test exige `isServedData("q-kanji.jsonld") === true`,
+   la note dessous demande d'énumérer `data/graph` séparément — auquel cas `isServedData` ne voit
+   jamais ces noms et le test ne garde plus rien. Résolution : `isServedData` accepte aussi les
+   `.jsonld` **et** `copyStatic` énumère `data/graph` avec ce même prédicat. Un seul inventaire,
+   un test qui mord.
+
+6. **Task 6 décrivait des vérifications hors périmètre.** `src/features/cours` n'est pas migré
+   dans ce lot (il lit toujours `data/cours-*.json`) et `toQuestion` ne projette pas `tests` :
+   le « Rappel de cours » reste l'ancien mécanisme, par parsing du corrigé. Ces deux points
+   deviennent des contrôles de **non-régression**, pas des nouveautés à constater.
+
 ## Structure de fichiers
 
 | Fichier | Responsabilité |
@@ -396,6 +441,10 @@ git commit -m "feat(graph): projection JSON-LD → Question et index par interva
 - Modify: `src/lib/bank.ts`
 - Modify: `src/lib/bank.test.ts` (uniquement les tests de CHARGEMENT ; ceux des couches pures ne bougent pas)
 - Modify: `src/features/dashboard/useCoverage.ts`, `src/features/quiz/useQuiz.ts`, `src/lib/coverage.ts`
+- Modify (amendement 4, absents du plan initial) : `src/features/dashboard/useCoverage.test.tsx`,
+  `src/EntrainementApp.start.test.tsx`, `src/EntrainementApp.recording.test.tsx`,
+  `src/EntrainementApp.learn.test.tsx`, `src/EntrainementApp.diagnostic.test.tsx` — tous
+  simulent `bank-index.json` et/ou importent `clearBankIndexCache`.
 
 **Interfaces:**
 - `loadCategory(cat, fetchImpl?)` délègue à `graph.loadSkill`.
@@ -547,11 +596,14 @@ test("isServedData livre les documents du graphe", () => {
 });
 ```
 
-⚠ `isServedData` reçoit des noms de fichiers de `readdirSync("data")`, pas des chemins : `data/graph/` est un **répertoire**. La fonction doit donc apprendre à descendre dedans, ou `copyStatic` doit énumérer `data/graph` séparément. Choisir la seconde — plus explicite, et ça garde `isServedData` sur une seule responsabilité.
+⚠ `isServedData` reçoit des noms de fichiers de `readdirSync("data")`, pas des chemins : `data/graph/` est un **répertoire**. **Amendement 5** — le plan initial se contredisait ici (le test exige que `isServedData` accepte `q-kanji.jsonld`, la note demandait de l'en dispenser). Retenu : `isServedData` accepte aussi les `.jsonld`, **et** `copyStatic` énumère `data/graph` avec ce même prédicat. Un seul inventaire, un test qui mord.
 
 - [ ] **Step 2 à 4: Implémenter, tester, vérifier les trois inventaires**
 
-`copy-static.mjs` copie `data/graph/*.jsonld` ; `scripts/dev.ts` ajoute les chemins à `STATIC_FILES` ; `sw.js` ajoute les documents au `SHELL` **et** bumpe `CACHE` (`jlpt-n3-vN` → `vN+1`).
+`copy-static.mjs` copie `data/graph/*.jsonld` ; `scripts/dev.ts` ajoute les chemins à `STATIC_FILES` ; `sw.js` bumpe `CACHE` (`jlpt-n3-vN` → `vN+1`) et, **amendements 1 et 2** :
+
+- `isData` doit reconnaître `.jsonld` — sinon les documents du graphe passent en **cache-first** et le corpus est figé à vie chez le client ;
+- le précache complet du graphe se fait en **deux listes** : `SHELL` (coquille, `addAll`, atomique) et `GRAPH` (contenu, `allSettled`, best-effort). `addAll` sur 10 Mo ferait échouer toute l'installation du SW sur une seule requête ratée — et sans SW, plus de hors ligne du tout.
 
 Run: `bun test tools/copy-static.test.ts && bun run build && ls _site/data/graph/`
 Expected: les 10 documents présents dans `_site/data/graph/`.
@@ -578,10 +630,10 @@ bun run build && bunx serve _site
 - [ ] **Step 2: Vérifier à la main, dans l'ordre**
 
 1. Accueil : le tableau de bord et les anneaux de couverture s'affichent (ils dépendent de `corpus.jsonld`).
-2. Entraînement : démarrer une session, répondre, voir le corrigé — le « Rappel de cours » doit apparaître sur une question de grammaire reliée.
-3. Cours : une leçon affiche ses items (ils viennent des entités, plus des copies).
+2. Entraînement : démarrer une session, répondre, voir le corrigé. **Non-régression** (amendement 6) : le « Rappel de cours » repose toujours sur l'ancien mécanisme — `toQuestion` ne projette pas les arêtes `tests`, qui ne seront consommées qu'au lot 3. On vérifie qu'il n'a pas *disparu*, pas qu'il s'est amélioré.
+3. Cours : une leçon affiche ses items. **Non-régression** : `src/features/cours` lit encore `data/cours-*.json`, il n'est pas migré dans ce lot.
 4. Furigana : taper un mot ouvre le popup avec lecture et sens.
-5. Hors ligne : recharger après avoir coupé le réseau — le SHELL précaché doit suffire.
+5. Hors ligne : recharger après avoir coupé le réseau.
 
 ⚠ Changer le hash (`#/x`) NE recharge PAS la page : faire un vrai `location.reload()` pour charger le nouveau bundle.
 

@@ -1,0 +1,40 @@
+{
+ "@context": "context.jsonld",
+ "@graph": [
+  {
+   "@id": "jlpt:corpus/grammaire",
+   "@type": "jlpt:SkillRange",
+   "jlpt:skill": "grammaire",
+   "jlpt:from": 0,
+   "jlpt:count": 1174
+  },
+  {
+   "@id": "jlpt:corpus/vocabulaire",
+   "@type": "jlpt:SkillRange",
+   "jlpt:skill": "vocabulaire",
+   "jlpt:from": 1174,
+   "jlpt:count": 5901
+  },
+  {
+   "@id": "jlpt:corpus/kanji",
+   "@type": "jlpt:SkillRange",
+   "jlpt:skill": "kanji",
+   "jlpt:from": 7075,
+   "jlpt:count": 3148
+  },
+  {
+   "@id": "jlpt:corpus/lecture",
+   "@type": "jlpt:SkillRange",
+   "jlpt:skill": "lecture",
+   "jlpt:from": 10223,
+   "jlpt:count": 52
+  },
+  {
+   "@id": "jlpt:corpus/ecoute",
+   "@type": "jlpt:SkillRange",
+   "jlpt:skill": "ecoute",
+   "jlpt:from": 10275,
+   "jlpt:count": 32
+  }
+ ]
+}

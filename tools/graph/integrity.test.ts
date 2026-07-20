@@ -113,3 +113,35 @@ test("checkCorpus refuse deux sujets partageant le même @id", () => {
   const a = { "@id": "jlpt:word/影", "@type": "jlpt:Word" };
   expect(checkCorpus([a, { ...a }]).join(" ")).toMatch(/@id en double/);
 });
+
+// --- cohérence des SkillRange ---------------------------------------------------
+
+const qr = (ord: number, skill: string) => ({
+  "@id": `jlpt:q/${ord}`, "@type": "jlpt:Question", "jlpt:ord": ord,
+  "jlpt:stem": `x${ord}`, opts: ["a", "b"], "jlpt:answer": 0,
+  "jlpt:skill": skill, "jlpt:difficulty": 1,
+});
+const range = (skill: string, from: number, count: number) => ({
+  "@id": `jlpt:corpus/${skill}`, "@type": "jlpt:SkillRange",
+  "jlpt:skill": skill, "jlpt:from": from, "jlpt:count": count,
+});
+
+test("checkCorpus refuse un SkillRange qui ment sur les questions réelles", () => {
+  // corpus.jsonld remplace bank-index.json : s'il ment, l'app résout les ids vers la
+  // mauvaise compétence SANS la moindre erreur. C'est ce contrôle qui rend la
+  // désynchronisation impossible, et non seulement improbable.
+  expect(checkCorpus([qr(0, "kanji"), range("kanji", 0, 99)]).join(" ")).toMatch(/SkillRange/);
+});
+
+test("checkCorpus refuse un SkillRange dont la borne de départ est fausse", () => {
+  const sujets = [qr(0, "grammaire"), qr(1, "kanji"), qr(2, "kanji"), range("kanji", 0, 2)];
+  expect(checkCorpus(sujets).join(" ")).toMatch(/SkillRange kanji/);
+});
+
+test("checkCorpus accepte des SkillRange fidèles au corpus", () => {
+  const sujets = [
+    qr(0, "grammaire"), qr(1, "grammaire"), qr(2, "kanji"),
+    range("grammaire", 0, 2), range("kanji", 2, 1),
+  ];
+  expect(checkCorpus(sujets)).toEqual([]);
+});
