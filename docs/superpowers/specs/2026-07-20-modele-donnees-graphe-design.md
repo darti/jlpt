@@ -111,7 +111,6 @@ Les formes de grammaire à espace ou slash (`〜ようだ / 〜みたいだ`) so
 { "@context": {
     "schema": "https://schema.org/",
     "jlpt":   "https://okutheory.com/jlpt/vocab#",
-    "@vocab": "https://okutheory.com/jlpt/vocab#",
     "tests":     { "@id": "jlpt:tests",     "@type": "@id", "@container": "@set" },
     "usesKanji": { "@id": "jlpt:usesKanji", "@type": "@id", "@container": "@set" },
     "covers":    { "@id": "jlpt:covers",    "@type": "@id", "@container": "@list" },

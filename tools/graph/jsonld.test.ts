@@ -4,6 +4,10 @@ import { mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
+/** Résolu depuis ce fichier : un `bun test` lancé depuis un sous-dossier ne doit pas
+ *  faire échouer le test pour une raison sans rapport avec le code. */
+const CONTEXT = new URL("../../data/graph/context.jsonld", import.meta.url).pathname;
+
 const prefixes = { jlpt: "https://okutheory.com/jlpt/vocab#", sh: "http://www.w3.org/ns/shacl#" };
 
 test("expandIri déplie un terme préfixé", () => {
@@ -36,7 +40,7 @@ test("isSafeIri rejette les contrôles ASCII et les contrôles de formatage Unic
 });
 
 test("readContext expose préfixes et alias de termes séparément", () => {
-  const ctx = readContext("data/graph/context.jsonld");
+  const ctx = readContext(CONTEXT);
   expect(ctx.prefixes.jlpt).toBe("https://okutheory.com/jlpt/vocab#");
   expect(ctx.terms.tests.id).toBe("jlpt:tests");
   expect(ctx.terms.covers.container).toBe("@list");
@@ -64,11 +68,26 @@ test("readDoc accepte un @context inline", () => {
 
 test("readDoc retombe sur contextPath quand le document n'a pas de @context", () => {
   writeFileSync(join(tmp, "nu.jsonld"), JSON.stringify({ "@graph": [{ "@id": "a" }] }));
-  expect(readDoc(join(tmp, "nu.jsonld"), "data/graph/context.jsonld").context.prefixes.jlpt)
+  expect(readDoc(join(tmp, "nu.jsonld"), CONTEXT).context.prefixes.jlpt)
     .toBe("https://okutheory.com/jlpt/vocab#");
 });
 
 test("readDoc rend une liste vide quand @graph est absent", () => {
   writeFileSync(join(tmp, "vide.jsonld"), JSON.stringify({ "@context": { a: "https://a.test/" } }));
   expect(readDoc(join(tmp, "vide.jsonld")).subjects).toEqual([]);
+});
+
+test("isSafeIri rejette une entrée non-chaîne (c'est le garde, il doit tenir)", () => {
+  for (const bad of [null, undefined, 42, [], {}, true]) {
+    expect(isSafeIri(bad as unknown as string)).toBe(false);
+  }
+});
+
+test("isSafeIri accepte un trait d'union simple (seul le double est interdit)", () => {
+  expect(isSafeIri("urn:oku-note:1")).toBe(true);
+});
+
+test("expandIri laisse passer une valeur non-chaîne sans planter", () => {
+  expect(expandIri(42 as unknown as string, prefixes)).toBe(42 as unknown as string);
+  expect(expandIri(":sansPrefixe", prefixes)).toBe(":sansPrefixe");
 });

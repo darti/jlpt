@@ -1,5 +1,14 @@
 // Sous-ensemble JSON-LD suffisant pour nos documents : résolution des préfixes et des alias
-// de termes. PAS une implémentation JSON-LD complète — ni @base, ni @reverse, ni langue.
+// de termes. PAS une implémentation JSON-LD complète — ni @base, ni @reverse, ni langue,
+// ni @vocab. Nos documents écrivent donc TOUJOURS des IRIs préfixées (`jlpt:word/影響`),
+// jamais de terme nu : `@vocab` est volontairement absent du contexte plutôt que déclaré
+// sans être implémenté, ce qui laisserait croire qu'un `{"@id": "word/影響"}` sera déplié.
+//
+// Les valeurs rendues restent COMPACTES : `terms.tests.id` vaut « jlpt:tests », et
+// `readDoc().subjects` est le @graph brut, non déplié. C'est l'appelant qui déplie via
+// expandIri au moment de comparer (cf. shacl.mjs#validateSubject, qui compare
+// expandIri(clé) au sh:path déplié — donc tolère les deux formes).
+//
 // Node pur : la CI exécute `node`, jamais `bun`.
 import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";

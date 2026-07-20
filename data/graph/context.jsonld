@@ -4,7 +4,6 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "schema": "https://schema.org/",
     "jlpt": "https://okutheory.com/jlpt/vocab#",
-    "@vocab": "https://okutheory.com/jlpt/vocab#",
     "tests": { "@id": "jlpt:tests", "@type": "@id", "@container": "@set" },
     "usesKanji": { "@id": "jlpt:usesKanji", "@type": "@id", "@container": "@set" },
     "covers": { "@id": "jlpt:covers", "@type": "@id", "@container": "@list" },
