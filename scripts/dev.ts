@@ -14,18 +14,10 @@ const STATIC_FILES = new Set([
   "/quiz.html", "/app-n3.html",
   "/sw.js", "/manifest.webmanifest",
   "/icon-180.png", "/icon-192.png", "/icon-512.png",
-  // Quiz question banks — quiz.html fetches these at "data/bank-${cat}.json"
-  // (relative), which resolves to these same absolute pathnames at runtime.
-  "/data/bank-grammaire.json", "/data/bank-vocabulaire.json",
-  "/data/bank-kanji.json", "/data/bank-lecture.json", "/data/bank-ecoute.json",
-  "/data/bank-index.json",
-  // Dictionnaire (furigana / définition au tap) — le quiz React le fetch au runtime
-  // via src/lib/dict.ts (les données ne sont plus inlinées dans le bundle).
-  "/data/dict.json",
-  // Graphe JSON-LD — ce que l'app lit RÉELLEMENT depuis le lot 2 : les cinq shards de
+  // Graphe JSON-LD — TOUT ce que l'app lit au runtime depuis le lot 2 : les cinq shards de
   // questions (src/lib/graph.ts), les intervalles du corpus (couverture + reprise de
-  // session) et les mots (dictionnaire). Les autres documents sont servis pour que le
-  // dev soit identique à la prod.
+  // session) et les mots (dictionnaire, src/lib/dict.ts). Les autres documents sont servis
+  // pour que le dev soit identique à la prod.
   "/data/graph/q-grammaire.jsonld", "/data/graph/q-vocabulaire.jsonld",
   "/data/graph/q-kanji.jsonld", "/data/graph/q-lecture.jsonld", "/data/graph/q-ecoute.jsonld",
   "/data/graph/corpus.jsonld", "/data/graph/word.jsonld",

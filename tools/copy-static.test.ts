@@ -12,7 +12,7 @@ test("ROOT ledger includes the service worker and PWA/stub assets", () => {
 });
 
 test("isServedData selects the runtime-fetched data files", () => {
-  for (const f of ["bank-grammaire.json", "bank-index.json", "dict.json", "cours-gram.json", "cours-method.json"]) {
+  for (const f of ["cours-gram.json", "cours-method.json"]) {
     expect(isServedData(f)).toBe(true);
   }
 });
@@ -24,9 +24,19 @@ test("isServedData livre les documents du graphe", () => {
 });
 
 test("isServedData excludes lesson-source and non-served files", () => {
-  // grammar/kanji/vocab.json are validated but NOT fetched at runtime (cf. scripts/dev.ts).
-  for (const f of ["grammar.json", "kanji.json", "vocab.json", "examples.json", "README.md", "styles.gen.css"]) {
+  // bank.json et les sources d'auteur grammar/kanji/vocab.json sont validés mais PAS
+  // fetchés : le runtime lit data/graph/. dict.json est absorbé par word.jsonld.
+  for (const f of ["bank.json", "dict.json", "grammar.json", "kanji.json", "vocab.json",
+                   "examples.json", "README.md", "styles.gen.css"]) {
     expect(isServedData(f)).toBe(false);
+  }
+});
+
+test("les banques dérivées ne sont plus livrées — elles n'existent plus", () => {
+  // Régression : bank-*.json + bank-index.json ont été supprimés avec tools/split-bank.mjs.
+  // Les re-livrer ferait grossir _site de 5,7 Mo que plus personne ne lit.
+  for (const f of ["bank-grammaire.json", "bank-kanji.json", "bank-index.json"]) {
+    expect(isServedData(f), `${f} ne doit plus être livré`).toBe(false);
   }
 });
 

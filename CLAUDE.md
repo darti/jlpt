@@ -21,9 +21,10 @@ par tâche = branche + répertoire isolés.
 
 ## Architecture (non évidente — lire avant d'éditer)
 
-- **Contenu = `data/*.json`**, **chargé au runtime** par le React (`fetch`) — plus aucun inline,
-  plus de `sync-*.mjs`. ⚠ Tous ces fichiers ne sont PAS des sources : cf. **Données — sources vs
-  dérivés** plus bas AVANT d'éditer quoi que ce soit dans `data/`.
+- **Contenu = `data/graph/*.jsonld` + `data/cours-*.json`**, **chargé au runtime** par le React
+  (`fetch`) — plus aucun inline, plus de `sync-*.mjs`. ⚠ Les autres fichiers de `data/` ne sont
+  plus servis du tout : cf. **Données — le graphe est la source** plus bas AVANT d'éditer quoi
+  que ce soit dans `data/`.
 - **Une seule SPA** : `index.html` monte un `HashRouter` (react-router-dom, `src/AppShell.tsx`).
   Routes : `/` (Accueil : dashboard + graphe de progression), `/entrainement` (**onglet unique
   fusionné** — hub reprise/démarrage **et** moteur quiz adaptatif type Elo inline, piloté par
@@ -66,27 +67,31 @@ par tâche = branche + répertoire isolés.
     bun run build                     # CSS minifié + bun build ./index.html (--splitting) → _site/
     bunx serve _site                  # servir le build (http, requis pour SW + fetch)
     bun tools/validate.mjs            # valide les data/*.json sources (exit 1 si KO)
-    bun tools/split-bank.mjs          # data/bank.json → data/bank-*.json + bank-index.json
-    bun tools/split-bank.mjs --check  # exit 1 si les dérivés sont désynchronisés
+    bun tools/validate-graph.mjs      # valide data/graph/ — SHACL + contrôles impératifs
 
 **CI** = `.github/workflows/validate.yml` (push + PR), et lui seul : contenu `data/*.json`,
-banques dérivées (`split-bank --check`), `typecheck`, `bun test`. `deploy.yml` ne fait que
+graphe `data/graph/`, `typecheck`, `bun test`. `deploy.yml` ne fait que
 `bun run build` — et **`bun build` ne typecheck pas**, il n'est donc jamais un garde-fou.
 **Pas de linter** dans le projet (ni eslint, ni prettier, ni biome) : ne pas en chercher un,
 ne pas en ajouter sans demande explicite — `typecheck` + `bun test` font foi.
 
-## Données — sources vs dérivés (ne JAMAIS éditer un dérivé)
+## Données — le graphe est la source (plus aucun dérivé)
 
 | Fichier | Rôle |
 |---|---|
-| `data/bank.json` | **Source** des questions — éditer ICI. Jamais livrée. |
-| `data/bank-*.json` + `bank-index.json` | **Dérivés** (`tools/split-bank.mjs`). Seuls fetchés au runtime (`src/lib/bank.ts`). Régénérer après toute édition, sinon l'app sert l'ancien contenu. |
-| `data/dict.json`, `data/cours-*.json` | Sources **et** fichiers livrés (fetchés tels quels). `dict.json` a un schéma : `schema/dict.schema.json`. |
-| `data/grammar.json`, `kanji.json`, `vocab.json` | Sources d'auteur : **validées** par `tools/validate.mjs`, mais jamais servies ni fetchées. |
+| `data/graph/*.jsonld` | **Source ET fichiers livrés** — éditer ICI. Le runtime ne lit rien d'autre : questions (`q-<compétence>.jsonld`), intervalles du corpus (`corpus.jsonld`), mots (`word.jsonld`, le dictionnaire). Validés par `tools/validate-graph.mjs`. |
+| `data/cours-*.json` | Sources **et** fichiers livrés (fetchés tels quels par `/cours`). |
+| `data/bank.json`, `dict.json`, `grammar.json`, `kanji.json`, `vocab.json` | **Vestiges de l'ancien modèle** : validés par `tools/validate.mjs` et lus par `tools/migrate-to-graph.mjs`, mais **plus jamais servis ni fetchés**. Les éditer n'a AUCUN effet sur l'app. |
 
-⚠ **`id` = index global dans `bank.json`, et il doit rester stable** : `wrong[]` (erreurs) et
-`jlptN3quiz_resume.ids` persistés en localStorage y réfèrent. Insérer une question au milieu
-décale tous les ids suivants → progression des utilisateurs corrompue. **Ajouter en fin de tableau.**
+⚠ **Ne PAS relancer `tools/migrate-to-graph.mjs`** : il n'est pas idempotent et régénère
+`data/graph/` depuis ces vestiges — il **écraserait** toute correction faite dans le graphe.
+C'est exactement ce qui a tué `tools/transform-cours.mjs`. Il sera supprimé au lot 4.
+
+⚠ **`jlpt:ord` = index global dans le corpus, groupé par compétence, et il doit rester
+stable** : c'est lui qu'indexent le bitset `seen`/`mastered`, `wrong[]` (erreurs) et
+`jlptN3quiz_resume.ids` persistés en localStorage. Renuméroter corrompt la progression des
+utilisateurs. **Ajouter en fin de shard**, et vérifier que `corpus.jsonld` suit
+(`checkCorpus` confronte les intervalles aux questions réelles).
 
 ## Gotchas
 
@@ -159,7 +164,7 @@ décale tous les ids suivants → progression des utilisateurs corrompue. **Ajou
 Portage strangler vanilla → **React + TS, bundlé par Bun** : **terminé**. Toutes les pages sont
 des routes de la SPA ; les fichiers vanilla (`dict.js`, `theme.css`, `progress.js`, `cours-n3.html`…)
 et les `sync-*.mjs` ont été supprimés. Le contenu vit dans `data/` et est chargé au runtime
-(cf. **Données — sources vs dérivés**).
+(cf. **Données — le graphe est la source**).
 
 - **Styles** : tokens Tailwind v4 vendorisés dans `src/styles/` (`tailwind.css` = `@theme`
   + shims + règles de base ; `themes.css` = Nord `[data-theme]`). Compilé par
@@ -171,7 +176,7 @@ et les `sync-*.mjs` ont été supprimés. Le contenu vit dans `data/` et est cha
   échappe les apostrophes (`'` → `&#x27;`) — asserter sur des sous-chaînes sans apostrophe.
   ⚠ `happydom.ts` est préchargé pour **toute** la suite (`bunfig.toml`) : `document`/`localStorage`
   existent même dans un test « pur ». Isoler explicitement l'état partagé (cf.
-  `clearCategoryCache()` / `clearBankIndexCache()` dans `src/lib/bank.ts`).
+  `clearCategoryCache()` dans `src/lib/bank.ts`, `clearGraphCache()` dans `src/lib/graph.ts`).
 
 ## MANDATORY: No Explore Agents When Tokensave Is Available
 
