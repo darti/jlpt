@@ -25,6 +25,15 @@ test("toQuestion projette un sujet vers le type interne du moteur", () => {
   expect(q.od).toHaveLength(4);
 });
 
+test("toQuestion projette les arêtes tests — sans elles, pas de rappel dans le corrigé", () => {
+  expect(toQuestion(sujet).tests).toEqual(["jlpt:word/政治"]);
+});
+
+test("toQuestion n'invente pas d'arête sur une question non reliée", () => {
+  const { tests: _drop, ...sans } = sujet;
+  expect(toQuestion(sans).tests).toBeUndefined();
+});
+
 test("toQuestion conserve script et passage quand ils existent", () => {
   const q = toQuestion({ ...sujet, "jlpt:script": "音声", "jlpt:passage": "文章" });
   expect(q.script).toBe("音声");

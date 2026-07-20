@@ -18,5 +18,8 @@ export interface Question {
   e?: string;
   g?: string;
   od?: string[];
+  /** IRIs des entités testées (`jlpt:gram/…`, `jlpt:word/…`, `jlpt:kanji/…`) — alimentent le
+   *  « Rappel » du corrigé sans parser l'explication. Absent si la question n'est pas reliée. */
+  tests?: string[];
   [k: string]: unknown; // ecoute/lecture may carry extra fields — preserved
 }

@@ -1,6 +1,6 @@
 import type { Question } from "../../types/quiz.ts";
-import type { GrammarRappel } from "../cours/coursGramIndex.ts";
-import { grammarPointHref } from "../cours/coursDeepLink.ts";
+import type { Rappel } from "./rappel.ts";
+import { rappelHref } from "../cours/coursDeepLink.ts";
 import { SentenceAnalysis } from "../../ui/SentenceAnalysis.tsx";
 import { PANEL } from "../../ui/styles.ts";
 import { furi } from "../../lib/dict.ts";
@@ -8,7 +8,7 @@ import { furi } from "../../lib/dict.ts";
 /** Port of the legacy corrigé block from `answer()` (app-n3.html:937-957):
  * correct/incorrect banner, rule explanation, grammar decomposition, and the
  * per-option analysis (`od`). Does not receive `chosen` — only `correct`. */
-export function Corrige({ question, correct, rappel }: { question: Question; correct: boolean; rappel?: GrammarRappel | null }) {
+export function Corrige({ question, correct, rappel }: { question: Question; correct: boolean; rappel?: Rappel | null }) {
   const correctAnswer = question.o[question.a];
   const od = question.od;
   const hasOd = od !== undefined && od.length === question.o.length;
@@ -62,23 +62,65 @@ export function Corrige({ question, correct, rappel }: { question: Question; cor
           </ul>
         </div>
       )}
-      {question.cat === "grammaire" && (
-        <div className="mt-3 pt-3 border-t border-line">
-          <p className="text-accent text-sm font-bold mb-1">Rappel de cours</p>
-          {rappel ? (
-            <p className="text-fg-dim text-sm m-0">
-              <span className="text-fg font-bold" dangerouslySetInnerHTML={{ __html: furi(rappel.forme) }} />
-              {" "}
-              {rappel.niv && `(${rappel.niv})`}
-              {rappel.sens && ` — ${rappel.sens}`}
-              {" "}
-              <a href={grammarPointHref(rappel)} className="text-accent whitespace-nowrap">voir le point de grammaire →</a>
-            </p>
-          ) : (
-            <a href="#/cours/gram" className="text-accent text-sm">📖 Revoir la grammaire dans le cours →</a>
-          )}
-        </div>
+      {rappel ? <RappelCard rappel={rappel} /> : <RappelAbsent cat={question.cat} />}
+    </div>
+  );
+}
+
+/** Le « Rappel » d un corrigé, alimenté par l arête `tests` de la question.
+ *
+ *  Une seule carte pour les trois natures d entité : un point de grammaire montre sa forme et,
+ *  quand il en porte une, une phrase d exemple ; un mot et un kanji montrent leur lecture. Le
+ *  lien profond n apparaît que si une leçon couvre l entité — 45 % des questions testent une
+ *  notion que le cours n enseigne pas, et un lien vers une page inexistante est pire que rien. */
+function RappelCard({ rappel }: { rappel: Rappel }) {
+  const href = rappelHref(rappel);
+  const LIBELLE: Record<Rappel["kind"], string> = {
+    gram: "voir le point de grammaire",
+    word: "voir le mot dans le cours",
+    kanji: "voir le kanji dans le cours",
+  };
+  return (
+    <div className="mt-3 pt-3 border-t border-line">
+      <p className="text-accent text-sm font-bold mb-1">Rappel</p>
+      <p className="text-fg-dim text-sm m-0">
+        <span className="text-fg font-bold" dangerouslySetInnerHTML={{ __html: furi(rappel.titre) }} />
+        {rappel.lecture && <span className="text-accent"> {rappel.lecture}</span>}
+        {rappel.niv && ` (${rappel.niv})`}
+        {rappel.sens && ` — ${rappel.sens}`}
+        {href && (
+          <>
+            {" "}
+            <a href={href} className="text-accent whitespace-nowrap">{LIBELLE[rappel.kind]} →</a>
+          </>
+        )}
+      </p>
+      {rappel.exemple && (
+        <p className="text-fg-dim text-sm mt-2 mb-0">
+          <span className="text-fg" dangerouslySetInnerHTML={{ __html: furi(rappel.exemple.jp) }} />
+          {rappel.exemple.fr && <span className="block text-fg-muted">{rappel.exemple.fr}</span>}
+        </p>
       )}
+    </div>
+  );
+}
+
+/** Catégorie de cours d une compétence — lecture et écoute n en ont pas. */
+const CAT_COURS: Partial<Record<Question["cat"], { href: string; libelle: string }>> = {
+  grammaire: { href: "#/cours/gram", libelle: "Revoir la grammaire dans le cours" },
+  vocabulaire: { href: "#/cours/vocab", libelle: "Revoir le vocabulaire dans le cours" },
+  kanji: { href: "#/cours/kanji", libelle: "Revoir les kanji dans le cours" },
+};
+
+/** Repli quand aucune arête ne résout — 46 % des questions de grammaire, faute d entité
+ *  correspondante. Un lien vers la catégorie vaut mieux que rien, et c est le comportement
+ *  qu avait déjà le corrigé avant que les arêtes ne soient consommées. */
+function RappelAbsent({ cat }: { cat: Question["cat"] }) {
+  const c = CAT_COURS[cat];
+  if (!c) return null;
+  return (
+    <div className="mt-3 pt-3 border-t border-line">
+      <a href={c.href} className="text-accent text-sm">📖 {c.libelle} →</a>
     </div>
   );
 }
