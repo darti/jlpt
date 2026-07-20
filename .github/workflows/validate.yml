@@ -6,6 +6,9 @@ name: Qualité — contenu, types, tests
 #
 #  1. data/*.json  : dict (pas de niveau JLPT comme définition, pas de clé dupliquée,
 #                    champs r/m…), bank/grammar/kanji/vocab (structure, bornes, options) ;
+#  1bis. data/graph/ : shapes SHACL (sous-ensemble Oku) + contrôles impératifs — bornes de
+#                    answer, alignement optionNote, ordinaux denses, IRIs pendantes,
+#                    réponses contradictoires ;
 #  2. dérivés      : data/bank-*.json + bank-index.json toujours en phase avec bank.json ;
 #  3. types        : tsc --noEmit sur src/ + scripts/ ;
 #  4. tests        : la suite bun test.
@@ -37,6 +40,12 @@ jobs:
 
       - name: Valider tout le contenu (data/*.json)
         run: node tools/validate.mjs
+
+      # Le graphe JSON-LD coexiste avec l ancien modèle tant que l app sert bank-*.json :
+      # cette étape valide data/graph/ sans rien retirer. Sous node pour la même raison
+      # que ci-dessus — tools/*.mjs doit rester exécutable sans bun.
+      - name: Valider le graphe JSON-LD (data/graph/)
+        run: node tools/validate-graph.mjs
 
       - name: Installer Bun
         uses: oven-sh/setup-bun@v2
