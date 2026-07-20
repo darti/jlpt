@@ -9,7 +9,7 @@
 // expandIri au moment de comparer (cf. shacl.mjs#validateSubject, qui compare
 // expandIri(clé) au sh:path déplié — donc tolère les deux formes).
 //
-// Node pur : la CI exécute `node`, jamais `bun`.
+// Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
 import { readFileSync } from "node:fs";
 import { dirname, resolve, sep } from "node:path";
 

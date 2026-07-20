@@ -4,7 +4,7 @@
 // seul champ, séparés par « ・ ». Le graphe les veut distincts (jlpt:onReading / kunReading,
 // déjà déclarés dans KanjiShape mais jamais alimentés jusqu'ici).
 //
-// Node pur : la CI exécute `node`, jamais `bun`.
+// Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
 
 // L'okurigana est écrit entre parenthèses — « やさ(しい) » — et appartient à la lecture kun,
 // donc le test porte sur le segment ENTIER : une lecture on est du katakana pur.

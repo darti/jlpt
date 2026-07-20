@@ -6,15 +6,15 @@
 // danger. C'est exactement ce que le générateur ne pouvait pas promettre.
 //
 // La chaîne complète, et la raison licencielle qui la justifie :
-//   1. node tools/jmdict/fetch.mjs      → .jmdict/ (hors dépôt, jamais commité)
-//   2. node tools/jmdict/propose.mjs    → docs/…/lectures-a-arbitrer.md (propositions)
+//   1. bun tools/jmdict/fetch.mjs      → .jmdict/ (hors dépôt, jamais commité)
+//   2. bun tools/jmdict/propose.mjs    → docs/…/lectures-a-arbitrer.md (propositions)
 //   3. l'auteur relit et consigne SES décisions dans data/lectures-arbitrees.json
-//   4. node tools/graph/readings.mjs    → patch de data/graph/word.jsonld
+//   4. bun tools/graph/readings.mjs    → patch de data/graph/word.jsonld
 // Aucune donnée JMdict n'entre dans le graphe : seules les décisions de l'auteur le font.
 // On ne redistribue pas JMdict, on s'en sert pour décider — d'où pas d'attribution
 // CC BY-SA sur chaque écran ni de ShareAlike sur le jeu dérivé.
 //
-// Node pur : la CI exécute `node`, jamais `bun`.
+// Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { splitOnKun } from "./kana.mjs";
 
@@ -119,9 +119,9 @@ if (process.argv[1]?.endsWith("readings.mjs")) {
 
   if (!mots.fait && !kanji.fait) {
     console.error(`✗ ni ${DECISIONS} ni ${DECISIONS_KANJI} — produire d'abord les propositions :`);
-    console.error("    node tools/jmdict/fetch.mjs   && node tools/jmdict/propose.mjs   # mots");
-    console.error("    node tools/kanjidic/fetch.mjs && node tools/kanjidic/propose.mjs # kanji");
+    console.error("    bun tools/jmdict/fetch.mjs   && bun tools/jmdict/propose.mjs   # mots");
+    console.error("    bun tools/kanjidic/fetch.mjs && bun tools/kanjidic/propose.mjs # kanji");
     process.exit(1);
   }
-  console.log("Relancer `node tools/validate-graph.mjs` pour confirmer.");
+  console.log("Relancer `bun tools/validate-graph.mjs` pour confirmer.");
 }

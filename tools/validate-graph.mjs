@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Valide data/graph/ : shapes SHACL (sous-ensemble Oku) + contrôles impératifs.
-// Node pur, zéro dépendance. Exit 1 si invalide.
+// Zéro dépendance, exécuté par `bun`. Exit 1 si invalide.
 //
 // SEUL validateur du dépôt : data/ ne contient plus que data/graph/.
 import { existsSync, readdirSync } from "node:fs";

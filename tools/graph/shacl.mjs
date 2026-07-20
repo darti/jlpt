@@ -6,7 +6,7 @@
 // (« unsupported constraint ») ; le nôtre doit refuser les mêmes, sinon une shape valide
 // ici serait rejetée là-bas.
 //
-// Node pur : la CI exécute `node`, jamais `bun`.
+// Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
 import { expandIri, expandPredicate, isSafeIri } from "./jsonld.mjs";
 
 const SUPPORTED = new Set([
