@@ -33,7 +33,7 @@ test("wordsToDict projette les sujets jlpt:Word vers la Dict interne", () => {
 
 test("setupDict n'expose en globales que les handlers inline du popup", async () => {
   globalThis.fetch = (async () => new Response("{}")) as unknown as typeof fetch;
-  await setupDict("data/dict.json");
+  await setupDict("data/graph/word.jsonld");
   const w = window as unknown as W;
   // Le popup de définition est du HTML brut avec des `onclick="hideDef()"` / `jlptSay()`.
   expect(typeof w.hideDef).toBe("function");
@@ -53,7 +53,7 @@ test("initDefs attaches gesture handlers without throwing and creates the popup"
 test("setupDict degrades gracefully when the fetch fails (handlers still installed)", async () => {
   applyDictData({}); // le DICT est un état de module partagé par tout le fichier — l'isoler
   globalThis.fetch = (async () => { throw new Error("offline"); }) as unknown as typeof fetch;
-  await setupDict("data/dict.json");
+  await setupDict("data/graph/word.jsonld");
   expect(typeof (window as unknown as W).hideDef).toBe("function");
   expect(furi("本")).toBe("本"); // hors ligne : dico vide → texte brut, sans planter
 });

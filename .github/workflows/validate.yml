@@ -4,8 +4,8 @@ name: Qualité — contenu, types, tests
 # data/*.json : un test rouge ou une erreur de type partait en prod sans qu'aucun check
 # ne rougisse (deploy.yml ne fait que `bun run build`, et `bun build` NE TYPECHECK PAS).
 #
-#  1. data/*.json  : dict (pas de niveau JLPT comme définition, pas de clé dupliquée,
-#                    champs r/m…), bank/grammar/kanji/vocab (structure, bornes, options) ;
+#  1. cours        : data/cours-*.json (schéma Category > Group > Item, doublons de
+#                    formes de grammaire, points sans exemple) ;
 #  1bis. data/graph/ : shapes SHACL (sous-ensemble Oku) + contrôles impératifs — bornes de
 #                    answer, alignement optionNote, ordinaux denses, IRIs pendantes,
 #                    réponses contradictoires ;
@@ -40,7 +40,7 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Valider tout le contenu (data/*.json)
+      - name: Valider le contenu de cours (data/cours-*.json)
         run: node tools/validate.mjs
 
       # data/graph/ est ce que l app lit au runtime depuis le lot 2. Sous node pour la même

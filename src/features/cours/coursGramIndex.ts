@@ -1,7 +1,7 @@
 /** Index of N3/N4 grammar points from data/cours-gram.json, keyed by normalized form, so a quiz
  *  corrigé can show a "Rappel de cours" for the tested grammar point. Pure logic + a memoized
  *  loader. data/cours-gram.json is now the unified Category › Group › Item schema
- *  (tools/transform-cours.mjs) : a "learn" category whose groups hold GramItem
+ *  (issu de la conversion vers ce schéma, outil supprimé depuis) : a "learn" category
  *  (form/niv/mean/examples), one item per form. */
 import type { GramItem, LearnCategory } from "./coursSchema.ts";
 import type { Question } from "../../types/quiz.ts";

@@ -2,8 +2,8 @@ import { test, expect, beforeEach } from "bun:test";
 import { furi, lookupDef, visualBreak, applyDictData } from "./dict.ts";
 
 beforeEach(() => {
-  // Inject a tiny DICT (data/dict.json shape: word -> {r, m}) — the port sources data
-  // at runtime instead of inlining it, so tests feed it directly.
+  // Inject a tiny DICT (forme interne : mot -> {r, m}, projetée depuis word.jsonld par
+  // wordsToDict) — les données viennent du runtime, les tests les injectent directement.
   applyDictData({
     "影響": { r: "えいきょう", m: "influence" },
     "原因": { r: "げんいん", m: "cause" },
