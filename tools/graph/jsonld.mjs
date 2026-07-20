@@ -106,3 +106,15 @@ export function readDoc(path, contextPath = "data/graph/context.jsonld") {
   const subjects = Array.isArray(doc["@graph"]) ? doc["@graph"] : [];
   return { context: ctx, subjects };
 }
+
+/** Résout une clé de prédicat d'un document : alias de terme déclaré au `@context`
+ *  d'abord (`usesKanji` → `jlpt:usesKanji`), puis dépliage du préfixe.
+ *
+ *  ⚠ Sans cette étape, un document écrit avec les alias (ce que fait le nôtre) verrait
+ *  ses prédicats de relation ne correspondre à AUCUN `sh:path` : les contraintes
+ *  `sh:nodeKind: IRI` sur `tests`/`usesKanji`/`covers` ne se déclencheraient jamais,
+ *  sans la moindre erreur. */
+export function expandPredicate(key, ctx) {
+  const alias = ctx?.terms?.[key]?.id;
+  return expandIri(alias ?? key, ctx?.prefixes ?? {});
+}

@@ -1,0 +1,59 @@
+{
+  "@context": "context.jsonld",
+  "@graph": [
+    {
+      "@id": "jlpt:KanjiShape", "@type": "sh:NodeShape", "sh:targetClass": "jlpt:Kanji",
+      "sh:property": [
+        { "sh:path": "schema:name", "sh:datatype": "xsd:string", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "schema:description", "sh:datatype": "xsd:string", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:onReading", "sh:datatype": "xsd:string" },
+        { "sh:path": "jlpt:kunReading", "sh:datatype": "xsd:string" },
+        { "sh:path": "jlpt:level", "sh:in": ["N5", "N4", "N3", "N2", "N1"], "sh:maxCount": 1 }
+      ]
+    },
+    {
+      "@id": "jlpt:WordShape", "@type": "sh:NodeShape", "sh:targetClass": "jlpt:Word",
+      "sh:property": [
+        { "sh:path": "schema:name", "sh:datatype": "xsd:string", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:reading", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
+        { "sh:path": "schema:description", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
+        { "sh:path": "jlpt:level", "sh:in": ["N5", "N4", "N3", "N2", "N1"], "sh:maxCount": 1 },
+        { "sh:path": "jlpt:usesKanji", "sh:nodeKind": "sh:IRI" }
+      ]
+    },
+    {
+      "@id": "jlpt:GrammarPointShape", "@type": "sh:NodeShape", "sh:targetClass": "jlpt:GrammarPoint",
+      "sh:property": [
+        { "sh:path": "jlpt:form", "sh:datatype": "xsd:string", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:altForm", "sh:datatype": "xsd:string" },
+        { "sh:path": "schema:description", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
+        { "sh:path": "jlpt:structure", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
+        { "sh:path": "jlpt:level", "sh:in": ["N5", "N4", "N3", "N2", "N1"], "sh:maxCount": 1 }
+      ]
+    },
+    {
+      "@id": "jlpt:QuestionShape", "@type": "sh:NodeShape", "sh:targetClass": "jlpt:Question",
+      "sh:property": [
+        { "sh:path": "jlpt:stem", "sh:datatype": "xsd:string", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:answer", "sh:datatype": "xsd:nonNegativeInteger", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:ord", "sh:datatype": "xsd:nonNegativeInteger", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:skill", "sh:in": ["grammaire", "vocabulaire", "kanji", "lecture", "ecoute"], "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:difficulty", "sh:datatype": "xsd:integer", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "schema:description", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
+        { "sh:path": "jlpt:gloss", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
+        { "sh:path": "jlpt:script", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
+        { "sh:path": "jlpt:passage", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
+        { "sh:path": "jlpt:tests", "sh:nodeKind": "sh:IRI" }
+      ]
+    },
+    {
+      "@id": "jlpt:LessonShape", "@type": "sh:NodeShape", "sh:targetClass": "jlpt:Lesson",
+      "sh:property": [
+        { "sh:path": "schema:name", "sh:datatype": "xsd:string", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:order", "sh:datatype": "xsd:nonNegativeInteger", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:track", "sh:in": ["gram", "vocab", "kanji"], "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:covers", "sh:nodeKind": "sh:IRI" }
+      ]
+    }
+  ]
+}

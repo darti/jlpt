@@ -7,7 +7,7 @@
 // ici serait rejetée là-bas.
 //
 // Node pur : la CI exécute `node`, jamais `bun`.
-import { expandIri, isSafeIri } from "./jsonld.mjs";
+import { expandIri, expandPredicate, isSafeIri } from "./jsonld.mjs";
 
 const SUPPORTED = new Set([
   "sh:path", "sh:datatype", "sh:minCount", "sh:maxCount", "sh:in", "sh:nodeKind",
@@ -101,27 +101,43 @@ function datatypeOk(value, datatype) {
   }
 }
 
-/** Valeurs d'un prédicat, que le document l'écrive en forme préfixée (`jlpt:stem`) ou
- *  dépliée : le sh:path est déplié, la comparaison doit l'être des deux côtés. */
-function valuesOf(subject, path, prefixes) {
+/** Normalise un contexte `{ prefixes, terms }`. **Lève** si on lui passe la seule table
+ *  de préfixes : ce serait rendre les alias de termes invisibles, donc désactiver en
+ *  silence toutes les contraintes portées par `tests`, `usesKanji` et `covers`. Autant
+ *  échouer bruyamment que valider dans le vide. */
+function ctxOf(context) {
+  if (!context || typeof context !== "object" || !context.prefixes) {
+    throw new Error(
+      "validate* attend un contexte { prefixes, terms } : passer la seule table de "
+      + "préfixes rendrait les alias (tests, usesKanji, covers) invisibles à la validation",
+    );
+  }
+  return { prefixes: context.prefixes, terms: context.terms ?? {} };
+}
+
+/** Valeurs d'un prédicat, que le document l'écrive en alias (`usesKanji`), en forme
+ *  préfixée (`jlpt:stem`) ou dépliée : le sh:path est déplié, la comparaison doit l'être
+ *  des deux côtés. */
+function valuesOf(subject, path, ctx) {
   const out = [];
   for (const [k, v] of Object.entries(subject)) {
     if (k === "@id" || k === "@type") continue;
     // On ACCUMULE au lieu de rendre la première correspondance : un sujet portant à la
     // fois « jlpt:stem » et sa forme dépliée verrait sinon l’une des deux disparaître en
     // silence, et maxCount ne la détecterait pas.
-    if (expandIri(k, prefixes) === path) out.push(...asArray(v));
+    if (expandPredicate(k, ctx) === path) out.push(...asArray(v));
   }
   return out;
 }
 
 /** Valide un sujet contre une shape. Retourne des messages, ne lève pas : une donnée
  *  invalide est un rapport à lire, pas un plantage. */
-export function validateSubject(subject, shape, prefixes) {
+export function validateSubject(subject, shape, context) {
+  const ctx = ctxOf(context);
   const errs = [];
   const id = subject["@id"] ?? "(sans @id)";
   for (const p of shape.properties) {
-    const vals = valuesOf(subject, p.path, prefixes);
+    const vals = valuesOf(subject, p.path, ctx);
     const short = p.path.split(/[#/]/).pop();
 
     if (p.minCount !== undefined && vals.length < p.minCount) {
@@ -152,7 +168,8 @@ export function validateSubject(subject, shape, prefixes) {
 
 /** Valide tous les sujets. Un sujet dont le @type n'a aucune shape est signalé : c'est
  *  presque toujours une faute de frappe, jamais une intention. */
-export function validateAll(subjects, shapes, prefixes) {
+export function validateAll(subjects, shapes, context) {
+  const ctx = ctxOf(context);
   const byClass = new Map(shapes.map((s) => [s.targetClass, s]));
   const errs = [];
   for (const s of subjects) {
@@ -160,10 +177,10 @@ export function validateAll(subjects, shapes, prefixes) {
     if (types.includes("sh:NodeShape")) continue;
     let matched = false;
     for (const t of types) {
-      const shape = byClass.get(expandIri(t, prefixes));
+      const shape = byClass.get(expandIri(t, ctx.prefixes));
       if (!shape) continue;
       matched = true;
-      errs.push(...validateSubject(s, shape, prefixes));
+      errs.push(...validateSubject(s, shape, ctx));
     }
     if (!matched) errs.push(`${s["@id"] ?? "(sans @id)"} : aucune shape pour @type ${JSON.stringify(types)}`);
   }

@@ -6,6 +6,9 @@ const prefixes = {
   xsd: "http://www.w3.org/2001/XMLSchema#",
   jlpt: "https://okutheory.com/jlpt/vocab#",
 };
+/** parseShapes ne prend que les préfixes (un sh:path est toujours écrit préfixé) ;
+ *  validate* exige le contexte complet, alias compris. */
+const ctx = { prefixes, terms: { tests: { id: "jlpt:tests" } } };
 
 const shape = (props: unknown[]) => ([{
   "@id": "jlpt:QuestionShape", "@type": "sh:NodeShape",
@@ -74,55 +77,68 @@ const qShape = parseShapes([{
 const ok = { "@id": "jlpt:q/1", "@type": "jlpt:Question", "jlpt:stem": "x", "jlpt:ord": 0, "jlpt:skill": "kanji" };
 
 test("validateSubject accepte un sujet conforme", () => {
-  expect(validateSubject(ok, qShape, prefixes)).toEqual([]);
+  expect(validateSubject(ok, qShape, ctx)).toEqual([]);
 });
 
 test("validateSubject signale une propriété obligatoire absente", () => {
   const { ["jlpt:stem"]: _drop, ...sans } = ok;
-  expect(validateSubject(sans, qShape, prefixes).join(" ")).toMatch(/stem.*minCount/);
+  expect(validateSubject(sans, qShape, ctx).join(" ")).toMatch(/stem.*minCount/);
 });
 
 test("validateSubject signale un datatype faux", () => {
-  expect(validateSubject({ ...ok, "jlpt:ord": "zéro" }, qShape, prefixes).join(" ")).toMatch(/ord/);
+  expect(validateSubject({ ...ok, "jlpt:ord": "zéro" }, qShape, ctx).join(" ")).toMatch(/ord/);
 });
 
 test("validateSubject refuse un entier négatif pour xsd:nonNegativeInteger", () => {
-  expect(validateSubject({ ...ok, "jlpt:ord": -1 }, qShape, prefixes).join(" ")).toMatch(/ord/);
+  expect(validateSubject({ ...ok, "jlpt:ord": -1 }, qShape, ctx).join(" ")).toMatch(/ord/);
 });
 
 test("validateSubject signale une valeur hors sh:in", () => {
-  expect(validateSubject({ ...ok, "jlpt:skill": "ecoute" }, qShape, prefixes).join(" ")).toMatch(/skill/);
+  expect(validateSubject({ ...ok, "jlpt:skill": "ecoute" }, qShape, ctx).join(" ")).toMatch(/skill/);
 });
 
 test("validateSubject signale un dépassement de maxCount", () => {
-  expect(validateSubject({ ...ok, "jlpt:stem": ["a", "b"] }, qShape, prefixes).join(" ")).toMatch(/maxCount/);
+  expect(validateSubject({ ...ok, "jlpt:stem": ["a", "b"] }, qShape, ctx).join(" ")).toMatch(/maxCount/);
 });
 
 test("validateSubject exige une IRI sûre pour sh:nodeKind IRI", () => {
-  expect(validateSubject({ ...ok, "jlpt:tests": ["jlpt:gram/a'b"] }, qShape, prefixes).join(" ")).toMatch(/IRI/);
+  expect(validateSubject({ ...ok, "jlpt:tests": ["jlpt:gram/a'b"] }, qShape, ctx).join(" ")).toMatch(/IRI/);
 });
 
 test("validateSubject reconnaît un prédicat écrit en forme dépliée", () => {
   // Les documents écrivent en forme compacte, mais rien ne l'impose : le sh:path est
   // déplié, donc la comparaison doit l'être des deux côtés.
   const { ["jlpt:stem"]: _s, ...reste } = ok;
-  expect(validateSubject({ ...reste, "https://okutheory.com/jlpt/vocab#stem": "x" }, qShape, prefixes)).toEqual([]);
+  expect(validateSubject({ ...reste, "https://okutheory.com/jlpt/vocab#stem": "x" }, qShape, ctx)).toEqual([]);
 });
 
 test("validateAll n'applique une shape qu'aux sujets de sa classe cible", () => {
   const wShape = parseShapes([{
     "@id": "jlpt:WordShape", "@type": "sh:NodeShape", "sh:targetClass": "jlpt:Word", "sh:property": [],
   }], prefixes)[0];
-  expect(validateAll([ok, { "@id": "jlpt:w/1", "@type": "jlpt:Word" }], [qShape, wShape], prefixes)).toEqual([]);
+  expect(validateAll([ok, { "@id": "jlpt:w/1", "@type": "jlpt:Word" }], [qShape, wShape], ctx)).toEqual([]);
 });
 
 test("validateAll signale un sujet dont le @type n'a aucune shape", () => {
-  expect(validateAll([{ "@id": "jlpt:z/1", "@type": "jlpt:Inconnu" }], [qShape], prefixes).join(" "))
+  expect(validateAll([{ "@id": "jlpt:z/1", "@type": "jlpt:Inconnu" }], [qShape], ctx).join(" "))
     .toMatch(/aucune shape/);
 });
 
 test("validateSubject ne perd pas un prédicat écrit deux fois sous ses deux formes", () => {
   // Sinon maxCount:1 serait satisfait à tort alors que deux valeurs sont présentes.
   const doublon = { ...ok, "https://okutheory.com/jlpt/vocab#stem": "y" };
-  expect(validateSubject(doublon, qShape, prefixes).join(" ")).toMatch(/stem.*maxCount/);
+  expect(validateSubject(doublon, qShape, ctx).join(" ")).toMatch(/stem.*maxCount/);
+});
+
+test("validateSubject résout les alias de termes du contexte", () => {
+  // Régression : sans résolution d'alias, un document écrit avec « tests » (ce que fait
+  // le nôtre) ne correspondait à AUCUN sh:path — la contrainte sh:nodeKind IRI ne se
+  // déclenchait jamais, sans la moindre erreur.
+  const avecAlias = { ...ok, tests: ["jlpt:gram/a;b"] };
+  expect(validateSubject(avecAlias, qShape, ctx).join(" ")).toMatch(/tests.*IRI/);
+});
+
+test("validate* refuse une simple table de préfixes plutôt que de valider dans le vide", () => {
+  expect(() => validateSubject(ok, qShape, prefixes)).toThrow(/alias/);
+  expect(() => validateAll([ok], [qShape], prefixes)).toThrow(/alias/);
 });
