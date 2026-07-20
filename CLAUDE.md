@@ -137,11 +137,29 @@ prouvées, aucune heuristique** :
   demandaient tous deux d'écrire 「あける」, l'un attendant 開ける, l'autre 明ける) ;
 - **distracteur portant la même `jlpt:reading` que la réponse** — 漢字/感じ, 以外/意外.
 
-⚠ `readingIndex` n'indexe que les mots **glosés** et **à lecture en kana**. `word.jsonld`
-contient des distracteurs fabriqués (`約速`、`役束`、`約則`, lecture de 約束 recopiée, aucune
-glose) et des placeholders (`—` en guise de lecture) : les indexer ferait condamner des
-questions saines. Ces entrées parasites sont un défaut connu du dictionnaire, **pas encore
-purgé** — cf. `docs/superpowers/plans/2026-07-20-enonces-ambigus.md`, tâche 9.
+⚠ `readingIndex` n'indexe que les mots **glosés** et **à lecture en kana**. Ce n'est pas de
+la prudence gratuite : `word.jsonld` a longtemps contenu des distracteurs de quiz importés
+comme mots (`約速`、`役束`、`約則`, lecture de 約束 recopiée, aucune glose), et les indexer
+faisait condamner des questions parfaitement saines. Ils ont été purgés (voir ci-dessous),
+mais **le filtre reste la protection** contre une nouvelle pollution du même genre.
+
+**Entrées parasites du dictionnaire — troisième chaîne outillée**, en deux temps délibérés,
+parce qu'une suppression ne se rejoue pas :
+
+    bun tools/graph/purge-words.mjs --proposer   # → docs/…/mots-fabriques.md (heuristique)
+    #   … l'auteur relit et consigne SES décisions dans data/mots-parasites.json …
+    bun tools/graph/purge-words.mjs              # → retire / glose word.jsonld
+
+⚠ **La proposition est une heuristique, jamais un ordre de suppression** : elle a désigné
+trois VRAIS mots (`始め`、`始めて`、`謝り`) dont le seul tort était de n'avoir pas de glose.
+C'est pour ça que la liste passe par un fichier relu. `applyPurge` **refuse** de retirer une
+entrée que quoi que ce soit référence, et n'écrase **jamais** une glose existante.
+
+⚠ Reste un défaut connu, **non traité** : 7 entrées portent un placeholder dans
+`jlpt:reading` (`—` pour すっかり・やはり・わざわざ・しっかり, `ことし（特別な読み）` pour 今年,
+`さ / ちがい` pour 差, `さいだい / さいしょう` pour 最大). Sans effet visible — `EST_KANA` les
+écarte de l'index, et `CLEAN_FURI_RE` (`src/lib/dict.ts`) les empêche de sortir en furigana
+— mais ce sont de fausses données dans un fichier livré.
 
 ⚠ **`jlpt:ord` = index global dans le corpus, groupé par compétence, et il doit rester
 stable** : c'est lui qu'indexent le bitset `seen`/`mastered`, `wrong[]` (erreurs) et

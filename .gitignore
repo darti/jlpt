@@ -11,3 +11,4 @@ src/styles/styles.gen.css
 # Rapports d'arbitrage des énoncés — régénérés par tools/graph/audit-stems.mjs
 data/enonces-arbitres.skel.json
 docs/superpowers/enonces-a-arbitrer.md
+docs/superpowers/mots-fabriques.md

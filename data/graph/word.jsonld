@@ -34986,64 +34986,6 @@
    "jlpt:reading": "わすれない"
   },
   {
-   "@id": "jlpt:word/約速",
-   "@type": "jlpt:Word",
-   "schema:name": "約速",
-   "jlpt:reading": "やくそく",
-   "usesKanji": [
-    "jlpt:kanji/約",
-    "jlpt:kanji/速"
-   ]
-  },
-  {
-   "@id": "jlpt:word/役束",
-   "@type": "jlpt:Word",
-   "schema:name": "役束",
-   "jlpt:reading": "やくそく",
-   "usesKanji": [
-    "jlpt:kanji/役",
-    "jlpt:kanji/束"
-   ]
-  },
-  {
-   "@id": "jlpt:word/約則",
-   "@type": "jlpt:Word",
-   "schema:name": "約則",
-   "jlpt:reading": "やくそく",
-   "usesKanji": [
-    "jlpt:kanji/約"
-   ]
-  },
-  {
-   "@id": "jlpt:word/経検",
-   "@type": "jlpt:Word",
-   "schema:name": "経検",
-   "jlpt:reading": "けいけん",
-   "usesKanji": [
-    "jlpt:kanji/経",
-    "jlpt:kanji/検"
-   ]
-  },
-  {
-   "@id": "jlpt:word/径験",
-   "@type": "jlpt:Word",
-   "schema:name": "径験",
-   "jlpt:reading": "けいけん",
-   "usesKanji": [
-    "jlpt:kanji/験"
-   ]
-  },
-  {
-   "@id": "jlpt:word/経険",
-   "@type": "jlpt:Word",
-   "schema:name": "経険",
-   "jlpt:reading": "けいけん",
-   "usesKanji": [
-    "jlpt:kanji/経",
-    "jlpt:kanji/険"
-   ]
-  },
-  {
    "@id": "jlpt:word/必配",
    "@type": "jlpt:Word",
    "schema:name": "必配",
@@ -35054,26 +34996,10 @@
    ]
   },
   {
-   "@id": "jlpt:word/心輩",
-   "@type": "jlpt:Word",
-   "schema:name": "心輩",
-   "jlpt:reading": "しんぱい"
-  },
-  {
    "@id": "jlpt:word/心酉",
    "@type": "jlpt:Word",
    "schema:name": "心酉",
    "jlpt:reading": "しんゆう"
-  },
-  {
-   "@id": "jlpt:word/案全",
-   "@type": "jlpt:Word",
-   "schema:name": "案全",
-   "jlpt:reading": "あんぜん",
-   "usesKanji": [
-    "jlpt:kanji/案",
-    "jlpt:kanji/全"
-   ]
   },
   {
    "@id": "jlpt:word/安金",
@@ -35086,16 +35012,6 @@
    ]
   },
   {
-   "@id": "jlpt:word/安然",
-   "@type": "jlpt:Word",
-   "schema:name": "安然",
-   "jlpt:reading": "あんぜん",
-   "usesKanji": [
-    "jlpt:kanji/安",
-    "jlpt:kanji/然"
-   ]
-  },
-  {
    "@id": "jlpt:word/使利",
    "@type": "jlpt:Word",
    "schema:name": "使利",
@@ -35103,66 +35019,6 @@
    "usesKanji": [
     "jlpt:kanji/使",
     "jlpt:kanji/利"
-   ]
-  },
-  {
-   "@id": "jlpt:word/便理",
-   "@type": "jlpt:Word",
-   "schema:name": "便理",
-   "jlpt:reading": "べんり"
-  },
-  {
-   "@id": "jlpt:word/弁利",
-   "@type": "jlpt:Word",
-   "schema:name": "弁利",
-   "jlpt:reading": "べんり",
-   "usesKanji": [
-    "jlpt:kanji/利"
-   ]
-  },
-  {
-   "@id": "jlpt:word/注異",
-   "@type": "jlpt:Word",
-   "schema:name": "注異",
-   "jlpt:reading": "ちゅうい",
-   "usesKanji": [
-    "jlpt:kanji/注"
-   ]
-  },
-  {
-   "@id": "jlpt:word/駐意",
-   "@type": "jlpt:Word",
-   "schema:name": "駐意",
-   "jlpt:reading": "ちゅうい",
-   "usesKanji": [
-    "jlpt:kanji/意"
-   ]
-  },
-  {
-   "@id": "jlpt:word/註意",
-   "@type": "jlpt:Word",
-   "schema:name": "註意",
-   "jlpt:reading": "ちゅうい",
-   "usesKanji": [
-    "jlpt:kanji/意"
-   ]
-  },
-  {
-   "@id": "jlpt:word/性活",
-   "@type": "jlpt:Word",
-   "schema:name": "性活",
-   "jlpt:reading": "せいかつ",
-   "usesKanji": [
-    "jlpt:kanji/性"
-   ]
-  },
-  {
-   "@id": "jlpt:word/生括",
-   "@type": "jlpt:Word",
-   "schema:name": "生括",
-   "jlpt:reading": "せいかつ",
-   "usesKanji": [
-    "jlpt:kanji/生"
    ]
   },
   {
@@ -35506,12 +35362,6 @@
    "jlpt:reading": "すういく"
   },
   {
-   "@id": "jlpt:word/教郁",
-   "@type": "jlpt:Word",
-   "schema:name": "教郁",
-   "jlpt:reading": "きょういく"
-  },
-  {
    "@id": "jlpt:word/研空",
    "@type": "jlpt:Word",
    "schema:name": "研空",
@@ -35528,15 +35378,6 @@
    "jlpt:reading": "せききゅう",
    "usesKanji": [
     "jlpt:kanji/究"
-   ]
-  },
-  {
-   "@id": "jlpt:word/研宄",
-   "@type": "jlpt:Word",
-   "schema:name": "研宄",
-   "jlpt:reading": "けんきゅう",
-   "usesKanji": [
-    "jlpt:kanji/研"
    ]
   },
   {
@@ -35661,41 +35502,12 @@
    "jlpt:reading": "なれた"
   },
   {
-   "@id": "jlpt:word/運働",
-   "@type": "jlpt:Word",
-   "schema:name": "運働",
-   "jlpt:reading": "うんどう",
-   "usesKanji": [
-    "jlpt:kanji/運",
-    "jlpt:kanji/働"
-   ]
-  },
-  {
    "@id": "jlpt:word/連動",
    "@type": "jlpt:Word",
    "schema:name": "連動",
    "jlpt:reading": "れんどう",
    "usesKanji": [
     "jlpt:kanji/動"
-   ]
-  },
-  {
-   "@id": "jlpt:word/運道",
-   "@type": "jlpt:Word",
-   "schema:name": "運道",
-   "jlpt:reading": "うんどう",
-   "usesKanji": [
-    "jlpt:kanji/運"
-   ]
-  },
-  {
-   "@id": "jlpt:word/世会",
-   "@type": "jlpt:Word",
-   "schema:name": "世会",
-   "jlpt:reading": "せかい",
-   "usesKanji": [
-    "jlpt:kanji/世",
-    "jlpt:kanji/会"
    ]
   },
   {
@@ -35706,34 +35518,6 @@
    "usesKanji": [
     "jlpt:kanji/生",
     "jlpt:kanji/界"
-   ]
-  },
-  {
-   "@id": "jlpt:word/世解",
-   "@type": "jlpt:Word",
-   "schema:name": "世解",
-   "jlpt:reading": "せかい",
-   "usesKanji": [
-    "jlpt:kanji/世",
-    "jlpt:kanji/解"
-   ]
-  },
-  {
-   "@id": "jlpt:word/方放",
-   "@type": "jlpt:Word",
-   "schema:name": "方放",
-   "jlpt:reading": "ほうほう",
-   "usesKanji": [
-    "jlpt:kanji/放"
-   ]
-  },
-  {
-   "@id": "jlpt:word/放法",
-   "@type": "jlpt:Word",
-   "schema:name": "放法",
-   "jlpt:reading": "ほうほう",
-   "usesKanji": [
-    "jlpt:kanji/放"
    ]
   },
   {
@@ -35755,30 +35539,12 @@
    ]
   },
   {
-   "@id": "jlpt:word/里由",
-   "@type": "jlpt:Word",
-   "schema:name": "里由",
-   "jlpt:reading": "りゆう",
-   "usesKanji": [
-    "jlpt:kanji/由"
-   ]
-  },
-  {
    "@id": "jlpt:word/理田",
    "@type": "jlpt:Word",
    "schema:name": "理田",
    "jlpt:reading": "りでん",
    "usesKanji": [
     "jlpt:kanji/田"
-   ]
-  },
-  {
-   "@id": "jlpt:word/木的",
-   "@type": "jlpt:Word",
-   "schema:name": "木的",
-   "jlpt:reading": "もくてき",
-   "usesKanji": [
-    "jlpt:kanji/木"
    ]
   },
   {
@@ -35791,26 +35557,6 @@
    ]
   },
   {
-   "@id": "jlpt:word/目敵",
-   "@type": "jlpt:Word",
-   "schema:name": "目敵",
-   "jlpt:reading": "もくてき",
-   "usesKanji": [
-    "jlpt:kanji/目",
-    "jlpt:kanji/敵"
-   ]
-  },
-  {
-   "@id": "jlpt:word/結課",
-   "@type": "jlpt:Word",
-   "schema:name": "結課",
-   "jlpt:reading": "けっか",
-   "usesKanji": [
-    "jlpt:kanji/結",
-    "jlpt:kanji/課"
-   ]
-  },
-  {
    "@id": "jlpt:word/詰果",
    "@type": "jlpt:Word",
    "schema:name": "詰果",
@@ -35818,15 +35564,6 @@
    "usesKanji": [
     "jlpt:kanji/詰",
     "jlpt:kanji/果"
-   ]
-  },
-  {
-   "@id": "jlpt:word/結菓",
-   "@type": "jlpt:Word",
-   "schema:name": "結菓",
-   "jlpt:reading": "けっか",
-   "usesKanji": [
-    "jlpt:kanji/結"
    ]
   },
   {
@@ -36503,7 +36240,8 @@
    "@id": "jlpt:word/謝り",
    "@type": "jlpt:Word",
    "schema:name": "謝り",
-   "jlpt:reading": "あやまり"
+   "jlpt:reading": "あやまり",
+   "schema:description": "excuse, fait de s'excuser"
   },
   {
    "@id": "jlpt:word/戻り",
@@ -36597,7 +36335,8 @@
    "jlpt:reading": "はじめ",
    "usesKanji": [
     "jlpt:kanji/始"
-   ]
+   ],
+   "schema:description": "début, commencement"
   },
   {
    "@id": "jlpt:word/続け",
@@ -36618,7 +36357,8 @@
    "jlpt:reading": "はじめて",
    "usesKanji": [
     "jlpt:kanji/始"
-   ]
+   ],
+   "schema:description": "en commençant (forme en -te de 始める)"
   },
   {
    "@id": "jlpt:word/終わって",
