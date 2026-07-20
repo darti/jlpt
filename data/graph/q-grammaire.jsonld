@@ -100,6 +100,9 @@
     "« avoir l'intention de » : projet, mais ne dit pas l'imminence immédiate",
     "« avoir prévu / planifié » : projet fixé, pas l'instant juste avant l'action",
     "« tel quel / en l'état » : décrit un état inchangé, hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/ところ"
    ]
   },
   {
@@ -530,6 +533,9 @@
     "〜とおり « comme / conformément à » : conformité, pas la découverte d'un résultat",
     "〜うちに « tant que » : valeur temporelle, hors sens",
     "〜ばかり « ne faire que / venir de » : restriction, hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/ところ"
    ]
   },
   {
@@ -579,6 +585,9 @@
     "が : particule sujet, n'introduit pas la citation",
     "に : but/destinataire, ne forme pas la citation",
     "で : moyen/lieu, ne forme pas la citation"
+   ],
+   "tests": [
+    "jlpt:gram/と"
    ]
   },
   {
@@ -1543,6 +1552,9 @@
     "« よ » : particule d'insistance, pas d'interdiction",
     "« ね » : recherche d'accord, pas d'interdiction",
     "« か » : marque l'interrogation, pas l'interdiction"
+   ],
+   "tests": [
+    "jlpt:gram/な"
    ]
   },
   {
@@ -1641,6 +1653,9 @@
     "« en disant » : 〜といって, action de dire, hors sujet",
     "« quant à » : とは définit, ne relie pas à un nom suivant",
     "« 〜との » : ne convient pas devant 食べ物 ici"
+   ],
+   "tests": [
+    "jlpt:gram/という"
    ]
   },
   {
@@ -1976,6 +1991,9 @@
     "« moment de » : 〜ところ, pas un souhait",
     "« raison / il est normal » : 〜わけ, hors sujet",
     "« 〜もの » : ne forme pas un souhait ici"
+   ],
+   "tests": [
+    "jlpt:gram/たらいい"
    ]
   },
   {
@@ -2363,6 +2381,9 @@
     "« alors que / bien que » : marque un reproche, pas la circonstance temporelle",
     "« pendant que / avant que » : durée propice à agir, pas le moment ponctuel formel",
     "« à chaque fois que » : répétition, pas l'occasion unique de l'entrée"
+   ],
+   "tests": [
+    "jlpt:gram/際に"
    ]
   },
   {
@@ -2438,6 +2459,9 @@
     "« avant de / avant que » : antériorité, pas la simultanéité de l'événement",
     "« après que » : postériorité, contraire au moment en cours du repas",
     "« afin de / de sorte que » : exprime un but, pas l'instant où survient l'action"
+   ],
+   "tests": [
+    "jlpt:gram/ところに"
    ]
   },
   {
@@ -4301,6 +4325,9 @@
     "〜だけ: « seulement », ne rend pas « venir de » ici",
     "〜まま: « tel quel, état inchangé », hors sens ici",
     "〜ながら: « tout en…ant », simultanéité, hors sens ici"
+   ],
+   "tests": [
+    "jlpt:gram/ばかり"
    ]
   },
   {
@@ -5668,6 +5695,9 @@
     "を = COD",
     "が = sujet",
     "へ = direction"
+   ],
+   "tests": [
+    "jlpt:gram/も"
    ]
   },
   {
@@ -9372,6 +9402,9 @@
     "まで : « jusqu'à », hors sujet",
     "へ : direction, hors sujet",
     "の : « de », hors sujet"
+   ],
+   "tests": [
+    "jlpt:gram/より"
    ]
   },
   {
@@ -9418,6 +9451,9 @@
     "のに : « alors que », hors sujet",
     "より : comparaison (correct)",
     "でも : « mais/même », hors sujet"
+   ],
+   "tests": [
+    "jlpt:gram/より"
    ]
   },
   {
@@ -9487,6 +9523,9 @@
     "のほうが : met en avant (correct)",
     "のほうを : particule fautive",
     "からが : incorrect ici"
+   ],
+   "tests": [
+    "jlpt:gram/のほうが"
    ]
   },
   {
@@ -9533,6 +9572,9 @@
     "から : « depuis », hors sujet",
     "でも : « mais », hors sujet",
     "のほうが : réponse à どちらが (correct)"
+   ],
+   "tests": [
+    "jlpt:gram/のほうが"
    ]
   },
   {
@@ -9556,6 +9598,9 @@
     "のほうを : particule fautive",
     "のほうも : « aussi », change le sens",
     "のほうで : incorrect ici"
+   ],
+   "tests": [
+    "jlpt:gram/のほうが"
    ]
   },
   {
@@ -9717,6 +9762,9 @@
     "に : lieu/temps, hors sujet",
     "へ : direction, hors sujet",
     "と : relie les éléments (correct)"
+   ],
+   "tests": [
+    "jlpt:gram/と"
    ]
   },
   {
@@ -10177,6 +10225,9 @@
     "こと : « fait », hors sujet",
     "もの : « chose », hors sujet",
     "とき : « quand » (correct)"
+   ],
+   "tests": [
+    "jlpt:gram/とき"
    ]
   },
   {
@@ -10200,6 +10251,9 @@
     "ときに : に facultatif, mais « 寒いとき » suffit et attendu",
     "のとき : の après un adjectif en い est fautif",
     "なとき : な après un adjectif en い est fautif"
+   ],
+   "tests": [
+    "jlpt:gram/とき"
    ]
   },
   {
@@ -10223,6 +10277,9 @@
     "とき : 学生の + とき (correct)",
     "ときへ : へ inutile ici",
     "ときで : で inutile ici"
+   ],
+   "tests": [
+    "jlpt:gram/とき"
    ]
   },
   {
@@ -10246,6 +10303,9 @@
     "ので : cause, hors sujet",
     "とき : « au moment de » (correct)",
     "まで : « jusqu'à », hors sujet"
+   ],
+   "tests": [
+    "jlpt:gram/とき"
    ]
   },
   {
@@ -10407,6 +10467,9 @@
     "てから : forme て + から (correct)",
     "たから : forme passée, incorrecte ici",
     "るから : dictionnaire + から = cause, sens différent"
+   ],
+   "tests": [
+    "jlpt:gram/てから"
    ]
   },
   {
@@ -10499,6 +10562,9 @@
     "てから : forme て + から (correct)",
     "たから : forme passée, incorrecte ici",
     "るから : dictionnaire + から = cause, sens différent"
+   ],
+   "tests": [
+    "jlpt:gram/てから"
    ]
   },
   {
@@ -10545,6 +10611,9 @@
     "へ : direction, hors sujet",
     "に : lieu/temps, incorrect ici",
     "の : nom + の + あとで (correct)"
+   ],
+   "tests": [
+    "jlpt:gram/の"
    ]
   },
   {
@@ -10637,6 +10706,9 @@
     "もっと : « davantage », hors sujet",
     "よく : « souvent/bien », hors sujet",
     "もう : « déjà » (correct)"
+   ],
+   "tests": [
+    "jlpt:gram/もう"
    ]
   },
   {
@@ -10660,6 +10732,9 @@
     "まだ : « encore », sens inverse",
     "もっと : « davantage », hors sujet",
     "とても : « très », hors sujet"
+   ],
+   "tests": [
+    "jlpt:gram/もう"
    ]
   },
   {
@@ -10683,6 +10758,9 @@
     "もう : « déjà » (correct)",
     "まだ : « pas encore », contredit はい",
     "もっと : « davantage », hors sujet"
+   ],
+   "tests": [
+    "jlpt:gram/もう"
    ]
   },
   {
@@ -10729,6 +10807,9 @@
     "もっと : « davantage », hors sujet",
     "あまり : « pas trop », hors sujet",
     "もう : « maintenant/déjà » (correct)"
+   ],
+   "tests": [
+    "jlpt:gram/もう"
    ]
   },
   {
@@ -10752,6 +10833,9 @@
     "もう : « déjà », sens différent",
     "もっと : « davantage », hors sujet",
     "あまり : « pas trop », hors sujet"
+   ],
+   "tests": [
+    "jlpt:gram/まだ"
    ]
   },
   {
@@ -10775,6 +10859,9 @@
     "まだ : « pas encore » (correct)",
     "もう : « déjà », contredit いいえ",
     "もっと : « davantage », hors sujet"
+   ],
+   "tests": [
+    "jlpt:gram/まだ"
    ]
   },
   {
@@ -10798,6 +10885,9 @@
     "とても : « très », hors sujet",
     "まだ : « encore » (correct)",
     "もう : « déjà/plus », sens différent"
+   ],
+   "tests": [
+    "jlpt:gram/まだ"
    ]
   },
   {
@@ -10844,6 +10934,9 @@
     "もう : « déjà/plus », sens différent",
     "もっと : « davantage », hors sujet",
     "あまり : « pas trop », hors sujet"
+   ],
+   "tests": [
+    "jlpt:gram/まだ"
    ]
   },
   {
@@ -10867,6 +10960,9 @@
     "でしょう : supposition (correct)",
     "でした : passé affirmé, pas une supposition",
     "ました : suffixe verbal, incompatible avec un nom"
+   ],
+   "tests": [
+    "jlpt:gram/でしょう"
    ]
   },
   {
@@ -10890,6 +10986,9 @@
     "ません : négatif verbal, incompatible",
     "でしょう : demande de confirmation (correct)",
     "です : affirmation neutre, sans nuance de confirmation"
+   ],
+   "tests": [
+    "jlpt:gram/でしょう"
    ]
   },
   {
@@ -10959,6 +11058,9 @@
     "でしょう : probabilité (correct)",
     "でした : passé, incohérent avec 明日",
     "ています : action en cours, inadapté"
+   ],
+   "tests": [
+    "jlpt:gram/でしょう"
    ]
   },
   {
@@ -11327,6 +11429,9 @@
     "しか « ne… que (+ nég.) »",
     "にも « aussi à »",
     "へ « direction »"
+   ],
+   "tests": [
+    "jlpt:gram/だけ"
    ]
   },
   {
@@ -11350,6 +11455,9 @@
     "から « depuis »",
     "だけ « seulement »",
     "でも « même »"
+   ],
+   "tests": [
+    "jlpt:gram/だけ"
    ]
   },
   {
@@ -11373,6 +11481,9 @@
     "だけ « seulement »",
     "でも « même »",
     "まで « jusqu'à »"
+   ],
+   "tests": [
+    "jlpt:gram/だけ"
    ]
   },
   {
@@ -11396,6 +11507,9 @@
     "まで « jusqu'à »",
     "が « sujet »",
     "だけ « seulement »"
+   ],
+   "tests": [
+    "jlpt:gram/だけ"
    ]
   },
   {
@@ -11419,6 +11533,9 @@
     "しか « ne… que (+ nég.) »",
     "にも « aussi à »",
     "との « avec (rel.) »"
+   ],
+   "tests": [
+    "jlpt:gram/だけ"
    ]
   },
   {
@@ -11557,6 +11674,9 @@
     "だけ « seulement »",
     "しか « ne… que »",
     "まで « jusqu'à »"
+   ],
+   "tests": [
+    "jlpt:gram/ずつ"
    ]
   },
   {
@@ -11580,6 +11700,9 @@
     "ずつ « à la fois »",
     "しか « ne… que »",
     "でも « même »"
+   ],
+   "tests": [
+    "jlpt:gram/ずつ"
    ]
   },
   {
@@ -11603,6 +11726,9 @@
     "しか « ne… que »",
     "ずつ « chacun »",
     "から « depuis »"
+   ],
+   "tests": [
+    "jlpt:gram/ずつ"
    ]
   },
   {
@@ -11626,6 +11752,9 @@
     "まで « jusqu'à »",
     "しか « ne… que »",
     "との « avec (rel.) »"
+   ],
+   "tests": [
+    "jlpt:gram/ずつ"
    ]
   },
   {
@@ -11649,6 +11778,9 @@
     "ずつ « chacun »",
     "しか « ne… que »",
     "でも « même »"
+   ],
+   "tests": [
+    "jlpt:gram/ずつ"
    ]
   },
   {
@@ -11672,6 +11804,9 @@
     "ぐらい « environ (quantité) »",
     "しか « ne… que »",
     "だけ « seulement »"
+   ],
+   "tests": [
+    "jlpt:gram/ごろ"
    ]
   },
   {
@@ -11695,6 +11830,9 @@
     "ごろ « vers (moment) »",
     "から « depuis »",
     "でも « même »"
+   ],
+   "tests": [
+    "jlpt:gram/ごろ"
    ]
   },
   {
@@ -11718,6 +11856,9 @@
     "しか « ne… que »",
     "ごろ « vers (période) »",
     "だけ « seulement »"
+   ],
+   "tests": [
+    "jlpt:gram/ごろ"
    ]
   },
   {
@@ -11741,6 +11882,9 @@
     "まで « jusqu'à »",
     "ずつ « chacun »",
     "との « avec (rel.) »"
+   ],
+   "tests": [
+    "jlpt:gram/ごろ"
    ]
   },
   {
@@ -11764,6 +11908,9 @@
     "ごろ « vers (moment) »",
     "しか « ne… que »",
     "へ « direction »"
+   ],
+   "tests": [
+    "jlpt:gram/ごろ"
    ]
   },
   {
@@ -11902,6 +12049,9 @@
     "といい « et c'est bien »",
     "といって « en disant »",
     "というと « quand on dit »"
+   ],
+   "tests": [
+    "jlpt:gram/という"
    ]
   },
   {
@@ -11925,6 +12075,9 @@
     "という « appelé »",
     "といた « avait dit »",
     "というの « le fait de dire »"
+   ],
+   "tests": [
+    "jlpt:gram/という"
    ]
   },
   {
@@ -11948,6 +12101,9 @@
     "という « appelé »",
     "といって « en disant »",
     "というのは « ce qui s'appelle »"
+   ],
+   "tests": [
+    "jlpt:gram/という"
    ]
   },
   {
@@ -11971,6 +12127,9 @@
     "といた « avait dit »",
     "という « appelé »",
     "というと « quand on dit »"
+   ],
+   "tests": [
+    "jlpt:gram/という"
    ]
   },
   {
@@ -11994,6 +12153,9 @@
     "といって « en disant »",
     "というの « le fait de »",
     "との « avec (rel.) »"
+   ],
+   "tests": [
+    "jlpt:gram/という"
    ]
   },
   {
@@ -12155,6 +12317,9 @@
     "ないで « sans »",
     "ないと « si… ne… pas »",
     "なければ « si… ne… pas »"
+   ],
+   "tests": [
+    "jlpt:gram/ないで"
    ]
   },
   {
@@ -12178,6 +12343,9 @@
     "なくて « ne pas … et »",
     "ないと « si… ne… pas »",
     "なくても « même sans »"
+   ],
+   "tests": [
+    "jlpt:gram/ないで"
    ]
   },
   {
@@ -12201,6 +12369,9 @@
     "ないと « si… ne… pas »",
     "ないで « sans »",
     "なければ « si… ne… pas »"
+   ],
+   "tests": [
+    "jlpt:gram/ないで"
    ]
   },
   {
@@ -12293,6 +12464,9 @@
     "よく « souvent/bien »",
     "あまり « pas très (+ nég.) »",
     "もっと « davantage »"
+   ],
+   "tests": [
+    "jlpt:gram/あまり"
    ]
   },
   {
@@ -12339,6 +12513,9 @@
     "あまり « pas très (+ nég.) »",
     "よく « souvent »",
     "もう « déjà »"
+   ],
+   "tests": [
+    "jlpt:gram/あまり"
    ]
   },
   {
@@ -12592,6 +12769,9 @@
     "しか « ne… que »",
     "だけ « seulement »",
     "ごろ « vers »"
+   ],
+   "tests": [
+    "jlpt:gram/も"
    ]
   },
   {
@@ -12615,6 +12795,9 @@
     "も « pas moins de »",
     "だけ « seulement »",
     "まで « jusqu'à »"
+   ],
+   "tests": [
+    "jlpt:gram/も"
    ]
   },
   {
@@ -12638,6 +12821,9 @@
     "しか « ne… que »",
     "も « autant que »",
     "ごろ « vers »"
+   ],
+   "tests": [
+    "jlpt:gram/も"
    ]
   },
   {
@@ -12661,6 +12847,9 @@
     "だけ « seulement »",
     "ぐらい « environ »",
     "も « pas moins de »"
+   ],
+   "tests": [
+    "jlpt:gram/も"
    ]
   },
   {
@@ -12684,6 +12873,9 @@
     "しか « ne… que »",
     "だけ « seulement »",
     "ごろ « vers »"
+   ],
+   "tests": [
+    "jlpt:gram/も"
    ]
   },
   {
@@ -12937,6 +13129,9 @@
     "ませんでした « n'ai pas fait »",
     "ています « en train de »",
     "たいです « vouloir »"
+   ],
+   "tests": [
+    "jlpt:gram/ましょうか"
    ]
   },
   {
@@ -12960,6 +13155,9 @@
     "ましょうか « voulez-vous que je »",
     "ませんでした « n'ai pas fait »",
     "ています « en train de »"
+   ],
+   "tests": [
+    "jlpt:gram/ましょうか"
    ]
   },
   {
@@ -12983,6 +13181,9 @@
     "ました « ai fait »",
     "ましょうか « voulez-vous que je »",
     "たいです « vouloir »"
+   ],
+   "tests": [
+    "jlpt:gram/ましょうか"
    ]
   },
   {
@@ -13006,6 +13207,9 @@
     "ませんか « ne… pas ? (invitation) »",
     "ました « ai fait »",
     "ています « en train de »"
+   ],
+   "tests": [
+    "jlpt:gram/ましょうか"
    ]
   },
   {
@@ -13029,6 +13233,9 @@
     "ています « en train de »",
     "たいです « vouloir »",
     "ましょうか « voulez-vous que je »"
+   ],
+   "tests": [
+    "jlpt:gram/ましょうか"
    ]
   },
   {
@@ -13710,6 +13917,9 @@
     "Correct : という = introduit la proposition (« le fait que »)",
     "として = « en tant que », contresens",
     "といえば = « à propos de », autre nuance"
+   ],
+   "tests": [
+    "jlpt:gram/という"
    ]
   },
   {
@@ -13733,6 +13943,9 @@
     "となる = « devenir », contresens",
     "といえば = « à propos de », autre nuance",
     "Correct : 何という魚 = « quel poisson (comment appelé) »"
+   ],
+   "tests": [
+    "jlpt:gram/という"
    ]
   },
   {
@@ -13756,6 +13969,9 @@
     "Correct : という = « (montagne) appelée le mont Fuji »",
     "といって = forme en て, ne convient pas",
     "との incorrect ici"
+   ],
+   "tests": [
+    "jlpt:gram/という"
    ]
   },
   {
@@ -13779,6 +13995,9 @@
     "Correct : という電話 = « un appel (disant) que »",
     "として = « en tant que », contresens",
     "といえば = « à propos de », autre nuance"
+   ],
+   "tests": [
+    "jlpt:gram/という"
    ]
   },
   {
@@ -13802,6 +14021,9 @@
     "つもり = intention, contresens",
     "はず = supposition, contresens",
     "まま = état inchangé, contresens"
+   ],
+   "tests": [
+    "jlpt:gram/ところ"
    ]
   },
   {
@@ -13825,6 +14047,9 @@
     "Correct : たところ = « juste au moment où »",
     "つもり = intention, contresens",
     "はず = supposition, contresens"
+   ],
+   "tests": [
+    "jlpt:gram/ところ"
    ]
   },
   {
@@ -13848,6 +14073,9 @@
     "はず = supposition, contresens",
     "Correct : 辞書形＋ところ = « sur le point de »",
     "まま = état inchangé, contresens"
+   ],
+   "tests": [
+    "jlpt:gram/ところ"
    ]
   },
   {
@@ -13871,6 +14099,9 @@
     "まま = état inchangé, contresens",
     "はず = supposition, contresens",
     "つもり = intention, contresens"
+   ],
+   "tests": [
+    "jlpt:gram/ところ"
    ]
   },
   {
@@ -13894,6 +14125,9 @@
     "まま = état inchangé, contresens",
     "つもり = intention, contresens",
     "Correct : ているところ = action en cours"
+   ],
+   "tests": [
+    "jlpt:gram/ところ"
    ]
   },
   {
@@ -13917,6 +14151,9 @@
     "ながら = deux actions simultanées, pas un état laissé tel quel",
     "ように = but, contresens",
     "ところ = phase d'une action, contresens"
+   ],
+   "tests": [
+    "jlpt:gram/まま"
    ]
   },
   {
@@ -13940,6 +14177,9 @@
     "Correct : たまま = état inchangé (« en laissant allumé »)",
     "ように = but, contresens",
     "うちに = « pendant que », autre nuance"
+   ],
+   "tests": [
+    "jlpt:gram/まま"
    ]
   },
   {
@@ -13963,6 +14203,9 @@
     "ながら = actions simultanées, contresens",
     "Correct : 名詞の＋まま = « tel quel »",
     "うちに = « pendant que », contresens"
+   ],
+   "tests": [
+    "jlpt:gram/まま"
    ]
   },
   {
@@ -13986,6 +14229,9 @@
     "ながら = deux actions en même temps, nuance différente",
     "ように = but, contresens",
     "ところ = phase d'une action, contresens"
+   ],
+   "tests": [
+    "jlpt:gram/まま"
    ]
   },
   {
@@ -14009,6 +14255,9 @@
     "ように = « de sorte que », ici on veut « exactement tel quel » → まま",
     "うちに = « pendant que », contresens",
     "Correct : 〜たまま(に) = « exactement comme (dit) »"
+   ],
+   "tests": [
+    "jlpt:gram/まま"
    ]
   },
   {
@@ -14182,6 +14431,9 @@
     "Correct : 若いうちに = « tant qu'on est jeune »",
     "ように = but, contresens",
     "ところ = phase d'une action, contresens"
+   ],
+   "tests": [
+    "jlpt:gram/うちに"
    ]
   },
   {
@@ -14231,6 +14483,9 @@
     "あいだ = durée continue, sans la nuance « avant que ça change »",
     "ように = but, contresens",
     "ところ = phase d'une action, contresens"
+   ],
+   "tests": [
+    "jlpt:gram/うちに"
    ]
   },
   {
@@ -14254,6 +14509,9 @@
     "ながら = actions volontaires simultanées, contresens",
     "ように = but, contresens",
     "Correct : ているうちに = un changement se produit au fil du temps"
+   ],
+   "tests": [
+    "jlpt:gram/うちに"
    ]
   },
   {
@@ -14277,6 +14535,9 @@
     "ために = but avec verbe volitif, pas avec 忘れない",
     "ような = déterminant, contresens",
     "ようで incorrect ici"
+   ],
+   "tests": [
+    "jlpt:gram/ように"
    ]
   },
   {
@@ -14404,6 +14665,9 @@
     "ために = but, ne rapporte pas une consigne",
     "ような = déterminant, contresens",
     "ようと = tentative, contresens"
+   ],
+   "tests": [
+    "jlpt:gram/ように"
    ]
   },
   {
@@ -14427,6 +14691,9 @@
     "Correct : つけるように言われた = « on m'a dit de veiller à »",
     "ような = déterminant, contresens",
     "ようで incorrect ici"
+   ],
+   "tests": [
+    "jlpt:gram/ように"
    ]
   },
   {
@@ -14450,6 +14717,9 @@
     "ために = but, ne rapporte pas la consigne",
     "Correct : 吸わないように注意された = « averti de ne pas fumer »",
     "ようと = tentative, contresens"
+   ],
+   "tests": [
+    "jlpt:gram/ように"
    ]
   },
   {
@@ -14473,6 +14743,9 @@
     "ために = but, ne rapporte pas la consigne",
     "ような = déterminant, contresens",
     "ようで incorrect ici"
+   ],
+   "tests": [
+    "jlpt:gram/ように"
    ]
   },
   {
@@ -14496,6 +14769,9 @@
     "ような = déterminant, contresens",
     "ようと = tentative, contresens",
     "Correct : 守るように注意された = « rappelé de respecter »"
+   ],
+   "tests": [
+    "jlpt:gram/ように"
    ]
   },
   {
@@ -14519,6 +14795,9 @@
     "ように = but avec verbe non volitif, pas avec un nom ainsi",
     "ような = déterminant, contresens",
     "からで = cause, forme incorrecte ici"
+   ],
+   "tests": [
+    "jlpt:gram/ために"
    ]
   },
   {
@@ -14542,6 +14821,9 @@
     "Correct : ために = cause (« en raison du séisme »)",
     "ような = déterminant, contresens",
     "ながら = simultanéité, contresens"
+   ],
+   "tests": [
+    "jlpt:gram/ために"
    ]
   },
   {
@@ -14565,6 +14847,9 @@
     "ように = 合格する est volitif ici → ために pour un but concret",
     "Correct : 合格するために = but (« pour réussir »)",
     "ようと = tentative, contresens"
+   ],
+   "tests": [
+    "jlpt:gram/ために"
    ]
   },
   {
@@ -14588,6 +14873,9 @@
     "ように = but avec verbe non volitif, pas avec un nom ainsi",
     "ような = déterminant, contresens",
     "ためで = forme incorrecte ici"
+   ],
+   "tests": [
+    "jlpt:gram/ために"
    ]
   },
   {
@@ -14611,6 +14899,9 @@
     "ような = déterminant, contresens",
     "ようと = tentative, contresens",
     "Correct : ために = cause (« en raison de l'accident »)"
+   ],
+   "tests": [
+    "jlpt:gram/ために"
    ]
   },
   {
@@ -14634,6 +14925,9 @@
     "のように = modifie un verbe, pas le nom 肌",
     "のようで incorrect ici",
     "のようと n'existe pas"
+   ],
+   "tests": [
+    "jlpt:gram/のような"
    ]
   },
   {
@@ -14680,6 +14974,9 @@
     "のようで incorrect ici",
     "Correct : のような＋名詞 = « (une personne) telle que ma mère »",
     "のようと n'existe pas"
+   ],
+   "tests": [
+    "jlpt:gram/のような"
    ]
   },
   {
@@ -14726,6 +15023,9 @@
     "のようで incorrect ici",
     "のようと n'existe pas",
     "Correct : のような＋名詞 = « des journées telles qu'un rêve »"
+   ],
+   "tests": [
+    "jlpt:gram/のような"
    ]
   },
   {
@@ -15482,6 +15782,9 @@
     "Correct : 始めさせてください = permettez-moi de commencer (causatif)",
     "始めないでください = « ne commencez pas », contresens",
     "始めましょうか = « commençons ? », pas une demande de permission"
+   ],
+   "tests": [
+    "jlpt:gram/させてください"
    ]
   },
   {
@@ -15505,6 +15808,9 @@
     "ね = particule de confirmation, pas d'interdiction",
     "よ = particule d'insistance, ne marque pas l'interdit",
     "わ = particule féminine expressive, sens différent"
+   ],
+   "tests": [
+    "jlpt:gram/な"
    ]
   },
   {
@@ -15554,6 +15860,9 @@
     "入るのに = « alors que l'on entre », sens différent",
     "Correct : 入るな = « n'entre pas » (interdiction)",
     "入りながら = « tout en entrant », sens différent"
+   ],
+   "tests": [
+    "jlpt:gram/な"
    ]
   },
   {
@@ -15603,6 +15912,9 @@
     "Correct : 心配するな = « ne t'inquiète pas » (interdiction)",
     "心配するのに = « bien que l'on s'inquiète », sens différent",
     "心配すれば = « si l'on s'inquiète », condition, hors sujet"
+   ],
+   "tests": [
+    "jlpt:gram/な"
    ]
   },
   {
@@ -16432,6 +16744,9 @@
     "Correct : あったんですか = « est-ce qu'il s'est passé quelque chose ? » (explication demandée)",
     "ありましょうか = volitif, incohérent",
     "ありたがるか mêle un désir d'un tiers, agrammatical ici"
+   ],
+   "tests": [
+    "jlpt:gram/んです"
    ]
   },
   {
@@ -16481,6 +16796,9 @@
     "飲んだますかね est agrammatical",
     "飲んだそうだね = « il paraît que vous avez bu », ouï-dire, hors sujet",
     "Correct : 飲んだんですね = « c'est donc que vous avez bu » (déduction explicative)"
+   ],
+   "tests": [
+    "jlpt:gram/んです"
    ]
   },
   {
@@ -16582,6 +16900,9 @@
     "のかどうか s'emploie surtout après un verbe/adjectif, pas ce nom nu",
     "Correct : 本当かどうか = « si c'est vrai ou non » (nom + かどうか sans だ)",
     "だかどうか est incorrect : on n'insère pas だ devant か ici"
+   ],
+   "tests": [
+    "jlpt:gram/かどうか"
    ]
   },
   {
@@ -16963,6 +17284,9 @@
     "ことができる = capacité",
     "ことにする = décision personnelle",
     "ことになる = décision extérieure"
+   ],
+   "tests": [
+    "jlpt:gram/ことがある"
    ]
   },
   {
@@ -17243,6 +17567,9 @@
     "Correct : V辞書形 + までに = « d'ici à ce que »",
     "ながら = simultanéité",
     "あいだ = pendant (durée)"
+   ],
+   "tests": [
+    "jlpt:gram/までに"
    ]
   },
   {
@@ -17292,6 +17619,9 @@
     "たらかまわない = forme incorrecte",
     "てはかまわない incorrect (ては évoque l'interdiction)",
     "でもかまわない : la て forme de 買う est かって"
+   ],
+   "tests": [
+    "jlpt:gram/てもかまわない"
    ]
   },
   {
@@ -17433,6 +17763,9 @@
     "たら possible mais と rend mieux le souhait spontané ici",
     "ば oriente vers la condition",
     "ても = concession, sens différent"
+   ],
+   "tests": [
+    "jlpt:gram/と"
    ]
   },
   {
@@ -17482,6 +17815,9 @@
     "ても = « même si », sens concessif",
     "ずに = « sans faire »",
     "ながら = « en même temps »"
+   ],
+   "tests": [
+    "jlpt:gram/たら"
    ]
   },
   {
@@ -17505,6 +17841,9 @@
     "たら change la nuance vers la condition",
     "ても = « même si »",
     "ば = condition simple"
+   ],
+   "tests": [
+    "jlpt:gram/と"
    ]
   },
   {
@@ -17603,6 +17942,9 @@
     "たらいい = conseil futur",
     "ばいい = « il suffit »",
     "なければ seul est incomplet"
+   ],
+   "tests": [
+    "jlpt:gram/ばよかった"
    ]
   },
   {
@@ -17951,6 +18293,9 @@
     "ろ = ordre affirmatif, sens opposé",
     "なさい = ordre poli, registre différent",
     "ば = condition"
+   ],
+   "tests": [
+    "jlpt:gram/な"
    ]
   },
   {
@@ -18909,6 +19254,9 @@
     "がちだ = tendance fréquente, ne s'emploie pas ainsi avec un nom",
     "Correct : 嘘っぽい = « qui a l'air faux »",
     "きれない = impossibilité d'achever, hors sujet"
+   ],
+   "tests": [
+    "jlpt:gram/っぽい"
    ]
   },
   {
@@ -18958,6 +19306,9 @@
     "がちの = tendance ponctuelle, ne forme pas ce trait",
     "げの = apparence d'un sentiment, hors sujet",
     "きれない = impossibilité d'achever, hors sujet"
+   ],
+   "tests": [
+    "jlpt:gram/っぽい"
    ]
   },
   {
@@ -18981,6 +19332,9 @@
     "がちだ = tendance fréquente, ne convient pas avec ce nom",
     "きれない = impossibilité d'achever, hors sujet",
     "Correct : 子供っぽい = « enfantin, puéril »"
+   ],
+   "tests": [
+    "jlpt:gram/っぽい"
    ]
   },
   {
@@ -19134,6 +19488,9 @@
     "っぽい = apparence/trait, ne s'attache pas à un désir ainsi",
     "Correct : 言いたげ = « l'air de vouloir dire »",
     "きって = achèvement, hors sujet"
+   ],
+   "tests": [
+    "jlpt:gram/げ"
    ]
   },
   {
@@ -19157,6 +19514,9 @@
     "がち = tendance fréquente, hors sujet",
     "っぽく = apparence/trait, nuance différente",
     "きれ = achèvement, hors sujet"
+   ],
+   "tests": [
+    "jlpt:gram/げ"
    ]
   },
   {
@@ -19180,6 +19540,9 @@
     "Correct : 不満げ = « d'un air mécontent »",
     "がち = tendance fréquente, hors sujet",
     "きった = achèvement, hors sujet"
+   ],
+   "tests": [
+    "jlpt:gram/げ"
    ]
   },
   {
@@ -19203,6 +19566,9 @@
     "っぽく = apparence/trait, nuance différente",
     "きれ = achèvement, hors sujet",
     "Correct : 不安げに = « d'un air inquiet »"
+   ],
+   "tests": [
+    "jlpt:gram/げ"
    ]
   },
   {
@@ -19226,6 +19592,9 @@
     "がち = tendance fréquente, hors sujet",
     "っぽく = apparence/trait, nuance différente",
     "きって = achèvement, hors sujet"
+   ],
+   "tests": [
+    "jlpt:gram/げ"
    ]
   },
   {
@@ -19743,6 +20112,9 @@
     "つつある = évolution en cours, sens différent",
     "がち = tendance, hors sujet",
     "っぱなし = état laissé tel quel, hors sujet"
+   ],
+   "tests": [
+    "jlpt:gram/つつ"
    ]
   },
   {
@@ -20725,6 +21097,9 @@
     "Correct : として pose la position d'où l'on parle",
     "に関して = « concernant »",
     "をはじめ = « à commencer par »"
+   ],
+   "tests": [
+    "jlpt:gram/として"
    ]
   },
   {
@@ -21987,6 +22362,9 @@
     "にとって = « pour »",
     "において = cadre spatio-temporel",
     "として = « en tant que »"
+   ],
+   "tests": [
+    "jlpt:gram/最中に"
    ]
   },
   {
@@ -22111,6 +22489,9 @@
     "につれて = « à mesure que »",
     "として = « en tant que »",
     "において = cadre spatio-temporel"
+   ],
+   "tests": [
+    "jlpt:gram/たびに"
    ]
   },
   {
@@ -22212,6 +22593,9 @@
     "Correct : V-ます + 次第 marque l'immédiateté « dès que »",
     "最中に = « en plein »",
     "につれて = « à mesure que »"
+   ],
+   "tests": [
+    "jlpt:gram/次第"
    ]
   },
   {
@@ -22235,6 +22619,9 @@
     "たびに = « chaque fois que »",
     "最中 = « plein milieu »",
     "につれて = « à mesure que »"
+   ],
+   "tests": [
+    "jlpt:gram/次第"
    ]
   },
   {
@@ -22281,6 +22668,9 @@
     "たびに = « chaque fois que »",
     "最中に = « en plein »",
     "につれて = « à mesure que »"
+   ],
+   "tests": [
+    "jlpt:gram/次第"
    ]
   },
   {
@@ -22353,6 +22743,9 @@
     "たびに = « chaque fois que »",
     "最中に = « en plein »",
     "につれて = « à mesure que »"
+   ],
+   "tests": [
+    "jlpt:gram/あまり"
    ]
   },
   {
@@ -22376,6 +22769,9 @@
     "において = cadre spatio-temporel",
     "Correct : あまり fait de l'inquiétude excessive la cause",
     "として = « en tant que »"
+   ],
+   "tests": [
+    "jlpt:gram/あまり"
    ]
   },
   {
@@ -22399,6 +22795,9 @@
     "たびに = « chaque fois que »",
     "次第 = « dès que / selon »",
     "につれて = « à mesure que »"
+   ],
+   "tests": [
+    "jlpt:gram/あまり"
    ]
   },
   {
@@ -22422,6 +22821,9 @@
     "たびに = « chaque fois que »",
     "最中に = « en plein »",
     "において = cadre spatio-temporel"
+   ],
+   "tests": [
+    "jlpt:gram/あまり"
    ]
   },
   {
@@ -22471,6 +22873,9 @@
     "として = « en tant que »",
     "につれて = « à mesure que »",
     "たびに = « chaque fois que »"
+   ],
+   "tests": [
+    "jlpt:gram/ぬき"
    ]
   },
   {
@@ -22517,6 +22922,9 @@
     "たび = « chaque fois »",
     "最中 = « plein milieu »",
     "次第 = « dès que / selon »"
+   ],
+   "tests": [
+    "jlpt:gram/ぬき"
    ]
   },
   {
@@ -22540,6 +22948,9 @@
     "最中 = « plein milieu »",
     "につれ = « à mesure que »",
     "Correct : ぬきの qualifie 価格 (prix sans les taxes)"
+   ],
+   "tests": [
+    "jlpt:gram/ぬき"
    ]
   },
   {
@@ -22736,6 +23147,9 @@
     "さえ = « même », sens erroné",
     "だけ = « seulement », ne rend pas l'emphase",
     "でも = « même/mais », inadapté"
+   ],
+   "tests": [
+    "jlpt:gram/こそ"
    ]
   },
   {
@@ -22863,6 +23277,9 @@
     "さえ = « même », inadapté",
     "Correct : など rabaisse « des choses comme des plaintes »",
     "しか = requiert une négative directe, inadapté"
+   ],
+   "tests": [
+    "jlpt:gram/など"
    ]
   },
   {
@@ -23016,6 +23433,9 @@
     "Correct : くらい exprime l'ordre de grandeur « ce niveau »",
     "こそ = emphase, inadapté",
     "まで = « jusqu'à », sens erroné"
+   ],
+   "tests": [
+    "jlpt:gram/ほど"
    ]
   },
   {
@@ -23299,6 +23719,9 @@
     "Correct : まい complète le couple 〜うか〜まいか « aller ou non »",
     "など = exemple, sens erroné",
     "さえ = « même », inadapté"
+   ],
+   "tests": [
+    "jlpt:gram/まい"
    ]
   },
   {
@@ -27070,6 +27493,9 @@
     "そうもない porte sur l'apparence, pas le moyen",
     "Correct : V-stem + ようがない, absence de moyen de chercher",
     "ようもない est proche mais moins standard et n'est pas la réponse type"
+   ],
+   "tests": [
+    "jlpt:gram/ようがない"
    ]
   },
   {
@@ -27116,6 +27542,9 @@
     "そうにない porte sur l'apparence d'une action future",
     "かねない = « risque de », sens opposé",
     "Correct : aucun moyen d'exprimer par des mots"
+   ],
+   "tests": [
+    "jlpt:gram/ようがない"
    ]
   },
   {
@@ -27139,6 +27568,9 @@
     "つもりだ = intention, hors sens",
     "Correct : locution 手の打ちようがない, aucun moyen d'intervenir",
     "ようだ = « on dirait », hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/ようがない"
    ]
   },
   {
@@ -27162,6 +27594,9 @@
     "がちだ = « avoir tendance à », hors sens",
     "っぽい = « qui semble », hors sens",
     "Correct : V-stem + っこない, impossibilité familière"
+   ],
+   "tests": [
+    "jlpt:gram/っこない"
    ]
   },
   {
@@ -27185,6 +27620,9 @@
     "Correct : forme potentielle + っこない = impossibilité familière",
     "かねない = « risque de », sens opposé",
     "そうだ = apparence, hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/っこない"
    ]
   },
   {
@@ -27208,6 +27646,9 @@
     "Correct : っこない marque l'impossibilité catégorique et familière",
     "がちだ = tendance, hors sens",
     "かねる = « ne pas pouvoir se résoudre à », registre soutenu et sens différent"
+   ],
+   "tests": [
+    "jlpt:gram/っこない"
    ]
   },
   {
@@ -27231,6 +27672,9 @@
     "かねない = « risque de », sens opposé",
     "っぽい = « qui a l'air de », hors sens",
     "Correct : できる + っこない → できっこない, impossibilité familière"
+   ],
+   "tests": [
+    "jlpt:gram/っこない"
    ]
   },
   {
@@ -27254,6 +27698,9 @@
     "ようがない porte sur l'absence de moyen, nuance différente",
     "かねる = registre soutenu, « ne pas pouvoir se résoudre »",
     "がてら = « en profitant de », hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/っこない"
    ]
   },
   {
@@ -27303,6 +27750,9 @@
     "Correct : だけに, l'effet (clarté) découle logiquement du statut d'enseignant",
     "にしては = « pour un… (contrairement à l'attente) », nuance inverse",
     "といっても = « même si l'on dit », hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/だけあって"
    ]
   },
   {
@@ -27326,6 +27776,9 @@
     "ながら = « tout en », hors sens",
     "Correct : だけに, sa prudence découle naturellement de son statut",
     "くせに = reproche « alors que », hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/だけあって"
    ]
   },
   {
@@ -27349,6 +27802,9 @@
     "といっても = « même si l'on dit », hors sens",
     "ものの = concession, hors sens",
     "にせよ = « quoi qu'il en soit de », hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/だけあって"
    ]
   },
   {
@@ -27372,6 +27828,9 @@
     "わりに = contraste avec l'attente",
     "どころか = « loin de », hors sens",
     "ものの = « bien que », concession"
+   ],
+   "tests": [
+    "jlpt:gram/だけあって"
    ]
   },
   {
@@ -27421,6 +27880,9 @@
     "ものの = concession, hors sens",
     "わりに = contraste avec l'attente",
     "Correct : だけあって, la clarté est conforme à son ancien métier"
+   ],
+   "tests": [
+    "jlpt:gram/だけあって"
    ]
   },
   {
@@ -27444,6 +27906,9 @@
     "どころか = « loin de », hors sens",
     "Correct : だけあって, l'excellence découle logiquement de la formation",
     "わりに = contraste avec l'attente, nuance opposée"
+   ],
+   "tests": [
+    "jlpt:gram/だけあって"
    ]
   },
   {
@@ -27493,6 +27958,9 @@
     "くせに = reproche, hors sens",
     "ものの = concession, hors sens",
     "Correct : だけあって, la saveur est à la hauteur du soin investi"
+   ],
+   "tests": [
+    "jlpt:gram/だけあって"
    ]
   },
   {
@@ -27542,6 +28010,9 @@
     "からには = « du moment que », hors sens",
     "といっても = concession, hors sens",
     "Correct : ばかりでなく ajoute un second dommage"
+   ],
+   "tests": [
+    "jlpt:gram/ばかりでなく"
    ]
   },
   {
@@ -27565,6 +28036,9 @@
     "にしては = contraste avec l'attente",
     "ものの = concession, hors sens",
     "くせに = reproche, hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/ばかりでなく"
    ]
   },
   {
@@ -27588,6 +28062,9 @@
     "どころか = « loin de », inverserait le sens",
     "Correct : ばかりでなく…まで, addition jusqu'à un cas extrême",
     "わりに = contraste avec l'attente"
+   ],
+   "tests": [
+    "jlpt:gram/ばかりでなく"
    ]
   },
   {
@@ -27663,6 +28140,9 @@
     "はさておき = « laissons de côté », nuance opposée",
     "にしても = concession, hors sens",
     "といっても = concession, hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/はもちろん"
    ]
   },
   {
@@ -27686,6 +28166,9 @@
     "はともかく = « peu importe », nuance opposée",
     "にせよ = concession, hors sens",
     "ものの = concession, hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/はもちろん"
    ]
   },
   {
@@ -27709,6 +28192,9 @@
     "にしても = concession, hors sens",
     "Correct : はもちろん…まで, ajout gradué jusqu'à un cas remarquable",
     "はともかく = mise de côté, nuance opposée"
+   ],
+   "tests": [
+    "jlpt:gram/はもちろん"
    ]
   },
   {
@@ -27732,6 +28218,9 @@
     "Correct : はもちろん pose les employés comme évidents et ajoute les visiteurs",
     "はさておき = « laissons de côté », nuance opposée",
     "にしろ = concession, hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/はもちろん"
    ]
   },
   {
@@ -27755,6 +28244,9 @@
     "ばかりでなく = addition, hors sens",
     "Correct : はともかく écarte le prix pour se concentrer sur le design",
     "はもちろん = « bien sûr, et en plus », nuance opposée"
+   ],
+   "tests": [
+    "jlpt:gram/はともかく"
    ]
   },
   {
@@ -27804,6 +28296,9 @@
     "だけあって = résultat mérité, hors sens",
     "くせに = reproche, hors sens",
     "Correct : はともかく écarte l'issue pour valoriser l'effort"
+   ],
+   "tests": [
+    "jlpt:gram/はともかく"
    ]
   },
   {
@@ -27827,6 +28322,9 @@
     "Correct : はともかく repousse les détails pour trancher l'essentiel",
     "はもちろん = ajout, nuance opposée",
     "にしては = contraste avec l'attente"
+   ],
+   "tests": [
+    "jlpt:gram/はともかく"
    ]
   },
   {
@@ -27850,6 +28348,9 @@
     "Correct : はともかく écarte la raison pour affirmer le fait",
     "はもちろん = ajout, nuance opposée",
     "だけに = cause avec effet attendu, hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/はともかく"
    ]
   },
   {
@@ -27899,6 +28400,9 @@
     "にしても = concession, nuance différente",
     "Correct : といっても minimise l'idée de « voyage »",
     "というと = « quand on parle de », hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/といっても"
    ]
   },
   {
@@ -27922,6 +28426,9 @@
     "といえば = « à propos de », hors sens",
     "にしては = contraste avec l'attente",
     "Correct : といっても atténue « il s'est réchauffé »"
+   ],
+   "tests": [
+    "jlpt:gram/といっても"
    ]
   },
   {
@@ -27945,6 +28452,9 @@
     "Correct : といっても révise à la baisse « avoir des économies »",
     "というと = « quand on parle de », hors sens",
     "にしても = concession, nuance différente"
+   ],
+   "tests": [
+    "jlpt:gram/といっても"
    ]
   },
   {
@@ -27968,6 +28478,9 @@
     "にせよ = « même si », concession, nuance différente",
     "Correct : といっても minimise la portée de « avoir aidé »",
     "といえば = « à propos de », hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/といっても"
    ]
   },
   {
@@ -28017,6 +28530,9 @@
     "くせに = reproche, hors sens",
     "Correct : としても pose l'hypothèse « même si c'est cher »",
     "といっても = révision d'attente d'un fait, nuance différente"
+   ],
+   "tests": [
+    "jlpt:gram/としても"
    ]
   },
   {
@@ -28066,6 +28582,9 @@
     "にしては = contraste avec l'attente",
     "わりに = contraste avec l'attente",
     "Correct : としても pose l'hypothèse d'un accord général"
+   ],
+   "tests": [
+    "jlpt:gram/としても"
    ]
   },
   {
@@ -28141,6 +28660,9 @@
     "Correct : にしても concède le prix bas mais oppose une réserve",
     "というより = comparaison, hors sens",
     "わりに = contraste avec l'attente"
+   ],
+   "tests": [
+    "jlpt:gram/にしても"
    ]
   },
   {
@@ -28164,6 +28686,9 @@
     "Correct : にしても couvre chaque option de façon concessive",
     "といっても = révision d'un fait affirmé, hors sens",
     "だけに = cause avec effet attendu, hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/にしても"
    ]
   },
   {
@@ -28187,6 +28712,9 @@
     "からには = « du moment que », hors sens",
     "にしては = contraste avec l'attente",
     "Correct : にしても…にしても, alternative concessive « que… ou que… »"
+   ],
+   "tests": [
+    "jlpt:gram/にしても"
    ]
   },
   {
@@ -28236,6 +28764,9 @@
     "ものを = regret « alors que », hors sens",
     "ものの = concession, hors sens",
     "Correct : ものか exprime le refus catégorique de croire à nouveau"
+   ],
+   "tests": [
+    "jlpt:gram/ものか"
    ]
   },
   {
@@ -28259,6 +28790,9 @@
     "Correct : ものか nie avec force la possibilité d'abandonner",
     "ことか = exclamation d'intensité, sens différent",
     "ものだ = vérité générale / souvenir, hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/ものか"
    ]
   },
   {
@@ -28282,6 +28816,9 @@
     "ものだから = « c'est parce que », hors sens",
     "Correct : ものか, refus véhément de se laisser tromper",
     "ことか = exclamation d'intensité"
+   ],
+   "tests": [
+    "jlpt:gram/ものか"
    ]
   },
   {
@@ -28305,6 +28842,9 @@
     "ことか = exclamation d'intensité",
     "ものを = regret « alors que », hors sens",
     "ながら = « tout en », hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/ものか"
    ]
   },
   {
@@ -28328,6 +28868,9 @@
     "ことか = exclamation d'intensité, sens différent",
     "ものだ = vérité générale, hors sens",
     "わけか = « c'est donc que ? », hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/ものか"
    ]
   },
   {
@@ -28351,6 +28894,9 @@
     "Correct : っけ demande de se remémorer une date oubliée",
     "のに = « alors que », hors sens",
     "ぞ = emphase virile, hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/っけ"
    ]
   },
   {
@@ -28374,6 +28920,9 @@
     "っこ = ne marque pas le rappel",
     "もの = « c'est que », justification, hors sens",
     "Correct : っけ exprime le doute sur un souvenir d'action passée"
+   ],
+   "tests": [
+    "jlpt:gram/っけ"
    ]
   },
   {
@@ -28397,6 +28946,9 @@
     "かい = simple question fermée, sans nuance de rappel",
     "Correct : っけ après une forme en た marque le rappel incertain",
     "のに = « alors que », hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/っけ"
    ]
   },
   {
@@ -28420,6 +28972,9 @@
     "のに = « alors que », hors sens",
     "ものの = concession, hors sens",
     "ながら = « tout en », hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/っけ"
    ]
   },
   {
@@ -28443,6 +28998,9 @@
     "ぞ = emphase, hors sens",
     "わけ = « c'est donc que », hors sens",
     "Correct : っけ demande confirmation de l'échéance mémorisée"
+   ],
+   "tests": [
+    "jlpt:gram/っけ"
    ]
   },
   {
@@ -28492,6 +29050,9 @@
     "こそ = mise en relief, hors sens",
     "さえ = « même », hors sens",
     "Correct : とか rapporte des propos de façon vague et non engageante"
+   ],
+   "tests": [
+    "jlpt:gram/とか"
    ]
   },
   {
@@ -28515,6 +29076,9 @@
     "だけ = « seulement », hors sens",
     "しか = « ne… que », hors sens",
     "のに = « alors que », hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/とか"
    ]
   },
   {
@@ -28564,6 +29128,9 @@
     "からには = « du moment que », hors sens",
     "ものの = concession, hors sens",
     "Correct : とか marque l'ouï-dire incertain sur la retraite"
+   ],
+   "tests": [
+    "jlpt:gram/とか"
    ]
   },
   {
@@ -28587,6 +29154,9 @@
     "なら = « si c'est le cas de », hors sens",
     "Correct : たって = concession familière équivalente à ても",
     "たら = « si / quand », condition, hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/たって"
    ]
   },
   {
@@ -28610,6 +29180,9 @@
     "たら = condition, hors sens",
     "ては = « si l'on fait, alors (conséquence fâcheuse) », nuance différente",
     "なら = « si c'est le cas de », hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/たって"
    ]
   },
   {
@@ -28656,6 +29229,9 @@
     "なら = « si c'est le cas de », hors sens",
     "Correct : したって = concession familière (しても)",
     "たら = condition, hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/たって"
    ]
   },
   {
@@ -28679,6 +29255,9 @@
     "Correct : 言われたって = concession familière (言われても)",
     "たら = condition, hors sens",
     "ては = « si l'on fait, alors (conséquence fâcheuse) », nuance différente"
+   ],
+   "tests": [
+    "jlpt:gram/たって"
    ]
   },
   {
@@ -28817,6 +29396,9 @@
     "るものだ = vérité générale / devoir au présent, sens différent",
     "たものか = doute rhétorique, hors sens",
     "たところだ = « venir juste de », hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/たものだ"
    ]
   },
   {
@@ -28840,6 +29422,9 @@
     "たきりだ = « et depuis plus rien », sens différent",
     "Correct : たものだ exprime la remémoration d'une habitude affectueuse",
     "るものだ = vérité générale au présent, sens différent"
+   ],
+   "tests": [
+    "jlpt:gram/たものだ"
    ]
   },
   {
@@ -28863,6 +29448,9 @@
     "たことか = exclamation d'intensité, hors sens",
     "たものを = regret « alors que », hors sens",
     "Correct : たものだ évoque une habitude passée avec nostalgie"
+   ],
+   "tests": [
+    "jlpt:gram/たものだ"
    ]
   },
   {
@@ -28886,6 +29474,9 @@
     "Correct : たものだ, remémoration d'une expérience habituelle passée",
     "るものだ = vérité générale au présent",
     "たものか = doute rhétorique, hors sens"
+   ],
+   "tests": [
+    "jlpt:gram/たものだ"
    ]
   },
   {
@@ -28909,6 +29500,9 @@
     "たものの = « bien que », concession, hors sens",
     "Correct : たものだ exprime le souvenir d'une habitude partagée",
     "るものだ = vérité générale au présent"
+   ],
+   "tests": [
+    "jlpt:gram/たものだ"
    ]
   }
  ]

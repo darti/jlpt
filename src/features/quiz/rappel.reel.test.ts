@@ -26,7 +26,10 @@ async function couverture(shard: string) {
 test("les questions de grammaire résolvent leur point, exemple compris", async () => {
   const { total, resolus } = await couverture("q-grammaire");
   expect(total).toBe(1174);
-  expect(resolus).toBe(636); // identique à l'heuristique : les arêtes en sont issues
+  // 636 tant que l'arête venait du <b> du corrigé — la matérialisation de l'heuristique.
+  // 834 depuis que la RÉPONSE est consultée : elle EST le point de grammaire testé, et
+  // 198 questions le prouvaient sans que rien ne le lise.
+  expect(resolus).toBe(834);
 });
 
 test("le VOCABULAIRE est quasi entièrement relié", async () => {
@@ -62,13 +65,13 @@ test("TOUS les kanji portent une lecture — le trou est comblé", async () => {
   expect(kanji.filter((r) => r.lecture === "").map((r) => r.titre)).toEqual([]);
 });
 
-test("556 questions de grammaire peuvent montrer une phrase d'exemple", async () => {
+test("671 questions de grammaire peuvent montrer une phrase d'exemple", async () => {
   // C'est la contrepartie de la décision D1 (un exemple illustre l'ENTITÉ, pas la leçon) :
   // rattaché à la leçon, il serait resté enfermé dans le cours.
   const idx = await index();
   const qs = (await G("q-grammaire")).map(toQuestion);
   const avecExemple = qs.filter((q) => resolveRappel(q, idx)?.exemple).length;
-  expect(avecExemple).toBe(556);
+  expect(avecExemple).toBe(671);
 });
 
 test("aucun rappel ne propose un lien mort", async () => {
@@ -121,8 +124,9 @@ test("aucun mot de PLUSIEURS caractères n'emprunte une lecture de kanji", async
   expect(empruntsIndus.map((r) => `${r.titre} → ${r.lecture}`)).toEqual([]);
 });
 
-test("la couverture globale des arêtes ne retombe pas sous 93 %", async () => {
-  // 59,1 % à la migration, 93,8 % depuis link-answers.mjs. Ce seuil est un cliquet : une
+test("la couverture globale des arêtes ne retombe pas sous 95 %", async () => {
+  // 59,1 % à la migration, 93,8 % en dérivant la réponse pour le vocabulaire et les kanji,
+  // 95,7 % en la dérivant AUSSI pour la grammaire. Ce seuil est un cliquet : une
   // arête perdue, une entité renommée, un shard régénéré à l'ancienne le feraient rougir.
   // Sans lui, la couverture peut fondre sans qu'aucun test ne bouge — chaque question
   // délaissée retombant simplement sur le lien générique, en silence.
@@ -132,5 +136,5 @@ test("la couverture globale des arêtes ne retombe pas sous 93 %", async () => {
   )).flat().map(toQuestion);
   const resolus = qs.filter((q) => resolveRappel(q, idx) !== null).length;
   expect(qs.length).toBe(10307);
-  expect(resolus / qs.length).toBeGreaterThan(0.93);
+  expect(resolus / qs.length).toBeGreaterThan(0.95);
 });
