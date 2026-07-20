@@ -105,7 +105,7 @@ consultable depuis le corrigé du quiz, pas un ornement de leçon.
 `validate.mjs` ont été **supprimés**. Il n'existe plus aucun script qui réécrive `data/graph/` :
 **les corrections de contenu se font dans le graphe**, à la main ou par un outil idempotent.
 
-**Lectures manquantes — la seule chaîne d'écriture outillée**, et elle n'écrase jamais rien :
+**Lectures manquantes — première chaîne d'écriture outillée**, et elle n'écrase jamais rien :
 
     bun tools/jmdict/fetch.mjs        # → .jmdict/ (hors dépôt, JAMAIS commité)
     bun tools/jmdict/propose.mjs      # → docs/…/lectures-a-arbitrer.md (propositions)
@@ -116,6 +116,32 @@ consultable depuis le corrigé du quiz, pas un ornement de leçon.
 pour décider.** C'est ce qui évite l'attribution CC BY-SA sur chaque écran et le ShareAlike sur
 le jeu dérivé. `readings.mjs` est idempotent et n'écrase **jamais** une lecture existante (le
 graphe fait autorité ; un désaccord est signalé, pas résolu en silence).
+
+**Énoncés ambigus — seconde chaîne d'écriture outillée**, même invariant : elle n'écrase rien.
+
+    node tools/graph/audit-stems.mjs   # → docs/…/enonces-a-arbitrer.md + squelette de décisions
+    #   … l'auteur rédige SES phrases dans data/enonces-arbitres.json …
+    node tools/graph/stems.mjs         # → pose stem + gloss sur les shards q-*.jsonld
+
+⚠ **Un énoncé ne doit admettre QU'UNE réponse défendable.** 「あける」を漢字で書くと？ en
+admettait trois (開ける・空ける・明ける). La forme correcte est une phrase à trou dont le
+contexte tranche : `長い夜がやっと___。（あける）`. Le trou s'écrit `___` (trois soulignés
+**ASCII**) — le corpus contient 256 vieux énoncés en `＿` pleine chasse, qu'on LIT mais
+qu'on n'écrit plus. La lecture attendue va en fin d'énoncé entre `（）` : sans elle, la
+question ne teste plus l'écriture mais la compréhension.
+
+`checkCorpus` (`tools/graph/integrity.mjs`) refuse désormais deux classes, **toutes deux
+prouvées, aucune heuristique** :
+- **énoncé partagé à réponses divergentes** — la clé de groupement est l'**énoncé seul**.
+  Elle incluait le jeu d'options, ce qui la rendait aveugle à 135 groupes (#2569 et #4609
+  demandaient tous deux d'écrire 「あける」, l'un attendant 開ける, l'autre 明ける) ;
+- **distracteur portant la même `jlpt:reading` que la réponse** — 漢字/感じ, 以外/意外.
+
+⚠ `readingIndex` n'indexe que les mots **glosés** et **à lecture en kana**. `word.jsonld`
+contient des distracteurs fabriqués (`約速`、`役束`、`約則`, lecture de 約束 recopiée, aucune
+glose) et des placeholders (`—` en guise de lecture) : les indexer ferait condamner des
+questions saines. Ces entrées parasites sont un défaut connu du dictionnaire, **pas encore
+purgé** — cf. `docs/superpowers/plans/2026-07-20-enonces-ambigus.md`, tâche 9.
 
 ⚠ **`jlpt:ord` = index global dans le corpus, groupé par compétence, et il doit rester
 stable** : c'est lui qu'indexent le bitset `seen`/`mastered`, `wrong[]` (erreurs) et

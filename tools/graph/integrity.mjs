@@ -9,6 +9,7 @@
 // Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
 
 import { isSafeIri } from "./jsonld.mjs";
+import { isDisambiguated, readingIndex, sameReadingConflicts } from "./audit-stems.mjs";
 
 const arr = (v) => (Array.isArray(v) ? v : v === undefined ? [] : [v]);
 const norm = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
@@ -140,14 +141,16 @@ export function checkCorpus(subjects) {
   }
 
   // --- questions contradictoires ---
-  // Même énoncé, même JEU d'options, mais bonne réponse différente : quel que soit le
-  // choix de l'apprenant, l'une des deux le corrige à tort. Les options sont triées pour
-  // la clé, mais la réponse est comparée par sa VALEUR — une simple permutation des
-  // options est une redondance, pas une contradiction.
+  // Même énoncé, bonne réponse différente : quel que soit le choix de l'apprenant, l'une
+  // des deux le corrige à tort. La clé est l'ÉNONCÉ SEUL — c'est tout ce que l'apprenant
+  // voit. Elle a longtemps inclus le jeu d'options trié, ce qui rendait le contrôle
+  // aveugle aux 135 cas où deux questions au même énoncé proposaient des choix
+  // différents : #2569 et #4609 demandaient toutes deux d'écrire 「あける」 en kanji, la
+  // première attendant 開ける et la seconde 明ける. La réponse reste comparée par sa
+  // VALEUR — une simple permutation des options est une redondance, pas une contradiction.
   const byKey = new Map();
   for (const q of questions) {
-    const opts = arr(q.opts).map(norm);
-    const key = `${norm(q["jlpt:stem"])}||${[...opts].sort().join("|")}`;
+    const key = norm(q["jlpt:stem"]);
     if (!byKey.has(key)) byKey.set(key, []);
     byKey.get(key).push(q);
   }
@@ -163,6 +166,24 @@ export function checkCorpus(subjects) {
   }
 
   errs.push(...checkLessonCoverage(subjects));
+
+  // --- distracteur de même lecture que la réponse ---
+  // Deux graphies attestées d'une même lecture sont deux réponses correctes tant que
+  // l'énoncé ne tranche pas : demander d'écrire あける en kanji admet 開ける ET 明ける.
+  // La preuve vient de word.jsonld, pas d'une note de corrigé — validate-graph.mjs charge
+  // tous les documents dans un seul tableau, donc les mots sont ici.
+  //
+  // ⚠ readingIndex n'indexe que les mots GLOSÉS. word.jsonld porte des distracteurs
+  // fabriqués (約速、役束、約則, lecture de 約束 recopiée, aucune glose) : les indexer
+  // ferait condamner des questions parfaitement saines.
+  const byId = new Map(questions.map((q) => [q["@id"], q]));
+  for (const c of sameReadingConflicts(questions, readingIndex(subjects))) {
+    if (isDisambiguated(byId.get(c.id)?.["jlpt:stem"])) continue;
+    errs.push(
+      `${c.id} : « ${c.jumeaux.join("、")} » se li(sen)t ${c.lecture} comme la réponse `
+      + `« ${c.answer} » — l'énoncé doit trancher (phrase à trou)`,
+    );
+  }
 
   return errs;
 }

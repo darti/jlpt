@@ -2377,7 +2377,7 @@
    "jlpt:skill": "kanji",
    "jlpt:difficulty": 1,
    "jlpt:ord": 7168,
-   "jlpt:stem": "「一月」の読み方は？",
+   "jlpt:stem": "わたしの誕生日（たんじょうび）は___十日（とおか）です。（一月）",
    "opts": [
     "いちがつ",
     "ひとがつ",
@@ -2386,7 +2386,7 @@
    ],
    "jlpt:answer": 0,
    "schema:description": "<b>一月 = いちがつ</b> (janvier). 一 イチ ＋ 月 がつ.",
-   "jlpt:gloss": "一月（いちがつ）« janvier » · の « lien » · 読み方（よみかた）« lecture » · は « thème » · ？ « question »",
+   "jlpt:gloss": "わたし « je » · の « de » · 誕生日（たんじょうび）« anniversaire » · は « thème » · ___（いちがつ）« janvier » · 十日（とおか）« le dix » · です « être » · 。 « fin »",
    "jlpt:optionNote": [
     "Correct : 一月 se lit いちがつ",
     "erreur : ici on-yomi イチ, pas le kun ひと",
@@ -48402,7 +48402,7 @@
    "jlpt:skill": "kanji",
    "jlpt:difficulty": 2,
    "jlpt:ord": 8981,
-   "jlpt:stem": "「simple」の意味を表す漢字は？",
+   "jlpt:stem": "この問題（もんだい）は___純です。（たん）",
    "opts": [
     "許",
     "単",
@@ -48411,7 +48411,7 @@
    ],
    "jlpt:answer": 1,
    "schema:description": "« simple » を表す漢字は <b>単</b>（タン）.",
-   "jlpt:gloss": "simple « simple » · の « lien » · 意味（いみ）« sens » · を « objet » · 表す（あらわす）« exprimer » · 漢字（かんじ）« kanji » · は « thème » · ？ « question »",
+   "jlpt:gloss": "この « ce » · 問題（もんだい）« problème » · は « thème » · ___純（たんじゅん）« simple » · です « être » · 。 « fin »",
    "jlpt:optionNote": [
     "erreur : 許（permettre）n'a pas ce sens",
     "Correct : 単 exprime « simple »",
@@ -48526,7 +48526,7 @@
    "jlpt:skill": "kanji",
    "jlpt:difficulty": 2,
    "jlpt:ord": 8986,
-   "jlpt:stem": "「simple」の意味を表す漢字は？",
+   "jlpt:stem": "この料理（りょうり）は___単に作（つく）れます。（かん）",
    "opts": [
     "可",
     "値",
@@ -48535,7 +48535,7 @@
    ],
    "jlpt:answer": 2,
    "schema:description": "« simple » を表す漢字は <b>簡</b>（カン）.",
-   "jlpt:gloss": "simple « simple » · の « lien » · 意味（いみ）« sens » · を « objet » · 表す（あらわす）« exprimer » · 漢字（かんじ）« kanji » · は « thème » · ？ « question »",
+   "jlpt:gloss": "この « ce » · 料理（りょうり）« plat » · は « thème » · ___単に（かんたんに）« facilement » · 作れます（つくれます）« peut se préparer » · 。 « fin »",
    "jlpt:optionNote": [
     "erreur : 可（possible）n'a pas ce sens",
     "erreur : 値（valeur）n'a pas ce sens",

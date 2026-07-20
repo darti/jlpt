@@ -7,3 +7,7 @@ src/styles/styles.gen.css
 # commitée (CC BY-SA 4.0 — on ne redistribue pas ses données, cf. tools/jmdict/).
 .jmdict/
 .kanjidic/
+
+# Rapports d'arbitrage des énoncés — régénérés par tools/graph/audit-stems.mjs
+data/enonces-arbitres.skel.json
+docs/superpowers/enonces-a-arbitrer.md
