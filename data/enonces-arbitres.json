@@ -1,107 +1,1577 @@
 {
+ "jlpt:q/321": {
+  "from": "この部屋（へや）は＿＿です。",
+  "stem": "この部屋（へや）は___です。（forme affirmative）",
+  "gloss": "この « ce » · 部屋（へや）« chambre » · は « thème » · ___（ひろいです）« est spacieux (forme affirmative) » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/327": {
+  "from": "この部屋（へや）は＿＿です。",
+  "stem": "この部屋（へや）は___です。（forme négative）",
+  "gloss": "この « ce » · 部屋（へや）« chambre » · は « thème » · ___（ひろくない）« n'est pas spacieux (forme négative) » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/330": {
+  "from": "試験（しけん）は＿＿です。",
+  "stem": "試験（しけん）は___です。（passé affirmatif）",
+  "gloss": "試験（しけん）« examen » · は « thème » · ___（むずかしかった）« était difficile (passé affirmatif) » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/331": {
+  "from": "その映画（えいが）は＿＿です。",
+  "stem": "その映画（えいが）は___です。（passé affirmatif）",
+  "gloss": "その « ce » · 映画（えいが）« film » · は « thème » · ___（おもしろかった）« était intéressant (passé affirmatif) » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/332": {
+  "from": "昨日（きのう）の天気（てんき）は＿＿です。",
+  "stem": "昨日（きのう）の天気（てんき）は___です。（passé affirmatif）",
+  "gloss": "昨日（きのう）« hier » · の « de » · 天気（てんき）« temps » · は « thème » · ___（よかった）« était bon (passé affirmatif) » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/334": {
+  "from": "試験（しけん）は＿＿です。",
+  "stem": "試験（しけん）は___です。（passé négatif）",
+  "gloss": "試験（しけん）« examen » · は « thème » · ___（むずかしくなかった）« n'était pas difficile (passé négatif) » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/336": {
+  "from": "その映画（えいが）は＿＿です。",
+  "stem": "その映画（えいが）は___です。（passé négatif）",
+  "gloss": "その « ce » · 映画（えいが）« film » · は « thème » · ___（おもしろくなかった）« n'était pas intéressant (passé négatif) » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/337": {
+  "from": "昨日（きのう）の天気（てんき）は＿＿です。",
+  "stem": "昨日（きのう）の天気（てんき）は___です。（passé négatif）",
+  "gloss": "昨日（きのう）« hier » · の « de » · 天気（てんき）« temps » · は « thème » · ___（よくなかった）« n'était pas bon (passé négatif) » · です « être » · 。 « fin »"
+ },
  "jlpt:q/1285": {
   "from": "「かんじょう」を漢字で書くと？",
   "stem": "彼は___を顔に出さない。（かんじょう）",
   "gloss": "彼（かれ）« il » · は « thème » · ___（かんじょう）« sentiment, émotion » · を « COD » · 顔（かお）« visage » · に « à » · 出さない（ださない）« ne montre pas » · 。 « fin »"
- },
- "jlpt:q/5285": {
-  "from": "「かんじょう」を漢字で書くと？",
-  "stem": "レストランで___を払った。（かんじょう）",
-  "gloss": "レストラン « restaurant » · で « lieu » · ___（かんじょう）« addition, note » · を « COD » · 払った（はらった）« a payé » · 。 « fin »"
  },
  "jlpt:q/1295": {
   "from": "「けいじ」を漢字で書くと？",
   "stem": "試験の結果が___板に出ている。（けいじ）",
   "gloss": "試験（しけん）« examen » · の « de » · 結果（けっか）« résultat » · が « sujet » · ___板（けいじばん）« panneau d'affichage » · に « à » · 出ている（でている）« est affiché » · 。 « fin »"
  },
- "jlpt:q/5455": {
-  "from": "「けいじ」を漢字で書くと？",
-  "stem": "___が事件を調べている。（けいじ）",
-  "gloss": "___（けいじ）« inspecteur de police » · が « sujet » · 事件（じけん）« affaire » · を « COD » · 調べている（しらべている）« enquête sur » · 。 « fin »"
- },
  "jlpt:q/1314": {
   "from": "「かんじ」を漢字で書くと？",
   "stem": "この言葉を___で書いてください。（かんじ）",
   "gloss": "この « ce » · 言葉（ことば）« mot » · を « COD » · ___（かんじ）« caractère chinois, kanji » · で « en » · 書いてください（かいてください）« veuillez écrire » · 。 « fin »"
- },
- "jlpt:q/4393": {
-  "from": "「かんじ」を漢字で書くと？",
-  "stem": "この部屋は暖かい___がする。（かんじ）",
-  "gloss": "この « cette » · 部屋（へや）« pièce » · は « thème » · 暖かい（あたたかい）« chaleureux » · ___（かんじ）« impression, sensation » · がする « donne l'impression » · 。 « fin »"
  },
  "jlpt:q/1386": {
   "from": "「いがい」を漢字で書くと？",
   "stem": "日曜日___は毎日働く。（いがい）",
   "gloss": "日曜日（にちようび）« dimanche » · ___（いがい）« sauf, en dehors de » · は « thème » · 毎日（まいにち）« chaque jour » · 働く（はたらく）« travailler » · 。 « fin »"
  },
- "jlpt:q/4715": {
-  "from": "「いがい」を漢字で書くと？",
-  "stem": "試験は___に易しかった。（いがい）",
-  "gloss": "試験（しけん）« examen » · は « thème » · ___（いがい）« inattendu, surprenant » · に « adverbial » · 易しかった（やさしかった）« était facile » · 。 « fin »"
- },
  "jlpt:q/1400": {
   "from": "「げんしょう」を漢字で書くと？",
   "stem": "この町の人口は毎年___している。（げんしょう）",
   "gloss": "この « cette » · 町（まち）« ville » · の « de » · 人口（じんこう）« population » · は « thème » · 毎年（まいとし）« chaque année » · ___している（げんしょうしている）« diminue » · 。 « fin »"
- },
- "jlpt:q/5515": {
-  "from": "「げんしょう」を漢字で書くと？",
-  "stem": "これは珍しい自然___だ。（げんしょう）",
-  "gloss": "これ « ceci » · は « thème » · 珍しい（めずらしい）« rare » · 自然（しぜん）« nature » · ___（げんしょう）« phénomène » · だ « être » · 。 « fin »"
  },
  "jlpt:q/1440": {
   "from": "「じこ」を漢字で書くと？",
   "stem": "交通___で電車が止まった。（じこ）",
   "gloss": "交通（こうつう）« circulation » · ___（じこ）« accident » · で « cause » · 電車（でんしゃ）« train » · が « sujet » · 止まった（とまった）« s'est arrêté » · 。 « fin »"
  },
- "jlpt:q/3909": {
-  "from": "「じこ」を漢字で書くと？",
-  "stem": "面接で___紹介をした。（じこ）",
-  "gloss": "面接（めんせつ）« entretien » · で « lieu » · ___紹介（じこしょうかい）« présentation de soi » · を « COD » · した « a fait » · 。 « fin »"
- },
  "jlpt:q/1456": {
   "from": "「きのう」を漢字で書くと？",
   "stem": "___は雨が降っていた。（きのう）",
   "gloss": "___（きのう）« hier » · は « thème » · 雨（あめ）« pluie » · が « sujet » · 降っていた（ふっていた）« tombait » · 。 « fin »"
- },
- "jlpt:q/3819": {
-  "from": "「きのう」を漢字で書くと？",
-  "stem": "この電話には便利な___が多い。（きのう）",
-  "gloss": "この « ce » · 電話（でんわ）« téléphone » · には « à » · 便利な（べんりな）« pratique » · ___（きのう）« fonction » · が « sujet » · 多い（おおい）« nombreuses » · 。 « fin »"
  },
  "jlpt:q/1481": {
   "from": "「きたい」を漢字で書くと？",
   "stem": "みんなが君の活躍を___している。（きたい）",
   "gloss": "みんな « tout le monde » · が « sujet » · 君（きみ）« toi » · の « de » · 活躍（かつやく）« performance » · を « COD » · ___している（きたいしている）« attend avec espoir » · 。 « fin »"
  },
- "jlpt:q/5367": {
-  "from": "「きたい」を漢字で書くと？",
-  "stem": "水は熱すると___になる。（きたい）",
-  "gloss": "水（みず）« eau » · は « thème » · 熱する（ねっする）→熱すると « quand on chauffe » · ___（きたい）« gaz » · になる « devient » · 。 « fin »"
- },
  "jlpt:q/1503": {
   "from": "「せいかく」を漢字で書くと？",
   "stem": "妹は明るい___だ。（せいかく）",
   "gloss": "妹（いもうと）« petite sœur » · は « thème » · 明るい（あかるい）« gai » · ___（せいかく）« caractère, personnalité » · だ « être » · 。 « fin »"
- },
- "jlpt:q/1723": {
-  "from": "「せいかく」を漢字で書くと？",
-  "stem": "この時計は___な時間を示す。（せいかく）",
-  "gloss": "この « cette » · 時計（とけい）« horloge » · は « thème » · ___な（せいかくな）« exact, précis » · 時間（じかん）« heure » · を « COD » · 示す（しめす）« indique » · 。 « fin »"
  },
  "jlpt:q/1521": {
   "from": "「きかい」を漢字で書くと？",
   "stem": "工場の___が動かなくなった。（きかい）",
   "gloss": "工場（こうじょう）« usine » · の « de » · ___（きかい）« machine » · が « sujet » · 動かなくなった（うごかなくなった）« ne fonctionne plus » · 。 « fin »"
  },
+ "jlpt:q/1633": {
+  "from": "「かぜ」を漢字で書くと？",
+  "stem": "___をひいて学校（がっこう）を休（やす）みました。（かぜ）",
+  "gloss": "___（かぜ）« rhume » · を « objet » · ひいて « ayant attrapé » · 学校（がっこう）« école » · を « objet » · 休みました（やすみました）« j'ai manqué » · 。 « fin »"
+ },
+ "jlpt:q/1663": {
+  "from": "「あつい」を漢字で書くと？",
+  "stem": "お茶（ちゃ）が___ので気（き）をつけてください。（あつい）",
+  "gloss": "お茶（ちゃ）« thé » · が « sujet » · ___（あつい）« brûlant (au toucher) » · ので « parce que » · 気をつけて（きをつけて）« fais attention » · ください « s'il te plaît » · 。 « fin »"
+ },
+ "jlpt:q/1687": {
+  "from": "「いじょう」を漢字で書くと？",
+  "stem": "約束（やくそく）した___は守（まも）らなければなりません。（いじょう）",
+  "gloss": "約束した（やくそくした）« avoir promis » · ___（いじょう）« dès lors que » · は « thème » · 守らなければなりません（まもらなければなりません）« il faut le tenir » · 。 « fin »"
+ },
+ "jlpt:q/1689": {
+  "from": "「ふる」を漢字で書くと？",
+  "stem": "明日（あした）は雪（ゆき）が___でしょう。（ふる）",
+  "gloss": "明日（あした）« demain » · は « thème » · 雪（ゆき）« neige » · が « sujet » · ___（ふる）« tomber » · でしょう « sans doute » · 。 « fin »"
+ },
+ "jlpt:q/1691": {
+  "from": "「とる」を漢字で書くと？",
+  "stem": "棚（たな）から本（ほん）を___。（とる）",
+  "gloss": "棚（たな）« étagère » · から « de » · 本（ほん）« livre » · を « objet » · ___（とる）« prendre » · 。 « fin »"
+ },
+ "jlpt:q/1717": {
+  "from": "「あつい」を漢字で書くと？",
+  "stem": "今年（ことし）の夏（なつ）はとても___です。（あつい）",
+  "gloss": "今年（ことし）« cette année » · の « de » · 夏（なつ）« été » · は « thème » · とても « très » · ___（あつい）« chaud (climat) » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/1723": {
+  "from": "「せいかく」を漢字で書くと？",
+  "stem": "この時計は___な時間を示す。（せいかく）",
+  "gloss": "この « cette » · 時計（とけい）« horloge » · は « thème » · ___な（せいかくな）« exact, précis » · 時間（じかん）« heure » · を « COD » · 示す（しめす）« indique » · 。 « fin »"
+ },
+ "jlpt:q/1797": {
+  "from": "「かえる」を漢字で書くと？",
+  "stem": "部屋（へや）の色（いろ）を白（しろ）に___。（かえる）",
+  "gloss": "部屋（へや）« chambre » · の « de » · 色（いろ）« couleur » · を « objet » · 白（しろ）« blanc » · に « en » · ___（かえる）« changer » · 。 « fin »"
+ },
+ "jlpt:q/1829": {
+  "from": "「きかん」を漢字で書くと？",
+  "stem": "この切符（きっぷ）が使（つか）える___は一週間（いっしゅうかん）です。（きかん）",
+  "gloss": "この « ce » · 切符（きっぷ）« billet » · が « sujet » · 使える（つかえる）« utilisable » · ___（きかん）« période » · は « thème » · 一週間（いっしゅうかん）« une semaine » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/1839": {
+  "from": "「はやい」を漢字で書くと？",
+  "stem": "明日（あした）は朝（あさ）が___からもう寝（ね）ます。（はやい）",
+  "gloss": "明日（あした）« demain » · は « thème » · 朝（あさ）« matin » · が « sujet » · ___（はやい）« tôt » · から « parce que » · もう « déjà » · 寝ます（ねます）« je me couche » · 。 « fin »"
+ },
+ "jlpt:q/1841": {
+  "from": "「ひく」を漢字で書くと？",
+  "stem": "妹（いもうと）はピアノを上手（じょうず）に___。（ひく）",
+  "gloss": "妹（いもうと）« petite sœur » · は « thème » · ピアノ « piano » · を « objet » · 上手に（じょうずに）« bien » · ___（ひく）« jouer » · 。 « fin »"
+ },
+ "jlpt:q/1845": {
+  "from": "「かえる」を漢字で書くと？",
+  "stem": "仕事（しごと）が終（お）わってからうちへ___。（かえる）",
+  "gloss": "仕事（しごと）« travail » · が « sujet » · 終わってから（おわってから）« une fois fini » · うち « maison » · へ « vers » · ___（かえる）« rentrer » · 。 « fin »"
+ },
+ "jlpt:q/1934": {
+  "from": "「なおす」を漢字で書くと？",
+  "stem": "壊（こわ）れた時計（とけい）を___。（なおす）",
+  "gloss": "壊れた（こわれた）« cassée » · 時計（とけい）« montre » · を « objet » · ___（なおす）« réparer » · 。 « fin »"
+ },
+ "jlpt:q/1960": {
+  "from": "「むし」を漢字で書くと？",
+  "stem": "彼（かれ）は私（わたし）の話（はなし）を___しました。（むし）",
+  "gloss": "彼（かれ）« il » · は « thème » · 私（わたし）« moi » · の « de » · 話（はなし）« propos » · を « objet » · ___しました（むししました）« a ignorés » · 。 « fin »"
+ },
+ "jlpt:q/2020": {
+  "from": "「ぼうし」を漢字で書くと？",
+  "stem": "暑（あつ）いから___をかぶって出（で）かけます。（ぼうし）",
+  "gloss": "暑い（あつい）« il fait chaud » · から « parce que » · ___（ぼうし）« chapeau » · を « objet » · かぶって « en mettant » · 出かけます（でかけます）« je sors » · 。 « fin »"
+ },
+ "jlpt:q/2030": {
+  "from": "「かんしん」を漢字で書くと？",
+  "stem": "彼（かれ）の努力（どりょく）に___しました。（かんしん）",
+  "gloss": "彼（かれ）« il » · の « de » · 努力（どりょく）« efforts » · に « pour » · ___しました（かんしんしました）« j'ai été admiratif » · 。 « fin »"
+ },
+ "jlpt:q/2100": {
+  "from": "「うつる」を漢字で書くと？",
+  "stem": "来月（らいげつ）新（あたら）しい家（いえ）に___。（うつる）",
+  "gloss": "来月（らいげつ）« le mois prochain » · 新しい（あたらしい）« nouvelle » · 家（いえ）« maison » · に « vers » · ___（うつる）« déménager » · 。 « fin »"
+ },
+ "jlpt:q/2130": {
+  "from": "「かいとう」を漢字で書くと？",
+  "stem": "数学（すうがく）の問題（もんだい）の___をノートに書（か）きました。（かいとう）",
+  "gloss": "数学（すうがく）« mathématiques » · の « de » · 問題（もんだい）« problème » · の « de » · ___（かいとう）« solution » · を « objet » · ノート « cahier » · に « dans » · 書きました（かきました）« j'ai écrit » · 。 « fin »"
+ },
+ "jlpt:q/2132": {
+  "from": "「かいとう」を漢字で書くと？",
+  "stem": "アンケートの___をメールで送（おく）ります。（かいとう）",
+  "gloss": "アンケート « questionnaire » · の « de » · ___（かいとう）« réponse » · を « objet » · メール « courriel » · で « par » · 送ります（おくります）« j'envoie » · 。 « fin »"
+ },
+ "jlpt:q/2138": {
+  "from": "「かがく」を漢字で書くと？",
+  "stem": "___技術（ぎじゅつ）は毎年（まいとし）進（すす）んでいます。（かがく）",
+  "gloss": "___技術（かがくぎじゅつ）« technologie scientifique » · は « thème » · 毎年（まいとし）« chaque année » · 進んでいます（すすんでいます）« progresse » · 。 « fin »"
+ },
+ "jlpt:q/2140": {
+  "from": "「かたい」を漢字で書くと？",
+  "stem": "ゴムは柔（やわ）らかいですが鉄（てつ）は___です。（かたい）",
+  "gloss": "ゴム « caoutchouc » · は « thème » · 柔らかい（やわらかい）« souple » · ですが « mais » · 鉄（てつ）« fer » · は « thème » · ___（かたい）« dur, rigide » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/2150": {
+  "from": "「かわる」を漢字で書くと？",
+  "stem": "十年（じゅうねん）で町（まち）の様子（ようす）が大（おお）きく___。（かわる）",
+  "gloss": "十年（じゅうねん）« dix ans » · で « en » · 町（まち）« ville » · の « de » · 様子（ようす）« aspect » · が « sujet » · 大きく（おおきく）« beaucoup » · ___（かわる）« changer » · 。 « fin »"
+ },
+ "jlpt:q/2154": {
+  "from": "「かんそう」を漢字で書くと？",
+  "stem": "読んだ本の___を書く。（かんそう）",
+  "gloss": "読んだ（よんだ）« lu » · 本（ほん）« livre » · の « de » · ___（かんそう）« impression, avis » · を « COD » · 書く（かく）« écrire » · 。 « fin »"
+ },
  "jlpt:q/2158": {
   "from": "「きかい」を漢字で書くと？",
   "stem": "いい___があれば留学したい。（きかい）",
   "gloss": "いい « bonne » · ___（きかい）« occasion, opportunité » · が « sujet » · あれば « s'il y a » · 留学（りゅうがく）« étudier à l'étranger » · したい « vouloir faire » · 。 « fin »"
  },
+ "jlpt:q/2198": {
+  "from": "「こうか」を漢字で書くと？",
+  "stem": "この薬は飲んですぐに___があった。（こうか）",
+  "gloss": "この « ce » · 薬（くすり）« médicament » · は « thème » · 飲んで（のんで）« ayant pris » · すぐに « aussitôt » · ___（こうか）« effet » · が « sujet » · あった « il y a eu » · 。 « fin »"
+ },
+ "jlpt:q/2200": {
+  "from": "「こうかい」を漢字で書くと？",
+  "stem": "あの時の失敗を今も___している。（こうかい）",
+  "gloss": "あの « ce…-là » · 時（とき）« moment » · の « de » · 失敗（しっぱい）« échec » · を « COD » · 今（いま）« maintenant » · も « encore » · ___している（こうかいしている）« regretter » · 。 « fin »"
+ },
+ "jlpt:q/2202": {
+  "from": "「こうぎ」を漢字で書くと？",
+  "stem": "毎週火曜日に経済学の___を受ける。（こうぎ）",
+  "gloss": "毎週（まいしゅう）« chaque semaine » · 火曜日（かようび）« mardi » · に « à » · 経済学（けいざいがく）« économie » · の « de » · ___（こうぎ）« cours magistral » · を « COD » · 受ける（うける）« suivre » · 。 « fin »"
+ },
+ "jlpt:q/2232": {
+  "from": "「しかく」を漢字で書くと？",
+  "stem": "日本語を教える___を取りたい。（しかく）",
+  "gloss": "日本語（にほんご）« japonais » · を « COD » · 教える（おしえる）« enseigner » · ___（しかく）« qualification, diplôme » · を « COD » · 取りたい（とりたい）« vouloir obtenir » · 。 « fin »"
+ },
+ "jlpt:q/2270": {
+  "from": "「じしん」を漢字で書くと？",
+  "stem": "昨夜とても大きな___があった。（じしん）",
+  "gloss": "昨夜（さくや）« la nuit dernière » · とても « très » · 大きな（おおきな）« grand » · ___（じしん）« séisme » · が « sujet » · あった « il y a eu » · 。 « fin »"
+ },
+ "jlpt:q/2316": {
+  "from": "「たずねる」を漢字で書くと？",
+  "stem": "知らない人に駅までの道を___。（たずねる）",
+  "gloss": "知らない（しらない）« inconnue » · 人（ひと）« personne » · に « à » · 駅（えき）« gare » · まで « jusqu'à » · の « de » · 道（みち）« chemin » · を « COD » · ___（たずねる）« demander, s'enquérir » · 。 « fin »"
+ },
+ "jlpt:q/2320": {
+  "from": "「たてる」を漢字で書くと？",
+  "stem": "夏休みの旅行の計画を___。（たてる）",
+  "gloss": "夏休み（なつやすみ）« vacances d'été » · の « de » · 旅行（りょこう）« voyage » · の « de » · 計画（けいかく）« plan » · を « COD » · ___（たてる）« établir » · 。 « fin »"
+ },
+ "jlpt:q/2322": {
+  "from": "「たてる」を漢字で書くと？",
+  "stem": "来年ここに新しい家を___。（たてる）",
+  "gloss": "来年（らいねん）« l'an prochain » · ここ « ici » · に « à » · 新しい（あたらしい）« nouvelle » · 家（いえ）« maison » · を « COD » · ___（たてる）« construire » · 。 « fin »"
+ },
+ "jlpt:q/2336": {
+  "from": "「ちゅうしゃ」を漢字で書くと？",
+  "stem": "熱が高いので病院で___をしてもらった。（ちゅうしゃ）",
+  "gloss": "熱（ねつ）« fièvre » · が « sujet » · 高い（たかい）« forte » · ので « donc » · 病院（びょういん）« hôpital » · で « à » · ___（ちゅうしゃ）« piqûre » · を « COD » · してもらった « s'en être fait faire » · 。 « fin »"
+ },
+ "jlpt:q/2344": {
+  "from": "「つける」を漢字で書くと？",
+  "stem": "取れたボタンをシャツに___。（つける）",
+  "gloss": "取れた（とれた）« tombé » · ボタン « bouton » · を « COD » · シャツ « chemise » · に « à » · ___（つける）« attacher, recoudre » · 。 « fin »"
+ },
+ "jlpt:q/2364": {
+  "from": "「とくちょう」を漢字で書くと？",
+  "stem": "犯人の顔の___を警察に話した。（とくちょう）",
+  "gloss": "犯人（はんにん）« coupable » · の « de » · 顔（かお）« visage » · の « de » · ___（とくちょう）« signes distinctifs » · を « COD » · 警察（けいさつ）« police » · に « à » · 話した（はなした）« a raconté » · 。 « fin »"
+ },
+ "jlpt:q/2370": {
+  "from": "「とまる」を漢字で書くと？",
+  "stem": "京都では駅前のホテルに___。（とまる）",
+  "gloss": "京都（きょうと）« Kyoto » · で « à » · は « thème » · 駅前（えきまえ）« devant la gare » · の « de » · ホテル « hôtel » · に « à » · ___（とまる）« loger, passer la nuit » · 。 « fin »"
+ },
+ "jlpt:q/2374": {
+  "from": "「なおる」を漢字で書くと？",
+  "stem": "薬を飲んだら風邪がすぐに___。（なおる）",
+  "gloss": "薬（くすり）« médicament » · を « COD » · 飲んだら（のんだら）« ayant pris » · 風邪（かぜ）« rhume » · が « sujet » · すぐに « vite » · ___（なおる）« guérir » · 。 « fin »"
+ },
+ "jlpt:q/2376": {
+  "from": "「なくなる」を漢字で書くと？",
+  "stem": "去年、祖父が病気で___。（なくなる）",
+  "gloss": "去年（きょねん）« l'an dernier » · 祖父（そふ）« grand-père » · が « sujet » · 病気（びょうき）« maladie » · で « de » · ___（なくなる）« est décédé » · 。 « fin »"
+ },
+ "jlpt:q/2388": {
+  "from": "「にる」を漢字で書くと？",
+  "stem": "妹は声も顔も母によく___ている。（にる）",
+  "gloss": "妹（いもうと）« petite sœur » · は « thème » · 声（こえ）« voix » · も « aussi » · 顔（かお）« visage » · も « aussi » · 母（はは）« mère » · に « à » · よく « beaucoup » · ___ている（にている）« ressemble » · 。 « fin »"
+ },
+ "jlpt:q/2442": {
+  "from": "「へる」を漢字で書くと？",
+  "stem": "去年より学生の数が___。（へる）",
+  "gloss": "去年（きょねん）« l'an dernier » · より « que » · 学生（がくせい）« étudiants » · の « de » · 数（かず）« nombre » · が « sujet » · ___（へる）« a diminué » · 。 « fin »"
+ },
+ "jlpt:q/2466": {
+  "from": "「ぼうし」を漢字で書くと？",
+  "stem": "事故（じこ）___のために規則（きそく）を守（まも）りましょう。（ぼうし）",
+  "gloss": "事故___（じこぼうし）« prévention des accidents » · の « de » · ために « pour » · 規則（きそく）« règles » · を « objet » · 守りましょう（まもりましょう）« respectons » · 。 « fin »"
+ },
+ "jlpt:q/2496": {
+  "from": "「やさしい」を漢字で書くと？",
+  "stem": "彼女は誰にでも___人だ。（やさしい）",
+  "gloss": "彼女（かのじょ）« elle » · は « thème » · 誰（だれ）« qui » · にでも « envers n'importe qui » · ___（やさしい）« gentil, doux » · 人（ひと）« personne » · だ « être » · 。 « fin »"
+ },
+ "jlpt:q/2532": {
+  "from": "「わかれる」を漢字で書くと？",
+  "stem": "三年つきあった恋人と___ことにした。（わかれる）",
+  "gloss": "三年（さんねん）« trois ans » · つきあった « fréquenté » · 恋人（こいびと）« amoureux » · と « avec » · ___（わかれる）« rompre, se quitter » · ことにした « a décidé de » · 。 « fin »"
+ },
+ "jlpt:q/2565": {
+  "from": "「あき」を漢字で書くと？",
+  "stem": "___になると木の葉が赤くなる。（あき）",
+  "gloss": "___（あき）« automne » · になると « quand vient » · 木（き）« arbre » · の « de » · 葉（は）« feuilles » · が « sujet » · 赤くなる（あかくなる）« deviennent rouges » · 。 « fin »"
+ },
+ "jlpt:q/2567": {
+  "from": "「あく」を漢字で書くと？",
+  "stem": "強い風でドアが___。（あく）",
+  "gloss": "強い（つよい）« fort » · 風（かぜ）« vent » · で « à cause de » · ドア « porte » · が « sujet » · ___（あく）« s'ouvre » · 。 « fin »"
+ },
+ "jlpt:q/2569": {
+  "from": "「あける」を漢字で書くと？",
+  "stem": "部屋が暑いので窓を___。（あける）",
+  "gloss": "部屋（へや）« pièce » · が « sujet » · 暑い（あつい）« chaude » · ので « donc » · 窓（まど）« fenêtre » · を « COD » · ___（あける）« ouvrir » · 。 « fin »"
+ },
+ "jlpt:q/2571": {
+  "from": "「あげる」を漢字で書くと？",
+  "stem": "読み終わったこの本を弟に___。（あげる）",
+  "gloss": "読み終わった（よみおわった）« fini de lire » · この « ce » · 本（ほん）« livre » · を « COD » · 弟（おとうと）« petit frère » · に « à » · ___（あげる）« donner » · 。 « fin »"
+ },
+ "jlpt:q/2587": {
+  "from": "「あつい」を漢字で書くと？",
+  "stem": "この辞書（じしょ）はとても___です。（あつい）",
+  "gloss": "この « ce » · 辞書（じしょ）« dictionnaire » · は « thème » · とても « très » · ___（あつい）« épais » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/2589": {
+  "from": "「あと」を漢字で書くと？",
+  "stem": "食事の___で薬を飲む。（あと）",
+  "gloss": "食事（しょくじ）« repas » · の « de » · ___（あと）« après » · で « à » · 薬（くすり）« médicament » · を « COD » · 飲む（のむ）« prendre » · 。 « fin »"
+ },
+ "jlpt:q/2605": {
+  "from": "「あめ」を漢字で書くと？",
+  "stem": "___が降ってきたので、傘をさした。（あめ）",
+  "gloss": "___（あめ）« pluie » · が « sujet » · 降ってきた（ふってきた）« s'est mise à tomber » · ので « donc » · 傘（かさ）« parapluie » · を « objet » · さした « ai ouvert » · 。 « fin »"
+ },
+ "jlpt:q/2607": {
+  "from": "「あめ」を漢字で書くと？",
+  "stem": "子どもに___を一つあげた。（あめ）",
+  "gloss": "子ども（こども）« enfant » · に « à » · ___（あめ）« bonbon » · を « objet » · 一つ（ひとつ）« un » · あげた « ai donné » · 。 « fin »"
+ },
+ "jlpt:q/2629": {
+  "from": "「いち」を漢字で書くと？",
+  "stem": "マラソンで___番になった。（いち）",
+  "gloss": "マラソン « marathon » · で « à » · ___番（いちばん）« le premier » · に « en » · なった « suis devenu » · 。 « fin »"
+ },
+ "jlpt:q/2643": {
+  "from": "「いま」を漢字で書くと？",
+  "stem": "___から出かけます。（いま）",
+  "gloss": "___（いま）« maintenant » · から « à partir de » · 出かけます（でかけます）« je sors » · 。 « fin »"
+ },
+ "jlpt:q/2649": {
+  "from": "「いる」（存在する）を漢字で書くと？",
+  "stem": "教室に学生が三人___。（いる）",
+  "gloss": "教室（きょうしつ）« salle de classe » · に « dans » · 学生（がくせい）« étudiants » · が « sujet » · 三人（さんにん）« trois » · ___（いる）« il y a (animé) » · 。 « fin »"
+ },
+ "jlpt:q/2651": {
+  "from": "「いる」（必要だ）を漢字で書くと？",
+  "stem": "旅行にはお金が___。（いる）",
+  "gloss": "旅行（りょこう）« voyage » · には « pour » · お金（おかね）« argent » · が « sujet » · ___（いる）« être nécessaire » · 。 « fin »"
+ },
+ "jlpt:q/2689": {
+  "from": "「えん」を漢字で書くと？",
+  "stem": "この本は千___でした。（えん）",
+  "gloss": "この « ce » · 本（ほん）« livre » · は « thème » · 千___（せんえん）« mille yens » · でした « était » · 。 « fin »"
+ },
+ "jlpt:q/2701": {
+  "from": "「おく」を漢字で書くと？",
+  "stem": "荷物をテーブルの上に___。（おく）",
+  "gloss": "荷物（にもつ）« bagages » · を « objet » · テーブル « table » · の « de » · 上（うえ）« dessus » · に « sur » · ___（おく）« poser » · 。 « fin »"
+ },
+ "jlpt:q/2763": {
+  "from": "「かい」を漢字で書くと？",
+  "stem": "薬を一日に三___飲んでください。（かい）",
+  "gloss": "薬（くすり）« médicament » · を « objet » · 一日（いちにち）« par jour » · に « à » · 三___（さんかい）« trois fois » · 飲んでください（のんでください）« veuillez prendre » · 。 « fin »"
+ },
+ "jlpt:q/2765": {
+  "from": "「かい」を漢字で書くと？",
+  "stem": "事務所はこのビルの五___にあります。（かい）",
+  "gloss": "事務所（じむしょ）« bureau » · は « thème » · この « cet » · ビル « immeuble » · の « de » · 五___（ごかい）« cinquième étage » · に « à » · あります « se trouve » · 。 « fin »"
+ },
+ "jlpt:q/2787": {
+  "from": "「かぜ」を漢字で書くと？",
+  "stem": "今日（きょう）は___が強（つよ）いです。（かぜ）",
+  "gloss": "今日（きょう）« aujourd'hui » · は « thème » · ___（かぜ）« vent » · が « sujet » · 強い（つよい）« fort » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/2801": {
+  "from": "「かみ」を漢字で書くと？",
+  "stem": "___に名前を書いてください。（かみ）",
+  "gloss": "___（かみ）« papier » · に « sur » · 名前（なまえ）« nom » · を « objet » · 書いて（かいて）« écrire » · ください « s'il vous plaît » · 。 « fin »"
+ },
+ "jlpt:q/2839": {
+  "from": "「きゅう」を漢字で書くと？",
+  "stem": "クラスの人数は全部で___人です。（きゅう）",
+  "gloss": "クラス « classe » · の « de » · 人数（にんずう）« effectif » · は « thème » · 全部で（ぜんぶで）« au total » · ___人（きゅうにん）« neuf personnes » · です « est » · 。 « fin »"
+ },
+ "jlpt:q/2847": {
+  "from": "「きる」を漢字で書くと？",
+  "stem": "はさみで紙を___。（きる）",
+  "gloss": "はさみ « ciseaux » · で « avec » · 紙（かみ）« papier » · を « objet » · ___（きる）« couper » · 。 « fin »"
+ },
+ "jlpt:q/2849": {
+  "from": "「きる」を漢字で書くと？",
+  "stem": "寒いのでセーターを___。（きる）",
+  "gloss": "寒い（さむい）« il fait froid » · ので « donc » · セーター « pull » · を « objet » · ___（きる）« porter (vêtement) » · 。 « fin »"
+ },
+ "jlpt:q/2891": {
+  "from": "「ご」を漢字で書くと？",
+  "stem": "毎朝___時に起きます。（ご）",
+  "gloss": "毎朝（まいあさ）« chaque matin » · ___時（ごじ）« cinq heures » · に « à » · 起きます（おきます）« je me lève » · 。 « fin »"
+ },
+ "jlpt:q/2893": {
+  "from": "「こうえん」を漢字で書くと？",
+  "stem": "子どもたちが___で遊んでいる。（こうえん）",
+  "gloss": "子どもたち（こどもたち）« les enfants » · が « sujet » · ___（こうえん）« parc » · で « dans » · 遊んでいる（あそんでいる）« jouent » · 。 « fin »"
+ },
+ "jlpt:q/2911": {
+  "from": "「こたえる」を漢字で書くと？",
+  "stem": "先生の質問に大きな声で___。（こたえる）",
+  "gloss": "先生（せんせい）« professeur » · の « de » · 質問（しつもん）« question » · に « à » · 大きな（おおきな）« grande » · 声（こえ）« voix » · で « avec » · ___（こたえる）« répondre » · 。 « fin »"
+ },
+ "jlpt:q/2947": {
+  "from": "「さす」（傘を〜）を漢字で書くと？",
+  "stem": "雨が降ってきたので傘を___。（さす）",
+  "gloss": "雨（あめ）« pluie » · が « sujet » · 降ってきた（ふってきた）« s'est mise à tomber » · ので « donc » · 傘（かさ）« parapluie » · を « objet » · ___（さす）« ouvrir (un parapluie) » · 。 « fin »"
+ },
+ "jlpt:q/2959": {
+  "from": "「さん」を漢字で書くと？",
+  "stem": "午後___時に会いましょう。（さん）",
+  "gloss": "午後（ごご）« après-midi » · ___時（さんじ）« trois heures » · に « à » · 会いましょう（あいましょう）« rencontrons-nous » · 。 « fin »"
+ },
+ "jlpt:q/2963": {
+  "from": "「し」を漢字で書くと？",
+  "stem": "日本の学校は___月に始まります。（し）",
+  "gloss": "日本（にほん）« Japon » · の « de » · 学校（がっこう）« école » · は « thème » · ___月（しがつ）« avril » · に « en » · 始まります（はじまります）« commence » · 。 « fin »"
+ },
+ "jlpt:q/2967": {
+  "from": "« mais, cependant » を表す言葉は？",
+  "stem": "一生懸命練習しました。___、試合には負けました。（connecteur d'opposition, style poli）",
+  "gloss": "一生懸命（いっしょうけんめい）« de toutes ses forces » · 練習しました（れんしゅうしました）« j'ai pratiqué » · ___ « mais, cependant » · 試合（しあい）« match » · には « à » · 負けました（まけました）« j'ai perdu » · 。 « fin »"
+ },
+ "jlpt:q/2983": {
+  "from": "「しめる」を漢字で書くと？",
+  "stem": "風が入るので、窓を___。（しめる）",
+  "gloss": "風（かぜ）« vent » · が « sujet » · 入る（はいる）« entre » · ので « donc » · 窓（まど）« fenêtre » · を « objet » · ___（しめる）« fermer » · 。 « fin »"
+ },
+ "jlpt:q/2985": {
+  "from": "「しめる」を漢字で書くと？",
+  "stem": "車に乗ったらシートベルトを___。（しめる）",
+  "gloss": "車（くるま）« voiture » · に « dans » · 乗ったら（のったら）« une fois monté » · シートベルト « ceinture de sécurité » · を « objet » · ___（しめる）« attacher » · 。 « fin »"
+ },
+ "jlpt:q/2989": {
+  "from": "« chemise » を表すカタカナ語は？",
+  "stem": "汗をかいたので、___を着替えた。（vêtement du haut, terme général）",
+  "gloss": "汗（あせ）« sueur » · を « objet » · かいた « j'ai transpiré » · ので « donc » · ___ « chemise, maillot » · を « objet » · 着替えた（きがえた）« j'ai changé » · 。 « fin »"
+ },
+ "jlpt:q/3003": {
+  "from": "「しろ」を漢字で書くと？",
+  "stem": "この紙の色は___です。（しろ）",
+  "gloss": "この « ce » · 紙（かみ）« papier » · の « de » · 色（いろ）« couleur » · は « thème » · ___（しろ）« blanc » · です « est » · 。 « fin »"
+ },
+ "jlpt:q/3007": {
+  "from": "「すう」を漢字で書くと？",
+  "stem": "ここでたばこを___ことはできません。（すう）",
+  "gloss": "ここ « ici » · で « à » · たばこ « cigarette » · を « objet » · ___（すう）« fumer » · こと « le fait de » · は « thème » · できません « n'est pas permis » · 。 « fin »"
+ },
+ "jlpt:q/3025": {
+  "from": "「すむ」を漢字で書くと？",
+  "stem": "私は東京のアパートに___。（すむ）",
+  "gloss": "私（わたし）« je » · は « thème » · 東京（とうきょう）« Tokyo » · の « de » · アパート « appartement » · に « dans » · ___（すむ）« habiter » · 。 « fin »"
+ },
+ "jlpt:q/3045": {
+  "from": "「せん」を漢字で書くと？",
+  "stem": "このかばんは五___円でした。（せん）",
+  "gloss": "この « ce » · かばん « sac » · は « thème » · 五___円（ごせんえん）« cinq mille yens » · でした « coûtait » · 。 « fin »"
+ },
+ "jlpt:q/3051": {
+  "from": "「せんたく」を漢字で書くと？",
+  "stem": "母は毎朝___をして、服を干します。（せんたく）",
+  "gloss": "母（はは）« ma mère » · は « thème » · 毎朝（まいあさ）« chaque matin » · ___（せんたく）« lessive » · を « objet » · して « fait et » · 服（ふく）« vêtements » · を « objet » · 干します（ほします）« étend » · 。 « fin »"
+ },
+ "jlpt:q/3087": {
+  "from": "「たつ」を漢字で書くと？",
+  "stem": "名前を呼ばれたら、いすから___。（たつ）",
+  "gloss": "名前（なまえ）« nom » · を « objet » · 呼ばれたら（よばれたら）« quand on t'appelle » · いす « chaise » · から « de » · ___（たつ）« se lever » · 。 « fin »"
+ },
+ "jlpt:q/3113": {
+  "from": "「つく」（到着する）を漢字で書くと？",
+  "stem": "電車は八時に東京駅に___。（つく）",
+  "gloss": "電車（でんしゃ）« train » · は « thème » · 八時（はちじ）« huit heures » · に « à » · 東京駅（とうきょうえき）« gare de Tokyo » · に « à » · ___（つく）« arriver » · 。 « fin »"
+ },
+ "jlpt:q/3119": {
+  "from": "「つける」を漢字で書くと？",
+  "stem": "暗くなったので部屋の電気を___。（つける）",
+  "gloss": "暗くなった（くらくなった）« il a fait sombre » · ので « donc » · 部屋（へや）« pièce » · の « de » · 電気（でんき）« lumière » · を « COD » · ___（つける）« allumer » · 。 « fin »"
+ },
+ "jlpt:q/3121": {
+  "from": "「つとめる」を漢字で書くと？",
+  "stem": "父は銀行に___。（つとめる）",
+  "gloss": "父（ちち）« mon père » · は « thème » · 銀行（ぎんこう）« banque » · に « à » · ___（つとめる）« être employé » · 。 « fin »"
+ },
+ "jlpt:q/3167": {
+  "from": "「とし」を漢字で書くと？",
+  "stem": "祖母は___を取っても元気だ。（とし）",
+  "gloss": "祖母（そぼ）« ma grand-mère » · は « thème » · ___（とし）« âge » · を « objet » · 取っても（とっても）« bien qu'elle prenne de l'âge » · 元気だ（げんきだ）« est en forme » · 。 « fin »"
+ },
+ "jlpt:q/3179": {
+  "from": "「とまる」を漢字で書くと？",
+  "stem": "事故で電車が急に___。（とまる）",
+  "gloss": "事故（じこ）« accident » · で « à cause de » · 電車（でんしゃ）« train » · が « sujet » · 急に（きゅうに）« soudain » · ___（とまる）« s'arrête » · 。 « fin »"
+ },
+ "jlpt:q/3187": {
+  "from": "「とる」を漢字で書くと？",
+  "stem": "旅行（りょこう）で写真（しゃしん）をたくさん___。（とる）",
+  "gloss": "旅行（りょこう）« voyage » · で « pendant » · 写真（しゃしん）« photos » · を « objet » · たくさん « beaucoup » · ___（とる）« prendre (une photo) » · 。 « fin »"
+ },
+ "jlpt:q/3197": {
+  "from": "「なく」を漢字で書くと？",
+  "stem": "庭で虫が___。（なく）",
+  "gloss": "庭（にわ）« jardin » · で « dans » · 虫（むし）« insecte » · が « sujet » · ___（なく）« crier (animal) » · 。 « fin »"
+ },
+ "jlpt:q/3231": {
+  "from": "「のぼる」を漢字で書くと？",
+  "stem": "夏休みに友だちと富士山に___。（のぼる）",
+  "gloss": "夏休み（なつやすみ）« vacances d'été » · に « pendant » · 友だち（ともだち）« amis » · と « avec » · 富士山（ふじさん）« mont Fuji » · に « sur » · ___（のぼる）« grimper » · 。 « fin »"
+ },
+ "jlpt:q/3247": {
+  "from": "「はく」を漢字で書くと？",
+  "stem": "新しい靴を___。（はく）",
+  "gloss": "新しい（あたらしい）« nouvelles » · 靴（くつ）« chaussures » · を « objet » · ___（はく）« porter (aux pieds) » · 。 « fin »"
+ },
+ "jlpt:q/3251": {
+  "from": "「はし」を漢字で書くと？",
+  "stem": "車で___をわたる。（はし）",
+  "gloss": "車（くるま）« voiture » · で « en » · ___（はし）« pont » · を « objet » · わたる « traverser » · 。 « fin »"
+ },
+ "jlpt:q/3253": {
+  "from": "「はし」を漢字で書くと？",
+  "stem": "ご飯を___で食べる。（はし）",
+  "gloss": "ご飯（ごはん）« riz, repas » · を « objet » · ___（はし）« baguettes » · で « avec » · 食べる（たべる）« manger » · 。 « fin »"
+ },
+ "jlpt:q/3269": {
+  "from": "「はな」を漢字で書くと？",
+  "stem": "庭にきれいな___がさいた。（はな）",
+  "gloss": "庭（にわ）« jardin » · に « dans » · きれいな « jolie » · ___（はな）« fleur » · が « sujet » · さいた « a fleuri » · 。 « fin »"
+ },
+ "jlpt:q/3271": {
+  "from": "「はな」を漢字で書くと？",
+  "stem": "ぞうは___が長い。（はな）",
+  "gloss": "ぞう « éléphant » · は « thème » · ___（はな）« nez, trompe » · が « sujet » · 長い（ながい）« long » · 。 « fin »"
+ },
+ "jlpt:q/3275": {
+  "from": "「はやい」を漢字で書くと？",
+  "stem": "この車（くるま）はとても___です。（はやい）",
+  "gloss": "この « cette » · 車（くるま）« voiture » · は « thème » · とても « très » · ___（はやい）« rapide » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/3277": {
+  "from": "「はる」を漢字で書くと？",
+  "stem": "___になって暖かくなった。（はる）",
+  "gloss": "___（はる）« printemps » · に « en » · なって « être devenu, et » · 暖かくなった（あたたかくなった）« il fait chaud maintenant » · 。 « fin »"
+ },
+ "jlpt:q/3279": {
+  "from": "「はる」を漢字で書くと？",
+  "stem": "封筒に切手を___。（はる）",
+  "gloss": "封筒（ふうとう）« enveloppe » · に « sur » · 切手（きって）« timbre » · を « objet » · ___（はる）« coller » · 。 « fin »"
+ },
+ "jlpt:q/3281": {
+  "from": "「はん」を漢字で書くと？",
+  "stem": "今、六時___です。（はん）",
+  "gloss": "今（いま）« maintenant » · 六時（ろくじ）« six heures » · ___（はん）« et demie » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/3289": {
+  "from": "「ひ」を漢字で書くと？",
+  "stem": "冬は___が短い。（ひ）",
+  "gloss": "冬（ふゆ）« hiver » · は « thème » · ___（ひ）« jour, durée du jour » · が « sujet » · 短い（みじかい）« court » · 。 « fin »"
+ },
+ "jlpt:q/3291": {
+  "from": "「ひ」を漢字で書くと？",
+  "stem": "ガスコンロの___を消す。（ひ）",
+  "gloss": "ガスコンロ « réchaud à gaz » · の « de » · ___（ひ）« feu, flamme » · を « objet » · 消す（けす）« éteindre » · 。 « fin »"
+ },
+ "jlpt:q/3302": {
+  "from": "「一月」の読み方は？",
+  "stem": "この仕事（しごと）はあと___かかります。（一月）",
+  "gloss": "この « ce » · 仕事（しごと）« travail » · は « thème » · あと « encore » · ___（ひとつき）« un mois » · かかります « prendra » · 。 « fin »"
+ },
+ "jlpt:q/3315": {
+  "from": "「ひく」を漢字で書くと？",
+  "stem": "分（わ）からない言葉（ことば）は辞書（じしょ）を___。（ひく）",
+  "gloss": "分からない（わからない）« qu'on ne comprend pas » · 言葉（ことば）« mot » · は « thème » · 辞書（じしょ）« dictionnaire » · を « objet » · ___（ひく）« consulter » · 。 « fin »"
+ },
+ "jlpt:q/3321": {
+  "from": "「ふく」を漢字で書くと？",
+  "stem": "今日は風が強く___。（ふく）",
+  "gloss": "今日（きょう）« aujourd'hui » · は « thème » · 風（かぜ）« vent » · が « sujet » · 強く（つよく）« fort » · ___（ふく）« souffler » · 。 « fin »"
+ },
+ "jlpt:q/3323": {
+  "from": "「ふく」を漢字で書くと？",
+  "stem": "デパートで新しい___を買った。（ふく）",
+  "gloss": "デパート « grand magasin » · で « à » · 新しい（あたらしい）« nouveau » · ___（ふく）« vêtement » · を « objet » · 買った（かった）« ai acheté » · 。 « fin »"
+ },
+ "jlpt:q/3341": {
+  "from": "「へん」を漢字で書くと？",
+  "stem": "この___に銀行はありますか。（へん）",
+  "gloss": "この « ce » · ___（へん）« environs, coin » · に « à » · 銀行（ぎんこう）« banque » · は « thème » · ありますか « y a-t-il ? » · 。 « fin »"
+ },
+ "jlpt:q/3381": {
+  "from": "« déjà » を表す言葉は？",
+  "stem": "___昼ご飯を食べましたか。（« déjà », langue parlée）",
+  "gloss": "___（もう）« déjà » · 昼ご飯（ひるごはん）« déjeuner » · を « objet » · 食べましたか（たべましたか）« avez-vous mangé ? » · 。 « fin »"
+ },
+ "jlpt:q/3405": {
+  "from": "「まち」を漢字で書くと？",
+  "stem": "父は小さな___に住んでいる。（まち）",
+  "gloss": "父（ちち）« mon père » · は « thème » · 小さな（ちいさな）« petite » · ___（まち）« ville, commune » · に « à » · 住んでいる（すんでいる）« habite » · 。 « fin »"
+ },
+ "jlpt:q/3461": {
+  "from": "「やさしい」を漢字で書くと？",
+  "stem": "この問題は思ったより___。（やさしい）",
+  "gloss": "この « ce » · 問題（もんだい）« problème » · は « thème » · 思ったより（おもったより）« plus que prévu » · ___（やさしい）« facile » · 。 « fin »"
+ },
+ "jlpt:q/3485": {
+  "from": "「よる」を漢字で書くと？",
+  "stem": "___になると星が見える。（よる）",
+  "gloss": "___（よる）« nuit » · に « à » · なると « quand vient » · 星（ほし）« étoiles » · が « sujet » · 見える（みえる）« se voient » · 。 « fin »"
+ },
+ "jlpt:q/3497": {
+  "from": "「れい」を漢字で書くと？",
+  "stem": "気温は___度まで下がった。（れい）",
+  "gloss": "気温（きおん）« température » · は « thème » · ___度（れいど）« zéro degré » · まで « jusqu'à » · 下がった（さがった）« est descendue » · 。 « fin »"
+ },
+ "jlpt:q/3515": {
+  "from": "「いし」を漢字で書くと？",
+  "stem": "道に小さな___が落ちている。（いし）",
+  "gloss": "道（みち）« chemin » · に « sur » · 小さな（ちいさな）« petite » · ___（いし）« pierre » · が « sujet » · 落ちている（おちている）« se trouve, est tombée » · 。 « fin »"
+ },
+ "jlpt:q/3531": {
+  "from": "« chemise » を表すカタカナ語は？",
+  "stem": "面接に行くので、白い___とネクタイを用意した。（chemise de costume）",
+  "gloss": "面接（めんせつ）« entretien d'embauche » · に « à » · 行く（いく）« aller » · ので « donc » · 白い（しろい）« blanche » · ___ « chemise de costume » · と « et » · ネクタイ « cravate » · を « objet » · 用意した（よういした）« ai préparé » · 。 « fin »"
+ },
+ "jlpt:q/3563": {
+  "from": "「せん」を漢字で書くと？",
+  "stem": "紙に定規でまっすぐな___を引いた。（せん）",
+  "gloss": "紙（かみ）« papier » · に « sur » · 定規（じょうぎ）« règle » · で « avec » · まっすぐな « droite » · ___（せん）« ligne » · を « objet » · 引いた（ひいた）« ai tracée » · 。 « fin »"
+ },
+ "jlpt:q/3591": {
+  "from": "「たずねる」を漢字で書くと？",
+  "stem": "久しぶりに先生の家を___。（たずねる）",
+  "gloss": "久しぶりに（ひさしぶりに）« après longtemps » · 先生（せんせい）« professeur » · の « de » · 家（いえ）« maison » · を « COD » · ___（たずねる）« rendre visite » · 。 « fin »"
+ },
+ "jlpt:q/3627": {
+  "from": "「つく」（明かりが〜）を漢字で書くと？",
+  "stem": "スイッチを押すと明かりが___。（つく）",
+  "gloss": "スイッチ « interrupteur » · を « objet » · 押す（おす）« appuyer » · と « quand » · 明かり（あかり）« lumière » · が « sujet » · ___（つく）« s'allumer » · 。 « fin »"
+ },
+ "jlpt:q/3629": {
+  "from": "「つける」を漢字で書くと？",
+  "stem": "野菜を一晩塩水に___。（つける）",
+  "gloss": "野菜（やさい）« légumes » · を « COD » · 一晩（ひとばん）« une nuit » · 塩水（しおみず）« eau salée » · に « dans » · ___（つける）« faire tremper, mariner » · 。 « fin »"
+ },
+ "jlpt:q/3643": {
+  "from": "「とめる」を漢字で書くと？",
+  "stem": "うるさいので音楽を___。（とめる）",
+  "gloss": "うるさい « bruyant » · ので « comme » · 音楽（おんがく）« musique » · を « objet » · ___（とめる）« arrêter » · 。 « fin »"
+ },
+ "jlpt:q/3649": {
+  "from": "「なおる」を漢字で書くと？",
+  "stem": "修理に出した時計がやっと___。（なおる）",
+  "gloss": "修理（しゅうり）« réparation » · に « à » · 出した（だした）« confié » · 時計（とけい）« montre » · が « sujet » · やっと « enfin » · ___（なおる）« être réparé » · 。 « fin »"
+ },
+ "jlpt:q/3651": {
+  "from": "「なおす」を漢字で書くと？",
+  "stem": "薬（くすり）を飲（の）んで風邪（かぜ）を___。（なおす）",
+  "gloss": "薬（くすり）« médicament » · を « objet » · 飲んで（のんで）« en prenant » · 風邪（かぜ）« rhume » · を « objet » · ___（なおす）« guérir » · 。 « fin »"
+ },
+ "jlpt:q/3655": {
+  "from": "「なく」を漢字で書くと？",
+  "stem": "映画を見て、感動して___。（なく）",
+  "gloss": "映画（えいが）« film » · を « objet » · 見て（みて）« en voyant » · 感動して（かんどうして）« ému » · ___（なく）« pleurer » · 。 « fin »"
+ },
+ "jlpt:q/3657": {
+  "from": "「なくなる」を漢字で書くと？",
+  "stem": "財布に入れたお金が全部___。（なくなる）",
+  "gloss": "財布（さいふ）« portefeuille » · に « dans » · 入れた（いれた）« mis » · お金（おかね）« argent » · が « sujet » · 全部（ぜんぶ）« tout » · ___（なくなる）« a disparu » · 。 « fin »"
+ },
+ "jlpt:q/3725": {
+  "from": "「へん」を漢字で書くと？",
+  "stem": "この牛乳は___なにおいがする。（へん）",
+  "gloss": "この « ce » · 牛乳（ぎゅうにゅう）« lait » · は « thème » · ___な（へん）« bizarre » · におい « odeur » · が « sujet » · する « avoir, dégager » · 。 « fin »"
+ },
+ "jlpt:q/3733": {
+  "from": "「ほうそう」を漢字で書くと？",
+  "stem": "その番組は昨日テレビで___された。（ほうそう）",
+  "gloss": "その « ce » · 番組（ばんぐみ）« émission » · は « thème » · 昨日（きのう）« hier » · テレビ « télévision » · で « à » · ___された（ほうそうされた）« a été diffusée » · 。 « fin »"
+ },
+ "jlpt:q/3747": {
+  "from": "「まわり」を漢字で書くと？",
+  "stem": "引っ越しの前に身の___の物を片付けた。（まわり）",
+  "gloss": "引っ越し（ひっこし）« déménagement » · の « de » · 前（まえ）« avant » · に « à » · 身（み）« soi » · の « de » · ___（まわり）« alentours, autour » · の « de » · 物（もの）« affaires » · を « objet » · 片付けた（かたづけた）« a rangé » · 。 « fin »"
+ },
+ "jlpt:q/3767": {
+  "from": "「むし」を漢字で書くと？",
+  "stem": "庭（にわ）に小（ちい）さい___がいます。（むし）",
+  "gloss": "庭（にわ）« jardin » · に « dans » · 小さい（ちいさい）« petit » · ___（むし）« insecte » · が « sujet » · います « il y a » · 。 « fin »"
+ },
+ "jlpt:q/3803": {
+  "from": "「よる」を漢字で書くと？",
+  "stem": "帰りにスーパーに___。（よる）",
+  "gloss": "帰り（かえり）« retour » · に « sur » · スーパー « supermarché » · に « à » · ___（よる）« faire un saut, passer » · 。 « fin »"
+ },
+ "jlpt:q/3805": {
+  "from": "「よる」を漢字で書くと？",
+  "stem": "この事故は不注意に___ものだ。（よる）",
+  "gloss": "この « ce » · 事故（じこ）« accident » · は « thème » · 不注意（ふちゅうい）« imprudence » · に « à » · ___（よる）« être dû à » · ものだ « c'est le fait de » · 。 « fin »"
+ },
+ "jlpt:q/3819": {
+  "from": "「きのう」を漢字で書くと？",
+  "stem": "この電話には便利な___が多い。（きのう）",
+  "gloss": "この « ce » · 電話（でんわ）« téléphone » · には « à » · 便利な（べんりな）« pratique » · ___（きのう）« fonction » · が « sujet » · 多い（おおい）« nombreuses » · 。 « fin »"
+ },
+ "jlpt:q/3845": {
+  "from": "「きゅうそく」を漢字で書くと？",
+  "stem": "夕食のあと少し___をとる。（きゅうそく）",
+  "gloss": "夕食（ゆうしょく）« dîner » · の « de » · あと « après » · 少し（すこし）« un peu » · ___（きゅうそく）« repos » · を « objet » · とる « prendre » · 。 « fin »"
+ },
+ "jlpt:q/3847": {
+  "from": "「きゅうそく」を漢字で書くと？",
+  "stem": "この町は___に発展している。（きゅうそく）",
+  "gloss": "この « cette » · 町（まち）« ville » · は « thème » · ___に（きゅうそくに）« rapidement » · 発展している（はってんしている）« se développe » · 。 « fin »"
+ },
+ "jlpt:q/3865": {
+  "from": "「きょうちょう」を漢字で書くと？",
+  "stem": "先生は時間を守ることを___した。（きょうちょう）",
+  "gloss": "先生（せんせい）« professeur » · は « thème » · 時間（じかん）« temps » · を « objet » · 守る（まもる）« respecter » · こと « le fait de » · を « objet » · ___（きょうちょう）« insistance » · した « a fait » · 。 « fin »"
+ },
+ "jlpt:q/3885": {
+  "from": "「きりつ」を漢字で書くと？",
+  "stem": "この学校は___が厳しい。（きりつ）",
+  "gloss": "この « cette » · 学校（がっこう）« école » · は « thème » · ___（きりつ）« discipline » · が « sujet » · 厳しい（きびしい）« stricte » · 。 « fin »"
+ },
+ "jlpt:q/3903": {
+  "from": "「きしゃ」を漢字で書くと？",
+  "stem": "新聞___が事件について書いた。（きしゃ）",
+  "gloss": "新聞（しんぶん）« journal » · ___（きしゃ）« journaliste » · が « sujet » · 事件（じけん）« affaire, incident » · について « au sujet de » · 書いた（かいた）« a écrit » · 。 « fin »"
+ },
+ "jlpt:q/3905": {
+  "from": "「しき」を漢字で書くと？",
+  "stem": "来月、姉の結婚___に出る。（しき）",
+  "gloss": "来月（らいげつ）« le mois prochain » · 姉（あね）« ma sœur aînée » · の « de » · 結婚___（けっこんしき）« cérémonie de mariage » · に « à » · 出る（でる）« assister » · 。 « fin »"
+ },
+ "jlpt:q/3907": {
+  "from": "「しき」を漢字で書くと？",
+  "stem": "日本は___の変化がはっきりしている。（しき）",
+  "gloss": "日本（にほん）« Japon » · は « thème » · ___（しき）« les quatre saisons » · の « de » · 変化（へんか）« changement » · が « sujet » · はっきりしている « est net » · 。 « fin »"
+ },
+ "jlpt:q/3909": {
+  "from": "「じこ」を漢字で書くと？",
+  "stem": "面接で___紹介をした。（じこ）",
+  "gloss": "面接（めんせつ）« entretien » · で « lieu » · ___紹介（じこしょうかい）« présentation de soi » · を « COD » · した « a fait » · 。 « fin »"
+ },
+ "jlpt:q/3915": {
+  "from": "「しじ」を漢字で書くと？",
+  "stem": "先生の___に従って作業する。（しじ）",
+  "gloss": "先生（せんせい）« professeur » · の « de » · ___（しじ）« instructions » · に « à » · 従って（したがって）« en suivant » · 作業する（さぎょうする）« travailler » · 。 « fin »"
+ },
+ "jlpt:q/3919": {
+  "from": "「じしん」を漢字で書くと？",
+  "stem": "たくさん練習したので試合に勝つ___がある。（じしん）",
+  "gloss": "たくさん « beaucoup » · 練習した（れんしゅうした）« s'être entraîné » · ので « donc » · 試合（しあい）« match » · に « à » · 勝つ（かつ）« gagner » · ___（じしん）« confiance en soi » · が « sujet » · ある « avoir » · 。 « fin »"
+ },
+ "jlpt:q/3937": {
+  "from": "「じどう」を漢字で書くと？",
+  "stem": "このドアは___で開きます。（じどう）",
+  "gloss": "この « cette » · ドア « porte » · は « thème » · ___（じどう）« automatique » · で « par » · 開きます（ひらきます）« s'ouvrir » · 。 « fin »"
+ },
+ "jlpt:q/3967": {
+  "from": "「しょうめい」を漢字で書くと？",
+  "stem": "身分を___する書類が必要です。（しょうめい）",
+  "gloss": "身分（みぶん）« identité » · を « objet » · ___（しょうめい）« attestation, preuve » · する « faire » · 書類（しょるい）« document » · が « sujet » · 必要（ひつよう）« nécessaire » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/3979": {
+  "from": "「しろ」を漢字で書くと？",
+  "stem": "昔、この山の上に大きな___があった。（しろ）",
+  "gloss": "昔（むかし）« autrefois » · この « cette » · 山（やま）« montagne » · の « de » · 上（うえ）« sommet » · に « sur » · 大きな（おおきな）« grand » · ___（しろ）« château » · が « sujet » · あった « il y avait » · 。 « fin »"
+ },
+ "jlpt:q/4295": {
+  "from": "「うえる」を漢字で書くと？",
+  "stem": "庭に木を___。（うえる）",
+  "gloss": "庭（にわ）« jardin » · に « dans » · 木（き）« arbre » · を « objet » · ___（うえる）« planter » · 。 « fin »"
+ },
+ "jlpt:q/4301": {
+  "from": "「うつす」を漢字で書くと？",
+  "stem": "黒板の字をノートに___。（うつす）",
+  "gloss": "黒板（こくばん）« tableau noir » · の « de » · 字（じ）« caractères » · を « objet » · ノート « cahier » · に « dans » · ___（うつす）« recopier » · 。 « fin »"
+ },
+ "jlpt:q/4311": {
+  "from": "「おく」を漢字で書くと？",
+  "stem": "世界の人口は八十___人を超えた。（おく）",
+  "gloss": "世界（せかい）« monde » · の « de » · 人口（じんこう）« population » · は « thème » · 八十（はちじゅう）« quatre-vingts » · ___（おく）« cent millions » · 人（にん）« personnes » · を « objet » · 超えた（こえた）« a dépassé » · 。 « fin »"
+ },
+ "jlpt:q/4313": {
+  "from": "「おくる」を漢字で書くと？",
+  "stem": "友だちにメールを___。（おくる）",
+  "gloss": "友だち（ともだち）« ami » · に « à » · メール « e-mail » · を « objet » · ___（おくる）« envoyer » · 。 « fin »"
+ },
+ "jlpt:q/4345": {
+  "from": "「かい」を漢字で書くと？",
+  "stem": "日本語のスピーチ大___に参加した。（かい）",
+  "gloss": "日本語（にほんご）« japonais » · の « de » · スピーチ « discours » · 大___（たいかい）« grand concours » · に « à » · 参加した（さんかした）« ai participé » · 。 « fin »"
+ },
+ "jlpt:q/4355": {
+  "from": "「かたい」を漢字で書くと？",
+  "stem": "二人（ふたり）は___約束（やくそく）をしました。（かたい）",
+  "gloss": "二人（ふたり）« tous les deux » · は « thème » · ___（かたい）« ferme » · 約束（やくそく）« promesse » · を « objet » · しました « ont fait » · 。 « fin »"
+ },
+ "jlpt:q/4359": {
+  "from": "「かてい」（家族の〜）を漢字で書くと？",
+  "stem": "彼女は明るい___で育った。（かてい）",
+  "gloss": "彼女（かのじょ）« elle » · は « thème » · 明るい（あかるい）« joyeux » · ___（かてい）« foyer, famille » · で « dans » · 育った（そだった）« a grandi » · 。 « fin »"
+ },
+ "jlpt:q/4383": {
+  "from": "「かみ」（頭の〜）を漢字で書くと？",
+  "stem": "美容院で___を短く切った。（かみ）",
+  "gloss": "美容院（びよういん）« salon de coiffure » · で « à » · ___（かみ）« cheveux » · を « objet » · 短く（みじかく）« court » · 切った（きった）« a coupé » · 。 « fin »"
+ },
+ "jlpt:q/4387": {
+  "from": "「かわく」を漢字で書くと？",
+  "stem": "晴れた日は洗濯物がよく___。（かわく）",
+  "gloss": "晴れた（はれた）« ensoleillé » · 日（ひ）« jour » · は « thème » · 洗濯物（せんたくもの）« linge » · が « sujet » · よく « bien » · ___（かわく）« sécher » · 。 « fin »"
+ },
+ "jlpt:q/4393": {
+  "from": "「かんじ」を漢字で書くと？",
+  "stem": "この部屋は暖かい___がする。（かんじ）",
+  "gloss": "この « cette » · 部屋（へや）« pièce » · は « thème » · 暖かい（あたたかい）« chaleureux » · ___（かんじ）« impression, sensation » · がする « donne l'impression » · 。 « fin »"
+ },
+ "jlpt:q/4405": {
+  "from": "「がっき」を漢字で書くと？",
+  "stem": "何か___が弾けますか。（がっき）",
+  "gloss": "何か（なにか）« quelque chose » · ___（がっき）« instrument de musique » · が « sujet » · 弾けますか（ひけますか）« savez-vous jouer ? » · 。 « fin »"
+ },
+ "jlpt:q/4421": {
+  "from": "「きゅう」を漢字で書くと？",
+  "stem": "___な用事ができて、早く帰った。（きゅう）",
+  "gloss": "___な（きゅうな）« urgent » · 用事（ようじ）« affaire à régler » · が « sujet » · できて « est survenue » · 早く（はやく）« tôt » · 帰った（かえった）« suis rentré » · 。 « fin »"
+ },
+ "jlpt:q/4425": {
+  "from": "「きしゃ」を漢字で書くと？",
+  "stem": "昔の人は___で旅行した。（きしゃ）",
+  "gloss": "昔（むかし）« autrefois » · の « de » · 人（ひと）« gens » · は « thème » · ___（きしゃ）« train à vapeur » · で « en » · 旅行した（りょこうした）« voyageaient » · 。 « fin »"
+ },
+ "jlpt:q/4449": {
+  "from": "「こうがい」を漢字で書くと？",
+  "stem": "静かな___に家を買った。（こうがい）",
+  "gloss": "静かな（しずかな）« calme » · ___（こうがい）« banlieue » · に « en » · 家（いえ）« maison » · を « objet » · 買った（かった）« ai achetée » · 。 « fin »"
+ },
+ "jlpt:q/4457": {
+  "from": "「こうどう」を漢字で書くと？",
+  "stem": "入学式は___で行われる。（こうどう）",
+  "gloss": "入学式（にゅうがくしき）« cérémonie de rentrée » · は « thème » · ___（こうどう）« grand amphithéâtre » · で « lieu » · 行われる（おこなわれる）« a lieu » · 。 « fin »"
+ },
+ "jlpt:q/4469": {
+  "from": "「こむ」を漢字で書くと？",
+  "stem": "大学のセミナーに申し___。（こむ）",
+  "gloss": "大学（だいがく）« université » · の « de » · セミナー « séminaire » · に « à » · 申し___（もうしこむ）« s'inscrire, faire une demande » · 。 « fin »"
+ },
+ "jlpt:q/4499": {
+  "from": "「さめる」を漢字で書くと？",
+  "stem": "スープが___前に食べよう。（さめる）",
+  "gloss": "スープ « soupe » · が « sujet » · ___（さめる）« refroidir » · 前に（まえに）« avant de » · 食べよう（たべよう）« mangeons » · 。 « fin »"
+ },
+ "jlpt:q/4501": {
+  "from": "「さめる」を漢字で書くと？",
+  "stem": "大きな音で目が___。（さめる）",
+  "gloss": "大きな（おおきな）« grand » · 音（おと）« bruit » · で « à cause de » · 目（め）« yeux » · が « sujet » · ___（さめる）« se réveiller » · 。 « fin »"
+ },
+ "jlpt:q/4529": {
+  "from": "「し」を漢字で書くと？",
+  "stem": "京都___の図書館で働いています。（し）",
+  "gloss": "京都（きょうと）« Kyoto » · ___（し）« ville » · の « de » · 図書館（としょかん）« bibliothèque » · で « à » · 働いています（はたらいています）« je travaille » · 。 « fin »"
+ },
+ "jlpt:q/4553": {
+  "from": "「すむ」を漢字で書くと？",
+  "stem": "この手続きは電話で___。（すむ）",
+  "gloss": "この « cette » · 手続き（てつづき）« démarche » · は « thème » · 電話（でんわ）« téléphone » · で « par » · ___（すむ）« se régler » · 。 « fin »"
+ },
+ "jlpt:q/4609": {
+  "from": "「あける」を漢字で書くと？",
+  "stem": "長い夜がやっと___。（あける）",
+  "gloss": "長い（ながい）« longue » · 夜（よる）« nuit » · が « sujet » · やっと « enfin » · ___（あける）« (jour) se lever, finir » · 。 « fin »"
+ },
+ "jlpt:q/4611": {
+  "from": "「あき」を漢字で書くと？",
+  "stem": "このホテルには今___がありません。（あき）",
+  "gloss": "この « cet » · ホテル « hôtel » · に « à » · は « thème » · 今（いま）« maintenant » · ___（あき）« place libre » · が « sujet » · ありません « il n'y a pas » · 。 « fin »"
+ },
+ "jlpt:q/4613": {
+  "from": "「あく」を漢字で書くと？",
+  "stem": "この物語では最後に___が負ける。（あく）",
+  "gloss": "この « ce » · 物語（ものがたり）« récit » · で « dans » · は « thème » · 最後に（さいごに）« à la fin » · ___（あく）« le mal » · が « sujet » · 負ける（まける）« perd » · 。 « fin »"
+ },
+ "jlpt:q/4625": {
+  "from": "「あげる」を漢字で書くと？",
+  "stem": "天ぷらを熱い油で___。（あげる）",
+  "gloss": "天ぷら（てんぷら）« tempura » · を « COD » · 熱い（あつい）« chaude » · 油（あぶら）« huile » · で « dans » · ___（あげる）« frire » · 。 « fin »"
+ },
+ "jlpt:q/4653": {
+  "from": "「あと」を漢字で書くと？",
+  "stem": "雪の上に動物の足の___が残っている。（あと）",
+  "gloss": "雪（ゆき）« neige » · の « de » · 上（うえ）« dessus » · に « sur » · 動物（どうぶつ）« animal » · の « de » · 足（あし）« patte » · の « de » · ___（あと）« trace, empreinte » · が « sujet » · 残っている（のこっている）« reste » · 。 « fin »"
+ },
+ "jlpt:q/4707": {
+  "from": "「い」を漢字で書くと？",
+  "stem": "兄はマラソンで三___になった。（い）",
+  "gloss": "兄（あに）« mon frère » · は « thème » · マラソン « marathon » · で « à » · 三___（さんい）« troisième place » · になった « est arrivé » · 。 « fin »"
+ },
+ "jlpt:q/4715": {
+  "from": "「いがい」を漢字で書くと？",
+  "stem": "試験は___に易しかった。（いがい）",
+  "gloss": "試験（しけん）« examen » · は « thème » · ___（いがい）« inattendu, surprenant » · に « adverbial » · 易しかった（やさしかった）« était facile » · 。 « fin »"
+ },
+ "jlpt:q/4729": {
+  "from": "「いし」を漢字で書くと？",
+  "stem": "病院で___に診てもらった。（いし）",
+  "gloss": "病院（びょういん）« hôpital » · で « à » · ___（いし）« médecin » · に « par » · 診てもらった（みてもらった）« me suis fait examiner » · 。 « fin »"
+ },
+ "jlpt:q/4733": {
+  "from": "「いじょう」を漢字で書くと？",
+  "stem": "___な音（おと）がしたので機械（きかい）を止（と）めました。（いじょう）",
+  "gloss": "___な（いじょうな）« anormal » · 音（おと）« bruit » · が « sujet » · した « s'est produit » · ので « parce que » · 機械（きかい）« machine » · を « objet » · 止めました（とめました）« j'ai arrêtée » · 。 « fin »"
+ },
+ "jlpt:q/4745": {
+  "from": "「いち」を漢字で書くと？",
+  "stem": "机を元の___に戻してください。（いち）",
+  "gloss": "机（つくえ）« bureau » · を « objet » · 元の（もとの）« d'origine » · ___（いち）« position » · に « à » · 戻してください（もどしてください）« veuillez remettre » · 。 « fin »"
+ },
+ "jlpt:q/4797": {
+  "from": "「いま」を漢字で書くと？",
+  "stem": "家族は___でテレビを見ている。（いま）",
+  "gloss": "家族（かぞく）« famille » · は « thème » · ___（いま）« salon » · で « dans » · テレビ « télévision » · を « objet » · 見ている（みている）« regarde » · 。 « fin »"
+ },
+ "jlpt:q/4811": {
+  "from": "「いらい」を漢字で書くと？",
+  "stem": "卒業して___彼に会っていない。（いらい）",
+  "gloss": "卒業して（そつぎょうして）« ayant obtenu son diplôme » · ___（いらい）« depuis » · 彼（かれ）« lui » · に « à » · 会っていない（あっていない）« je ne l'ai pas revu » · 。 « fin »"
+ },
+ "jlpt:q/4813": {
+  "from": "「いらい」を漢字で書くと？",
+  "stem": "友だちに仕事を___した。（いらい）",
+  "gloss": "友だち（ともだち）« ami » · に « à » · 仕事（しごと）« travail » · を « objet » · ___（いらい）« demande, requête » · した « a fait » · 。 « fin »"
+ },
+ "jlpt:q/4835": {
+  "from": "「うえる」を漢字で書くと？",
+  "stem": "戦争で多くの子どもが___。（うえる）",
+  "gloss": "戦争（せんそう）« guerre » · で « à cause de » · 多く（おおく）« beaucoup » · の « de » · 子ども（こども）« enfants » · が « sujet » · ___（うえる）« souffrir de la faim » · 。 « fin »"
+ },
+ "jlpt:q/4863": {
+  "from": "「うつす」を漢字で書くと？",
+  "stem": "机を窓のそばに___。（うつす）",
+  "gloss": "机（つくえ）« bureau » · を « objet » · 窓（まど）« fenêtre » · の « de » · そば « à côté » · に « à » · ___（うつす）« déplacer » · 。 « fin »"
+ },
+ "jlpt:q/4867": {
+  "from": "「うつる」を漢字で書くと？",
+  "stem": "鏡（かがみ）に自分（じぶん）の顔（かお）が___。（うつる）",
+  "gloss": "鏡（かがみ）« miroir » · に « dans » · 自分（じぶん）« soi-même » · の « de » · 顔（かお）« visage » · が « sujet » · ___（うつる）« se refléter » · 。 « fin »"
+ },
+ "jlpt:q/5121": {
+  "from": "「がいとう」を漢字で書くと？",
+  "stem": "この道は___が少なくて夜は暗い。（がいとう）",
+  "gloss": "この « ce » · 道（みち）« chemin » · は « thème » · ___（がいとう）« lampadaire » · が « sujet » · 少なくて（すくなくて）« peu nombreux » · 夜（よる）« la nuit » · は « thème » · 暗い（くらい）« sombre » · 。 « fin »"
+ },
+ "jlpt:q/5123": {
+  "from": "「がいとう」を漢字で書くと？",
+  "stem": "この条件に___する人はいますか。（がいとう）",
+  "gloss": "この « cette » · 条件（じょうけん）« condition » · に « à » · ___（がいとう）« correspondre » · する « faire » · 人（ひと）« personne » · は « thème » · いますか « y a-t-il ? » · 。 « fin »"
+ },
+ "jlpt:q/5129": {
+  "from": "「かがく」を漢字で書くと？",
+  "stem": "水（みず）は___式（しき）でH2Oと書（か）きます。（かがく）",
+  "gloss": "水（みず）« eau » · は « thème » · ___式（かがくしき）« formule chimique » · で « en » · H2O « H2O » · と « comme » · 書きます（かきます）« s'écrit » · 。 « fin »"
+ },
+ "jlpt:q/5155": {
+  "from": "「がっき」を漢字で書くと？",
+  "stem": "新しい___が四月から始まる。（がっき）",
+  "gloss": "新しい（あたらしい）« nouveau » · ___（がっき）« trimestre scolaire » · が « sujet » · 四月（しがつ）« avril » · から « à partir de » · 始まる（はじまる）« commence » · 。 « fin »"
+ },
+ "jlpt:q/5167": {
+  "from": "「かける」を漢字で書くと？",
+  "stem": "彼はその勝負に人生を___。（かける）",
+  "gloss": "彼（かれ）« il » · は « thème » · その « ce » · 勝負（しょうぶ）« pari, duel » · に « sur » · 人生（じんせい）« sa vie » · を « objet » · ___（かける）« parier, miser » · 。 « fin »"
+ },
+ "jlpt:q/5169": {
+  "from": "「かける」を漢字で書くと？",
+  "stem": "メンバーが一人___と試合ができない。（かける）",
+  "gloss": "メンバー « membre » · が « sujet » · 一人（ひとり）« une personne » · ___（かける）« manquer » · と « si » · 試合（しあい）« match » · が « sujet » · できない « n'est pas possible » · 。 « fin »"
+ },
+ "jlpt:q/5201": {
+  "from": "「かち」を漢字で書くと？",
+  "stem": "試合は三対一で私たちの___だった。（かち）",
+  "gloss": "試合（しあい）« match » · は « thème » · 三対一（さんたいいち）« trois à un » · で « par » · 私たち（わたしたち）« nous » · の « de » · ___（かち）« victoire » · だった « était » · 。 « fin »"
+ },
+ "jlpt:q/5203": {
+  "from": "「かち」を漢字で書くと？",
+  "stem": "この絵は見る___がある。（かち）",
+  "gloss": "この « ce » · 絵（え）« tableau » · は « thème » · 見る（みる）« voir » · ___（かち）« valeur » · が « sujet » · ある « il y a » · 。 « fin »"
+ },
+ "jlpt:q/5213": {
+  "from": "「かてい」（もし〜すれば）を漢字で書くと？",
+  "stem": "もし失敗したらという___で話を進める。（かてい）",
+  "gloss": "もし « si » · 失敗したら（しっぱいしたら）« on échouait » · という « disant que » · ___（かてい）« hypothèse » · で « sous » · 話（はなし）« discussion » · を « objet » · 進める（すすめる）« avancer » · 。 « fin »"
+ },
+ "jlpt:q/5215": {
+  "from": "「かてい」を漢字で書くと？",
+  "stem": "結果より___のほうが大切だ。（かてい）",
+  "gloss": "結果（けっか）« résultat » · より « plutôt que » · ___（かてい）« processus » · の « de » · ほう « côté » · が « sujet » · 大切だ（たいせつだ）« est important » · 。 « fin »"
+ },
+ "jlpt:q/5217": {
+  "from": "「かてい」を漢字で書くと？",
+  "stem": "彼は大学院の修士___を終えた。（かてい）",
+  "gloss": "彼（かれ）« il » · は « thème » · 大学院（だいがくいん）« études supérieures » · の « de » · 修士___（しゅうしかてい）« cursus de master » · を « objet » · 終えた（おえた）« a achevé » · 。 « fin »"
+ },
+ "jlpt:q/5233": {
+  "from": "「かみ」（神社の〜）を漢字で書くと？",
+  "stem": "昔の人は山に___がいると信じていた。（かみ）",
+  "gloss": "昔（むかし）« autrefois » · の « de » · 人（ひと）« gens » · は « thème » · 山（やま）« montagne » · に « dans » · ___（かみ）« dieu » · が « sujet » · いる « être » · と « que » · 信じていた（しんじていた）« croyaient » · 。 « fin »"
+ },
+ "jlpt:q/5245": {
+  "from": "「かり」を漢字で書くと？",
+  "stem": "まだ___の予約なので変更できる。（かり）",
+  "gloss": "まだ « encore » · ___（かり）« provisoire » · の « de » · 予約（よやく）« réservation » · なので « comme c'est » · 変更できる（へんこうできる）« on peut modifier » · 。 « fin »"
+ },
+ "jlpt:q/5247": {
+  "from": "「かり」を漢字で書くと？",
+  "stem": "彼にお金の___がある。（かり）",
+  "gloss": "彼（かれ）« lui » · に « envers » · お金（おかね）« argent » · の « de » · ___（かり）« dette, emprunt » · が « sujet » · ある « il y a » · 。 « fin »"
+ },
+ "jlpt:q/5259": {
+  "from": "「かわく」を漢字で書くと？",
+  "stem": "運動して、のどがとても___。（かわく）",
+  "gloss": "運動して（うんどうして）« avoir fait du sport, et » · のど « gorge » · が « sujet » · とても « très » · ___（かわく）« avoir soif » · 。 « fin »"
+ },
+ "jlpt:q/5263": {
+  "from": "「かわる」を漢字で書くと？",
+  "stem": "疲（つか）れたらいつでも私（わたし）が___。（かわる）",
+  "gloss": "疲れたら（つかれたら）« si tu es fatigué » · いつでも « à tout moment » · 私（わたし）« je » · が « sujet » · ___（かわる）« te remplacer » · 。 « fin »"
+ },
+ "jlpt:q/5265": {
+  "from": "「かん」を漢字で書くと？",
+  "stem": "ジュースの___を捨てる。（かん）",
+  "gloss": "ジュース « jus » · の « de » · ___（かん）« canette » · を « objet » · 捨てる（すてる）« jeter » · 。 « fin »"
+ },
+ "jlpt:q/5267": {
+  "from": "「かん」を漢字で書くと？",
+  "stem": "彼は___がよくてすぐ気づいた。（かん）",
+  "gloss": "彼（かれ）« il » · は « thème » · ___（かん）« intuition, flair » · が « sujet » · よくて « étant bon » · すぐ « aussitôt » · 気づいた（きづいた）« a remarqué » · 。 « fin »"
+ },
+ "jlpt:q/5269": {
+  "from": "「かんかく」を漢字で書くと？",
+  "stem": "寒くて指の___がなくなった。（かんかく）",
+  "gloss": "寒くて（さむくて）« il fait froid et » · 指（ゆび）« doigts » · の « de » · ___（かんかく）« sensation » · が « sujet » · なくなった « a disparu » · 。 « fin »"
+ },
+ "jlpt:q/5271": {
+  "from": "「かんかく」を漢字で書くと？",
+  "stem": "バスは十分の___で来る。（かんかく）",
+  "gloss": "バス « bus » · は « thème » · 十分（じっぷん）« dix minutes » · の « de » · ___（かんかく）« intervalle » · で « selon » · 来る（くる）« vient » · 。 « fin »"
+ },
+ "jlpt:q/5273": {
+  "from": "「かんき」を漢字で書くと？",
+  "stem": "部屋の空気が悪いので窓を開けて___する。（かんき）",
+  "gloss": "部屋（へや）« pièce » · の « de » · 空気（くうき）« air » · が « sujet » · 悪い（わるい）« mauvais » · ので « donc » · 窓（まど）« fenêtre » · を « objet » · 開けて（あけて）« ouvrir et » · ___（かんき）« aération » · する « faire » · 。 « fin »"
+ },
+ "jlpt:q/5279": {
+  "from": "「かんご」を漢字で書くと？",
+  "stem": "姉は病院で___師として働いている。（かんご）",
+  "gloss": "姉（あね）« ma sœur » · は « thème » · 病院（びょういん）« hôpital » · で « à » · ___師（かんごし）« infirmière » · として « en tant que » · 働いている（はたらいている）« travaille » · 。 « fin »"
+ },
+ "jlpt:q/5285": {
+  "from": "「かんじょう」を漢字で書くと？",
+  "stem": "レストランで___を払った。（かんじょう）",
+  "gloss": "レストラン « restaurant » · で « lieu » · ___（かんじょう）« addition, note » · を « COD » · 払った（はらった）« a payé » · 。 « fin »"
+ },
+ "jlpt:q/5287": {
+  "from": "「かんしん」を漢字で書くと？",
+  "stem": "私（わたし）は日本（にほん）の文化（ぶんか）に___があります。（かんしん）",
+  "gloss": "私（わたし）« je » · は « thème » · 日本（にほん）« Japon » · の « de » · 文化（ぶんか）« culture » · に « pour » · ___（かんしん）« intérêt » · が « sujet » · あります « avoir » · 。 « fin »"
+ },
+ "jlpt:q/5289": {
+  "from": "「かんそう」を漢字で書くと？",
+  "stem": "冬は空気が___する。（かんそう）",
+  "gloss": "冬（ふゆ）« hiver » · は « thème » · 空気（くうき）« air » · が « sujet » · ___する（かんそうする）« se dessécher » · 。 « fin »"
+ },
  "jlpt:q/5321": {
   "from": "「きかい」を漢字で書くと？",
   "stem": "体育の授業で___体操をする。（きかい）",
   "gloss": "体育（たいいく）« éducation physique » · の « de » · 授業（じゅぎょう）« cours » · で « lieu » · ___体操（きかいたいそう）« gymnastique aux agrès » · を « COD » · する « faire » · 。 « fin »"
+ },
+ "jlpt:q/5323": {
+  "from": "「きかん」を漢字で書くと？",
+  "stem": "電車（でんしゃ）は便利（べんり）な交通___です。（きかん）",
+  "gloss": "電車（でんしゃ）« train » · は « thème » · 便利な（べんりな）« pratique » · 交通___（こうつうきかん）« moyen de transport » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/5331": {
+  "from": "「きじ」を漢字で書くと？",
+  "stem": "このシャツは___がやわらかい。（きじ）",
+  "gloss": "この « cette » · シャツ « chemise » · は « thème » · ___（きじ）« tissu » · が « sujet » · やわらかい « est doux » · 。 « fin »"
+ },
+ "jlpt:q/5333": {
+  "from": "「きじ」を漢字で書くと？",
+  "stem": "新聞でその___を読んだ。（きじ）",
+  "gloss": "新聞（しんぶん）« journal » · で « dans » · その « cet » · ___（きじ）« article » · を « objet » · 読んだ（よんだ）« ai lu » · 。 « fin »"
+ },
+ "jlpt:q/5367": {
+  "from": "「きたい」を漢字で書くと？",
+  "stem": "水は熱すると___になる。（きたい）",
+  "gloss": "水（みず）« eau » · は « thème » · 熱する（ねっする）→熱すると « quand on chauffe » · ___（きたい）« gaz » · になる « devient » · 。 « fin »"
+ },
+ "jlpt:q/5383": {
+  "from": "「く」を漢字で書くと？",
+  "stem": "この詩の最初の___が好きだ。（く）",
+  "gloss": "この « ce » · 詩（し）« poème » · の « de » · 最初（さいしょ）« premier » · の « de » · ___（く）« vers, phrase » · が « sujet » · 好きだ（すきだ）« me plaît » · 。 « fin »"
+ },
+ "jlpt:q/5421": {
+  "from": "「ぐん」を漢字で書くと？",
+  "stem": "その国の___はとても強い。（ぐん）",
+  "gloss": "その « ce » · 国（くに）« pays » · の « de » · ___（ぐん）« armée » · は « thème » · とても « très » · 強い（つよい）« est forte » · 。 « fin »"
+ },
+ "jlpt:q/5423": {
+  "from": "「ぐん」を漢字で書くと？",
+  "stem": "祖母は長野県の小さな___に住んでいる。（ぐん）",
+  "gloss": "祖母（そぼ）« grand-mère » · は « thème » · 長野県（ながのけん）« département de Nagano » · の « de » · 小さな（ちいさな）« petit » · ___（ぐん）« district rural » · に « à » · 住んでいる（すんでいる）« habite » · 。 « fin »"
+ },
+ "jlpt:q/5425": {
+  "from": "「く」を漢字で書くと？",
+  "stem": "東京の中央___に住んでいる。（く）",
+  "gloss": "東京（とうきょう）« Tokyo » · の « de » · 中央___（ちゅうおうく）« arrondissement de Chūō » · に « à » · 住んでいる（すんでいる）« j'habite » · 。 « fin »"
+ },
+ "jlpt:q/5455": {
+  "from": "「けいじ」を漢字で書くと？",
+  "stem": "___が事件を調べている。（けいじ）",
+  "gloss": "___（けいじ）« inspecteur de police » · が « sujet » · 事件（じけん）« affaire » · を « COD » · 調べている（しらべている）« enquête sur » · 。 « fin »"
+ },
+ "jlpt:q/5499": {
+  "from": "「けん」を漢字で書くと？",
+  "stem": "その___については明日話しましょう。（けん）",
+  "gloss": "その « cette » · ___（けん）« affaire, cas » · については « au sujet de » · 明日（あした）« demain » · 話しましょう（はなしましょう）« parlons » · 。 « fin »"
+ },
+ "jlpt:q/5501": {
+  "from": "「けん」を漢字で書くと？",
+  "stem": "入場___を買ってから中に入る。（けん）",
+  "gloss": "入場___（にゅうじょうけん）« billet d'entrée » · を « objet » · 買ってから（かってから）« après avoir acheté » · 中（なか）« l'intérieur » · に « dans » · 入る（はいる）« entrer » · 。 « fin »"
+ },
+ "jlpt:q/5503": {
+  "from": "「けんとう」を漢字で書くと？",
+  "stem": "値段の___がつかない。（けんとう）",
+  "gloss": "値段（ねだん）« prix » · の « de » · ___（けんとう）« estimation » · が « sujet » · つかない « on n'arrive pas à en faire » · 。 « fin »"
+ },
+ "jlpt:q/5505": {
+  "from": "「けんとう」を漢字で書くと？",
+  "stem": "その案は会議で___します。（けんとう）",
+  "gloss": "その « ce » · 案（あん）« projet » · は « thème » · 会議（かいぎ）« réunion » · で « à » · ___（けんとう）« examen, étude » · します « faire » · 。 « fin »"
+ },
+ "jlpt:q/5515": {
+  "from": "「げんしょう」を漢字で書くと？",
+  "stem": "これは珍しい自然___だ。（げんしょう）",
+  "gloss": "これ « ceci » · は « thème » · 珍しい（めずらしい）« rare » · 自然（しぜん）« nature » · ___（げんしょう）« phénomène » · だ « être » · 。 « fin »"
+ },
+ "jlpt:q/5551": {
+  "from": "「こい」を漢字で書くと？",
+  "stem": "このコーヒーは少し___。（こい）",
+  "gloss": "この « ce » · コーヒー « café » · は « thème » · 少し（すこし）« un peu » · ___（こい）« fort, corsé » · 。 « fin »"
+ },
+ "jlpt:q/5553": {
+  "from": "「こい」を漢字で書くと？",
+  "stem": "彼女は同じクラスの人に___をしている。（こい）",
+  "gloss": "彼女（かのじょ）« elle » · は « thème » · 同じ（おなじ）« même » · クラス « classe » · の « de » · 人（ひと）« personne » · に « pour » · ___（こい）« amour » · を « objet » · している « éprouve » · 。 « fin »"
+ },
+ "jlpt:q/5559": {
+  "from": "「こうえん」を漢字で書くと？",
+  "stem": "そのミュージカルの___を見に行った。（こうえん）",
+  "gloss": "その « cette » · ミュージカル « comédie musicale » · の « de » · ___（こうえん）« représentation » · を « objet » · 見に行った（みにいった）« suis allé voir » · 。 « fin »"
+ },
+ "jlpt:q/5561": {
+  "from": "「こうえん」を漢字で書くと？",
+  "stem": "会場で環境問題についての___を聞いた。（こうえん）",
+  "gloss": "会場（かいじょう）« salle » · で « dans » · 環境問題（かんきょうもんだい）« problème d'environnement » · についての « au sujet de » · ___（こうえん）« conférence » · を « objet » · 聞いた（きいた）« ai écoutée » · 。 « fin »"
+ },
+ "jlpt:q/5563": {
+  "from": "「こうかい」を漢字で書くと？",
+  "stem": "新しい映画が来月___される。（こうかい）",
+  "gloss": "新しい（あたらしい）« nouveau » · 映画（えいが）« film » · が « sujet » · 来月（らいげつ）« le mois prochain » · ___される（こうかいされる）« être rendu public » · 。 « fin »"
+ },
+ "jlpt:q/5565": {
+  "from": "「こうかい」を漢字で書くと？",
+  "stem": "船は三か月の___を終えて港に戻った。（こうかい）",
+  "gloss": "船（ふね）« bateau » · は « thème » · 三か月（さんかげつ）« trois mois » · の « de » · ___（こうかい）« navigation, traversée » · を « COD » · 終えて（おえて）« ayant terminé » · 港（みなと）« port » · に « à » · 戻った（もどった）« est revenu » · 。 « fin »"
+ },
+ "jlpt:q/5567": {
+  "from": "「こうか」を漢字で書くと？",
+  "stem": "自動販売機に___を入れる。（こうか）",
+  "gloss": "自動販売機（じどうはんばいき）« distributeur automatique » · に « dans » · ___（こうか）« pièce de monnaie » · を « COD » · 入れる（いれる）« mettre » · 。 « fin »"
+ },
+ "jlpt:q/5569": {
+  "from": "「こうか」を漢字で書くと？",
+  "stem": "この時計はとても___な物です。（こうか）",
+  "gloss": "この « cette » · 時計（とけい）« montre » · は « thème » · とても « très » · ___な（こうかな）« coûteuse » · 物（もの）« chose » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/5571": {
+  "from": "「こうがい」を漢字で書くと？",
+  "stem": "この町は___がひどい。（こうがい）",
+  "gloss": "この « ce » · 町（まち）« ville » · は « thème » · ___（こうがい）« pollution » · が « sujet » · ひどい « grave » · 。 « fin »"
+ },
+ "jlpt:q/5573": {
+  "from": "「こうぎ」を漢字で書くと？",
+  "stem": "学生たちは学校の決定に___した。（こうぎ）",
+  "gloss": "学生（がくせい）« étudiants » · たち « pluriel » · は « thème » · 学校（がっこう）« école » · の « de » · 決定（けってい）« décision » · に « contre » · ___した（こうぎした）« ont protesté » · 。 « fin »"
+ },
+ "jlpt:q/5601": {
+  "from": "「こうたい」を漢字で書くと？",
+  "stem": "この工場は三___で夜も働く。（こうたい）",
+  "gloss": "この « cette » · 工場（こうじょう）« usine » · は « thème » · 三___（さんこうたい）« rotation en trois équipes » · で « en » · 夜（よる）« la nuit » · も « aussi » · 働く（はたらく）« travaille » · 。 « fin »"
+ },
+ "jlpt:q/5603": {
+  "from": "「こうたい」を漢字で書くと？",
+  "stem": "けがをした選手が___した。（こうたい）",
+  "gloss": "けが « blessure » · を « objet » · した « ayant eu » · 選手（せんしゅ）« joueur » · が « sujet » · ___（こうたい）« remplacement, relève » · した « a fait » · 。 « fin »"
+ },
+ "jlpt:q/5605": {
+  "from": "「こうてい」を漢字で書くと？",
+  "stem": "彼は私の意見を___した。（こうてい）",
+  "gloss": "彼（かれ）« il » · は « thème » · 私（わたし）« moi » · の « de » · 意見（いけん）« avis » · を « objet » · ___（こうてい）« affirmation, approbation » · した « a fait » · 。 « fin »"
+ },
+ "jlpt:q/5607": {
+  "from": "「こうてい」を漢字で書くと？",
+  "stem": "子どもたちが___で遊んでいる。（こうてい）",
+  "gloss": "子どもたち（こどもたち）« les enfants » · が « sujet » · ___（こうてい）« cour d'école » · で « dans » · 遊んでいる（あそんでいる）« jouent » · 。 « fin »"
+ },
+ "jlpt:q/5611": {
+  "from": "「こうどう」を漢字で書くと？",
+  "stem": "彼はいつもよく考えてから___する。（こうどう）",
+  "gloss": "彼（かれ）« il » · は « thème » · いつも « toujours » · よく « bien » · 考えてから（かんがえてから）« après avoir réfléchi » · ___（こうどう）« agir, conduite » · する « faire » · 。 « fin »"
+ },
+ "jlpt:q/5635": {
+  "from": "「こえる」を漢字で書くと？",
+  "stem": "山を___と海が見える。（こえる）",
+  "gloss": "山（やま）« montagne » · を « objet » · ___（こえる）« franchir » · と « quand » · 海（うみ）« mer » · が « sujet » · 見える（みえる）« se voit » · 。 « fin »"
+ },
+ "jlpt:q/5637": {
+  "from": "「こえる」を漢字で書くと？",
+  "stem": "この町の人口は十万人を___。（こえる）",
+  "gloss": "この « cette » · 町（まち）« ville » · の « de » · 人口（じんこう）« population » · は « thème » · 十万人（じゅうまんにん）« cent mille habitants » · を « objet » · ___（こえる）« dépasser » · 。 « fin »"
+ },
+ "jlpt:q/5681": {
+  "from": "「こたえる」を漢字で書くと？",
+  "stem": "みんなの期待に___ように頑張ります。（こたえる）",
+  "gloss": "みんな « tout le monde » · の « de » · 期待（きたい）« attentes » · に « à » · ___（こたえる）« répondre, satisfaire » · ように « afin de » · 頑張ります（がんばります）« je ferai de mon mieux » · 。 « fin »"
+ },
+ "jlpt:q/5737": {
+  "from": "「こむ」を漢字で書くと？",
+  "stem": "朝の電車はとても___。（こむ）",
+  "gloss": "朝（あさ）« matin » · の « de » · 電車（でんしゃ）« train » · は « thème » · とても « très » · ___（こむ）« être bondé » · 。 « fin »"
+ },
+ "jlpt:q/5741": {
+  "from": "「ご」を漢字で書くと？",
+  "stem": "辞書で新しい単___の意味を調べた。（ご）",
+  "gloss": "辞書（じしょ）« dictionnaire » · で « avec » · 新しい（あたらしい）« nouveau » · 単___（たんご）« mot de vocabulaire » · の « de » · 意味（いみ）« sens » · を « objet » · 調べた（しらべた）« ai cherché » · 。 « fin »"
+ },
+ "jlpt:q/5779": {
+  "from": "「さす」（針で〜）を漢字で書くと？",
+  "stem": "針で指を___と血が出た。（さす）",
+  "gloss": "針（はり）« aiguille » · で « avec » · 指（ゆび）« doigt » · を « objet » · ___（さす）« piquer » · と « quand » · 血（ち）« sang » · が « sujet » · 出た（でた）« est sorti » · 。 « fin »"
+ },
+ "jlpt:q/5799": {
+  "from": "「しかく」を漢字で書くと？",
+  "stem": "辺が四つある形を___といいます。（しかく）",
+  "gloss": "辺（へん）« côté » · が « sujet » · 四つ（よっつ）« quatre » · ある « il y a » · 形（かたち）« forme » · を « COD » · ___（しかく）« carré, quadrangle » · といいます « on appelle » · 。 « fin »"
+ },
+ "jlpt:q/5831": {
+  "from": "「すう」を漢字で書くと？",
+  "stem": "会場には___十人の客が集まった。（すう）",
+  "gloss": "会場（かいじょう）« salle » · には « dans » · ___十人（すうじゅうにん）« quelques dizaines de personnes » · の « de » · 客（きゃく）« clients » · が « sujet » · 集まった（あつまった）« se sont réunis » · 。 « fin »"
+ },
+ "jlpt:q/5837": {
+  "from": "「すすめる」を漢字で書くと？",
+  "stem": "医者がこの薬を___。（すすめる）",
+  "gloss": "医者（いしゃ）« médecin » · が « sujet » · この « ce » · 薬（くすり）« médicament » · を « objet » · ___（すすめる）« recommander, conseiller » · 。 « fin »"
+ },
+ "jlpt:q/5839": {
+  "from": "「すすめる」を漢字で書くと？",
+  "stem": "計画を予定どおりに___。（すすめる）",
+  "gloss": "計画（けいかく）« projet » · を « objet » · 予定どおりに（よていどおりに）« comme prévu » · ___（すすめる）« faire avancer » · 。 « fin »"
+ },
+ "jlpt:q/5841": {
+  "from": "« déjà » を表す言葉は？",
+  "stem": "会議は___終わっていた。（« déjà », registre écrit）",
+  "gloss": "会議（かいぎ）« réunion » · は « thème » · ___（すでに）« déjà » · 終わっていた（おわっていた）« était terminée » · 。 « fin »"
+ },
+ "jlpt:q/5967": {
+  "from": "「たつ」を漢字で書くと？",
+  "stem": "日本に来てから三年が___。（たつ）",
+  "gloss": "日本（にほん）« Japon » · に « à » · 来てから（きてから）« depuis mon arrivée » · 三年（さんねん）« trois ans » · が « sujet » · ___（たつ）« s'écouler » · 。 « fin »"
+ },
+ "jlpt:q/5997": {
+  "from": "「だん」を漢字で書くと？",
+  "stem": "この本棚は___が五つある。（だん）",
+  "gloss": "この « cette » · 本棚（ほんだな）« bibliothèque » · は « thème » · ___（だん）« étagères, niveaux » · が « sujet » · 五つ（いつつ）« cinq » · ある « il y a » · 。 « fin »"
+ },
+ "jlpt:q/6035": {
+  "from": "「ちゅうしゃ」を漢字で書くと？",
+  "stem": "この道路は___禁止です。（ちゅうしゃ）",
+  "gloss": "この « cette » · 道路（どうろ）« route » · は « thème » · ___禁止（ちゅうしゃきんし）« stationnement interdit » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/6101": {
+  "from": "「つとめる」を漢字で書くと？",
+  "stem": "サービスの改善に___。（つとめる）",
+  "gloss": "サービス « service » · の « de » · 改善（かいぜん）« amélioration » · に « à » · ___（つとめる）« s'efforcer » · 。 « fin »"
+ },
+ "jlpt:q/6153": {
+  "from": "「とく」を漢字で書くと？",
+  "stem": "難しい問題を___。（とく）",
+  "gloss": "難しい（むずかしい）« difficile » · 問題（もんだい）« problème » · を « objet » · ___（とく）« résoudre » · 。 « fin »"
+ },
+ "jlpt:q/6155": {
+  "from": "「とく」を漢字で書くと？",
+  "stem": "まとめて買うほうが___だ。（とく）",
+  "gloss": "まとめて « en une fois » · 買う（かう）« acheter » · ほう « façon » · が « sujet » · ___（とく）« avantageux » · だ « est » · 。 « fin »"
+ },
+ "jlpt:q/6169": {
+  "from": "「とし」を漢字で書くと？",
+  "stem": "この___計画は十年前に決まった。（とし）",
+  "gloss": "この « ce » · ___計画（としけいかく）« plan d'urbanisme » · は « thème » · 十年前（じゅうねんまえ）« il y a dix ans » · に « à » · 決まった（きまった）« a été décidé » · 。 « fin »"
+ },
+ "jlpt:q/6187": {
+  "from": "「とめる」を漢字で書くと？",
+  "stem": "書類をクリップで___。（とめる）",
+  "gloss": "書類（しょるい）« documents » · を « objet » · クリップ « trombone » · で « avec » · ___（とめる）« fixer, attacher » · 。 « fin »"
+ },
+ "jlpt:q/6189": {
+  "from": "「とくちょう」を漢字で書くと？",
+  "stem": "短所ではなく製品の___を書いてください。（とくちょう）",
+  "gloss": "短所（たんしょ）« défauts » · ではなく « et non » · 製品（せいひん）« produit » · の « de » · ___（とくちょう）« points forts, mérites » · を « COD » · 書いて（かいて）« écrire » · ください « s'il vous plaît » · 。 « fin »"
+ },
+ "jlpt:q/6249": {
+  "from": "« mais, cependant » を表す言葉は？",
+  "stem": "彼は必死に走った。___、間に合わなかった。（connecteur d'opposition, style neutre）",
+  "gloss": "彼（かれ）« il » · は « thème » · 必死に（ひっしに）« désespérément » · 走った（はしった）« a couru » · ___ « mais, cependant » · 間に合わなかった（まにあわなかった）« n'est pas arrivé à temps » · 。 « fin »"
+ },
+ "jlpt:q/6261": {
+  "from": "「ならす」を漢字で書くと？",
+  "stem": "新しい生活に体を___。（ならす）",
+  "gloss": "新しい（あたらしい）« nouvelle » · 生活（せいかつ）« vie » · に « à » · 体（からだ）« corps » · を « objet » · ___（ならす）« habituer » · 。 « fin »"
+ },
+ "jlpt:q/6263": {
+  "from": "「ならす」を漢字で書くと？",
+  "stem": "学校のベルを___。（ならす）",
+  "gloss": "学校（がっこう）« école » · の « de » · ベル « cloche » · を « objet » · ___（ならす）« faire sonner » · 。 « fin »"
+ },
+ "jlpt:q/6285": {
+  "from": "「にる」を漢字で書くと？",
+  "stem": "野菜を弱火でゆっくり___。（にる）",
+  "gloss": "野菜（やさい）« légumes » · を « COD » · 弱火（よわび）« feu doux » · で « à » · ゆっくり « lentement » · ___（にる）« faire cuire, mijoter » · 。 « fin »"
+ },
+ "jlpt:q/6351": {
+  "from": "「のぞく」を漢字で書くと？",
+  "stem": "窓から部屋の中を___。（のぞく）",
+  "gloss": "窓（まど）« fenêtre » · から « depuis » · 部屋（へや）« pièce » · の « de » · 中（なか）« l'intérieur » · を « objet » · ___（のぞく）« jeter un coup d'œil » · 。 « fin »"
+ },
+ "jlpt:q/6353": {
+  "from": "「のぞく」を漢字で書くと？",
+  "stem": "日曜日を___毎日営業している。（のぞく）",
+  "gloss": "日曜日（にちようび）« dimanche » · を « objet » · ___（のぞく）« excepté, ôter » · 毎日（まいにち）« tous les jours » · 営業している（えいぎょうしている）« est ouvert » · 。 « fin »"
+ },
+ "jlpt:q/6359": {
+  "from": "「のばす」を漢字で書くと？",
+  "stem": "腕を___。（のばす）",
+  "gloss": "腕（うで）« bras » · を « objet » · ___（のばす）« étirer, allonger » · 。 « fin »"
+ },
+ "jlpt:q/6361": {
+  "from": "「のばす」を漢字で書くと？",
+  "stem": "会議を来週まで___。（のばす）",
+  "gloss": "会議（かいぎ）« réunion » · を « objet » · 来週（らいしゅう）« semaine prochaine » · まで « jusqu'à » · ___（のばす）« reporter, prolonger » · 。 « fin »"
+ },
+ "jlpt:q/6363": {
+  "from": "「のびる」を漢字で書くと？",
+  "stem": "子どもの背が___。（のびる）",
+  "gloss": "子ども（こども）« enfant » · の « de » · 背（せ）« taille » · が « sujet » · ___（のびる）« s'allonger, grandir » · 。 « fin »"
+ },
+ "jlpt:q/6365": {
+  "from": "「のびる」を漢字で書くと？",
+  "stem": "雨で試合が来週に___。（のびる）",
+  "gloss": "雨（あめ）« pluie » · で « à cause de » · 試合（しあい）« match » · が « sujet » · 来週（らいしゅう）« semaine prochaine » · に « à » · ___（のびる）« être reporté » · 。 « fin »"
+ },
+ "jlpt:q/6369": {
+  "from": "「のぼる」を漢字で書くと？",
+  "stem": "エレベーターが故障したので、階段を___。（のぼる）",
+  "gloss": "エレベーター « ascenseur » · が « sujet » · 故障した（こしょうした）« est tombé en panne » · ので « donc » · 階段（かいだん）« escalier » · を « objet » · ___（のぼる）« monter » · 。 « fin »"
+ },
+ "jlpt:q/6371": {
+  "from": "「のぼる」を漢字で書くと？",
+  "stem": "東の空から太陽が___。（のぼる）",
+  "gloss": "東（ひがし）« est » · の « de » · 空（そら）« ciel » · から « depuis » · 太陽（たいよう）« soleil » · が « sujet » · ___（のぼる）« se lever » · 。 « fin »"
+ },
+ "jlpt:q/6393": {
+  "from": "「はかる」を漢字で書くと？",
+  "stem": "走った時間を___。（はかる）",
+  "gloss": "走った（はしった）« couru » · 時間（じかん）« temps » · を « objet » · ___（はかる）« mesurer (le temps) » · 。 « fin »"
+ },
+ "jlpt:q/6395": {
+  "from": "「はかる」を漢字で書くと？",
+  "stem": "駅までの距離を___。（はかる）",
+  "gloss": "駅（えき）« gare » · まで « jusqu'à » · の « de » · 距離（きょり）« distance » · を « objet » · ___（はかる）« mesurer (une distance) » · 。 « fin »"
+ },
+ "jlpt:q/6397": {
+  "from": "「はかる」を漢字で書くと？",
+  "stem": "荷物の重さを___。（はかる）",
+  "gloss": "荷物（にもつ）« bagage » · の « de » · 重さ（おもさ）« poids » · を « objet » · ___（はかる）« peser » · 。 « fin »"
+ },
+ "jlpt:q/6399": {
+  "from": "「はく」を漢字で書くと？",
+  "stem": "気分が悪くて___。（はく）",
+  "gloss": "気分（きぶん）« état, humeur » · が « sujet » · 悪くて（わるくて）« mauvais, et » · ___（はく）« vomir » · 。 « fin »"
+ },
+ "jlpt:q/6401": {
+  "from": "「はく」を漢字で書くと？",
+  "stem": "ほうきで庭を___。（はく）",
+  "gloss": "ほうき « balai » · で « avec » · 庭（にわ）« jardin » · を « objet » · ___（はく）« balayer » · 。 « fin »"
+ },
+ "jlpt:q/6411": {
+  "from": "「はし」を漢字で書くと？",
+  "stem": "机の___にコップを置く。（はし）",
+  "gloss": "机（つくえ）« table, bureau » · の « de » · ___（はし）« bord, extrémité » · に « sur » · コップ « verre » · を « objet » · 置く（おく）« poser » · 。 « fin »"
+ },
+ "jlpt:q/6483": {
+  "from": "「はる」を漢字で書くと？",
+  "stem": "庭にテントを___。（はる）",
+  "gloss": "庭（にわ）« jardin » · に « dans » · テント « tente » · を « objet » · ___（はる）« monter, tendre » · 。 « fin »"
+ },
+ "jlpt:q/6615": {
+  "from": "「ふく」を漢字で書くと？",
+  "stem": "タオルで手を___。（ふく）",
+  "gloss": "タオル « serviette » · で « avec » · 手（て）« mains » · を « objet » · ___（ふく）« essuyer » · 。 « fin »"
+ },
+ "jlpt:q/6657": {
+  "from": "「ふる」を漢字で書くと？",
+  "stem": "子（こ）どもたちが手（て）を___。（ふる）",
+  "gloss": "子どもたち（こどもたち）« les enfants » · が « sujet » · 手（て）« main » · を « objet » · ___（ふる）« agiter » · 。 « fin »"
+ },
+ "jlpt:q/6681": {
+  "from": "「へいき」を漢字で書くと？",
+  "stem": "少し寒くても私は___です。（へいき）",
+  "gloss": "少し（すこし）« un peu » · 寒くても（さむくても）« même s'il fait froid » · 私（わたし）« je » · は « thème » · ___（へいき）« indifférent, ça va » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/6691": {
+  "from": "「へいき」を漢字で書くと？",
+  "stem": "この国は新しい___を作っている。（へいき）",
+  "gloss": "この « ce » · 国（くに）« pays » · は « thème » · 新しい（あたらしい）« nouvelle » · ___（へいき）« arme » · を « objet » · 作っている（つくっている）« fabrique » · 。 « fin »"
+ },
+ "jlpt:q/6699": {
+  "from": "「へる」を漢字で書くと？",
+  "stem": "あの事件から十年の月日を___。（へる）",
+  "gloss": "あの « ce…-là » · 事件（じけん）« affaire » · から « depuis » · 十年（じゅうねん）« dix ans » · の « de » · 月日（つきひ）« temps » · を « COD » · ___（へる）« s'écouler, passer » · 。 « fin »"
+ },
+ "jlpt:q/6701": {
+  "from": "「べん」を漢字で書くと？",
+  "stem": "この町は交通の___がいい。（べん）",
+  "gloss": "この « cette » · 町（まち）« ville » · は « thème » · 交通（こうつう）« transports » · の « de » · ___（べん）« commodité » · が « sujet » · いい « bonne » · 。 « fin »"
+ },
+ "jlpt:q/6731": {
+  "from": "「ほうそう」を漢字で書くと？",
+  "stem": "店でプレゼントをきれいに___してもらった。（ほうそう）",
+  "gloss": "店（みせ）« magasin » · で « à » · プレゼント « cadeau » · を « objet » · きれいに « joliment » · ___して（ほうそうして）« emballer » · もらった « on me l'a fait » · 。 « fin »"
+ },
+ "jlpt:q/6755": {
+  "from": "「ほこり」を漢字で書くと？",
+  "stem": "自分の仕事に___を持つ。（ほこり）",
+  "gloss": "自分（じぶん）« soi-même » · の « de » · 仕事（しごと）« travail » · に « à » · ___（ほこり）« fierté » · を « objet » · 持つ（もつ）« avoir » · 。 « fin »"
+ },
+ "jlpt:q/6757": {
+  "from": "「ほこり」を漢字で書くと？",
+  "stem": "掃除をしないと___がたまる。（ほこり）",
+  "gloss": "掃除（そうじ）« ménage » · を « objet » · しないと « si on ne fait pas » · ___（ほこり）« poussière » · が « sujet » · たまる « s'accumuler » · 。 « fin »"
+ },
+ "jlpt:q/6777": {
+  "from": "「ほる」を漢字で書くと？",
+  "stem": "庭に穴を___。（ほる）",
+  "gloss": "庭（にわ）« jardin » · に « dans » · 穴（あな）« trou » · を « objet » · ___（ほる）« creuser » · 。 « fin »"
+ },
+ "jlpt:q/6779": {
+  "from": "「ほる」を漢字で書くと？",
+  "stem": "木に名前を___。（ほる）",
+  "gloss": "木（き）« bois » · に « sur » · 名前（なまえ）« nom » · を « objet » · ___（ほる）« graver, sculpter » · 。 « fin »"
+ },
+ "jlpt:q/6785": {
+  "from": "「ほけん」を漢字で書くと？",
+  "stem": "学校の___の先生に相談した。（ほけん）",
+  "gloss": "学校（がっこう）« école » · の « de » · ___（ほけん）« santé scolaire » · の « de » · 先生（せんせい）« infirmière » · に « à » · 相談した（そうだんした）« a consulté » · 。 « fin »"
+ },
+ "jlpt:q/6787": {
+  "from": "「ほけん」を漢字で書くと？",
+  "stem": "車の___に入る。（ほけん）",
+  "gloss": "車（くるま）« voiture » · の « de » · ___（ほけん）« assurance » · に « à » · 入る（はいる）« souscrire » · 。 « fin »"
+ },
+ "jlpt:q/6825": {
+  "from": "「まち」を漢字で書くと？",
+  "stem": "駅前のにぎやかな___を歩く。（まち）",
+  "gloss": "駅前（えきまえ）« devant la gare » · の « de » · にぎやかな « animé » · ___（まち）« quartier animé, rue » · を « objet » · 歩く（あるく）« marcher » · 。 « fin »"
+ },
+ "jlpt:q/6877": {
+  "from": "「みかた」を漢字で書くと？",
+  "stem": "人によって物事の___が違う。（みかた）",
+  "gloss": "人（ひと）« personne » · によって « selon » · 物事（ものごと）« les choses » · の « de » · ___（みかた）« façon de voir » · が « sujet » · 違う（ちがう）« différer » · 。 « fin »"
+ },
+ "jlpt:q/6879": {
+  "from": "「みかた」を漢字で書くと？",
+  "stem": "困ったとき、彼はいつも私の___だ。（みかた）",
+  "gloss": "困った（こまった）« en difficulté » · とき « quand » · 彼（かれ）« il » · は « thème » · いつも « toujours » · 私（わたし）« moi » · の « de » · ___（みかた）« allié » · だ « être » · 。 « fin »"
+ },
+ "jlpt:q/6883": {
+  "from": "「み」を漢字で書くと？",
+  "stem": "危ないときは自分の___を守る。（み）",
+  "gloss": "危ない（あぶない）« dangereux » · とき « quand » · は « thème » · 自分（じぶん）« soi-même » · の « de » · ___（み）« corps, sa personne » · を « objet » · 守る（まもる）« protéger » · 。 « fin »"
+ },
+ "jlpt:q/6897": {
+  "from": "「み」を漢字で書くと？",
+  "stem": "秋になると木に赤い___がなる。（み）",
+  "gloss": "秋（あき）« automne » · になると « quand vient » · 木（き）« arbre » · に « sur » · 赤い（あかい）« rouges » · ___（み）« fruits » · が « sujet » · なる « pousser » · 。 « fin »"
+ },
+ "jlpt:q/6965": {
+  "from": "「やく」を漢字で書くと？（意味：rôle）",
+  "stem": "劇で主人公の___をやることになった。（やく）",
+  "gloss": "劇（げき）« pièce de théâtre » · で « dans » · 主人公（しゅじんこう）« héros » · の « de » · ___（やく）« rôle » · を « objet » · やる « jouer » · ことになった « il a été décidé de » · 。 « fin »"
+ },
+ "jlpt:q/6967": {
+  "from": "「やく」を漢字で書くと？（意味：environ, à peu près）",
+  "stem": "駅まで歩いて___十分かかる。（やく）",
+  "gloss": "駅（えき）« gare » · まで « jusqu'à » · 歩いて（あるいて）« à pied » · ___十分（やくじゅっぷん）« environ dix minutes » · かかる « prendre » · 。 « fin »"
+ },
+ "jlpt:q/7021": {
+  "from": "「りょう」を漢字で書くと？",
+  "stem": "今日は仕事の___が多い。（りょう）",
+  "gloss": "今日（きょう）« aujourd'hui » · は « thème » · 仕事（しごと）« travail » · の « de » · ___（りょう）« quantité » · が « sujet » · 多い（おおい）« importante » · 。 « fin »"
+ },
+ "jlpt:q/7027": {
+  "from": "「れい」を漢字で書くと？",
+  "stem": "お世話になった先生にお___を言う。（れい）",
+  "gloss": "お世話（おせわ）« aide, service » · に « de » · なった « avoir reçu » · 先生（せんせい）« professeur » · に « à » · お___（おれい）« remerciement » · を « objet » · 言う（いう）« dire » · 。 « fin »"
+ },
+ "jlpt:q/7029": {
+  "from": "「れい」を漢字で書くと？",
+  "stem": "分かりにくいので___をあげて説明する。（れい）",
+  "gloss": "分かりにくい（わかりにくい）« difficile à comprendre » · ので « comme » · ___（れい）« exemple » · を « objet » · あげて « donner, et » · 説明する（せつめいする）« expliquer » · 。 « fin »"
+ },
+ "jlpt:q/7043": {
+  "from": "「わかれる」を漢字で書くと？",
+  "stem": "この先で道が二つに___。（わかれる）",
+  "gloss": "この « ce » · 先（さき）« plus loin » · で « à » · 道（みち）« route » · が « sujet » · 二つ（ふたつ）« deux » · に « en » · ___（わかれる）« se divise » · 。 « fin »"
+ },
+ "jlpt:q/7168": {
+  "from": "「一月」の読み方は？",
+  "stem": "わたしの誕生日（たんじょうび）は___十日（とおか）です。（一月）",
+  "gloss": "わたし « je » · の « de » · 誕生日（たんじょうび）« anniversaire » · は « thème » · ___（いちがつ）« janvier » · 十日（とおか）« le dix » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/8981": {
+  "from": "「simple」の意味を表す漢字は？",
+  "stem": "この問題（もんだい）は___純です。（たん）",
+  "gloss": "この « ce » · 問題（もんだい）« problème » · は « thème » · ___純（たんじゅん）« simple » · です « être » · 。 « fin »"
+ },
+ "jlpt:q/8986": {
+  "from": "「simple」の意味を表す漢字は？",
+  "stem": "この料理（りょうり）は___単に作（つく）れます。（かん）",
+  "gloss": "この « ce » · 料理（りょうり）« plat » · は « thème » · ___単に（かんたんに）« facilement » · 作れます（つくれます）« peut se préparer » · 。 « fin »"
  }
 }

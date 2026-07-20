@@ -8023,7 +8023,7 @@
    "jlpt:skill": "grammaire",
    "jlpt:difficulty": 1,
    "jlpt:ord": 321,
-   "jlpt:stem": "この部屋（へや）は＿＿です。",
+   "jlpt:stem": "この部屋（へや）は___です。（forme affirmative）",
    "opts": [
     "広くです",
     "広いです",
@@ -8032,7 +8032,7 @@
    ],
    "jlpt:answer": 1,
    "schema:description": "広い + です, sans modification.",
-   "jlpt:gloss": "この « ce » · 部屋（へや）« pièce » · は « thème » · 広（ひろ）い « spacieux (adj. en -i) » · です « (copule polie) »",
+   "jlpt:gloss": "この « ce » · 部屋（へや）« chambre » · は « thème » · ___（ひろいです）« est spacieux (forme affirmative) » · です « être » · 。 « fin »",
    "jlpt:optionNote": [
     "forme fautive (くです)",
     "adj. en -i + です : correct",
@@ -8161,7 +8161,7 @@
    "jlpt:skill": "grammaire",
    "jlpt:difficulty": 1,
    "jlpt:ord": 327,
-   "jlpt:stem": "この部屋（へや）は＿＿です。",
+   "jlpt:stem": "この部屋（へや）は___です。（forme négative）",
    "opts": [
     "広いじゃない",
     "広でない",
@@ -8170,7 +8170,7 @@
    ],
    "jlpt:answer": 3,
    "schema:description": "広い → 広くない.",
-   "jlpt:gloss": "この « ce » · 部屋（へや）« pièce » · は « thème » · 広（ひろ）くないです « n'est pas spacieux (adj. en -i négatif) » [広い→広くない]",
+   "jlpt:gloss": "この « ce » · 部屋（へや）« chambre » · は « thème » · ___（ひろくない）« n'est pas spacieux (forme négative) » · です « être » · 。 « fin »",
    "jlpt:optionNote": [
     "じゃない : réservé aux noms/adj. en -na",
     "forme fautive",
@@ -8230,7 +8230,7 @@
    "jlpt:skill": "grammaire",
    "jlpt:difficulty": 1,
    "jlpt:ord": 330,
-   "jlpt:stem": "試験（しけん）は＿＿です。",
+   "jlpt:stem": "試験（しけん）は___です。（passé affirmatif）",
    "opts": [
     "難しかった",
     "難しいでした",
@@ -8239,7 +8239,7 @@
    ],
    "jlpt:answer": 0,
    "schema:description": "難しい → 難しかった.",
-   "jlpt:gloss": "試験（しけん）« examen » · は « thème » · 難（むずか）しかったです « était difficile (adj. en -i passé) » [難しい→難しかった]",
+   "jlpt:gloss": "試験（しけん）« examen » · は « thème » · ___（むずかしかった）« était difficile (passé affirmatif) » · です « être » · 。 « fin »",
    "jlpt:optionNote": [
     "い → かった : correct",
     "forme fautive (い + でした)",
@@ -8253,7 +8253,7 @@
    "jlpt:skill": "grammaire",
    "jlpt:difficulty": 1,
    "jlpt:ord": 331,
-   "jlpt:stem": "その映画（えいが）は＿＿です。",
+   "jlpt:stem": "その映画（えいが）は___です。（passé affirmatif）",
    "opts": [
     "面白いでした",
     "面白くでした",
@@ -8262,7 +8262,7 @@
    ],
    "jlpt:answer": 2,
    "schema:description": "面白い → 面白かった.",
-   "jlpt:gloss": "その « ce » · 映画（えいが）« film » · は « thème » · 面白（おもしろ）かったです « était intéressant (adj. en -i passé) » [面白い→面白かった]",
+   "jlpt:gloss": "その « ce » · 映画（えいが）« film » · は « thème » · ___（おもしろかった）« était intéressant (passé affirmatif) » · です « être » · 。 « fin »",
    "jlpt:optionNote": [
     "forme fautive (い + でした)",
     "forme fautive",
@@ -8276,7 +8276,7 @@
    "jlpt:skill": "grammaire",
    "jlpt:difficulty": 1,
    "jlpt:ord": 332,
-   "jlpt:stem": "昨日（きのう）の天気（てんき）は＿＿です。",
+   "jlpt:stem": "昨日（きのう）の天気（てんき）は___です。（passé affirmatif）",
    "opts": [
     "いいでした",
     "いかった",
@@ -8285,7 +8285,7 @@
    ],
    "jlpt:answer": 3,
    "schema:description": "いい est irrégulier : いい → よかった.",
-   "jlpt:gloss": "昨日（きのう）« hier » · の « de » · 天気（てんき）« temps » · は « thème » · よかったです « était bon (passé irrégulier) » [いい→よかった]",
+   "jlpt:gloss": "昨日（きのう）« hier » · の « de » · 天気（てんき）« temps » · は « thème » · ___（よかった）« était bon (passé affirmatif) » · です « être » · 。 « fin »",
    "jlpt:optionNote": [
     "forme fautive (い + でした)",
     "forme fautive",
@@ -8322,7 +8322,7 @@
    "jlpt:skill": "grammaire",
    "jlpt:difficulty": 1,
    "jlpt:ord": 334,
-   "jlpt:stem": "試験（しけん）は＿＿です。",
+   "jlpt:stem": "試験（しけん）は___です。（passé négatif）",
    "opts": [
     "難しいなかった",
     "難しくなかった",
@@ -8331,7 +8331,7 @@
    ],
    "jlpt:answer": 1,
    "schema:description": "難しい → 難しくなかった.",
-   "jlpt:gloss": "試験（しけん）« examen » · は « thème » · 難（むずか）しくなかったです « n'était pas difficile (adj. en -i passé négatif) » [難しい→難しくなかった]",
+   "jlpt:gloss": "試験（しけん）« examen » · は « thème » · ___（むずかしくなかった）« n'était pas difficile (passé négatif) » · です « être » · 。 « fin »",
    "jlpt:optionNote": [
     "forme fautive (い + なかった)",
     "い → くなかった : correct",
@@ -8368,7 +8368,7 @@
    "jlpt:skill": "grammaire",
    "jlpt:difficulty": 1,
    "jlpt:ord": 336,
-   "jlpt:stem": "その映画（えいが）は＿＿です。",
+   "jlpt:stem": "その映画（えいが）は___です。（passé négatif）",
    "opts": [
     "面白いなかった",
     "面白かったない",
@@ -8377,7 +8377,7 @@
    ],
    "jlpt:answer": 2,
    "schema:description": "面白い → 面白くなかった.",
-   "jlpt:gloss": "その « ce » · 映画（えいが）« film » · は « thème » · 面白（おもしろ）くなかったです « n'était pas intéressant (adj. en -i passé négatif) » [面白い→面白くなかった]",
+   "jlpt:gloss": "その « ce » · 映画（えいが）« film » · は « thème » · ___（おもしろくなかった）« n'était pas intéressant (passé négatif) » · です « être » · 。 « fin »",
    "jlpt:optionNote": [
     "forme fautive (い + なかった)",
     "forme fautive",
@@ -8391,7 +8391,7 @@
    "jlpt:skill": "grammaire",
    "jlpt:difficulty": 1,
    "jlpt:ord": 337,
-   "jlpt:stem": "昨日（きのう）の天気（てんき）は＿＿です。",
+   "jlpt:stem": "昨日（きのう）の天気（てんき）は___です。（passé négatif）",
    "opts": [
     "いくなかった",
     "いいなかった",
@@ -8400,7 +8400,7 @@
    ],
    "jlpt:answer": 3,
    "schema:description": "いい est irrégulier : いい → よくなかった.",
-   "jlpt:gloss": "昨日（きのう）« hier » · の « de » · 天気（てんき）« temps » · は « thème » · よくなかったです « n'était pas bon (passé négatif irrégulier) » [いい→よくなかった]",
+   "jlpt:gloss": "昨日（きのう）« hier » · の « de » · 天気（てんき）« temps » · は « thème » · ___（よくなかった）« n'était pas bon (passé négatif) » · です « être » · 。 « fin »",
    "jlpt:optionNote": [
     "forme fautive",
     "forme fautive",
