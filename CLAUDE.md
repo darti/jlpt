@@ -66,26 +66,44 @@ par tâche = branche + répertoire isolés.
     bun run css                       # recompile src/styles/styles.gen.css seul
     bun run build                     # CSS minifié + bun build ./index.html (--splitting) → _site/
     bunx serve _site                  # servir le build (http, requis pour SW + fetch)
-    bun tools/validate.mjs            # valide les data/*.json sources (exit 1 si KO)
+    bun tools/validate.mjs            # valide data/cours-*.json (exit 1 si KO)
     bun tools/validate-graph.mjs      # valide data/graph/ — SHACL + contrôles impératifs
+    node tools/graph/readings.mjs     # applique data/lectures-arbitrees.json sur word.jsonld
 
-**CI** = `.github/workflows/validate.yml` (push + PR), et lui seul : contenu `data/*.json`,
+**CI** = `.github/workflows/validate.yml` (push + PR), et lui seul : cours `data/cours-*.json`,
 graphe `data/graph/`, `typecheck`, `bun test`. `deploy.yml` ne fait que
 `bun run build` — et **`bun build` ne typecheck pas**, il n'est donc jamais un garde-fou.
 **Pas de linter** dans le projet (ni eslint, ni prettier, ni biome) : ne pas en chercher un,
 ne pas en ajouter sans demande explicite — `typecheck` + `bun test` font foi.
 
-## Données — le graphe est la source (plus aucun dérivé)
+## Données — le graphe EST la source (plus aucun dérivé, plus aucun générateur)
+
+**`data/` ne contient plus que ce que l'app sert.** Chaque fichier est à la fois source et
+fichier livré : il n'y a plus rien à régénérer, donc plus rien qui puisse se désynchroniser.
+C'était l'objet de la migration — les trois pannes du modèle précédent avaient toutes la même
+cause, un dérivé que rien ne resynchronisait.
 
 | Fichier | Rôle |
 |---|---|
-| `data/graph/*.jsonld` | **Source ET fichiers livrés** — éditer ICI. Le runtime ne lit rien d'autre : questions (`q-<compétence>.jsonld`), intervalles du corpus (`corpus.jsonld`), mots (`word.jsonld`, le dictionnaire). Validés par `tools/validate-graph.mjs`. |
-| `data/cours-*.json` | Sources **et** fichiers livrés (fetchés tels quels par `/cours`). |
-| `data/bank.json`, `dict.json`, `grammar.json`, `kanji.json`, `vocab.json` | **Vestiges de l'ancien modèle** : validés par `tools/validate.mjs` et lus par `tools/migrate-to-graph.mjs`, mais **plus jamais servis ni fetchés**. Les éditer n'a AUCUN effet sur l'app. |
+| `data/graph/*.jsonld` | **Source ET livré** — éditer ICI. Questions (`q-<compétence>.jsonld`), intervalles du corpus (`corpus.jsonld`), mots/dictionnaire (`word.jsonld`), entités (`kanji`/`gram`), leçons (`lesson`). Validés par `tools/validate-graph.mjs` : shapes SHACL + contrôles impératifs. |
+| `data/cours-*.json` | **Source ET livré** (fetchés tels quels par `/cours`). Validés par `tools/validate.mjs`. |
 
-⚠ **Ne PAS relancer `tools/migrate-to-graph.mjs`** : il n'est pas idempotent et régénère
-`data/graph/` depuis ces vestiges — il **écraserait** toute correction faite dans le graphe.
-C'est exactement ce qui a tué `tools/transform-cours.mjs`. Il sera supprimé au lot 4.
+`bank.json`, `bank-*.json`, `dict.json`, `grammar/kanji/vocab.json`, `split-bank.mjs`,
+`migrate-to-graph.mjs` et `transform-cours.mjs` ont été **supprimés** (lot 4). Il n'existe plus
+aucun script qui réécrive `data/graph/` : **les corrections de contenu se font dans le graphe,
+à la main ou par un outil idempotent.**
+
+**Lectures manquantes — la seule chaîne d'écriture outillée**, et elle n'écrase jamais rien :
+
+    node tools/jmdict/fetch.mjs        # → .jmdict/ (hors dépôt, JAMAIS commité)
+    node tools/jmdict/propose.mjs      # → docs/…/lectures-a-arbitrer.md (propositions)
+    #   … l'auteur relit et consigne SES décisions dans data/lectures-arbitrees.json …
+    node tools/graph/readings.mjs      # → pose les lectures manquantes sur word.jsonld
+
+⚠ Aucune donnée JMdict n'entre dans le graphe : **on ne redistribue pas JMdict, on s'en sert
+pour décider.** C'est ce qui évite l'attribution CC BY-SA sur chaque écran et le ShareAlike sur
+le jeu dérivé. `readings.mjs` est idempotent et n'écrase **jamais** une lecture existante (le
+graphe fait autorité ; un désaccord est signalé, pas résolu en silence).
 
 ⚠ **`jlpt:ord` = index global dans le corpus, groupé par compétence, et il doit rester
 stable** : c'est lui qu'indexent le bitset `seen`/`mastered`, `wrong[]` (erreurs) et
