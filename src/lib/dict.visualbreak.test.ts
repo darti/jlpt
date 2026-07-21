@@ -63,6 +63,31 @@ test("la traduction française finale « … » ne devient PAS un bloc", () => {
   expect(html).not.toContain("je cours chaque matin");
 });
 
+test("catégorie grammaticale : nom / verbe / adj い / adj な / adverbe reçoivent des rôles distincts", () => {
+  const role = (w: string) => (visualBreak(w + "（）« x »", { legend: false }).match(/tok tok-(\w+)"/) || [])[1];
+  // い-adjectifs (dont un qui ne finit pas en しい)
+  expect(role("安い")).toBe("adj");
+  expect(role("高い")).toBe("adj");
+  // な-adjectifs — 嫌い finit en い mais reste な-adj (testé AVANT la règle い)
+  expect(role("上手")).toBe("adjna");
+  expect(role("嫌い")).toBe("adjna");
+  // verbes : kana pur (なる) et kanji + terminaison う-段 (咲く)
+  expect(role("なる")).toBe("verb");
+  expect(role("咲く")).toBe("verb");
+  // adverbe
+  expect(role("必ず")).toBe("adv");
+  // noms qui RESSEMBLENT à d'autres classes ne basculent pas (違い finit en い, 収入 en kanji)
+  expect(role("違い")).toBe("noun");
+  expect(role("収入")).toBe("noun");
+  expect(role("時間")).toBe("noun");
+});
+
+test("legend:true expose la clé des couleurs ; défaut = masquée", () => {
+  const src = "安い（やすい）« bon marché » · 上手（じょうず）« habile » · なる « devenir »";
+  expect(visualBreak(src, { legend: true })).toContain("vbleg");
+  expect(visualBreak(src, { legend: false })).not.toContain("vbleg");
+});
+
 test("legend:false suppresses the role legend even with multiple roles", () => {
   const withLegend = visualBreak("朝（あさ） « matin » · を « COD »");
   const noLegend = visualBreak("朝（あさ） « matin » · を « COD »", { legend: false });

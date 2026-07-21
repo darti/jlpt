@@ -142,7 +142,30 @@ export function furi(s: string | null | undefined): string {
 interface Tok { jp: string; gloss: string; role: string }
 const PARTGLOSS: Record<string, string> = { "は": "thème", "が": "sujet", "を": "COD", "に": "à / lieu", "へ": "direction", "で": "moyen / lieu", "と": "et / avec", "も": "aussi", "の": "de", "から": "depuis", "まで": "jusqu’à", "より": "que (comp.)", "ね": "n’est-ce pas", "よ": "emphase", "か": "question" };
 function _pg(p: string): string { return PARTGLOSS[p] || "particule"; }
-const ADV: Record<string, number> = { "とても": 1, "まだ": 1, "もう": 1, "ずっと": 1, "よく": 1, "また": 1, "すぐ": 1, "すぐに": 1, "ちょっと": 1, "たくさん": 1, "あまり": 1, "いつも": 1, "きっと": 1, "たぶん": 1, "ほとんど": 1, "かなり": 1, "やはり": 1, "やっぱり": 1, "ぜひ": 1, "もっと": 1, "少し": 1, "すこし": 1, "けっこう": 1, "だいたい": 1, "しっかり": 1, "はっきり": 1, "ゆっくり": 1, "だんだん": 1, "どんどん": 1, "なかなか": 1, "わざわざ": 1, "ますます": 1 };
+// Classes fermées du JLPT (N5–N3). Le dictionnaire (word.jsonld) ne porte AUCUN part-of-speech,
+// et la surface seule ne tranche pas : 嫌い/きれい finissent en い mais sont な-adjectifs, 上手 est
+// un な-adjectif sans terminaison typique, 違い/読み sont des noms qui finissent comme des verbes.
+// On s'appuie donc sur des listes fermées (comme ADV), plus la morphologie pour les formes fléchies.
+const _set = (s: string) => new Set(s.split(/\s+/).filter(Boolean));
+const ADV = _set(`とても まだ もう ずっと よく また すぐ すぐに ちょっと たくさん あまり いつも きっと たぶん
+  ほとんど かなり やはり やっぱり ぜひ もっと 少し すこし けっこう だいたい しっかり はっきり ゆっくり だんだん
+  どんどん なかなか わざわざ ますます たとえ あまりに 必ず つい ちょうど やっと まるで そんなに つまり 実は
+  時々 少々 一緒に 初めて さんざん これから 今 常に すでに 特に 主に わざと 案外 意外と せっかく たまに めったに
+  一番 一度 まず 結局 実際 本当に なるべく できるだけ 相変わらず 次第に どうも いよいよ 決して ついに`);
+// い-adjectifs qui NE finissent pas en しい (les しい sont attrapés par une règle morphologique).
+const ADJ_I = _set(`いい 良い よい 悪い 高い 安い 低い 大きい 小さい 新しい 古い 多い 少ない 早い 速い 遅い
+  長い 短い 太い 細い 広い 狭い 深い 浅い 強い 弱い 重い 軽い 暑い 寒い 熱い 冷たい 暖かい 温かい 涼しい 若い
+  近い 遠い 明るい 暗い 痛い 甘い 辛い 苦い 汚い かわいい 可愛い 丸い 濃い 薄い 硬い 固い 柔らかい 眠い 眠たい
+  つまらない うるさい 面白い 赤い 青い 白い 黒い 眠い ありがたい 幼い ずるい きつい 偉い 鋭い にくい づらい`);
+// な-adjectifs (noms de qualité). Vérifiés contre le corpus pour ne pas recatégoriser un vrai nom.
+const ADJ_NA = _set(`好き 嫌い 上手 下手 得意 苦手 有名 元気 暇 静か にぎやか 賑やか 親切 便利 不便 大変 大丈夫
+  大切 大事 きれい 綺麗 簡単 素敵 立派 丁寧 十分 自由 特別 安全 危険 必要 不要 無理 無駄 残念 複雑 正直 真面目
+  まじめ 熱心 盛ん 豊か 確か 明らか 適当 幸せ 幸福 満足 心配 邪魔 楽 急 変 主 様々 さまざま いろいろ 色々 同じ
+  可能 不可能 意外 貴重 派手 地味 面倒 迷惑 深刻 重要 確実 正確 明確 巨大 幸運 有効 有利 不利 失礼 結構 特殊
+  普通 当然 自然 新鮮 豊富 円滑 順調 快適 穏やか 爽やか 朗らか 主要 共通 新た 手頃 身近 強力 曖昧 微妙 楽`);
+// Verbes en kana pur (sans kanji porteur) ou formes qui ne passent pas la règle morphologique.
+const VERB_KANA = _set(`なる ある いる する できる くる いく やる みる くれる もらう あげる いう おもう しる わかる
+  かかる かける つく つける とる のる まつ もつ かう うる える あう だす いれる うまくいく`);
 function splitParticles(jp: string, gloss: string): Tok[] {
   const out: Tok[] = [], lead = "のはがをにへでとも";
   while (jp.length > 1 && lead.indexOf(jp.charAt(0)) >= 0 && /^[一-鿿]/.test(jp.slice(1))) { out.push({ jp: jp.charAt(0), gloss: _pg(jp.charAt(0)), role: "part" }); jp = jp.slice(1); }
@@ -222,12 +245,16 @@ export function visualBreak(str: string, opts?: { legend?: boolean }): string {
         pills += '<span class="tok tok-note"><span class="tok-g">' + (gloss || jp) + "</span></span>"; prevSurface = ""; return;
       }
       const jpPlain = jp.replace(/（[^）]*）/g, "").replace(/[（）]/g, "");
+      const bare = jpPlain.replace(/[だな]$/, ""); // な-adj/nom peut porter une copule finale (上手だ, 大事な)
       let role = "noun";
-      if (/[→＋]/.test(jp)) role = "verb";
+      if (/[→＋]/.test(jp)) role = "verb"; // dérivation/forme fléchie (走る→走っている, base ＋grammaire)
       else if (/^[はがをにへでとやかもねよのばらでもへ〜～ずば・／/]+$/.test(jpPlain)) role = "part";
-      else if (ADV[jpPlain] === 1) role = "adv";
-      else if ((jpPlain.length >= 3 && jpPlain.charAt(jpPlain.length - 1) === "的" && jpPlain !== "目的") || /な-?adj|adjectif nominal/i.test(gloss)) role = "adjna";
-      else if (/しい$/.test(jpPlain) || /\bい-?adj|adjectif/i.test(gloss)) role = "adj";
+      else if (ADV.has(jpPlain)) role = "adv";
+      // な-adj AVANT い-adj : 嫌い/きれい finissent en い mais sont な-adjectifs.
+      else if (ADJ_NA.has(jpPlain) || ADJ_NA.has(bare) || (jpPlain.length >= 3 && jpPlain.endsWith("的") && jpPlain !== "目的") || /な-?adj|adjectif nominal/i.test(gloss)) role = "adjna";
+      else if (ADJ_I.has(jpPlain) || (/しい$/.test(jpPlain) && jpPlain.length >= 3) || /\bい-?adj|adjectif(?!\s+nominal)/i.test(gloss)) role = "adj";
+      // verbe : forme polie (〜ます), verbe kana connu, ou kanji + terminaison en う-段 hiragana.
+      else if (/(ます|ません|ました|ましょう)$/.test(jpPlain) || VERB_KANA.has(jpPlain) || (/[一-鿿]/.test(jpPlain) && /[うくぐすつぬぶむる]$/.test(jpPlain))) role = "verb";
       else if (/particule|th[eè]me|\bCOD\b|sujet|direction|marque|emphase/i.test(gloss) && jpPlain.length <= 3 && !/[一-鿿]/.test(jpPlain)) role = "part";
       const toks = (role === "noun" && /[一-鿿]/.test(jpPlain)) ? splitParticles(jp, gloss) : (role === "verb" ? splitVerbLead(jp, gloss) : [{ jp, gloss, role }]);
       toks.forEach((t) => {

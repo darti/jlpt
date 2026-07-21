@@ -90,7 +90,7 @@ function Example({ ex }: { ex: CoursExample }) {
       <div className="text-fg-muted text-meta">{ex.ro}</div>
       <div className="text-fg-dim">{ex.fr}</div>
       {ex.an && ex.an.length > 0 && (
-        <SentenceAnalysis source={ex.an.join(" · ")} />
+        <SentenceAnalysis source={ex.an.join(" · ")} legend />
       )}
     </div>
   );
