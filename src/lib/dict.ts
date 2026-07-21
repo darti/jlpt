@@ -185,7 +185,9 @@ function rubifyAnalyse(jp: string): string {
 // grammaire lui-même (のために, ように, について…), disparaissait. On réinjecte donc une frontière
 // « · » après chaque gloss fermé (»)  suivi — au-delà d'une flèche/tiret — de JAPONAIS menant à un
 // nouveau «. La traduction finale « … » (français, sans japonais avant le «) n'en déclenche pas.
-const BLOCK_BOUNDARY_RE = /»[\s—–\-→]*(?=[^«»]*[一-鿿ぁ-んァ-ンー々][^«»]*«)/g;
+// ⚠ Le « · » est exclu de la fenêtre de recherche : un segment DÉJÀ séparé (« … » · は « … ») ne
+// doit PAS être redécoupé, sinon on injecte un « · » parasite en tête du bloc suivant (« · は »).
+const BLOCK_BOUNDARY_RE = /»[\s—–\-→]*(?=[^«»·]*[一-鿿ぁ-んァ-ンー々][^«»·]*«)/g;
 export function visualBreak(str: string, opts?: { legend?: boolean }): string {
   if (!str) return "";
   const parts = String(str).replace(BLOCK_BOUNDARY_RE, "» · ").split(" · ");

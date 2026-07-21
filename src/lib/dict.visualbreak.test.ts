@@ -47,6 +47,14 @@ test("un segment enchaînant deux blocs glosés par → rend les DEUX (le 2e n'e
   expect((html.match(/tok-g/g) || []).length).toBe(2); // deux blocs glosés distincts
 });
 
+test("un segment DÉJÀ séparé par « · » n'injecte pas de « · » parasite en tête du bloc suivant", () => {
+  // Régression : la découpe des blocs enchaînés ne doit pas re-frontièrer un « · » existant,
+  // sinon は se rendait « · は » (parasite vu sur ~tout le corpus du corrigé quiz).
+  const html = visualBreak("会議（かいぎ）« réunion » · は « thème »", { legend: false });
+  expect(html).not.toMatch(/tok-jp">\s*·/); // aucun bloc ne commence par un point médian
+  expect((html.match(/tok-g/g) || []).length).toBe(2); // 会議 + は, exactement deux blocs
+});
+
 test("la traduction française finale « … » ne devient PAS un bloc", () => {
   // Seul un second bloc JAPONAIS déclenche la découpe ; « → « je cours… » » (français) reste absorbé.
   const html = visualBreak("走る（はしる）→走っている « ている = habituel » → « je cours chaque matin ».", { legend: false });
