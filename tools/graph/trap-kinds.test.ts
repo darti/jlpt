@@ -78,6 +78,38 @@ test("défaut C (seconde revue) : une lecture inexistante n'est plus classée gr
   expect(trapKind("はてる : lecture inexistante ici")).toBe("autre");
 });
 
+// Non-régression — troisième revue. Chaque note est VERBATIM du corpus (data/graph/q-*.jsonld),
+// vérifiée par grep -F avant écriture. Voir l'en-tête de trap-kinds.mjs pour le détail des
+// deux défauts et des deux collisions qu'ils ont révélées.
+//
+// Défaut 1 : `kanji-confondu` matchait le mot-clé nu `autre kanji`, qui capturait aussi le
+// gabarit auteur « erreur : « X » est le sens d'un autre kanji » / « … correspond à un autre
+// kanji » — des confusions de SENS, pas des confusions VISUELLES de caractère. Une fois
+// exclues de kanji-confondu, elles seraient retombées sur `erreur ?:` (lecture-erronee, un
+// type tout aussi faux) sans le garde symétrique ajouté à ce motif. Les deux collisions
+// (« valeur » → nuance-grammaticale, « registre » → registre, la glose française citée
+// servant aussi de mot-clé à un autre motif) sont couvertes séparément ci-dessous.
+test("défaut 1 (troisième revue) : une confusion de SENS de kanji ne matche plus kanji-confondu", () => {
+  expect(trapKind("Erreur : « registre » est le sens d'un autre kanji")).toBe("autre");
+  expect(trapKind("erreur : « court » correspond à un autre kanji")).toBe("autre");
+  expect(trapKind("erreur : « fuir, échapper » est le sens d'un autre kanji")).toBe("autre");
+  // Les deux collisions révélées PAR le correctif (la glose citée matchait un mot-clé plus
+  // loin dans la liste des motifs) : elles doivent elles aussi tomber en `autre`.
+  expect(trapKind("erreur : « valeur » est le sens d'un autre kanji")).toBe("autre");
+});
+
+// Défaut 2 : `nuance-grammaticale` matchait le mot-clé nu `nuance`, qui capturait des notes de
+// VOCABULAIRE parlant d'une nuance de SENS (« nuance différente », « autre nuance », ou le mot
+// cité comme glose « nuance »), pas d'un point de grammaire. Resserré en `nuance grammaticale`
+// (phrase explicite requise).
+test("défaut 2 (troisième revue) : une nuance de SENS ne matche plus nuance-grammaticale", () => {
+  expect(trapKind("ニュアンス « nuance » : début identique")).toBe("autre");
+  expect(trapKind("周り（まわり）: graphie voisine (« pourtour »), nuance différente ici")).toBe("autre");
+  expect(trapKind("止める（とめる/やめる）: graphie voisine, nuance « arrêter » générale")).toBe("autre");
+  expect(trapKind("ともかく « quoi qu'il en soit » : forme très proche, nuance différente")).toBe("autre");
+  expect(trapKind("穢す : graphie erronée (lecture けがす, autre nuance)")).toBe("autre");
+});
+
 test("KINDS énumère exactement les types produits, autre compris", () => {
   expect(KINDS).toContain("autre");
   expect(KINDS.length).toBe(14);
@@ -86,11 +118,23 @@ test("KINDS énumère exactement les types produits, autre compris", () => {
 
 import { readFileSync } from "node:fs";
 
+// Mémoïsé : `couverture()` et le garde permanent plus bas lisent chacun `q-kanji`/`q-vocabulaire`
+// (2,6 Mo + 5,0 Mo) — sans cache, un seul `bun test` de ce fichier reparsait les deux shards deux
+// fois pour rien.
+const shardCache = new Map<string, unknown[]>();
+function loadShard(shard: string): unknown[] {
+  const cached = shardCache.get(shard);
+  if (cached) return cached;
+  const sujets = JSON.parse(readFileSync(`data/graph/${shard}.jsonld`, "utf8"))["@graph"] ?? [];
+  shardCache.set(shard, sujets);
+  return sujets;
+}
+
 /** Couverture du classifieur sur un shard réel : part des notes de DISTRACTEUR typées. */
 function couverture(shard: string): { pct: number; n: number } {
-  const sujets = JSON.parse(readFileSync(`data/graph/${shard}.jsonld`, "utf8"))["@graph"] ?? [];
+  const sujets = loadShard(shard);
   let n = 0, ok = 0;
-  for (const s of sujets) {
+  for (const s of sujets as Record<string, unknown>[]) {
     const notes = s["jlpt:optionNote"], ans = s["jlpt:answer"];
     if (!Array.isArray(notes)) continue;
     notes.forEach((note, i) => {
@@ -121,17 +165,104 @@ function couverture(shard: string): { pct: number; n: number } {
 // (défaut A), -6 notes de nuance-grammaticale fautives qui retombent en `autre` (défaut B),
 // -7 notes de graphie-inexistante fautives qui retombent en `autre` (défaut C, sur 9 notes
 // concernées, 2 restant couvertes sous un autre type). Toujours pas une régression : ce sont
-// des notes qui n'auraient jamais dû compter comme « couvertes ». Les seuils (88 / 73) restent
-// valides avec la même marge qu'à l'origine (~1,5 point sous la valeur mesurée) : inutile de
-// les remonter pour une variation de 0,03 point.
-test("le classifieur couvre au moins 88 % des notes de kanji", () => {
+// des notes qui n'auraient jamais dû compter comme « couvertes ».
+//
+// Troisième revue (défauts 1/2, voir l'en-tête de trap-kinds.mjs) — le seuil KANJI BAISSE
+// nettement cette fois (88 → 80) : la couverture kanji chute à 81,80 % (7 725 / 9 444, contre
+// 89,46 % avant), parce que le défaut 1 n'était pas une collision marginale mais l'attrape-tout
+// `autre kanji` lui-même — 238 notes uniques (724 occurrences, comptant les deux apostrophes)
+// sur q-kanji, TOUTES de simples confusions de sens (« erreur : « X » est le sens d'un autre
+// kanji ») qui n'avaient jamais leur place sous `kanji-confondu`. Ce n'est toujours pas une
+// régression : ces notes ne testaient RIEN de correct avant (un type FAUX vaut moins qu'un type
+// ABSENT) ; les 238 retombent en `autre`, faute de motif dédié à une confusion de sens de kanji
+// isolé. La couverture vocabulaire ne bouge presque pas (74,54 %, -5 notes sur 17 703 pour le
+// défaut 2) : le seuil vocabulaire (73) reste valide tel quel. Marge conservée à ~1,5-2 points
+// sous la valeur mesurée pour les deux seuils.
+test("le classifieur couvre au moins 80 % des notes de kanji", () => {
   const c = couverture("q-kanji");
   expect(c.n).toBeGreaterThan(9000);
-  expect(c.pct).toBeGreaterThan(88);
+  expect(c.pct).toBeGreaterThan(80);
 });
 
 test("le classifieur couvre au moins 73 % des notes de vocabulaire", () => {
   const c = couverture("q-vocabulaire");
   expect(c.n).toBeGreaterThan(17000);
   expect(c.pct).toBeGreaterThan(73);
+});
+
+// ⚠ GARDE PERMANENT — pas un cliquet de couverture. `couverture()` ci-dessus ne mesure que
+// « type ≠ autre » : c'est exactement ce qui a caché le défaut 1 pendant trois revues (724
+// occurrences de confusion de SENS comptées comme « couvertes » sous `kanji-confondu`, un type
+// FAUX). Le test suivant mesure autre chose : « pas manifestement faux ». Pour chaque note du
+// corpus réel, il applique `trapKind`, regarde le type produit et vérifie que la note ne porte
+// aucune des CONTRE-MARQUES de ce type — une sous-chaîne qui, par construction, prouve que ce
+// type ne peut pas être le bon (cf. les motifs des trois revues successives ci-dessus). C'est ce
+// garde-là, pas un futur relecteur humain, qui doit attraper la prochaine collision de cette
+// classe : il tourne à chaque `bun test`, sur les 10 307 questions réelles, sans exemple à jour.
+//
+// La table est délibérément incomplète : elle ne couvre QUE les types pour lesquels une
+// collision a déjà été mesurée (les six défauts documentés dans l'en-tête). Ajouter une entrée
+// sans preuve mesurée irait contre le principe « mesuré, jamais deviné » du fichier.
+//
+// `Partial<...>` (pas `Record<string, RegExp[]>`) : une clé absente est le cas normal (7 des 14
+// types n'ont pas de contre-marque connue), pas une erreur — l'accès `CONTRE_MARQUES[type]`
+// renvoie honnêtement `RegExp[] | undefined`, gardé par `if (!marques) return;` juste en dessous.
+const CONTRE_MARQUES: Partial<Record<string, RegExp[]>> = {
+  // Défaut 1 (troisième revue) + collisions qu'il a révélées.
+  "kanji-confondu": [/est le sens d['’]un autre kanji/i, /correspond à un autre kanji/i],
+  // Défaut post-Task 1 (`erreur ?:` attrape-tout) + le même défaut 1, version lecture-erronee.
+  "lecture-erronee": [
+    /ne signifie pas/i,
+    /ne correspond pas/i,
+    /\best un sens\b/i,
+    /est le sens d['’]un autre kanji/i,
+    /correspond à un autre kanji/i,
+  ],
+  // Défaut 2 (troisième revue) : nuance de SENS citée en vocabulaire, pas un point de grammaire.
+  "nuance-grammaticale": [/nuance différente/i, /autre nuance/i],
+  // Défaut « registre » v2 (seconde revue) + collision révélée par le défaut 1 : une glose
+  // française CITÉE (traduction du kanji) n'est pas le type de piège lui-même.
+  "registre": [
+    /«\s*(?:registre|poli|neutre|familier|honorifiques?)\s*»\s*:/i,
+    /est le sens d['’]un autre kanji/i,
+    /correspond à un autre kanji/i,
+  ],
+  // Défaut C (seconde revue) : une lecture inexistante n'est pas une graphie inexistante.
+  "graphie-inexistante": [/lecture[\s\S]*inexistant/i],
+  // Défaut post-Task 1 (`manquant` seul) : okurigana/honorifique manquants ne sont pas une
+  // longueur de voyelle.
+  "longueur-voyelle": [/okurigana/i, /honorifi/i],
+};
+
+// Auto-contrôle de la table elle-même : une clé mal orthographiée (ex. `"kanji-confondue"`) ne
+// lèverait jamais d'erreur ailleurs — `CONTRE_MARQUES[type]` renverrait juste `undefined` pour
+// le VRAI type, et le garde resterait silencieusement désactivé pour ce défaut. Vérifié ici une
+// fois pour toutes, plutôt que de compter sur chaque relecture pour repérer la faute de frappe.
+test("CONTRE_MARQUES ne porte que des clés qui sont de vrais types de la taxonomie", () => {
+  for (const cle of Object.keys(CONTRE_MARQUES)) expect(KINDS).toContain(cle);
+});
+
+test("garde permanent : aucun type ne matche une note portant sa propre contre-marque", () => {
+  const violations: string[] = [];
+  for (const shard of ["q-kanji", "q-vocabulaire"]) {
+    const sujets = loadShard(shard);
+    for (const sujet of sujets as Record<string, unknown>[]) {
+      const notes = sujet["jlpt:optionNote"], ans = sujet["jlpt:answer"];
+      if (!Array.isArray(notes)) continue;
+      notes.forEach((note: unknown, i: number) => {
+        if (i === ans || typeof note !== "string") return;
+        const type = trapKind(note);
+        const marques = CONTRE_MARQUES[type];
+        if (!marques) return;
+        const marque = marques.find((re) => re.test(note));
+        if (marque) violations.push(`[${shard}] type=${type} contre-marque=${marque} note="${note}"`);
+      });
+    }
+  }
+  if (violations.length > 0) {
+    throw new Error(
+      `${violations.length} note(s) matchent un type dont la contre-marque prouve qu'il est faux :\n` +
+        violations.slice(0, 10).join("\n"),
+    );
+  }
 });

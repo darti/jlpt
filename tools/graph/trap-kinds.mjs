@@ -81,6 +81,70 @@
 //   notes du corpus qui s'appuient sur le mot-clé nu (confusions de kanji, formes/conjugaisons
 //   inexistantes) ne mentionnent jamais « lecture » et restent inchangées.
 //
+// ⚠ Troisième revue — deux défauts trouvés par relecture manuelle, plus deux collisions
+// révélées PAR le correctif lui-même (mesurées, pas devinées) :
+// - `kanji-confondu` : le mot-clé nu `autre kanji` capturait des notes de SENS, pas de
+//   confusion VISUELLE — gabarit auteur « erreur : « X » est le sens d'un autre kanji » /
+//   « erreur : « X » correspond à un autre kanji ». Mesuré : 238 notes uniques (724
+//   occurrences, les deux apostrophes ' et ’ confondues) sur q-kanji, 100 % mal classées.
+//   Exclu via lookbehind sur l'alternative `autre kanji` (même technique que
+//   `lecture-erronee` ci-dessus, mais en lookbehind car le motif disqualifiant précède
+//   « autre kanji » alors que celui de `lecture-erronee` le suit).
+//   Une fois exclues de `kanji-confondu`, ces 238 notes retombent par défaut sur
+//   `erreur ?:` (lecture-erronee) : FAUX type aussi, puisque ce sont des confusions de
+//   sens, pas de lecture. Même garde ajoutée là, avec les deux gabarits complets cette
+//   fois (« … autre kanji » entier, pas seulement « autre kanji »).
+//   Deux collisions supplémentaires sont apparues UNE FOIS ces deux gardes posées — pas
+//   avant, puisque `kanji-confondu`/`lecture-erronee` les interceptaient jusque-là : la
+//   glose française citée entre guillemets sert aussi de mot-clé à un AUTRE motif plus
+//   loin dans la liste, comme pour `registre` v2 (bug de même famille, gabarit différent) :
+//   « erreur : « valeur » est le sens d'un autre kanji » matchait `valeur ` (nuance-
+//   grammaticale) et « Erreur : « registre » est le sens d'un autre kanji » matchait
+//   `registre` (le garde de parenthèse/deux-points de la seconde revue ne s'applique pas
+//   ici : rien ne suit la glose par un deux-points, juste « est le sens… »). Gardées au cas
+//   par cas, sur les deux seules occurrences mesurées — pas de garde générique ajoutée aux
+//   autres mots-clés (poli/neutre/familier/honorifique) sans cas réel, même principe que le
+//   bug `\bbut\b` de la seconde revue. Résultat final : les 238 notes retombent toutes en
+//   `autre` (aucune ne matche `sens-different`, faute de mot-clé commun — « autre » reste un
+//   résultat acceptable, seul un type FAUX ne l'est pas).
+// - `nuance-grammaticale` : le mot-clé nu `nuance` capturait des notes de VOCABULAIRE parlant
+//   d'une nuance de SENS, pas d'un point de grammaire — 5 notes uniques sur q-vocabulaire,
+//   toutes mal classées (« ニュアンス « nuance » : début identique », « nuance différente »,
+//   « autre nuance », etc.). Resserré en `nuance grammaticale` (phrase explicite requise) :
+//   mesuré, aucune note du corpus n'emploie encore cette phrase exacte pour un vrai point de
+//   grammaire (7 notes totales tombaient sur ce motif avant correctif, seules 5 le faisaient
+//   via le mot-clé nu `nuance` — les 2 autres via `exprime`/`but`, non affectées). Les 5
+//   retombent en `autre`, aucune ne matchant un autre motif (mesuré : aucune ne contient
+//   « graphie proche », seulement « graphie voisine », un mot différent — donc pas de filet
+//   de rattrapage sur `forme-proche` ; c'est mesuré, pas un oubli à corriger ici, hors
+//   périmètre de cette revue).
+//
+// ⚠ Portée du resserrement `nuance grammaticale` — mesurée UNIQUEMENT sur `q-kanji` et
+// `q-vocabulaire`, le périmètre du lot (`docs/superpowers/plans/2026-07-21-graphe-confusion.md`,
+// « Périmètre : q-kanji.jsonld et q-vocabulaire.jsonld et eux seuls »). `trapKind` n'est PAS
+// mesuré sur `q-grammaire.jsonld` : ce shard contient ~94 notes qui matchaient l'ancien mot-clé
+// nu `nuance` de façon LÉGITIME (« です : affirmation neutre, sans nuance de confirmation »,
+// « そう = apparence, nuance différente » — de vrais points de grammaire, pas des confusions de
+// vocabulaire) et qui retomberaient en `autre` avec le motif resserré, faute de la phrase exacte
+// « nuance grammaticale ». Ce n'est pas une régression DE CE LOT : `jlpt:trapKind` ne sera jamais
+// posé sur `q-grammaire` (hors périmètre), donc ce chemin n'est jamais exécuté en production —
+// mais si le périmètre s'étend un jour à la grammaire, ce motif devra être remesuré avant, pas
+// après, un tel changement.
+//
+// ⚠ Le gabarit « erreur : « X » est le sens d'un autre kanji » / « … correspond à un autre
+// kanji » (défaut 1 ci-dessus) est exclu à QUATRE endroits : `kanji-confondu` (en lookbehind),
+// `lecture-erronee`, `nuance-grammaticale` et `registre` (en lookahead sur les trois derniers).
+// Une future variante du gabarit (nouvelle apostrophe, reformulation) doit être mesurée puis
+// répercutée aux quatre — les oublier romprait le même défaut à un autre endroit de la liste.
+//
+// Garde permanent (voir trap-kinds.test.ts) : les trois revues précédentes dépendaient d'un
+// relecteur humain pour repérer une collision — `couverture()` ne peut pas la voir, elle ne
+// mesure que « type ≠ autre ». Le test « aucun motif ne matche sa propre contre-marque »
+// balaie tout le corpus réel et échoue si un motif capture une note portant une sous-chaîne
+// qui prouve que son type est faux (contre-marques dérivées des quatre défauts ci-dessus et
+// de la seconde revue). C'est ce garde-là qui doit attraper la PROCHAINE collision de cette
+// classe, pas une quatrième revue manuelle.
+//
 // Zéro dépendance, exécuté par `bun`.
 
 /** Motifs, du plus spécifique au plus général. */
@@ -88,16 +152,16 @@ const MOTIFS = [
   ["kanji-partage", /partage(nt)? [一-鿿]|partage le kanji|même kanji|contient [一-鿿]/],
   ["voisement", /voisement|dakuten|handakuten|sonoris|assimilation phonétique|devient .{1,3} devant/i],
   ["graphie-inexistante", /graphie inexistante|n'existe pas|mot inexistant|forme inexistante|(?<!lecture[\s\S]*)inexistant|parasite|fausse\)/i],
-  ["kanji-confondu", /confond avec|se confond|confusion avec|autre kanji/i],
+  ["kanji-confondu", /confond avec|se confond|confusion avec|(?<!est le sens d['’]un )(?<!correspond à un )autre kanji/i],
   ["forme-proche", /forme proche|ressemble|graphie proche|se ressemble|proche graphiquement/i],
   ["homophone", /homophone|m[êe]me lecture|même son/i],
   ["lecture-on-kun", /lecture on|on.?yomi|lecture kun|kun.?yomi|on\/kun/i],
-  ["lecture-erronee", /lecture erron|lecture fausse|mauvaise lecture|lecture approximative|erreur ?:(?!.*(?:ne signifie pas|ne correspond pas|est un sens))/i],
+  ["lecture-erronee", /lecture erron|lecture fausse|mauvaise lecture|lecture approximative|erreur ?:(?!.*(?:ne signifie pas|ne correspond pas|est un sens|est le sens d['’]un autre kanji|correspond à un autre kanji))/i],
   ["lecture-autre-mot", /lecture de |est la lecture d|lecture du mot|se lit .{1,6}, pas/i],
   ["longueur-voyelle", /voyelle|son long|allong|contraction|^(?!.*okurigana)(?!.*honorifi).*manquant/i],
-  ["nuance-grammaticale", /exprime|valeur |conditionnel|simultanéité|(?<![A-Za-zÀ-ÿ])but(?![A-Za-zÀ-ÿ])|énumération|hypothét|nuance/i],
+  ["nuance-grammaticale", /exprime|valeur (?!.*(?:est le sens d['’]un autre kanji|correspond à un autre kanji))|conditionnel|simultanéité|(?<![A-Za-zÀ-ÿ])but(?![A-Za-zÀ-ÿ])|énumération|hypothét|nuance grammaticale/i],
   ["sens-different", /sens différent|sens voisin|autre sens|signifie|sens proche|autre mot|hors sujet|hors contexte/i],
-  ["registre", /\bregistre\b(?!(?:\s*[)）»])+\s*:)|\bpoli\b(?!(?:\s*[)）»])+\s*:)|\bneutre\b(?!(?:\s*[)）»])+\s*:)|\bfamilier\b(?!(?:\s*[)）»])+\s*:)|\bhonorifiques?\b(?!(?:\s*[)）»])+\s*:)/i],
+  ["registre", /\bregistre\b(?!(?:\s*[)）»])+\s*:)(?!.*(?:est le sens d['’]un autre kanji|correspond à un autre kanji))|\bpoli\b(?!(?:\s*[)）»])+\s*:)|\bneutre\b(?!(?:\s*[)）»])+\s*:)|\bfamilier\b(?!(?:\s*[)）»])+\s*:)|\bhonorifiques?\b(?!(?:\s*[)）»])+\s*:)/i],
 ];
 
 /** La taxonomie complète — `autre` compris. Sert au contrôle d'intégrité et aux libellés. */
