@@ -110,6 +110,31 @@ test("défaut 2 (troisième revue) : une nuance de SENS ne matche plus nuance-gr
   expect(trapKind("穢す : graphie erronée (lecture けがす, autre nuance)")).toBe("autre");
 });
 
+// Non-régression — quatrième revue (correction de cause racine, voir l'en-tête de
+// trap-kinds.mjs). Chaque note est VERBATIM du corpus (grep -F vérifié avant écriture).
+//
+// L'attrape-tout `erreur ?:` de `lecture-erronee` a été retiré — remplacé par un motif POSITIF
+// qui exige `lecture` ou `se lit` dans la note (sinon la note est classée par ce qu'elle dit,
+// via les motifs plus loin dans la liste). Les deux premiers cas prouvent que les gabarits
+// nommés (« signifie », « est le sens d'un autre mot ») atteignent bien `sens-different` une fois
+// l'attrape-tout retiré ; le troisième prouve la famille sœur, bien plus large, que le même
+// défaut cachait (« sens de X » nu, sans « signifie ») ; le quatrième la collision de
+// `longueur-voyelle` ; le cinquième la glose « exprimer » citée qui faisait déraper
+// `nuance-grammaticale` ; le sixième une collision RÉVÉLÉE par le retrait lui-même (« valeur »
+// citée entre guillemets, masquée jusque-là par l'attrape-tout) ; les deux derniers prouvent
+// qu'une VRAIE erreur de lecture reste bien `lecture-erronee` — y compris une qui n'emploie ni
+// « se lit » ni un des quatre gabarits déjà positifs, seulement le mot « lecture » nu.
+test("quatrième revue : le retrait de l'attrape-tout route les notes par leur contenu, pas leur préfixe", () => {
+  expect(trapKind("erreur : いりぐち signifie « entrée » (入口)")).toBe("sens-different");
+  expect(trapKind("erreur : « ville, cité » est le sens d'un autre mot")).toBe("sens-different");
+  expect(trapKind("erreur : sens de 丈")).toBe("sens-different");
+  expect(trapKind("erreur : voyelle longue きゅう manquante")).toBe("longueur-voyelle");
+  expect(trapKind("表す（あらわす）« exprimer » : sens proche, lecture différente")).toBe("sens-different");
+  expect(trapKind("erreur : 値 « valeur » (ne)")).toBe("autre");
+  expect(trapKind("erreur : 議 se lit ぎ, pas ご")).toBe("lecture-erronee");
+  expect(trapKind("erreur : lecture standard さんにん")).toBe("lecture-erronee");
+});
+
 test("KINDS énumère exactement les types produits, autre compris", () => {
   expect(KINDS).toContain("autre");
   expect(KINDS.length).toBe(14);
@@ -178,10 +203,24 @@ function couverture(shard: string): { pct: number; n: number } {
 // isolé. La couverture vocabulaire ne bouge presque pas (74,54 %, -5 notes sur 17 703 pour le
 // défaut 2) : le seuil vocabulaire (73) reste valide tel quel. Marge conservée à ~1,5-2 points
 // sous la valeur mesurée pour les deux seuils.
-test("le classifieur couvre au moins 80 % des notes de kanji", () => {
+//
+// Quatrième revue — correction de cause racine (voir l'en-tête de trap-kinds.mjs) : le seuil
+// KANJI S'EFFONDRE cette fois (80 → 52), bien plus que les « ~1 point » anticipés au départ. Le
+// retrait de l'attrape-tout `erreur ?:` fait chuter la couverture kanji à 54,11 % (5 110 / 9 444,
+// contre 81,80 % avant) : l'attrape-tout ne gonflait pas seulement la couverture via les deux
+// gabarits nommés (signifie/sens : 53 notes ; voyelle/gémination : 19 notes) mais via une masse
+// bien plus large et hétéroclite — confusions kanji-pour-contexte (933 notes), confusions on/kun
+// formulées sans les mots-clés de `lecture-on-kun`, gloses françaises en égalité, etc. — 2336
+// notes/3105 occurrences en tout, TOUTES sur q-kanji, TOUTES retombées en `autre` faute de motif
+// dédié. Ce n'est toujours pas une régression : ces 3105 occurrences ne testaient RIEN de correct
+// avant, le cliquet ne faisait que les compter à tort comme « couvertes ». La couverture
+// vocabulaire ne bouge quasi pas (74,75 %, contre 74,54 % avant — légère HAUSSE grâce aux
+// extensions `sens de`/`gémination`, l'attrape-tout n'ayant jamais pesé sur ce shard) : le seuil
+// vocabulaire (73) reste valide tel quel, marge inchangée.
+test("le classifieur couvre au moins 52 % des notes de kanji", () => {
   const c = couverture("q-kanji");
   expect(c.n).toBeGreaterThan(9000);
-  expect(c.pct).toBeGreaterThan(80);
+  expect(c.pct).toBeGreaterThan(52);
 });
 
 test("le classifieur couvre au moins 73 % des notes de vocabulaire", () => {
@@ -201,8 +240,9 @@ test("le classifieur couvre au moins 73 % des notes de vocabulaire", () => {
 // classe : il tourne à chaque `bun test`, sur les 10 307 questions réelles, sans exemple à jour.
 //
 // La table est délibérément incomplète : elle ne couvre QUE les types pour lesquels une
-// collision a déjà été mesurée (les six défauts documentés dans l'en-tête). Ajouter une entrée
-// sans preuve mesurée irait contre le principe « mesuré, jamais deviné » du fichier.
+// collision a déjà été mesurée (les défauts documentés dans l'en-tête, jusqu'à la correction de
+// cause racine de la quatrième revue incluse). Ajouter une entrée sans preuve mesurée irait
+// contre le principe « mesuré, jamais deviné » du fichier.
 //
 // `Partial<...>` (pas `Record<string, RegExp[]>`) : une clé absente est le cas normal (7 des 14
 // types n'ont pas de contre-marque connue), pas une erreur — l'accès `CONTRE_MARQUES[type]`
@@ -210,16 +250,29 @@ test("le classifieur couvre au moins 73 % des notes de vocabulaire", () => {
 const CONTRE_MARQUES: Partial<Record<string, RegExp[]>> = {
   // Défaut 1 (troisième revue) + collisions qu'il a révélées.
   "kanji-confondu": [/est le sens d['’]un autre kanji/i, /correspond à un autre kanji/i],
-  // Défaut post-Task 1 (`erreur ?:` attrape-tout) + le même défaut 1, version lecture-erronee.
+  // Quatrième revue (cause racine) : `lecture-erronee` n'utilise plus l'attrape-tout `erreur ?:`,
+  // mais le garde reste étendu très large par prudence — une régression future qui réintroduirait
+  // un attrape-tout doit être détectée immédiatement. `autre mot` est bornée : elle ne doit PAS
+  // signaler les 2 notes du corpus où l'auteur écrit EXPLICITEMENT « lecture erronée » en toutes
+  // lettres (« まずまず : autre mot (« passable »), lecture erronée » et l'équivalent pour
+  // むすこ) — sa propre résolution de l'ambiguïté, pas une collision.
   "lecture-erronee": [
     /ne signifie pas/i,
     /ne correspond pas/i,
     /\best un sens\b/i,
     /est le sens d['’]un autre kanji/i,
     /correspond à un autre kanji/i,
+    /signifie/i,
+    /\best le sens\b/i,
+    /autre mot(?![\s\S]*(?:lecture erron|lecture fausse|mauvaise lecture|lecture approximative))/i,
+    /voyelle longue/i,
+    /g[ée]mination/i,
+    /allongement/i,
   ],
   // Défaut 2 (troisième revue) : nuance de SENS citée en vocabulaire, pas un point de grammaire.
-  "nuance-grammaticale": [/nuance différente/i, /autre nuance/i],
+  // Quatrième revue : une glose « exprimer » citée entre guillemets n'est pas un point de
+  // grammaire non plus (même famille de bug, mot-clé `exprime` au lieu de `nuance`).
+  "nuance-grammaticale": [/nuance différente/i, /autre nuance/i, /«\s*exprimer\s*»/i],
   // Défaut « registre » v2 (seconde revue) + collision révélée par le défaut 1 : une glose
   // française CITÉE (traduction du kanji) n'est pas le type de piège lui-même.
   "registre": [

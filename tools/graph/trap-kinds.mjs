@@ -132,18 +132,95 @@
 // après, un tel changement.
 //
 // ⚠ Le gabarit « erreur : « X » est le sens d'un autre kanji » / « … correspond à un autre
-// kanji » (défaut 1 ci-dessus) est exclu à QUATRE endroits : `kanji-confondu` (en lookbehind),
-// `lecture-erronee`, `nuance-grammaticale` et `registre` (en lookahead sur les trois derniers).
-// Une future variante du gabarit (nouvelle apostrophe, reformulation) doit être mesurée puis
-// répercutée aux quatre — les oublier romprait le même défaut à un autre endroit de la liste.
+// kanji » (défaut 1 ci-dessus) est exclu à TROIS endroits : `kanji-confondu` (en lookbehind),
+// `nuance-grammaticale` et `registre` (en lookahead). Il ne l'est plus dans `lecture-erronee`
+// depuis la correction de cause racine ci-dessous : ce motif n'utilise plus l'attrape-tout que
+// ce gabarit visait à exclure. Une future variante du gabarit (nouvelle apostrophe,
+// reformulation) doit être mesurée puis répercutée aux trois restants.
 //
-// Garde permanent (voir trap-kinds.test.ts) : les trois revues précédentes dépendaient d'un
-// relecteur humain pour repérer une collision — `couverture()` ne peut pas la voir, elle ne
-// mesure que « type ≠ autre ». Le test « aucun motif ne matche sa propre contre-marque »
-// balaie tout le corpus réel et échoue si un motif capture une note portant une sous-chaîne
-// qui prouve que son type est faux (contre-marques dérivées des quatre défauts ci-dessus et
-// de la seconde revue). C'est ce garde-là qui doit attraper la PROCHAINE collision de cette
-// classe, pas une quatrième revue manuelle.
+// ⚠ CORRECTION DE CAUSE RACINE (quatrième revue) — `lecture-erronee` contenait encore
+// l'attrape-tout `erreur ?:`, colmaté lookahead après lookahead depuis trois revues (défaut 1,
+// « registre » v1/v2, défaut C…). Le préfixe « erreur : » est GÉNÉRIQUE dans le corpus : l'auteur
+// s'en sert pour des erreurs de lecture, MAIS AUSSI de sens et de longueur de voyelle — aucun
+// nombre de lookaheads ne referme cette classe de bug, seul le retrait de l'attrape-tout la
+// referme. Remplacé par un motif POSITIF : `erreur ?:` ne matche plus que s'il est suivi (dans le
+// reste de la note, ordre indifférent) de `lecture` ou `se lit` — sinon la note est classée par
+// CE QU'ELLE DIT, via les motifs spécifiques plus loin dans la liste, pas par son préfixe. Un
+// garde `(?!.*voyelle)` évite que 3 notes doublement thématiques (« voyelle courte ; la lecture
+// est ヒョウ (longue) ») ne soient captées ici plutôt que par `longueur-voyelle`, plus spécifique
+// pour elles.
+//
+// Balayage SYSTÉMATIQUE (obligatoire, pas seulement les deux gabarits déjà nommés) sur les
+// 27 147 occurrences de q-kanji + q-vocabulaire, avant/après retrait de l'attrape-tout :
+// - `lecture-erronee → autre` : 2336 notes / 3105 occurrences, **100 % sur q-kanji**. Bien plus
+//   large que les deux gabarits mesurés au départ (signifie/sens : 53 notes ; voyelle/gémination :
+//   19 notes) : l'attrape-tout absorbait AUSSI des confusions de kanji-pour-contexte
+//   (« erreur : le kanji « X » ne convient pas ici », « « X » n'est pas le bon kanji ici » — 933
+//   notes/1264 occ, questions à trou du type jours de la semaine/compteurs), des confusions
+//   on/kun formulées sans les mots-clés littéraux de `lecture-on-kun` (« サン est le on de 三 »,
+//   « なな est un kun de 七 » — ~90 occurrences), des gloses françaises en égalité
+//   (« erreur : deux = 二 » — 167 notes) et une longue traîne hétéroclite. AUCUN motif existant
+//   ne les décrit correctement : elles retombent en `autre`, ce qui est le résultat honnête (un
+//   type ABSENT vaut mieux qu'un type FAUX) — pas une régression, puisqu'aucune n'était
+//   « lecture-erronee » à raison. Non repris dans ce lot : étendre `lecture-on-kun` pour la
+//   confusion on/kun serait légitime (même principe « type perdu = perte ») mais déborde le
+//   périmètre de cette correction ; laissé comme piste pour une revue future, documentée ici
+//   plutôt que devinée en silence.
+// - `lecture-erronee → sens-different` : 406 notes / 563 occurrences. Le gabarit nommé
+//   (« signifie »/« est le sens d'un autre mot », 48 notes/133 occ mesurées avec le mot-clé exact)
+//   plus une famille sœur bien plus large que le même défaut cachait : « erreur : sens de 丈 »,
+//   « erreur : « X » n'est pas le sens de Y » (358 notes) — mesurée non couverte par les mots-clés
+//   existants de `sens-different` (aucun ne matche « sens de » nu). Ajouté `\bsens d[eu]\b` au
+//   motif : mesuré sûr sur les DEUX shards (zéro collision avec un autre type, y compris les 61
+//   notes `autre → sens-different` indépendantes de l'attrape-tout, capturées par le même
+//   mot-clé ailleurs dans le corpus).
+// - `lecture-erronee → longueur-voyelle` : 21 notes / 43 occurrences — le gabarit nommé
+//   (« voyelle longue … manquante », « gémination manquante X→Y ») plus les 3 notes à double
+//   thème protégées par le garde `(?!.*voyelle)` ci-dessus.
+// - `autre → longueur-voyelle` : 36 notes / 36 occurrences (q-vocabulaire) — jamais dépendantes de
+//   l'attrape-tout : des notes « gémination fautive/attendue/oubliée/erronée » qui ne contenaient
+//   jamais `manquant` et n'étaient donc atteintes par AUCUNE branche du motif. Le commentaire de
+//   la revue post-Task 1 (ligne 38 ci-dessus) documentait déjà la gémination comme cousine
+//   légitime de la longueur vocalique sans jamais l'ajouter comme mot-clé littéral — fait ici
+//   (`g[ée]mination` ajouté au motif).
+// - `nuance-grammaticale → sens-different` : 1 note / 1 occurrence — le défaut nommé : le mot-clé
+//   nu `exprime` matchait aussi « exprimer » (glose française citée entre guillemets,
+//   « 表す（あらわす）« exprimer » : sens proche, lecture différente », SEULE occurrence de
+//   « exprim » dans les deux shards). Corrigé par une frontière de mot finale, `\bexprime\b` :
+//   bloque le match dans « exprimer » (le « r » qui suit est un caractère de mot, donc pas de
+//   frontière) sans affecter le seul vrai cas du corpus (« exprime un but », suivi d'un espace).
+// - Collision RÉVÉLÉE par le retrait lui-même, corrigée avant qu'elle n'atteigne le classifieur
+//   final (transitoire lors de la mesure, jamais commitée telle quelle) : une fois l'attrape-tout
+//   retiré, « erreur : 値 « valeur » (ne) » (q/9212, un distracteur de compteur d'objets, sens
+//   pur — voir l'en-tête ci-dessus, pas une lecture) est tombée sur `nuance-grammaticale` via le
+//   mot-clé `valeur `, MASQUÉE jusque-là par l'attrape-tout — même famille de bug que
+//   `valeur`/`registre` (défaut 1, troisième revue), gabarit différent : une citation
+//   « X » suivie d'une PARENTHÈSE courte, pas de « est le sens d'un autre kanji ». Corrigé en
+//   excluant `valeur` quand il est immédiatement suivi (espace inclus, convention typographique
+//   française) d'un guillemet fermant `»` — mesuré : aucune occurrence légitime de `valeur` (mot-
+//   clé de nuance grammaticale) n'existe dans le corpus hors citations de glose, donc rien à
+//   casser.
+//
+// Effet sur les cliquets de couverture (mesuré, voir trap-kinds.test.ts) : **q-kanji s'effondre
+// de 81,80 % à 54,11 %** (7725/9444 → 5110/9444) — mouvement bien plus large que les « ~1 point »
+// anticipés, parce que l'attrape-tout gonflait la couverture kanji de bien plus que les deux
+// défauts nommés (cf. le détail des 2336 notes ci-dessus). Ce n'est pas une régression : les
+// 3105 occurrences perdues n'avaient JAMAIS leur place sous `lecture-erronee`, seule leur
+// disparition d'un cliquet qui ne mesure que « type ≠ autre » les rendait invisibles. q-vocabulaire
+// bouge à peine (74,54 % → 74,75 %, 13196/17703 → 13233/17703) : tous les changements côté
+// vocabulaire viennent des extensions `sens de`/`gémination`, l'attrape-tout n'y ayant jamais
+// pesé (100 % du mouvement `lecture-erronee → autre` est sur q-kanji, zéro sur q-vocabulaire).
+//
+// Garde permanent (voir trap-kinds.test.ts) : les revues précédentes dépendaient d'un relecteur
+// humain pour repérer une collision — `couverture()` ne peut pas la voir, elle ne mesure que
+// « type ≠ autre ». Le test « aucun motif ne matche sa propre contre-marque » balaie tout le
+// corpus réel et échoue si un motif capture une note portant une sous-chaîne qui prouve que son
+// type est faux (contre-marques dérivées de tous les défauts ci-dessus, étendues à la correction
+// de cause racine : `signifie`, `est le sens` nu, `autre mot` — gardé pour les 2 notes qui
+// portent EXPLICITEMENT « lecture erronée » en toutes lettres, résolution de l'auteur lui-même,
+// pas une collision —, `voyelle longue`, `gémination`, `allongement` pour `lecture-erronee` ; une
+// glose « exprimer » citée pour `nuance-grammaticale`). C'est ce garde-là qui doit attraper la
+// PROCHAINE collision de cette classe, pas une cinquième revue manuelle.
 //
 // Zéro dépendance, exécuté par `bun`.
 
@@ -156,11 +233,11 @@ const MOTIFS = [
   ["forme-proche", /forme proche|ressemble|graphie proche|se ressemble|proche graphiquement/i],
   ["homophone", /homophone|m[êe]me lecture|même son/i],
   ["lecture-on-kun", /lecture on|on.?yomi|lecture kun|kun.?yomi|on\/kun/i],
-  ["lecture-erronee", /lecture erron|lecture fausse|mauvaise lecture|lecture approximative|erreur ?:(?!.*(?:ne signifie pas|ne correspond pas|est un sens|est le sens d['’]un autre kanji|correspond à un autre kanji))/i],
+  ["lecture-erronee", /lecture erron|lecture fausse|mauvaise lecture|lecture approximative|erreur ?:(?=[\s\S]*(?:lecture|se lit))(?!.*voyelle)/i],
   ["lecture-autre-mot", /lecture de |est la lecture d|lecture du mot|se lit .{1,6}, pas/i],
-  ["longueur-voyelle", /voyelle|son long|allong|contraction|^(?!.*okurigana)(?!.*honorifi).*manquant/i],
-  ["nuance-grammaticale", /exprime|valeur (?!.*(?:est le sens d['’]un autre kanji|correspond à un autre kanji))|conditionnel|simultanéité|(?<![A-Za-zÀ-ÿ])but(?![A-Za-zÀ-ÿ])|énumération|hypothét|nuance grammaticale/i],
-  ["sens-different", /sens différent|sens voisin|autre sens|signifie|sens proche|autre mot|hors sujet|hors contexte/i],
+  ["longueur-voyelle", /voyelle|g[ée]mination|son long|allong|contraction|^(?!.*okurigana)(?!.*honorifi).*manquant/i],
+  ["nuance-grammaticale", /\bexprime\b|valeur (?!»)(?!.*(?:est le sens d['’]un autre kanji|correspond à un autre kanji))|conditionnel|simultanéité|(?<![A-Za-zÀ-ÿ])but(?![A-Za-zÀ-ÿ])|énumération|hypothét|nuance grammaticale/i],
+  ["sens-different", /sens différent|sens voisin|autre sens|signifie|sens proche|autre mot|hors sujet|hors contexte|\bsens d[eu]\b/i],
   ["registre", /\bregistre\b(?!(?:\s*[)）»])+\s*:)(?!.*(?:est le sens d['’]un autre kanji|correspond à un autre kanji))|\bpoli\b(?!(?:\s*[)）»])+\s*:)|\bneutre\b(?!(?:\s*[)）»])+\s*:)|\bfamilier\b(?!(?:\s*[)）»])+\s*:)|\bhonorifiques?\b(?!(?:\s*[)）»])+\s*:)/i],
 ];
 
