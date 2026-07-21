@@ -37,6 +37,23 @@ test("furigana systématiques : un mot à okurigana （少しずつ, 良い） d
   expect(b).not.toContain("（よい）");
 });
 
+test("un segment enchaînant deux blocs glosés par → rend les DEUX (le 2e n'est plus perdu)", () => {
+  // Bug : « 健康 « santé »→健康のために « のために = but » » ne gardait que 健康, le point de
+  // grammaire lui-même (のために) disparaissait. On réinjecte une frontière « · » après le 1er gloss.
+  const html = visualBreak("健康（けんこう）« santé »→健康のために « のために = but (pour) »", { legend: false });
+  expect(html).toContain("santé");
+  expect(html).toContain("健康のために");
+  expect(html).toContain("のために = but (pour)");
+  expect((html.match(/tok-g/g) || []).length).toBe(2); // deux blocs glosés distincts
+});
+
+test("la traduction française finale « … » ne devient PAS un bloc", () => {
+  // Seul un second bloc JAPONAIS déclenche la découpe ; « → « je cours… » » (français) reste absorbé.
+  const html = visualBreak("走る（はしる）→走っている « ている = habituel » → « je cours chaque matin ».", { legend: false });
+  expect((html.match(/tok-g/g) || []).length).toBe(1);
+  expect(html).not.toContain("je cours chaque matin");
+});
+
 test("legend:false suppresses the role legend even with multiple roles", () => {
   const withLegend = visualBreak("朝（あさ） « matin » · を « COD »");
   const noLegend = visualBreak("朝（あさ） « matin » · を « COD »", { legend: false });

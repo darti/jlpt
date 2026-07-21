@@ -179,9 +179,16 @@ function rubifyAnalyse(jp: string): string {
     .map((seg) => (seg.startsWith(`<span class="${FURI_CLASS}">`) ? seg : furi(seg)))
     .join("");
 }
+// Un segment d'analyse peut enchaîner PLUSIEURS blocs glosés sans « · », reliés par une flèche :
+// « 健康（けんこう）« santé »→健康のために « のために = but » ». Sans découpe, seul le texte AVANT le
+// premier « … » était gardé (ligne `jp.slice(0, mg.index)`) — le second bloc, souvent le point de
+// grammaire lui-même (のために, ように, について…), disparaissait. On réinjecte donc une frontière
+// « · » après chaque gloss fermé (»)  suivi — au-delà d'une flèche/tiret — de JAPONAIS menant à un
+// nouveau «. La traduction finale « … » (français, sans japonais avant le «) n'en déclenche pas.
+const BLOCK_BOUNDARY_RE = /»[\s—–\-→]*(?=[^«»]*[一-鿿ぁ-んァ-ンー々][^«»]*«)/g;
 export function visualBreak(str: string, opts?: { legend?: boolean }): string {
   if (!str) return "";
-  const parts = String(str).split(" · ");
+  const parts = String(str).replace(BLOCK_BOUNDARY_RE, "» · ").split(" · ");
   let hasPart = false, hasVerb = false, hasNoun = false, hasAdj = false, hasAdjNa = false, hasAdv = false;
   let pills = "";
   parts.forEach((seg) => {
