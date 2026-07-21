@@ -270,7 +270,7 @@
   {
    "@id": "jlpt:example/おかげで-せいで-2",
    "@type": "jlpt:Example",
-   "illustrates": "jlpt:gram/おかげで",
+   "illustrates": "jlpt:gram/せいで／せいか",
    "jlpt:jp": "雨のせいで試合が中止になった。",
    "jlpt:romaji": "ame no sei de shiai ga chūshi ni natta.",
    "schema:description": "À cause de la pluie, le match a été annulé.",

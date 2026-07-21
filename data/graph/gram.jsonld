@@ -1664,10 +1664,7 @@
    "jlpt:form": "〜おかげで",
    "schema:description": "« grâce à » / « à cause de (reproche) ».",
    "jlpt:structure": "V/A(普通形)・Na(な)・N(の) ＋ おかげで",
-   "jlpt:level": "N3",
-   "jlpt:altForm": [
-    "〜せいで"
-   ]
+   "jlpt:level": "N3"
   },
   {
    "@id": "jlpt:gram/せいで／せいか",
