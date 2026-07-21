@@ -45,7 +45,8 @@ test("une dérivation « A « g1 »→A+suffixe « g2 » » rend A puis le SUFFI
   expect(html).toContain("santé");
   expect(html).toContain("のために = but (pour)");
   expect(html).not.toContain("健康のために"); // pas de bloc qui reprend 健康 → pas de duplication
-  expect((html.match(/tok-g/g) || []).length).toBe(2); // 健康 + のために
+  // 健康 | の (génitif détaché) | ために
+  expect([...html.matchAll(/tok tok-(\w+)"/g)].map((m) => m[1])).toEqual(["noun", "part", "noun"]);
 });
 
 test("un segment DÉJÀ séparé par « · » n'injecte pas de « · » parasite en tête du bloc suivant", () => {
@@ -80,6 +81,24 @@ test("catégorie grammaticale : nom / verbe / adj い / adj な / adverbe reçoi
   expect(role("違い")).toBe("noun");
   expect(role("収入")).toBe("noun");
   expect(role("時間")).toBe("noun");
+});
+
+test("le génitif の en tête d'un suffixe est détaché en particule indépendante", () => {
+  // 先生 « prof »→先生のおかげで : le suffixe のおかげで doit rendre « の » (particule) puis « おかげで ».
+  const html = visualBreak("先生（せんせい）« professeur »→先生のおかげで « のおかげで = grâce à »", { legend: false });
+  expect([...html.matchAll(/tok tok-(\w+)"/g)].map((m) => m[1])).toEqual(["noun", "part", "noun"]); // 先生 | の | おかげで
+  expect(html).toContain('<span class="tok-jp">の</span>'); // le の est un bloc particule isolé
+  expect(html).toContain("おかげで");
+  // la particule と du nom とおり ne doit PAS empêcher la découpe (seuil de longueur, pas de liste)
+  expect(visualBreak("説明書（せつめいしょ）« notice »→説明書のとおりに « のとおりに = selon »", { legend: false }))
+    .toContain('<span class="tok-jp">の</span>');
+});
+
+test("les motifs grammaticaux en の soudé (のに, ので) ne sont PAS scindés", () => {
+  // 2 kana exactement → の reste soudé (opposé au génitif のX de 3+ kana).
+  const html = visualBreak("飲む（のむ）→飲んだのに « forme た ＋のに = opposition » · 熱（ねつ）« fièvre »", { legend: false });
+  expect(html).toContain("飲んだのに");
+  expect(html).not.toMatch(/tok-part"><span class="tok-jp">の<\/span>/); // aucun « の » isolé ici
 });
 
 test("legend:true expose la clé des couleurs ; défaut = masquée", () => {

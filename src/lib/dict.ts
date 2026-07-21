@@ -240,6 +240,16 @@ export function visualBreak(str: string, opts?: { legend?: boolean }): string {
           jp = plain.slice(prevSurface.length).replace(/^[→\s]+/, "").trim();
       }
       if (!jp) return;
+      // Le génitif の en tête (先生のおかげで − 先生 = のおかげで) est une particule à part entière :
+      // on le détache en bloc « の » puis « おかげで ». Les motifs grammaticaux soudés (のに, ので,
+      // のは, のだ…) font EXACTEMENT 2 kana ; les suffixes génitifs (のおかげで, のとおりに…) au moins 3.
+      // Le seuil de longueur tranche sans confondre la particule と avec le nom とおり.
+      while (plainJp(jp).length >= 3 && jp.charAt(0) === "の") {
+        pills += '<span class="tok tok-part"><span class="tok-jp">の</span><span class="tok-g">' + _pg("の") + "</span></span>";
+        hasPart = true;
+        jp = jp.slice(1).replace(/^[→\s]+/, "").trim();
+      }
+      if (!jp) return;
       prevSurface = surfaceJp(jp);
       if (!/[一-鿿ぁ-んァ-ンー々]/.test(jp) || (!gloss && /[A-Za-zÀ-ÿ]{2,}/.test(jp) && !/[一-鿿]/.test(jp))) {
         pills += '<span class="tok tok-note"><span class="tok-g">' + (gloss || jp) + "</span></span>"; prevSurface = ""; return;
