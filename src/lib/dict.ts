@@ -188,35 +188,54 @@ function rubifyAnalyse(jp: string): string {
 // ⚠ Le « · » est exclu de la fenêtre de recherche : un segment DÉJÀ séparé (« … » · は « … ») ne
 // doit PAS être redécoupé, sinon on injecte un « · » parasite en tête du bloc suivant (« · は »).
 const BLOCK_BOUNDARY_RE = /»[\s—–\-→]*(?=[^«»·]*[一-鿿ぁ-んァ-ンー々][^«»·]*«)/g;
+const SUB = "\u0001"; // marqueur interne d’un sous-bloc né de BLOCK_BOUNDARY_RE (jamais dans les données)
+/** Plain japonais d'un fragment (furigana « 漢字（かな） » retirés) et sa forme finale après « → ». */
+function plainJp(jp: string): string { return jp.replace(/（[^）]*）/g, "").replace(/[（）]/g, ""); }
+function surfaceJp(jp: string): string { return plainJp(jp).split("→").pop()!.trim(); }
 export function visualBreak(str: string, opts?: { legend?: boolean }): string {
   if (!str) return "";
-  const parts = String(str).replace(BLOCK_BOUNDARY_RE, "» · ").split(" · ");
   let hasPart = false, hasVerb = false, hasNoun = false, hasAdj = false, hasAdjNa = false, hasAdv = false;
   let pills = "";
-  parts.forEach((seg) => {
-    seg = seg.trim(); if (!seg) return;
-    let gloss = "", jp = seg;
-    const mg = seg.match(/«\s*([^»]*?)\s*»/);
-    if (mg) { gloss = mg[1]; jp = seg.slice(0, mg.index); }
-    jp = jp.replace(/^[→\s]+/, "").replace(/[。、・\s→]+$/, "").replace(/（[^）]*$/, "").trim();
-    if (!jp) return;
-    if (!/[一-鿿ぁ-んァ-ンー々]/.test(jp) || (!gloss && /[A-Za-zÀ-ÿ]{2,}/.test(jp) && !/[一-鿿]/.test(jp))) {
-      pills += '<span class="tok tok-note"><span class="tok-g">' + (gloss || jp) + "</span></span>"; return;
-    }
-    const jpPlain = jp.replace(/（[^）]*）/g, "").replace(/[（）]/g, "");
-    let role = "noun";
-    if (/[→＋]/.test(jp)) role = "verb";
-    else if (/^[はがをにへでとやかもねよのばらでもへ〜～ずば・／/]+$/.test(jpPlain)) role = "part";
-    else if (ADV[jpPlain] === 1) role = "adv";
-    else if ((jpPlain.length >= 3 && jpPlain.charAt(jpPlain.length - 1) === "的" && jpPlain !== "目的") || /な-?adj|adjectif nominal/i.test(gloss)) role = "adjna";
-    else if (/しい$/.test(jpPlain) || /\bい-?adj|adjectif/i.test(gloss)) role = "adj";
-    else if (/particule|th[eè]me|\bCOD\b|sujet|direction|marque|emphase/i.test(gloss) && jpPlain.length <= 3 && !/[一-鿿]/.test(jpPlain)) role = "part";
-    const toks = (role === "noun" && /[一-鿿]/.test(jpPlain)) ? splitParticles(jp, gloss) : (role === "verb" ? splitVerbLead(jp, gloss) : [{ jp, gloss, role }]);
-    toks.forEach((t) => {
-      if (!t.jp) return;
-      if (t.role === "part") hasPart = true; else if (t.role === "verb") hasVerb = true; else if (t.role === "adj") hasAdj = true; else if (t.role === "adjna") hasAdjNa = true; else if (t.role === "adv") hasAdv = true; else hasNoun = true;
-      const jpHtml = rubifyAnalyse(t.jp);
-      pills += '<span class="tok tok-' + t.role + '"><span class="tok-jp">' + jpHtml + "</span>" + (t.gloss ? '<span class="tok-g">' + t.gloss + "</span>" : "") + "</span>";
+  // Chaque « · » est une VRAIE partition. À l'intérieur, une dérivation « A « g1 »→B « g2 » »
+  // ouvre des sous-blocs (marqués SUB) : B reprend souvent A (先生→先生のおかげで). On ne garde alors
+  // que le SUFFIXE ajouté, pour que la concaténation des surfaces redonne la phrase (invariant
+  // testé par dict.visualbreak.concat.test.ts). prevSurface = surface du sous-bloc précédent.
+  String(str).split(" · ").forEach((group) => {
+    let prevSurface = "";
+    group.replace(BLOCK_BOUNDARY_RE, "»" + SUB).split(SUB).forEach((rawSeg, subIdx) => {
+      const seg = rawSeg.trim(); if (!seg) return;
+      let gloss = "", jp = seg;
+      const mg = seg.match(/«\s*([^»]*?)\s*»/);
+      if (mg) { gloss = mg[1]; jp = seg.slice(0, mg.index); }
+      jp = jp.replace(/^[→\s]+/, "").replace(/[。、・\s→]+$/, "").replace(/（[^）]*$/, "").trim();
+      if (!jp) return;
+      // Recouvrement : un sous-bloc de dérivation (subIdx>0) qui reprend le bloc précédent ne
+      // conserve que ce qu'il AJOUTE (先生のおかげで − 先生 = のおかげで). Sinon 先生 est dupliqué.
+      if (subIdx > 0 && prevSurface) {
+        const plain = plainJp(jp);
+        if (plain.length > prevSurface.length && plain.startsWith(prevSurface))
+          jp = plain.slice(prevSurface.length).replace(/^[→\s]+/, "").trim();
+      }
+      if (!jp) return;
+      prevSurface = surfaceJp(jp);
+      if (!/[一-鿿ぁ-んァ-ンー々]/.test(jp) || (!gloss && /[A-Za-zÀ-ÿ]{2,}/.test(jp) && !/[一-鿿]/.test(jp))) {
+        pills += '<span class="tok tok-note"><span class="tok-g">' + (gloss || jp) + "</span></span>"; prevSurface = ""; return;
+      }
+      const jpPlain = jp.replace(/（[^）]*）/g, "").replace(/[（）]/g, "");
+      let role = "noun";
+      if (/[→＋]/.test(jp)) role = "verb";
+      else if (/^[はがをにへでとやかもねよのばらでもへ〜～ずば・／/]+$/.test(jpPlain)) role = "part";
+      else if (ADV[jpPlain] === 1) role = "adv";
+      else if ((jpPlain.length >= 3 && jpPlain.charAt(jpPlain.length - 1) === "的" && jpPlain !== "目的") || /な-?adj|adjectif nominal/i.test(gloss)) role = "adjna";
+      else if (/しい$/.test(jpPlain) || /\bい-?adj|adjectif/i.test(gloss)) role = "adj";
+      else if (/particule|th[eè]me|\bCOD\b|sujet|direction|marque|emphase/i.test(gloss) && jpPlain.length <= 3 && !/[一-鿿]/.test(jpPlain)) role = "part";
+      const toks = (role === "noun" && /[一-鿿]/.test(jpPlain)) ? splitParticles(jp, gloss) : (role === "verb" ? splitVerbLead(jp, gloss) : [{ jp, gloss, role }]);
+      toks.forEach((t) => {
+        if (!t.jp) return;
+        if (t.role === "part") hasPart = true; else if (t.role === "verb") hasVerb = true; else if (t.role === "adj") hasAdj = true; else if (t.role === "adjna") hasAdjNa = true; else if (t.role === "adv") hasAdv = true; else hasNoun = true;
+        const jpHtml = rubifyAnalyse(t.jp);
+        pills += '<span class="tok tok-' + t.role + '"><span class="tok-jp">' + jpHtml + "</span>" + (t.gloss ? '<span class="tok-g">' + t.gloss + "</span>" : "") + "</span>";
+      });
     });
   });
   const leg: string[] = [];

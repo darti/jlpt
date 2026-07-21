@@ -37,14 +37,15 @@ test("furigana systématiques : un mot à okurigana （少しずつ, 良い） d
   expect(b).not.toContain("（よい）");
 });
 
-test("un segment enchaînant deux blocs glosés par → rend les DEUX (le 2e n'est plus perdu)", () => {
-  // Bug : « 健康 « santé »→健康のために « のために = but » » ne gardait que 健康, le point de
-  // grammaire lui-même (のために) disparaissait. On réinjecte une frontière « · » après le 1er gloss.
+test("une dérivation « A « g1 »→A+suffixe « g2 » » rend A puis le SUFFIXE (pas de recouvrement)", () => {
+  // Bug d'origine : « 健康 « santé »→健康のために « のために » » ne gardait que 健康 (のために perdu).
+  // Puis, en le rendant en deux blocs 健康 + 健康のために, la concaténation dupliquait 健康
+  // (先生先生のおかげで). La bonne partition garde le SUFFIXE ajouté : 健康 | のために.
   const html = visualBreak("健康（けんこう）« santé »→健康のために « のために = but (pour) »", { legend: false });
   expect(html).toContain("santé");
-  expect(html).toContain("健康のために");
   expect(html).toContain("のために = but (pour)");
-  expect((html.match(/tok-g/g) || []).length).toBe(2); // deux blocs glosés distincts
+  expect(html).not.toContain("健康のために"); // pas de bloc qui reprend 健康 → pas de duplication
+  expect((html.match(/tok-g/g) || []).length).toBe(2); // 健康 + のために
 });
 
 test("un segment DÉJÀ séparé par « · » n'injecte pas de « · » parasite en tête du bloc suivant", () => {

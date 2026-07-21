@@ -23,6 +23,7 @@
    "jlpt:analysis": [
     "練習する（れんしゅうする）→練習すれば « conditionnel en ば »",
     "上手（じょうず）« habile, doué »",
+    "に « devenir (に) »",
     "なる « devenir » → « si tu t'entraînes, tu deviendras bon »."
    ]
   },
@@ -49,6 +50,7 @@
    "schema:description": "Si tu as le temps, aide-moi.",
    "jlpt:analysis": [
     "時間（じかん）« temps »",
+    "が « sujet »",
     "ある→あったら « forme た ＋ら = si »",
     "手伝う（てつだう）→手伝ってください « forme て ＋ください = demande polie » → « si tu as le temps, aide-moi »."
    ]
@@ -65,7 +67,9 @@
     "へ « particule de direction »",
     "行く（いく）→行くなら « なら = conditionnel de supposition (puisque…) »",
     "京都（きょうと）« Kyoto »",
-    "いい « bien » → « si tu vas au Japon, Kyoto, c'est bien »."
+    "が « sujet »",
+    "いい « bien »",
+    "よ « emphase » → « si tu vas au Japon, Kyoto, c'est bien »."
    ]
   },
   {
@@ -77,6 +81,7 @@
    "schema:description": "S'il fait beau, allons nous promener.",
    "jlpt:analysis": [
     "天気（てんき）« temps qu'il fait »",
+    "が « sujet »",
     "いい→いいなら « なら = conditionnel de supposition »",
     "散歩する（さんぽする）→散歩しよう « forme volitive = allons » → « s'il fait beau, allons nous promener »."
    ]
@@ -89,10 +94,12 @@
    "jlpt:romaji": "kono botan o osu to mizu ga demasu.",
    "schema:description": "Si on appuie sur ce bouton, l'eau coule.",
    "jlpt:analysis": [
+    "この « ce/cette »",
     "ボタン « bouton »",
     "を « COD »",
     "押す（おす）→押すと « と = conséquence automatique (dès que…) »",
     "水（みず）« eau »",
+    "が « sujet »",
     "出る（でる）→出ます « sortir, couler (poli) » → « si on appuie sur ce bouton, l'eau coule »."
    ]
   },
@@ -105,8 +112,10 @@
    "schema:description": "Quand le printemps arrive, les fleurs s'ouvrent.",
    "jlpt:analysis": [
     "春（はる）« printemps »",
+    "に « devenir (に) »",
     "なる→なると « と = enchaînement naturel (quand…) »",
     "花（はな）« fleur »",
+    "が « sujet »",
     "咲く（さく）« fleurir » → « quand le printemps arrive, les fleurs s'ouvrent »."
    ]
   },
@@ -217,7 +226,7 @@
    "schema:description": "J'ai beau réfléchir, je ne comprends pas.",
    "jlpt:analysis": [
     "いくら « peu importe combien, quel que soit le degré »",
-    "考える（かんがえる）→考えても « forme て ＋も = même si » — いくら…ても « j'ai beau… »",
+    "考える（かんがえる）→考えても « forme て ＋も = même si (concession) »",
     "分かる（わかる）→分からない « comprendre (négatif) » → « j'ai beau réfléchir, je ne comprends pas »."
    ]
   },
@@ -268,6 +277,7 @@
    "jlpt:analysis": [
     "雨（あめ）« pluie »→雨のせいで « のせいで = à cause de (cause négative) »",
     "試合（しあい）« match »",
+    "が « sujet »",
     "中止（ちゅうし）になった « être annulé » → « à cause de la pluie, le match a été annulé »."
    ]
   },
@@ -487,7 +497,8 @@
    "schema:description": "C'est précisément parce que je me soucie de toi que je te parle durement.",
    "jlpt:analysis": [
     "君（きみ）« toi »",
-    "のことを思う（おもう）→思うからこそ « 普通形 ＋からこそ = c'est précisément parce que »",
+    "のことを « à ton sujet (COD) »",
+    "思う（おもう）→思うからこそ « 普通形 ＋からこそ = c'est précisément parce que »",
     "厳しい（きびしい）→厳しく « durement »",
     "言う（いう）→言うのだ « dire (＋のだ insistance) » → « c'est précisément parce que je me soucie de toi que je te parle durement »."
    ]
@@ -526,6 +537,7 @@
    "jlpt:analysis": [
     "日本（にほん）に « destination »",
     "来る（くる）→来たばかり « forme た ＋ばかり = venir juste de »",
+    "で « et (liaison) »",
     "まだ « encore »",
     "慣れる（なれる）→慣れていない « ている négatif = ne pas être habitué » → « je viens d'arriver au Japon, je ne suis pas encore habitué »."
    ]
@@ -564,10 +576,12 @@
    "jlpt:romaji": "kono shashin o miru tabi ni furusato o omoidasu.",
    "schema:description": "Chaque fois que je vois cette photo, je repense à mon pays.",
    "jlpt:analysis": [
+    "この « ce/cette »",
     "写真（しゃしん）« photo »",
     "を « COD »",
     "見る（みる）→見るたびに « dictionnaire ＋たびに = chaque fois que »",
     "故郷（こきょう）« pays natal »",
+    "を « COD »",
     "思い出す（おもいだす）« se rappeler » → « chaque fois que je vois cette photo, je repense à mon pays »."
    ]
   },
@@ -838,8 +852,7 @@
    "jlpt:romaji": "kuraku naranai uchi ni kaerimashō.",
    "schema:description": "Rentrons avant qu'il ne fasse nuit.",
    "jlpt:analysis": [
-    "暗い（くらい）« sombre »",
-    "なる→暗くならないうちに « ない形 ＋うちに = avant que (ça ne devienne le cas) »",
+    "暗い（くらい）→暗くならないうちに « ない形 ＋うちに = avant que (ça ne devienne le cas) »",
     "帰る（かえる）→帰りましょう « rentrons » → « rentrons avant qu'il ne fasse nuit »."
    ]
   },
@@ -899,7 +912,7 @@
    "schema:description": "Il va faire de plus en plus froid désormais.",
    "jlpt:analysis": [
     "これから « désormais »",
-    "寒い（さむい）→寒くなって « devenir froid » →なっていく « ていく = évolution future (de plus en plus) » → « il va faire de plus en plus froid désormais »."
+    "寒い（さむい）→寒くなっていく « ていく = évolution future (de plus en plus) » → « il va faire de plus en plus froid désormais »."
    ]
   },
   {
@@ -923,6 +936,7 @@
    "jlpt:romaji": "kono ryōri o tsukutte miru.",
    "schema:description": "Je vais essayer de faire ce plat.",
    "jlpt:analysis": [
+    "この « ce/cette »",
     "料理（りょうり）« plat »",
     "を « COD »",
     "作る（つくる）→作ってみる « forme て ＋みる = essayer de » → « je vais essayer de faire ce plat »."
@@ -1045,7 +1059,7 @@
    "jlpt:analysis": [
     "景気（けいき）« la conjoncture économique »",
     "は « thème »",
-    "回復（かいふく）する « se rétablir » →回復しつつある « 連用形 ＋つつある = être en train de (évolution progressive) » → « l'économie est en train de se redresser »."
+    "回復（かいふく）する→回復しつつある « 連用形 ＋つつある = être en train de (évolution progressive) » → « l'économie est en train de se redresser »."
    ]
   },
   {
@@ -1193,6 +1207,7 @@
    "jlpt:romaji": "kono hon wa ōku no hito ni yomarete iru.",
    "schema:description": "Ce livre est lu par beaucoup de gens.",
    "jlpt:analysis": [
+    "この « ce/cette »",
     "本（ほん）« livre »",
     "は « thème »",
     "多くの人（おおくのひと）« beaucoup de gens »",
@@ -1209,6 +1224,7 @@
    "schema:description": "Le professeur a fait écrire des kanji aux élèves.",
    "jlpt:analysis": [
     "先生（せんせい）« professeur »",
+    "は « thème »",
     "学生（がくせい）« élève »",
     "に « celui qu'on fait agir »",
     "漢字（かんじ）« kanji »",
@@ -1314,9 +1330,10 @@
    "jlpt:romaji": "kono ryōri wa oishisō da.",
    "schema:description": "Ce plat a l'air bon.",
    "jlpt:analysis": [
+    "この « ce/cette »",
     "料理（りょうり）« plat, cuisine »",
     "は « thème »",
-    "おいしい « bon »→おいしそうだ « radical ＋そうだ = apparence (a l'air de) » → « ce plat a l'air bon »."
+    "おいしい→おいしそうだ « radical ＋そうだ = apparence (a l'air de) » → « ce plat a l'air bon »."
    ]
   },
   {
@@ -1343,6 +1360,7 @@
     "天気予報（てんきよほう）« prévisions météo »",
     "によると « selon, d'après »",
     "明日（あした）« demain »",
+    "は « thème »",
     "雨（あめ）« pluie »→雨だそうだ « ＋そうだ = ouï-dire (il paraît que…) » → « d'après la météo, il paraît qu'il pleuvra demain »."
    ]
   },
@@ -1382,6 +1400,7 @@
     "来月（らいげつ）« le mois prochain »",
     "から « à partir de »",
     "値段（ねだん）« prix »",
+    "が « sujet »",
     "上がる（あがる）→上がるらしい « らしい = information rapportée (il paraît que…) » → « il paraît que les prix vont monter le mois prochain »."
    ]
   },
@@ -1394,6 +1413,7 @@
    "schema:description": "Il est vraiment viril (typiquement masculin).",
    "jlpt:analysis": [
     "彼（かれ）« il »",
+    "は « thème »",
     "本当に（ほんとうに）« vraiment »",
     "男（おとこ）« homme »→男らしい « nom ＋らしい = typique de, digne de (suffixe) » → « il est vraiment viril »."
    ]
@@ -1407,6 +1427,7 @@
    "schema:description": "Il devrait déjà être arrivé.",
    "jlpt:analysis": [
     "彼（かれ）« il »",
+    "は « thème »",
     "もう « déjà »",
     "着く（つく）→着いている « forme ている = état » →はずだ « はずだ = supposition logique (devrait) » → « il devrait déjà être arrivé »."
    ]
@@ -1448,6 +1469,7 @@
     "明日（あした）« demain »",
     "は « thème »",
     "雪（ゆき）« neige »",
+    "が « sujet »",
     "降る（ふる）→降るかもしれない « かもしれない = possibilité (peut-être) » → « il neigera peut-être demain »."
    ]
   },
@@ -1462,7 +1484,8 @@
     "彼（かれ）« il »",
     "は « thème »",
     "怒る（おこる）→怒りっぽい « base ＋っぽい = porté à se mettre en colère »",
-    "性格（せいかく）« caractère » → « il a un caractère colérique »."
+    "性格（せいかく）« caractère »",
+    "だ « être (assertif) » → « il a un caractère colérique »."
    ]
   },
   {
@@ -1530,7 +1553,7 @@
    "schema:description": "Je ne serai plus jamais en retard.",
    "jlpt:analysis": [
     "二度と（にどと）« plus jamais »",
-    "遅刻（ちこく）する « être en retard » →するまい « ＋まい = volonté négative = ne plus faire (résolution) » → « je ne serai plus jamais en retard »."
+    "遅刻（ちこく）する→遅刻するまい « ＋まい = volonté négative (ne plus faire) » → « je ne serai plus jamais en retard »."
    ]
   },
   {
@@ -1680,7 +1703,9 @@
    "jlpt:analysis": [
     "冬（ふゆ）« hiver »",
     "は « thème »",
-    "風邪（かぜ）をひく « attraper froid » →ひきがちだ « base en い ＋がち = tendance fâcheuse (avoir tendance à) » → « en hiver, on attrape facilement froid »."
+    "風邪（かぜ）« rhume »",
+    "を « COD »",
+    "ひく→ひきがちだ « base en い ＋がち = tendance fâcheuse (avoir tendance à) » → « en hiver, on attrape facilement froid »."
    ]
   },
   {
@@ -1772,7 +1797,7 @@
    "jlpt:romaji": "renshū sureba suru hodo jōzu ni naru.",
    "schema:description": "Plus on s'entraîne, plus on progresse.",
    "jlpt:analysis": [
-    "練習（れんしゅう）する→すれば « forme conditionnelle en ば »",
+    "練習（れんしゅう）する→練習すれば « forme conditionnelle en ば »",
     "するほど « ＝ば＋ほど = plus... plus (proportion croissante) »",
     "上手（じょうず）になる « devenir habile » → « plus on s'entraîne, plus on progresse »."
    ]
@@ -1802,6 +1827,7 @@
    "schema:description": "Il parle non seulement anglais mais aussi chinois.",
    "jlpt:analysis": [
     "彼（かれ）« il »",
+    "は « thème »",
     "英語（えいご）→英語だけでなく « だけでなく…も = non seulement…mais aussi »",
     "中国語（ちゅうごくご）も « le chinois aussi »",
     "話す（はなす）→話せる « potentiel = pouvoir parler » → « il parle non seulement anglais mais aussi chinois »."
@@ -1815,6 +1841,7 @@
    "jlpt:romaji": "kono mise wa yasui ue ni oishii.",
    "schema:description": "Ce restaurant est bon marché et en plus délicieux.",
    "jlpt:analysis": [
+    "この « ce/cette »",
     "店（みせ）« restaurant, boutique »",
     "は « thème »",
     "安い（やすい）→安い上に « 上に = de plus, en outre »",
@@ -2389,7 +2416,7 @@
    "jlpt:analysis": [
     "先生（せんせい）« le professeur »",
     "が « sujet »",
-    "説明（せつめい）する « expliquer » →説明してくださった « forme て ＋くださる = faire l'honneur de (honorifique, passé) » → « le professeur a eu la gentillesse d'expliquer »."
+    "説明（せつめい）する→説明してくださった « forme て ＋くださる = faire l'honneur de (honorifique, passé) » → « le professeur a eu la gentillesse d'expliquer »."
    ]
   },
   {
@@ -2533,6 +2560,7 @@
    "schema:description": "Le professeur est déjà rentré. (respect)",
    "jlpt:analysis": [
     "先生（せんせい）« professeur »",
+    "は « thème »",
     "もう « déjà »",
     "帰る（かえる）→お帰りになりました « お＋base＋になる = honorifique respectueux (sonkeigo) » → « le professeur est déjà rentré (respect) »."
    ]
@@ -2726,6 +2754,7 @@
     "を « COD »",
     "飲む（のむ）→飲んだのに « forme た ＋のに = opposition (pourtant) »",
     "熱（ねつ）« fièvre »",
+    "が « sujet »",
     "下がる（さがる）→下がらない « négatif = ne baisse pas » → « j'ai pris un médicament, pourtant la fièvre ne baisse pas »."
    ]
   },
@@ -3070,8 +3099,10 @@
    "jlpt:analysis": [
     "10年（じゅうねん）も « pas moins de 10 ans »",
     "日本（にほん）にいた « être resté au Japon »",
+    "のか « interrogation (rétrospective) »",
     "道理で（どうりで）« pas étonnant que »",
-    "日本語（にほんご）が上手（じょうず）→上手なわけだ « わけだ = conclusion logique (forcément) » → « tu es resté 10 ans au Japon ? Pas étonnant que tu parles si bien »."
+    "日本語（にほんご）が « le japonais (sujet) »",
+    "上手（じょうず）→上手なわけだ « わけだ = conclusion logique (forcément) » → « tu es resté 10 ans au Japon ? Pas étonnant que tu parles si bien »."
    ]
   },
   {
@@ -3082,8 +3113,8 @@
    "jlpt:romaji": "toshi o toru to wasureppoku naru mono da.",
    "schema:description": "En vieillissant, on a tendance à devenir oublieux.",
    "jlpt:analysis": [
-    "年を取る（としをとる）→取ると « と = quand »",
-    "忘れる（わすれる）→忘れっぽい « base ＋っぽい = enclin à oublier »",
+    "年を取る（としをとる）→年を取ると « と = quand »",
+    "忘れる（わすれる）→忘れっぽく « base ＋っぽく = de façon oublieuse »",
     "なる→なるものだ « ものだ = vérité générale » → « en vieillissant, on a tendance à devenir oublieux »."
    ]
   },
@@ -3120,7 +3151,7 @@
    "jlpt:romaji": "gōkaku shitakereba, mainichi benkyō suru koto da.",
    "schema:description": "Si tu veux réussir, il faut étudier tous les jours.",
    "jlpt:analysis": [
-    "合格（ごうかく）する « réussir » →したければ « ＋たい au conditionnel ば = si l'on veut »",
+    "合格（ごうかく）する→合格したければ « ＋たい au conditionnel ば = si l'on veut »",
     "毎日（まいにち）« chaque jour »",
     "勉強（べんきょう）する « étudier » →勉強することだ « ＝ことだ = il faut, c'est ce qu'il convient de faire (conseil) » → « si tu veux réussir, il faut étudier tous les jours »."
    ]
