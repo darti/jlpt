@@ -15,6 +15,8 @@ import { cloudPush, type GistDeps } from "../../lib/gist.ts";
 import { pickSessionPlan, BUILT_CAPS } from "../entrainement/sessionPlan.ts";
 import { RESUME_KEY } from "../../lib/keys.ts";
 import { asConfusions, confusionPatch, dayNumber } from "./traps.ts";
+import { asFsrs } from "./revision.ts";
+import { fsrsInit, fsrsReview, type Grade } from "../../lib/fsrs.ts";
 
 export type Phase = "home" | "question" | "corrige" | "results" | "diag-intro" | "diag-results";
 
@@ -320,6 +322,17 @@ export function useQuiz() {
     const nextWrong = (correct ? withoutId : [...withoutId, q.id]).slice(-80);
     // Graphe de confusion : `undefined` sur une bonne réponse — rien à écrire.
     const nextConfusions = confusionPatch(asConfusions(raw), q.id, i, correct, dayNumber(new Date()));
+    // Modèle de mémoire : la réponse révise l'entité qu'elle teste (arête `tests`, ~1).
+    // Carte COMPLÈTE réécrite (writeProgress ne deep-merge que `skill`).
+    const iris = Array.isArray(q.tests) ? q.tests : [];
+    let nextFsrs: Record<string, [number, number, number]> | undefined;
+    if (iris.length) {
+      const jour = dayNumber(new Date());
+      const g: Grade = correct ? 3 : 1;
+      const map = asFsrs(raw);
+      for (const iri of iris) map[iri] = map[iri] ? fsrsReview(map[iri], g, jour) : fsrsInit(g, jour);
+      nextFsrs = map;
+    }
     const seen = encodeBits(setBit(decodeBits(typeof raw?.seen === "string" ? raw.seen : ""), q.id));
     const mastered = correct
       ? encodeBits(setBit(decodeBits(typeof raw?.mastered === "string" ? raw.mastered : ""), q.id))
@@ -335,6 +348,7 @@ export function useQuiz() {
       ...(mastered !== undefined ? { mastered } : {}),
       ...(isLastDiag ? { diagAt: Date.now() } : {}),
       ...(nextConfusions !== undefined ? { confusions: nextConfusions } : {}),
+      ...(nextFsrs !== undefined ? { fsrs: nextFsrs } : {}),
     });
     schedulePush();
     rightRef.current += correct ? 1 : 0;
