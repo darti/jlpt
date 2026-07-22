@@ -27,14 +27,26 @@ graphe : il faut *classer* ce qui est écrit.
 sont le corollaire de la purge des mots fabriqués (`約速`、`役束`、`約則`). Une explication par
 résolution d'entité serait muette cinq fois sur six. Ce n'est pas une lacune à combler.
 
-Couverture d'un typage déterministe des notes, après deux itérations :
+Couverture d'un typage déterministe des notes. ⚠ Ces chiffres ont été **révisés à la baisse à
+l'implémentation** : les premières mesures (93,6 % kanji, 74,8 % vocabulaire) comptaient comme
+« typées » des notes en réalité mal classées — l'attrape-tout `erreur ?:` du motif
+`lecture-erronee` avalait des confusions de *sens* et de *longueur*. Après correction de cette
+cause racine (0 faux positif prouvé par balayage systématique), la couverture RÉELLEMENT juste
+est plus basse mais honnête :
 
-| Compétence | Notes de distracteur | Typées |
+| Compétence | Notes de distracteur | Typées (mesuré, sans faux positif) |
 |---|---:|---:|
-| kanji | 9 444 | **93,6 %** |
-| vocabulaire | 17 703 | **74,8 %** |
-| grammaire | 3 522 | **20,4 %** |
+| kanji | 9 444 | **≈ 54 %** |
+| vocabulaire | 17 703 | **≈ 75 %** |
+| grammaire | 3 522 | *hors périmètre (non typée)* |
 | écoute + lecture | 252 | *hors périmètre par nature* |
+
+La chute côté kanji n'est pas une régression : ~46 % des distracteurs de kanji sont des
+« mauvais kanji pour le contexte » (« le kanji « X » ne convient pas ici », ~892 notes) — un type
+de piège fréquent et cohérent que la taxonomie figée à 14 valeurs ne nomme pas. Ils tombent
+honnêtement en `autre`. **Décision d'auteur en suspens** : ajouter un 15ᵉ type
+« mauvais-kanji-contexte » les récupérerait, sans migration (le type est dérivé à l'affichage,
+cf. § 2).
 
 **Conséquence 3 — la typologie ne porte pas d'information en grammaire.** Un distracteur de
 grammaire est presque toujours « un autre point, de valeur différente » : le type est constant,
@@ -239,8 +251,13 @@ Les deux écrans affichent l'état vide comme le tableau de bord le fait sous 5 
 
 - **Classifieur** : pur, table de cas — une entrée par type, plus les cas qui doivent tomber en
   `autre`.
-- **Test de mesure avec cliquet**, sur le vrai corpus : `kanji ≥ 93 %`, `vocabulaire ≥ 74 %`.
-  ⚠ À **remonter** dès qu'on dépasse le seuil, sinon il cesse de garder quoi que ce soit.
+- **Test de mesure avec cliquet**, sur le vrai corpus : `kanji ≥ 52 %`, `vocabulaire ≥ 73 %`
+  (seuils ré-étalonnés après la correction de cause racine — cf. § 1). ⚠ À **remonter** dès
+  qu'on dépasse le seuil, sinon il cesse de garder quoi que ce soit.
+- **Garde permanent anti-faux-positif**, sur le vrai corpus : pour chaque motif, une table de
+  « contre-marques » (sous-chaînes qui prouveraient un type faux) ; le test échoue si un motif
+  capture une note portant sa contre-marque. C'est LUI qui garde la justesse — le cliquet de
+  couverture ne mesure que « type ≠ autre », pas « type juste ».
 - **`tools/validate-graph.mjs`** : si `jlpt:trapKind` est présent, il est parallèle à `opts`, vaut
   `""` exactement à l'index de `jlpt:answer`, n'emploie que des types de la taxonomie, et
   n'apparaît que sur les shards kanji / vocabulaire. C'est le second étage impératif, à côté du
@@ -255,18 +272,24 @@ Les deux écrans affichent l'état vide comme le tableau de bord le fait sous 5 
 
 ---
 
-## 9. Poids du corpus — à mesurer, pas à décider maintenant
+## 9. Poids du corpus — mesuré, décision d'auteur prise
 
 `jlpt:trapKind` couvre les 9 049 questions de kanji et de vocabulaire, soit environ **36 000
 entrées** (les quatre options de chacune) : de l'ordre de **600 Ko bruts** sur ces deux shards.
-Mais la taxonomie ne compte que treize chaînes répétées, et GitHub Pages compresse
-`application/ld+json`.
 
-**Décision : noms lisibles** (`kanji-partage`), cohérents avec un graphe éditable à la main.
-**Le plan d'implémentation comporte une étape de mesure du delta gzippé** ; si le surcoût sur le
-fil dépasse 5 %, on bascule sur un code court d'un caractère, la projection absorbant la
-correspondance. Trancher sans mesurer serait l'erreur exacte contre laquelle le projet met en
-garde (« mesurer gzippé, pas brut »).
+**Delta gzippé mesuré à l'implémentation** : q-kanji +4,1 %, q-vocabulaire +5,9 %, combiné
+**+5,4 %** — au-dessus du seuil de 5 %. La mesure a aussi confirmé qu'un code court d'une lettre
+ramènerait le surcoût à ~+2,4 %, la projection absorbant la correspondance.
+
+**Décision d'auteur : noms lisibles, +5,4 % accepté.** Le code court a été écarté malgré son gain :
+`"jlpt:trapKind": ["kanji-partage", …]` reste éditable à la main — un correcteur lit le type sans
+table de correspondance —, ce qui est la valeur fondatrice du projet (« le graphe est la source,
+corrigé à la main »). Le surcoût (~50 Ko gzip) est téléchargé UNE fois puis mis en cache par le
+service worker (PWA hors ligne) : un one-shot, pas un coût par requête.
+
+⚠ Cette décision **prime sur la formulation antérieure** de cette section, qui prescrivait le
+basculement automatique sur un code court au-delà de 5 %. Le seuil déclenche un ARBITRAGE, pas une
+bascule mécanique : mesurer, puis choisir en connaissance de cause (la lisibilité l'a emporté).
 
 ---
 
