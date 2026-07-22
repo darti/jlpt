@@ -14,6 +14,7 @@ import { dashboardModel, masteryOf } from "../../lib/scoring.ts";
 import { cloudPush, type GistDeps } from "../../lib/gist.ts";
 import { pickSessionPlan, BUILT_CAPS } from "../entrainement/sessionPlan.ts";
 import { RESUME_KEY } from "../../lib/keys.ts";
+import { asConfusions, confusionPatch, dayNumber } from "./traps.ts";
 
 export type Phase = "home" | "question" | "corrige" | "results" | "diag-intro" | "diag-results";
 
@@ -317,6 +318,8 @@ export function useQuiz() {
     const nextSkill = updateRating(skillStateOf(raw, q.cat), q.d, correct);
     const withoutId = curWrong.filter((id) => id !== q.id);
     const nextWrong = (correct ? withoutId : [...withoutId, q.id]).slice(-80);
+    // Graphe de confusion : `undefined` sur une bonne réponse — rien à écrire.
+    const nextConfusions = confusionPatch(asConfusions(raw), q.id, i, correct, dayNumber(new Date()));
     const seen = encodeBits(setBit(decodeBits(typeof raw?.seen === "string" ? raw.seen : ""), q.id));
     const mastered = correct
       ? encodeBits(setBit(decodeBits(typeof raw?.mastered === "string" ? raw.mastered : ""), q.id))
@@ -331,6 +334,7 @@ export function useQuiz() {
       seen,
       ...(mastered !== undefined ? { mastered } : {}),
       ...(isLastDiag ? { diagAt: Date.now() } : {}),
+      ...(nextConfusions !== undefined ? { confusions: nextConfusions } : {}),
     });
     schedulePush();
     rightRef.current += correct ? 1 : 0;
