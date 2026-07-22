@@ -1,8 +1,8 @@
 import { test, expect, beforeEach } from "bun:test";
 import {
-  asFsrs, dueEntities, dueBySkill, fsrsIndex, selectRevision, clearRevisionCache,
+  asFsrs, dueEntities, dueBySkill, fsrsIndex, selectRevision, clearRevisionCache, fsrsPatch,
 } from "./revision.ts";
-import { fsrsInit } from "../../lib/fsrs.ts";
+import { fsrsInit, fsrsReview } from "../../lib/fsrs.ts";
 import type { Question } from "../../types/quiz.ts";
 
 beforeEach(() => clearRevisionCache());
@@ -79,4 +79,34 @@ test("selectRevision : respecte limit et exclude, saute une entité due sans que
   const qs = [q(1, ["jlpt:word/a"]), q(2, ["jlpt:kanji/b"])]; // rien ne teste gram/z
   const picked = selectRevision(map, 200, qs, new Set([1]), 5);
   expect(picked.map((x) => x.id)).toEqual([2]); // 1 exclu, gram/z sans question
+});
+
+// `fsrsPatch` porte la logique qui vivait dans `choose` (hors de portée des tests : aucun test
+// n'invoque le hook). Ces cas verrouillent le mapping du grade, init vs review, la garde vide et
+// la pureté — exactement ce que la revue Task 3 ne pouvait vérifier que par lecture.
+test("fsrsPatch : pas d'arête → undefined (aucun patch, la carte n'est pas écrasée)", () => {
+  expect(fsrsPatch({}, [], true, 200)).toBeUndefined();
+  expect(fsrsPatch({ "jlpt:word/a": fsrsInit(3, 0) }, [], false, 200)).toBeUndefined();
+});
+
+test("fsrsPatch : entité NOUVELLE → fsrsInit, grade juste=Good vs faux=Again (non inversé)", () => {
+  const bon = fsrsPatch({}, ["jlpt:word/x"], true, 200)!;
+  const rate = fsrsPatch({}, ["jlpt:word/x"], false, 200)!;
+  expect(bon["jlpt:word/x"]).toEqual(fsrsInit(3, 200));
+  expect(rate["jlpt:word/x"]).toEqual(fsrsInit(1, 200));
+  expect(bon["jlpt:word/x"][0]).toBeGreaterThan(rate["jlpt:word/x"][0]); // Good part plus stable
+});
+
+test("fsrsPatch : entité CONNUE → fsrsReview (pas réinitialisée)", () => {
+  const avant = fsrsInit(3, 0);
+  const apres = fsrsPatch({ "jlpt:word/x": avant }, ["jlpt:word/x"], true, 200)!;
+  expect(apres["jlpt:word/x"]).toEqual(fsrsReview(avant, 3, 200));
+  expect(apres["jlpt:word/x"]).not.toEqual(fsrsInit(3, 200)); // révisée, pas réinitialisée
+});
+
+test("fsrsPatch : plusieurs arêtes → toutes mises à jour, sans altérer la carte d'entrée", () => {
+  const map = { "jlpt:word/a": fsrsInit(3, 0) };
+  const next = fsrsPatch(map, ["jlpt:word/a", "jlpt:kanji/b"], true, 200)!;
+  expect(Object.keys(next).sort()).toEqual(["jlpt:kanji/b", "jlpt:word/a"]);
+  expect(map).toEqual({ "jlpt:word/a": fsrsInit(3, 0) }); // pureté : entrée inchangée
 });

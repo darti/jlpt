@@ -5,10 +5,32 @@
  * `ord`. `q.tests` donne ord → IRIs ; `fsrsIndex` en construit l'inverse pour retrouver une
  * question qui teste une entité due. Module PUR (date injectée).
  */
-import { isDue, retrievability, type Fsrs } from "../../lib/fsrs.ts";
+import { fsrsInit, fsrsReview, isDue, retrievability, type Fsrs, type Grade } from "../../lib/fsrs.ts";
 import type { Question } from "../../types/quiz.ts";
 
 export type FsrsMap = Record<string, Fsrs>;
+
+/**
+ * La carte FSRS après qu'une réponse a révisé les entités `iris` — `undefined` s'il n'y a rien
+ * à écrire (question sans arête `tests` : lecture/écoute). Pure — la date est injectée.
+ *
+ * Réponse juste → `Good(3)`, fausse → `Again(1)`. Une entité connue est révisée (`fsrsReview`),
+ * une entité nouvelle est initialisée (`fsrsInit`). Rend une carte NEUVE (n'altère pas `map`) qui
+ * réécrit l'ENTIÈRE : `writeProgress` ne deep-merge que `skill`, donc patcher une seule entité
+ * effacerait les autres.
+ *
+ * Extrait de `choose` pour être testé directement (la logique — mapping du grade, init vs review,
+ * garde « pas d'arête → undefined » — vivait dans le hook, hors de portée des tests).
+ */
+export function fsrsPatch(
+  map: FsrsMap, iris: string[], correct: boolean, jour: number,
+): FsrsMap | undefined {
+  if (!iris.length) return undefined;
+  const g: Grade = correct ? 3 : 1;
+  const next: FsrsMap = { ...map };
+  for (const iri of iris) next[iri] = next[iri] ? fsrsReview(next[iri], g, jour) : fsrsInit(g, jour);
+  return next;
+}
 
 /** L'état FSRS du blob, ou `{}` si absent/malformé. Un blob antérieur au champ n'a pas besoin
  *  de migration. Validation superficielle : un tuple à 3 nombres. */
