@@ -230,6 +230,11 @@ const MOTIFS = [
   ["voisement", /voisement|dakuten|handakuten|sonoris|assimilation phonétique|devient .{1,3} devant/i],
   ["graphie-inexistante", /graphie inexistante|n'existe pas|mot inexistant|forme inexistante|(?<!lecture[\s\S]*)inexistant|parasite|fausse\)/i],
   ["kanji-confondu", /confond avec|se confond|confusion avec|(?<!est le sens d['’]un )(?<!correspond à un )autre kanji/i],
+  // Mauvais kanji pour le contexte : « erreur : le kanji « 火 » ne convient pas ici ». Le kanji
+  // existe et se lit bien, mais ne correspond PAS au sens de la phrase — distinct de la confusion
+  // visuelle (kanji-confondu) et de la graphie inexistante. Mesuré : 1222 notes sur q-kanji,
+  // TOUTES en `autre` avant ce type (aucun vol), aucune coexistant avec un marqueur lecture/sens.
+  ["kanji-hors-contexte", /ne convient pas/i],
   ["forme-proche", /forme proche|ressemble|graphie proche|se ressemble|proche graphiquement/i],
   ["homophone", /homophone|m[êe]me lecture|même son/i],
   ["lecture-on-kun", /lecture on|on.?yomi|lecture kun|kun.?yomi|on\/kun/i],

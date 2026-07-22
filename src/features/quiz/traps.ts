@@ -63,6 +63,7 @@ export const KIND_LABELS: Record<string, string> = {
   voisement: "Voisement erroné",
   "graphie-inexistante": "Graphie inexistante",
   "kanji-confondu": "Kanji confondu",
+  "kanji-hors-contexte": "Mauvais kanji pour le contexte",
   "forme-proche": "Forme proche",
   homophone: "Homophone",
   "lecture-on-kun": "Lecture on / kun",

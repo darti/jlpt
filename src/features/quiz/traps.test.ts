@@ -56,8 +56,9 @@ test("un type actif n'est jamais listé comme résolu", () => {
 // src/ et refuserait un module .mjs sans déclaration de types. La taxonomie est confrontée
 // au classifieur côté outil (tools/graph/trap-kinds.test.ts) ; ici on vérifie seulement que
 // la table de libellés est complète et cohérente en nombre.
-test("la table de libellés couvre les 14 types, autre compris", () => {
-  expect(Object.keys(KIND_LABELS).length).toBe(14);
+test("la table de libellés couvre les 15 types, autre compris", () => {
+  expect(Object.keys(KIND_LABELS).length).toBe(15);
+  expect(KIND_LABELS["kanji-hors-contexte"]).toBe("Mauvais kanji pour le contexte");
   expect(KIND_LABELS.autre).toBe("Non classé");
   for (const v of Object.values(KIND_LABELS)) expect(typeof v).toBe("string");
 });

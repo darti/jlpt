@@ -17,6 +17,7 @@ const CAS: [string, string][] = [
   ["voisement erroné de しゅくだい", "voisement"],
   ["« あきひん » : graphie inexistante, confusion avec 商品", "graphie-inexistante"],
   ["confond avec d'autres kanji (幹 みき) : ne correspond pas à 未来", "kanji-confondu"],
+  ["erreur : le kanji « 火 » ne convient pas ici", "kanji-hors-contexte"],
   ["映像（えいぞう）« image vidéo » : 映 ressemble à 影", "forme-proche"],
   ["homophone, sens différent", "homophone"],
   ["lecture on de 生, pas la kun attendue", "lecture-on-kun"],
@@ -147,7 +148,7 @@ test("quatrième revue : le retrait de l'attrape-tout route les notes par leur c
 
 test("KINDS énumère exactement les types produits, autre compris", () => {
   expect(KINDS).toContain("autre");
-  expect(KINDS.length).toBe(14);
+  expect(KINDS.length).toBe(15);
   for (const [, attendu] of CAS) expect(KINDS).toContain(attendu);
 });
 
@@ -227,10 +228,15 @@ function couverture(shard: string): { pct: number; n: number } {
 // vocabulaire ne bouge quasi pas (74,75 %, contre 74,54 % avant — légère HAUSSE grâce aux
 // extensions `sens de`/`gémination`, l'attrape-tout n'ayant jamais pesé sur ce shard) : le seuil
 // vocabulaire (73) reste valide tel quel, marge inchangée.
-test("le classifieur couvre au moins 52 % des notes de kanji", () => {
+//
+// ⚠ REMONTÉ 52 → 66 : ajout du 15ᵉ type `kanji-hors-contexte` (« le kanji « X » ne convient pas
+// ici »), qui récupère 1222 notes de q-kanji jusque-là en `autre` — couverture kanji 54 → 67 %.
+// Ces notes NOMMENT désormais un vrai type de piège au lieu de « Non classé ». Le seuil suit la
+// mesure (66, à ~1 pt sous 67,05 %), sinon le cliquet ne garderait plus rien.
+test("le classifieur couvre au moins 66 % des notes de kanji", () => {
   const c = couverture("q-kanji");
   expect(c.n).toBeGreaterThan(9000);
-  expect(c.pct).toBeGreaterThan(52);
+  expect(c.pct).toBeGreaterThan(66);
 });
 
 test("le classifieur couvre au moins 73 % des notes de vocabulaire", () => {

@@ -5493,9 +5493,9 @@
     "jlpt:word/月"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -5653,10 +5653,10 @@
     "jlpt:word/火"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -5813,10 +5813,10 @@
     "jlpt:word/水"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -5974,9 +5974,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -6133,9 +6133,9 @@
     "jlpt:word/金"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -6293,10 +6293,10 @@
     "jlpt:word/土"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -6453,10 +6453,10 @@
     "jlpt:word/年"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -6614,9 +6614,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -6773,9 +6773,9 @@
     "jlpt:word/分"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -6933,10 +6933,10 @@
     "jlpt:word/半"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -7093,10 +7093,10 @@
     "jlpt:word/今"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -7254,9 +7254,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -7413,9 +7413,9 @@
     "jlpt:word/後"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -7573,10 +7573,10 @@
     "jlpt:kanji/午"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -7733,10 +7733,10 @@
     "jlpt:word/間"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -12719,10 +12719,10 @@
     "jlpt:kanji/校"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -12879,9 +12879,9 @@
     "jlpt:word/本"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -13039,10 +13039,10 @@
     "jlpt:word/語"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -13199,9 +13199,9 @@
     "jlpt:word/国"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -13359,10 +13359,10 @@
     "jlpt:word/山"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -13519,9 +13519,9 @@
     "jlpt:word/川"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -13676,10 +13676,10 @@
     "jlpt:kanji/田"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -13836,9 +13836,9 @@
     "jlpt:kanji/天"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -13996,10 +13996,10 @@
     "jlpt:kanji/気"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -14156,9 +14156,9 @@
     "jlpt:word/雨"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -14316,10 +14316,10 @@
     "jlpt:word/花"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -14476,9 +14476,9 @@
     "jlpt:word/空"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -14636,10 +14636,10 @@
     "jlpt:word/目"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -14796,9 +14796,9 @@
     "jlpt:word/耳"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -14956,10 +14956,10 @@
     "jlpt:word/口"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -15116,10 +15116,10 @@
     "jlpt:word/手"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -15276,9 +15276,9 @@
     "jlpt:word/足"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -15436,10 +15436,10 @@
     "jlpt:word/力"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -15596,9 +15596,9 @@
     "jlpt:word/行"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -15756,10 +15756,10 @@
     "jlpt:word/来"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -15916,9 +15916,9 @@
     "jlpt:word/帰"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -16076,10 +16076,10 @@
     "jlpt:word/見"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -16236,9 +16236,9 @@
     "jlpt:word/聞"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -16396,10 +16396,10 @@
     "jlpt:word/食"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -16556,9 +16556,9 @@
     "jlpt:word/飲"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -16716,10 +16716,10 @@
     "jlpt:word/買"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -16876,9 +16876,9 @@
     "jlpt:word/読"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -17036,10 +17036,10 @@
     "jlpt:word/書"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -17196,9 +17196,9 @@
     "jlpt:word/話"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -17356,10 +17356,10 @@
     "jlpt:word/言"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -19756,10 +19756,10 @@
     "jlpt:word/悪"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -19916,9 +19916,9 @@
     "jlpt:word/暗"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -20077,9 +20077,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -20236,10 +20236,10 @@
     "jlpt:word/意"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -20396,10 +20396,10 @@
     "jlpt:word/医"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -20556,9 +20556,9 @@
     "jlpt:word/引"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -20717,9 +20717,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -20876,10 +20876,10 @@
     "jlpt:word/院"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -21036,10 +21036,10 @@
     "jlpt:word/運"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -21196,9 +21196,9 @@
     "jlpt:word/映"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -21357,9 +21357,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -21516,10 +21516,10 @@
     "jlpt:word/駅"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -21676,10 +21676,10 @@
     "jlpt:word/屋"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -21833,9 +21833,9 @@
     "jlpt:word/化"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -21994,9 +21994,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -22153,10 +22153,10 @@
     "jlpt:word/界"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -27424,10 +27424,10 @@
     "jlpt:word/幸"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -27584,9 +27584,9 @@
     "jlpt:word/港"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -27744,10 +27744,10 @@
     "jlpt:word/号"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -27904,9 +27904,9 @@
     "jlpt:word/根"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -28064,10 +28064,10 @@
     "jlpt:word/祭"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -28224,9 +28224,9 @@
     "jlpt:word/細"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -28384,10 +28384,10 @@
     "jlpt:word/仕"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -28544,9 +28544,9 @@
     "jlpt:word/死"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -28704,10 +28704,10 @@
     "jlpt:word/使"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -28864,9 +28864,9 @@
     "jlpt:word/始"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -29024,10 +29024,10 @@
     "jlpt:word/指"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -29184,9 +29184,9 @@
     "jlpt:word/歯"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -29344,10 +29344,10 @@
     "jlpt:word/事"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -29504,9 +29504,9 @@
     "jlpt:word/持"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -29664,10 +29664,10 @@
     "jlpt:word/式"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -29824,9 +29824,9 @@
     "jlpt:word/実"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -29984,10 +29984,10 @@
     "jlpt:word/写"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -30144,9 +30144,9 @@
     "jlpt:word/者"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -30305,9 +30305,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -30464,10 +30464,10 @@
     "jlpt:word/守"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -30624,10 +30624,10 @@
     "jlpt:word/取"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -30784,9 +30784,9 @@
     "jlpt:word/酒"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -30945,9 +30945,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -31104,10 +31104,10 @@
     "jlpt:word/終"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -31264,10 +31264,10 @@
     "jlpt:word/習"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -31424,9 +31424,9 @@
     "jlpt:word/集"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -31585,9 +31585,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -31744,10 +31744,10 @@
     "jlpt:word/重"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -31904,10 +31904,10 @@
     "jlpt:word/宿"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -32064,9 +32064,9 @@
     "jlpt:word/所"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -32225,9 +32225,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -32384,10 +32384,10 @@
     "jlpt:word/助"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -32544,10 +32544,10 @@
     "jlpt:word/商"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -32704,9 +32704,9 @@
     "jlpt:word/消"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -32865,9 +32865,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -33024,10 +33024,10 @@
     "jlpt:word/乗"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -33184,10 +33184,10 @@
     "jlpt:word/植"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -33344,9 +33344,9 @@
     "jlpt:word/申"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -33505,9 +33505,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -33664,10 +33664,10 @@
     "jlpt:word/神"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -33824,10 +33824,10 @@
     "jlpt:word/真"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -33984,9 +33984,9 @@
     "jlpt:word/深"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -34145,9 +34145,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -34304,10 +34304,10 @@
     "jlpt:word/世"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -34464,10 +34464,10 @@
     "jlpt:word/昔"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -34624,9 +34624,9 @@
     "jlpt:word/全"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -34785,9 +34785,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -34944,10 +34944,10 @@
     "jlpt:word/送"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -37664,10 +37664,10 @@
     "jlpt:word/転"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -37824,9 +37824,9 @@
     "jlpt:word/都"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -37984,10 +37984,10 @@
     "jlpt:word/度"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -38144,9 +38144,9 @@
     "jlpt:word/島"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -38304,10 +38304,10 @@
     "jlpt:word/登"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -38464,9 +38464,9 @@
     "jlpt:word/等"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -38624,10 +38624,10 @@
     "jlpt:word/動"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -38784,9 +38784,9 @@
     "jlpt:word/働"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -38944,10 +38944,10 @@
     "jlpt:word/特"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -39104,9 +39104,9 @@
     "jlpt:word/内"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -39264,10 +39264,10 @@
     "jlpt:word/波"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -39424,9 +39424,9 @@
     "jlpt:word/配"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -39584,10 +39584,10 @@
     "jlpt:word/倍"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -39744,9 +39744,9 @@
     "jlpt:word/箱"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -39904,10 +39904,10 @@
     "jlpt:word/発"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -40064,9 +40064,9 @@
     "jlpt:word/反"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -42784,10 +42784,10 @@
     "jlpt:word/勉"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -42944,9 +42944,9 @@
     "jlpt:word/放"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -43104,10 +43104,10 @@
     "jlpt:word/味"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -43264,9 +43264,9 @@
     "jlpt:word/命"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -43424,10 +43424,10 @@
     "jlpt:word/面"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -43584,9 +43584,9 @@
     "jlpt:word/問"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -43744,10 +43744,10 @@
     "jlpt:word/役"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -43904,9 +43904,9 @@
     "jlpt:word/薬"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -44064,10 +44064,10 @@
     "jlpt:word/由"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -44224,9 +44224,9 @@
     "jlpt:word/油"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -44384,10 +44384,10 @@
     "jlpt:word/有"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -44544,9 +44544,9 @@
     "jlpt:word/遊"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -44704,10 +44704,10 @@
     "jlpt:word/予"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -44864,9 +44864,9 @@
     "jlpt:word/洋"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -45024,10 +45024,10 @@
     "jlpt:word/様"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -45184,9 +45184,9 @@
     "jlpt:word/落"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -45312,9 +45312,9 @@
     "jlpt:word/流"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -45473,9 +45473,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -45632,10 +45632,10 @@
     "jlpt:word/両"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -45792,10 +45792,10 @@
     "jlpt:word/料"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -45952,9 +45952,9 @@
     "jlpt:word/練"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -46113,9 +46113,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -46272,10 +46272,10 @@
     "jlpt:word/和"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -46432,10 +46432,10 @@
     "jlpt:kanji/建"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -46592,9 +46592,9 @@
     "jlpt:word/験"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -46753,9 +46753,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -46912,10 +46912,10 @@
     "jlpt:kanji/洗"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -47072,10 +47072,10 @@
     "jlpt:kanji/台"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -47232,9 +47232,9 @@
     "jlpt:kanji/貸"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -47393,9 +47393,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -47552,10 +47552,10 @@
     "jlpt:word/産"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -47712,10 +47712,10 @@
     "jlpt:word/別"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -47904,10 +47904,10 @@
     "jlpt:word/変"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -48062,9 +48062,9 @@
    ],
    "jlpt:trapKind": [
     "sens-different",
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -48221,10 +48221,10 @@
     "jlpt:word/声"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -48382,9 +48382,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -48542,9 +48542,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -48701,10 +48701,10 @@
     "jlpt:word/情"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -48861,10 +48861,10 @@
     "jlpt:word/常"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -49021,9 +49021,9 @@
     "jlpt:word/非"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -49182,9 +49182,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -49341,10 +49341,10 @@
     "jlpt:word/官"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -49501,10 +49501,10 @@
     "jlpt:word/現"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -49661,9 +49661,9 @@
     "jlpt:word/在"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -49822,9 +49822,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -49981,10 +49981,10 @@
     "jlpt:word/約"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -50141,10 +50141,10 @@
     "jlpt:word/束"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -50301,9 +50301,9 @@
     "jlpt:word/資"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -50462,9 +50462,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -50621,10 +50621,10 @@
     "jlpt:kanji/領"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -50781,10 +50781,10 @@
     "jlpt:word/形"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -50941,9 +50941,9 @@
     "jlpt:word/然"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -53597,10 +53597,10 @@
     "jlpt:word/境"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -53757,9 +53757,9 @@
     "jlpt:word/環"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -53918,9 +53918,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -54077,10 +54077,10 @@
     "jlpt:kanji/宙"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -54237,10 +54237,10 @@
     "jlpt:kanji/宗"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -54397,9 +54397,9 @@
     "jlpt:kanji/師"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -54558,9 +54558,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -54717,10 +54717,10 @@
     "jlpt:word/農"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -54877,10 +54877,10 @@
     "jlpt:word/航"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -55037,9 +55037,9 @@
     "jlpt:word/券"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -55198,9 +55198,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -55357,10 +55357,10 @@
     "jlpt:kanji/浅"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -55517,10 +55517,10 @@
     "jlpt:word/岩"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -55677,9 +55677,9 @@
     "jlpt:word/笑"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -55838,9 +55838,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -55997,10 +55997,10 @@
     "jlpt:word/泣"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -58772,10 +58772,10 @@
     "jlpt:word/許"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -58932,9 +58932,9 @@
     "jlpt:word/可"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -59093,9 +59093,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -59252,10 +59252,10 @@
     "jlpt:word/価"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -59412,10 +59412,10 @@
     "jlpt:word/得"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -59572,9 +59572,9 @@
     "jlpt:word/与"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -59733,9 +59733,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -59892,10 +59892,10 @@
     "jlpt:kanji/豊"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -60052,10 +60052,10 @@
     "jlpt:kanji/貧"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -60212,9 +60212,9 @@
     "jlpt:kanji/乏"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -60373,9 +60373,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -60532,10 +60532,10 @@
     "jlpt:word/難"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -60692,10 +60692,10 @@
     "jlpt:word/易"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -60852,9 +60852,9 @@
     "jlpt:word/容"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -61013,9 +61013,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -61172,10 +61172,10 @@
     "jlpt:kanji/簡"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -61300,9 +61300,9 @@
     "jlpt:word/複"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -61461,9 +61461,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -61620,10 +61620,10 @@
     "jlpt:word/印"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -61780,10 +61780,10 @@
     "jlpt:word/象"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -61940,9 +61940,9 @@
     "jlpt:word/態"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -62101,9 +62101,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -62260,10 +62260,10 @@
     "jlpt:word/例"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -62420,10 +62420,10 @@
     "jlpt:word/頼"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -62580,9 +62580,9 @@
     "jlpt:kanji/依"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -62741,9 +62741,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -62900,10 +62900,10 @@
     "jlpt:word/要"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -63060,10 +63060,10 @@
     "jlpt:word/利"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -63220,9 +63220,9 @@
     "jlpt:word/益"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -63381,9 +63381,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -63540,10 +63540,10 @@
     "jlpt:word/額"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -63700,10 +63700,10 @@
     "jlpt:kanji/貯"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -63860,9 +63860,9 @@
     "jlpt:word/払"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -64021,9 +64021,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -64180,10 +64180,10 @@
     "jlpt:kanji/域"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -64340,10 +64340,10 @@
     "jlpt:word/論"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -64500,9 +64500,9 @@
     "jlpt:word/課"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -64661,9 +64661,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -64820,10 +64820,10 @@
     "jlpt:word/欠"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -64980,10 +64980,10 @@
     "jlpt:kanji/令"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -65140,9 +65140,9 @@
     "jlpt:kanji/刷"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -65301,9 +65301,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -65460,10 +65460,10 @@
     "jlpt:kanji/刊"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -65620,10 +65620,10 @@
     "jlpt:word/誌"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -65780,9 +65780,9 @@
     "jlpt:kanji/巻"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -65941,9 +65941,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -66100,10 +66100,10 @@
     "jlpt:kanji/編"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -66260,10 +66260,10 @@
     "jlpt:word/訳"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -68975,9 +68975,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -69134,10 +69134,10 @@
     "jlpt:kanji/衆"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -69294,10 +69294,10 @@
     "jlpt:word/総"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -69454,9 +69454,9 @@
     "jlpt:kanji/均"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -69615,9 +69615,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -69774,10 +69774,10 @@
     "jlpt:kanji/抜"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -69934,10 +69934,10 @@
     "jlpt:word/念"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -70094,9 +70094,9 @@
     "jlpt:word/残"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -70255,9 +70255,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -70414,10 +70414,10 @@
     "jlpt:word/賞"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -70574,10 +70574,10 @@
     "jlpt:word/状"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -70734,9 +70734,9 @@
     "jlpt:word/況"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -70895,9 +70895,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -71054,10 +71054,10 @@
     "jlpt:word/差"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -71214,10 +71214,10 @@
     "jlpt:word/比"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -71374,9 +71374,9 @@
     "jlpt:word/較"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -71535,9 +71535,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -71694,10 +71694,10 @@
     "jlpt:word/位"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -71855,9 +71855,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -72014,10 +72014,10 @@
     "jlpt:word/胃"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -72175,9 +72175,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -72334,10 +72334,10 @@
     "jlpt:kanji/演"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -72495,9 +72495,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -72654,10 +72654,10 @@
     "jlpt:word/塩"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -72812,9 +72812,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -72971,10 +72971,10 @@
     "jlpt:word/横"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -73132,9 +73132,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -73291,10 +73291,10 @@
     "jlpt:word/果"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -73452,9 +73452,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -73611,10 +73611,10 @@
     "jlpt:kanji/河"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -73772,9 +73772,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -73931,10 +73931,10 @@
     "jlpt:word/拡"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -74091,9 +74091,9 @@
     "jlpt:word/割"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -74252,9 +74252,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -74411,10 +74411,10 @@
     "jlpt:kanji/干"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -74571,10 +74571,10 @@
     "jlpt:word/甘"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -74731,9 +74731,9 @@
     "jlpt:word/汗"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -74892,9 +74892,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -75051,10 +75051,10 @@
     "jlpt:kanji/幾"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -75211,10 +75211,10 @@
     "jlpt:kanji/貴"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -75371,9 +75371,9 @@
     "jlpt:kanji/疑"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -75532,9 +75532,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -75691,10 +75691,10 @@
     "jlpt:kanji/詰"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -75851,10 +75851,10 @@
     "jlpt:word/逆"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -76011,9 +76011,9 @@
     "jlpt:kanji/久"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -76172,9 +76172,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -76331,10 +76331,10 @@
     "jlpt:word/居"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -76491,10 +76491,10 @@
     "jlpt:kanji/巨"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -76683,10 +76683,10 @@
     "jlpt:kanji/拠"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -76843,9 +76843,9 @@
     "jlpt:kanji/拒"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -77004,9 +77004,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -77163,10 +77163,10 @@
     "jlpt:word/響"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -77323,10 +77323,10 @@
     "jlpt:kanji/驚"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -77483,9 +77483,9 @@
     "jlpt:word/禁"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -77644,9 +77644,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -77803,10 +77803,10 @@
     "jlpt:kanji/勤"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -77963,10 +77963,10 @@
     "jlpt:word/靴"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -78123,9 +78123,9 @@
     "jlpt:kanji/傾"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -78284,9 +78284,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -78443,10 +78443,10 @@
     "jlpt:kanji/迎"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -78603,10 +78603,10 @@
     "jlpt:kanji/撃"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -78763,9 +78763,9 @@
     "jlpt:kanji/激"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -78924,9 +78924,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -79083,10 +79083,10 @@
     "jlpt:word/件"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -79244,9 +79244,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -79372,9 +79372,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -79403,10 +79403,10 @@
     "jlpt:word/法"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -79563,10 +79563,10 @@
     "jlpt:kanji/賢"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -79691,10 +79691,10 @@
     "jlpt:kanji/玄"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -79723,9 +79723,9 @@
     "jlpt:word/米"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -79884,9 +79884,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -80043,10 +80043,10 @@
     "jlpt:word/厳"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -80203,10 +80203,10 @@
     "jlpt:kanji/己"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -80363,9 +80363,9 @@
     "jlpt:word/呼"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -80524,9 +80524,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -80652,9 +80652,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -80683,10 +80683,10 @@
     "jlpt:word/反"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -80843,10 +80843,10 @@
     "jlpt:word/攻"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -81003,9 +81003,9 @@
     "jlpt:kanji/更"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -81164,9 +81164,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -81323,10 +81323,10 @@
     "jlpt:kanji/荒"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -81451,10 +81451,10 @@
     "jlpt:word/講"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -81483,10 +81483,10 @@
     "jlpt:kanji/演"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -81608,10 +81608,10 @@
     "jlpt:word/込"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -81640,9 +81640,9 @@
     "jlpt:word/申"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -81769,9 +81769,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
+    "kanji-hors-contexte",
     "kanji-confondu",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -81928,10 +81928,10 @@
     "jlpt:word/混"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
     "kanji-confondu",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -82088,10 +82088,10 @@
     "jlpt:word/座"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "kanji-confondu",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -82248,9 +82248,9 @@
     "jlpt:kanji/再"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "kanji-confondu",
-    "autre",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -82409,9 +82409,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
+    "kanji-hors-contexte",
     "kanji-confondu",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -82568,10 +82568,10 @@
     "jlpt:word/採"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
     "kanji-confondu",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -82728,10 +82728,10 @@
     "jlpt:word/災"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "kanji-confondu",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -82888,9 +82888,9 @@
     "jlpt:word/財"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "kanji-confondu",
-    "autre",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -83046,9 +83046,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
+    "kanji-hors-contexte",
     "kanji-confondu",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -83202,10 +83202,10 @@
     "jlpt:word/撮"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
     "kanji-confondu",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -83362,10 +83362,10 @@
     "jlpt:kanji/参"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "kanji-confondu",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -83522,9 +83522,9 @@
     "jlpt:word/散"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "kanji-confondu",
-    "autre",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -83683,9 +83683,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
+    "kanji-hors-contexte",
     "kanji-confondu",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -83842,10 +83842,10 @@
     "jlpt:kanji/士"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
     "kanji-confondu",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -84002,10 +84002,10 @@
     "jlpt:kanji/志"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "kanji-confondu",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -84162,9 +84162,9 @@
     "jlpt:word/枝"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "kanji-confondu",
-    "autre",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -84290,10 +84290,10 @@
     "jlpt:word/詞"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -84450,9 +84450,9 @@
     "jlpt:kanji/飼"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -84611,9 +84611,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -84770,10 +84770,10 @@
     "jlpt:word/似"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -84930,10 +84930,10 @@
     "jlpt:kanji/湿"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -85090,9 +85090,9 @@
     "jlpt:kanji/芝"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -85251,9 +85251,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -85407,10 +85407,10 @@
     "jlpt:kanji/捨"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -85564,10 +85564,10 @@
     "jlpt:kanji/寂"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -85724,9 +85724,9 @@
     "jlpt:kanji/若"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -85885,9 +85885,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -86044,10 +86044,10 @@
     "jlpt:word/州"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -86204,10 +86204,10 @@
     "jlpt:word/祝"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -86364,9 +86364,9 @@
     "jlpt:word/縮"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -86525,9 +86525,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -86684,10 +86684,10 @@
     "jlpt:word/述"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -91997,9 +91997,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -92156,10 +92156,10 @@
     "jlpt:word/接"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -92317,9 +92317,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -92476,10 +92476,10 @@
     "jlpt:kanji/折"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -92637,9 +92637,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -92796,10 +92796,10 @@
     "jlpt:word/舌"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -92954,9 +92954,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -93113,10 +93113,10 @@
     "jlpt:kanji/占"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -93274,9 +93274,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -93433,10 +93433,10 @@
     "jlpt:word/専"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -93594,9 +93594,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -93753,10 +93753,10 @@
     "jlpt:kanji/染"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -93914,9 +93914,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -94073,10 +94073,10 @@
     "jlpt:word/善"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -94234,9 +94234,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -94393,10 +94393,10 @@
     "jlpt:word/素"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -94554,9 +94554,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -94713,10 +94713,10 @@
     "jlpt:kanji/倉"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -94873,10 +94873,10 @@
     "jlpt:word/想"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -95033,9 +95033,9 @@
     "jlpt:word/層"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -95194,9 +95194,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -95353,10 +95353,10 @@
     "jlpt:word/造"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -95513,10 +95513,10 @@
     "jlpt:word/像"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -95673,9 +95673,9 @@
     "jlpt:word/蔵"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -95834,9 +95834,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -95993,10 +95993,10 @@
     "jlpt:word/測"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -96153,10 +96153,10 @@
     "jlpt:word/尊"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -96313,9 +96313,9 @@
     "jlpt:word/損"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -96474,9 +96474,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -96633,10 +96633,10 @@
     "jlpt:word/退"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -96793,10 +96793,10 @@
     "jlpt:word/隊"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -96953,9 +96953,9 @@
     "jlpt:kanji/脱"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -97145,10 +97145,10 @@
     "jlpt:word/担"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -97305,10 +97305,10 @@
     "jlpt:word/探"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -97465,9 +97465,9 @@
     "jlpt:word/端"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -97626,9 +97626,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -97785,10 +97785,10 @@
     "jlpt:kanji/団"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -97945,10 +97945,10 @@
     "jlpt:word/断"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -98105,9 +98105,9 @@
     "jlpt:word/遅"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -98266,9 +98266,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -98425,10 +98425,10 @@
     "jlpt:word/築"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -98585,10 +98585,10 @@
     "jlpt:word/仲"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -98745,9 +98745,9 @@
     "jlpt:word/柱"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -98906,9 +98906,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -99065,10 +99065,10 @@
     "jlpt:word/張"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -99225,10 +99225,10 @@
     "jlpt:word/頂"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     "",
-    "autre"
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -99385,9 +99385,9 @@
     "jlpt:word/腸"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -99546,9 +99546,9 @@
    ],
    "jlpt:trapKind": [
     "",
-    "autre",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -99705,10 +99705,10 @@
     "jlpt:word/沈"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -99865,9 +99865,9 @@
     "jlpt:word/珍"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -100025,10 +100025,10 @@
     "jlpt:word/賃"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -100185,9 +100185,9 @@
     "jlpt:word/適"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -100345,10 +100345,10 @@
     "jlpt:kanji/敵"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   },
   {
@@ -100505,9 +100505,9 @@
     "jlpt:word/展"
    ],
    "jlpt:trapKind": [
-    "autre",
-    "autre",
-    "autre",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
+    "kanji-hors-contexte",
     ""
    ]
   },
@@ -100665,10 +100665,10 @@
     "jlpt:word/逃"
    ],
    "jlpt:trapKind": [
-    "autre",
+    "kanji-hors-contexte",
     "",
-    "autre",
-    "autre"
+    "kanji-hors-contexte",
+    "kanji-hors-contexte"
    ]
   }
  ]
