@@ -4,6 +4,7 @@ import { rappelHref } from "../cours/coursDeepLink.ts";
 import { SentenceAnalysis } from "../../ui/SentenceAnalysis.tsx";
 import { PANEL } from "../../ui/styles.ts";
 import { furi } from "../../lib/dict.ts";
+import { KIND_LABELS } from "./traps.ts";
 
 /** Port of the legacy corrigé block from `answer()` (app-n3.html:937-957):
  * correct/incorrect banner, rule explanation, grammar decomposition, and the
@@ -60,6 +61,19 @@ export function Corrige({ question, correct, rappel }: { question: Question; cor
               </li>
             ))}
           </ul>
+          {!correct && Array.isArray(question.trap) && (() => {
+            // Le type de piège n'a de sens que sur une option FAUSSE : à l'index de la réponse,
+            // le champ vaut "" par construction. `autre` n'est pas affiché — un « Non classé »
+            // n'apprend rien à l'apprenant et sert seulement au diagnostic agrégé.
+            const kinds = question.trap.filter((k, i) => k && k !== "autre" && i !== question.a);
+            const uniques = [...new Set(kinds)];
+            if (!uniques.length) return null;
+            return (
+              <p className="text-meta text-fg-dim mt-2 mb-0">
+                Type de piège : {uniques.map((k) => KIND_LABELS[k] ?? k).join(" · ")}
+              </p>
+            );
+          })()}
         </div>
       )}
       {rappel ? <RappelCard rappel={rappel} /> : <RappelAbsent cat={question.cat} />}

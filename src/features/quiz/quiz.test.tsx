@@ -34,6 +34,20 @@ test("Corrige shows the transcript for an écoute question with a script", () =>
   expect(baseText(html)).toContain("すみません、駅はどこですか。");
 });
 
+test("le corrige nomme le type de piege de l'option choisie", () => {
+  const qt = { ...q, cat: "vocabulaire" as const, a: 2,
+    o: ["影像", "映像", "影響", "反響"],
+    od: ["partage 影", "映 ressemble à 影", "Correct", "partage 響"],
+    trap: ["kanji-partage", "forme-proche", "", "kanji-partage"] };
+  const html = renderToStaticMarkup(<Corrige question={qt} correct={false} />);
+  expect(html).toContain("Kanji partag");
+});
+
+test("une question sans champ trap n'affiche aucun type", () => {
+  const html = renderToStaticMarkup(<Corrige question={q} correct={false} />);
+  expect(html).not.toContain("Type de pi");
+});
+
 test("Results shows the session score", () => {
   const html = renderToStaticMarkup(<Results count={10} right={7} onRestart={() => {}} />);
   expect(html).toContain("7");
