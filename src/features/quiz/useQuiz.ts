@@ -231,7 +231,11 @@ export function useQuiz() {
     const newCoursePoints = ranges ? countUnseen(seen, ranges) : 0;
     // Modèle de mémoire : entités dues (R < 0,9) toutes compétences confondues — 0 tant que
     // la mémoire ne s'est pas accumulée (blob sans `fsrs`), la session reste alors inchangée.
-    const revisionDue = dueBySkill(asFsrs(raw), dayNumber(new Date())).total;
+    // Carte et jour lus UNE fois : le décompte du plan et la sélection doivent partager le même
+    // « aujourd'hui » (deux `new Date()` pourraient enjamber minuit).
+    const fsrsMap = asFsrs(raw);
+    const jourRevision = dayNumber(new Date());
+    const revisionDue = dueBySkill(fsrsMap, jourRevision).total;
 
     // Consult the decision engine. `resume: false` — "Commencer" always starts fresh; the resume
     // decision is handled at the card level. All five caps are now built.
@@ -276,7 +280,7 @@ export function useQuiz() {
     // Tranche révision : questions testant les entités dues, la plus en retard d'abord.
     const allPool = SKILLS.flatMap((c) => pools[c]);
     const revisionQs = plan.alloc.revision > 0
-      ? selectRevision(asFsrs(raw), dayNumber(new Date()), allPool, exclude, plan.alloc.revision)
+      ? selectRevision(fsrsMap, jourRevision, allPool, exclude, plan.alloc.revision)
       : [];
     for (const q of revisionQs) exclude.add(q.id);
 
