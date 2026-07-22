@@ -110,7 +110,13 @@ export function isDue(state: Fsrs, today: number, retention?: number): boolean;
 - Grade binaire : faux → `Again(1)`, juste → `Good(3)`. Les branches Hard (`w15`) / Easy (`w16`)
   ne se déclenchent jamais — surface morte conservée pour rester fidèle aux 17 poids publiés.
 - Difficulté initiale, réversion à la moyenne, stabilité de succès (croît avec `R` bas et `D` bas)
-  et stabilité post-lapse (`≤` stabilité avant) : selon les formules FSRS-4.5.
+  et stabilité post-lapse : selon les formules FSRS-4.5 **verbatim**.
+  ⚠ La formule officielle de lapse n'impose PAS `stabilité ≤ avant` : sur un item très fragile
+  (petite stabilité) revu très en retard, un échec peut légèrement *augmenter* la stabilité
+  (ex. `s=1, d=3, t=365j → ≈2,0`). C'est le comportement calibré des auteurs FSRS, conservé tel
+  quel — pas de plafond `min(., s)` ad hoc, non validé. (Décision d'auteur, revue Task 1 : la
+  fidélité au modèle prime sur l'intuition « une force de mémoire ne remonte jamais après un
+  échec », qui n'est pas un invariant du vrai FSRS.)
 - `isDue` : `retrievability(state, today) < retention`, `retention = 0.9` par défaut (défaut Anki),
   **codée en dur au lot 1** ; l'exposer en réglage est différé (YAGNI).
 - Temps écoulé borné : `max(0, today - lastDay)` (horloge décalée / import → révision « même jour »).

@@ -78,3 +78,23 @@ test("la stabilité ne descend jamais sous S_MIN", () => {
   const [s] = fsrsReview([0.02, 9, 100], 1, 101);
   expect(s).toBeGreaterThanOrEqual(0.01);
 });
+
+// Vecteurs de référence EXACTS de fsrsReview — verrouillent w8..w14 (et la réversion w7·w4).
+// ⚠ Les propriétés ci-dessus (« la stabilité croît ») laissent passer des transpositions
+// d'indices fausses (s^+w9, w9↔w10, w8 sans exp…) : ces deux ancres les attrapent.
+// Les valeurs viennent d'une transcription INDÉPENDANTE des formules (structure différente de
+// fsrs.ts), confrontée à la sortie de l'implémentation : concordance à 1e-9. Ce ne sont donc pas
+// des « valeurs recopiées de l'impl », mais un second calcul qui doit s'accorder au premier.
+test("référence succès : [10,5,100] → Good@130 (écoulé 30)", () => {
+  const [s, d, day] = fsrsReview([10, 5, 100], 3, 130);
+  expect(s).toBeCloseTo(73.046619, 5);
+  expect(d).toBeCloseTo(5.005016, 5); // réversion à la moyenne : 5 tiré vers D0(Good)=w4
+  expect(day).toBe(130);
+});
+
+test("référence échec : [10,5,100] → Again@130 (la stabilité retombe : 10 → 3.17)", () => {
+  const [s, d, day] = fsrsReview([10, 5, 100], 1, 130);
+  expect(s).toBeCloseTo(3.166438, 5);
+  expect(d).toBeCloseTo(6.744371, 5); // la difficulté monte
+  expect(day).toBe(130);
+});
