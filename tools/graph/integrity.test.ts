@@ -46,6 +46,42 @@ test("checkQuestion distingue deux options que seuls les espaces séparent", () 
     .toMatch(/options identique/i);
 });
 
+// --- jlpt:trapKind ---------------------------------------------------------------
+
+const baseTrap = {
+  "@id": "jlpt:q/1",
+  "jlpt:skill": "vocabulaire",
+  "jlpt:difficulty": 2,
+  opts: ["a", "b", "c", "d"],
+  "jlpt:answer": 2,
+};
+
+test("trapKind valide ne produit aucune erreur", () => {
+  expect(checkQuestion({ ...baseTrap, "jlpt:trapKind": ["voisement", "autre", "", "homophone"] })).toEqual([]);
+});
+
+test("trapKind de longueur différente des options est une erreur", () => {
+  const errs = checkQuestion({ ...baseTrap, "jlpt:trapKind": ["voisement", ""] });
+  expect(errs.join(" ")).toContain("trapKind");
+});
+
+test("trapKind non vide à l'index de la réponse est une erreur", () => {
+  const errs = checkQuestion({ ...baseTrap, "jlpt:trapKind": ["voisement", "autre", "homophone", "autre"] });
+  expect(errs.join(" ")).toContain("réponse");
+});
+
+test("un type hors taxonomie est une erreur", () => {
+  const errs = checkQuestion({ ...baseTrap, "jlpt:trapKind": ["voisement", "inventé", "", "autre"] });
+  expect(errs.join(" ")).toContain("inventé");
+});
+
+test("trapKind sur une piste hors périmètre est une erreur", () => {
+  const errs = checkQuestion({
+    ...baseTrap, "jlpt:skill": "grammaire", "jlpt:trapKind": ["voisement", "autre", "", "autre"],
+  });
+  expect(errs.join(" ")).toContain("grammaire");
+});
+
 // --- invariants portant sur tout le corpus -------------------------------------
 
 const gram = { "@id": "jlpt:gram/tara", "@type": "jlpt:GrammarPoint", "jlpt:form": "〜たら" };

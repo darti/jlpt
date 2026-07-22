@@ -10,9 +10,13 @@
 
 import { isSafeIri } from "./jsonld.mjs";
 import { isDisambiguated, readingIndex, sameReadingConflicts } from "./audit-stems.mjs";
+import { KINDS } from "./trap-kinds.mjs";
 
 const arr = (v) => (Array.isArray(v) ? v : v === undefined ? [] : [v]);
 const norm = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
+
+/** Pistes où `jlpt:trapKind` a un sens (cf. traps.mjs). */
+const PISTES_TYPEES = new Set(["kanji", "vocabulaire"]);
 
 /** Contrôles internes à une question. */
 export function checkQuestion(s) {
@@ -37,6 +41,28 @@ export function checkQuestion(s) {
 
   if (notes !== undefined && arr(notes).length !== opts.length) {
     errs.push(`${id} : optionNote de longueur ${arr(notes).length} pour ${opts.length} options`);
+  }
+
+  // `jlpt:trapKind` : tableau parallèle aux options, vide EXACTEMENT à l'index de la réponse,
+  // restreint à la taxonomie et aux deux pistes typées. C'est la présence du champ qui définit
+  // le périmètre côté runtime — un champ égaré ailleurs ferait compter des erreurs de grammaire
+  // comme « non typées », faisant passer une exclusion assumée pour une défaillance.
+  const traps = s["jlpt:trapKind"];
+  if (traps !== undefined) {
+    const t = arr(traps);
+    if (!PISTES_TYPEES.has(s["jlpt:skill"])) {
+      errs.push(`${id} : trapKind sur la piste ${s["jlpt:skill"]}, hors périmètre`);
+    }
+    if (t.length !== opts.length) {
+      errs.push(`${id} : trapKind de longueur ${t.length} pour ${opts.length} options`);
+    } else if (t[answer] !== "") {
+      errs.push(`${id} : trapKind ${JSON.stringify(t[answer])} à l'index de la réponse, attendu ""`);
+    }
+    t.forEach((k, i) => {
+      if (i !== answer && !KINDS.includes(k)) {
+        errs.push(`${id} : trapKind ${JSON.stringify(k)} hors taxonomie`);
+      }
+    });
   }
 
   // La plage 1–3 ne peut PAS être un sh:in : Oku fait filter_map(as_str) et laisserait
