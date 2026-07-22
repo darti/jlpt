@@ -126,7 +126,7 @@ adaptatif, cf. lot mémoire) inchangée sauf cette pondération.
 | Cas | Comportement |
 |---|---|
 | Démarrage à froid | 4 compétences à poids max égal, écoute au plancher (§ 3) |
-| Compétence saturée (pSec≈1) | `value` ≈ terme global seul → petite → poids ≈ **plancher 0,2**, jamais 0. Rétention couverte par la tranche révision FSRS |
+| Compétence saturée (pSec≈1) | `value` ≈ terme global seul → **poids faible, proche du plancher mais > 0,2** (une compétence MESURÉE n'a jamais une valeur exactement nulle). Rétention couverte par la tranche révision FSRS. Seule l'écoute NON mesurée (valeur forcée à 0) touche 0,2 exactement |
 | Écoute `t<3` | `sectionFactor=0` → `value=0` → poids = plancher (bootstrap) |
 | `maxVal = 0` (théorique) | `valueNorm=0` → tous au plancher → allocation uniforme, jamais de division par zéro |
 | Blob de progression absent / R par défaut | `masteryOf` rend la valeur d'un skill vierge (R=1450) — aucune exception |
