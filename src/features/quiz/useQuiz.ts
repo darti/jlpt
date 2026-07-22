@@ -15,7 +15,7 @@ import { cloudPush, type GistDeps } from "../../lib/gist.ts";
 import { pickSessionPlan, BUILT_CAPS } from "../entrainement/sessionPlan.ts";
 import { RESUME_KEY } from "../../lib/keys.ts";
 import { asConfusions, confusionPatch, dayNumber } from "./traps.ts";
-import { asFsrs, fsrsPatch } from "./revision.ts";
+import { asFsrs, fsrsPatch, dueBySkill, selectRevision } from "./revision.ts";
 
 export type Phase = "home" | "question" | "corrige" | "results" | "diag-intro" | "diag-results";
 
@@ -229,11 +229,14 @@ export function useQuiz() {
     const ranges = await ensureCorpus();
     const seen = decodeBits(typeof raw?.seen === "string" ? raw.seen : "");
     const newCoursePoints = ranges ? countUnseen(seen, ranges) : 0;
+    // Modèle de mémoire : entités dues (R < 0,9) toutes compétences confondues — 0 tant que
+    // la mémoire ne s'est pas accumulée (blob sans `fsrs`), la session reste alors inchangée.
+    const revisionDue = dueBySkill(asFsrs(raw), dayNumber(new Date())).total;
 
     // Consult the decision engine. `resume: false` — "Commencer" always starts fresh; the resume
-    // decision is handled at the card level. All four caps are now built.
+    // decision is handled at the card level. All five caps are now built.
     const plan = pickSessionPlan(
-      { resume: false, daysSinceDiagnostic, wrongCount: wrong.length, newCoursePoints },
+      { resume: false, daysSinceDiagnostic, wrongCount: wrong.length, newCoursePoints, revisionDue },
       total,
       BUILT_CAPS,
     );
@@ -270,6 +273,13 @@ export function useQuiz() {
     // plutôt qu'au fil de deux boucles `await` (jusqu'à dix allers-retours sérialisés à froid).
     const pools = await loadAllCategories();
 
+    // Tranche révision : questions testant les entités dues, la plus en retard d'abord.
+    const allPool = SKILLS.flatMap((c) => pools[c]);
+    const revisionQs = plan.alloc.revision > 0
+      ? selectRevision(asFsrs(raw), dayNumber(new Date()), allPool, exclude, plan.alloc.revision)
+      : [];
+    for (const q of revisionQs) exclude.add(q.id);
+
     // Learn slice: never-seen items, distributed by mastery and picked near the level. Each category's
     // pool is filtered to unseen; unseen-thin categories simply contribute fewer (adaptive covers the
     // shortfall below — budget still `total`).
@@ -285,15 +295,15 @@ export function useQuiz() {
 
     // Adaptive fills the remaining budget (weighted by mastery), from the full pools.
     // `wrong` conservé → bonus +150 (plancher souple sur les erreurs passées).
-    const adaptiveTarget = Math.max(0, total - errorQs.length - learnQs.length);
+    const adaptiveTarget = Math.max(0, total - errorQs.length - revisionQs.length - learnQs.length);
     const picked = pickSlice(
       allocateCount((c) => masteryOf(progress, c), adaptiveTarget),
       (cat) => pools[cat],
       raw, exclude, wrong,
     );
 
-    // Guaranteed slices (errors + learn) + adaptive fill → composeSession reconciles the budget.
-    const session = composeSession([...errorQs, ...learnQs], picked, total, Math.random);
+    // Guaranteed slices (errors + révision + learn) + adaptive fill → composeSession reconciles the budget.
+    const session = composeSession([...errorQs, ...revisionQs, ...learnQs], picked, total, Math.random);
     if (!session.length) return;
 
     rightRef.current = 0;

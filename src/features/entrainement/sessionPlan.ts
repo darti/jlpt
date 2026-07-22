@@ -11,6 +11,9 @@ export const ERRORS_CAP = 0.3;
 /** Part maximale du budget de questions consacrée aux items inédits (mode Apprendre). */
 export const LEARN_CAP = 0.4;
 
+/** Part maximale du budget consacrée à la révision espacée (entités dues FSRS). */
+export const REVISION_CAP = 0.4;
+
 /** État de l'apprenant lu depuis la progression + la session reprenable. */
 export interface SessionState {
   /** Une session en cours (< 2 j) existe. */
@@ -21,6 +24,8 @@ export interface SessionState {
   wrongCount: number;
   /** Points de cours non encore travaillés (0 tant que le mode Apprendre n'est pas construit). */
   newCoursePoints: number;
+  /** Nombre d'entités dues à révision aujourd'hui (0 tant que la mémoire ne s'est pas accumulée). */
+  revisionDue: number;
 }
 
 /** Capacités (modes) réellement construites — gèle les branches non implémentées. */
@@ -28,16 +33,17 @@ export interface Caps {
   diagnostic: boolean;
   errors: boolean;
   learn: boolean;
+  revision: boolean;
 }
 
 /** Plan de session : deux prises de contrôle totales, ou une composition du budget. */
 export type SessionPlan =
   | { kind: "resume" }
   | { kind: "diagnostic" }
-  | { kind: "composed"; alloc: { errors: number; learn: number; adaptive: number } };
+  | { kind: "composed"; alloc: { errors: number; revision: number; learn: number; adaptive: number } };
 
-/** Capacités construites à ce jour. Les 4 modes sont désormais réels. */
-export const BUILT_CAPS: Caps = { diagnostic: true, errors: true, learn: true };
+/** Capacités construites à ce jour. */
+export const BUILT_CAPS: Caps = { diagnostic: true, errors: true, learn: true, revision: true };
 
 /** Décide le plan de session (premier match gagne). `total` = budget de questions (dérivé du temps). */
 export function pickSessionPlan(state: SessionState, total: number, caps: Caps): SessionPlan {
@@ -48,9 +54,13 @@ export function pickSessionPlan(state: SessionState, total: number, caps: Caps):
   if (caps.diagnostic && diagnosticDue) return { kind: "diagnostic" };
 
   const errors = caps.errors ? Math.min(state.wrongCount, Math.floor(ERRORS_CAP * total)) : 0;
-  const learn = caps.learn
-    ? Math.min(state.newCoursePoints, Math.floor(LEARN_CAP * total), Math.max(0, total - errors))
+  // La révision suit les erreurs : à 4,5 mois de l'examen, l'oubli prime (priorité haute).
+  const revision = caps.revision
+    ? Math.min(state.revisionDue, Math.floor(REVISION_CAP * total), Math.max(0, total - errors))
     : 0;
-  const adaptive = Math.max(0, total - errors - learn);
-  return { kind: "composed", alloc: { errors, learn, adaptive } };
+  const learn = caps.learn
+    ? Math.min(state.newCoursePoints, Math.floor(LEARN_CAP * total), Math.max(0, total - errors - revision))
+    : 0;
+  const adaptive = Math.max(0, total - errors - revision - learn);
+  return { kind: "composed", alloc: { errors, revision, learn, adaptive } };
 }
