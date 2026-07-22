@@ -41,6 +41,7 @@ export function toQuestion(s: Sujet): Question {
   // au corrigé d'afficher un rappel SANS deviner la notion en parsant son HTML
   // (cf. src/features/quiz/rappel.ts).
   const tests = list(s.tests); if (tests !== undefined) q.tests = tests;
+  const trap = list(s["jlpt:trapKind"]); if (trap !== undefined) q.trap = trap;
   return q;
 }
 
