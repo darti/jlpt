@@ -62,7 +62,10 @@ test("trapKind valide ne produit aucune erreur", () => {
 
 test("trapKind de longueur différente des options est une erreur", () => {
   const errs = checkQuestion({ ...baseTrap, "jlpt:trapKind": ["voisement", ""] });
-  expect(errs.join(" ")).toContain("trapKind");
+  // Asserter sur « longueur » et pas seulement « trapKind » : un tableau court déclenche AUSSI
+  // l'erreur de taxonomie (le `""` à l'index 1 n'est pas la réponse), donc « trapKind » seul
+  // passerait même si le contrôle de longueur était retiré (revue finale M1).
+  expect(errs.join(" ")).toContain("longueur");
 });
 
 test("trapKind non vide à l'index de la réponse est une erreur", () => {

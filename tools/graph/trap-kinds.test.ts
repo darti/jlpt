@@ -1,5 +1,15 @@
 import { test, expect } from "bun:test";
 import { KINDS, trapKind } from "./trap-kinds.mjs";
+import { KIND_LABELS } from "../../src/features/quiz/traps.ts";
+
+// La taxonomie a DEUX sources : `KINDS` (côté outil, ici) et les clés de `KIND_LABELS`
+// (côté app, pour l'affichage). tsc ne couvre pas `tools/`, donc rien ne les confronte au
+// build — ce test le fait. Renommer un motif sans toucher `KIND_LABELS` dégraderait
+// l'affichage vers le slug brut (« kanji-partage » au lieu de « Kanji partagé »). Revue finale M2.
+test("chaque type de la taxonomie a un libellé d'affichage, et réciproquement", () => {
+  for (const k of KINDS) expect(KIND_LABELS[k], `libellé manquant pour ${k}`).toBeString();
+  for (const k of Object.keys(KIND_LABELS)) expect(KINDS, `libellé orphelin ${k}`).toContain(k);
+});
 
 // Chaque cas est une note RÉELLE du corpus — pas une formule inventée pour l'occasion.
 const CAS: [string, string][] = [
