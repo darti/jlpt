@@ -30,6 +30,27 @@ test("dueEntities : une entité fraîche (revue à l'instant) n'est PAS due", ()
   expect(dueEntities(map, 200)).toEqual([]);
 });
 
+// ⚠ Le test ci-dessus utilise `.sort()` sur les IRIs et des R ex æquo → il ne PROUVE pas le sens
+// du tri (un comparateur inversé passerait). Ici les deux entités ont des R DISTINCTS (l'une revue
+// au jour 0, l'autre au jour 190 ; à today=200, R = 0.271 vs 0.783) : l'ordre est vérifié sans
+// `.sort()`, donc un comparateur inversé (revue Task 2) casse ce test.
+test("dueEntities : ordre PROUVÉ — la plus en retard (R le plus bas) en premier", () => {
+  const map = { "jlpt:word/recent": fsrsInit(3, 190), "jlpt:word/vieux": fsrsInit(3, 0) };
+  const due = dueEntities(map, 200);
+  expect(due.map((d) => d.iri)).toEqual(["jlpt:word/vieux", "jlpt:word/recent"]);
+  expect(due[0].r).toBeLessThan(due[1].r);
+});
+
+// La mémoïsation de fsrsIndex est un état de MODULE : sans ce test, `clearRevisionCache` pourrait
+// être un no-op sans qu'aucun cas ne le voie (chaque autre test repart d'un tableau neuf).
+test("fsrsIndex : cache hit sur la même identité de tableau, vidé par clearRevisionCache", () => {
+  const qs = [q(1, ["jlpt:word/a"])];
+  const first = fsrsIndex(qs);
+  expect(fsrsIndex(qs)).toBe(first);       // même tableau → même Map (cache hit)
+  clearRevisionCache();
+  expect(fsrsIndex(qs)).not.toBe(first);   // vidé → nouvelle Map (échouerait si clear était un no-op)
+});
+
 test("dueBySkill : ventile par préfixe d'IRI", () => {
   const map = {
     "jlpt:word/a": fsrsInit(3, 0), "jlpt:kanji/b": fsrsInit(3, 0), "jlpt:gram/c": fsrsInit(3, 0),
