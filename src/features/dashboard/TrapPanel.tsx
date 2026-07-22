@@ -18,9 +18,18 @@ export function TrapPanel({ model }: { model: TrapModel | null }) {
     );
   }
   const max = Math.max(1, ...model.active.map((a) => a.recent));
+  // Un apprenant peut avoir des erreurs SANS aucun type récurrent nommé (toutes « non typées »
+  // ou hors périmètre) : sans cette phrase, le panneau n'afficherait que deux compteurs de
+  // jargon (« 12 non typées · 34 hors périmètre ») et se lirait comme une carte cassée.
+  const aucunType = !model.active.length && !model.resolved.length;
   return (
     <section className={PANEL}>
       <h2 className={H2}>Tes pièges</h2>
+      {aucunType && (
+        <p className="text-fg-dim text-sm mt-0 mb-2">
+          Aucun type de piège récurrent identifié pour l&#39;instant.
+        </p>
+      )}
       <ul className="list-none p-0 m-0 flex flex-col gap-2">
         {model.active.map((a) => (
           <li key={a.kind} className="flex items-center justify-between gap-3 text-sm">
