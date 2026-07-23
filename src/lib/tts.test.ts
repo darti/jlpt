@@ -1,6 +1,26 @@
 import { test, expect } from "bun:test";
-import { sentenceFromG, speak, speechTextFor, stopSpeaking } from "./tts.ts";
+import { sentenceFromG, speak, speakQuestion, speechTextFor, stopSpeaking } from "./tts.ts";
 import type { Question } from "../types/quiz.ts";
+
+// Stub de la Web Speech API (absente de happy-dom) qui capture le débit de chaque utterance —
+// même patron que SpeakButton.test.tsx, étendu pour vérifier la PROPAGATION du débit (une
+// inversion d'argument speakQuestion→speak passerait sinon inaperçue, cf. revue Task 2).
+type SpeechStub = { spoken: { text: string; rate: number }[]; cancels: number };
+function installSpeech(): SpeechStub {
+  const stub: SpeechStub = { spoken: [], cancels: 0 };
+  (globalThis as unknown as { SpeechSynthesisUtterance: unknown }).SpeechSynthesisUtterance =
+    class { text: string; lang = ""; rate = 1; voice: unknown = null; constructor(t: string) { this.text = t; } };
+  (globalThis as unknown as { speechSynthesis: unknown }).speechSynthesis = {
+    cancel() { stub.cancels += 1; },
+    speak(u: { text: string; rate: number }) { stub.spoken.push({ text: u.text, rate: u.rate }); },
+    getVoices() { return []; },
+  };
+  return stub;
+}
+function uninstallSpeech() {
+  delete (globalThis as unknown as Record<string, unknown>).speechSynthesis;
+  delete (globalThis as unknown as Record<string, unknown>).SpeechSynthesisUtterance;
+}
 
 test("sentenceFromG strips French glosses «…», keeps the post-→ form, drops furigana (…)", () => {
   // one segment: "帰る（かえる）→帰ったら «conditionnel»" → "帰ったら"
@@ -44,4 +64,30 @@ test("stopSpeaking ne jette pas quand speechSynthesis est absent", () => {
 test("speechTextFor (écoute) rend le script, inchangé", () => {
   const q = { id: 1, cat: "ecoute", d: 1, q: "?", o: ["a"], a: 0, script: "駅はどこ" } as Question;
   expect(speechTextFor(q)).toBe("駅はどこ");
+});
+
+test("speak PROPAGE le débit à l'utterance (défaut 0.9)", () => {
+  const stub = installSpeech();
+  try {
+    speak("x", 0.7);
+    speak("y"); // défaut
+    expect(stub.spoken).toEqual([{ text: "x", rate: 0.7 }, { text: "y", rate: 0.9 }]);
+  } finally { uninstallSpeech(); }
+});
+
+test("speakQuestion (écoute) propage le débit ET prononce le script", () => {
+  const stub = installSpeech();
+  try {
+    const q = { id: 1, cat: "ecoute", d: 1, q: "?", o: ["a"], a: 0, script: "駅はどこ" } as Question;
+    speakQuestion(q, 1.0);
+    expect(stub.spoken).toEqual([{ text: "駅はどこ", rate: 1.0 }]);
+  } finally { uninstallSpeech(); }
+});
+
+test("stopSpeaking appelle bien speechSynthesis.cancel()", () => {
+  const stub = installSpeech();
+  try {
+    stopSpeaking();
+    expect(stub.cancels).toBeGreaterThanOrEqual(1);
+  } finally { uninstallSpeech(); }
 });
