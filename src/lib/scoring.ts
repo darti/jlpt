@@ -35,20 +35,37 @@ export function daysUntilExam(now: Date): number {
   return Math.max(0, Math.ceil((EXAM_DATE.getTime() - now.getTime()) / MS_PER_DAY));
 }
 
-function sections(p: Progress) {
-  const langage = (masteryOf(p, "vocabulaire") + masteryOf(p, "kanji")) / 2;
-  const grammLect = (masteryOf(p, "grammaire") + masteryOf(p, "lecture")) / 2;
-  const listening = skT(p, "ecoute") >= 3 ? masteryOf(p, "ecoute") : 0.85 * ((langage + grammLect) / 2);
+/** Logistique standard. Une seule définition : `successModel` et `prescriptiveWeights` la
+ *  ré-inlinaient toutes deux, sous deux orthographes du même calcul. */
+const sigmoid = (x: number): number => 1 / (1 + Math.exp(-x));
+
+/** Mastery Elo→proba pour chaque compétence (record complet). */
+function masteries(p: Progress): Record<Skill, number> {
+  return Object.fromEntries(SKILLS.map((c) => [c, masteryOf(p, c)])) as Record<Skill, number>;
+}
+
+/** Les trois masteries de section depuis les masteries par compétence. L'écoute est estimée
+ *  (0,85 · moyenne des deux autres sections) tant qu'elle n'est pas mesurée (t < 3). */
+function sectionMastery(m: Record<Skill, number>, ecouteMeasured: boolean) {
+  const langage = (m.vocabulaire + m.kanji) / 2;
+  const grammLect = (m.grammaire + m.lecture) / 2;
+  const listening = ecouteMeasured ? m.ecoute : 0.85 * ((langage + grammLect) / 2);
   return { langage, grammLect, listening };
 }
 
+/** Scores /60 par section, total, et les deux termes logistiques du modèle de réussite :
+ *  `pSec` (seuil sectionnel commun 22/4) et `pTotal` (seuil global 95/12). */
+function sectionScores(sm: { langage: number; grammLect: number; listening: number }) {
+  const sec = { langage: sm.langage * 60, grammLect: sm.grammLect * 60, listening: sm.listening * 60 };
+  const total = sec.langage + sec.grammLect + sec.listening;
+  const pSec = (v: number) => sigmoid((v - 22) / 4);
+  const pTotal = sigmoid((total - 95) / 12);
+  return { sec, total, pSec, pTotal };
+}
+
 function successModel(p: Progress) {
-  const s = sections(p);
-  const secScore = { langage: s.langage * 60, grammLect: s.grammLect * 60, listening: s.listening * 60 };
-  const total = secScore.langage + secScore.grammLect + secScore.listening;
-  const pSec = (v: number) => 1 / (1 + Math.exp(-(v - 22) / 4));
-  const pTotal = 1 / (1 + Math.exp(-(total - 95) / 12));
-  let prob = pTotal * pSec(secScore.langage) * pSec(secScore.grammLect) * pSec(secScore.listening);
+  const { sec, total, pSec, pTotal } = sectionScores(sectionMastery(masteries(p), skT(p, "ecoute") >= 3));
+  let prob = pTotal * pSec(sec.langage) * pSec(sec.grammLect) * pSec(sec.listening);
   const n = p.total || 0;
   const conf = Math.min(1, n / 60);
   prob = conf * prob + (1 - conf) * 0.5 * pTotal;
@@ -111,20 +128,10 @@ export function dashboardModel(p: Progress, now: Date): DashboardModel {
  * Pur. Cf. docs/superpowers/specs/2026-07-23-tableau-prescriptif-design.md.
  */
 export function prescriptiveWeights(p: Progress): Record<Skill, number> {
-  const m = {
-    vocabulaire: masteryOf(p, "vocabulaire"), kanji: masteryOf(p, "kanji"),
-    grammaire: masteryOf(p, "grammaire"), lecture: masteryOf(p, "lecture"),
-    ecoute: masteryOf(p, "ecoute"),
-  };
-  const langage = (m.vocabulaire + m.kanji) / 2;
-  const grammLect = (m.grammaire + m.lecture) / 2;
+  const m = masteries(p);
   const ecouteMeasured = skT(p, "ecoute") >= 3;
-  const listening = ecouteMeasured ? m.ecoute : 0.85 * ((langage + grammLect) / 2);
-  const sec = { langage: langage * 60, grammLect: grammLect * 60, listening: listening * 60 };
-  const total = sec.langage + sec.grammLect + sec.listening;
-  const sig = (x: number) => 1 / (1 + Math.exp(-x));
-  const pSec = (v: number) => sig((v - 22) / 4);
-  const globalTerm = (1 - sig((total - 95) / 12)) / 12;
+  const { sec, pSec, pTotal } = sectionScores(sectionMastery(m, ecouteMeasured));
+  const globalTerm = (1 - pTotal) / 12;
   const marginal = {
     langage: globalTerm + (1 - pSec(sec.langage)) / 4,
     grammLect: globalTerm + (1 - pSec(sec.grammLect)) / 4,
