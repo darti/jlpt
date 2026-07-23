@@ -34,6 +34,9 @@ export function RevisionPanel({ counts }: { counts: DueCounts | null }) {
           <li key={lbl} className="text-fg-dim">{lbl} <span className="text-fg tabular-nums">{n}</span></li>
         ))}
       </ul>
+      {/* L'Accueil n'a pas de lanceur (il vit sur /entrainement) : le décompte reste sinon un
+          cul-de-sac. Le lien mène au hub, où une session priorise justement les entités dues. */}
+      <a href="#/entrainement" className="text-accent text-sm inline-block mt-3">Réviser maintenant →</a>
     </section>
   );
 }
