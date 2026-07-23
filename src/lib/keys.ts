@@ -45,6 +45,9 @@ export const GH_CFG_KEY = "jlptN3_gh";
 /** Marqueur de push différé (hors ligne ou échec). */
 export const PENDING_KEY = "jlptN3_pending";
 
+/** Débit de lecture TTS des questions d'écoute (préférence, comme le thème/furi). */
+export const RATE_KEY = "jlptN3_ecouteRate";
+
 /** Horodate la dernière écriture locale. Best-effort : une erreur de stockage est ignorée. */
 export function stampUpdated(
   store: Pick<Storage, "setItem">,
