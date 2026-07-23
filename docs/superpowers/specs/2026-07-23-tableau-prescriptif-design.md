@@ -75,9 +75,19 @@ s'enclenche à `t ≥ 3`.
 
 `dMasteryDR` (conservé) : une question sur une compétence près de R=1600 (le seuil) fait bouger la
 maîtrise plus vite qu'une sur une compétence saturée (haut ou bas). `value` est donc le **gain de P
-par question** réel. Effet secondaire connu : une compétence très faible (R bas, loin sous son
-minimum) est *atténuée* car on y progresse lentement — mais `marginalSection` (le minimum
-sectionnel) reste dominant, donc elle garde une priorité haute.
+par question** réel. Effet secondaire connu et **assumé** : une compétence très faible (R bas) est
+*atténuée* car on y progresse lentement par question.
+
+⚠ Portée de l'atténuation : `marginalSection` (le minimum sectionnel) domine en comparaison
+**inter-section** — une section entière sous son minimum garde une priorité haute. Mais en
+**intra-section**, `dMasteryDR` peut faire passer la compétence la PLUS faible *sous* sa
+co-équipière plus forte : ex. un apprenant fort partout sauf kanji catastrophique (R=1250) verra
+vocabulaire (même section « langage ») recevoir plus de questions que kanji. C'est
+mathématiquement correct pour maximiser P — les deux comptent à 50 % dans la section, et vocabulaire
+convertit plus vite — mais **contre-intuitif pédagogiquement** (« pourquoi ne pas marteler mon pire
+sujet ? »). Atténué par : le plancher 0,2, le diagnostic qui remesure, la tranche révision FSRS, et
+`pickAdaptive` qui pioche au niveau DANS la compétence. Compromis accepté au cadrage (garder
+`dMasteryDR`) ; un lot suivant pourrait pondérer différemment si l'usage montre que c'est gênant.
 
 ---
 
