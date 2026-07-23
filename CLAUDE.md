@@ -323,6 +323,10 @@ et les `sync-*.mjs` ont été supprimés. Le contenu vit dans `data/` et est cha
   effets/DOM/montage réel → **happy-dom** (`bunfig.toml [test] preload = happydom.ts`,
   `createRoot` + `act`). Router : envelopper dans `<MemoryRouter>`. ⚠ `renderToStaticMarkup`
   échappe les apostrophes (`'` → `&#x27;`) — asserter sur des sous-chaînes sans apostrophe.
+  ⚠ Un test SSR ne doit JAMAIS asserter un kanji rendu par `furi()` en sous-chaîne brute
+  (`toContain("映像")`) : `furi` scinde un mot en spans (映像 → `映</span><span>像`) et le `DICT`
+  est un état de module qui fuit entre fichiers de test → flake selon l'ordre d'exécution.
+  Asserter le texte de base via `baseText()` (cf. `quiz.test.tsx`) ou une structure invariante.
   ⚠ `happydom.ts` est préchargé pour **toute** la suite (`bunfig.toml`) : `document`/`localStorage`
   existent même dans un test « pur ». Isoler explicitement l'état partagé (cf.
   `clearCategoryCache()` dans `src/lib/bank.ts`, `clearGraphCache()` dans `src/lib/graph.ts`).
