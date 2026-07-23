@@ -36,3 +36,11 @@ test("dernière du diagnostic : diagAt = nowMs", () => {
   const p = answerPatch(RAW, q, true, 0, 100, 42_000, true);
   expect(p.diagAt).toBe(42_000);
 });
+
+test("production correcte → la carte FSRS de l'entité testée est plus stable qu'en QCM (Easy > Good)", () => {
+  const stab = (patch: Record<string, unknown>) =>
+    (patch.fsrs as Record<string, [number, number, number]>)["jlpt:word/約束"][0];
+  const prod = answerPatch(RAW, q, true, 0, 100, 1_000, false, true);  // production=true
+  const qcm = answerPatch(RAW, q, true, 0, 100, 1_000, false, false);  // QCM
+  expect(stab(prod)).toBeGreaterThan(stab(qcm)); // intervalle de révision plus long
+});

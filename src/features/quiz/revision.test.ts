@@ -110,3 +110,25 @@ test("fsrsPatch : plusieurs arêtes → toutes mises à jour, sans altérer la c
   expect(Object.keys(next).sort()).toEqual(["jlpt:kanji/b", "jlpt:word/a"]);
   expect(map).toEqual({ "jlpt:word/a": fsrsInit(3, 0) }); // pureté : entrée inchangée
 });
+
+test("fsrsPatch : production JUSTE → Easy(4), plus stable que le QCM juste (Good)", () => {
+  const prod = fsrsPatch({}, ["jlpt:word/x"], true, 200, true)!;  // rappel actif
+  const qcm = fsrsPatch({}, ["jlpt:word/x"], true, 200, false)!;  // QCM
+  expect(prod["jlpt:word/x"]).toEqual(fsrsInit(4, 200));          // Easy émis
+  expect(prod["jlpt:word/x"][0]).toBeGreaterThan(qcm["jlpt:word/x"][0]); // intervalle plus long
+});
+
+test("fsrsPatch : production FAUSSE → Again(1), comme un QCM faux (une faute reste une faute)", () => {
+  expect(fsrsPatch({}, ["jlpt:word/x"], false, 200, true)!["jlpt:word/x"]).toEqual(fsrsInit(1, 200));
+});
+
+test("fsrsPatch : `production` omis → QCM (Good), rétro-compatible", () => {
+  expect(fsrsPatch({}, ["jlpt:word/x"], true, 200)!["jlpt:word/x"]).toEqual(fsrsInit(3, 200));
+});
+
+test("fsrsPatch : production juste sur entité CONNUE → review(Easy), plus stable que review(Good)", () => {
+  const avant = fsrsInit(3, 0);
+  const prod = fsrsPatch({ "jlpt:word/x": avant }, ["jlpt:word/x"], true, 200, true)!;
+  expect(prod["jlpt:word/x"]).toEqual(fsrsReview(avant, 4, 200));
+  expect(prod["jlpt:word/x"][0]).toBeGreaterThan(fsrsReview(avant, 3, 200)[0]); // bonus Easy sur la stabilité
+});

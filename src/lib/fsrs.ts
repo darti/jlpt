@@ -5,9 +5,9 @@
  * `[stabilité, difficulté, dernierJour]` ; une révision le met à jour depuis le grade et le
  * temps écoulé. « Dû » = rétrievabilité sous la rétention cible (0,9).
  *
- * ⚠ Mode BINAIRE : le quiz ne produit que juste/faux → `Good(3)` / `Again(1)`. Les branches
- * Hard(2)/Easy(4) (poids w15/w16) ne se déclenchent jamais — conservées pour rester fidèle aux
- * 17 poids publiés.
+ * ⚠ Le quiz émet `Good(3)` / `Again(1)` en QCM, et `Easy(4)` (poids w16) pour une réponse tapée
+ * juste en rappel actif (cf. `fsrsPatch`). Seul `Hard(2)` (w15) ne se déclenche jamais —
+ * conservé pour rester fidèle aux 17 poids publiés.
  *
  * ⚠ Les 17 poids par défaut proviennent de la référence FSRS-4.5 publiée (Open Spaced
  * Repetition / ts-fsrs), reproduits verbatim. NE PAS les modifier : les tests d'invariant
@@ -16,7 +16,7 @@
  * Module PUR : `today` est toujours injecté, jamais lu d'une horloge.
  */
 
-/** 1 = Again, 2 = Hard, 3 = Good, 4 = Easy. En binaire, seuls 1 et 3 sont émis. */
+/** 1 = Again, 2 = Hard, 3 = Good, 4 = Easy. Le quiz émet 1/3 (QCM) et 4 (production juste). */
 export type Grade = 1 | 2 | 3 | 4;
 
 /** État de mémoire d'une entité : `[stabilité (jours), difficulté (1..10), dernier jour]`. */

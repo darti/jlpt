@@ -172,6 +172,7 @@ export function answerPatch(
   today: number,
   nowMs: number,
   isLastDiag: boolean,
+  production = false,
 ): Record<string, unknown> {
   const curWrong = asWrong(raw);
   const nextSkill = updateRating(skillStateOf(raw, q.cat), q.d, correct);
@@ -180,7 +181,7 @@ export function answerPatch(
   const nextConfusions = chosen === null
     ? undefined
     : confusionPatch(asConfusions(raw), q.id, chosen, correct, today);
-  const nextFsrs = fsrsPatch(asFsrs(raw), Array.isArray(q.tests) ? q.tests : [], correct, today);
+  const nextFsrs = fsrsPatch(asFsrs(raw), Array.isArray(q.tests) ? q.tests : [], correct, today, production);
   const seen = encodeBits(setBit(decodeBits(typeof raw?.seen === "string" ? raw.seen : ""), q.id));
   const mastered = correct
     ? encodeBits(setBit(decodeBits(typeof raw?.mastered === "string" ? raw.mastered : ""), q.id))
@@ -390,12 +391,12 @@ export function useQuiz() {
     setResume(r);
   }, [minutes]);
 
-  const commitAnswer = useCallback((q: Question, correct: boolean, chosen: number | null) => {
+  const commitAnswer = useCallback((q: Question, correct: boolean, chosen: number | null, production = false) => {
     // Mesure partagée QCM/production : Elo + progression via le patch pur `answerPatch`.
     const raw = readRawProgress();
     // MAJOR #5a: on the LAST diagnostic answer, fold `diagAt` into this same write (one round-trip).
     const isLastDiag = mode === "diagnostic" && index + 1 >= questions.length;
-    writeProgress(answerPatch(raw, q, correct, chosen, dayNumber(new Date()), Date.now(), isLastDiag));
+    writeProgress(answerPatch(raw, q, correct, chosen, dayNumber(new Date()), Date.now(), isLastDiag, production));
     schedulePush();
     rightRef.current += correct ? 1 : 0;
 
@@ -435,7 +436,8 @@ export function useQuiz() {
     setTyped(text);
     // Bonne réponse → on « coche » l'option correcte pour le corrigé (surlignage vert, correct===a) ;
     // mauvaise → chosen null (aucun distracteur coché → pas de graphe de confusion).
-    commitAnswer(q, correct, correct ? q.a : null);
+    // production=true → une réponse tapée juste vaut Easy(4) en FSRS (crédit renforcé).
+    commitAnswer(q, correct, correct ? q.a : null, true);
   }, [questions, index, answered, commitAnswer]);
 
   const next = useCallback(() => {

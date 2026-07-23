@@ -14,7 +14,9 @@ export type FsrsMap = Record<string, Fsrs>;
  * La carte FSRS après qu'une réponse a révisé les entités `iris` — `undefined` s'il n'y a rien
  * à écrire (question sans arête `tests` : lecture/écoute). Pure — la date est injectée.
  *
- * Réponse juste → `Good(3)`, fausse → `Again(1)`. Une entité connue est révisée (`fsrsReview`),
+ * Réponse juste → `Good(3)`, fausse → `Again(1)` ; en **production** (rappel actif) une réponse
+ * juste vaut `Easy(4)` — une lecture tapée de mémoire est une preuve plus forte qu'un QCM (pas de
+ * plancher de hasard), donc un intervalle plus long. Une entité connue est révisée (`fsrsReview`),
  * une entité nouvelle est initialisée (`fsrsInit`). Rend une carte NEUVE (n'altère pas `map`) qui
  * réécrit l'ENTIÈRE : `writeProgress` ne deep-merge que `skill`, donc patcher une seule entité
  * effacerait les autres.
@@ -23,10 +25,10 @@ export type FsrsMap = Record<string, Fsrs>;
  * garde « pas d'arête → undefined » — vivait dans le hook, hors de portée des tests).
  */
 export function fsrsPatch(
-  map: FsrsMap, iris: string[], correct: boolean, jour: number,
+  map: FsrsMap, iris: string[], correct: boolean, jour: number, production = false,
 ): FsrsMap | undefined {
   if (!iris.length) return undefined;
-  const g: Grade = correct ? 3 : 1;
+  const g: Grade = correct ? (production ? 4 : 3) : 1; // production juste → Easy(4), QCM juste → Good(3)
   const next: FsrsMap = { ...map };
   for (const iri of iris) next[iri] = next[iri] ? fsrsReview(next[iri], g, jour) : fsrsInit(g, jour);
   return next;
