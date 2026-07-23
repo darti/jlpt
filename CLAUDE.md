@@ -61,6 +61,9 @@ n'en garde que ce qui se mord les doigts quand on l'ignore.
   (score estimé /180 + probabilité de réussite), puis `src/features/quiz/useQuiz.ts` — **seule**
   couche à effets (phases, reprise, persistance). Toute règle nouvelle va dans les couches
   pures : c'est là que sont les tests.
+  ⚠ Un refactor d'une couche numérique (`elo`/`bank`/`scoring`) se prouve **bit-identique** :
+  capture golden des sorties sur des vecteurs variés AVANT, diff exact APRÈS. « Les tests
+  passent » ne détecte pas une réassociation flottante qui mésestime un score sans rien casser.
 
 ## Commandes (bun uniquement)
 
