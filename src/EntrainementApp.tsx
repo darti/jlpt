@@ -15,6 +15,7 @@ import type { DiagAnswer } from "./features/quiz/useQuiz.ts";
 import { useRappelIndex } from "./features/quiz/useRappelIndex.ts";
 import { resolveRappel, type RappelIndex } from "./features/quiz/rappel.ts";
 import { BTN_PRIMARY } from "./ui/styles.ts";
+import { readProduction, writeProduction } from "./lib/production.ts";
 
 /** Pure, prop-driven Entraînement content: the hub (phase "home") or the quiz flow
  *  (question/corrigé/résultats). SSR-renderable — all effects live in the container +
@@ -30,6 +31,8 @@ export function EntrainementAppView(props: {
   onSetMinutes: (m: number) => void;
   onResumeNow: () => void; onDismissResume: () => void;
   onBeginDiag?: () => void; onLater?: () => void; onDiagDone?: () => void;
+  production?: boolean; onToggleProduction?: () => void;
+  onSubmitTyped?: (text: string) => void; typed?: string | null;
 }) {
   const { question } = props;
   const onSpeak = (rate?: number) => { if (question) speakQuestion(question, rate); };
@@ -44,6 +47,15 @@ export function EntrainementAppView(props: {
           onSetMinutes={props.onSetMinutes} onStart={props.onStart}
           onResumeNow={props.onResumeNow} onDismissResume={props.onDismissResume}
         />
+        <label className="flex items-center gap-3 text-fg text-sm cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={props.production ?? false}
+            onChange={() => props.onToggleProduction?.()}
+            className="w-4 h-4 accent-accent"
+          />
+          <span>Mode rappel actif — taper les lectures (vocabulaire &amp; kanji)</span>
+        </label>
       </div>
     );
   }
@@ -57,13 +69,13 @@ export function EntrainementAppView(props: {
       {props.phase === "question" && question && (
         <div className="flex flex-col gap-3">
           <SessionProgress index={props.index ?? 0} count={props.count} mode={props.mode} right={props.right} answered={props.index ?? 0} />
-          <QuestionCard question={question} chosen={null} answered={false} onChoose={props.onChoose} onSpeak={onSpeak} />
+          <QuestionCard question={question} chosen={null} answered={false} onChoose={props.onChoose} onSpeak={onSpeak} production={props.production} onSubmitTyped={props.onSubmitTyped} typed={props.typed} />
         </div>
       )}
       {props.phase === "corrige" && question && (
         <div className="flex flex-col gap-4">
           <SessionProgress index={props.index ?? 0} count={props.count} mode={props.mode} right={props.right} answered={(props.index ?? 0) + 1} />
-          <QuestionCard question={question} chosen={props.chosen} answered={true} onChoose={() => {}} onSpeak={onSpeak} />
+          <QuestionCard question={question} chosen={props.chosen} answered={true} onChoose={() => {}} onSpeak={onSpeak} production={props.production} typed={props.typed} />
           <Corrige question={question} correct={props.chosen != null && props.chosen === question.a} rappel={resolveRappel(question, props.coursIndex ?? null)} />
           <button
             type="button"
@@ -89,6 +101,8 @@ export function EntrainementAppView(props: {
 export default function EntrainementApp() {
   const quiz = useQuiz();
   const [resumeDismissed, setResumeDismissed] = useState(false);
+  const [production, setProduction] = useState<boolean>(() => readProduction());
+  const toggleProduction = () => setProduction((p) => { const n = !p; writeProduction(n); return n; });
   const coursIndex = useRappelIndex();
 
   const diagModel: DashboardModel | null = quiz.phase === "diag-results"
@@ -108,6 +122,8 @@ export default function EntrainementApp() {
       onResumeNow={quiz.resumeNow} onDismissResume={() => setResumeDismissed(true)}
       onBeginDiag={quiz.beginDiagnostic} onLater={() => quiz.start(undefined, { skipDiagnostic: true })}
       onDiagDone={quiz.restart}
+      production={production} onToggleProduction={toggleProduction}
+      onSubmitTyped={quiz.submitTyped} typed={quiz.typed}
     />
   );
 }
