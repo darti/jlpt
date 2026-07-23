@@ -132,7 +132,7 @@ test("fsrs vide (revisionDue 0) → session inchangée : tout en adaptatif", () 
 
 const CONF_CAPS: Caps = { diagnostic: false, errors: true, learn: true, revision: true, confusion: true };
 
-test("confusion : borné par CONFUSION_CAP et placé après les erreurs", () => {
+test("confusion : errors et confusion atteignent tous deux leur cap (0,3 + 0,25 < 1)", () => {
   // total=20 ; errors=min(100, floor(0.3*20)=6)=6 ; confusion=min(100, floor(0.25*20)=5, 20-6=14)=5
   const p = pickSessionPlan({ ...base, wrongCount: 100, confusionCount: 100 }, 20, CONF_CAPS);
   if (p.kind !== "composed") throw new Error("composed attendu");

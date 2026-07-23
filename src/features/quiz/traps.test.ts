@@ -86,9 +86,10 @@ test("confusionPatch n'écrit rien sur une bonne réponse", () => {
 });
 
 test("activeConfusionCount : compte les événements dans la fenêtre, ignore les vieux", () => {
-  // [ord, choix, jour] ; today=100, fenêtre 30 → garde jour>70
-  const conf: [number, number, number][] = [[1, 0, 90], [2, 1, 80], [3, 0, 50], [4, 2, 100]];
-  expect(activeConfusionCount(conf, 100, 30)).toBe(3); // 90,80,100 dedans ; 50 dehors
+  // [ord, choix, jour] ; today=100, fenêtre 30 → garde jour>70 (borne EXCLUSIVE : today-jour<30)
+  // jour=70 → today-jour=30, PAS <30 → exclu (pin la borne, un régressif <= le compterait).
+  const conf: [number, number, number][] = [[1, 0, 90], [2, 1, 80], [3, 0, 50], [4, 2, 100], [5, 0, 70]];
+  expect(activeConfusionCount(conf, 100, 30)).toBe(3); // 90,80,100 dedans ; 50 et 70 (borne) dehors
   expect(activeConfusionCount([], 100, 30)).toBe(0);
 });
 
@@ -107,7 +108,10 @@ test("selectConfusion : pioche les questions exerçant un type actif, plus fréq
 test("selectConfusion : respecte exclude et le budget n", () => {
   const active = [{ kind: "homophone", recent: 3 }];
   const pool = [q(10, ["homophone", "", "", ""]), q(11, ["homophone", "", "", ""]), q(12, ["homophone", "", "", ""])];
-  expect(selectConfusion(active, pool, new Set([11]), 1, () => 0).map((x) => x.id)).toEqual([10]); // exclut 11, limite à 1
+  // exclude OBSERVABLE : sans le filtre, n=2 donnerait [10,11] ; le filtre retire 11 → [10,12].
+  expect(selectConfusion(active, pool, new Set([11]), 2, () => 0).map((x) => x.id)).toEqual([10, 12]);
+  // budget dur : n=1 tronque au premier.
+  expect(selectConfusion(active, pool, new Set(), 1, () => 0).map((x) => x.id)).toEqual([10]);
 });
 
 test("selectConfusion : graceful zero (active vide ou n<=0 → [])", () => {

@@ -49,9 +49,13 @@ learn) : un cap, un compteur d'état, un sélecteur pur, réconciliation par `co
 `selectConfusion` : construit `weight = Map(kind → recent)` depuis `active` ; pour chaque
 question du pool non exclue portant `trap[]`, score = **max** des poids des kinds actifs qu'elle
 exerce ; garde les questions de score > 0 ; trie par score décroissant (+ jitter `rng` pour
-départager) ; rend les `n` premières. `""`/`"autre"` ne sont jamais dans `weight` (le
-`trapModel` les exclut de `active`), donc seuls les distracteurs de kind actif comptent — l'index
-de la réponse (`""`) n'apporte jamais de score.
+départager) ; rend les `n` premières.
+
+⚠ **Implémentation retenue : on SAUTE explicitement l'index de la réponse** (`if (i === q.a) continue`),
+au lieu de se fier au fait que `q.trap[a] === ""`. Un piège n'est exercé que par un DISTRACTEUR,
+jamais par la bonne option ; le saut rend la fonction robuste même si une donnée future portait
+un kind non vide à l'index réponse. (Verrouillé par un test dédié.) `""`/`"autre"` ne sont de
+toute façon jamais dans `weight` (`trapModel` les exclut de `active`).
 
 ### 3.2 `sessionPlan.ts` — nouvel ingrédient « confusion »
 
