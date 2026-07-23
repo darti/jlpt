@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { act } from "react";
 import { createRoot } from "react-dom/client";
 import { QuestionCard } from "./QuestionCard.tsx";
+import { applyDictData } from "../../lib/dict.ts";
 import type { Question } from "../../types/quiz.ts";
 
 (globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
@@ -22,8 +23,31 @@ test("SSR : production mais réponse en kanji (non éligible) → QCM classique"
   const html = renderToStaticMarkup(
     <QuestionCard question={kanjiAns} chosen={null} answered={false} onChoose={() => {}} onSpeak={() => {}} production={true} onSubmitTyped={() => {}} />,
   );
-  expect(html).not.toContain("Tapez la lecture");
-  expect(html).toContain("映像"); // les options sont affichées
+  expect(html).not.toContain("Tapez la lecture"); // pas de champ de saisie
+  expect(html).not.toContain("<input");           // aucun input texte → mode QCM
+  // Options rendues comme boutons. Assertion INVARIANTE au furigana : `furi()` scinde un mot
+  // kanji absent du DICT en spans par kanji (映像 → 映 + 像) selon l'état du DICT partagé entre
+  // fichiers de test — ne JAMAIS asserter le kanji brut d'une option rendue par furi (flake CI).
+  expect(html).toContain('type="button"');
+});
+
+test("régression flake CI : DICT peuplé scinde une option kanji, le mode QCM tient", () => {
+  // Reproduit l'état exact qui a cassé la CI : lectures mono-kanji propres, mot 映像 ABSENT du
+  // DICT → furi rend 映像 en deux spans (映 + 像). Le DICT est un état de module PARTAGÉ entre
+  // fichiers de test ; l'ordre d'exécution décide s'il est peuplé → l'ancien toContain("映像")
+  // flakait. On peuple explicitement, on vérifie que la scission a lieu ET que les assertions
+  // structurelles (mode QCM) tiennent malgré elle, puis on RÉINITIALISE pour isoler les autres.
+  applyDictData({ "影響": { r: "えいきょう" }, "映": { r: "えい" }, "像": { r: "ぞう" } });
+  try {
+    const html = renderToStaticMarkup(
+      <QuestionCard question={kanjiAns} chosen={null} answered={false} onChoose={() => {}} onSpeak={() => {}} production={true} onSubmitTyped={() => {}} />,
+    );
+    expect(html).not.toContain("映像");        // furi a bien scindé → l'ancienne assertion aurait échoué
+    expect(html).not.toContain("<input");       // structurel : mode QCM, pas de champ
+    expect(html).toContain('type="button"');    // structurel : options rendues
+  } finally {
+    applyDictData({}); // isole l'état partagé (cf. gotcha CLAUDE.md « isoler l'état partagé »)
+  }
 });
 
 test("SSR : sans production (QCM) l'éligible affiche quand même les options", () => {

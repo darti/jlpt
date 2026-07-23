@@ -14,6 +14,12 @@ const handlers = {
   onSetMinutes: () => {}, onResumeNow: () => {}, onDismissResume: () => {},
 };
 
+/** Texte de base sans annotations furigana : `furi()` peut couper une sous-chaîne JP (le
+ *  `</span>` d'un mot annoté s'insère avant la suite) selon l'état du DICT partagé entre
+ *  fichiers de test → asserter le brut flake. Même helper que quiz.test.tsx. */
+const baseText = (h: string): string =>
+  h.replace(/<span class="furi-rt">.*?<\/span>/g, "").replace(/<[^>]+>/g, "");
+
 function view(phase: Phase, question: Question | null) {
   return renderToStaticMarkup(
     <EntrainementAppView
@@ -43,6 +49,6 @@ test("home phase no longer renders settings or sync (moved to Paramétrage)", ()
 
 test("question phase renders the question card, not the hub", () => {
   const html = view("question", q);
-  expect(html).toContain("電話します");
+  expect(baseText(html)).toContain("電話します"); // robuste au furigana (cf. flake CI 映像)
   expect(html).not.toContain("Ta session du moment");
 });
