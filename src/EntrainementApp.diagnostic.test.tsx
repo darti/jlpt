@@ -3,8 +3,8 @@ import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { MemoryRouter } from "react-router-dom";
 import EntrainementApp from "./EntrainementApp.tsx";
-import { SKILLS } from "./types/progress.ts";
 import { clearCategoryCache } from "./lib/bank.ts";
+import { clearRappelCache } from "./features/quiz/rappel.ts";
 import { graphFetch } from "./testing/graphFixture.ts";
 
 (globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
@@ -13,12 +13,12 @@ let container: HTMLDivElement; let root: Root; let origFetch: typeof fetch;
 
 
 beforeEach(() => {
-  localStorage.clear(); clearCategoryCache();
+  localStorage.clear(); clearCategoryCache(); clearRappelCache();
   origFetch = globalThis.fetch;
   globalThis.fetch = graphFetch();
   container = document.createElement("div"); document.body.appendChild(container); root = createRoot(container);
 });
-afterEach(() => { act(() => { root.unmount(); }); container.remove(); globalThis.fetch = origFetch; clearCategoryCache(); });
+afterEach(() => { act(() => { root.unmount(); }); container.remove(); globalThis.fetch = origFetch; clearCategoryCache(); clearRappelCache(); });
 
 async function click(text: string) {
   const btn = [...container.querySelectorAll("button")].find((b) => b.textContent === text);

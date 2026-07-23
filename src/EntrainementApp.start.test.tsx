@@ -3,8 +3,8 @@ import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { MemoryRouter } from "react-router-dom";
 import EntrainementApp from "./EntrainementApp.tsx";
-import { SKILLS } from "./types/progress.ts";
 import { clearCategoryCache } from "./lib/bank.ts";
+import { clearRappelCache } from "./features/quiz/rappel.ts";
 import { graphFetch, ALL_ORDS, PER_SKILL } from "./testing/graphFixture.ts";
 
 // Reproduces the hub "Commencer" click: onStart={quiz.start} makes React pass the click
@@ -18,7 +18,7 @@ let origFetch: typeof fetch;
 
 beforeEach(() => {
   localStorage.clear();
-  clearCategoryCache(); // isolate the shared loadCategory memo from other test files
+  clearCategoryCache(); clearRappelCache(); // isolate the shared loadCategory memo from other test files
   origFetch = globalThis.fetch;
   globalThis.fetch = graphFetch();
   container = document.createElement("div");
@@ -30,7 +30,7 @@ afterEach(() => {
   act(() => { root.unmount(); });
   container.remove();
   globalThis.fetch = origFetch;
-  clearCategoryCache(); // don't leak our mocked pools into other test files
+  clearCategoryCache(); clearRappelCache(); // don't leak our mocked pools into other test files
 });
 
 test("clicking Commencer starts a session (event arg does not NaN the session length)", async () => {

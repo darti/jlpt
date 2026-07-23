@@ -2,7 +2,6 @@ import { test, expect } from "bun:test";
 import {
   emptyBits, setBit, hasBit, encodeBits, decodeBits, coverageBySkill, countUnseen,
 } from "./coverage.ts";
-import type { Skill } from "../types/progress.ts";
 
 test("setBit/hasBit round-trip including growth beyond current capacity", () => {
   let b = emptyBits();

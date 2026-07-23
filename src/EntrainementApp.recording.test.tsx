@@ -3,8 +3,9 @@ import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { MemoryRouter } from "react-router-dom";
 import EntrainementApp from "./EntrainementApp.tsx";
-import { SKILLS, type Skill } from "./types/progress.ts";
+import { SKILLS } from "./types/progress.ts";
 import { clearCategoryCache } from "./lib/bank.ts";
+import { clearRappelCache } from "./features/quiz/rappel.ts";
 import { graphFetch, RANGES } from "./testing/graphFixture.ts";
 import { readRawProgress } from "./lib/storage.ts";
 import { coverageBySkill, decodeBits } from "./lib/coverage.ts";
@@ -19,7 +20,7 @@ let origFetch: typeof fetch;
 
 beforeEach(() => {
   localStorage.clear();
-  clearCategoryCache();
+  clearCategoryCache(); clearRappelCache();
   origFetch = globalThis.fetch;
   globalThis.fetch = graphFetch();
   container = document.createElement("div");
@@ -31,7 +32,7 @@ afterEach(() => {
   act(() => { root.unmount(); });
   container.remove();
   globalThis.fetch = origFetch;
-  clearCategoryCache();
+  clearCategoryCache(); clearRappelCache();
 });
 
 test("answering a question records it as seen and mastered (correct)", async () => {
