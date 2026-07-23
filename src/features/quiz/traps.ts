@@ -128,3 +128,46 @@ export function trapModel(
     outOfScope,
   };
 }
+
+/** Nombre d'événements de confusion dans la fenêtre récente. Proxy de comptage pour le plan de
+ *  session : ne nécessite PAS les pools (donc calculable avant leur chargement). Sur-compte
+ *  (untyped/hors-périmètre inclus) mais ce n'est qu'un plafond — `selectConfusion` fait le tri
+ *  fin par type et `composeSession` réconcilie tout écart. Pur. */
+export function activeConfusionCount(confusions: Confusion[], today: number, windowDays = 30): number {
+  let n = 0;
+  for (const [, , jour] of confusions) if (today - jour < windowDays) n++;
+  return n;
+}
+
+/** Questions exerçant un TYPE de piège encore actif (`kind ∈ q.trap`), pondérées par la récence
+ *  du type (poids max sur les types actifs qu'elles exercent), hors `exclude`, au plus `n`.
+ *  `active` = `trapModel().active`. Pur — `rng` départage à poids égal (jitter < 1, il ne peut
+ *  pas renverser deux poids entiers distincts). L'index de la réponse est ignoré : un piège n'est
+ *  exercé que par un DISTRACTEUR, jamais par la bonne option. */
+export function selectConfusion(
+  active: TrapCount[],
+  pool: Question[],
+  exclude: Set<number>,
+  n: number,
+  rng: () => number = Math.random,
+): Question[] {
+  if (n <= 0 || active.length === 0) return [];
+  const weight = new Map(active.map((t) => [t.kind, t.recent]));
+  return pool
+    .filter((q) => !exclude.has(q.id) && Array.isArray(q.trap))
+    .map((q) => {
+      let best = 0;
+      const trap = q.trap as string[];
+      for (let i = 0; i < trap.length; i++) {
+        if (i === q.a) continue; // l'index de la réponse n'est jamais un piège exercé
+        const w = weight.get(trap[i]);
+        if (w !== undefined && w > best) best = w;
+      }
+      return { q, score: best };
+    })
+    .filter((x) => x.score > 0)
+    .map((x) => ({ q: x.q, w: x.score + rng() * 0.5 }))
+    .sort((a, b) => b.w - a.w)
+    .slice(0, n)
+    .map((x) => x.q);
+}

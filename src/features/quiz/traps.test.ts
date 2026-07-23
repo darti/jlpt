@@ -1,5 +1,5 @@
 import { test, expect } from "bun:test";
-import { dayNumber, kindIndex, trapModel, KIND_LABELS, CONF_MAX, asConfusions, appendConfusion, confusionPatch } from "./traps.ts";
+import { dayNumber, kindIndex, trapModel, KIND_LABELS, CONF_MAX, asConfusions, appendConfusion, confusionPatch, activeConfusionCount, selectConfusion } from "./traps.ts";
 import type { Question } from "../../types/quiz.ts";
 
 const q = (id: number, trap: string[]): Question =>
@@ -83,4 +83,43 @@ test("appendConfusion ajoute un événement et borne l'anneau", () => {
 test("confusionPatch n'écrit rien sur une bonne réponse", () => {
   expect(confusionPatch([], 1174, 2, true, 201)).toBeUndefined();
   expect(confusionPatch([], 1174, 0, false, 201)).toEqual([[1174, 0, 201]]);
+});
+
+test("activeConfusionCount : compte les événements dans la fenêtre, ignore les vieux", () => {
+  // [ord, choix, jour] ; today=100, fenêtre 30 → garde jour>70
+  const conf: [number, number, number][] = [[1, 0, 90], [2, 1, 80], [3, 0, 50], [4, 2, 100]];
+  expect(activeConfusionCount(conf, 100, 30)).toBe(3); // 90,80,100 dedans ; 50 dehors
+  expect(activeConfusionCount([], 100, 30)).toBe(0);
+});
+
+test("selectConfusion : pioche les questions exerçant un type actif, plus fréquent d'abord", () => {
+  const active = [{ kind: "homophone", recent: 5 }, { kind: "kanji-partage", recent: 2 }];
+  const pool = [
+    q(10, ["", "kanji-partage", "", ""]),          // exerce kanji-partage (poids 2)
+    q(11, ["homophone", "", "", ""]),              // exerce homophone (poids 5)
+    q(12, ["", "", "", ""]),                       // n'exerce aucun type actif
+    q(13, ["sens-different", "", "", ""]),         // type non actif
+  ];
+  const out = selectConfusion(active, pool, new Set(), 5, () => 0);
+  expect(out.map((x) => x.id)).toEqual([11, 10]); // 11 (poids 5) avant 10 (poids 2) ; 12/13 exclus
+});
+
+test("selectConfusion : respecte exclude et le budget n", () => {
+  const active = [{ kind: "homophone", recent: 3 }];
+  const pool = [q(10, ["homophone", "", "", ""]), q(11, ["homophone", "", "", ""]), q(12, ["homophone", "", "", ""])];
+  expect(selectConfusion(active, pool, new Set([11]), 1, () => 0).map((x) => x.id)).toEqual([10]); // exclut 11, limite à 1
+});
+
+test("selectConfusion : graceful zero (active vide ou n<=0 → [])", () => {
+  const pool = [q(10, ["homophone", "", "", ""])];
+  expect(selectConfusion([], pool, new Set(), 5, () => 0)).toEqual([]);
+  expect(selectConfusion([{ kind: "homophone", recent: 1 }], pool, new Set(), 0, () => 0)).toEqual([]);
+});
+
+test("selectConfusion : l'index de la réponse ne compte jamais comme un type exercé", () => {
+  // a=2 → q.trap[2]="" ; mettre un type actif SEULEMENT à l'index réponse ne doit pas matcher.
+  const active = [{ kind: "homophone", recent: 4 }];
+  const pool = [{ id: 20, cat: "vocabulaire" as const, d: 1 as const, q: "?", o: ["a", "b", "c", "d"], a: 2, trap: ["", "", "homophone", ""] }];
+  //                                                                                    ^ index 2 = réponse
+  expect(selectConfusion(active, pool, new Set(), 5, () => 0)).toEqual([]);
 });
