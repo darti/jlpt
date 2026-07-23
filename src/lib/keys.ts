@@ -48,6 +48,9 @@ export const PENDING_KEY = "jlptN3_pending";
 /** Débit de lecture TTS des questions d'écoute (préférence, comme le thème/furi). */
 export const RATE_KEY = "jlptN3_ecouteRate";
 
+/** Mode rappel actif : taper la lecture au lieu de choisir (préférence, comme furi/thème). */
+export const PROD_KEY = "jlptN3_production";
+
 /** Horodate la dernière écriture locale. Best-effort : une erreur de stockage est ignorée. */
 export function stampUpdated(
   store: Pick<Storage, "setItem">,
