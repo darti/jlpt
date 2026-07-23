@@ -32,7 +32,7 @@ export function EntrainementAppView(props: {
   onBeginDiag?: () => void; onLater?: () => void; onDiagDone?: () => void;
 }) {
   const { question } = props;
-  const onSpeak = () => { if (question) speakQuestion(question); };
+  const onSpeak = (rate?: number) => { if (question) speakQuestion(question, rate); };
 
   if (props.phase === "home") {
     // Le hub, c'est cette carte et rien d'autre : réglages et synchro vivent sur

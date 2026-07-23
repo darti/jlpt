@@ -1,6 +1,11 @@
+import { useEffect, useState } from "react";
 import type { Question } from "../../types/quiz.ts";
 import { PANEL } from "../../ui/styles.ts";
 import { furi } from "../../lib/dict.ts";
+import { RATES, readRate, writeRate, type Rate } from "../../lib/audioRate.ts";
+import { stopSpeaking } from "../../lib/tts.ts";
+
+const RATE_LABEL: Record<number, string> = { 0.7: "Lent", 0.9: "Normal", 1.0: "Rapide" };
 
 /** Port of legacy `renderQ` (app-n3.html:906-935): stem + options, in original
  * order — `onChoose(i)` must receive the ORIGINAL index into `question.o` since
@@ -13,10 +18,21 @@ export function QuestionCard({
   chosen: number | null;
   answered: boolean;
   onChoose: (i: number) => void;
-  onSpeak: () => void;
+  onSpeak: (rate?: number) => void;
 }) {
   const passage = typeof question.passage === "string" ? question.passage : null;
   const stemHtml = furi(question.q).replace("___", '<span class="blank">？</span>');
+
+  const [rate, setRate] = useState<Rate>(() => readRate());
+
+  // Auto-play : à l'arrivée d'une NOUVELLE question d'écoute non encore répondue, lire le
+  // dialogue. Deps volontairement [question.id] uniquement (pas `rate`/`onSpeak`/`answered`) :
+  // sinon un changement de vitesse ou un re-render rejouerait l'audio. Nettoyage = stopSpeaking
+  // (via tts.ts, pas speechSynthesis brut) → aucune lecture ne survit au changement de question.
+  useEffect(() => {
+    if (question.cat === "ecoute" && !answered) onSpeak(rate);
+    return () => stopSpeaking();
+  }, [question.id]);
 
   return (
     <div className={PANEL}>
@@ -33,13 +49,28 @@ export function QuestionCard({
         dangerouslySetInnerHTML={{ __html: stemHtml }}
       />
       {question.cat === "ecoute" && (
-        <button
-          type="button"
-          onClick={onSpeak}
-          className="mb-4 inline-flex items-center gap-2 bg-accent text-fg-on-accent border-none rounded-lg px-4 py-2 text-sm font-bold cursor-pointer"
-        >
-          ▶ Écouter
-        </button>
+        <div className="mb-4 flex items-center gap-2 flex-wrap">
+          <button
+            type="button"
+            onClick={() => onSpeak(rate)}
+            className="inline-flex items-center gap-2 bg-accent text-fg-on-accent border-none rounded-lg px-4 py-2 text-sm font-bold cursor-pointer"
+          >
+            ↻ Réécouter
+          </button>
+          <span className="text-fg-dim text-meta ml-1">Vitesse</span>
+          {RATES.map((r) => (
+            <button
+              key={r}
+              type="button"
+              onClick={() => { setRate(r); writeRate(r); }}
+              className={`rounded-lg px-3 py-1.5 text-sm cursor-pointer border ${
+                r === rate ? "bg-surface-2 border-accent text-accent" : "bg-surface-2 border-line text-fg-dim"
+              }`}
+            >
+              {RATE_LABEL[r]}
+            </button>
+          ))}
+        </div>
       )}
       <div className="flex flex-col gap-2">
         {question.o.map((opt, i) => {
