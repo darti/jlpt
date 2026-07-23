@@ -20,14 +20,20 @@ export function pickJaVoice(): void {
     jaVoice = vs.find((v) => /ja[-_]?jp/i.test(v.lang)) || vs.find((v) => /^ja/i.test(v.lang)) || null;
   } catch { /* ignore */ }
 }
-export function speak(text: string): void {
+export function speak(text: string, rate = 0.9): void {
   if (typeof speechSynthesis === "undefined") return;
   try {
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
-    u.lang = "ja-JP"; u.rate = 0.9; if (jaVoice) u.voice = jaVoice;
+    u.lang = "ja-JP"; u.rate = rate; if (jaVoice) u.voice = jaVoice;
     speechSynthesis.speak(u);
   } catch { /* ignore */ }
+}
+
+/** Interrompt toute lecture en cours (garde le composant à distance de speechSynthesis brut). */
+export function stopSpeaking(): void {
+  if (typeof speechSynthesis === "undefined") return;
+  try { speechSynthesis.cancel(); } catch { /* ignore */ }
 }
 /** The Japanese text to speak for a question: the listening script (or the stem) for ecoute,
  *  else the sentence rebuilt from the grammar decomposition `g`. Pure. */
@@ -39,6 +45,6 @@ export function speechTextFor(question: Question): string {
 }
 
 /** Speak a question's Japanese aloud (no-op when speech synthesis is unavailable). */
-export function speakQuestion(question: Question): void {
-  speak(speechTextFor(question));
+export function speakQuestion(question: Question, rate = 0.9): void {
+  speak(speechTextFor(question), rate);
 }

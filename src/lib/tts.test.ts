@@ -1,5 +1,5 @@
 import { test, expect } from "bun:test";
-import { sentenceFromG, speechTextFor } from "./tts.ts";
+import { sentenceFromG, speak, speechTextFor, stopSpeaking } from "./tts.ts";
 import type { Question } from "../types/quiz.ts";
 
 test("sentenceFromG strips French glosses «…», keeps the post-→ form, drops furigana (…)", () => {
@@ -30,4 +30,18 @@ test("speechTextFor rebuilds the sentence from g for non-ecoute questions", () =
 test("speechTextFor uses the stem (via sentenceFromG) when g is absent, non-ecoute", () => {
   const q: Question = { id: 1, cat: "vocabulaire", d: 1, q: "音楽（おんがく）«musique»", o: [], a: 0 };
   expect(speechTextFor(q)).toBe("音楽");
+});
+
+test("speak avec un débit ne jette pas quand speechSynthesis est absent", () => {
+  expect(() => speak("こんにちは", 0.7)).not.toThrow();
+  expect(() => speak("こんにちは")).not.toThrow(); // défaut
+});
+
+test("stopSpeaking ne jette pas quand speechSynthesis est absent", () => {
+  expect(() => stopSpeaking()).not.toThrow();
+});
+
+test("speechTextFor (écoute) rend le script, inchangé", () => {
+  const q = { id: 1, cat: "ecoute", d: 1, q: "?", o: ["a"], a: 0, script: "駅はどこ" } as Question;
+  expect(speechTextFor(q)).toBe("駅はどこ");
 });
