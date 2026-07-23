@@ -46,7 +46,7 @@ export function DiagnosticResults({
       <p className="text-fg text-base font-bold m-0">Correction</p>
       {answers.map((a) => (
         <div key={a.question.id} className="flex flex-col gap-2">
-          <QuestionCard question={a.question} chosen={a.chosen} answered={true} onChoose={() => {}} onSpeak={() => speakQuestion(a.question)} />
+          <QuestionCard question={a.question} chosen={a.chosen} answered={true} onChoose={() => {}} onSpeak={(r) => speakQuestion(a.question, r)} />
           <Corrige question={a.question} correct={a.chosen === a.question.a} rappel={resolveRappel(a.question, coursIndex ?? null)} />
         </div>
       ))}
