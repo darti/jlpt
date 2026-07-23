@@ -34,12 +34,58 @@ test("SSR : sans production (QCM) l'éligible affiche quand même les options", 
   expect(html).toContain("やくそぐ");
 });
 
-test("SSR corrigé : production + answered montre « Votre réponse » et les options", () => {
+test("SSR corrigé production JUSTE : « Votre réponse » + saisie + ✓", () => {
   const html = renderToStaticMarkup(
     <QuestionCard question={vocab} chosen={0} answered={true} onChoose={() => {}} onSpeak={() => {}} production={true} typed="やくそく" />,
   );
   expect(html).toContain("Votre réponse");
-  expect(html).toContain("やくそく");
+  expect(html).toContain("✓");
+});
+
+test("SSR corrigé production FAUSSE : la saisie distincte est affichée + ✗", () => {
+  // typed="ばつ" n'est AUCUNE option → prouve que c'est bien le span de saisie, pas une option.
+  const html = renderToStaticMarkup(
+    <QuestionCard question={vocab} chosen={null} answered={true} onChoose={() => {}} onSpeak={() => {}} production={true} typed="ばつ" />,
+  );
+  expect(html).toContain("Votre réponse");
+  expect(html).toContain("ばつ");
+  expect(html).toContain("✗");
+});
+
+test("submit à vide n'appelle PAS onSubmitTyped", () => {
+  const calls: string[] = [];
+  const div = document.createElement("div"); document.body.appendChild(div);
+  const root = createRoot(div);
+  act(() => {
+    root.render(<QuestionCard question={vocab} chosen={null} answered={false} onChoose={() => {}} onSpeak={() => {}} production={true} onSubmitTyped={(t) => calls.push(t)} />);
+  });
+  const form = div.querySelector("form") as HTMLFormElement;
+  act(() => { form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })); });
+  expect(calls).toEqual([]); // champ vide → bloqué
+  act(() => root.unmount());
+  div.remove();
+});
+
+test("le champ se vide au changement de question", () => {
+  const other: Question = { id: 3, cat: "kanji", d: 1, q: "海", o: ["うみ", "やま", "かわ", "そら"], a: 0 };
+  const div = document.createElement("div"); document.body.appendChild(div);
+  const root = createRoot(div);
+  const nativeSetter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")?.set;
+  act(() => {
+    root.render(<QuestionCard question={vocab} chosen={null} answered={false} onChoose={() => {}} onSpeak={() => {}} production={true} onSubmitTyped={() => {}} />);
+  });
+  const input = () => div.querySelector("input") as HTMLInputElement;
+  act(() => {
+    nativeSetter?.call(input(), "やくそく");
+    input().dispatchEvent(new Event("input", { bubbles: true }));
+  });
+  expect(input().value).toBe("やくそく");
+  act(() => {
+    root.render(<QuestionCard question={other} chosen={null} answered={false} onChoose={() => {}} onSpeak={() => {}} production={true} onSubmitTyped={() => {}} />);
+  });
+  expect(input().value).toBe(""); // effet [question.id] → remise à zéro
+  act(() => root.unmount());
+  div.remove();
 });
 
 test("saisie + submit appelle onSubmitTyped avec le texte", () => {

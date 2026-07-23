@@ -37,6 +37,15 @@ export interface ResumeState {
 /** One answered diagnostic item, kept for the end-of-test corrigé. */
 export interface DiagAnswer { question: Question; chosen: number; }
 
+/** À la reprise : faut-il rouvrir le corrigé (vs la question nue) et quelle option restaurer.
+ *  Se base sur la SEULE phase : un corrigé de production erronée persiste `chosen: undefined`
+ *  (aucun distracteur coché) — exiger `typeof chosen === "number"` le rouvrirait comme une
+ *  question, la ferait re-répondre et recompter (Elo/FSRS/total en double). Pur → testé. */
+export function restoredCorrige(r: ResumeState): { answered: boolean; chosen: number | null } {
+  const onCorrige = r.phase === "corrige";
+  return { answered: onCorrige, chosen: onCorrige && typeof r.chosen === "number" ? r.chosen : null };
+}
+
 const DAY_MS = 864e5;
 const RESUME_MAX_AGE_MS = 2 * DAY_MS; // 2 days — mirrors legacy getResume()
 const PUSH_DEBOUNCE_MS = 1500;
@@ -454,6 +463,7 @@ export function useQuiz() {
     setPhase("question"); // questions already loaded by start(); mode is "diagnostic"
     setAnswered(false);
     setChosen(null);
+    setTyped(null);
   }, []);
 
   // `explicit` lets the URL handoff (?resume=1) resume from the value read straight out
@@ -476,12 +486,12 @@ export function useQuiz() {
     const qi = Math.min(r.qi, rebuilt.length - 1);
     // Restore the corrigé the user left (deep-linked to the cours and came back) when the
     // resume blob recorded one; otherwise resume on the question, as before.
-    const onCorrige = r.phase === "corrige" && typeof r.chosen === "number";
+    const { answered: onCorrige, chosen: restoredChosen } = restoredCorrige(r);
     rightRef.current = r.right;
     setQuestions(rebuilt);
     setIndex(qi);
     setAnswered(onCorrige);
-    setChosen(onCorrige ? (r.chosen as number) : null);
+    setChosen(restoredChosen);
     setTyped(null);
     setPhase(onCorrige ? "corrige" : "question");
   }, [resume, ensureCorpus]);

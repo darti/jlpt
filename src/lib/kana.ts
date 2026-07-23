@@ -7,8 +7,10 @@
  */
 import type { Question } from "../types/quiz.ts";
 
-/** Kana purs : hiragana, katakana, prolongation ー (même plage que le furigana propre). */
-const PURE_KANA_RE = /^[ぁ-んァ-ンー]+$/;
+/** Kana purs : hiragana (ぁ..ゖ), katakana (ァ..ヶ), prolongation ー. La plage couvre EXACTEMENT
+ *  le bloc que `normalizeKana` convertit (ヴ/ゔ, ヵ/ゕ, ヶ/ゖ compris), pour que les deux
+ *  s'accordent : une lecture jugée « pure » ici est toujours normalisable, sans trou. */
+const PURE_KANA_RE = /^[ぁ-ゖァ-ヶー]+$/;
 
 /** true ssi `s` n'est fait que de kana (hiragana/katakana/ー). Chaîne vide → false. */
 export function isPureKana(s: string): boolean {

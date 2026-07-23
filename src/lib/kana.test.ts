@@ -6,6 +6,7 @@ test("isPureKana : hiragana/katakana/ー oui, kanji/espace/latin non", () => {
   expect(isPureKana("やくそく")).toBe(true);
   expect(isPureKana("ヤクソク")).toBe(true);
   expect(isPureKana("コーヒー")).toBe(true);
+  expect(isPureKana("ヴァイオリン")).toBe(true); // ヴ/petits kana : même bloc que normalizeKana
   expect(isPureKana("約束")).toBe(false);
   expect(isPureKana("やく そく")).toBe(false);
   expect(isPureKana("abc")).toBe(false);

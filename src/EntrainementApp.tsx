@@ -69,7 +69,7 @@ export function EntrainementAppView(props: {
       {props.phase === "question" && question && (
         <div className="flex flex-col gap-3">
           <SessionProgress index={props.index ?? 0} count={props.count} mode={props.mode} right={props.right} answered={props.index ?? 0} />
-          <QuestionCard question={question} chosen={null} answered={false} onChoose={props.onChoose} onSpeak={onSpeak} production={props.production} onSubmitTyped={props.onSubmitTyped} typed={props.typed} />
+          <QuestionCard question={question} chosen={null} answered={false} onChoose={props.onChoose} onSpeak={onSpeak} production={props.mode === "diagnostic" ? false : props.production} onSubmitTyped={props.onSubmitTyped} typed={props.typed} />
         </div>
       )}
       {props.phase === "corrige" && question && (

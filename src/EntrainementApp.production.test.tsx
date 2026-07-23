@@ -33,3 +33,20 @@ test("question éligible + production : le champ de saisie remplace les options"
   );
   expect(html).toContain("Tapez la lecture");
 });
+
+test("diagnostic : la production est ignorée, les questions restent en QCM", () => {
+  // Régression I1 : un débutant qui active la production puis démarre passe par le diagnostic,
+  // qui rend ses questions en phase « question » ; il doit rester en QCM (spec §3.6).
+  const html = renderToStaticMarkup(
+    <MemoryRouter>
+      <EntrainementAppView
+        phase="question" mode="diagnostic" question={vocab} count={5} right={0} minutes={10} resume={null} chosen={null} index={0}
+        onStart={() => {}} onChoose={() => {}} onNext={() => {}} onRestart={() => {}}
+        onSetMinutes={() => {}} onResumeNow={() => {}} onDismissResume={() => {}}
+        production={true} onSubmitTyped={() => {}} typed={null}
+      />
+    </MemoryRouter>,
+  );
+  expect(html).not.toContain("Tapez la lecture"); // pas de champ
+  expect(html).toContain("やくそく"); // les options QCM sont présentes
+});
