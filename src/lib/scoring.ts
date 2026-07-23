@@ -98,3 +98,48 @@ export function dashboardModel(p: Progress, now: Date): DashboardModel {
     hasEnough: p.total >= 5,
   };
 }
+
+/**
+ * Poids d'allocation prescriptif par compétence : `0.2 + 1.3·valeur_normalisée`, où la valeur est
+ * la valeur marginale ∂P/∂question dérivée du `successModel`. Remplace « poids ∝ faiblesse ».
+ *
+ * value(c) = marginalSection · sectionFactor · dMasteryDR, avec
+ *   marginalSection = (1−pTotal)/12 + (1−pSec)/4   (seuil global commun + minimum sectionnel propre)
+ *   sectionFactor   = 0.5 (2 compétences/section) ; écoute = 1.0 si mesurée (t≥3), sinon 0
+ *   dMasteryDR      = m·(1−m)·ln10/400              (pente logistique, max à R=1600)
+ * Le plancher 0.2 garantit la couverture (et le bootstrap de l'écoute non mesurée).
+ * Pur. Cf. docs/superpowers/specs/2026-07-23-tableau-prescriptif-design.md.
+ */
+export function prescriptiveWeights(p: Progress): Record<Skill, number> {
+  const m = {
+    vocabulaire: masteryOf(p, "vocabulaire"), kanji: masteryOf(p, "kanji"),
+    grammaire: masteryOf(p, "grammaire"), lecture: masteryOf(p, "lecture"),
+    ecoute: masteryOf(p, "ecoute"),
+  };
+  const langage = (m.vocabulaire + m.kanji) / 2;
+  const grammLect = (m.grammaire + m.lecture) / 2;
+  const ecouteMeasured = skT(p, "ecoute") >= 3;
+  const listening = ecouteMeasured ? m.ecoute : 0.85 * ((langage + grammLect) / 2);
+  const sec = { langage: langage * 60, grammLect: grammLect * 60, listening: listening * 60 };
+  const total = sec.langage + sec.grammLect + sec.listening;
+  const sig = (x: number) => 1 / (1 + Math.exp(-x));
+  const pSec = (v: number) => sig((v - 22) / 4);
+  const globalTerm = (1 - sig((total - 95) / 12)) / 12;
+  const marginal = {
+    langage: globalTerm + (1 - pSec(sec.langage)) / 4,
+    grammLect: globalTerm + (1 - pSec(sec.grammLect)) / 4,
+    listening: globalTerm + (1 - pSec(sec.listening)) / 4,
+  };
+  const dDR = (x: number) => (x * (1 - x) * Math.LN10) / 400;
+  const value: Record<Skill, number> = {
+    vocabulaire: marginal.langage * 0.5 * dDR(m.vocabulaire),
+    kanji: marginal.langage * 0.5 * dDR(m.kanji),
+    grammaire: marginal.grammLect * 0.5 * dDR(m.grammaire),
+    lecture: marginal.grammLect * 0.5 * dDR(m.lecture),
+    ecoute: ecouteMeasured ? marginal.listening * 1.0 * dDR(m.ecoute) : 0,
+  };
+  const maxVal = Math.max(...SKILLS.map((c) => value[c]));
+  const w = {} as Record<Skill, number>;
+  for (const c of SKILLS) w[c] = 0.2 + 1.3 * (maxVal > 0 ? value[c] / maxVal : 0);
+  return w;
+}

@@ -1,6 +1,6 @@
 import { test, expect } from "bun:test";
 import type { Progress } from "../types/progress.ts";
-import { masteryOf, displayMastery, dashboardModel, daysUntilExam, passTier } from "./scoring.ts";
+import { masteryOf, displayMastery, dashboardModel, daysUntilExam, passTier, prescriptiveWeights } from "./scoring.ts";
 
 const flat = (R: number, total: number, ecouteT = 0): Progress => ({
   total,
@@ -69,4 +69,74 @@ test("passTier thresholds match legacy pct>=70/40 buckets", () => {
   expect(passTier(70)).toBe("ok");
   expect(passTier(40)).toBe("warn");
   expect(passTier(39)).toBe("bad");
+});
+
+// Construit une progression avec un R par compétence (t=10 par défaut → écoute mesurée).
+const prog = (R: Partial<Record<string, number>>, tEcoute = 10): Progress => ({
+  total: 100,
+  skill: {
+    vocabulaire: { R: R.vocabulaire ?? 1600, t: 10 },
+    kanji: { R: R.kanji ?? 1600, t: 10 },
+    grammaire: { R: R.grammaire ?? 1600, t: 10 },
+    lecture: { R: R.lecture ?? 1600, t: 10 },
+    ecoute: { R: R.ecoute ?? 1600, t: tEcoute },
+  } as Progress["skill"],
+});
+
+test("une section sous son minimum pèse PLUS qu'une section saturée (le cœur)", () => {
+  // langage (vocab+kanji) très faible → sous le minimum sectionnel ; grammaire+lecture saturés.
+  const w = prescriptiveWeights(prog({ vocabulaire: 1350, kanji: 1350, grammaire: 1950, lecture: 1950 }));
+  expect(w.vocabulaire).toBeGreaterThan(w.grammaire);
+  expect(w.kanji).toBeGreaterThan(w.lecture);
+});
+
+test("chaque poids reste dans [0.2, 1.5] et le max vaut exactement 1.5", () => {
+  const w = prescriptiveWeights(prog({ vocabulaire: 1350, kanji: 1350, grammaire: 1950, lecture: 1950 }));
+  for (const c of Object.keys(w)) {
+    expect(w[c as keyof typeof w]).toBeGreaterThanOrEqual(0.2);
+    expect(w[c as keyof typeof w]).toBeLessThanOrEqual(1.5 + 1e-9);
+  }
+  expect(Math.max(...Object.values(w))).toBeCloseTo(1.5, 9);
+});
+
+test("une compétence saturée est DÉ-priorisée (poids faible, sous une compétence au seuil)", () => {
+  // écoute très forte (2000), les autres au seuil (1600) → écoute a la plus petite valeur.
+  // ⚠ Une compétence MESURÉE n'atteint jamais EXACTEMENT 0.2 (sa valeur n'est pas nulle) — on
+  // asserte donc la DÉ-priorisation relative, pas un plancher exact (ça, c'est l'écoute non mesurée).
+  const w = prescriptiveWeights(prog({ ecoute: 2000 }));
+  expect(w.ecoute).toBeLessThan(w.vocabulaire);
+  expect(w.ecoute).toBeGreaterThan(0.2); // au-dessus du plancher : mesurée, valeur > 0
+});
+
+test("écoute t<3 (estimée) : poids = plancher EXACT (bootstrap), pas piloté par une valeur fausse", () => {
+  const w = prescriptiveWeights(prog({}, 2)); // t_ecoute = 2 < 3
+  expect(w.ecoute).toBeCloseTo(0.2, 9);
+});
+
+test("démarrage à froid (tous R=1450, t_ecoute<3) : 4 compétences à 1.5, écoute au plancher", () => {
+  const cold = prescriptiveWeights(prog(
+    { vocabulaire: 1450, kanji: 1450, grammaire: 1450, lecture: 1450, ecoute: 1450 }, 0,
+  ));
+  expect(cold.vocabulaire).toBeCloseTo(1.5, 6);
+  expect(cold.kanji).toBeCloseTo(1.5, 6);
+  expect(cold.grammaire).toBeCloseTo(1.5, 6);
+  expect(cold.lecture).toBeCloseTo(1.5, 6);
+  expect(cold.ecoute).toBeCloseTo(0.2, 6);
+});
+
+// Vecteur golden : un état fixe (R distincts par compétence) → les 5 poids figés. Verrou de
+// non-régression. Les valeurs sont celles de l'implémentation validée au Step 1, et sont
+// cross-validées en revue par une transcription indépendante des formules du § 2 (méthode FSRS).
+test("vecteur golden : R distincts → 5 poids figés (verrou de régression)", () => {
+  const w = prescriptiveWeights(prog({
+    vocabulaire: 1500, kanji: 1600, grammaire: 1400, lecture: 1700, ecoute: 1550,
+  }));
+  expect(w.vocabulaire).toBeCloseTo(0.8067, 4);
+  expect(w.kanji).toBeCloseTo(0.8583, 4);
+  expect(w.grammaire).toBeCloseTo(0.6546, 4);
+  expect(w.lecture).toBeCloseTo(0.7738, 4);
+  expect(w.ecoute).toBeCloseTo(1.5, 4);
+  // Ancres exactes indépendantes de l'arithmétique :
+  expect(Math.max(...Object.values(w))).toBeCloseTo(1.5, 9); // normalisation
+  expect(Math.min(...Object.values(w))).toBeGreaterThanOrEqual(0.2); // plancher
 });
