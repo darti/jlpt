@@ -120,21 +120,22 @@ export function questionCount(minutes: number): number {
   return Math.max(4, Math.min(45, Math.round(minutes * 1.5)));
 }
 
-/** Distribute a fixed `total` question budget across skills, weighting weaker skills. */
-export function allocateCount(masteryOf: (c: Skill) => number, total: number): Record<Skill, number> {
+/** Répartit un budget `total` de questions entre compétences, proportionnellement à un poids
+ *  par compétence ; reliquat aux compétences de plus haut poids. */
+export function allocateCount(weightOf: (c: Skill) => number, total: number): Record<Skill, number> {
   const w = {} as Record<Skill, number>;
   let sum = 0;
-  for (const c of SKILLS) { w[c] = 0.2 + (1 - masteryOf(c)) * 1.3; sum += w[c]; }
+  for (const c of SKILLS) { w[c] = weightOf(c); sum += w[c]; }
   const alloc = {} as Record<Skill, number>;
   let assigned = 0;
-  for (const c of SKILLS) { alloc[c] = Math.floor((total * w[c]) / sum); assigned += alloc[c]; }
-  const order = [...SKILLS].sort((a, b) => masteryOf(a) - masteryOf(b));
+  for (const c of SKILLS) { alloc[c] = sum > 0 ? Math.floor((total * w[c]) / sum) : 0; assigned += alloc[c]; }
+  const order = [...SKILLS].sort((a, b) => w[b] - w[a]); // reliquat au plus haut poids d'abord
   let i = 0;
   while (assigned < total) { alloc[order[i % order.length]]++; assigned++; i++; }
   return alloc;
 }
 
-export function allocate(masteryOf: (c: Skill) => number, minutes: number): { total: number; alloc: Record<Skill, number> } {
+export function allocate(weightOf: (c: Skill) => number, minutes: number): { total: number; alloc: Record<Skill, number> } {
   const total = questionCount(minutes);
-  return { total, alloc: allocateCount(masteryOf, total) };
+  return { total, alloc: allocateCount(weightOf, total) };
 }

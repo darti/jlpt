@@ -45,15 +45,24 @@ test("pickAdaptive excludes ids in the exclude set", () => {
   expect(out.map((x) => x.id)).toEqual([1]);
 });
 
-test("allocate distributes ~1.5 questions/min, weighting weaker skills", () => {
-  const { total } = allocate(() => 0.5, 10);
+test("allocate distribue ~1.5 questions/min, pondéré par le poids par compétence", () => {
+  const { total } = allocate(() => 0.5, 10); // poids uniforme 0.5
   expect(total).toBe(15); // clamp(4, round(10*1.5), 45)
 });
 
-test("allocateCount distributes exactly `total` across skills", () => {
-  const alloc = allocateCount(() => 0.5, 11);
+test("allocateCount distribue exactement `total` entre compétences", () => {
+  const alloc = allocateCount(() => 0.5, 11); // poids uniforme
   const sum = Object.values(alloc).reduce((a, b) => a + b, 0);
-  expect(sum).toBe(11); // no over/under-pick — this is what preserves the weighting under a reduced budget
+  expect(sum).toBe(11); // ni sur- ni sous-tirage
+});
+
+test("allocateCount : reliquat aux compétences de plus HAUT poids", () => {
+  // grammaire a le poids le plus élevé → reçoit le +1 du reliquat (total non divisible également).
+  const alloc = allocateCount(
+    (c) => (c === "grammaire" ? 1.5 : 0.2), 6,
+  );
+  const maxSkill = Object.entries(alloc).sort((a, b) => b[1] - a[1])[0][0];
+  expect(maxSkill).toBe("grammaire");
 });
 
 test("questionCount clamps minutes to [4,45] at ~1.5/min", () => {

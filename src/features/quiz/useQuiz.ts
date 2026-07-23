@@ -10,7 +10,7 @@ import {
 import { loadCorpus, type SkillRange } from "../../lib/graph.ts";
 import { readRawProgress, writeProgress } from "../../lib/storage.ts";
 import { decodeBits, encodeBits, setBit, hasBit, countUnseen } from "../../lib/coverage.ts";
-import { dashboardModel, masteryOf } from "../../lib/scoring.ts";
+import { dashboardModel, prescriptiveWeights } from "../../lib/scoring.ts";
 import { cloudPush, type GistDeps } from "../../lib/gist.ts";
 import { pickSessionPlan, BUILT_CAPS } from "../entrainement/sessionPlan.ts";
 import { RESUME_KEY } from "../../lib/keys.ts";
@@ -266,6 +266,7 @@ export function useQuiz() {
 
     setMode("normal");
     const progress = asProgress(raw); // MINOR #6: only the composed path needs mastery
+    const weights = prescriptiveWeights(progress); // poids d'allocation prescriptif, calculé une fois
 
     // Errors slice: the most-recent wrong[] ids (up to plan.alloc.errors), resolved to questions.
     // (ranges already loaded above; C2 fallback unchanged — null → empty errors, session degrades.)
@@ -291,7 +292,7 @@ export function useQuiz() {
     // dans `unseen` — on passe [] plutôt qu'un bonus +150 qui ne peut pas se déclencher ici.
     const learnQs = plan.alloc.learn > 0
       ? pickSlice(
-          allocateCount((c) => masteryOf(progress, c), plan.alloc.learn),
+          allocateCount((c) => weights[c], plan.alloc.learn),
           (cat) => pools[cat].filter((q) => !hasBit(seen, q.id)),
           raw, exclude, [],
         )
@@ -301,7 +302,7 @@ export function useQuiz() {
     // `wrong` conservé → bonus +150 (plancher souple sur les erreurs passées).
     const adaptiveTarget = Math.max(0, total - errorQs.length - revisionQs.length - learnQs.length);
     const picked = pickSlice(
-      allocateCount((c) => masteryOf(progress, c), adaptiveTarget),
+      allocateCount((c) => weights[c], adaptiveTarget),
       (cat) => pools[cat],
       raw, exclude, wrong,
     );
