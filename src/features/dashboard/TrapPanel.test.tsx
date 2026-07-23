@@ -47,3 +47,17 @@ test("un piège nommé N'affiche PAS la phrase « aucun type »", () => {
   );
   expect(html).not.toContain("Aucun type de piège récurrent");
 });
+
+test("des pièges ACTIFS annoncent qu'ils sont retravaillés en priorité (relie à la sélection)", () => {
+  const html = renderToStaticMarkup(
+    <TrapPanel model={{ active: [{ kind: "voisement", recent: 3 }], resolved: [], untyped: 0, outOfScope: 0 }} />,
+  );
+  expect(html).toContain("priorité dans tes sessions");
+});
+
+test("sans piège actif, PAS de note de priorité", () => {
+  const html = renderToStaticMarkup(
+    <TrapPanel model={{ active: [], resolved: ["lecture-on-kun"], untyped: 2, outOfScope: 0 }} />,
+  );
+  expect(html).not.toContain("priorité dans tes sessions");
+});

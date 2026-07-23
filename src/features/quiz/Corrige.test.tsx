@@ -60,3 +60,13 @@ test("Corrige shows NO rappel block for a non-grammar question", () => {
   const html = renderToStaticMarkup(<Corrige question={vocab} correct={true} rappel={null} />);
   expect(html).not.toContain("Rappel de cours");
 });
+
+test("targeted → badge de renforcement (question réservée sur une confusion), même sur une bonne réponse", () => {
+  const html = renderToStaticMarkup(<Corrige question={vocab} correct={true} targeted={true} />);
+  expect(html).toContain("Renforcement");
+});
+
+test("par défaut (non ciblée) → PAS de badge de renforcement", () => {
+  const html = renderToStaticMarkup(<Corrige question={vocab} correct={true} />);
+  expect(html).not.toContain("Renforcement");
+});

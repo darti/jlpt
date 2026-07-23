@@ -9,7 +9,7 @@ import { KIND_LABELS } from "./traps.ts";
 /** Port of the legacy corrigé block from `answer()` (app-n3.html:937-957):
  * correct/incorrect banner, rule explanation, grammar decomposition, and the
  * per-option analysis (`od`). Does not receive `chosen` — only `correct`. */
-export function Corrige({ question, correct, rappel }: { question: Question; correct: boolean; rappel?: Rappel | null }) {
+export function Corrige({ question, correct, rappel, targeted = false }: { question: Question; correct: boolean; rappel?: Rappel | null; targeted?: boolean }) {
   const correctAnswer = question.o[question.a];
   const od = question.od;
   const hasOd = od !== undefined && od.length === question.o.length;
@@ -27,6 +27,11 @@ export function Corrige({ question, correct, rappel }: { question: Question; cor
           </>
         )}
       </p>
+      {targeted && (
+        <p className="text-meta text-accent font-bold mt-0 mb-3">
+          🎯 Renforcement — une de tes confusions récentes
+        </p>
+      )}
       {question.e && (
         <div className="text-fg text-sm mb-3 leading-relaxed" dangerouslySetInnerHTML={{ __html: question.e }} />
       )}

@@ -214,6 +214,8 @@ export function useQuiz() {
   const [answered, setAnswered] = useState(false);
   const [chosen, setChosen] = useState<number | null>(null);
   const [typed, setTyped] = useState<string | null>(null);
+  // Ids des questions réservées par la tranche confusion de la session (source du badge « ciblée »).
+  const [confusionIds, setConfusionIds] = useState<Set<number>>(new Set());
   const [mode, setMode] = useState<"normal" | "diagnostic">("normal");
   const [diagAnswers, setDiagAnswers] = useState<DiagAnswer[]>([]);
 
@@ -311,6 +313,7 @@ export function useQuiz() {
       setMode("diagnostic");
       setAnswered(false);
       setChosen(null);
+      setConfusionIds(new Set()); // le diagnostic n'a pas de tranche confusion
       setPhase("diag-intro"); // notify before the first question
       return;
     }
@@ -347,6 +350,7 @@ export function useQuiz() {
         )
       : [];
     for (const q of confusionQs) exclude.add(q.id);
+    setConfusionIds(new Set(confusionQs.map((q) => q.id))); // alimente le badge « ciblée » du corrigé
 
     // Learn slice: never-seen items, distributed by mastery and picked near the level. Each category's
     // pool is filtered to unseen; unseen-thin categories simply contribute fewer (adaptive covers the
@@ -470,6 +474,7 @@ export function useQuiz() {
     setAnswered(false);
     setChosen(null);
     setTyped(null);
+    setConfusionIds(new Set());
     setMode("normal");
     setDiagAnswers([]);
   }, []);
@@ -534,6 +539,7 @@ export function useQuiz() {
     resume,
     chosen,
     typed,
+    confusionIds,
     mode,
     diagAnswers,
     start,

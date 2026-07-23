@@ -33,6 +33,7 @@ export function EntrainementAppView(props: {
   onBeginDiag?: () => void; onLater?: () => void; onDiagDone?: () => void;
   production?: boolean; onToggleProduction?: () => void;
   onSubmitTyped?: (text: string) => void; typed?: string | null;
+  confusionIds?: Set<number>;
 }) {
   const { question } = props;
   const onSpeak = (rate?: number) => { if (question) speakQuestion(question, rate); };
@@ -76,7 +77,7 @@ export function EntrainementAppView(props: {
         <div className="flex flex-col gap-4">
           <SessionProgress index={props.index ?? 0} count={props.count} mode={props.mode} right={props.right} answered={(props.index ?? 0) + 1} />
           <QuestionCard question={question} chosen={props.chosen} answered={true} onChoose={() => {}} onSpeak={onSpeak} production={props.production} typed={props.typed} />
-          <Corrige question={question} correct={props.chosen != null && props.chosen === question.a} rappel={resolveRappel(question, props.coursIndex ?? null)} />
+          <Corrige question={question} correct={props.chosen != null && props.chosen === question.a} rappel={resolveRappel(question, props.coursIndex ?? null)} targeted={props.confusionIds?.has(question.id) ?? false} />
           <button
             type="button"
             onClick={props.onNext}
@@ -123,7 +124,7 @@ export default function EntrainementApp() {
       onBeginDiag={quiz.beginDiagnostic} onLater={() => quiz.start(undefined, { skipDiagnostic: true })}
       onDiagDone={quiz.restart}
       production={production} onToggleProduction={toggleProduction}
-      onSubmitTyped={quiz.submitTyped} typed={quiz.typed}
+      onSubmitTyped={quiz.submitTyped} typed={quiz.typed} confusionIds={quiz.confusionIds}
     />
   );
 }

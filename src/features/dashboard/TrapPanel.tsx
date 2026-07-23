@@ -49,6 +49,11 @@ export function TrapPanel({ model }: { model: TrapModel | null }) {
           </li>
         ))}
       </ul>
+      {model.active.length > 0 && (
+        <p className="text-meta text-fg-dim mt-3 mb-0">
+          Ces confusions sont retravaillées en priorité dans tes sessions.
+        </p>
+      )}
       <p className="text-meta text-fg-dim mt-3 mb-0">
         {model.untyped} non typée(s) · {model.outOfScope} hors périmètre (grammaire, écoute, lecture)
       </p>
