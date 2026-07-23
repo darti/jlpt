@@ -14,7 +14,7 @@ import { dashboardModel, prescriptiveWeights } from "../../lib/scoring.ts";
 import { cloudPush, type GistDeps } from "../../lib/gist.ts";
 import { pickSessionPlan, BUILT_CAPS } from "../entrainement/sessionPlan.ts";
 import { RESUME_KEY } from "../../lib/keys.ts";
-import { asConfusions, confusionPatch, dayNumber } from "./traps.ts";
+import { asConfusions, confusionPatch, dayNumber, trapModel, kindIndex, selectConfusion, activeConfusionCount } from "./traps.ts";
 import { asFsrs, fsrsPatch, dueBySkill, selectRevision } from "./revision.ts";
 import { checkReading } from "../../lib/kana.ts";
 
@@ -282,13 +282,17 @@ export function useQuiz() {
     // Carte et jour lus UNE fois : le décompte du plan et la sélection doivent partager le même
     // « aujourd'hui » (deux `new Date()` pourraient enjamber minuit).
     const fsrsMap = asFsrs(raw);
+    const confusions = asConfusions(raw);
     const jourRevision = dayNumber(new Date());
     const revisionDue = dueBySkill(fsrsMap, jourRevision).total;
+    // Confusion : proxy de comptage (ne nécessite pas les pools) pour le plan ; le tri fin par
+    // type se fait après le chargement des pools, réconcilié par composeSession.
+    const confusionCount = activeConfusionCount(confusions, jourRevision);
 
     // Consult the decision engine. `resume: false` — "Commencer" always starts fresh; the resume
-    // decision is handled at the card level. All five caps are now built.
+    // decision is handled at the card level. All caps are now built.
     const plan = pickSessionPlan(
-      { resume: false, daysSinceDiagnostic, wrongCount: wrong.length, newCoursePoints, revisionDue },
+      { resume: false, daysSinceDiagnostic, wrongCount: wrong.length, newCoursePoints, revisionDue, confusionCount },
       total,
       BUILT_CAPS,
     );
@@ -333,6 +337,17 @@ export function useQuiz() {
       : [];
     for (const q of revisionQs) exclude.add(q.id);
 
+    // Tranche confusion : questions exerçant un type de piège encore actif (motif répété), la
+    // plus fréquente d'abord. Même fenêtre 30 j que l'affichage → cible ce que voit l'apprenant.
+    // Placée après errors/révision dans `exclude` → jamais de doublon.
+    const confusionQs = plan.alloc.confusion > 0
+      ? selectConfusion(
+          trapModel(confusions, kindIndex(allPool), jourRevision).active,
+          allPool, exclude, plan.alloc.confusion, Math.random,
+        )
+      : [];
+    for (const q of confusionQs) exclude.add(q.id);
+
     // Learn slice: never-seen items, distributed by mastery and picked near the level. Each category's
     // pool is filtered to unseen; unseen-thin categories simply contribute fewer (adaptive covers the
     // shortfall below — budget still `total`).
@@ -348,7 +363,7 @@ export function useQuiz() {
 
     // Adaptive fills the remaining budget (weighted by mastery), from the full pools.
     // `wrong` conservé → bonus +150 (plancher souple sur les erreurs passées).
-    const adaptiveTarget = Math.max(0, total - errorQs.length - revisionQs.length - learnQs.length);
+    const adaptiveTarget = Math.max(0, total - errorQs.length - confusionQs.length - revisionQs.length - learnQs.length);
     const picked = pickSlice(
       allocateCount((c) => weights[c], adaptiveTarget),
       (cat) => pools[cat],
@@ -356,7 +371,7 @@ export function useQuiz() {
     );
 
     // Guaranteed slices (errors + révision + learn) + adaptive fill → composeSession reconciles the budget.
-    const session = composeSession([...errorQs, ...revisionQs, ...learnQs], picked, total, Math.random);
+    const session = composeSession([...errorQs, ...confusionQs, ...revisionQs, ...learnQs], picked, total, Math.random);
     if (!session.length) return;
 
     rightRef.current = 0;
