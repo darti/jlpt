@@ -16,6 +16,7 @@ import { pickSessionPlan, BUILT_CAPS } from "../entrainement/sessionPlan.ts";
 import { RESUME_KEY } from "../../lib/keys.ts";
 import { asConfusions, confusionPatch, dayNumber } from "./traps.ts";
 import { asFsrs, fsrsPatch, dueBySkill, selectRevision } from "./revision.ts";
+import { checkReading } from "../../lib/kana.ts";
 
 export type Phase = "home" | "question" | "corrige" | "results" | "diag-intro" | "diag-results";
 
@@ -151,6 +152,43 @@ function clearResumeState(): void {
   try { localStorage.removeItem(RESUME_KEY); } catch { /* best-effort */ }
 }
 
+/** Patch de progression pour UNE réponse. Pur (temps injecté) → testé unitairement.
+ *  `chosen` = index de l'option cochée, ou `null` en production (aucune option cochée) :
+ *  dans ce cas on n'écrit PAS le graphe de confusion (erreur de rappel, pas de reconnaissance). */
+export function answerPatch(
+  raw: Record<string, unknown> | null,
+  q: Question,
+  correct: boolean,
+  chosen: number | null,
+  today: number,
+  nowMs: number,
+  isLastDiag: boolean,
+): Record<string, unknown> {
+  const curWrong = asWrong(raw);
+  const nextSkill = updateRating(skillStateOf(raw, q.cat), q.d, correct);
+  const withoutId = curWrong.filter((id) => id !== q.id);
+  const nextWrong = (correct ? withoutId : [...withoutId, q.id]).slice(-80);
+  const nextConfusions = chosen === null
+    ? undefined
+    : confusionPatch(asConfusions(raw), q.id, chosen, correct, today);
+  const nextFsrs = fsrsPatch(asFsrs(raw), Array.isArray(q.tests) ? q.tests : [], correct, today);
+  const seen = encodeBits(setBit(decodeBits(typeof raw?.seen === "string" ? raw.seen : ""), q.id));
+  const mastered = correct
+    ? encodeBits(setBit(decodeBits(typeof raw?.mastered === "string" ? raw.mastered : ""), q.id))
+    : undefined;
+  return {
+    skill: { [q.cat]: nextSkill },
+    total: numField(raw, "total") + 1,
+    right: numField(raw, "right") + (correct ? 1 : 0),
+    wrong: nextWrong,
+    seen,
+    ...(mastered !== undefined ? { mastered } : {}),
+    ...(isLastDiag ? { diagAt: nowMs } : {}),
+    ...(nextConfusions !== undefined ? { confusions: nextConfusions } : {}),
+    ...(nextFsrs !== undefined ? { fsrs: nextFsrs } : {}),
+  };
+}
+
 /**
  * Session state machine for the adaptive quiz — a thin orchestrator over the tested
  * `elo`/`bank`/`storage`/`scoring`/`gist` libs. Port of legacy `buildSession`/`renderQ`/
@@ -166,6 +204,7 @@ export function useQuiz() {
   const [resume, setResume] = useState<ResumeState | null>(null);
   const [answered, setAnswered] = useState(false);
   const [chosen, setChosen] = useState<number | null>(null);
+  const [typed, setTyped] = useState<string | null>(null);
   const [mode, setMode] = useState<"normal" | "diagnostic">("normal");
   const [diagAnswers, setDiagAnswers] = useState<DiagAnswer[]>([]);
 
@@ -323,45 +362,18 @@ export function useQuiz() {
     setResume(r);
   }, [minutes]);
 
-  const choose = useCallback((i: number) => {
-    const q = questions[index];
-    if (!q || answered) return;
-    const correct = i === q.a;
-
-    // Shared: measure — write the Elo rating + progression exactly like a normal answer.
+  const commitAnswer = useCallback((q: Question, correct: boolean, chosen: number | null) => {
+    // Mesure partagée QCM/production : Elo + progression via le patch pur `answerPatch`.
     const raw = readRawProgress();
-    const curWrong = asWrong(raw);
-    const nextSkill = updateRating(skillStateOf(raw, q.cat), q.d, correct);
-    const withoutId = curWrong.filter((id) => id !== q.id);
-    const nextWrong = (correct ? withoutId : [...withoutId, q.id]).slice(-80);
-    // Graphe de confusion : `undefined` sur une bonne réponse — rien à écrire.
-    const nextConfusions = confusionPatch(asConfusions(raw), q.id, i, correct, dayNumber(new Date()));
-    // Modèle de mémoire : la réponse révise l'entité qu'elle teste (arête `tests`, ~1).
-    // `undefined` (pas de carte vide) si la question n'a pas d'arête → aucun patch, carte préservée.
-    const nextFsrs = fsrsPatch(asFsrs(raw), Array.isArray(q.tests) ? q.tests : [], correct, dayNumber(new Date()));
-    const seen = encodeBits(setBit(decodeBits(typeof raw?.seen === "string" ? raw.seen : ""), q.id));
-    const mastered = correct
-      ? encodeBits(setBit(decodeBits(typeof raw?.mastered === "string" ? raw.mastered : ""), q.id))
-      : undefined;
     // MAJOR #5a: on the LAST diagnostic answer, fold `diagAt` into this same write (one round-trip).
     const isLastDiag = mode === "diagnostic" && index + 1 >= questions.length;
-    writeProgress({
-      skill: { [q.cat]: nextSkill },
-      total: numField(raw, "total") + 1,
-      right: numField(raw, "right") + (correct ? 1 : 0),
-      wrong: nextWrong,
-      seen,
-      ...(mastered !== undefined ? { mastered } : {}),
-      ...(isLastDiag ? { diagAt: Date.now() } : {}),
-      ...(nextConfusions !== undefined ? { confusions: nextConfusions } : {}),
-      ...(nextFsrs !== undefined ? { fsrs: nextFsrs } : {}),
-    });
+    writeProgress(answerPatch(raw, q, correct, chosen, dayNumber(new Date()), Date.now(), isLastDiag));
     schedulePush();
     rightRef.current += correct ? 1 : 0;
 
     if (mode === "diagnostic") {
-      // Tout droit: record the answer for the end-of-test corrigé, then advance immediately.
-      setDiagAnswers((prev) => [...prev, { question: q, chosen: i }]);
+      // Le diagnostic reste en QCM : `chosen` y est toujours un index réel.
+      setDiagAnswers((prev) => [...prev, { question: q, chosen: chosen ?? -1 }]);
       const ni = index + 1;
       if (ni >= questions.length) setPhase("diag-results"); // diagAt already stamped in the merged write
       else setIndex(ni);                                    // phase stays "question"
@@ -369,18 +381,34 @@ export function useQuiz() {
     }
 
     // Normal: reveal the corrigé.
-    setChosen(i);
+    setChosen(chosen);
     setAnswered(true);
     setPhase("corrige");
     setResume((prev) => {
       if (!prev) return prev;
       // Persist the corrigé so a round-trip to the cours (deep link → « Revenir à la question »)
       // restores this exact correction, not a fresh question.
-      const next: ResumeState = { ...prev, qi: index, right: rightRef.current, phase: "corrige", chosen: i };
+      const next: ResumeState = { ...prev, qi: index, right: rightRef.current, phase: "corrige", chosen: chosen ?? undefined };
       persistResumeState(next);
       return next;
     });
-  }, [questions, index, answered, schedulePush, mode]);
+  }, [questions, index, mode, schedulePush]);
+
+  const choose = useCallback((i: number) => {
+    const q = questions[index];
+    if (!q || answered) return;
+    commitAnswer(q, i === q.a, i);
+  }, [questions, index, answered, commitAnswer]);
+
+  const submitTyped = useCallback((text: string) => {
+    const q = questions[index];
+    if (!q || answered) return;
+    const correct = checkReading(text, q.o[q.a]);
+    setTyped(text);
+    // Bonne réponse → on « coche » l'option correcte pour le corrigé (surlignage vert, correct===a) ;
+    // mauvaise → chosen null (aucun distracteur coché → pas de graphe de confusion).
+    commitAnswer(q, correct, correct ? q.a : null);
+  }, [questions, index, answered, commitAnswer]);
 
   const next = useCallback(() => {
     const ni = index + 1;
@@ -399,6 +427,7 @@ export function useQuiz() {
       setPhase("question");
       setAnswered(false);
       setChosen(null);
+      setTyped(null);
 
       setResume((prev) => {
         if (!prev) return prev;
@@ -416,6 +445,7 @@ export function useQuiz() {
     setIndex(0);
     setAnswered(false);
     setChosen(null);
+    setTyped(null);
     setMode("normal");
     setDiagAnswers([]);
   }, []);
@@ -452,6 +482,7 @@ export function useQuiz() {
     setIndex(qi);
     setAnswered(onCorrige);
     setChosen(onCorrige ? (r.chosen as number) : null);
+    setTyped(null);
     setPhase(onCorrige ? "corrige" : "question");
   }, [resume, ensureCorpus]);
 
@@ -477,10 +508,12 @@ export function useQuiz() {
     minutes,
     resume,
     chosen,
+    typed,
     mode,
     diagAnswers,
     start,
     choose,
+    submitTyped,
     next,
     restart,
     setMinutes,
