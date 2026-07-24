@@ -29,8 +29,19 @@ function Harness() {
 
 let container: HTMLDivElement;
 let root: Root;
-// Laisse se résoudre l'import() dynamique + l'init + la livraison du MutationObserver (macrotâche).
-const flush = () => act(async () => { await new Promise((r) => setTimeout(r, 0)); });
+
+// Attente CONDITIONNELLE. Deux étages asynchrones échappent à un tick fixe : l'import()
+// dynamique d'ECharts (résolu au fil des microtâches) ET la livraison des MutationRecords par
+// happy-dom (asynchrone, délai variable local vs CI). Un `setTimeout(0)` unique courait cette
+// livraison → le test passait en local mais échouait en CI (setOption vu 1× au lieu de 2×).
+// On sonde jusqu'à ce que la condition tienne, avec un plafond de sécurité.
+async function waitFor(pred: () => boolean, timeoutMs = 3000): Promise<void> {
+  const start = Date.now();
+  while (!pred()) {
+    if (Date.now() - start > timeoutMs) throw new Error("waitFor : condition non atteinte à temps");
+    await act(async () => { await new Promise((r) => setTimeout(r, 5)); });
+  }
+}
 
 beforeEach(() => {
   document.documentElement.setAttribute("data-theme", "dark");
@@ -48,25 +59,23 @@ afterEach(() => {
 
 test("réapplique l'option quand data-theme change (les axes se recolorent sans rechargement)", async () => {
   await act(async () => { root.render(<Harness />); });
-  await flush();
-  expect(setOption).toHaveBeenCalledTimes(1); // rendu initial
+  await waitFor(() => setOption.mock.calls.length >= 1); // rendu initial (import async résolu)
+  expect(setOption).toHaveBeenCalledTimes(1);
 
-  await act(async () => {
-    document.documentElement.setAttribute("data-theme", "light");
-    await new Promise((r) => setTimeout(r, 0));
-  });
-  expect(setOption).toHaveBeenCalledTimes(2); // le thème a rebasculé → option relue et reposée
+  document.documentElement.setAttribute("data-theme", "light");
+  await waitFor(() => setOption.mock.calls.length >= 2); // bascule de thème → option relue et reposée
+  expect(setOption).toHaveBeenCalledTimes(2);
 });
 
 test("cesse de réappliquer après démontage (observateur déconnecté)", async () => {
   await act(async () => { root.render(<Harness />); });
-  await flush();
+  await waitFor(() => setOption.mock.calls.length >= 1);
   act(() => { root.unmount(); });
   setOption.mockClear();
 
-  await act(async () => {
-    document.documentElement.setAttribute("data-theme", "light");
-    await new Promise((r) => setTimeout(r, 0));
-  });
+  document.documentElement.setAttribute("data-theme", "light");
+  // Assertion d'ABSENCE : on laisse une fenêtre généreuse — bien au-delà du délai de livraison
+  // observé — puis on vérifie qu'aucun setOption n'est venu (l'observateur est déconnecté).
+  await act(async () => { await new Promise((r) => setTimeout(r, 200)); });
   expect(setOption).not.toHaveBeenCalled();
 });
