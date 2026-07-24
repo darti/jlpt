@@ -54,9 +54,18 @@ export function TrapPanel({ model }: { model: TrapModel | null }) {
           Ces confusions sont retravaillées en priorité dans tes sessions.
         </p>
       )}
+      {/* Deux compteurs d'ERREURS (événements), pas de catégories : le « · N hors périmètre »
+          était collé à « (grammaire, écoute, lecture) », si bien qu'on lisait le nombre comme un
+          compte des trois compétences. La liste des compétences exclues est désormais une phrase
+          distincte, affichée seulement quand il y a effectivement des erreurs hors périmètre. */}
       <p className="text-meta text-fg-dim mt-3 mb-0">
-        {model.untyped} non typée(s) · {model.outOfScope} hors périmètre (grammaire, écoute, lecture)
+        Sur tes erreurs : {model.untyped} non typée(s) · {model.outOfScope} hors périmètre.
       </p>
+      {model.outOfScope > 0 && (
+        <p className="text-meta text-fg-dim mt-1 mb-0">
+          Hors périmètre = grammaire, écoute et lecture (aucun piège de kanji à typer).
+        </p>
+      )}
     </section>
   );
 }
