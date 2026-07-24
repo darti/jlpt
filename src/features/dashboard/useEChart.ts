@@ -40,6 +40,7 @@ export function useEChart(
     if (!enabled || !ref.current) return;
     let chart: { resize: () => void; dispose: () => void } | null = null;
     let onResize: (() => void) | null = null;
+    let themeObserver: MutationObserver | null = null;
     let disposed = false;
 
     (async () => {
@@ -52,12 +53,21 @@ export function useEChart(
         c.setOption(option());
         onResize = () => c.resize();
         window.addEventListener("resize", onResize);
+        // Les couleurs d'axes viennent des variables CSS du thème, résolues par `cssVar` AU
+        // MOMENT du setOption puis GRAVÉES en littéraux dans le SVG. Une bascule de `data-theme`
+        // change les variables mais pas le SVG déjà tracé — il fallait recharger la page. On
+        // réapplique donc l'option à chaque changement de thème : `option()` relit `cssVar` avec
+        // les variables courantes. Observer l'attribut (et non un événement parallèle) évite la
+        // désync qui a motivé toute la migration : la source unique reste le DOM.
+        themeObserver = new MutationObserver(() => c.setOption(option()));
+        themeObserver.observe(document.documentElement, { attributeFilter: ["data-theme"] });
       } catch { /* chunk ECharts indisponible → repli du composant appelant */ }
     })();
 
     return () => {
       disposed = true;
       if (onResize) window.removeEventListener("resize", onResize);
+      themeObserver?.disconnect();
       chart?.dispose();
     };
   }, [...deps, enabled]);
