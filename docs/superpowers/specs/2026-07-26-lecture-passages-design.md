@@ -115,7 +115,9 @@ Règles, dans l'ordre :
 1. **Complétion** — toute question retenue portant un `passageId` fait entrer ses sœurs
    manquantes du même passage.
 2. **Tout ou rien** — si le groupe complet ne tient pas dans le budget restant, le groupe entier
-   est écarté (jamais de groupe tronqué), et la place est rendue aux autres candidats.
+   est écarté (jamais de groupe tronqué). Sa place n'est **pas** recomblée : la session est alors
+   plus courte d'autant (borné à 3 questions). Refiler exigerait le vivier complet, les poids et
+   le jeu d'exclusion — coût sans commune mesure avec l'écart.
 3. **Adjacence** — le mélange de `composeSession` est **préservé** pour tout le reste ; chaque
    groupe est simplement ramené d'un bloc à la position de son premier membre, ses questions
    triées par `ord` (l'ordre de lecture du texte).
@@ -154,8 +156,10 @@ résoudre (convention de `readings.mjs`). Il pose en fin de corpus (ord ≥ 1030
 | Réponse unique | énoncé partagé à réponses divergentes — contrôle **existant** |
 | Homophonie | distracteur portant la `reading` de la réponse — contrôle **existant** |
 
-Effet gratuit : `optionNote` alimente `trap-kinds.mjs`, donc les nouvelles questions entrent dans
-le moteur de confusion en rejouant `bun tools/graph/traps.mjs`.
+⚠ **Pas d'effet gratuit côté confusion** : `traps.mjs` déclare `SHARDS = ["q-kanji",
+"q-vocabulaire"]`, et son en-tête motive ce périmètre — « l'écoute comme la lecture testent la
+compréhension, pas la forme ». Les `optionNote` des passages servent donc au corrigé, pas au
+typage des pièges. Aucun rejeu de `traps.mjs` n'est requis par ce lot.
 
 ## 6. Contenu du lot 1
 
