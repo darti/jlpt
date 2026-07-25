@@ -71,6 +71,13 @@ test("recordAnswer n'enregistre que sur une nouvelle maîtrise", () => {
   expect(learned.goalByDay[5]).toBe(54);                  // objectif gelé (0 appris, 134 j)
 });
 
+test("recordAnswer ne trace plus rien après l'examen (daysLeft ≤ 0)", () => {
+  const c0 = emptyCadence();
+  // Post-examen : plus de cadence — évite des jours à objectif 0 qui « atteignent » toujours
+  // et gonfleraient le record en silence.
+  expect(recordAnswer(c0, emptyBits(), 42, true, 5, 0)).toBe(c0);
+});
+
 test("cadenceModel : objectif gelé du jour, progrès, série, cible/examen", () => {
   let c = emptyCadence();
   c = recordMastery(c, 10, 54);

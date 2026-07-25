@@ -60,9 +60,11 @@ export function recordMastery(c: Cadence, day: number, goalToday: number, k = 1)
   return next;
 }
 
-/** Règle d'intégration : enregistre une maîtrise SSI la réponse est juste ET la question
- *  n'était pas déjà apprise. Sinon retourne `c` inchangé (même référence → l'appelant peut
- *  éviter une écriture). Pur — `prevMastered` = bitset AVANT la réponse. */
+/** Règle d'intégration : enregistre une maîtrise SSI la réponse est juste, l'examen n'est pas
+ *  passé (`daysLeft > 0`) ET la question n'était pas déjà apprise. Sinon retourne `c` inchangé
+ *  (même référence → l'appelant peut éviter une écriture). La garde `daysLeft > 0` évite des
+ *  jours à objectif 0 qui « atteindraient » toujours et gonfleraient le record en silence.
+ *  Pur — `prevMastered` = bitset AVANT la réponse. */
 export function recordAnswer(
   c: Cadence,
   prevMastered: Uint8Array,
@@ -71,7 +73,7 @@ export function recordAnswer(
   day: number,
   daysLeft: number,
 ): Cadence {
-  if (!correct || hasBit(prevMastered, qId)) return c;
+  if (!correct || daysLeft <= 0 || hasBit(prevMastered, qId)) return c;
   return recordMastery(c, day, dailyGoal(masteredCount(prevMastered), daysLeft));
 }
 

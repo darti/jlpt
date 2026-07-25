@@ -209,6 +209,11 @@ test("readCadence rend un journal vierge quand la cle est absente ou corrompue",
   expect(readCadence(memStore({ jlptN3_cadence: "pas du json" }))).toEqual(emptyCadence());
 });
 
+test("readCadence ignore les cles non numeriques d'un journal corrompu", () => {
+  const store = memStore({ jlptN3_cadence: JSON.stringify({ byDay: { "5": 3, "x": 9 }, goalByDay: {}, best: 0 }) });
+  expect(readCadence(store).byDay).toEqual({ 5: 3 }); // "x" (Number("x")=NaN) est rejeté
+});
+
 test("writeCadence puis readCadence : aller-retour + stampUpdated", () => {
   const store = memStore();
   const c = { byDay: { 5: 3 }, goalByDay: { 5: 3 }, best: 1 };

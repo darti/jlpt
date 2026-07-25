@@ -67,7 +67,8 @@ function numMap(v: unknown): Record<number, number> {
   if (typeof v !== "object" || v === null || Array.isArray(v)) return {};
   const out: Record<number, number> = {};
   for (const [k, val] of Object.entries(v as Record<string, unknown>)) {
-    if (typeof val === "number") out[Number(k)] = val;
+    const n = Number(k);
+    if (typeof val === "number" && Number.isFinite(n)) out[n] = val;
   }
   return out;
 }

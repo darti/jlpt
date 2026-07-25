@@ -395,13 +395,14 @@ export function useQuiz() {
   const commitAnswer = useCallback((q: Question, correct: boolean, chosen: number | null, production = false) => {
     // Mesure partagée QCM/production : Elo + progression via le patch pur `answerPatch`.
     const raw = readRawProgress();
+    const now = new Date(); // un seul instant : évite qu'un appel straddle minuit UTC entre progression et cadence
     // MAJOR #5a: on the LAST diagnostic answer, fold `diagAt` into this same write (one round-trip).
     const isLastDiag = mode === "diagnostic" && index + 1 >= questions.length;
-    writeProgress(answerPatch(raw, q, correct, chosen, dayNumber(new Date()), Date.now(), isLastDiag, production));
+    writeProgress(answerPatch(raw, q, correct, chosen, dayNumber(now), now.getTime(), isLastDiag, production));
     // Cadence : enregistrer une éventuelle NOUVELLE maîtrise, au même instant que le bit `mastered`.
     const prevMastered = decodeBits(typeof raw?.mastered === "string" ? raw.mastered : "");
     const cad = readCadence();
-    const nextCad = recordAnswer(cad, prevMastered, q.id, correct, dayNumber(new Date()), daysUntilExam(new Date()));
+    const nextCad = recordAnswer(cad, prevMastered, q.id, correct, dayNumber(now), daysUntilExam(now));
     if (nextCad !== cad) writeCadence(nextCad);
     schedulePush();
     rightRef.current += correct ? 1 : 0;
