@@ -1,5 +1,6 @@
 import { test, expect } from "bun:test";
-import { readProgress, writeProgress, readRawProgress } from "./storage.ts";
+import { readProgress, writeProgress, readRawProgress, readCadence, writeCadence } from "./storage.ts";
+import { emptyCadence } from "./cadence.ts";
 import { memStore } from "../testing/memStore.ts";
 
 const fake = (v: string | null) => ({ getItem: (_k: string) => v });
@@ -201,4 +202,17 @@ test("writeProgress silently handles setItem failure", () => {
     if (callCount === 1) throw new Error("storage full");
   };
   expect(() => writeProgress({ total: 2 }, store as any)).not.toThrow();
+});
+
+test("readCadence rend un journal vierge quand la cle est absente ou corrompue", () => {
+  expect(readCadence(memStore())).toEqual(emptyCadence());
+  expect(readCadence(memStore({ jlptN3_cadence: "pas du json" }))).toEqual(emptyCadence());
+});
+
+test("writeCadence puis readCadence : aller-retour + stampUpdated", () => {
+  const store = memStore();
+  const c = { byDay: { 5: 3 }, goalByDay: { 5: 3 }, best: 1 };
+  writeCadence(c, store);
+  expect(readCadence(store)).toEqual(c);
+  expect(store._get("jlptN3_updatedAt")).not.toBeUndefined();
 });

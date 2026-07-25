@@ -1,6 +1,7 @@
 import { test, expect } from "bun:test";
 import {
   emptyBits, setBit, hasBit, encodeBits, decodeBits, coverageBySkill, countUnseen,
+  masteredCount,
 } from "./coverage.ts";
 
 test("setBit/hasBit round-trip including growth beyond current capacity", () => {
@@ -56,4 +57,11 @@ test("countUnseen ignore les bits vus hors du corpus", () => {
   const ranges = [{ skill: "kanji" as const, from: 0, count: 2 }];
   const seen = setBit(emptyBits(), 99);
   expect(countUnseen(seen, ranges)).toBe(2);
+});
+
+test("masteredCount compte les bits à 1 (vide, épars, plusieurs octets)", () => {
+  expect(masteredCount(emptyBits())).toBe(0);
+  let b = emptyBits();
+  for (const id of [0, 7, 8, 100, 101]) b = setBit(b, id);
+  expect(masteredCount(b)).toBe(5);
 });

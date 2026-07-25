@@ -51,6 +51,9 @@ export const RATE_KEY = "jlptN3_ecouteRate";
 /** Mode rappel actif : taper la lecture au lieu de choisir (préférence, comme furi/thème). */
 export const PROD_KEY = "jlptN3_production";
 
+/** Journal de cadence quotidienne (objectif/série/par-jour). Propre au blob de progression. */
+export const CADENCE_KEY = "jlptN3_cadence";
+
 /** Horodate la dernière écriture locale. Best-effort : une erreur de stockage est ignorée. */
 export function stampUpdated(
   store: Pick<Storage, "setItem">,

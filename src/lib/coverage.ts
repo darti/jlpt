@@ -85,3 +85,13 @@ export function countUnseen(seen: Uint8Array, ranges: SkillRange[]): number {
   }
   return n;
 }
+
+/** Nombre de bits à 1 (questions apprises). Pur. */
+export function masteredCount(bits: Uint8Array): number {
+  let n = 0;
+  for (let i = 0; i < bits.length; i++) {
+    let b = bits[i];
+    while (b) { b &= b - 1; n++; } // Kernighan : efface le bit bas à chaque tour
+  }
+  return n;
+}

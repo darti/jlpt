@@ -1,5 +1,6 @@
 import type { Progress } from "../types/progress.ts";
-import { PROGRESS_KEY, stampUpdated } from "./keys.ts";
+import { PROGRESS_KEY, CADENCE_KEY, stampUpdated } from "./keys.ts";
+import { emptyCadence, type Cadence } from "./cadence.ts";
 
 
 // Lenient on purpose: the legacy blob format defaults missing skills to R=1450/t=0,
@@ -59,4 +60,31 @@ export function writeProgress(
     store.setItem(PROGRESS_KEY, JSON.stringify(next));
     stampUpdated(store);
   } catch { /* best-effort: silently ignore all storage errors */ }
+}
+
+/** Coerce une valeur en table `jour → nombre` (clés numériques), ignorant tout le reste. */
+function numMap(v: unknown): Record<number, number> {
+  if (typeof v !== "object" || v === null || Array.isArray(v)) return {};
+  const out: Record<number, number> = {};
+  for (const [k, val] of Object.entries(v as Record<string, unknown>)) {
+    if (typeof val === "number") out[Number(k)] = val;
+  }
+  return out;
+}
+
+/** Journal de cadence courant, ou un journal vierge. Best-effort : jamais throw. */
+export function readCadence(store: Pick<Storage, "getItem"> = globalThis.localStorage): Cadence {
+  try {
+    const raw = store.getItem(CADENCE_KEY);
+    if (raw === null) return emptyCadence();
+    const v = JSON.parse(raw);
+    if (typeof v !== "object" || v === null) return emptyCadence();
+    const o = v as Record<string, unknown>;
+    return { byDay: numMap(o.byDay), goalByDay: numMap(o.goalByDay), best: typeof o.best === "number" ? o.best : 0 };
+  } catch { return emptyCadence(); }
+}
+
+/** Écrit le journal (dernier-écrit-gagne) + horodate. Best-effort : ignore les erreurs. */
+export function writeCadence(next: Cadence, store: Pick<Storage, "setItem"> = globalThis.localStorage): void {
+  try { store.setItem(CADENCE_KEY, JSON.stringify(next)); stampUpdated(store); } catch { /* best-effort */ }
 }

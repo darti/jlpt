@@ -8,9 +8,10 @@ import {
   questionsForIds, selectRecentErrors, composeSession, selectDiagnostic,
 } from "../../lib/bank.ts";
 import { loadCorpus, type SkillRange } from "../../lib/graph.ts";
-import { readRawProgress, writeProgress } from "../../lib/storage.ts";
-import { decodeBits, encodeBits, setBit, hasBit, countUnseen } from "../../lib/coverage.ts";
-import { dashboardModel, prescriptiveWeights } from "../../lib/scoring.ts";
+import { readRawProgress, writeProgress, readCadence, writeCadence } from "../../lib/storage.ts";
+import { decodeBits, encodeBits, setBit, hasBit, countUnseen, masteredCount } from "../../lib/coverage.ts";
+import { recordAnswer } from "../../lib/cadence.ts";
+import { dashboardModel, prescriptiveWeights, daysUntilExam } from "../../lib/scoring.ts";
 import { cloudPush, type GistDeps } from "../../lib/gist.ts";
 import { pickSessionPlan, BUILT_CAPS } from "../entrainement/sessionPlan.ts";
 import { RESUME_KEY } from "../../lib/keys.ts";
@@ -397,6 +398,11 @@ export function useQuiz() {
     // MAJOR #5a: on the LAST diagnostic answer, fold `diagAt` into this same write (one round-trip).
     const isLastDiag = mode === "diagnostic" && index + 1 >= questions.length;
     writeProgress(answerPatch(raw, q, correct, chosen, dayNumber(new Date()), Date.now(), isLastDiag, production));
+    // Cadence : enregistrer une éventuelle NOUVELLE maîtrise, au même instant que le bit `mastered`.
+    const prevMastered = decodeBits(typeof raw?.mastered === "string" ? raw.mastered : "");
+    const cad = readCadence();
+    const nextCad = recordAnswer(cad, prevMastered, q.id, correct, dayNumber(new Date()), daysUntilExam(new Date()));
+    if (nextCad !== cad) writeCadence(nextCad);
     schedulePush();
     rightRef.current += correct ? 1 : 0;
 
