@@ -259,3 +259,41 @@ test("checkCorpus accepte des SkillRange fidèles au corpus", () => {
   ];
   expect(checkCorpus(sujets)).toEqual([]);
 });
+
+// --- deux intervalles disjoints ou chevauchement ---
+
+const qOrd = (ord: number, skill: string) => ({
+  "@id": `jlpt:q/${ord}`, "@type": "jlpt:Question",
+  "jlpt:stem": `énoncé ${ord}`, "jlpt:skill": skill, "jlpt:difficulty": 1, "jlpt:ord": ord,
+  opts: ["a", "b"], "jlpt:answer": 0,
+});
+const rangeMulti = (skill: string, from: number, count: number) => ({
+  "@id": `jlpt:corpus/${skill}-${from}`, "@type": "jlpt:SkillRange",
+  "jlpt:skill": skill, "jlpt:from": from, "jlpt:count": count,
+});
+
+test("checkCorpus accepte deux intervalles disjoints pour une même compétence", () => {
+  const subjects = [
+    qOrd(0, "lecture"), qOrd(1, "ecoute"), qOrd(2, "lecture"),
+    rangeMulti("lecture", 0, 1), rangeMulti("ecoute", 1, 1), rangeMulti("lecture", 2, 1),
+  ];
+  expect(checkCorpus(subjects)).toEqual([]);
+});
+
+test("checkCorpus signale deux intervalles qui revendiquent le même ordinal", () => {
+  const subjects = [
+    qOrd(0, "lecture"), qOrd(1, "ecoute"),
+    rangeMulti("lecture", 0, 2), rangeMulti("ecoute", 1, 1),
+  ];
+  const errs = checkCorpus(subjects);
+  expect(errs.some((e: string) => e.includes("revendiqué par deux SkillRange"))).toBe(true);
+});
+
+test("checkCorpus signale un ordinal hors des intervalles déclarés", () => {
+  const subjects = [
+    qOrd(0, "lecture"), qOrd(1, "lecture"),
+    rangeMulti("lecture", 0, 1), // ne couvre pas l'ord 1
+  ];
+  const errs = checkCorpus(subjects);
+  expect(errs.some((e: string) => e.includes("mais 2 questions"))).toBe(true);
+});

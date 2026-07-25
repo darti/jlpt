@@ -141,14 +141,35 @@ export function checkCorpus(subjects) {
       if (!parSkill.has(s)) parSkill.set(s, []);
       parSkill.get(s).push(q["jlpt:ord"]);
     }
+    // Une compétence peut occuper PLUSIEURS intervalles : le corpus n'est extensible qu'à sa
+    // fin (renuméroter corromprait les bitsets persistés), donc une question ajoutée à une
+    // compétence qui n'est pas la dernière ouvre un second intervalle. On confronte l'UNION.
+    // Et on refuse qu'un ordinal soit revendiqué deux fois : skillOfOrd rend le PREMIER
+    // intervalle qui matche, donc un chevauchement résout vers la mauvaise compétence en silence.
+    const claim = new Map();        // ord → compétence qui le revendique
+    const declares = new Map();     // compétence → nombre d'ordinaux déclarés
+    let chevauchementSignale = false;
     for (const r of ranges) {
-      const ords = (parSkill.get(r["jlpt:skill"]) ?? []).sort((a, b) => a - b);
-      const from = r["jlpt:from"];
-      const count = r["jlpt:count"];
-      if (ords.length !== count) {
-        errs.push(`SkillRange ${r["jlpt:skill"]} : count ${count}, mais ${ords.length} questions`);
-      } else if (ords.length && (ords[0] !== from || ords[ords.length - 1] !== from + count - 1)) {
-        errs.push(`SkillRange ${r["jlpt:skill"]} : intervalle [${from}, ${from + count - 1}] ≠ réel [${ords[0]}, ${ords[ords.length - 1]}]`);
+      const skill = r["jlpt:skill"], from = r["jlpt:from"], count = r["jlpt:count"];
+      declares.set(skill, (declares.get(skill) ?? 0) + count);
+      for (let o = from; o < from + count; o++) {
+        if (claim.has(o)) {
+          if (!chevauchementSignale) {
+            errs.push(`ord ${o} revendiqué par deux SkillRange : ${claim.get(o)} et ${skill}`);
+            chevauchementSignale = true; // un seul message : un chevauchement en produirait des milliers
+          }
+        } else claim.set(o, skill);
+      }
+    }
+    for (const [skill, ords] of parSkill) {
+      const n = declares.get(skill) ?? 0;
+      if (n !== ords.length) {
+        errs.push(`SkillRange ${skill} : ${n} ordinaux déclarés, mais ${ords.length} questions`);
+        continue;
+      }
+      const orphelin = ords.find((o) => claim.get(o) !== skill);
+      if (orphelin !== undefined) {
+        errs.push(`SkillRange ${skill} : ord ${orphelin} hors des intervalles déclarés`);
       }
     }
   }
