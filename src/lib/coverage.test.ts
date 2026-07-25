@@ -65,3 +65,24 @@ test("masteredCount compte les bits à 1 (vide, épars, plusieurs octets)", () =
   for (const id of [0, 7, 8, 100, 101]) b = setBit(b, id);
   expect(masteredCount(b)).toBe(5);
 });
+
+test("coverageBySkill agrège deux intervalles d'une même compétence", () => {
+  // lecture occupe [0,1] puis, après ajout en fin de corpus, [10,13] : 6 questions au total.
+  const ranges = [
+    { skill: "lecture" as const, from: 0, count: 2 },
+    { skill: "lecture" as const, from: 10, count: 4 },
+  ];
+  let seen = emptyBits();
+  seen = setBit(seen, 0);   // 1 vue dans le premier intervalle
+  seen = setBit(seen, 11);  // 1 vue dans le second
+  seen = setBit(seen, 12);  // 1 vue dans le second
+  let mastered = emptyBits();
+  mastered = setBit(mastered, 11);
+
+  const cov = coverageBySkill(seen, mastered, ranges)["lecture"];
+  expect(cov.total).toBe(6);
+  expect(cov.seenN).toBe(3);
+  expect(cov.masteredN).toBe(1);
+  expect(cov.seen).toBe(50);      // 3/6 — et non 2/4 (second intervalle seul)
+  expect(cov.mastered).toBe(17);  // 1/6 arrondi
+});
