@@ -41,7 +41,15 @@ export function migrateInline(passages, questions, noms) {
   for (const p of out) parTexte.set(p["jlpt:jp"], p["@id"]);
   let migres = 0;
 
-  const nextIndex = () => out.length + 1;
+  const suffixes = out
+    .map((p) => /^jlpt:passage\/legacy-(\d+)$/.exec(p["@id"])?.[1])
+    .filter(Boolean)
+    .map(Number);
+  // ⚠ Le compteur dérive du plus grand suffixe legacy-NN DÉJÀ posé, jamais de la longueur du
+  // tableau : passage.jsonld accueillera bientôt des passages d'un autre préfixe, et l'indice
+  // cesserait alors d'être déterministe.
+  let compteur = suffixes.length ? Math.max(...suffixes) : 0;
+  const nextIndex = () => ++compteur;
   const questionsOut = questions.map((q) => {
     const texte = q["jlpt:passage"];
     if (typeof texte !== "string") return q;

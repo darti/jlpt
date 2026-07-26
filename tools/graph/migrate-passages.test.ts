@@ -44,3 +44,13 @@ test("migrateInline ne renumérote aucun ordinal", () => {
   const r = migrateInline([], [q(7, "texte A"), q(8, "texte A")], noms);
   expect(r.questions.map((x) => x["jlpt:ord"])).toEqual([7, 8]);
 });
+
+test("migrateInline numerote depuis les legacy existants, pas depuis la taille du tableau", () => {
+  const deja = [
+    { "@id": "jlpt:passage/tanbun-01", "@type": "jlpt:Passage", "jlpt:jp": "x", "jlpt:format": "tanbun", "schema:name": "X" },
+    { "@id": "jlpt:passage/tanbun-02", "@type": "jlpt:Passage", "jlpt:jp": "y", "jlpt:format": "tanbun", "schema:name": "Y" },
+    { "@id": "jlpt:passage/tanbun-03", "@type": "jlpt:Passage", "jlpt:jp": "z", "jlpt:format": "tanbun", "schema:name": "Z" },
+  ];
+  const r = migrateInline(deja, [q(1, "texte A")], noms);
+  expect(r.passages[3]["@id"]).toBe("jlpt:passage/legacy-01");
+});
