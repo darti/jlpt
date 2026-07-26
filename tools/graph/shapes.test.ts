@@ -9,10 +9,10 @@ const SHAPES = new URL("../../data/graph/shapes.jsonld", import.meta.url).pathna
 
 const shapes = () => parseShapes(readDoc(SHAPES, CONTEXT).subjects, readContext(CONTEXT).prefixes);
 
-test("shapes.jsonld se parse et couvre les huit types du domaine", () => {
+test("shapes.jsonld se parse et couvre les neuf types du domaine", () => {
   const classes = shapes().map((s) => s.targetClass.split("#").pop()).sort();
   expect(classes).toEqual([
-    "Example", "GrammarPoint", "Kanji", "Lesson", "MethodNote", "Question", "SkillRange", "Word",
+    "Example", "GrammarPoint", "Kanji", "Lesson", "MethodNote", "Passage", "Question", "SkillRange", "Word",
   ]);
 });
 
