@@ -171,7 +171,21 @@ test("checkCorpus signale un ordinal hors des intervalles déclarés", () => {
   const errs = checkCorpus(subjects);
   expect(errs.some((e: string) => e.includes("mais 2 questions"))).toBe(true);
 });
+
+test("checkCorpus signale un SkillRange sans aucune question", () => {
+  // Le cas que boucler sur les seules compétences À QUESTIONS rendrait muet : un intervalle
+  // fantôme ne collisionne avec rien, donc seule l'union des deux côtés le voit.
+  const subjects = [
+    qOrd(0, "lecture"),
+    range("lecture", 0, 1), range("ecoute", 5, 3), // « ecoute » n'a aucune question
+  ];
+  const errs = checkCorpus(subjects);
+  expect(errs.some((e: string) => e.includes("ecoute") && e.includes("mais 0 questions"))).toBe(true);
+});
 ```
+
+> ⚠ `integrity.test.ts` déclare déjà un helper `range` plus haut dans le fichier : nommer les
+> deux helpers ci-dessus `qOrd` / `rangeMulti` pour éviter la redéclaration (`SyntaxError`).
 
 - [ ] **Step 2: Run test to verify it fails**
 
@@ -203,7 +217,13 @@ Dans `tools/graph/integrity.mjs`, remplacer la boucle `for (const r of ranges) {
         } else claim.set(o, skill);
       }
     }
-    for (const [skill, ords] of parSkill) {
+    // ⚠ Itérer sur l'UNION des compétences vues côté questions ET côté intervalles. Boucler sur
+    // `parSkill` seul rendrait MUET un SkillRange fantôme (compétence mal orthographiée dans
+    // corpus.jsonld, ou intervalle resté après suppression de ses questions) : il ne collisionne
+    // avec aucun ordinal, donc rien ne le signalerait — alors que c'est précisément le mensonge
+    // que ce contrôle existe pour empêcher, et que l'ancien code attrapait.
+    for (const skill of new Set([...parSkill.keys(), ...declares.keys()])) {
+      const ords = parSkill.get(skill) ?? [];
       const n = declares.get(skill) ?? 0;
       if (n !== ords.length) {
         errs.push(`SkillRange ${skill} : ${n} ordinaux déclarés, mais ${ords.length} questions`);
