@@ -1,0 +1,34 @@
+{
+ "passages": [
+  {
+   "id": "jlpt:passage/tanbun-01",
+   "name": "Note de service : ascenseur en travaux",
+   "format": "tanbun",
+   "jp": "社員のみなさんへ。三月十日から十二日まで、エレベーターの工事を行います。その間、エレベーターは使えませんので、階段をご利用ください。ご不便をおかけしますが、ご協力をお願いします。なお、大きな荷物をお持ちの方は、一階の事務室にお声をおかけください。",
+   "fr": "Avis au personnel : l'ascenseur sera en travaux du 10 au 12 mars ; merci d'emprunter l'escalier.",
+   "tests": ["jlpt:word/工事", "jlpt:word/利用"],
+   "questions": [
+    {
+     "stem": "この お知らせ から 分かる こと は 何 ですか。",
+     "opts": [
+      "三月十日から三日間、階段を使う",
+      "三月十日にエレベーターが直る",
+      "工事の間は会社が休みになる",
+      "階段の工事が三日間行われる"
+     ],
+     "answer": 0,
+     "difficulty": 2,
+     "description": "<b>十日から十二日まで</b> = trois jours ; l'ascenseur étant inutilisable, on prend l'escalier.",
+     "gloss": "工事（こうじ）« travaux » · 行う（おこなう）« effectuer » · その間（そのあいだ）« pendant ce temps » · 階段（かいだん）« escalier » · 利用（りよう）« usage »",
+     "optionNote": [
+      "Du 10 au 12 inclus = trois jours d'escalier — exact",
+      "« Réparé le 10 » : c'est le début des travaux, pas leur fin",
+      "L'avis ne dit rien d'une fermeture de l'entreprise",
+      "Ce sont les travaux de l'ASCENSEUR, pas de l'escalier"
+     ],
+     "tests": ["jlpt:word/工事"]
+    }
+   ]
+  }
+ ]
+}
