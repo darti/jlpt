@@ -627,7 +627,7 @@
     "Lire avec un ami n'apparaît pas dans le texte",
     "Au contraire, lire longtemps empêche de tenir, dit-il"
    ],
-   "jlpt:passage": "私は毎晩、寝る前に三十分だけ本を読むことにしている。最初はなかなか続かなかったが、「一日三十分だけ」と決めてからは、無理なく習慣になった。長い時間やろうとすると、かえって続かないものだ。大切なのは、少しでも毎日続けることだと思う。"
+   "readsPassage": "jlpt:passage/legacy-01"
   },
   {
    "@id": "jlpt:q/10250",
@@ -651,7 +651,7 @@
     "Faux : selon lui durer chaque jour compte, donc le temps importe",
     "Le texte ne compare jamais lecture et études"
    ],
-   "jlpt:passage": "私は毎晩、寝る前に三十分だけ本を読むことにしている。最初はなかなか続かなかったが、「一日三十分だけ」と決めてからは、無理なく習慣になった。長い時間やろうとすると、かえって続かないものだ。大切なのは、少しでも毎日続けることだと思う。"
+   "readsPassage": "jlpt:passage/legacy-01"
   },
   {
    "@id": "jlpt:q/10251",
@@ -675,7 +675,7 @@
     "Attendre la fin des travaux : non, une boîte de retour est prévue",
     "Contacter par mail n'est pas mentionné pour les retours"
    ],
-   "jlpt:passage": "みどり図書館からのお知らせ。来週の月曜日から水曜日まで、館内の工事のため休館します。本の返却は、入口の横にある返却ポストへお願いします。なお、インターネットでの予約や貸出期間の延長は、いつも通りご利用いただけます。"
+   "readsPassage": "jlpt:passage/legacy-02"
   },
   {
    "@id": "jlpt:q/10252",
@@ -699,7 +699,7 @@
     "Emprunter un livre n'est pas possible pendant la fermeture",
     "Aucun événement n'est mentionné dans l'avis"
    ],
-   "jlpt:passage": "みどり図書館からのお知らせ。来週の月曜日から水曜日まで、館内の工事のため休館します。本の返却は、入口の横にある返却ポストへお願いします。なお、インターネットでの予約や貸出期間の延長は、いつも通りご利用いただけます。"
+   "readsPassage": "jlpt:passage/legacy-02"
   },
   {
    "@id": "jlpt:q/10253",
@@ -723,7 +723,7 @@
     "Envoyer des documents n'est pas évoqué dans le message",
     "Se réunir mardi matin : non, c'est mardi qui ne va pas"
    ],
-   "jlpt:passage": "山田さんへ。お疲れさまです。来週の打ち合わせの件ですが、火曜日の午後はどうしても都合がつかなくなってしまいました。申し訳ありませんが、水曜日の同じ時間に変更していただけないでしょうか。もし難しいようでしたら、ご都合のよい日をいくつか教えてください。田中"
+   "readsPassage": "jlpt:passage/legacy-03"
   },
   {
    "@id": "jlpt:q/10254",
@@ -747,7 +747,7 @@
     "Faire mardi : non, c'est justement mardi qui pose problème",
     "Annuler la réunion n'est pas proposé"
    ],
-   "jlpt:passage": "山田さんへ。お疲れさまです。来週の打ち合わせの件ですが、火曜日の午後はどうしても都合がつかなくなってしまいました。申し訳ありませんが、水曜日の同じ時間に変更していただけないでしょうか。もし難しいようでしたら、ご都合のよい日をいくつか教えてください。田中"
+   "readsPassage": "jlpt:passage/legacy-03"
   },
   {
    "@id": "jlpt:q/10255",
@@ -771,7 +771,7 @@
     "Aller à pied n'est pas évoqué dans le texte",
     "Prendre congé n'est pas mentionné"
    ],
-   "jlpt:passage": "最近、自転車で通勤する人が増えている。電車のように混まず、運動にもなるからだ。ただし、雨の日は危ないので無理をしないほうがいい。私は、晴れた日は自転車、雨の日は電車、と決めている。天気に合わせて方法を変えると、続けやすい。"
+   "readsPassage": "jlpt:passage/legacy-04"
   },
   {
    "@id": "jlpt:q/10256",
@@ -795,7 +795,7 @@
     "« Rapide et pratique » n'est pas mentionné",
     "Aucune recommandation de l'entreprise n'apparaît"
    ],
-   "jlpt:passage": "最近、自転車で通勤する人が増えている。電車のように混まず、運動にもなるからだ。ただし、雨の日は危ないので無理をしないほうがいい。私は、晴れた日は自転車、雨の日は電車、と決めている。天気に合わせて方法を変えると、続けやすい。"
+   "readsPassage": "jlpt:passage/legacy-04"
   },
   {
    "@id": "jlpt:q/10257",
@@ -819,7 +819,7 @@
     "« pas pu partir tôt » : non mentionné comme cause du retard",
     "« famille lente à se préparer » : non évoqué dans le texte"
    ],
-   "jlpt:passage": "先週、家族で温泉に旅行に行った。電車で行く予定だったが、当日は朝から大雨で、電車が止まってしまった。仕方なく車で出発したが、道がとても込んでいて、着いたのは予定より三時間も遅かった。それでも、夜の温泉はとても気持ちがよく、疲れがすっかり取れた。次に行くときは、天気をよく調べてから出かけたいと思う。"
+   "readsPassage": "jlpt:passage/legacy-05"
   },
   {
    "@id": "jlpt:q/10258",
@@ -843,7 +843,7 @@
     "« se lever plus tôt » : non mentionné comme souhait",
     "« rester longtemps au onsen » : non évoqué comme intention future"
    ],
-   "jlpt:passage": "先週、家族で温泉に旅行に行った。電車で行く予定だったが、当日は朝から大雨で、電車が止まってしまった。仕方なく車で出発したが、道がとても込んでいて、着いたのは予定より三時間も遅かった。それでも、夜の温泉はとても気持ちがよく、疲れがすっかり取れた。次に行くときは、天気をよく調べてから出かけたいと思う。"
+   "readsPassage": "jlpt:passage/legacy-05"
   },
   {
    "@id": "jlpt:q/10259",
@@ -867,7 +867,7 @@
     "Dernière phrase : « les commandes par Internet restent disponibles » — exact",
     "« livraison des produits » : non évoquée dans l'annonce"
    ],
-   "jlpt:passage": "お客様各位　いつもご利用ありがとうございます。当店は店内の工事のため、七月一日から七月五日まで休業させていただきます。なお、七月六日からは新しくなった店内で営業を再開いたします。ご不便をおかけしますが、よろしくお願いいたします。インターネットでのご注文は休業中もご利用いただけます。"
+   "readsPassage": "jlpt:passage/legacy-06"
   },
   {
    "@id": "jlpt:q/10260",
@@ -891,7 +891,7 @@
     "Texte : « à partir du 6 juillet… réouverture » — exact",
     "« 10 juillet » : date non mentionnée dans l'annonce"
    ],
-   "jlpt:passage": "お客様各位　いつもご利用ありがとうございます。当店は店内の工事のため、七月一日から七月五日まで休業させていただきます。なお、七月六日からは新しくなった店内で営業を再開いたします。ご不便をおかけしますが、よろしくお願いいたします。インターネットでのご注文は休業中もご利用いただけます。"
+   "readsPassage": "jlpt:passage/legacy-06"
   },
   {
    "@id": "jlpt:q/10261",
@@ -915,7 +915,7 @@
     "Texte : « non pas 20 mais 30 exemplaires » — exact",
     "« 50 exemplaires » : chiffre non mentionné dans la note"
    ],
-   "jlpt:passage": "田中さんへ　明日の会議の資料ですが、人数が増えたので、二十部ではなく三十部用意してください。それから、会議室は三階から五階に変わりました。エアコンの調子が悪いので、上着を持って来たほうがいいかもしれません。準備をよろしくお願いします。何か分からないことがあれば、私の携帯に連絡してください。　佐藤"
+   "readsPassage": "jlpt:passage/legacy-07"
   },
   {
    "@id": "jlpt:q/10262",
@@ -939,7 +939,7 @@
     "« la réunion est longue » : non mentionné comme raison",
     "« le 5e étage est sombre » : non évoqué dans la note"
    ],
-   "jlpt:passage": "田中さんへ　明日の会議の資料ですが、人数が増えたので、二十部ではなく三十部用意してください。それから、会議室は三階から五階に変わりました。エアコンの調子が悪いので、上着を持って来たほうがいいかもしれません。準備をよろしくお願いします。何か分からないことがあれば、私の携帯に連絡してください。　佐藤"
+   "readsPassage": "jlpt:passage/legacy-07"
   },
   {
    "@id": "jlpt:q/10263",
@@ -963,7 +963,7 @@
     "« la salle est proche » : mentionné mais pas comme cause du plaisir",
     "« réduit le nombre de séances » : non évoqué dans le texte"
    ],
-   "jlpt:passage": "私は去年から週に二回、近くのジムに通っている。最初は体を動かすのがつらくて、行きたくない日も多かった。しかし、同じ時間に通う友人ができてから、楽しく続けられるようになった。一人だと休んでしまうが、待っている人がいると思うと、自然と足が向く。健康のためだけでなく、人とのつながりも大切だと感じている。"
+   "readsPassage": "jlpt:passage/legacy-08"
   },
   {
    "@id": "jlpt:q/10264",
@@ -987,7 +987,7 @@
     "« la salle est chère » : non mentionné dans le texte",
     "« deux fois par semaine ne suffit pas » : non évoqué"
    ],
-   "jlpt:passage": "私は去年から週に二回、近くのジムに通っている。最初は体を動かすのがつらくて、行きたくない日も多かった。しかし、同じ時間に通う友人ができてから、楽しく続けられるようになった。一人だと休んでしまうが、待っている人がいると思うと、自然と足が向く。健康のためだけでなく、人とのつながりも大切だと感じている。"
+   "readsPassage": "jlpt:passage/legacy-08"
   },
   {
    "@id": "jlpt:q/10265",
