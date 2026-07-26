@@ -87,6 +87,32 @@ test("loadCategory fetches the skill shard and memoizes", async () => {
   expect(a[0].id).toBe(0);  // projeté vers le type interne du moteur
 });
 
+test("loadCategory résout le passage et écarte une IRI pendante", async () => {
+  clearCategoryCache();
+  const fetchImpl = async (url: string) => ({
+    json: async () => url.includes("passage.jsonld")
+      ? { "@graph": [{
+          "@id": "jlpt:passage/tanbun-01", "@type": "jlpt:Passage",
+          "schema:name": "Note", "jlpt:jp": "エレベーターは 工事中 です。", "jlpt:format": "tanbun",
+        }] }
+      : { "@graph": [
+          { "@id": "jlpt:q/10307", "@type": "jlpt:Question", "jlpt:ord": 10307,
+            "jlpt:skill": "lecture", "jlpt:difficulty": 2, "jlpt:stem": "何 が 分かりますか。",
+            opts: ["a", "b"], "jlpt:answer": 0, readsPassage: "jlpt:passage/tanbun-01" },
+          { "@id": "jlpt:q/10308", "@type": "jlpt:Question", "jlpt:ord": 10308,
+            "jlpt:skill": "lecture", "jlpt:difficulty": 2, "jlpt:stem": "いつ ですか。",
+            opts: ["a", "b"], "jlpt:answer": 0, readsPassage: "jlpt:passage/absent" },
+          { "@id": "jlpt:q/10309", "@type": "jlpt:Question", "jlpt:ord": 10309,
+            "jlpt:skill": "lecture", "jlpt:difficulty": 1, "jlpt:stem": "どこ ですか。",
+            opts: ["a", "b"], "jlpt:answer": 0 },
+        ] },
+  });
+  const pool = await loadCategory("lecture", fetchImpl);
+  expect(pool.map((q) => q.id)).toEqual([10307, 10309]); // 10308 écartée : passage pendant
+  expect(pool[0].passage?.jp).toBe("エレベーターは 工事中 です。");
+  expect(pool[1].passage).toBeUndefined();               // question sans passage : intacte
+});
+
 test("selectRecentErrors returns [] for empty wrong or non-positive n", () => {
   expect(selectRecentErrors([], 3)).toEqual([]);
   expect(selectRecentErrors([1, 2, 3], 0)).toEqual([]);

@@ -1,7 +1,7 @@
 import { SKILLS, type Skill } from "../types/progress.ts";
 import { DRATING } from "./elo.ts";
 import type { Question } from "../types/quiz.ts";
-import { clearGraphCache, loadSkill, skillOfOrd, type SkillRange } from "./graph.ts";
+import { clearGraphCache, loadPassages, loadSkill, skillOfOrd, type SkillRange } from "./graph.ts";
 
 export type FetchLike = (url: string) => Promise<{ json: () => Promise<unknown> }>;
 
@@ -21,11 +21,26 @@ export function clearCategoryCache(): void {
   clearGraphCache();
 }
 
-/** Le pool d'une compétence. Passe par le graphe (`q-<skill>.jsonld`) : la projection
- *  JSON-LD → `Question` vit dans `graph.ts`, pas ici, pour que les couches pures de ce
- *  module ne sachent rien du format des documents. */
-export function loadCategory(cat: Skill, fetchImpl: FetchLike = fetch as FetchLike): Promise<Question[]> {
-  return loadSkill(cat, fetchImpl);
+/** Le pool d'une compétence, passages **résolus**. Passe par le graphe (`q-<skill>.jsonld`) :
+ *  la projection JSON-LD → `Question` vit dans `graph.ts`, pas ici.
+ *
+ *  ⚠ Une question dont le `passageId` ne résout pas est ÉCARTÉE : sans son texte, elle est
+ *  inrépondable. Le court-circuit `some()` garde les quatre autres compétences sur le tableau
+ *  mémoïsé tel quel — seule la lecture paie la reconstruction (une centaine d'objets). */
+export async function loadCategory(
+  cat: Skill, fetchImpl: FetchLike = fetch as FetchLike,
+): Promise<Question[]> {
+  const pool = await loadSkill(cat, fetchImpl);
+  if (!pool.some((q) => typeof q.passageId === "string")) return pool;
+  const passages = await loadPassages(fetchImpl);
+  const out: Question[] = [];
+  for (const q of pool) {
+    if (typeof q.passageId !== "string") { out.push(q); continue; }
+    const p = passages.get(q.passageId);
+    if (!p) { console.warn(`question ${q.id} : passage ${q.passageId} introuvable — écartée`); continue; }
+    out.push({ ...q, passage: p });
+  }
+  return out;
 }
 
 /** Les cinq pools, chargés **en parallèle**. Une session composée a besoin de toutes les
