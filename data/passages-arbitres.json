@@ -29,6 +29,126 @@
      "tests": ["jlpt:word/工事"]
     }
    ]
+  },
+  {
+   "id": "jlpt:passage/chubun-01",
+   "name": "Billet : aller au travail à vélo",
+   "format": "chubun",
+   "jp": "去年の春に会社の近くへ引っ越してから、電車をやめて、自転車で通勤するようになった。前は駅まで歩いて十分、それから電車に十五分乗っていた。今は家から会社まで自転車で二十五分ほどで、かかる時間はほとんど変わらない。雨の日はバスを使うが、道が混むので四十分近くかかることもある。それでも自転車を選んでいるのは、途中の景色が毎日少しずつ違うからだ。同じ道を走っていても、川の水の色も、風のにおいも、季節によって変わる。先週は、いつも通る公園の桜がもう散り始めていることに気づいた。電車に乗っていたころは、携帯を見ているうちに駅に着いてしまい、窓の外を見ることさえほとんどなかった。速く着くことより、行く途中で何かに気づくことのほうが、今の私には大事なのかもしれない。",
+   "fr": "Billet : depuis qu'il s'est rapproché de son bureau, l'auteur y va à vélo — non pour gagner du temps, mais pour ce qu'il remarque en chemin.",
+   "tests": ["jlpt:word/通勤", "jlpt:word/景色", "jlpt:word/季節"],
+   "questions": [
+    {
+     "stem": "今、筆者は自転車で家から会社まで、どのくらいかかりますか。",
+     "opts": [
+      "十分ぐらい",
+      "十五分ぐらい",
+      "二十五分ぐらい",
+      "四十分近く"
+     ],
+     "answer": 2,
+     "difficulty": 1,
+     "description": "<b>今は家から会社まで自転車で二十五分ほど</b>. Les trois autres durées figurent bien dans le texte, mais désignent autre chose : la marche jusqu'à la gare, le train, et le bus des jours de pluie.",
+     "gloss": "通勤（つうきん）« trajet domicile-travail » · 引っ越す（ひっこす）« déménager » · 〜ほど « environ » · 混む（こむ）« être encombré » · 近く（ちかく）« près de, presque »",
+     "optionNote": [
+      "Dix minutes : c'est la marche jusqu'à la gare, du temps où il prenait le train",
+      "Quinze minutes : c'est la durée du trajet en train, avant le déménagement",
+      "Vingt-cinq minutes : 自転車で二十五分ほど, c'est bien le trajet actuel de chez lui au bureau — exact",
+      "Près de quarante minutes : c'est le bus des jours de pluie, quand la circulation est chargée"
+     ],
+     "tests": ["jlpt:word/通勤"]
+    },
+    {
+     "stem": "「電車に乗っていたころ」について、この文章から分かることは何ですか。",
+     "opts": [
+      "電車の窓が汚れていて、外がよく見えなかった",
+      "通勤の間、周りの様子にほとんど目を向けていなかった",
+      "電車の中では、いつも眠っていた",
+      "電車が混んでいて、座れないことが多かった"
+     ],
+     "answer": 1,
+     "difficulty": 2,
+     "description": "Le texte n'écrit jamais « je ne faisais pas attention » : il le montre par <b>窓の外を見ることさえほとんどなかった</b> — さえ marque le degré minimal, et 携帯を見ているうちに en donne la raison.",
+     "gloss": "〜ころ « à l'époque où » · 携帯（けいたい）« téléphone portable » · 〜うちに « pendant que » · 〜さえ « même (degré minimal) » · 様子（ようす）« aspect, ce qui se passe »",
+     "optionNote": [
+      "L'état des vitres n'est jamais évoqué : s'il ne regardait pas dehors, ce n'est pas qu'il ne pouvait pas",
+      "携帯を見ているうちに駅に着いてしまい、窓の外を見ることさえほとんどなかった : il ne prêtait aucune attention à ce qui l'entourait — c'est ce qui se déduit",
+      "Le texte dit qu'il passait le trajet sur son téléphone, pas qu'il dormait",
+      "L'affluence dans le train n'apparaît nulle part ; c'est la circulation, sous la pluie, que le texte dit chargée"
+     ],
+     "tests": ["jlpt:gram/てしまう", "jlpt:word/携帯"]
+    },
+    {
+     "stem": "筆者がこの文章で一番言いたいことは何ですか。",
+     "opts": [
+      "自転車は電車より速いので、通勤に向いている",
+      "会社の近くに引っ越せば、通勤が楽になる",
+      "行き方を変えると、これまで見えなかったものが見えてくる",
+      "天気の悪い日は、無理をせずに乗り物を変えたほうがいい"
+     ],
+     "answer": 2,
+     "difficulty": 3,
+     "description": "La dernière phrase donne le propos : <b>速く着くことより、行く途中で何かに気づくことのほうが大事</b>. Les autres options reprennent un détail vrai (la pluie, le déménagement) ou contredisent le texte (la vitesse).",
+     "gloss": "〜より〜のほうが « plutôt que…, c'est… qui » · 途中（とちゅう）« en chemin » · 気づく（きづく）« se rendre compte » · 大事（だいじ）« important » · かもしれない « peut-être »",
+     "optionNote": [
+      "Contredit le texte : かかる時間はほとんど変わらない — le vélo ne fait pas gagner de temps",
+      "Le déménagement n'est que le point de départ du récit ; l'auteur ne conseille nulle part de se rapprocher de son travail",
+      "L'auteur conclut que remarquer quelque chose en chemin compte plus qu'arriver vite : changer de mode de trajet lui a ouvert les yeux — c'est bien son propos",
+      "Le bus des jours de pluie est un détail pratique, pas ce que l'auteur veut faire passer"
+     ],
+     "tests": ["jlpt:gram/のほうが", "jlpt:gram/かもしれない"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/joho-01",
+   "name": "Centre municipal : cours de japonais",
+   "format": "joho",
+   "jp": "みどり市民センター　日本語教室のご案内　◆時間　水曜日　午後六時半〜八時／土曜日　午前十時〜十一時半　◆料金　一回五百円。初めて参加する日は、これに教材費千円が加わります。　◆申し込み　前の日の午後五時までに、電話かメールでお知らせください。　◆その他　中学生以下の方は、保護者と一緒にご参加ください。教室が休みになる日は、入口の案内板でお知らせします。",
+   "fr": "Annonce d'un centre municipal : horaires, tarifs et conditions d'inscription d'un cours de japonais.",
+   "tests": ["jlpt:word/料金", "jlpt:word/申し込み", "jlpt:word/参加"],
+   "questions": [
+    {
+     "stem": "この教室に初めて参加する人は、その日にいくら払いますか。",
+     "opts": [
+      "五百円",
+      "千円",
+      "千五百円",
+      "二千円"
+     ],
+     "answer": 2,
+     "difficulty": 2,
+     "description": "Le tarif se lit sur <b>deux données</b> : 一回五百円, et 初めて参加する日は、これに教材費千円が加わります。 La somme, 1 500 yens, n'est écrite nulle part — c'est au lecteur de l'additionner.",
+     "gloss": "料金（りょうきん）« tarif » · 一回（いっかい）« une séance » · 教材費（きょうざいひ）« frais de matériel » · 加わる（くわわる）« s'ajouter » · 払う（はらう）« payer »",
+     "optionNote": [
+      "Cinq cents yens, c'est le tarif d'une séance seule : le premier jour, les frais de matériel s'y ajoutent",
+      "Mille yens, ce sont les seuls frais de matériel ; la séance elle-même reste due",
+      "一回五百円 plus 教材費千円 le premier jour, soit 1 500 yens — exact",
+      "Deux mille yens supposerait deux séances (500 × 2) plus le matériel ; le texte ne fait payer qu'une séance"
+     ],
+     "tests": ["jlpt:word/料金"]
+    },
+    {
+     "stem": "土曜日の教室に参加したい人は、いつまでに申し込みますか。",
+     "opts": [
+      "木曜日の午後五時まで",
+      "金曜日の午後五時まで",
+      "土曜日の午前十時まで",
+      "当日ならいつでもよい"
+     ],
+     "answer": 1,
+     "difficulty": 2,
+     "description": "Deux données à croiser : le cours du samedi a lieu le <b>土曜日</b>, et l'inscription se fait <b>前の日の午後五時までに</b> — la veille d'un samedi étant le vendredi, la limite est vendredi 17 h.",
+     "gloss": "申し込む（もうしこむ）« s'inscrire » · 前の日（まえのひ）« la veille » · 〜までに « au plus tard à » · 当日（とうじつ）« le jour même »",
+     "optionNote": [
+      "Jeudi, c'est l'avant-veille : le texte demande la veille du cours, pas deux jours avant",
+      "前の日の午後五時までに : la veille d'un cours du samedi, c'est le vendredi — exact",
+      "Dix heures du matin le samedi, c'est l'heure de début du cours, pas la limite d'inscription",
+      "Le texte fixe la limite à la veille : s'inscrire le jour même n'est pas prévu"
+     ],
+     "tests": ["jlpt:word/申し込み"]
+    }
+   ]
   }
  ]
 }

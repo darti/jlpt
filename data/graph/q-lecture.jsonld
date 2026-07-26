@@ -1221,6 +1221,170 @@
     "« c'est nouveau » : sans rapport avec la rupture de stock",
     "« ce n'est pas populaire » : 品切れ n'indique pas l'impopularité"
    ]
+  },
+  {
+   "@id": "jlpt:q/10307",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 10307,
+   "jlpt:stem": "この お知らせ から 分かる こと は 何 ですか。",
+   "opts": [
+    "三月十日から三日間、階段を使う",
+    "三月十日にエレベーターが直る",
+    "工事の間は会社が休みになる",
+    "階段の工事が三日間行われる"
+   ],
+   "jlpt:answer": 0,
+   "readsPassage": "jlpt:passage/tanbun-01",
+   "schema:description": "<b>十日から十二日まで</b> = trois jours ; l'ascenseur étant inutilisable, on prend l'escalier.",
+   "jlpt:gloss": "工事（こうじ）« travaux » · 行う（おこなう）« effectuer » · その間（そのあいだ）« pendant ce temps » · 階段（かいだん）« escalier » · 利用（りよう）« usage »",
+   "jlpt:optionNote": [
+    "Du 10 au 12 inclus = trois jours d'escalier — exact",
+    "« Réparé le 10 » : c'est le début des travaux, pas leur fin",
+    "L'avis ne dit rien d'une fermeture de l'entreprise",
+    "Ce sont les travaux de l'ASCENSEUR, pas de l'escalier"
+   ],
+   "tests": [
+    "jlpt:word/工事"
+   ]
+  },
+  {
+   "@id": "jlpt:q/10308",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 1,
+   "jlpt:ord": 10308,
+   "jlpt:stem": "今、筆者は自転車で家から会社まで、どのくらいかかりますか。",
+   "opts": [
+    "十分ぐらい",
+    "十五分ぐらい",
+    "二十五分ぐらい",
+    "四十分近く"
+   ],
+   "jlpt:answer": 2,
+   "readsPassage": "jlpt:passage/chubun-01",
+   "schema:description": "<b>今は家から会社まで自転車で二十五分ほど</b>. Les trois autres durées figurent bien dans le texte, mais désignent autre chose : la marche jusqu'à la gare, le train, et le bus des jours de pluie.",
+   "jlpt:gloss": "通勤（つうきん）« trajet domicile-travail » · 引っ越す（ひっこす）« déménager » · 〜ほど « environ » · 混む（こむ）« être encombré » · 近く（ちかく）« près de, presque »",
+   "jlpt:optionNote": [
+    "Dix minutes : c'est la marche jusqu'à la gare, du temps où il prenait le train",
+    "Quinze minutes : c'est la durée du trajet en train, avant le déménagement",
+    "Vingt-cinq minutes : 自転車で二十五分ほど, c'est bien le trajet actuel de chez lui au bureau — exact",
+    "Près de quarante minutes : c'est le bus des jours de pluie, quand la circulation est chargée"
+   ],
+   "tests": [
+    "jlpt:word/通勤"
+   ]
+  },
+  {
+   "@id": "jlpt:q/10309",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 10309,
+   "jlpt:stem": "「電車に乗っていたころ」について、この文章から分かることは何ですか。",
+   "opts": [
+    "電車の窓が汚れていて、外がよく見えなかった",
+    "通勤の間、周りの様子にほとんど目を向けていなかった",
+    "電車の中では、いつも眠っていた",
+    "電車が混んでいて、座れないことが多かった"
+   ],
+   "jlpt:answer": 1,
+   "readsPassage": "jlpt:passage/chubun-01",
+   "schema:description": "Le texte n'écrit jamais « je ne faisais pas attention » : il le montre par <b>窓の外を見ることさえほとんどなかった</b> — さえ marque le degré minimal, et 携帯を見ているうちに en donne la raison.",
+   "jlpt:gloss": "〜ころ « à l'époque où » · 携帯（けいたい）« téléphone portable » · 〜うちに « pendant que » · 〜さえ « même (degré minimal) » · 様子（ようす）« aspect, ce qui se passe »",
+   "jlpt:optionNote": [
+    "L'état des vitres n'est jamais évoqué : s'il ne regardait pas dehors, ce n'est pas qu'il ne pouvait pas",
+    "携帯を見ているうちに駅に着いてしまい、窓の外を見ることさえほとんどなかった : il ne prêtait aucune attention à ce qui l'entourait — c'est ce qui se déduit",
+    "Le texte dit qu'il passait le trajet sur son téléphone, pas qu'il dormait",
+    "L'affluence dans le train n'apparaît nulle part ; c'est la circulation, sous la pluie, que le texte dit chargée"
+   ],
+   "tests": [
+    "jlpt:gram/てしまう",
+    "jlpt:word/携帯"
+   ]
+  },
+  {
+   "@id": "jlpt:q/10310",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 10310,
+   "jlpt:stem": "筆者がこの文章で一番言いたいことは何ですか。",
+   "opts": [
+    "自転車は電車より速いので、通勤に向いている",
+    "会社の近くに引っ越せば、通勤が楽になる",
+    "行き方を変えると、これまで見えなかったものが見えてくる",
+    "天気の悪い日は、無理をせずに乗り物を変えたほうがいい"
+   ],
+   "jlpt:answer": 2,
+   "readsPassage": "jlpt:passage/chubun-01",
+   "schema:description": "La dernière phrase donne le propos : <b>速く着くことより、行く途中で何かに気づくことのほうが大事</b>. Les autres options reprennent un détail vrai (la pluie, le déménagement) ou contredisent le texte (la vitesse).",
+   "jlpt:gloss": "〜より〜のほうが « plutôt que…, c'est… qui » · 途中（とちゅう）« en chemin » · 気づく（きづく）« se rendre compte » · 大事（だいじ）« important » · かもしれない « peut-être »",
+   "jlpt:optionNote": [
+    "Contredit le texte : かかる時間はほとんど変わらない — le vélo ne fait pas gagner de temps",
+    "Le déménagement n'est que le point de départ du récit ; l'auteur ne conseille nulle part de se rapprocher de son travail",
+    "L'auteur conclut que remarquer quelque chose en chemin compte plus qu'arriver vite : changer de mode de trajet lui a ouvert les yeux — c'est bien son propos",
+    "Le bus des jours de pluie est un détail pratique, pas ce que l'auteur veut faire passer"
+   ],
+   "tests": [
+    "jlpt:gram/のほうが",
+    "jlpt:gram/かもしれない"
+   ]
+  },
+  {
+   "@id": "jlpt:q/10311",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 10311,
+   "jlpt:stem": "この教室に初めて参加する人は、その日にいくら払いますか。",
+   "opts": [
+    "五百円",
+    "千円",
+    "千五百円",
+    "二千円"
+   ],
+   "jlpt:answer": 2,
+   "readsPassage": "jlpt:passage/joho-01",
+   "schema:description": "Le tarif se lit sur <b>deux données</b> : 一回五百円, et 初めて参加する日は、これに教材費千円が加わります。 La somme, 1 500 yens, n'est écrite nulle part — c'est au lecteur de l'additionner.",
+   "jlpt:gloss": "料金（りょうきん）« tarif » · 一回（いっかい）« une séance » · 教材費（きょうざいひ）« frais de matériel » · 加わる（くわわる）« s'ajouter » · 払う（はらう）« payer »",
+   "jlpt:optionNote": [
+    "Cinq cents yens, c'est le tarif d'une séance seule : le premier jour, les frais de matériel s'y ajoutent",
+    "Mille yens, ce sont les seuls frais de matériel ; la séance elle-même reste due",
+    "一回五百円 plus 教材費千円 le premier jour, soit 1 500 yens — exact",
+    "Deux mille yens supposerait deux séances (500 × 2) plus le matériel ; le texte ne fait payer qu'une séance"
+   ],
+   "tests": [
+    "jlpt:word/料金"
+   ]
+  },
+  {
+   "@id": "jlpt:q/10312",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 10312,
+   "jlpt:stem": "土曜日の教室に参加したい人は、いつまでに申し込みますか。",
+   "opts": [
+    "木曜日の午後五時まで",
+    "金曜日の午後五時まで",
+    "土曜日の午前十時まで",
+    "当日ならいつでもよい"
+   ],
+   "jlpt:answer": 1,
+   "readsPassage": "jlpt:passage/joho-01",
+   "schema:description": "Deux données à croiser : le cours du samedi a lieu le <b>土曜日</b>, et l'inscription se fait <b>前の日の午後五時までに</b> — la veille d'un samedi étant le vendredi, la limite est vendredi 17 h.",
+   "jlpt:gloss": "申し込む（もうしこむ）« s'inscrire » · 前の日（まえのひ）« la veille » · 〜までに « au plus tard à » · 当日（とうじつ）« le jour même »",
+   "jlpt:optionNote": [
+    "Jeudi, c'est l'avant-veille : le texte demande la veille du cours, pas deux jours avant",
+    "前の日の午後五時までに : la veille d'un cours du samedi, c'est le vendredi — exact",
+    "Dix heures du matin le samedi, c'est l'heure de début du cours, pas la limite d'inscription",
+    "Le texte fixe la limite à la veille : s'inscrire le jour même n'est pas prévu"
+   ],
+   "tests": [
+    "jlpt:word/申し込み"
+   ]
   }
  ]
 }
