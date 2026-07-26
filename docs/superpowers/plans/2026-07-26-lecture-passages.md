@@ -1230,11 +1230,16 @@ export function auditPassages(decisions, refs) {
     vus.add(p.id);
     if (!p.name) errs.push(`${tag} : name manquant`);
 
+    // ⚠ PAS de `continue` sur un format inconnu : les contrôles structurels des questions
+    // (cardinalité d'optionNote, réponse hors bornes…) n'en dépendent pas, et les masquer
+    // livrerait un rapport trompeur — l'auteur corrigerait le format, relancerait, et
+    // découvrirait alors seulement les vrais défauts. Seuls les contrôles DÉRIVÉS du gabarit
+    // sont sautés.
     const g = GABARIT[p.format];
-    if (!g) { errs.push(`${tag} : format inconnu « ${p.format} »`); continue; }
+    if (!g) errs.push(`${tag} : format inconnu « ${p.format} »`);
 
     const jp = String(p.jp ?? "");
-    if (jp.length < g.min || jp.length > g.max) {
+    if (g && (jp.length < g.min || jp.length > g.max)) {
       errs.push(`${tag} : longueur ${jp.length} hors gabarit ${p.format} (${g.min}–${g.max})`);
     }
     for (const k of new Set(jp.match(KANJI_RE) ?? [])) {
@@ -1245,7 +1250,7 @@ export function auditPassages(decisions, refs) {
     }
 
     const qs = p.questions ?? [];
-    if (qs.length !== g.questions) {
+    if (g && qs.length !== g.questions) {
       errs.push(`${tag} : ${qs.length} questions pour un ${p.format} (attendu ${g.questions})`);
     }
     qs.forEach((q, i) => {
