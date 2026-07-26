@@ -18,8 +18,14 @@ l'allocation. La probabilité affichée est, pour un tiers, une extrapolation.
 Ce lot traite la **lecture**. L'écoute suivra par la même chaîne (§9).
 
 Toute la plomberie d'affichage existe déjà : `jlpt:passage` est déclaré en SHACL
-(`shapes.jsonld:46`), projeté par `graph.ts:39`, rendu avec furigana par `QuestionCard.tsx:50`
-— **pour zéro question**. Ce qui manque est du contenu, un type, et une règle de sélection.
+(`shapes.jsonld:46`), projeté par `graph.ts:39`, rendu avec furigana par `QuestionCard.tsx:50`.
+
+> ⚠ **Correction (relevée en revue de la Task 3)** : la première rédaction de cette spec
+> affirmait « pour zéro question ». C'était faux — la mesure cherchait `"passage"` là où la clé
+> est `"jlpt:passage"`. Le corpus porte **16 questions sur 52** qui embarquent leur texte en
+> clair, soit **8 textes distincts** (107 à 149 caractères, deux questions chacun), présents
+> depuis la migration initiale du graphe. Le retrait du champ impose donc une **migration** de
+> ces huit textes vers le nouveau type, pas un simple retrait : cf. §3 bis.
 
 ## 2. Le verrou à lever d'abord : la contiguïté des ordinaux
 
@@ -68,8 +74,25 @@ regroupement (§4) de toute clé.
 - `context.jsonld` gagne un **sixième alias**, `readsPassage` (IRI simple, sur le modèle
   d'`illustrates`).
 
-`jlpt:passage` est **retiré** de `shapes.jsonld`, de `graph.ts` et de `QuestionCard.tsx` : zéro
-consommateur réel, donc aucun shim (MVP : pas de repli).
+`jlpt:passage` est **retiré** de `shapes.jsonld`, de `graph.ts` et de `QuestionCard.tsx` — mais
+seulement **après** que les huit textes qui l'utilisent aient été migrés (§3 bis). Pas de shim,
+pas de double lecture : une seule forme dans le graphe à l'arrivée.
+
+### 3 bis. Migration des huit textes existants
+
+Les questions `10249`–`10264` (huit paires) portent leur texte en clair. La migration les fait
+passer à la forme cible, et elle est du même bois que le reste de la chaîne :
+
+- chaque texte distinct devient un `jlpt:Passage` (`jlpt:passage/legacy-NN`), format `tanbun`
+  (107–149 caractères — ce sont bien des textes courts), avec un `schema:name` français rédigé
+  à la lecture du texte ;
+- ses deux questions reçoivent `readsPassage` et **perdent** leur `jlpt:passage` ;
+- aucun `jlpt:ord` ne bouge, aucune question n'est ajoutée ni retirée : `corpus.jsonld` est
+  inchangé et la progression de l'utilisateur intacte.
+
+⚠ Ces huit textes portent **2 questions** pour une longueur de `tanbun` : ils ne respectent donc
+pas le gabarit « `tanbun` = 1 question » que l'audit impose au contenu **neuf**. C'est voulu —
+l'audit lit le fichier de décisions, pas le graphe : il régit ce qu'on écrit, pas ce qui existait.
 
 **Nouveau document livré : `data/graph/passage.jsonld`.** Les trois inventaires de fichiers
 livrés doivent suivre, sinon la panne est silencieuse et locale à un seul contexte :

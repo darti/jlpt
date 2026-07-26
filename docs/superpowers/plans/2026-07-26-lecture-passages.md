@@ -843,6 +843,214 @@ git commit -m "feat(lecture): appliquer le regroupement par passage aux deux che
 
 ---
 
+### Task 7 bis: Migrer les huit textes déjà présents dans le corpus
+
+**Découvert en revue de la Task 3, et la spec avait tort** : le plan justifiait le retrait de
+`jlpt:passage` par « zéro consommateur ». Faux — la mesure cherchait `"passage"` là où la clé est
+`"jlpt:passage"`. **16 questions sur 52** (ords `10249`–`10264`, huit paires) portent leur texte
+en clair. Les Tasks 4 et 5 ayant retiré la projection et basculé l'affichage sur l'objet résolu,
+**ces seize questions s'affichent aujourd'hui sans leur texte** : inrépondables, en silence.
+
+**Files:**
+- Create: `tools/graph/migrate-passages.mjs`
+- Create: `tools/graph/migrate-passages.test.ts`
+- Modify: `data/graph/passage.jsonld`, `data/graph/q-lecture.jsonld` (par l'outil)
+
+**Interfaces:**
+- Consumes: le type `jlpt:Passage` et l'arête `readsPassage` (Task 3).
+- Produces: `migrateInline(passages, questions)` → `{ passages, questions, migres }` — pure, les
+  documents sont injectés.
+
+- [ ] **Step 1: Lire les huit textes et leur donner un nom**
+
+```bash
+bun -e '
+const g = JSON.parse(await Bun.file("data/graph/q-lecture.jsonld").text())["@graph"];
+const vus = new Map();
+for (const q of g) {
+  const t = q["jlpt:passage"];
+  if (typeof t !== "string") continue;
+  if (!vus.has(t)) vus.set(t, []);
+  vus.get(t).push(q["jlpt:ord"]);
+}
+let i = 0;
+for (const [t, ords] of vus) console.log(`--- #${++i} ords ${ords.join(",")}\n${t}`);
+'
+```
+
+Lis les huit textes et rédige pour chacun un `schema:name` français court et descriptif (ce qu'est
+le document : « Annonce : fermeture de la bibliothèque », « Courriel : changement d'horaire »…).
+Ces huit noms sont la seule part rédactionnelle de la tâche ; note-les dans ton rapport.
+
+- [ ] **Step 2: Write the failing test**
+
+`tools/graph/migrate-passages.test.ts` :
+
+```ts
+import { test, expect } from "bun:test";
+import { migrateInline } from "./migrate-passages.mjs";
+
+const q = (ord: number, texte?: string) => ({
+  "@id": `jlpt:q/${ord}`, "@type": "jlpt:Question", "jlpt:skill": "lecture",
+  "jlpt:difficulty": 2, "jlpt:ord": ord, "jlpt:stem": `énoncé ${ord}`,
+  opts: ["a", "b"], "jlpt:answer": 0,
+  ...(texte ? { "jlpt:passage": texte } : {}),
+});
+const noms = { "texte A": "Annonce A", "texte B": "Annonce B" };
+
+test("migrateInline crée un passage par texte distinct et relie ses questions", () => {
+  const r = migrateInline([], [q(1, "texte A"), q(2, "texte A"), q(3, "texte B")], noms);
+  expect(r.migres).toBe(2);
+  expect(r.passages.length).toBe(2);
+  expect(r.passages[0]["jlpt:jp"]).toBe("texte A");
+  expect(r.passages[0]["schema:name"]).toBe("Annonce A");
+  expect(r.passages[0]["jlpt:format"]).toBe("tanbun");
+  expect(r.questions[0].readsPassage).toBe(r.passages[0]["@id"]);
+  expect(r.questions[1].readsPassage).toBe(r.passages[0]["@id"]); // même texte, même passage
+  expect(r.questions[2].readsPassage).toBe(r.passages[1]["@id"]);
+});
+
+test("migrateInline retire le champ jlpt:passage des questions migrées", () => {
+  const r = migrateInline([], [q(1, "texte A")], noms);
+  expect("jlpt:passage" in r.questions[0]).toBe(false);
+});
+
+test("migrateInline laisse intacte une question sans passage", () => {
+  const r = migrateInline([], [q(1)], noms);
+  expect(r.migres).toBe(0);
+  expect(r.questions[0]).toEqual(q(1));
+  expect(r.passages).toEqual([]);
+});
+
+test("migrateInline est idempotent : rejoué, il ne migre rien", () => {
+  const premier = migrateInline([], [q(1, "texte A"), q(2, "texte A")], noms);
+  const second = migrateInline(premier.passages, premier.questions, noms);
+  expect(second.migres).toBe(0);
+  expect(second.passages.length).toBe(1);
+});
+
+test("migrateInline ne renumérote aucun ordinal", () => {
+  const r = migrateInline([], [q(7, "texte A"), q(8, "texte A")], noms);
+  expect(r.questions.map((x) => x["jlpt:ord"])).toEqual([7, 8]);
+});
+```
+
+- [ ] **Step 3: Run test to verify it fails**
+
+Run: `bun test tools/graph/migrate-passages.test.ts`
+Expected: FAIL — module introuvable.
+
+- [ ] **Step 4: Write the implementation**
+
+`tools/graph/migrate-passages.mjs` :
+
+```js
+#!/usr/bin/env node
+// Migration ponctuelle : les textes de lecture embarqués en clair sur la question
+// (`jlpt:passage`, 16 questions / 8 textes, hérités de la migration initiale du graphe)
+// deviennent des sujets `jlpt:Passage` reliés par `readsPassage`.
+//
+// ⚠ Aucun `jlpt:ord` ne bouge, aucune question n'est ajoutée ni retirée : `corpus.jsonld` est
+// inchangé et la progression persistée (bitsets indexés par ord) reste valide.
+//
+// ⚠ Idempotent : une question déjà porteuse de `readsPassage` est laissée telle quelle, et un
+// texte déjà présent dans passage.jsonld n'est pas dupliqué.
+//
+// Zéro dépendance, exécuté par `bun`.
+import { readFileSync, writeFileSync } from "node:fs";
+
+const DIR = "data/graph";
+
+/** Noms français des huit textes, rédigés à la lecture (clé = texte japonais intégral). */
+export const NOMS = {};
+
+/** Migre les textes inline. Pure : les documents sont injectés, rien n'est lu ni écrit ici. */
+export function migrateInline(passages, questions, noms) {
+  const out = [...passages];
+  const parTexte = new Map();
+  for (const p of out) parTexte.set(p["jlpt:jp"], p["@id"]);
+  let migres = 0;
+
+  const nextIndex = () => out.length + 1;
+  const questionsOut = questions.map((q) => {
+    const texte = q["jlpt:passage"];
+    if (typeof texte !== "string") return q;
+    let id = parTexte.get(texte);
+    if (!id) {
+      const n = String(nextIndex()).padStart(2, "0");
+      id = `jlpt:passage/legacy-${n}`;
+      out.push({
+        "@id": id,
+        "@type": "jlpt:Passage",
+        "schema:name": noms[texte] ?? `Texte de lecture ${n}`,
+        "jlpt:format": "tanbun",
+        "jlpt:jp": texte,
+      });
+      parTexte.set(texte, id);
+      migres++;
+    }
+    const { "jlpt:passage": _retire, ...reste } = q;
+    return { ...reste, readsPassage: id };
+  });
+
+  return { passages: out, questions: questionsOut, migres };
+}
+
+function main() {
+  const cheminP = `${DIR}/passage.jsonld`, cheminQ = `${DIR}/q-lecture.jsonld`;
+  const docP = JSON.parse(readFileSync(cheminP, "utf8"));
+  const docQ = JSON.parse(readFileSync(cheminQ, "utf8"));
+  const r = migrateInline(docP["@graph"] ?? [], docQ["@graph"] ?? [], NOMS);
+  if (!r.migres) {
+    console.log("✓ rien à migrer — les textes sont déjà des sujets jlpt:Passage");
+    return 0;
+  }
+  writeFileSync(cheminP, JSON.stringify({ ...docP, "@graph": r.passages }, null, 1) + "\n");
+  writeFileSync(cheminQ, JSON.stringify({ ...docQ, "@graph": r.questions }, null, 1) + "\n");
+  console.log(`✓ ${r.migres} textes migrés vers jlpt:Passage`);
+  return 0;
+}
+
+if (import.meta.main) process.exit(main());
+```
+
+Renseigne `NOMS` avec les huit paires « texte japonais intégral → nom français » de l'étape 1.
+
+- [ ] **Step 5: Migrer, puis vérifier l'idempotence**
+
+Run: `bun tools/graph/migrate-passages.mjs`
+Expected: `✓ 8 textes migrés vers jlpt:Passage`.
+
+Run une seconde fois : `✓ rien à migrer`, et `git diff --stat` inchangé après cette seconde passe.
+
+- [ ] **Step 6: Prouver qu'aucune question n'a perdu son texte**
+
+```bash
+bun -e '
+const q = JSON.parse(await Bun.file("data/graph/q-lecture.jsonld").text())["@graph"];
+const p = JSON.parse(await Bun.file("data/graph/passage.jsonld").text())["@graph"];
+const ids = new Set(p.map((x) => x["@id"]));
+const inline = q.filter((x) => typeof x["jlpt:passage"] === "string").length;
+const relies = q.filter((x) => typeof x.readsPassage === "string");
+const pendants = relies.filter((x) => !ids.has(x.readsPassage));
+console.log("restes inline :", inline, "| reliees :", relies.length, "| pendantes :", pendants.length);
+'
+```
+
+Expected : `restes inline : 0 | reliees : 16 | pendantes : 0`.
+
+- [ ] **Step 7: Valider et commiter**
+
+Run: `bun tools/validate-graph.mjs && bun test && bun run typecheck`
+Expected: tout vert. Pas de bump `sw.js` : la branche a déjà porté `v117` → `v118`, et elle n'a pas été livrée.
+
+```bash
+git add tools/graph/migrate-passages.mjs tools/graph/migrate-passages.test.ts data/graph/passage.jsonld data/graph/q-lecture.jsonld
+git commit -m "feat(lecture): migrer les huit textes inline vers le type Passage"
+```
+
+---
+
 ### Task 8: `audit-passages.mjs` — la garde de périmètre
 
 C'est cet outil qui remplace l'arbitrage humain : le périmètre lexical et la forme se **prouvent** mécaniquement. Il lit le fichier de décisions et n'écrit rien.
