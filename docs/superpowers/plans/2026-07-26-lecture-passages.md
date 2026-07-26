@@ -1384,6 +1384,34 @@ test("applyPassages est idempotent : rejoué, il ne pose rien", () => {
   expect(second.corpus.length).toBe(premier.corpus.length);
 });
 
+test("applyPassages n'écrit pas les champs optionnels absents", () => {
+  // Convention de la chaîne : readings/traps/link-answers assertent tous `toBeUndefined()`.
+  // Sans ce test, un jour où l'écriture deviendrait inconditionnelle, un `undefined` entrerait
+  // dans le graphe sans qu'aucun test ne bronche.
+  const minimal = {
+    passages: [{
+      id: "jlpt:passage/tanbun-09", name: "Minimal", format: "tanbun", jp: "短い文。",
+      questions: [{ stem: "何 ですか。", opts: ["a", "b"], answer: 0, difficulty: 1 }],
+    }],
+  };
+  const r = applyPassages(minimal, docsVides());
+  const p = r.passages[r.passages.length - 1];
+  const q = r.questions[r.questions.length - 1];
+  expect(p["schema:description"]).toBeUndefined();
+  expect(p.tests).toBeUndefined();
+  expect(q["schema:description"]).toBeUndefined();
+  expect(q["jlpt:gloss"]).toBeUndefined();
+  expect(q["jlpt:optionNote"]).toBeUndefined();
+  expect(q.tests).toBeUndefined();
+});
+
+test("applyPassages ne mute pas les documents de l'appelant", () => {
+  const docs = docsVides();
+  const avant = JSON.stringify(docs);
+  applyPassages(decisions, docs);
+  expect(JSON.stringify(docs)).toBe(avant);
+});
+
 test("applyPassages étend l'intervalle existant plutôt que d'en créer un troisième", () => {
   const premier = applyPassages(decisions, docsVides());
   const autre = {
@@ -1491,8 +1519,12 @@ export function applyPassages(decisions, docs) {
 
   if (premierOrd !== null) {
     const ajoutees = ord - premierOrd;
-    const existant = corpus.find((c) => c["@id"] === "jlpt:corpus/lecture-2");
-    if (existant) existant["jlpt:count"] += ajoutees;
+    // ⚠ REMPLACER l'objet, jamais le muter : `[...docs.corpus]` ne copie que le tableau, pas
+    // les objets qu'il contient. Un `existant["jlpt:count"] += …` modifierait le document de
+    // l'appelant sous ses pieds — et la fonction cesserait d'être pure, contrairement à ce que
+    // son propre commentaire affirme.
+    const i = corpus.findIndex((c) => c["@id"] === "jlpt:corpus/lecture-2");
+    if (i >= 0) corpus[i] = { ...corpus[i], "jlpt:count": corpus[i]["jlpt:count"] + ajoutees };
     else corpus.push({
       "@id": "jlpt:corpus/lecture-2",
       "@type": "jlpt:SkillRange",
