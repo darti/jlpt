@@ -9,7 +9,7 @@
  */
 
 import type { Skill } from "../types/progress.ts";
-import type { Difficulty, Question } from "../types/quiz.ts";
+import type { Difficulty, Passage, Question } from "../types/quiz.ts";
 
 export type FetchLike = (url: string) => Promise<{ json: () => Promise<unknown> }>;
 
@@ -36,7 +36,7 @@ export function toQuestion(s: Sujet): Question {
   const g = str(s["jlpt:gloss"]); if (g !== undefined) q.g = g;
   const od = list(s["jlpt:optionNote"]); if (od !== undefined) q.od = od;
   const script = str(s["jlpt:script"]); if (script !== undefined) q.script = script;
-  const passage = str(s["jlpt:passage"]); if (passage !== undefined) q.passage = passage;
+  const pid = str(s.readsPassage); if (pid !== undefined) q.passageId = pid;
   // Les arêtes `tests` — l'IRI de l'entité que la question teste. C'est elles qui permettent
   // au corrigé d'afficher un rappel SANS deviner la notion en parsant son HTML
   // (cf. src/features/quiz/rappel.ts).
@@ -47,12 +47,14 @@ export function toQuestion(s: Sujet): Question {
 
 const cache = new Map<Skill, Promise<Question[]>>();
 let corpusPromise: Promise<SkillRange[]> | null = null;
+let passagesPromise: Promise<Map<string, Passage>> | null = null;
 
 /** Vide les mémoïsations. Les tests partagent le module (cf. CLAUDE.md : happy-dom est
  *  préchargé pour toute la suite) : sans ça, un test pollue le suivant. */
 export function clearGraphCache(): void {
   cache.clear();
   corpusPromise = null;
+  passagesPromise = null;
 }
 
 const graphDoc = (r: { json: () => Promise<unknown> }) =>
@@ -92,6 +94,30 @@ export function loadCorpus(fetchImpl: FetchLike = fetch as FetchLike): Promise<S
       .catch((err) => { corpusPromise = null; throw err; });
   }
   return corpusPromise;
+}
+
+/** Les passages de lecture, indexés par IRI, mémoïsés. Même purge en cas d'échec que
+ *  `loadCorpus` : une promesse rejetée gardée en cache condamnerait la lecture pour toute
+ *  la session. */
+export function loadPassages(fetchImpl: FetchLike = fetch as FetchLike): Promise<Map<string, Passage>> {
+  if (!passagesPromise) {
+    passagesPromise = fetchImpl("data/graph/passage.jsonld")
+      .then(graphDoc)
+      .then((doc) => {
+        const m = new Map<string, Passage>();
+        for (const s of doc["@graph"] ?? []) {
+          const p: Passage = {
+            jp: String(s["jlpt:jp"] ?? ""),
+            format: s["jlpt:format"] as Passage["format"],
+          };
+          const fr = str(s["schema:description"]); if (fr !== undefined) p.fr = fr;
+          m.set(s["@id"] as string, p);
+        }
+        return m;
+      })
+      .catch((err) => { passagesPromise = null; throw err; });
+  }
+  return passagesPromise;
 }
 
 /** Compétence d'un ordinal, par comparaison de bornes. Remplace la lecture d'un index de

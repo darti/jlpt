@@ -1,5 +1,5 @@
 import { test, expect } from "bun:test";
-import { toQuestion, skillOfOrd, loadSkill, loadCorpus, clearGraphCache } from "./graph.ts";
+import { toQuestion, skillOfOrd, loadSkill, loadCorpus, clearGraphCache, loadPassages } from "./graph.ts";
 
 const sujet = {
   "@id": "jlpt:q/7", "@type": "jlpt:Question",
@@ -34,10 +34,10 @@ test("toQuestion n'invente pas d'arête sur une question non reliée", () => {
   expect(toQuestion(sans).tests).toBeUndefined();
 });
 
-test("toQuestion conserve script et passage quand ils existent", () => {
-  const q = toQuestion({ ...sujet, "jlpt:script": "音声", "jlpt:passage": "文章" });
+test("toQuestion conserve script et passageId quand ils existent", () => {
+  const q = toQuestion({ ...sujet, "jlpt:script": "音声", readsPassage: "jlpt:passage/tanbun-01" });
   expect(q.script).toBe("音声");
-  expect(q.passage).toBe("文章");
+  expect(q.passageId).toBe("jlpt:passage/tanbun-01");
 });
 
 test("toQuestion n'invente pas les champs optionnels absents", () => {
@@ -118,4 +118,40 @@ test("un document vide ne fait pas planter la projection", async () => {
   const fetchImpl = async () => ({ json: async () => ({}) });
   expect(await loadSkill("ecoute", fetchImpl)).toEqual([]);
   expect(await loadCorpus(fetchImpl)).toEqual([]);
+});
+
+test("toQuestion projette readsPassage vers passageId", () => {
+  const q = toQuestion({
+    "@id": "jlpt:q/10307", "@type": "jlpt:Question",
+    "jlpt:ord": 10307, "jlpt:skill": "lecture", "jlpt:difficulty": 2,
+    "jlpt:stem": "この お知らせ に よると、何 が 分かりますか。",
+    opts: ["a", "b"], "jlpt:answer": 0,
+    readsPassage: "jlpt:passage/tanbun-01",
+  });
+  expect(q.passageId).toBe("jlpt:passage/tanbun-01");
+  expect(q.passage).toBeUndefined(); // la résolution n'est PAS le rôle de la projection
+});
+
+test("loadPassages indexe par IRI et ne fetch qu'une fois", async () => {
+  clearGraphCache();
+  let appels = 0;
+  const fetchImpl = async () => {
+    appels++;
+    return {
+      json: async () => ({
+        "@graph": [{
+          "@id": "jlpt:passage/tanbun-01", "@type": "jlpt:Passage",
+          "schema:name": "Note de service", "jlpt:jp": "エレベーターは 工事中 です。",
+          "jlpt:format": "tanbun", "schema:description": "L'ascenseur est en travaux.",
+        }],
+      }),
+    };
+  };
+  const a = await loadPassages(fetchImpl);
+  const b = await loadPassages(fetchImpl);
+  expect(appels).toBe(1);
+  expect(a).toBe(b);
+  expect(a.get("jlpt:passage/tanbun-01")?.jp).toBe("エレベーターは 工事中 です。");
+  expect(a.get("jlpt:passage/tanbun-01")?.format).toBe("tanbun");
+  expect(a.get("jlpt:passage/tanbun-01")?.fr).toBe("L'ascenseur est en travaux.");
 });
