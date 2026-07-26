@@ -43,7 +43,7 @@
         { "sh:path": "schema:description", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
         { "sh:path": "jlpt:gloss", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
         { "sh:path": "jlpt:script", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
-        { "sh:path": "jlpt:passage", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
+        { "sh:path": "jlpt:readsPassage", "sh:nodeKind": "sh:IRI", "sh:maxCount": 1 },
         { "sh:path": "jlpt:tests", "sh:nodeKind": "sh:IRI" }
       ]
     },
@@ -63,6 +63,16 @@
         { "sh:path": "jlpt:romaji", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
         { "sh:path": "schema:description", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
         { "sh:path": "jlpt:analysis", "sh:datatype": "xsd:string" }
+      ]
+    },
+    {
+      "@id": "jlpt:PassageShape", "@type": "sh:NodeShape", "sh:targetClass": "jlpt:Passage",
+      "sh:property": [
+        { "sh:path": "schema:name", "sh:datatype": "xsd:string", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:jp", "sh:datatype": "xsd:string", "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "jlpt:format", "sh:in": ["tanbun", "chubun", "chobun", "joho"], "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "schema:description", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
+        { "sh:path": "jlpt:tests", "sh:nodeKind": "sh:IRI" }
       ]
     },
     {
