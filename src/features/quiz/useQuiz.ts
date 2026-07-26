@@ -5,7 +5,7 @@ import type { Question, SkillState } from "../../types/quiz.ts";
 import { updateRating } from "../../lib/elo.ts";
 import {
   questionCount, allocateCount, loadAllCategories, pickAdaptive,
-  questionsForIds, selectRecentErrors, composeSession, selectDiagnostic,
+  questionsForIds, selectRecentErrors, composeSession, selectDiagnostic, withPassageGroups,
 } from "../../lib/bank.ts";
 import { loadCorpus, type SkillRange } from "../../lib/graph.ts";
 import { readRawProgress, writeProgress, readCadence, writeCadence } from "../../lib/storage.ts";
@@ -302,7 +302,12 @@ export function useQuiz() {
     );
 
     if (plan.kind === "diagnostic") {
-      const session = selectDiagnostic(await loadAllCategories(), total, Math.random);
+      const poolsDiag = await loadAllCategories();
+      const session = withPassageGroups(
+        selectDiagnostic(poolsDiag, total, Math.random),
+        poolsDiag.lecture, // seule compétence à passages
+        total,
+      );
       if (!session.length) return;
       // Starting a diagnostic abandons any pending normal session — clear its resume so a stale
       // "Reprendre" card can't resurface on a later reload (MAJOR #5b).
@@ -377,7 +382,11 @@ export function useQuiz() {
     );
 
     // Guaranteed slices (errors + révision + learn) + adaptive fill → composeSession reconciles the budget.
-    const session = composeSession([...errorQs, ...confusionQs, ...revisionQs, ...learnQs], picked, total, Math.random);
+    const session = withPassageGroups(
+      composeSession([...errorQs, ...confusionQs, ...revisionQs, ...learnQs], picked, total, Math.random),
+      pools.lecture,
+      total,
+    );
     if (!session.length) return;
 
     rightRef.current = 0;
