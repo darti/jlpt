@@ -57,3 +57,37 @@ test("applyPassages étend l'intervalle existant plutôt que d'en créer un troi
   expect(intervalles.length).toBe(2);
   expect(intervalles.find((c) => c["@id"] === "jlpt:corpus/lecture-2")["jlpt:count"]).toBe(2);
 });
+
+test("applyPassages n'écrit pas les champs optionnels absents", () => {
+  const minimal = {
+    passages: [{
+      id: "jlpt:passage/tanbun-09", name: "Minimal", format: "tanbun", jp: "短い文。",
+      questions: [{ stem: "何 ですか。", opts: ["a", "b"], answer: 0, difficulty: 1 }],
+    }],
+  };
+  const r = applyPassages(minimal, docsVides());
+  const p = r.passages[r.passages.length - 1];
+  const q = r.questions[r.questions.length - 1];
+  expect(p["schema:description"]).toBeUndefined();
+  expect(p.tests).toBeUndefined();
+  expect(q["schema:description"]).toBeUndefined();
+  expect(q["jlpt:gloss"]).toBeUndefined();
+  expect(q["jlpt:optionNote"]).toBeUndefined();
+  expect(q.tests).toBeUndefined();
+});
+
+test("applyPassages ne mute pas les documents de l'appelant", () => {
+  const premier = applyPassages(decisions, docsVides());
+  const docs = {
+    passages: premier.passages,
+    lecture: premier.questions,
+    corpus: premier.corpus,
+    nextOrd: 10225,
+  };
+  const avant = JSON.stringify(docs);
+  const autre = {
+    passages: [{ ...decisions.passages[0], id: "jlpt:passage/tanbun-03" }],
+  };
+  applyPassages(autre, docs);
+  expect(JSON.stringify(docs)).toBe(avant);
+});

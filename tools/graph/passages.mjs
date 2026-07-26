@@ -80,8 +80,12 @@ export function applyPassages(decisions, docs) {
 
   if (premierOrd !== null) {
     const ajoutees = ord - premierOrd;
-    const existant = corpus.find((c) => c["@id"] === "jlpt:corpus/lecture-2");
-    if (existant) existant["jlpt:count"] += ajoutees;
+    // ⚠ REMPLACER l'objet, jamais le muter : `[...docs.corpus]` ne copie que le tableau, pas
+    // les objets qu'il contient. Un `existant["jlpt:count"] += …` modifierait le document de
+    // l'appelant sous ses pieds — et la fonction cesserait d'être pure, contrairement à ce que
+    // son propre commentaire affirme.
+    const i = corpus.findIndex((c) => c["@id"] === "jlpt:corpus/lecture-2");
+    if (i >= 0) corpus[i] = { ...corpus[i], "jlpt:count": corpus[i]["jlpt:count"] + ajoutees };
     else corpus.push({
       "@id": "jlpt:corpus/lecture-2",
       "@type": "jlpt:SkillRange",
