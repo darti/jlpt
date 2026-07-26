@@ -1,5 +1,5 @@
 import { test, expect } from "bun:test";
-import { auditPassages } from "./audit-passages.mjs";
+import { auditPassages, readRefs } from "./audit-passages.mjs";
 
 const refs = { kanji: new Set(["工", "事", "階", "段", "間", "使"]), motsHorsN3: new Set(["斡旋"]) };
 const bon = {
@@ -51,4 +51,37 @@ test("auditPassages bloque sur un optionNote désaligné", () => {
 test("auditPassages bloque sur une réponse hors bornes", () => {
   const ko = { ...bon, questions: [{ ...bon.questions[0], answer: 9 }] };
   expect(auditPassages({ passages: [ko] }, refs).erreurs.some((e) => e.includes("answer"))).toBe(true);
+});
+
+test("auditPassages bloque sur moins de deux options", () => {
+  const ko = { ...bon, questions: [{ ...bon.questions[0], opts: ["a"] }] };
+  expect(auditPassages({ passages: [ko] }, refs).erreurs.some((e) => e.includes("moins de deux"))).toBe(true);
+});
+
+test("auditPassages bloque sur deux options identiques", () => {
+  const ko = { ...bon, questions: [{ ...bon.questions[0], opts: ["a", "a", "c", "d"] }] };
+  expect(auditPassages({ passages: [ko] }, refs).erreurs.some((e) => e.includes("identiques"))).toBe(true);
+});
+
+test("auditPassages bloque sur une difficulté hors 1–3", () => {
+  const ko = { ...bon, questions: [{ ...bon.questions[0], difficulty: 4 }] };
+  expect(auditPassages({ passages: [ko] }, refs).erreurs.some((e) => e.includes("difficulty"))).toBe(true);
+});
+
+test("auditPassages signale les defauts structurels meme si le format est inconnu", () => {
+  const ko = {
+    ...bon,
+    format: "inexistant",
+    questions: [{ ...bon.questions[0], answer: 9, optionNote: ["x"] }],
+  };
+  const r = auditPassages({ passages: [ko] }, refs);
+  expect(r.erreurs.some((e) => e.includes("format inconnu"))).toBe(true);
+  expect(r.erreurs.some((e) => e.includes("answer"))).toBe(true);
+  expect(r.erreurs.some((e) => e.includes("optionNote"))).toBe(true);
+});
+
+test("mesure : aucun mot N2/N1 dans le referentiel, le controle lexical par mot est inerte", () => {
+  // Le jour où word.jsonld portera des niveaux N2/N1, ce test devient rouge : il faudra alors
+  // vérifier que le signalement lexical se comporte comme voulu sur des données réelles.
+  expect(readRefs().motsHorsN3.size).toBe(0);
 });
