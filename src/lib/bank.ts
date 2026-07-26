@@ -130,6 +130,58 @@ export function composeSession(
   return shuffle([...errorQs, ...adaptiveQs], rng);
 }
 
+/**
+ * Regroupe les questions d'un même passage : complète les fratries manquantes depuis `pool`,
+ * écarte un groupe qui ne tient pas dans `total`, puis rend les membres adjacents et triés par
+ * `id` (l'ordre de lecture du texte). Pure.
+ *
+ * ⚠ Appelée APRÈS `composeSession` / `selectDiagnostic` : c'est la seule position qui survive
+ * au mélange final. L'ordre du reste de la session est préservé — chaque groupe est simplement
+ * ramené d'un bloc à la position de son premier membre.
+ *
+ * ⚠ Un groupe écarté n'est PAS remplacé : la session est alors plus courte (borné à 3
+ * questions). Refiler la place exigerait le vivier complet, les poids et le jeu d'exclusion —
+ * une session légèrement plus courte est le prix accepté (cf. spec §4).
+ */
+export function withPassageGroups(session: Question[], pool: Question[], total: number): Question[] {
+  // Construire l'index des groupes par passage dans le pool.
+  const groups = new Map<string, Question[]>();
+  for (const q of pool) {
+    const pid = typeof q.passageId === "string" ? q.passageId : null;
+    if (!pid) continue;
+    const g = groups.get(pid);
+    if (g) g.push(q); else groups.set(pid, [q]);
+  }
+  // Si aucun groupe, retourner la session telle quelle.
+  if (!groups.size) return session;
+  // Trier chaque groupe par id (ordre de lecture).
+  for (const g of groups.values()) g.sort((a, b) => a.id - b.id);
+
+  // Calculer quels groupes peuvent tenir : compter les places restantes après les singletons.
+  const pidOf = (q: Question) => (typeof q.passageId === "string" ? q.passageId : null);
+  let room = total - session.filter((q) => !pidOf(q)).length;
+  const kept = new Set<string>();
+  for (const q of session) {
+    const pid = pidOf(q);
+    if (!pid || kept.has(pid)) continue;
+    const g = groups.get(pid);
+    // Un groupe ne rentre que s'il tient ENTIER dans les places restantes.
+    if (g && g.length <= room) { kept.add(pid); room -= g.length; }
+  }
+
+  // Construire la sortie : replacer les groupes complétés à la position de leur premier membre.
+  const out: Question[] = [];
+  const placed = new Set<string>();
+  for (const q of session) {
+    const pid = pidOf(q);
+    if (!pid) { out.push(q); continue; }
+    if (!kept.has(pid) || placed.has(pid)) continue;
+    placed.add(pid);
+    out.push(...(groups.get(pid) as Question[]));
+  }
+  return out;
+}
+
 /** Questions for a session of `minutes` (~1.5/min, clamped to [4, 45]). */
 export function questionCount(minutes: number): number {
   return Math.max(4, Math.min(45, Math.round(minutes * 1.5)));
