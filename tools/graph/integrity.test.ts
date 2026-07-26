@@ -297,3 +297,12 @@ test("checkCorpus signale un ordinal hors des intervalles déclarés", () => {
   const errs = checkCorpus(subjects);
   expect(errs.some((e: string) => e.includes("mais 2 questions"))).toBe(true);
 });
+
+test("checkCorpus signale un SkillRange sans aucune question", () => {
+  const subjects = [
+    qOrd(0, "lecture"),
+    rangeMulti("lecture", 0, 1), rangeMulti("ecoute", 5, 3), // « ecoute » n'a aucune question
+  ];
+  const errs = checkCorpus(subjects);
+  expect(errs.some((e: string) => e.includes("ecoute") && e.includes("mais 0 questions"))).toBe(true);
+});

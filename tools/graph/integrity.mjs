@@ -161,7 +161,13 @@ export function checkCorpus(subjects) {
         } else claim.set(o, skill);
       }
     }
-    for (const [skill, ords] of parSkill) {
+    // ⚠ Itérer sur l'UNION des compétences vues côté questions ET côté intervalles. Boucler sur
+    // `parSkill` seul rendrait MUET un SkillRange fantôme (compétence mal orthographiée dans
+    // corpus.jsonld, ou intervalle resté après suppression de ses questions) : il ne collisionne
+    // avec aucun ordinal, donc rien ne le signalerait — alors que c'est précisément le mensonge
+    // que ce contrôle existe pour empêcher, et que l'ancien code attrapait.
+    for (const skill of new Set([...parSkill.keys(), ...declares.keys()])) {
+      const ords = parSkill.get(skill) ?? [];
       const n = declares.get(skill) ?? 0;
       if (n !== ords.length) {
         errs.push(`SkillRange ${skill} : ${n} ordinaux déclarés, mais ${ords.length} questions`);
