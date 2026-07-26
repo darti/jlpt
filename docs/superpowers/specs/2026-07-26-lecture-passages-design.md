@@ -171,13 +171,20 @@ résoudre (convention de `readings.mjs`). Il pose en fin de corpus (ord ≥ 1030
 
 | Contrôle | Règle |
 |---|---|
-| Périmètre kanji | tout kanji du texte existe dans `kanji.jsonld` (810) |
-| Périmètre lexical | tout mot glosé hors N3/N4/N5 est signalé (2 955 mots portent un `level`) |
+| Périmètre kanji | kanji absent de `kanji.jsonld` → **signalé, non bloquant** (cf. encadré) |
+| Périmètre lexical | mot glosé N2/N1 → **signalé, non bloquant** |
 | Longueur | `tanbun` 100–200 · `chubun` 300–420 · `chobun` 500–650 · `joho` 150–300 caractères |
 | Cardinalité | `optionNote` de même longueur que `opts` (déjà imposé par `integrity.mjs:43`) |
 | Questions par texte | `tanbun` 1 · `chubun` 3 · `chobun` 4 · `joho` 2 |
 | Réponse unique | énoncé partagé à réponses divergentes — contrôle **existant** |
 | Homophonie | distracteur portant la `reading` de la réponse — contrôle **existant** |
+
+⚠ **Le périmètre lexical SIGNALE, il ne bloque pas** (corrigé pendant l'exécution, sur mesure) :
+`kanji.jsonld` est une liste d'**étude** — les 810 kanji à apprendre — et non la liste de ce qu'un
+lecteur N3 sait lire. 不, 用, 工, 便, 場, 方 et 室 en sont absents. En faire une barrière
+bloquante condamnerait des textes parfaitement sains, exactement comme l'heuristique de purge
+avait désigné trois VRAIS mots. Seuls les défauts **structurels** bloquent : longueur hors
+gabarit, nombre de questions, `optionNote` désaligné, réponse hors bornes, identifiant en double.
 
 ⚠ **Pas d'effet gratuit côté confusion** : `traps.mjs` déclare `SHARDS = ["q-kanji",
 "q-vocabulaire"]`, et son en-tête motive ce périmètre — « l'écoute comme la lecture testent la

@@ -1062,7 +1062,16 @@ C'est cet outil qui remplace l'arbitrage humain : le périmètre lexical et la f
 
 **Interfaces:**
 - Consumes: `data/graph/kanji.jsonld`, `data/graph/word.jsonld`.
-- Produces: `auditPassages(decisions, refs): string[]` — la liste des anomalies (vide = conforme) ; `refs = { kanji: Set<string>, motsHorsN3: Set<string> }`. Le CLI `main()` lit les fichiers, affiche le rapport et sort 1 si non vide.
+- Produces: `auditPassages(decisions, refs): { erreurs: string[], avertissements: string[] }` ;
+  `refs = { kanji: Set<string>, motsHorsN3: Set<string> }`. Le CLI `main()` lit les fichiers,
+  affiche les deux listes et sort **1 seulement s'il y a des erreurs**.
+
+> ⚠ **Deux catégories, et c'est structurant.** `kanji.jsonld` est une **liste d'étude** (810 kanji
+> à apprendre), pas la liste de ce qu'un lecteur N3 sait lire : 不, 用, 工, 便, 場, 方, 室 en sont
+> absents. En faire une barrière bloquante rejetterait des textes sains — le dépôt a déjà payé
+> cette erreur avec la chaîne de purge (« la proposition est une heuristique, jamais un ordre de
+> suppression : elle a désigné trois VRAIS mots »). Le périmètre lexical **signale** ; seuls les
+> défauts structurels **bloquent**.
 
 - [ ] **Step 1: Créer le fichier de décisions d'amorçage**
 
@@ -1075,7 +1084,7 @@ C'est cet outil qui remplace l'arbitrage humain : le périmètre lexical et la f
    "id": "jlpt:passage/tanbun-01",
    "name": "Note de service : ascenseur en travaux",
    "format": "tanbun",
-   "jp": "社員のみなさんへ。三月十日から十二日まで、エレベーターの工事を行います。その間、エレベーターは使えませんので、階段をご利用ください。ご不便をおかけしますが、ご協力をお願いします。",
+   "jp": "社員のみなさんへ。三月十日から十二日まで、エレベーターの工事を行います。その間、エレベーターは使えませんので、階段をご利用ください。ご不便をおかけしますが、ご協力をお願いします。なお、大きな荷物をお持ちの方は、一階の事務室にお声をおかけください。",
    "fr": "Avis au personnel : l'ascenseur sera en travaux du 10 au 12 mars ; merci d'emprunter l'escalier.",
    "tests": ["jlpt:word/工事", "jlpt:word/利用"],
    "questions": [
@@ -1124,32 +1133,45 @@ const bon = {
 };
 
 test("auditPassages accepte un passage conforme", () => {
-  expect(auditPassages({ passages: [bon] }, refs)).toEqual([]);
+  const r = auditPassages({ passages: [bon] }, refs);
+  expect(r.erreurs).toEqual([]);
+  expect(r.avertissements).toEqual([]);
 });
 
-test("auditPassages signale un kanji hors référentiel", () => {
-  const ko = { ...bon, jp: bon.jp + "斡" };
-  expect(auditPassages({ passages: [ko] }, refs).some((e) => e.includes("斡"))).toBe(true);
+test("auditPassages avertit d'un kanji hors référentiel SANS bloquer", () => {
+  // kanji.jsonld est une liste d'ÉTUDE, pas la liste de ce qu'un lecteur N3 sait lire :
+  // 不, 用, 工, 便, 場, 方, 室 en sont absents. Bloquer là-dessus rejetterait des textes sains.
+  const ko = { ...bon, jp: bon.jp.slice(0, 119) + "斡" };
+  const r = auditPassages({ passages: [ko] }, refs);
+  expect(r.avertissements.some((e) => e.includes("斡"))).toBe(true);
+  expect(r.erreurs).toEqual([]);
 });
 
-test("auditPassages signale une longueur hors gabarit", () => {
+test("auditPassages avertit d'un mot hors N3 SANS bloquer", () => {
+  const ko = { ...bon, jp: bon.jp.slice(0, 118) + "斡旋" };
+  const r = auditPassages({ passages: [ko] }, refs);
+  expect(r.avertissements.some((e) => e.includes("斡旋"))).toBe(true);
+  expect(r.erreurs).toEqual([]);
+});
+
+test("auditPassages bloque sur une longueur hors gabarit", () => {
   const ko = { ...bon, jp: "工事。" };
-  expect(auditPassages({ passages: [ko] }, refs).some((e) => e.includes("longueur"))).toBe(true);
+  expect(auditPassages({ passages: [ko] }, refs).erreurs.some((e) => e.includes("longueur"))).toBe(true);
 });
 
-test("auditPassages signale un nombre de questions non conforme au format", () => {
+test("auditPassages bloque sur un nombre de questions non conforme au format", () => {
   const ko = { ...bon, format: "chubun" }; // 中文 = 3 questions, une seule fournie
-  expect(auditPassages({ passages: [ko] }, refs).some((e) => e.includes("questions"))).toBe(true);
+  expect(auditPassages({ passages: [ko] }, refs).erreurs.some((e) => e.includes("questions"))).toBe(true);
 });
 
-test("auditPassages signale un optionNote désaligné", () => {
+test("auditPassages bloque sur un optionNote désaligné", () => {
   const ko = { ...bon, questions: [{ ...bon.questions[0], optionNote: ["x", "y"] }] };
-  expect(auditPassages({ passages: [ko] }, refs).some((e) => e.includes("optionNote"))).toBe(true);
+  expect(auditPassages({ passages: [ko] }, refs).erreurs.some((e) => e.includes("optionNote"))).toBe(true);
 });
 
-test("auditPassages signale une réponse hors bornes", () => {
+test("auditPassages bloque sur une réponse hors bornes", () => {
   const ko = { ...bon, questions: [{ ...bon.questions[0], answer: 9 }] };
-  expect(auditPassages({ passages: [ko] }, refs).some((e) => e.includes("answer"))).toBe(true);
+  expect(auditPassages({ passages: [ko] }, refs).erreurs.some((e) => e.includes("answer"))).toBe(true);
 });
 ```
 
@@ -1186,9 +1208,18 @@ export const GABARIT = {
 
 const KANJI_RE = /[一-龯]/gu;
 
-/** Anomalies d'un jeu de décisions. Pure : les référentiels sont injectés. */
+/**
+ * Anomalies d'un jeu de décisions. Pure : les référentiels sont injectés.
+ *
+ * Deux catégories. `erreurs` = défauts STRUCTURELS, prouvés, qui bloquent la pose.
+ * `avertissements` = périmètre lexical, qui ne bloque JAMAIS : `kanji.jsonld` est une liste
+ * d'ÉTUDE (810 kanji à apprendre), pas la liste de ce qu'un lecteur N3 sait lire — 不, 用, 工,
+ * 便, 場, 方, 室 en sont absents. Bloquer là-dessus condamnerait des textes parfaitement sains,
+ * exactement comme l'heuristique de purge avait désigné trois VRAIS mots.
+ */
 export function auditPassages(decisions, refs) {
   const errs = [];
+  const avertissements = [];
   const vus = new Set();
   for (const p of decisions.passages ?? []) {
     const tag = p.id ?? "(sans id)";
@@ -1207,10 +1238,10 @@ export function auditPassages(decisions, refs) {
       errs.push(`${tag} : longueur ${jp.length} hors gabarit ${p.format} (${g.min}–${g.max})`);
     }
     for (const k of new Set(jp.match(KANJI_RE) ?? [])) {
-      if (!refs.kanji.has(k)) errs.push(`${tag} : kanji « ${k} » hors du référentiel`);
+      if (!refs.kanji.has(k)) avertissements.push(`${tag} : kanji « ${k} » hors du référentiel`);
     }
     for (const mot of refs.motsHorsN3) {
-      if (jp.includes(mot)) errs.push(`${tag} : mot « ${mot} » hors N3/N4/N5`);
+      if (jp.includes(mot)) avertissements.push(`${tag} : mot « ${mot} » hors N3/N4/N5`);
     }
 
     const qs = p.questions ?? [];
@@ -1233,7 +1264,7 @@ export function auditPassages(decisions, refs) {
       }
     });
   }
-  return errs;
+  return { erreurs: errs, avertissements };
 }
 
 /** Référentiels lus depuis le graphe : kanji connus, et mots glosés de niveau > N3. */
@@ -1252,15 +1283,21 @@ export function readRefs() {
 
 function main() {
   const decisions = JSON.parse(readFileSync(DECISIONS, "utf8"));
-  const errs = auditPassages(decisions, readRefs());
+  const { erreurs, avertissements } = auditPassages(decisions, readRefs());
   const n = (decisions.passages ?? []).length;
   const q = (decisions.passages ?? []).reduce((a, p) => a + (p.questions ?? []).length, 0);
-  if (!errs.length) {
+  // Les avertissements s'affichent TOUJOURS, verdict compris : c'est à l'auteur de juger si un
+  // kanji hors liste d'étude gêne, pas à l'outil de trancher à sa place.
+  if (avertissements.length) {
+    console.log(`⚠ ${avertissements.length} signalements de périmètre (non bloquants) :`);
+    for (const a of avertissements) console.log(`  ${a}`);
+  }
+  if (!erreurs.length) {
     console.log(`✓ ${n} passages, ${q} questions — conformes`);
     return 0;
   }
-  console.error(`✗ ${errs.length} anomalies sur ${n} passages :`);
-  for (const e of errs) console.error(`  ${e}`);
+  console.error(`✗ ${erreurs.length} erreurs sur ${n} passages :`);
+  for (const e of erreurs) console.error(`  ${e}`);
   return 1;
 }
 
