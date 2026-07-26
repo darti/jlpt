@@ -1089,7 +1089,7 @@ C'est cet outil qui remplace l'arbitrage humain : le périmètre lexical et la f
    "tests": ["jlpt:word/工事", "jlpt:word/利用"],
    "questions": [
     {
-     "stem": "この お知らせ から 分かる こと は 何 ですか。",
+     "stem": "このお知らせから分かることは何ですか。",
      "opts": [
       "三月十日から三日間、階段を使う",
       "三月十日にエレベーターが直る",
@@ -1597,6 +1597,11 @@ git commit -m "feat(lecture): applicateur idempotent des passages (chaine n6, et
 Dans `data/passages-arbitres.json`, ajouter un `chubun-01` (3 questions, 300–420 caractères) et un `joho-01` (2 questions, 150–300 caractères), sur le gabarit exact du `tanbun-01` déjà présent. Règles de rédaction :
 
 - **Textes originaux** — aucun extrait d'annales (droit d'auteur).
+- **JAMAIS de 分かち書き** (segmentation par espaces) dans un énoncé ni dans une option. C'est la
+  convention des manuels pour grands débutants ; aucun sujet JLPT ne segmente, et les 52 questions
+  de lecture déjà au corpus ne segmentent pas. Segmenter fait en outre une partie du travail de
+  l'apprenant : repérer les frontières de mots dans un texte non segmenté EST une compétence de
+  l'épreuve.
 - Kanji : uniquement ceux du référentiel (810 dans `kanji.jsonld`) ; l'audit le vérifie.
 - `joho` = document de « recherche d'information » : horaires, tarifs, conditions d'inscription — le lecteur doit **retrouver** une donnée, pas interpréter.
 - `chubun` = texte suivi (courriel, billet, notice) où les 3 questions portent sur des points **distincts** : un détail explicite, une inférence, l'intention de l'auteur.
