@@ -249,6 +249,18 @@ mesurent pas — c'est précisément là qu'un énoncé du corpus historique adm
   l'Accueil** — sépare 言語知識 (文字・語彙・**文法**) / 読解 / 聴解. Une grammaire forte
   (1 174 questions pratiquées) masque donc une lecture faible dans la section qui porte le
   minimum de 19/60. À trancher : délibéré (et à documenter) ou correctif (avec capture golden).
+- **Position de la bonne réponse — chantier VALIDÉ par l'auteur, à ouvrir en premier.** Découvert
+  en relecture de ce lot : l'app **ne mélange jamais** les options (délibéré — `onChoose(i)` rend
+  l'index d'origine, comparé à `question.a`), donc la position de la réponse est une propriété
+  exploitable des données. Mesuré sur le corpus : `q-ecoute` **[32, 0, 0, 0]** — les 32 questions
+  d'écoute se répondent en cliquant la première option, sans écouter ; `q-grammaire`
+  [508, 315, 213, 138] ; vocabulaire et kanji quasi uniformes. Jamais détecté parce que
+  `checkQuestion` contrôle les **bornes** de `jlpt:answer`, jamais sa **distribution**. Les 44
+  questions de ce lot ont été rééquilibrées à [10, 11, 12, 11], mais c'est un rattrapage, pas une
+  garde. Décision : faire **les deux** — (1) mélanger les options à la composition de session dans
+  la couche pure, ce qui couvre les 10 351 questions d'un coup (implique de remapper l'index de la
+  réponse, `QuestionCard` s'appuyant sur l'ordre d'origine) ; (2) ajouter un contrôle de
+  distribution au validateur, pour que le défaut ne puisse pas revenir.
 - **Amortissement de `K`** sur les réponses corrélées d'un même texte.
 - **Lot 2 de passages** — même chaîne, sans relecture humaine si le lot 1a est concluant.
 
