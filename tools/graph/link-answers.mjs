@@ -18,15 +18,13 @@
 // Ce n'est pas un générateur : il ajoute ce qui manque, il ne régénère rien.
 //
 // Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
-import { readFileSync, writeFileSync } from "node:fs";
+import { graphPath, readGraph, writeGraph } from "./jsonld.mjs";
 
-const DIR = "data/graph";
 /** Les seules pistes où la réponse EST l'entité testée. */
 const PISTES = { vocabulaire: "q-vocabulaire", kanji: "q-kanji" };
 /** Toutes les pistes traitées, grammaire comprise — elle résout dans gram.jsonld. */
 const SHARDS = { ...PISTES, grammaire: "q-grammaire" };
 
-const J = (p) => JSON.parse(readFileSync(p, "utf8"));
 const arr = (v) => (Array.isArray(v) ? v : v === undefined ? [] : [v]);
 
 /** Forme de grammaire → segment d'IRI. Même règle que le reste du graphe. */
@@ -89,17 +87,17 @@ export function applyAnswerEdges(sujets, known, gram) {
 
 if (process.argv[1]?.endsWith("link-answers.mjs")) {
   const known = new Set(
-    ["word", "kanji"].flatMap((n) => J(`${DIR}/${n}.jsonld`)["@graph"].map((s) => s["@id"])),
+    ["word", "kanji"].flatMap((n) => readGraph(graphPath(`${n}.jsonld`)).subjects.map((s) => s["@id"])),
   );
 
-  const gram = gramIndex(J(`${DIR}/gram.jsonld`)["@graph"]);
+  const gram = gramIndex(readGraph(graphPath("gram.jsonld")).subjects);
 
   let total = 0;
   for (const shard of Object.values(SHARDS)) {
-    const chemin = `${DIR}/${shard}.jsonld`;
-    const doc = J(chemin);
-    const { sujets, poses } = applyAnswerEdges(doc["@graph"] ?? [], known, gram);
-    writeFileSync(chemin, JSON.stringify({ ...doc, "@graph": sujets }, null, 1) + "\n");
+    const chemin = graphPath(`${shard}.jsonld`);
+    const { doc, subjects } = readGraph(chemin);
+    const { sujets, poses } = applyAnswerEdges(subjects, known, gram);
+    writeGraph(chemin, doc, sujets);
     console.log(`${shard} : ${poses} arête(s) posée(s)`);
     total += poses;
   }

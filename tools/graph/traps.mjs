@@ -22,10 +22,8 @@
 // rester vraie indéfiniment.
 //
 // Zéro dépendance, exécuté par `bun`.
-import { readFileSync, writeFileSync } from "node:fs";
 import { trapKind } from "./trap-kinds.mjs";
-
-const DIR = "data/graph";
+import { graphPath, readGraph, writeGraph } from "./jsonld.mjs";
 
 /** Les seuls shards typés. */
 export const SHARDS = ["q-kanji", "q-vocabulaire"];
@@ -56,10 +54,10 @@ export function applyTrapKinds(sujets) {
 if (process.argv[1]?.endsWith("traps.mjs")) {
   let total = 0;
   for (const shard of SHARDS) {
-    const chemin = `${DIR}/${shard}.jsonld`;
-    const doc = JSON.parse(readFileSync(chemin, "utf8"));
-    const { sujets, poses, invalides } = applyTrapKinds(doc["@graph"] ?? []);
-    writeFileSync(chemin, JSON.stringify({ ...doc, "@graph": sujets }, null, 1) + "\n");
+    const chemin = graphPath(`${shard}.jsonld`);
+    const { doc, subjects } = readGraph(chemin);
+    const { sujets, poses, invalides } = applyTrapKinds(subjects);
+    writeGraph(chemin, doc, sujets);
     console.log(`${shard} : ${poses} question(s) typée(s)`);
     if (invalides.length) {
       console.log(`⚠ ${invalides.length} ignorée(s) — jlpt:answer absent ou hors bornes : ${invalides.join(", ")}`);

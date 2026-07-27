@@ -6,9 +6,8 @@
 // défendable, non. Cet outil ne remplace pas la relecture du lot 1a.
 //
 // Zéro dépendance, exécuté par `bun`.
-import { readFileSync } from "node:fs";
+import { graphPath, readGraph, readJson } from "./jsonld.mjs";
 
-const DIR = "data/graph";
 const DECISIONS = "data/passages-arbitres.json";
 
 /** Gabarit par format : longueur du texte (caractères) et nombre de questions. */
@@ -85,11 +84,11 @@ export function auditPassages(decisions, refs) {
 
 /** Référentiels lus depuis le graphe : kanji connus, et mots glosés de niveau > N3. */
 export function readRefs() {
-  const kanjiDoc = JSON.parse(readFileSync(`${DIR}/kanji.jsonld`, "utf8"));
-  const wordDoc = JSON.parse(readFileSync(`${DIR}/word.jsonld`, "utf8"));
-  const kanji = new Set((kanjiDoc["@graph"] ?? []).map((k) => k["schema:name"]).filter(Boolean));
+  const kanjiSujets = readGraph(graphPath("kanji.jsonld")).subjects;
+  const wordSujets = readGraph(graphPath("word.jsonld")).subjects;
+  const kanji = new Set(kanjiSujets.map((k) => k["schema:name"]).filter(Boolean));
   const motsHorsN3 = new Set(
-    (wordDoc["@graph"] ?? [])
+    wordSujets
       .filter((w) => ["N2", "N1"].includes(w["jlpt:level"]))
       .map((w) => w["schema:name"])
       .filter(Boolean),
@@ -98,7 +97,7 @@ export function readRefs() {
 }
 
 function main() {
-  const decisions = JSON.parse(readFileSync(DECISIONS, "utf8"));
+  const decisions = readJson(DECISIONS);
   const { erreurs, avertissements } = auditPassages(decisions, readRefs());
   const n = (decisions.passages ?? []).length;
   const q = (decisions.passages ?? []).reduce((a, p) => a + (p.questions ?? []).length, 0);

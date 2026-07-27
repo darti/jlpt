@@ -17,10 +17,11 @@
 // mots (始め、始めて、謝り) dont le seul tort était de n'avoir pas de glose.
 //
 // Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
-import { readdirSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readdirSync, writeFileSync, mkdirSync } from "node:fs";
+import { GRAPH_DIR, graphPath, readGraph, readJson, writeGraph } from "./jsonld.mjs";
 
-const DIR = "data/graph";
-const MOTS = `${DIR}/word.jsonld`;
+const DIR = GRAPH_DIR;
+const MOTS = graphPath("word.jsonld");
 const DECISIONS = "data/mots-parasites.json";
 
 const arr = (v) => (Array.isArray(v) ? v : v === undefined ? [] : [v]);
@@ -145,7 +146,7 @@ export function applyPurge(sujets, decisions) {
 if (import.meta.main) {
   const fichiers = readdirSync(DIR)
     .filter((f) => f.endsWith(".jsonld") && f !== "context.jsonld" && f !== "shapes.jsonld");
-  const sujets = fichiers.flatMap((f) => JSON.parse(readFileSync(`${DIR}/${f}`, "utf8"))["@graph"] ?? []);
+  const sujets = fichiers.flatMap((f) => readGraph(graphPath(f)).subjects);
 
   if (process.argv.includes("--proposer")) {
     const cands = proposePurge(sujets);
@@ -184,11 +185,11 @@ if (import.meta.main) {
     console.log(`${cands.length} entrée(s) proposée(s) → docs/superpowers/mots-fabriques.md`);
     console.log("Relire, puis consigner les décisions dans data/mots-parasites.json.");
   } else {
-    const decisions = JSON.parse(readFileSync(DECISIONS, "utf8"));
-    const doc = JSON.parse(readFileSync(MOTS, "utf8"));
-    const r = applyPurge(doc["@graph"] ?? [], decisions);
+    const decisions = readJson(DECISIONS);
+    const { doc, subjects } = readGraph(MOTS);
+    const r = applyPurge(subjects, decisions);
     if (r.retires.length || r.gloses.length || r.lectures.length) {
-      writeFileSync(MOTS, JSON.stringify({ ...doc, "@graph": r.sujets }, null, 1) + "\n");
+      writeGraph(MOTS, doc, r.sujets);
     }
     console.log(`${r.retires.length} entrée(s) retirée(s), ${r.gloses.length} glose(s) posée(s), `
       + `${r.lectures.length} lecture(s) corrigée(s)`);

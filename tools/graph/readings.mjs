@@ -15,13 +15,14 @@
 // CC BY-SA sur chaque écran ni de ShareAlike sur le jeu dérivé.
 //
 // Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync } from "node:fs";
 import { splitOnKun } from "./kana.mjs";
+import { graphPath, readGraph, readJson, writeGraph } from "./jsonld.mjs";
 
 const DECISIONS = "data/lectures-arbitrees.json";
-const MOTS = "data/graph/word.jsonld";
+const MOTS = graphPath("word.jsonld");
 const DECISIONS_KANJI = "data/lectures-kanji-arbitrees.json";
-const KANJI = "data/graph/kanji.jsonld";
+const KANJI = graphPath("kanji.jsonld");
 
 /** Katakana → hiragana. Une lecture de MOT sert de furigana, et les furigana s'écrivent
  *  en hiragana. ⚠ Ne s'applique PAS aux lectures ON d'un kanji, où le katakana est la
@@ -97,10 +98,10 @@ export function applyKanjiReadings(sujets, decisions) {
 /** Applique un fichier de décisions sur un document du graphe. Rend le rapport. */
 function passe(fichier, document, apply, quoi) {
   if (!existsSync(fichier)) return { fait: false };
-  const decisions = JSON.parse(readFileSync(fichier, "utf8"));
-  const doc = JSON.parse(readFileSync(document, "utf8"));
-  const { sujets, poses, conflits, inconnus } = apply(doc["@graph"] ?? [], decisions);
-  writeFileSync(document, JSON.stringify({ ...doc, "@graph": sujets }, null, 1) + "\n");
+  const decisions = readJson(fichier);
+  const { doc, subjects } = readGraph(document);
+  const { sujets, poses, conflits, inconnus } = apply(subjects, decisions);
+  writeGraph(document, doc, sujets);
 
   console.log(`${poses} lecture(s) de ${quoi} posée(s) sur ${document}`);
   if (conflits.length) {
