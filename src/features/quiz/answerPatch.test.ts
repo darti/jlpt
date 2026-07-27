@@ -1,5 +1,5 @@
 import { test, expect } from "bun:test";
-import { answerPatch } from "./useQuiz.ts";
+import { answerPatch } from "./answerPatch.ts";
 import type { Question } from "../../types/quiz.ts";
 
 const q: Question = { id: 5, cat: "vocabulaire", d: 2, q: "…", o: ["やくそく", "X", "Y", "Z"], a: 0, tests: ["jlpt:word/約束"] };

@@ -10,9 +10,7 @@
 // texte déjà présent dans passage.jsonld n'est pas dupliqué.
 //
 // Zéro dépendance, exécuté par `bun`.
-import { readFileSync, writeFileSync } from "node:fs";
-
-const DIR = "data/graph";
+import { graphPath, readGraph, writeGraph } from "./jsonld.mjs";
 
 /** Noms français des huit textes, rédigés à la lecture (clé = texte japonais intégral). */
 export const NOMS = {
@@ -75,16 +73,16 @@ export function migrateInline(passages, questions, noms) {
 }
 
 function main() {
-  const cheminP = `${DIR}/passage.jsonld`, cheminQ = `${DIR}/q-lecture.jsonld`;
-  const docP = JSON.parse(readFileSync(cheminP, "utf8"));
-  const docQ = JSON.parse(readFileSync(cheminQ, "utf8"));
-  const r = migrateInline(docP["@graph"] ?? [], docQ["@graph"] ?? [], NOMS);
+  const cheminP = graphPath("passage.jsonld"), cheminQ = graphPath("q-lecture.jsonld");
+  const { doc: docP, subjects: sujetsP } = readGraph(cheminP);
+  const { doc: docQ, subjects: sujetsQ } = readGraph(cheminQ);
+  const r = migrateInline(sujetsP, sujetsQ, NOMS);
   if (!r.migres) {
     console.log("✓ rien à migrer — les textes sont déjà des sujets jlpt:Passage");
     return 0;
   }
-  writeFileSync(cheminP, JSON.stringify({ ...docP, "@graph": r.passages }, null, 1) + "\n");
-  writeFileSync(cheminQ, JSON.stringify({ ...docQ, "@graph": r.questions }, null, 1) + "\n");
+  writeGraph(cheminP, docP, r.passages);
+  writeGraph(cheminQ, docQ, r.questions);
   console.log(`✓ ${r.migres} textes migrés vers jlpt:Passage`);
   return 0;
 }

@@ -1,5 +1,5 @@
 import { test, expect } from "bun:test";
-import { restoredCorrige, type ResumeState } from "./useQuiz.ts";
+import { restoredCorrige, type ResumeState } from "./resume.ts";
 
 const base = { kind: "quiz" as const, ids: [1, 2, 3], qi: 1, right: 0, t: 0 };
 

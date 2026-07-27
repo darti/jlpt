@@ -12,9 +12,10 @@
 //   4. bun tools/validate-graph.mjs     → confirme
 //
 // Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { readdirSync } from "node:fs";
+import { GRAPH_DIR, graphPath, readGraph, readJson, writeGraph } from "./jsonld.mjs";
 
-const DIR = "data/graph";
+const DIR = GRAPH_DIR;
 const DECISIONS = "data/enonces-arbitres.json";
 
 const arr = (v) => (Array.isArray(v) ? v : v === undefined ? [] : [v]);
@@ -78,7 +79,7 @@ export function applyStems(sujets, decisions) {
 }
 
 if (process.argv[1]?.endsWith("stems.mjs")) {
-  const decisions = JSON.parse(readFileSync(DECISIONS, "utf8"));
+  const decisions = readJson(DECISIONS);
   const shards = readdirSync(DIR).filter((f) => f.startsWith("q-") && f.endsWith(".jsonld")).sort();
 
   let total = 0;
@@ -89,10 +90,10 @@ if (process.argv[1]?.endsWith("stems.mjs")) {
   const restants = new Set(Object.keys(decisions));
 
   for (const f of shards) {
-    const chemin = `${DIR}/${f}`;
-    const doc = JSON.parse(readFileSync(chemin, "utf8"));
-    const r = applyStems(doc["@graph"] ?? [], decisions);
-    if (r.poses) writeFileSync(chemin, JSON.stringify({ ...doc, "@graph": r.sujets }, null, 1) + "\n");
+    const chemin = graphPath(f);
+    const { doc, subjects } = readGraph(chemin);
+    const r = applyStems(subjects, decisions);
+    if (r.poses) writeGraph(chemin, doc, r.sujets);
     for (const id of r.vus) restants.delete(id);
     refuses.push(...r.refuses);
     conflits.push(...r.conflits);

@@ -1,4 +1,4 @@
-import type { ResumeState } from "../quiz/useQuiz.ts";
+import type { ResumeState } from "../quiz/resume.ts";
 import { PANEL, H2, BTN_PRIMARY, BTN_GHOST } from "../../ui/styles.ts";
 
 const DURATIONS = [5, 10, 15];

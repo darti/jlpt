@@ -1,7 +1,7 @@
 import { test, expect } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
 import { SessionCard } from "./SessionCard.tsx";
-import type { ResumeState } from "../quiz/useQuiz.ts";
+import type { ResumeState } from "../quiz/resume.ts";
 
 const noop = () => {};
 

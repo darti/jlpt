@@ -7,7 +7,8 @@ import { clearCategoryCache } from "./lib/bank.ts";
 import { clearRappelCache } from "./features/quiz/rappel.ts";
 import { graphFetch } from "./testing/graphFixture.ts";
 import { readCadence, readRawProgress } from "./lib/storage.ts";
-import { decodeBits, masteredCount } from "./lib/coverage.ts";
+import { asBits } from "./lib/blob.ts";
+import { masteredCount } from "./lib/coverage.ts";
 import { dayNumber } from "./features/quiz/traps.ts";
 
 (globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
@@ -41,8 +42,7 @@ test("le journal de cadence reste en phase avec le bitset appris (progrès du jo
     await act(async () => { opt.click(); await new Promise((r) => setTimeout(r, 0)); });
   }
 
-  const raw = readRawProgress();
-  const mastered = masteredCount(decodeBits(typeof raw?.mastered === "string" ? raw.mastered : ""));
+  const mastered = masteredCount(asBits(readRawProgress(), "mastered"));
   const cad = readCadence();
   const today = dayNumber(new Date());
   expect(mastered).toBeGreaterThan(0);          // on a réellement appris des questions

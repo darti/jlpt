@@ -150,16 +150,13 @@ export function auditStems(sujets) {
 // Ne produit QUE des documents de relecture. Aucune écriture dans data/graph/ : la
 // décision appartient à l'auteur, l'application est le travail de stems.mjs.
 if (process.argv[1]?.endsWith("audit-stems.mjs")) {
-  const { readFileSync, writeFileSync, mkdirSync } = await import("node:fs");
-  const { readdirSync } = await import("node:fs");
+  const { writeFileSync, mkdirSync, readdirSync } = await import("node:fs");
+  const { GRAPH_DIR, graphPath, readGraph } = await import("./jsonld.mjs");
 
-  const DIR = "data/graph";
-  const fichiers = readdirSync(DIR)
+  const fichiers = readdirSync(GRAPH_DIR)
     .filter((f) => f.endsWith(".jsonld") && f !== "context.jsonld" && f !== "shapes.jsonld")
     .sort();
-  const sujets = fichiers.flatMap(
-    (f) => JSON.parse(readFileSync(`${DIR}/${f}`, "utf8"))["@graph"] ?? [],
-  );
+  const sujets = fichiers.flatMap((f) => readGraph(graphPath(f)).subjects);
   const parId = new Map(sujets.filter((s) => s["@id"]).map((s) => [s["@id"], s]));
   const { contradictions, memeLecture, suspects } = auditStems(sujets);
 

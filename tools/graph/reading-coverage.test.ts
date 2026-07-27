@@ -1,5 +1,5 @@
 import { test, expect } from "bun:test";
-import { readFileSync } from "node:fs";
+import { graphPath, readGraph } from "./jsonld.mjs";
 
 /**
  * Cliquet de couverture des lectures. Pas un unit-test d'un outil : une MESURE sur le graphe
@@ -7,10 +7,8 @@ import { readFileSync } from "node:fs";
  * import qui écrase des lectures) échoue en CI. Seuils calés JUSTE sous le réel — à REMONTER dès
  * qu'on comble le trou, sinon le cliquet cesse de garder (cf. gotcha « test de mesure », CLAUDE.md).
  */
-const graph = (f: string): Record<string, unknown>[] => {
-  const doc = JSON.parse(readFileSync(`data/graph/${f}`, "utf8"));
-  return (doc["@graph"] ?? []) as Record<string, unknown>[];
-};
+const graph = (f: string): Record<string, unknown>[] =>
+  readGraph(graphPath(f)).subjects as Record<string, unknown>[];
 const KANA = /^[ぁ-ゖァ-ヶー・]+$/;
 const hasKanji = (s: string): boolean => /[一-鿿々]/.test(s);
 

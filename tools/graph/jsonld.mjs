@@ -10,8 +10,51 @@
 // expandIri(clé) au sh:path déplié — donc tolère les deux formes).
 //
 // Zéro dépendance, exécuté par `bun` comme tout le reste du dépôt.
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve, sep } from "node:path";
+
+/** Emplacement du graphe — source ET livrable (cf. ARCHITECTURE.md). Huit outils le
+ *  retapaient en littéral ; une seule source évite qu'un déplacement en oublie un. */
+export const GRAPH_DIR = "data/graph";
+
+/** Chemin d'un document du graphe : `graphPath("word.jsonld")`. */
+export function graphPath(nom) {
+  return `${GRAPH_DIR}/${nom}`;
+}
+
+/** Parse un fichier JSON du dépôt. Sert aussi aux fichiers de DÉCISIONS (`data/*-arbitrees.json`),
+ *  qui ne sont pas des documents du graphe mais se lisent de la même façon. */
+export function readJson(path) {
+  return JSON.parse(readFileSync(path, "utf8"));
+}
+
+/**
+ * Lit un document du graphe SANS interpréter son `@context` — le pendant écriture-compatible
+ * de `readDoc`.
+ *
+ * Rend le document ENTIER (`doc`) en plus de ses sujets : c'est ce que `writeGraph` doit
+ * recevoir pour préserver `@context` et toute autre clé de tête. `readDoc`, lui, rend le
+ * contexte *analysé* — utile pour valider, inutilisable pour réécrire.
+ */
+export function readGraph(path) {
+  const doc = readJson(path);
+  return { doc, subjects: Array.isArray(doc["@graph"]) ? doc["@graph"] : [] };
+}
+
+/**
+ * Réécrit un document en remplaçant son `@graph`, dans le FORMAT du dépôt : indentation 1,
+ * saut de ligne final, japonais en clair.
+ *
+ * ⚠ Ce format n'est pas cosmétique : c'est la forme sous laquelle 10 351 questions sont
+ * versionnées. Il était retapé à l'identique dans huit outils — une indentation qui dérive
+ * d'un cran dans un seul réécrit le fichier entier et rend le diff illisible. D'où une
+ * seule définition, gardée par `graphio.test.ts`.
+ *
+ * `@graph` est REMPLACÉ, jamais fusionné : l'appelant a déjà bâti la liste complète.
+ */
+export function writeGraph(path, doc, subjects) {
+  writeFileSync(path, JSON.stringify({ ...doc, "@graph": subjects }, null, 1) + "\n");
+}
 
 /** Caractères qu'Oku refuse dans une IRI (is_safe_iri_for_sql). */
 const UNSAFE_SUBSTR = ["'", ";", "--", "\\", "/*"];
@@ -71,7 +114,7 @@ export function parseContext(ctx) {
 }
 
 export function readContext(path) {
-  const doc = JSON.parse(readFileSync(path, "utf8"));
+  const doc = readJson(path);
   return parseContext(doc["@context"]);
 }
 
@@ -97,7 +140,7 @@ function resolveInside(base, rel) {
  *  `contextPath` : un document désignant un autre contexte aurait été lu avec le mauvais,
  *  sans erreur ni avertissement. */
 export function readDoc(path, contextPath = "data/graph/context.jsonld") {
-  const doc = JSON.parse(readFileSync(path, "utf8"));
+  const doc = readJson(path);
   const raw = doc["@context"];
   let ctx;
   if (typeof raw === "string") ctx = readContext(resolveInside(dirname(path), raw));

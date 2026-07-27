@@ -11,14 +11,14 @@
 // un SECOND intervalle dans corpus.jsonld — ce que checkCorpus et coverageBySkill savent lire.
 //
 // Zéro dépendance, exécuté par `bun`.
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { readdirSync } from "node:fs";
+import { GRAPH_DIR, graphPath, readGraph, readJson, writeGraph } from "./jsonld.mjs";
 
-const DIR = "data/graph";
+const DIR = GRAPH_DIR;
 const DECISIONS = "data/passages-arbitres.json";
 
-const lire = (f) => JSON.parse(readFileSync(`${DIR}/${f}`, "utf8"));
-const ecrire = (f, doc, sujets) =>
-  writeFileSync(`${DIR}/${f}`, JSON.stringify({ ...doc, "@graph": sujets }, null, 1) + "\n");
+const lire = (f) => readGraph(graphPath(f)).doc;
+const ecrire = (f, doc, sujets) => writeGraph(graphPath(f), doc, sujets);
 
 /** Premier ordinal libre = max(ord) + 1 sur TOUS les shards de questions. */
 export function nextOrd(shards) {
@@ -122,7 +122,7 @@ export function applyPassages(decisions, docs) {
 }
 
 function main() {
-  const decisions = JSON.parse(readFileSync(DECISIONS, "utf8"));
+  const decisions = readJson(DECISIONS);
   const docP = lire("passage.jsonld");
   const docQ = lire("q-lecture.jsonld");
   const docC = lire("corpus.jsonld");

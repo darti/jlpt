@@ -4,13 +4,13 @@
 //
 // SEUL validateur du dépôt : data/ ne contient plus que data/graph/.
 import { existsSync, readdirSync } from "node:fs";
-import { readContext, readDoc } from "./graph/jsonld.mjs";
+import { GRAPH_DIR, graphPath, readContext, readDoc } from "./graph/jsonld.mjs";
 import { parseShapes, validateAll } from "./graph/shacl.mjs";
 import { checkQuestion, checkCorpus } from "./graph/integrity.mjs";
 
-const DIR = "data/graph";
-const CONTEXT = `${DIR}/context.jsonld`;
-const SHAPES = `${DIR}/shapes.jsonld`;
+const DIR = GRAPH_DIR;
+const CONTEXT = graphPath("context.jsonld");
+const SHAPES = graphPath("shapes.jsonld");
 
 const isQuestion = (s) => {
   const t = s["@type"];
