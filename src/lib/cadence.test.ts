@@ -4,8 +4,8 @@ import { setBit, emptyBits } from "./coverage.ts";
 import { readdirSync, readFileSync } from "node:fs";
 
 test("dailyGoal = rythme requis, arrondi au supérieur", () => {
-  // cible 70 % de 10307 = 7215 ; 0 appris, 134 jours → ⌈7215/134⌉ = 54
-  expect(dailyGoal(0, 134)).toBe(54);
+  // cible 70 % de 10339 = 7237 ; 0 appris, 134 jours → ⌈7237/134⌉ = 55
+  expect(dailyGoal(0, 134)).toBe(55);
 });
 
 test("dailyGoal borné à 0 quand la cible est atteinte", () => {
@@ -68,7 +68,7 @@ test("recordAnswer n'enregistre que sur une nouvelle maîtrise", () => {
   expect(already).toBe(c0);
   const learned = recordAnswer(c0, prev, 42, true, 5, 134); // 1re bonne réponse
   expect(learned.byDay[5]).toBe(1);
-  expect(learned.goalByDay[5]).toBe(54);                  // objectif gelé (0 appris, 134 j)
+  expect(learned.goalByDay[5]).toBe(55);                  // objectif gelé (0 appris, 134 j)
 });
 
 test("recordAnswer ne trace plus rien après l'examen (daysLeft ≤ 0)", () => {
