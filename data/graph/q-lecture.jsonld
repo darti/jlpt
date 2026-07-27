@@ -2226,26 +2226,26 @@
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 1,
    "jlpt:ord": 10343,
-   "jlpt:stem": "出口の近くの掲示板には、隠れる場所を増やしてから何が変わったと書かれていましたか。",
+   "jlpt:stem": "市が今年四月から始めた開館の形は、どのようなものですか。",
    "opts": [
-    "動物が体調を崩す回数が減った",
-    "動物の姿が前より見えるようになった",
-    "入園料を下げられるようになった",
-    "園を訪れる人の数が増えた"
+    "水曜と金曜は夜八時まで開け、そのかわりに月曜を休館日にする",
+    "毎日夜八時まで開け、休館日は作らない",
+    "試験のときと同じように、半年間だけ夜八時まで開ける",
+    "夜八時までの開館はやめ、これまでどおり毎日五時に閉める"
    ],
    "jlpt:answer": 0,
    "readsPassage": "jlpt:passage/chobun-02",
-   "schema:description": "Le relevé affiché ne porte que sur un point, et il est chiffré : <b>隠れる場所を増やした年から、動物が体調を崩す回数がはっきり減った</b>. C'est lui qui transforme la règle affichée en argument.",
-   "jlpt:gloss": "掲示板（けいじばん）« panneau d'affichage » · 体調（たいちょう）を崩す（くずす）« tomber malade » · 回数（かいすう）« nombre de fois » · 記録（きろく）« relevé, données » · 増やす（ふやす）« augmenter »",
+   "schema:description": "La décision d'avril tient en deux phrases qui se suivent, et il faut les prendre ensemble : <b>水曜と金曜の夜間開館を続けることを決めた。ただし、これまで休みのなかった月曜を休館日にする</b>. Ce qui est accordé (deux soirs) et ce qui le paie (le lundi) sont indissociables — le texte le résume par 夜が二つ増え、昼が一つ消えた.",
+   "jlpt:gloss": "休館日（きゅうかんび）« jour de fermeture » · 夜間開館（やかんかいかん）« ouverture en soirée » · そのかわり « en contrepartie » · 延長（えんちょう）« prolongation » · これまでどおり « comme jusqu'à présent »",
    "jlpt:optionNote": [
-    "隠れる場所を増やした年から、動物が体調を崩す回数がはっきり減った — exact",
-    "L'inverse de ce que l'auteur constate ce jour-là, et le panneau ne promet rien de tel : il annonce au contraire des jours sans rien voir",
-    "入園料 est bien dans le texte, mais c'est l'auteur qui regrette de l'avoir payé ; le panneau n'en parle pas",
-    "Le nombre de visiteurs n'apparaît nulle part ; le seul chiffre affiché porte sur la santé des animaux"
+    "水曜と金曜の夜間開館を続けることを決めた。ただし、これまで休みのなかった月曜を休館日にする — exact",
+    "C'est ce que réclamait la pétition (夜八時まで開けてほしい), et la bibliothèque n'avait effectivement aucun jour de fermeture — mais la ville n'a retenu que deux soirs par semaine",
+    "Les six mois sont ceux de l'essai (昨年十月から今年三月まで) ; l'ouverture décidée en avril n'a pas de terme fixé, c'est un réexamen qui est prévu en mars",
+    "C'est ce que demandait la commission, et ce n'est pas ce qui a été décidé : l'ouverture du soir est maintenue deux jours par semaine"
    ],
    "tests": [
-    "jlpt:word/記録",
-    "jlpt:word/体調"
+    "jlpt:word/決める",
+    "jlpt:word/曜日"
    ]
   },
   {
@@ -2254,26 +2254,26 @@
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
    "jlpt:ord": 10344,
-   "jlpt:stem": "「見えないと損だ」という気持ちとありますが、どのような気持ちですか。",
+   "jlpt:stem": "「本のない図書館になっては困る」とありますが、この委員は何を心配しているのですか。",
    "opts": [
-    "お金を払った以上、動物の姿を見なければ割に合わないという気持ち",
-    "十五分も待ったのだから、もう少し待つべきだったという気持ち",
-    "あまり広くない園なのだから、動物はもっと近くにいるはずだという気持ち",
-    "甥に楽しんでもらえなければ、連れて来た意味がないという気持ち"
+    "開館時間を延ばす費用のために、本を買うお金が減ってしまうこと",
+    "夜に来る人が増えても、本を借りずに帰ってしまうこと",
+    "休館日が増えて、本を借りられない日ができてしまうこと",
+    "働く人が足りなくなり、本を棚に並べる仕事が遅れること"
    ],
    "jlpt:answer": 0,
    "readsPassage": "jlpt:passage/chobun-02",
-   "schema:description": "損 = « y perdre ». Le sentiment renvoie au calcul posé plus haut dans le texte : <b>せっかく入園料を払ったのに、これでは何を見に来たのか分からない</b>. Les trois autres options reprennent des éléments vrais — les quinze minutes, la petite taille du parc, le neveu — mais aucun n'est une affaire d'argent.",
-   "jlpt:gloss": "損（そん）« perte, marché de dupes » · 入園料（にゅうえんりょう）« droit d'entrée » · せっかく « après tout le mal qu'on s'est donné » · 恥ずかしい（はずかしい）« gênant, honteux » · 割に合う（わりにあう）« valoir la peine »",
+   "schema:description": "L'image se lit sur la phrase qui la précède immédiatement : <b>市の予算は決まっているのだから、増えた費用は本を買うお金から出すしかない</b>. Le budget étant fixe, allonger les heures se paie sur les acquisitions — « une bibliothèque sans livres » nomme le bout de cette pente. Ce n'est donc pas une inquiétude sur les lecteurs ni sur le personnel.",
+   "jlpt:gloss": "人件費（じんけんひ）« frais de personnel » · 予算（よさん）« budget » · 費用（ひよう）« coût, dépense » · 委員会（いいんかい）« commission » · 〜しかない « n'avoir d'autre choix que » · 困る（こまる）« ne pas pouvoir se le permettre »",
    "jlpt:optionNote": [
-    "Le sentiment est nommé juste après 入園料を払ったのに、これでは何を見に来たのか分からない : c'est un calcul, ce que 損 dit exactement — exact",
-    "Les quinze minutes d'attente sont bien dans le texte, mais l'auteur ne se reproche pas d'avoir renoncé trop tôt : il en veut au zoo, pas à lui-même",
-    "La petite taille du parc est bien indiquée, et l'attente qu'elle crée est réelle — mais 損 chiffre une dépense, pas une distance",
-    "L'auteur écrit 私も同じ気持ちだった : il parle de ce qu'il éprouve lui, non de la déception de l'enfant"
+    "増えた費用は本を買うお金から出すしかない : c'est la phrase qui précède l'image, et elle en donne le mécanisme — exact",
+    "Le texte ne dit rien de ce que font les visiteurs du soir, ni au moment de l'objection ni après l'essai : la commission parle d'argent, pas de comportement",
+    "Le jour de fermeture existe bien, mais il est décidé en avril, après l'essai ; la commission parle deux ans plus tôt et ne peut pas s'inquiéter de ce qui n'existe pas encore",
+    "人件費 est bien l'argument de la commission, mais c'est son coût qui l'inquiète, pas un manque de personnel : aucun retard de travail n'est évoqué"
    ],
    "tests": [
-    "jlpt:word/損",
-    "jlpt:word/気持ち"
+    "jlpt:word/予算",
+    "jlpt:word/費用"
    ]
   },
   {
@@ -2282,26 +2282,26 @@
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
    "jlpt:ord": 10345,
-   "jlpt:stem": "この一日の初めと終わりで、甥の様子はどのように変わりましたか。",
+   "jlpt:stem": "半年間の試験の数字は、夜も開けてほしいと求めた人たちの言い分について、何を明らかにしましたか。",
    "opts": [
-    "早く次へ行きたがっていたが、帰り道ではまだオオカミのことを気にしていた",
-    "オオカミを探すのに夢中だったが、帰り道では動物園の話をしなくなった",
-    "動物が見えないことに怒っていたが、掲示板の説明を読んで納得した",
-    "初めは楽しそうだったが、何も見られないまま元気をなくしてしまった"
+    "五時までには来られない人が実際にいて、その人たちが新しく図書館を使い始めたということ",
+    "これまで昼間に来ていた人が、来やすい夜のほうへ移っただけだということ",
+    "夜に図書館へ来る人の数は、昼間に来る人の数を上回っているということ",
+    "仕事の帰りに寄る人よりも、近くに住む人のほうが多かったということ"
    ],
    "jlpt:answer": 0,
    "readsPassage": "jlpt:passage/chobun-02",
-   "schema:description": "Il faut tenir ensemble les deux extrémités du texte : au début <b>甥が小さな声で「もう行こう」と言った</b>, à la dernière ligne <b>「オオカミは今日、どこにいたのかな」</b>. L'enfant qui voulait partir est celui qui, dans la voiture, y pense encore — et c'est de cet écart que l'auteur tire 見えなかったからこそ、この子はオオカミのことを考えている.",
-   "jlpt:gloss": "甥（おい）« neveu » · 様子（ようす）« attitude, allure » · 夢中（むちゅう）« absorbé, captivé » · 納得（なっとく）する « se ranger à un argument » · 眺める（ながめる）« contempler »",
+   "schema:description": "Aucune phrase ne tranche seule : il faut relier les deux bouts du texte. Au début, la demande — <b>平日は仕事があるため、五時までに図書館へ来ることができない</b>. Après l'essai, deux relevés — sept visiteurs du soir sur dix déclarent 仕事の帰りに寄った, et <b>ほかの曜日の利用者が減ったわけではなかった</b>. Le premier dit d'où viennent ces gens, le second qu'ils ne manquent nulle part ailleurs : la demande était donc réelle, et non un simple déplacement.",
+   "jlpt:gloss": "平日（へいじつ）« jour de semaine » · 利用者（りようしゃ）« usager » · 〜わけではない « cela ne veut pas dire que » · 要望書（ようぼうしょ）« demande écrite, pétition » · 言い分（いいぶん）« ce qu'on fait valoir, argument » · 明らか（あきらか）にする « établir, mettre en évidence » · 上回る（うわまわる）« dépasser »",
    "jlpt:optionNote": [
-    "「もう行こう」 au bout de quinze minutes, puis 「オオカミは今日、どこにいたのかな」 sur le chemin du retour — exact",
-    "Exactement l'inverse : devant l'enclos il veut partir, et c'est au retour qu'il revient à l'animal",
-    "C'est l'auteur seul qui s'arrête devant le panneau et le lit ; rien n'indique que l'enfant en ait pris connaissance, et il n'est jamais montré en colère",
-    "Le texte ne montre à aucun moment un enfant abattu : sa question du retour prouve le contraire"
+    "七割が仕事の帰りに寄ったと答え、しかも ほかの曜日の利用者が減ったわけではなかった : ces usagers du soir sont des usagers en plus — exact",
+    "C'est précisément ce que le dernier relevé écarte : si des visiteurs de la journée s'étaient déplacés vers le soir, les autres jours auraient baissé — ils n'ont pas baissé",
+    "Le texte ne donne qu'un chiffre, 一日平均三十二人 après cinq heures, et aucun pour la journée : la comparaison n'existe pas dans le texte",
+    "Renversement du relevé : 七割 des visiteurs du soir déclarent 仕事の帰りに寄った, et rien n'est dit de leur lieu d'habitation"
    ],
    "tests": [
-    "jlpt:word/関心",
-    "jlpt:word/隠れる"
+    "jlpt:word/平日",
+    "jlpt:word/利用"
    ]
   },
   {
@@ -2310,26 +2310,26 @@
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
    "jlpt:ord": 10346,
-   "jlpt:stem": "この文章に題をつけるとしたら、最もふさわしいものはどれですか。",
+   "jlpt:stem": "この文章の書き方の説明として、最も適切なものはどれですか。",
    "opts": [
-    "「見えない動物が教えてくれたこと」",
-    "「動物園の上手な回り方」",
-    "「子どもが喜ぶ動物園とは」",
-    "「動物を見せない園への疑問」"
+    "二つの言い分のどちらにも理由があることを示したうえで、市が選んだ折り合いと、その代わりに失われたものを伝えている",
+    "夜間開館を求める人たちの考えが正しかったことを、試験の数字を挙げて訴えている",
+    "限られたお金は本を買うために使うべきだという立場から、夜間開館の問題点を並べている",
+    "半年間の試験の進め方を細かく説明し、ほかの市にも同じやり方を勧めている"
    ],
    "jlpt:answer": 0,
    "readsPassage": "jlpt:passage/chobun-02",
-   "schema:description": "Ce que l'auteur rapporte du zoo, c'est justement ce qu'il n'a pas vu : le panneau, la honte, puis la question du neveu. La dernière phrase ne dit pas que la journée fut réussie, elle dit qu'elle fut autre — <b>囲いの前で三分眺めて次へ行く日とは、たしかに違う一日だった</b>. Et la concession もちろん…つらいのは事実だ interdit de lire la chronique comme un éloge sans réserve.",
-   "jlpt:gloss": "価値（かち）« valeur » · 事実（じじつ）« fait » · 自由（じゆう）« liberté » · 囲い（かこい）« enclos » · 疑問（ぎもん）« doute, objection »",
+   "schema:description": "Le texte n'a pas de narrateur impliqué et ne retourne aucun jugement. Il expose deux positions avec leur raison (来られない人がいる d'un côté, 予算は決まっている de l'autre), apporte un relevé qui n'en départage qu'une partie, puis compte ce que l'arrangement coûte : <b>夜が二つ増え、昼が一つ消えたことになる</b>. Et il refuse de conclure — 月曜に通っていた人がどこへ行ったのかは、そのときまで分からない.",
+   "jlpt:gloss": "折り合い（おりあい）« compromis, arrangement » · 立場（たちば）« position, point de vue » · 訴える（うったえる）« plaider, faire valoir » · 勧める（すすめる）« recommander » · 見直す（みなおす）« réexaminer » · 数字（すうじ）を挙げる（あげる）« citer des chiffres »",
    "jlpt:optionNote": [
-    "Le zoo ne lui a rien montré, et c'est de cette absence que l'auteur tire tout ce qu'il rapporte — exact",
-    "Le texte ne donne aucun conseil de visite ; l'auteur lui-même ne sait pas quand il y retournera (すぐに思えたわけではない)",
-    "La difficulté pour les familles est reconnue (もちろん…つらいのは事実だ), mais c'est une concession en passant, pas le sujet",
-    "C'est le doute du début — 動物園は動物を見せるところではないのか — abandonné dès la lecture du panneau"
+    "Deux positions motivées, un relevé qui en départage une partie, puis 夜が二つ増え、昼が一つ消えたことになる : le gain est compté avec son prix — exact",
+    "Les chiffres soutiennent bien les demandeurs, mais le texte ne leur donne pas gain de cause : 求められていたのは毎日の延長であり、決まったのは週に二日である, et le sort du lundi reste ouvert",
+    "C'est la position de la commission, rapportée au même titre que l'autre ; le texte ne l'endosse pas — il relève au contraire que la fréquentation du soir n'était pas un report",
+    "L'essai est raconté par ses résultats, non par sa méthode, et aucune autre ville n'est mentionnée : le texte finit sur un bilan qui n'est pas encore fait"
    ],
    "tests": [
-    "jlpt:word/価値",
-    "jlpt:word/自由"
+    "jlpt:word/意見",
+    "jlpt:word/立場"
    ]
   },
   {

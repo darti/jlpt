@@ -293,14 +293,14 @@
   {
    "@id": "jlpt:passage/chobun-02",
    "@type": "jlpt:Passage",
-   "schema:name": "Chronique : le zoo où les bêtes ont le droit de se cacher",
+   "schema:name": "Exposé : la bibliothèque municipale, deux soirées contre un lundi",
    "jlpt:format": "chobun",
-   "jlpt:jp": "先月、七歳の甥を連れて、隣の市の動物園へ行った。去年開いたばかりの、あまり広くない園だ。入り口で地図をもらい、まず林のような広い囲いへ向かった。ところが、どれだけ探してもオオカミの姿が見えない。木の陰にも岩の上にもいない。十五分ほど待ったところで、甥が小さな声で「もう行こう」と言った。正直に言えば、私も同じ気持ちだった。せっかく入園料を払ったのに、これでは何を見に来たのか分からない。ほかの場所でも同じで、キツネもシカも遠くにいるか、草に隠れているかだった。動物園は動物を見せるところではないのか。そう思いながら歩き、出口の近くの掲示板の前で足が止まった。そこには、この園の考え方が書かれていた。「動物には、人から隠れる自由があります。姿が見えない日は、動物がそれを選んだ日です。」その下には、隠れる場所を増やした年から、動物が体調を崩す回数がはっきり減ったという記録が表になっていた。読み終えて、私は自分の中の「見えないと損だ」という気持ちが少し恥ずかしくなった。もちろん、小さな子どもを連れた親にとって、何も見られない一日がつらいのは事実だ。私自身、また行こうとすぐに思えたわけではない。それでも、あの掲示を読まずに帰っていたら、私はきっと、あの園を「動物のいない動物園」だと人に話していただろう。帰りの車の中で、甥が「オオカミは今日、どこにいたのかな」と言った。見えなかったからこそ、この子はオオカミのことを考えている。囲いの前で三分眺めて次へ行く日とは、たしかに違う一日だった。",
-   "schema:description": "Chronique : venu au zoo avec son neveu, l'auteur ne voit presque aucun animal et s'en agace — jusqu'au panneau qui lui apprend que se cacher est un droit accordé aux bêtes.",
+   "jlpt:jp": "市立図書館の開館時間をめぐって、二年ほど前から市民の意見が二つに分かれている。この図書館が開いているのは午前九時から午後五時までで、休館日はない。近くの会社に勤める人たちは、平日は仕事があるため、五時までに図書館へ来ることができない。夜八時まで開けてほしいという要望書には、二年前の春、千二百人の名前が集まった。一方、図書館の委員会には、これに反対する人もいた。開館時間を延ばせば、その分の人件費がかかる。市の予算は決まっているのだから、増えた費用は本を買うお金から出すしかない。委員の一人は「本のない図書館になっては困る」と話した。市は昨年十月から今年三月までの半年間、水曜と金曜に限って夜八時まで開ける試験を行った。五時より後に来た人は、一日平均三十二人だった。そのうち七割が、アンケートに「仕事の帰りに寄った」と答えている。また、ほかの曜日の利用者が減ったわけではなかった。この結果を受けて、市は今年四月から、水曜と金曜の夜間開館を続けることを決めた。ただし、これまで休みのなかった月曜を休館日にする。一日閉めれば、その分の人手を二つの夜に回すことができるからだ。求められていたのは毎日の延長であり、決まったのは週に二日である。夜が二つ増え、昼が一つ消えたことになる。新しい形になって、まだ半年もたっていない。市は来年三月、一年分の数字がそろった時点で、もう一度見直すことにしている。月曜に通っていた人がどこへ行ったのかは、そのときまで分からない。",
+   "schema:description": "Exposé : deux positions s'affrontent depuis deux ans sur les horaires de la bibliothèque municipale — ouvrir le soir pour ceux qui travaillent, ou préserver le budget d'achat de livres. Six mois d'essai chiffrés, puis un arbitrage qui échange deux soirées contre la fermeture du lundi, et dont le bilan n'est pas encore fait.",
    "tests": [
-    "jlpt:word/動物",
-    "jlpt:word/隠れる",
-    "jlpt:word/自由"
+    "jlpt:word/図書館",
+    "jlpt:word/予算",
+    "jlpt:word/意見"
    ]
   },
   {
