@@ -1,0 +1,320 @@
+{
+ "@context": "context.jsonld",
+ "@graph": [
+  {
+   "@id": "jlpt:passage/legacy-01",
+   "@type": "jlpt:Passage",
+   "schema:name": "Essai : une habitude de lecture chaque soir",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "私は毎晩、寝る前に三十分だけ本を読むことにしている。最初はなかなか続かなかったが、「一日三十分だけ」と決めてからは、無理なく習慣になった。長い時間やろうとすると、かえって続かないものだ。大切なのは、少しでも毎日続けることだと思う。"
+  },
+  {
+   "@id": "jlpt:passage/legacy-02",
+   "@type": "jlpt:Passage",
+   "schema:name": "Avis : fermeture de la bibliothèque Midori pour travaux",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "みどり図書館からのお知らせ。来週の月曜日から水曜日まで、館内の工事のため休館します。本の返却は、入口の横にある返却ポストへお願いします。なお、インターネットでの予約や貸出期間の延長は、いつも通りご利用いただけます。"
+  },
+  {
+   "@id": "jlpt:passage/legacy-03",
+   "@type": "jlpt:Passage",
+   "schema:name": "Courriel à M. Yamada : report d'une réunion",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "山田さんへ。お疲れさまです。来週の打ち合わせの件ですが、火曜日の午後はどうしても都合がつかなくなってしまいました。申し訳ありませんが、水曜日の同じ時間に変更していただけないでしょうか。もし難しいようでしたら、ご都合のよい日をいくつか教えてください。田中"
+  },
+  {
+   "@id": "jlpt:passage/legacy-04",
+   "@type": "jlpt:Passage",
+   "schema:name": "Essai : le vélo comme moyen de se rendre au travail",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "最近、自転車で通勤する人が増えている。電車のように混まず、運動にもなるからだ。ただし、雨の日は危ないので無理をしないほうがいい。私は、晴れた日は自転車、雨の日は電車、と決めている。天気に合わせて方法を変えると、続けやすい。"
+  },
+  {
+   "@id": "jlpt:passage/legacy-05",
+   "@type": "jlpt:Passage",
+   "schema:name": "Récit : un voyage aux sources chaudes sous la pluie",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "先週、家族で温泉に旅行に行った。電車で行く予定だったが、当日は朝から大雨で、電車が止まってしまった。仕方なく車で出発したが、道がとても込んでいて、着いたのは予定より三時間も遅かった。それでも、夜の温泉はとても気持ちがよく、疲れがすっかり取れた。次に行くときは、天気をよく調べてから出かけたいと思う。"
+  },
+  {
+   "@id": "jlpt:passage/legacy-06",
+   "@type": "jlpt:Passage",
+   "schema:name": "Avis clientèle : fermeture du magasin pour travaux",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "お客様各位　いつもご利用ありがとうございます。当店は店内の工事のため、七月一日から七月五日まで休業させていただきます。なお、七月六日からは新しくなった店内で営業を再開いたします。ご不便をおかけしますが、よろしくお願いいたします。インターネットでのご注文は休業中もご利用いただけます。"
+  },
+  {
+   "@id": "jlpt:passage/legacy-07",
+   "@type": "jlpt:Passage",
+   "schema:name": "Note de service : préparatifs pour la réunion de demain",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "田中さんへ　明日の会議の資料ですが、人数が増えたので、二十部ではなく三十部用意してください。それから、会議室は三階から五階に変わりました。エアコンの調子が悪いので、上着を持って来たほうがいいかもしれません。準備をよろしくお願いします。何か分からないことがあれば、私の携帯に連絡してください。　佐藤"
+  },
+  {
+   "@id": "jlpt:passage/legacy-08",
+   "@type": "jlpt:Passage",
+   "schema:name": "Essai : la motivation retrouvée grâce à un ami de sport",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "私は去年から週に二回、近くのジムに通っている。最初は体を動かすのがつらくて、行きたくない日も多かった。しかし、同じ時間に通う友人ができてから、楽しく続けられるようになった。一人だと休んでしまうが、待っている人がいると思うと、自然と足が向く。健康のためだけでなく、人とのつながりも大切だと感じている。"
+  },
+  {
+   "@id": "jlpt:passage/tanbun-01",
+   "@type": "jlpt:Passage",
+   "schema:name": "Note de service : ascenseur en travaux",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "社員のみなさんへ。三月十日から十二日まで、エレベーターの工事を行います。その間、エレベーターは使えませんので、階段をご利用ください。ご不便をおかけしますが、ご協力をお願いします。なお、大きな荷物をお持ちの方は、一階の事務室にお声をおかけください。",
+   "schema:description": "Avis au personnel : l'ascenseur sera en travaux du 10 au 12 mars ; merci d'emprunter l'escalier.",
+   "tests": [
+    "jlpt:word/工事",
+    "jlpt:word/利用"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/chubun-01",
+   "@type": "jlpt:Passage",
+   "schema:name": "Billet : aller au travail à vélo",
+   "jlpt:format": "chubun",
+   "jlpt:jp": "去年の春に会社の近くへ引っ越してから、電車をやめて、自転車で通勤するようになった。前は駅まで歩いて十分、それから電車に十五分乗っていた。今は家から会社まで自転車で二十五分ほどで、かかる時間はほとんど変わらない。雨の日はバスを使うが、道が混むので四十分近くかかることもある。速くなったわけではない。それでも自転車を選んでいるのは、途中の景色が毎日少しずつ違うからだ。同じ道を走っていても、川の水の色も、風のにおいも、季節によって変わる。先週は、いつも通る公園の桜がもう散り始めていることに気づいた。電車に乗っていたころは、携帯を見ているうちに駅に着いてしまい、窓の外を見ることさえほとんどなかった。速く着くことより、行く途中で何かに気づくことのほうが、今の私には大事なのかもしれない。",
+   "schema:description": "Billet : depuis qu'il s'est rapproché de son bureau, l'auteur y va à vélo — non pour gagner du temps, mais pour ce qu'il remarque en chemin.",
+   "tests": [
+    "jlpt:word/通勤",
+    "jlpt:word/景色",
+    "jlpt:word/季節"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/joho-01",
+   "@type": "jlpt:Passage",
+   "schema:name": "Centre municipal : cours de japonais",
+   "jlpt:format": "joho",
+   "jlpt:jp": "みどり市民センター　日本語教室のご案内　◆時間　水曜日　午後六時半〜八時／土曜日　午前十時〜十一時半　◆料金　一回五百円。初めて参加する日は、これに教材費千円が加わります。　◆申し込み　前の日の午後五時までに、電話かメールでお知らせください。　◆その他　中学生以下の方は、保護者と一緒にご参加ください。教室が休みになる日は、入口の案内板でお知らせします。",
+   "schema:description": "Annonce d'un centre municipal : horaires, tarifs et conditions d'inscription d'un cours de japonais.",
+   "tests": [
+    "jlpt:word/料金",
+    "jlpt:word/申し込み",
+    "jlpt:word/参加"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/tanbun-02",
+   "@type": "jlpt:Passage",
+   "schema:name": "Mot laissé à la maison : un colis chez les voisins",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "お母さんへ。学校から帰ったけど、部活の集まりがあるので、六時ごろまた出かけます。冷蔵庫にカレーが入っているので、温めて食べてください。それから、帰るときに隣の田中さんに会いました。留守の間に宅配便が届いて、代わりに受け取っておいてくれたそうです。わたしは今日は遅くなるので、お母さんが取りに行ってください。夜になると田中さんも休むので、明るいうちにお願いします。ゆき",
+   "schema:description": "Mot laissé à sa mère par un enfant : le dîner est au réfrigérateur, et un colis attend chez les voisins — à récupérer avant la nuit.",
+   "tests": [
+    "jlpt:word/留守",
+    "jlpt:word/受け取る",
+    "jlpt:word/冷蔵庫"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/tanbun-03",
+   "@type": "jlpt:Passage",
+   "schema:name": "Avis de quartier : changement de jour pour les ordures",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "みどり町のみなさんへ。四月から、燃えるごみを出す日が変わります。これまでの火曜日と金曜日から、月曜日と木曜日になります。ごみは、朝八時までに集積所に出してください。前の日の夜には出さないでください。カラスに荒らされることがあります。なお、缶やびんの日はこれまでどおりです。みどり町自治会",
+   "schema:description": "Avis du comité de quartier : à partir d'avril, les déchets incinérables se sortent le lundi et le jeudi, avant huit heures du matin.",
+   "tests": [
+    "jlpt:word/燃える",
+    "jlpt:word/出す",
+    "jlpt:word/缶"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/tanbun-04",
+   "@type": "jlpt:Passage",
+   "schema:name": "Courriel : reporter un rendez-vous chez le dentiste",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "さくら歯科医院　受付の方へ。今週の木曜日午後三時に予約をしている山本です。急に出張が入り、その日は伺えなくなりました。申し訳ありません。来週でしたら、月曜日以外はいつでも大丈夫です。できれば午前中にお願いしたいのですが、空いている日を教えていただけませんか。お手数をおかけします。",
+   "schema:description": "Courriel d'un patient à un cabinet dentaire : un déplacement professionnel l'empêche de venir jeudi, il demande une autre date.",
+   "tests": [
+    "jlpt:word/予約",
+    "jlpt:word/出張",
+    "jlpt:word/伺う"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/tanbun-05",
+   "@type": "jlpt:Passage",
+   "schema:name": "Consigne de classe : sortie scolaire de mercredi",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "三年二組のみなさんへ。来週の水曜日の社会科見学について。当日は八時二十分までに教室に集まってください。学校を出るのは八時四十分です。お弁当と水筒を必ず持ってきてください。雨が降っても見学は行いますので、傘ではなく雨がっぱを用意してください。バスの中でお菓子を食べてはいけません。",
+   "schema:description": "Consigne de classe : horaires, affaires à apporter et règles de la sortie scolaire de mercredi prochain.",
+   "tests": [
+    "jlpt:word/見学",
+    "jlpt:word/水筒",
+    "jlpt:word/用意"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/tanbun-06",
+   "@type": "jlpt:Passage",
+   "schema:name": "Annonce de boutique : la boulangerie déménage",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "いつもご来店ありがとうございます。当店は、九月三十日をもちまして、この場所での営業を終了いたします。十月十五日に、駅の南口の新しい店で再びオープンいたします。その間はお休みをいただきますので、ご注文の品は九月二十五日までにお受け取りください。長い間、ありがとうございました。パン工房むぎ",
+   "schema:description": "Annonce d'une boulangerie : fermeture de la boutique actuelle le 30 septembre, réouverture le 15 octobre près de la gare.",
+   "tests": [
+    "jlpt:word/営業",
+    "jlpt:word/注文",
+    "jlpt:word/南口"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/tanbun-07",
+   "@type": "jlpt:Passage",
+   "schema:name": "Avis aux voyageurs : arrêt de bus déplacé",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "バスをご利用のお客様へ。道路工事のため、七月一日から二十日まで、「市役所前」のバス停は使えません。この期間、バスは「市役所前」に止まらず、百メートル先の「中央公園」のバス停に止まります。時刻表は変わりませんが、道が混むと遅れることがあります。お急ぎの方は、早めのバスをご利用ください。",
+   "schema:description": "Avis d'une compagnie de bus : pendant les travaux de voirie, l'arrêt « Mairie » est reporté cent mètres plus loin.",
+   "tests": [
+    "jlpt:word/工事",
+    "jlpt:word/期間",
+    "jlpt:word/混む"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/tanbun-08",
+   "@type": "jlpt:Passage",
+   "schema:name": "Mot d'un voisin : arroser les plantes pendant l'absence",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "田村さんへ。突然すみません。明日から一週間、家族で北海道の実家に帰ることになりました。留守の間、ベランダの植木に水をやっていただけないでしょうか。朝でも夕方でもかまいませんが、暑い昼間は避けてください。鍵はいつものとおり郵便受けに入れておきます。お礼はお土産で、ということでお許しください。西村",
+   "schema:description": "Mot glissé à un voisin : arroser les plantes du balcon pendant une semaine d'absence, la clé est dans la boîte aux lettres.",
+   "tests": [
+    "jlpt:word/実家",
+    "jlpt:word/留守",
+    "jlpt:word/避ける"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/joho-02",
+   "@type": "jlpt:Passage",
+   "schema:name": "Piscine municipale : horaires et tarifs",
+   "jlpt:format": "joho",
+   "jlpt:jp": "さくら市民プール　ご利用案内　◆時間　平日　午前九時〜午後八時／土・日・祝日　午前九時〜午後六時（最終入場は、閉まる一時間前までです）　◆料金　大人四百円　小・中学生二百円。六十五歳以上の方と五歳以下のお子さんは無料です。　◆回数券　大人十一回分で四千円　◆その他　毎月第二水曜日は清掃のためお休みです。水泳帽をかぶらない方はご利用になれません。",
+   "schema:description": "Notice d'une piscine municipale : horaires selon les jours, tarifs par âge, carnet de séances et jours de fermeture.",
+   "tests": [
+    "jlpt:word/料金",
+    "jlpt:word/無料",
+    "jlpt:word/平日"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/joho-03",
+   "@type": "jlpt:Passage",
+   "schema:name": "Location de vélos en gare : tarifs et conditions",
+   "jlpt:format": "joho",
+   "jlpt:jp": "みどり駅前レンタサイクル　ご案内　◆貸出時間　午前八時〜午後七時（返すのも同じ時間の中でお願いします）　◆料金　普通の自転車　一日三百円／電動自転車　一日六百円　◆学生の方は、学生証をお見せいただくと、どちらも百円引きになります。　◆貸出には、写真のついた身分証明書が必要です。　◆午後七時までに返せない場合は、次の日の料金が加わります。",
+   "schema:description": "Notice d'un loueur de vélos : horaires de prêt, tarifs par type de vélo, réduction étudiante et règle en cas de retour tardif.",
+   "tests": [
+    "jlpt:word/料金",
+    "jlpt:word/学生",
+    "jlpt:word/加わる"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/chubun-02",
+   "@type": "jlpt:Passage",
+   "schema:name": "Lettre à un ancien professeur : le cahier de trois lignes",
+   "jlpt:format": "chubun",
+   "jlpt:jp": "田村先生、ごぶさたしております。中学を卒業してから、もう十年になります。お変わりありませんか。急にこんな手紙を書いたのは、先週、会社で子ども向けの本を作ることになり、先生のことを思い出したからです。中学二年のとき、私は作文の時間がいちばん苦手でした。原稿用紙を前にしても何も浮かばず、四十五分間ただ座っていたこともあります。あのころ先生は、私に小さなノートをくださって、「毎日三行でいいから書いてごらん」とおっしゃいました。三行なら書けると思い、その日の給食のことや、帰り道で見かけた猫のことを書きました。先生はいつも赤い字で短い返事をくださいました。半年ほど続いたころには、書くことが少しも苦ではなくなっていました。今、私は文章を作る仕事をしています。あのノートがなければ、この仕事を選ぶことはなかったと思います。本ができましたら、いちばんにお送りします。",
+   "schema:description": "Lettre à un ancien professeur de collège : dix ans après, l'auteur raconte le cahier de trois lignes par jour et ce qu'il en reste dans son métier d'aujourd'hui.",
+   "tests": [
+    "jlpt:word/卒業",
+    "jlpt:word/作文",
+    "jlpt:word/仕事"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/chubun-03",
+   "@type": "jlpt:Passage",
+   "schema:name": "Courriel au service commercial : changer la conduite des réunions",
+   "jlpt:format": "chubun",
+   "jlpt:jp": "営業部のみなさん、お疲れさまです。来月から、火曜日の定例会議のやり方を変えます。これまでは、始めに資料を配り、その場で読む時間を取っていました。そのため、一時間の予定が九十分近くかかる日も少なくありませんでした。来月からは、資料を前の日の夕方までにメールでお送りします。当日は読む時間を取りませんので、必ず目を通してから来てください。会議そのものは三十分で終える予定です。短くすることだけが目的ではありません。これまでは、資料を読むだけで時間が過ぎてしまい、最後まで一度も発言しない人がいました。読む時間をなくせば、三十分すべてを話し合いに使えます。分かりにくいところや反対の意見こそ、その場で出していただきたいのです。一か月試してみて、うまくいかないようであれば、元のやり方に戻すことも考えます。まずはご協力をお願いします。",
+   "schema:description": "Courriel interne : à partir du mois prochain, le dossier de séance part la veille, la réunion tombe à trente minutes, et ces trente minutes entières passent à la discussion.",
+   "tests": [
+    "jlpt:word/会議",
+    "jlpt:word/資料",
+    "jlpt:word/協力"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/chubun-04",
+   "@type": "jlpt:Passage",
+   "schema:name": "Billet : le quart d'heure du matin",
+   "jlpt:format": "chubun",
+   "jlpt:jp": "大学を出てデスクワークの仕事を始めて三年目の春、腰が痛くて朝起き上がれない日があった。医者には「薬よりも、まず体を動かすことです」と言われた。そこで走ることにした。新しい靴まで買ったのに、続いたのは一週間だけだった。朝は眠いし、雨が降れば休む。一度休むと、次の日はもっと休みやすくなる。今は、家の近くの公園で、朝六時半から十五分ほど体操をしている。市の広報で見つけた集まりで、参加しているのは私を入れて十人ほど、ほとんどが六十代より上の方だ。もう半年続いている。続いているのは、たぶん体操そのものの力ではない。一日でも休むと、次に行ったとき「昨日はどうしましたか」と声をかけられる。それが少し恥ずかしくて、眠い朝でもつい出かけてしまう。体のために始めたことなのに、今では、あの十五分の前後に交わす短い挨拶のほうが楽しみになっている。",
+   "schema:description": "Billet : un mal de dos conduit l'auteur au sport ; la course ne tient pas une semaine, la gymnastique du parc dure depuis six mois — et ce qui la fait durer n'est pas la gymnastique.",
+   "tests": [
+    "jlpt:word/医者",
+    "jlpt:word/参加",
+    "jlpt:word/挨拶"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/chubun-05",
+   "@type": "jlpt:Passage",
+   "schema:name": "Billet : deux façons de préparer un voyage",
+   "jlpt:format": "chubun",
+   "jlpt:jp": "妹は、旅行の計画は細かく立てるものだと言います。出かける前に電車の時間を調べ、行きたい店の休みの日まで確かめておきます。私はそこまでしません。朝の電車と泊まる所だけ決めて、あとはその日の気分で歩きます。去年の秋、二人で金沢へ行きました。二日目に美術館へ行くつもりでしたが、出かける前に妹が調べて、その日は休みだと教えてくれました。それで、美術館は一日目の午前に行くことにしました。一日目の午後、私は駅の裏の細い道で古い道具を売る店を見つけ、三十分のつもりが一時間半も店の人と話していました。地図にも案内の本にも出ていない店です。正直に言えば、あのときは妹のおかげで美術館に入れました。それでも、午後の予定を空けておくのをやめようとは思いません。今は二人で出かけるとき、午前は妹の計画、午後は私のやり方、と分けています。",
+   "schema:description": "Billet à deux voix : la sœur de l'auteur prépare tout dans le détail, lui ne fixe que le train du matin. À Kanazawa, la vérification de sa sœur leur évite un musée fermé — sans qu'il renonce pour autant à ses après-midi laissés libres.",
+   "tests": [
+    "jlpt:word/旅行",
+    "jlpt:word/計画",
+    "jlpt:word/道具"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/chubun-06",
+   "@type": "jlpt:Passage",
+   "schema:name": "Chronique : les parapluies en prêt de la gare",
+   "jlpt:format": "chubun",
+   "jlpt:jp": "先月、私の住む町の駅前に、「貸し傘」の箱が置かれた。急な雨のときに自由に借りて、次に駅へ来たときに返す、という決まりだ。黄色い印のついた傘が五十本用意されたと、地元の新聞に出ていた。面白い試みだと思い、雨の日に一本借りた。ところが、返しに行けたのは三日後だった。箱の中を見て驚いた。残っていたのは七本だけだった。借りた人が悪いのだろうか。私はそうは思わない。私自身、返す気がなかったわけではない。よく晴れた日に、わざわざ傘を持って家を出るのが面倒だっただけだ。同じように感じた人が四十人いれば、箱は空になる。駅の人に聞くと、雨の日には少しずつ戻ってくるそうだ。傘が要る日は、みんな傘のことを思い出すからだろう。うまく回らない仕組みを見ると、私たちはつい人を責めたくなる。しかし、変えたほうがいいのは、人の心よりも、返しにくいそのつくりのほうだ。",
+   "schema:description": "Chronique : sur cinquante parapluies mis en prêt à la gare, sept restent. L'auteur, qui a lui-même mis trois jours à rendre le sien, refuse d'y voir une faute des emprunteurs.",
+   "tests": [
+    "jlpt:word/傘",
+    "jlpt:word/借りる",
+    "jlpt:word/返す"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/chobun-01",
+   "@type": "jlpt:Passage",
+   "schema:name": "Essai : le parler qu'on croyait devoir corriger",
+   "jlpt:format": "chobun",
+   "jlpt:jp": "十八の春に大学へ入り、生まれた町を出た。新しい生活でまず気にしたのは、勉強でも友だちでもなく、自分の言葉だった。気をつけて話しているつもりでも、少し急ぐとふるさとの言い方が出てしまう。同じ学部の学生に「今の、どういう意味？」と聞き返されるたびに、顔が熱くなった。それからしばらく、私は話す前に頭の中で一度、言葉を並べかえるようになった。おかげで二年もすると、出身地を当てられることはなくなった。ただ、そのころの私は、人と話したあとにいつも疲れていた。考えが変わったのは、働き始めて三年目の冬だ。仕事で生まれた町の近くまで行き、七十を過ぎた職人さんに話を聞いた。初めのうち、返ってくるのは「はい」「まあ」といった短い言葉ばかりで、私は用意してきた質問を順に読み上げているだけだった。ところが、道具の名前をうっかり子どものころの言い方で言ったところ、その方は声を出して笑い、それから一時間以上も話してくださった。帰りの電車で、私はずっと考えていた。自分の言葉を直せば話が通じる、と長い間信じてきた。しかしあの日、話を先へ進めたのは正しい言い方ではなく、その方と私が同じ土地の音を知っている、ただそれだけのことだった。どこでもふるさとの言葉で話せばいいとは思わない。伝わらなければ意味がないのだから、相手によって言い方を変えるのは当たり前だ。それでも、選んで使い分けることと、なかったことにするのとは違う。最近は姪に頼まれて、祖母の口ぐせをときどき教えている。使わない言葉は、思い出せなくなるのが早い。",
+   "schema:description": "Essai : arrivé à l'université, l'auteur a effacé son parler d'origine — jusqu'au jour où c'est ce même parler, échappé par hasard, qui a ouvert un entretien resté muet.",
+   "tests": [
+    "jlpt:word/言葉",
+    "jlpt:word/方言",
+    "jlpt:word/土地"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/chobun-02",
+   "@type": "jlpt:Passage",
+   "schema:name": "Exposé : la bibliothèque municipale, deux soirées contre un lundi",
+   "jlpt:format": "chobun",
+   "jlpt:jp": "市立図書館の開館時間をめぐって、二年ほど前から市民の意見が二つに分かれている。この図書館が開いているのは午前九時から午後五時までで、休館日はない。近くの会社に勤める人たちは、平日は仕事があるため、五時までに図書館へ来ることができない。夜八時まで開けてほしいという要望書には、二年前の春、千二百人の名前が集まった。一方、図書館の委員会には、これに反対する人もいた。開館時間を延ばせば、その分の人件費がかかる。市の予算は決まっているのだから、増えた費用は本を買うお金から出すしかない。委員の一人は「本のない図書館になっては困る」と話した。市は昨年十月から今年三月までの半年間、水曜と金曜に限って夜八時まで開ける試験を行った。五時より後に来た人は、一日平均三十二人だった。そのうち七割が、アンケートに「仕事の帰りに寄った」と答えている。また、ほかの曜日の利用者が減ったわけではなかった。この結果を受けて、市は今年四月から、水曜と金曜の夜間開館を続けることを決めた。ただし、これまで休みのなかった月曜を休館日にする。一日閉めれば、その分の人手を二つの夜に回すことができるからだ。求められていたのは毎日の延長であり、決まったのは週に二日である。夜が二つ増え、昼が一つ消えたことになる。新しい形になって、まだ半年もたっていない。市は来年三月、一年分の数字がそろった時点で、もう一度見直すことにしている。月曜に通っていた人がどこへ行ったのかは、そのときまで分からない。",
+   "schema:description": "Exposé : deux positions s'affrontent depuis deux ans sur les horaires de la bibliothèque municipale — ouvrir le soir pour ceux qui travaillent, ou préserver le budget d'achat de livres. Six mois d'essai chiffrés, puis un arbitrage qui échange deux soirées contre la fermeture du lundi, et dont le bilan n'est pas encore fait.",
+   "tests": [
+    "jlpt:word/図書館",
+    "jlpt:word/予算",
+    "jlpt:word/意見"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/chobun-03",
+   "@type": "jlpt:Passage",
+   "schema:name": "Récit : le cahier de passation de la papeterie",
+   "jlpt:format": "chobun",
+   "jlpt:jp": "学生のとき、駅前の小さな文房具店で四年間アルバイトをした。卒業を前に店をやめると伝えると、店長は「次の人のために、ノートを一冊書いてほしい」と言った。引き受けたものの、気は進まなかった。レジの打ち方も品物の並べ方も、慣れてしまえば何ということはない。わざわざ文字にするほどのことがあるだろうか、と思ったのだ。それでも約束なので、その週から手順を思い出しては書き並べ、三週間かけて厚いノートができあがった。読んだ店長は困った顔で言った。「よく書けている。でも、これは箱の裏に書いてあることばかりだね。」たしかにそのとおりだ。私が書いたのは誰が読んでも分かる決まりだけで、それなら説明書で足りる。「友だちに引き継ぐつもりで、もう一度書いてごらん」と言われて書き直すと、今度はまるで別のものになった。木曜の午後に来る先生は必ず同じ赤いペンを二本買うので、切らさないようにしていたこと。試験の前は、ノートより付箋のほうが早くなくなること。雨の日は、紙ではなくビニールの袋に入れて渡すと喜ばれること。どれも誰にも教わっていない。四年の間に勝手に覚えたことだ。書き終えて驚いたのは、自分がそんなに多くのことに気づいていたと、それまで思ってもみなかったことだ。あの日ノートを頼まれなければ、私はこの四年を「レジを打っていた四年」として片づけていたに違いない。今の仕事でも、月に一度、短い覚え書きを作る。うまく書けた日は少ない。それでも、書こうとすると、書くことがないと思っていた毎日から必ず何かが出てくる。",
+   "schema:description": "Récit d'expérience : chargé d'écrire un cahier pour son successeur, l'auteur produit d'abord un manuel de procédures, que le patron renvoie — la seconde version lui révèle quatre ans d'observations qu'il ne savait pas avoir.",
+   "tests": [
+    "jlpt:word/仕事",
+    "jlpt:word/記録",
+    "jlpt:word/覚える"
+   ]
+  }
+ ]
+}

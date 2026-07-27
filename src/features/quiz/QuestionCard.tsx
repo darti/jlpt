@@ -25,7 +25,7 @@ export function QuestionCard({
   onSubmitTyped?: (text: string) => void;
   typed?: string | null;
 }) {
-  const passage = typeof question.passage === "string" ? question.passage : null;
+  const passage = question.passage ?? null;
   const stemHtml = furi(question.q).replace("___", '<span class="blank">？</span>');
 
   const [rate, setRate] = useState<Rate>(() => readRate());
@@ -50,7 +50,7 @@ export function QuestionCard({
       {question.cat === "lecture" && passage && (
         <div
           className="text-fg text-base mb-3 leading-loose"
-          dangerouslySetInnerHTML={{ __html: furi(passage) }}
+          dangerouslySetInnerHTML={{ __html: furi(passage.jp) }}
         />
       )}
       <div

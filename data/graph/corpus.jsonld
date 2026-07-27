@@ -35,6 +35,13 @@
    "jlpt:skill": "ecoute",
    "jlpt:from": 10275,
    "jlpt:count": 32
+  },
+  {
+   "@id": "jlpt:corpus/lecture-2",
+   "@type": "jlpt:SkillRange",
+   "jlpt:skill": "lecture",
+   "jlpt:from": 10307,
+   "jlpt:count": 44
   }
  ]
 }

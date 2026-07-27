@@ -1,0 +1,1084 @@
+{
+ "passages": [
+  {
+   "id": "jlpt:passage/tanbun-01",
+   "name": "Note de service : ascenseur en travaux",
+   "format": "tanbun",
+   "jp": "社員のみなさんへ。三月十日から十二日まで、エレベーターの工事を行います。その間、エレベーターは使えませんので、階段をご利用ください。ご不便をおかけしますが、ご協力をお願いします。なお、大きな荷物をお持ちの方は、一階の事務室にお声をおかけください。",
+   "fr": "Avis au personnel : l'ascenseur sera en travaux du 10 au 12 mars ; merci d'emprunter l'escalier.",
+   "tests": ["jlpt:word/工事", "jlpt:word/利用"],
+   "questions": [
+    {
+     "stem": "このお知らせから分かることは何ですか。",
+     "opts": [
+      "三月十日から三日間、階段を使う",
+      "三月十日にエレベーターが直る",
+      "工事の間は会社が休みになる",
+      "階段の工事が三日間行われる"
+     ],
+     "answer": 0,
+     "difficulty": 2,
+     "description": "<b>十日から十二日まで</b> = trois jours ; l'ascenseur étant inutilisable, on prend l'escalier.",
+     "gloss": "工事（こうじ）« travaux » · 行う（おこなう）« effectuer » · その間（そのあいだ）« pendant ce temps » · 階段（かいだん）« escalier » · 利用（りよう）« usage »",
+     "optionNote": [
+      "Du 10 au 12 inclus = trois jours d'escalier — exact",
+      "« Réparé le 10 » : c'est le début des travaux, pas leur fin",
+      "L'avis ne dit rien d'une fermeture de l'entreprise",
+      "Ce sont les travaux de l'ASCENSEUR, pas de l'escalier"
+     ],
+     "tests": ["jlpt:word/工事"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/chubun-01",
+   "name": "Billet : aller au travail à vélo",
+   "format": "chubun",
+   "jp": "去年の春に会社の近くへ引っ越してから、電車をやめて、自転車で通勤するようになった。前は駅まで歩いて十分、それから電車に十五分乗っていた。今は家から会社まで自転車で二十五分ほどで、かかる時間はほとんど変わらない。雨の日はバスを使うが、道が混むので四十分近くかかることもある。速くなったわけではない。それでも自転車を選んでいるのは、途中の景色が毎日少しずつ違うからだ。同じ道を走っていても、川の水の色も、風のにおいも、季節によって変わる。先週は、いつも通る公園の桜がもう散り始めていることに気づいた。電車に乗っていたころは、携帯を見ているうちに駅に着いてしまい、窓の外を見ることさえほとんどなかった。速く着くことより、行く途中で何かに気づくことのほうが、今の私には大事なのかもしれない。",
+   "fr": "Billet : depuis qu'il s'est rapproché de son bureau, l'auteur y va à vélo — non pour gagner du temps, mais pour ce qu'il remarque en chemin.",
+   "tests": ["jlpt:word/通勤", "jlpt:word/景色", "jlpt:word/季節"],
+   "questions": [
+    {
+     "stem": "今、筆者は自転車で家から会社まで、どのくらいかかりますか。",
+     "opts": [
+      "十分ぐらい",
+      "十五分ぐらい",
+      "二十五分ぐらい",
+      "四十分近く"
+     ],
+     "answer": 2,
+     "difficulty": 1,
+     "description": "<b>今は家から会社まで自転車で二十五分ほど</b>. Les trois autres durées figurent bien dans le texte, mais désignent autre chose : la marche jusqu'à la gare, le train, et le bus des jours de pluie.",
+     "gloss": "通勤（つうきん）« trajet domicile-travail » · 引っ越す（ひっこす）« déménager » · 〜ほど « environ » · 混む（こむ）« être encombré » · 近く（ちかく）« près de, presque »",
+     "optionNote": [
+      "Dix minutes : c'est la marche jusqu'à la gare, du temps où il prenait le train",
+      "Quinze minutes : c'est la durée du trajet en train, avant le déménagement",
+      "Vingt-cinq minutes : 自転車で二十五分ほど, c'est bien le trajet actuel de chez lui au bureau — exact",
+      "Près de quarante minutes : c'est le bus des jours de pluie, quand la circulation est chargée"
+     ],
+     "tests": ["jlpt:word/通勤"]
+    },
+    {
+     "stem": "「電車に乗っていたころ」について、この文章から分かることは何ですか。",
+     "opts": [
+      "電車の窓が汚れていて、外がよく見えなかった",
+      "電車が混んでいて、座れないことが多かった",
+      "電車の中では、いつも眠っていた",
+      "通勤の間、周りの様子にほとんど目を向けていなかった"
+     ],
+     "answer": 3,
+     "difficulty": 2,
+     "description": "Le texte n'écrit jamais « je ne faisais pas attention » : il le montre par <b>窓の外を見ることさえほとんどなかった</b> — さえ marque le degré minimal, et 携帯を見ているうちに en donne la raison.",
+     "gloss": "〜ころ « à l'époque où » · 携帯（けいたい）« téléphone portable » · 〜うちに « pendant que » · 〜さえ « même (degré minimal) » · 様子（ようす）« aspect, ce qui se passe »",
+     "optionNote": [
+      "L'état des vitres n'est jamais évoqué : s'il ne regardait pas dehors, ce n'est pas qu'il ne pouvait pas",
+      "L'affluence dans le train n'apparaît nulle part ; c'est la circulation, sous la pluie, que le texte dit chargée",
+      "Le texte dit qu'il passait le trajet sur son téléphone, pas qu'il dormait",
+      "携帯を見ているうちに駅に着いてしまい、窓の外を見ることさえほとんどなかった : il ne prêtait aucune attention à ce qui l'entourait — c'est ce qui se déduit"
+     ],
+     "tests": ["jlpt:gram/てしまう", "jlpt:word/携帯"]
+    },
+    {
+     "stem": "筆者がこの文章で一番言いたいことは何ですか。",
+     "opts": [
+      "自転車は電車より速いので、通勤に向いている",
+      "会社の近くに引っ越せば、通勤が楽になる",
+      "行き方を変えると、これまで見えなかったものが見えてくる",
+      "天気の悪い日は、無理をせずに乗り物を変えたほうがいい"
+     ],
+     "answer": 2,
+     "difficulty": 3,
+     "description": "La dernière phrase donne le propos : <b>速く着くことより、行く途中で何かに気づくことのほうが大事</b>. Les autres options reprennent un détail vrai (la pluie, le déménagement) ou contredisent le texte (la vitesse).",
+     "gloss": "〜より〜のほうが « plutôt que…, c'est… qui » · 途中（とちゅう）« en chemin » · 気づく（きづく）« se rendre compte » · 大事（だいじ）« important » · かもしれない « peut-être »",
+     "optionNote": [
+      "Contredit le texte : かかる時間はほとんど変わらない — le vélo ne fait pas gagner de temps",
+      "Le déménagement n'est que le point de départ du récit ; l'auteur ne conseille nulle part de se rapprocher de son travail",
+      "L'auteur conclut que remarquer quelque chose en chemin compte plus qu'arriver vite : changer de mode de trajet lui a ouvert les yeux — c'est bien son propos",
+      "Le bus des jours de pluie est un détail pratique, pas ce que l'auteur veut faire passer"
+     ],
+     "tests": ["jlpt:gram/のほうが", "jlpt:gram/かもしれない"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/joho-01",
+   "name": "Centre municipal : cours de japonais",
+   "format": "joho",
+   "jp": "みどり市民センター　日本語教室のご案内　◆時間　水曜日　午後六時半〜八時／土曜日　午前十時〜十一時半　◆料金　一回五百円。初めて参加する日は、これに教材費千円が加わります。　◆申し込み　前の日の午後五時までに、電話かメールでお知らせください。　◆その他　中学生以下の方は、保護者と一緒にご参加ください。教室が休みになる日は、入口の案内板でお知らせします。",
+   "fr": "Annonce d'un centre municipal : horaires, tarifs et conditions d'inscription d'un cours de japonais.",
+   "tests": ["jlpt:word/料金", "jlpt:word/申し込み", "jlpt:word/参加"],
+   "questions": [
+    {
+     "stem": "この教室に初めて参加する人は、その日にいくら払いますか。",
+     "opts": [
+      "五百円",
+      "千円",
+      "千五百円",
+      "二千円"
+     ],
+     "answer": 2,
+     "difficulty": 2,
+     "description": "Le tarif se lit sur <b>deux données</b> : 一回五百円, et 初めて参加する日は、これに教材費千円が加わります。 La somme, 1 500 yens, n'est écrite nulle part — c'est au lecteur de l'additionner.",
+     "gloss": "料金（りょうきん）« tarif » · 一回（いっかい）« une séance » · 教材費（きょうざいひ）« frais de matériel » · 加わる（くわわる）« s'ajouter » · 払う（はらう）« payer »",
+     "optionNote": [
+      "Cinq cents yens, c'est le tarif d'une séance seule : le premier jour, les frais de matériel s'y ajoutent",
+      "Mille yens, ce sont les seuls frais de matériel ; la séance elle-même reste due",
+      "一回五百円 plus 教材費千円 le premier jour, soit 1 500 yens — exact",
+      "Deux mille yens supposerait deux séances (500 × 2) plus le matériel ; le texte ne fait payer qu'une séance"
+     ],
+     "tests": ["jlpt:word/料金"]
+    },
+    {
+     "stem": "土曜日の教室に参加したい人は、いつまでに申し込みますか。",
+     "opts": [
+      "木曜日の午後五時まで",
+      "金曜日の午後五時まで",
+      "土曜日の午前十時まで",
+      "当日ならいつでもよい"
+     ],
+     "answer": 1,
+     "difficulty": 2,
+     "description": "Deux données à croiser : le cours du samedi a lieu le <b>土曜日</b>, et l'inscription se fait <b>前の日の午後五時までに</b> — la veille d'un samedi étant le vendredi, la limite est vendredi 17 h.",
+     "gloss": "申し込む（もうしこむ）« s'inscrire » · 前の日（まえのひ）« la veille » · 〜までに « au plus tard à » · 当日（とうじつ）« le jour même »",
+     "optionNote": [
+      "Jeudi, c'est l'avant-veille : le texte demande la veille du cours, pas deux jours avant",
+      "前の日の午後五時までに : la veille d'un cours du samedi, c'est le vendredi — exact",
+      "Dix heures du matin le samedi, c'est l'heure de début du cours, pas la limite d'inscription",
+      "Le texte fixe la limite à la veille : s'inscrire le jour même n'est pas prévu"
+     ],
+     "tests": ["jlpt:word/申し込み"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/tanbun-02",
+   "name": "Mot laissé à la maison : un colis chez les voisins",
+   "format": "tanbun",
+   "jp": "お母さんへ。学校から帰ったけど、部活の集まりがあるので、六時ごろまた出かけます。冷蔵庫にカレーが入っているので、温めて食べてください。それから、帰るときに隣の田中さんに会いました。留守の間に宅配便が届いて、代わりに受け取っておいてくれたそうです。わたしは今日は遅くなるので、お母さんが取りに行ってください。夜になると田中さんも休むので、明るいうちにお願いします。ゆき",
+   "fr": "Mot laissé à sa mère par un enfant : le dîner est au réfrigérateur, et un colis attend chez les voisins — à récupérer avant la nuit.",
+   "tests": ["jlpt:word/留守", "jlpt:word/受け取る", "jlpt:word/冷蔵庫"],
+   "questions": [
+    {
+     "stem": "ゆきさんが書いたこの手紙から分かることは何ですか。",
+     "opts": [
+      "ゆきさんは、六時ごろ家に帰ってくる",
+      "夕飯は、田中さんの家で食べることになっている",
+      "荷物は、あとで宅配便の人がもう一度届けてくれる",
+      "荷物は、暗くなる前に隣の家へ取りに行く"
+     ],
+     "answer": 3,
+     "difficulty": 2,
+     "description": "Aucune phrase ne dit « va chercher le colis à côté avant la nuit » : il faut relier <b>隣の田中さんが…代わりに受け取っておいてくれた</b> à <b>夜になると田中さんも休むので、明るいうちに</b>. Le colis est chez les voisins, et l'heure limite tient à leur coucher.",
+     "gloss": "部活（ぶかつ）« club scolaire » · 宅配便（たくはいびん）« livraison à domicile » · 留守（るす）« absence, personne à la maison » · 受け取る（うけとる）« réceptionner » · 〜うちに « tant que… (avant que cela change) »",
+     "optionNote": [
+      "Six heures est l'heure à laquelle Yuki RESSORT (また出かけます), pas celle de son retour",
+      "Le dîner est au réfrigérateur, à réchauffer : les Tanaka gardent le colis, pas le repas",
+      "Une seconde livraison : le livreur est déjà passé et le colis a été remis aux voisins, il ne repassera pas",
+      "暗くなる前に = 明るいうちに, et le colis est chez les Tanaka : les deux informations du mot, réunies — exact"
+     ],
+     "tests": ["jlpt:gram/うちに", "jlpt:word/受け取る"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/tanbun-03",
+   "name": "Avis de quartier : changement de jour pour les ordures",
+   "format": "tanbun",
+   "jp": "みどり町のみなさんへ。四月から、燃えるごみを出す日が変わります。これまでの火曜日と金曜日から、月曜日と木曜日になります。ごみは、朝八時までに集積所に出してください。前の日の夜には出さないでください。カラスに荒らされることがあります。なお、缶やびんの日はこれまでどおりです。みどり町自治会",
+   "fr": "Avis du comité de quartier : à partir d'avril, les déchets incinérables se sortent le lundi et le jeudi, avant huit heures du matin.",
+   "tests": ["jlpt:word/燃える", "jlpt:word/出す", "jlpt:word/缶"],
+   "questions": [
+    {
+     "stem": "四月から、燃えるごみを出すとき、どうすればいいですか。",
+     "opts": [
+      "火曜日か金曜日の朝八時までに集積所に出す",
+      "火曜日か金曜日の前の日の夜に集積所に出す",
+      "月曜日か木曜日の朝八時までに集積所に出す",
+      "月曜日か木曜日の前の日の夜に集積所に出す"
+     ],
+     "answer": 2,
+     "difficulty": 2,
+     "description": "Deux données à croiser, dont une seule change : le jour passe de <b>火・金</b> à <b>月・木</b>, tandis que l'heure reste <b>朝八時までに</b>. Le dépôt de la veille au soir est <b>interdit</b> (前の日の夜には出さないでください) ; les corbeaux n'en sont que la raison.",
+     "gloss": "燃えるごみ（もえるごみ）« déchets incinérables » · 集積所（しゅうせきじょ）« point de collecte » · 前の日（まえのひ）« la veille » · 荒らす（あらす）« saccager, éventrer » (passif 荒らされる) · なお « par ailleurs » · これまでどおり « comme jusqu'à présent »",
+     "optionNote": [
+      "Mardi et vendredi sont les ANCIENS jours, ceux qui disparaissent en avril",
+      "Faux sur les deux points à la fois : anciens jours, et dépôt la veille au soir",
+      "Nouveaux jours (lundi, jeudi) et heure inchangée (huit heures du matin) — exact",
+      "Les bons jours, mais la veille au soir : l'avis l'interdit en toutes lettres (前の日の夜には出さないでください), et dit pourquoi — les corbeaux"
+     ],
+     "tests": ["jlpt:gram/までに", "jlpt:word/出す"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/tanbun-04",
+   "name": "Courriel : reporter un rendez-vous chez le dentiste",
+   "format": "tanbun",
+   "jp": "さくら歯科医院　受付の方へ。今週の木曜日午後三時に予約をしている山本です。急に出張が入り、その日は伺えなくなりました。申し訳ありません。来週でしたら、月曜日以外はいつでも大丈夫です。できれば午前中にお願いしたいのですが、空いている日を教えていただけませんか。お手数をおかけします。",
+   "fr": "Courriel d'un patient à un cabinet dentaire : un déplacement professionnel l'empêche de venir jeudi, il demande une autre date.",
+   "tests": ["jlpt:word/予約", "jlpt:word/出張", "jlpt:word/伺う"],
+   "questions": [
+    {
+     "stem": "山本さんがこのメールで一番伝えたいことは何ですか。",
+     "opts": [
+      "来週の月曜日の午前中に予約を入れてほしい",
+      "予約の時間に遅れそうなので、待っていてほしい",
+      "出張の日を変えられないか、相談したい",
+      "木曜日の予約を取り消して、来週に変えてほしい"
+     ],
+     "answer": 3,
+     "difficulty": 2,
+     "description": "Le message enchaîne trois mouvements : je ne peux plus venir jeudi (<b>伺えなくなりました</b>), voici mes disponibilités (<b>月曜日以外</b>, de préférence le matin), donnez-moi une date. C'est une demande de report.",
+     "gloss": "予約（よやく）« rendez-vous » · 出張（しゅっちょう）« déplacement professionnel » · 伺う（うかがう）« se rendre chez (humble) » · 〜以外（いがい）« sauf » · お手数（おてすう）« dérangement »",
+     "optionNote": [
+      "Le lundi est justement le seul jour écarté : 月曜日以外はいつでも. Seule la préférence pour le matin est exacte",
+      "Il ne s'agit pas d'un retard : 伺えなくなりました dit qu'il ne viendra pas du tout ce jour-là",
+      "Le déplacement est un fait acquis, la cause de l'annulation ; et c'est à un cabinet dentaire que Yamamoto écrit",
+      "伺えなくなりました annule le jeudi, 空いている日を教えて demande un nouveau créneau la semaine suivante — exact"
+     ],
+     "tests": ["jlpt:word/伺う", "jlpt:word/以外"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/tanbun-05",
+   "name": "Consigne de classe : sortie scolaire de mercredi",
+   "format": "tanbun",
+   "jp": "三年二組のみなさんへ。来週の水曜日の社会科見学について。当日は八時二十分までに教室に集まってください。学校を出るのは八時四十分です。お弁当と水筒を必ず持ってきてください。雨が降っても見学は行いますので、傘ではなく雨がっぱを用意してください。バスの中でお菓子を食べてはいけません。",
+   "fr": "Consigne de classe : horaires, affaires à apporter et règles de la sortie scolaire de mercredi prochain.",
+   "tests": ["jlpt:word/見学", "jlpt:word/水筒", "jlpt:word/用意"],
+   "questions": [
+    {
+     "stem": "この見学のお知らせから分かることは何ですか。",
+     "opts": [
+      "雨が降った日でも見学に行くので、雨がっぱがいる",
+      "雨が降ったら、見学は別の日になる",
+      "八時四十分までに教室に集まればよい",
+      "お弁当はバスの中で食べることになっている"
+     ],
+     "answer": 0,
+     "difficulty": 1,
+     "description": "<b>雨が降っても見学は行います</b> : la sortie est maintenue par tous les temps, et c'est ce qui justifie la cape plutôt que le parapluie. Attention aux deux horaires : 8 h 20 pour se rassembler, 8 h 40 pour partir.",
+     "gloss": "見学（けんがく）« visite d'étude » · 当日（とうじつ）« le jour même » · 水筒（すいとう）« gourde » · 必ず（かならず）« impérativement » · 用意（ようい）« préparer »",
+     "optionNote": [
+      "雨が降っても見学は行います, d'où 傘ではなく雨がっぱ : la cape est prévue précisément parce que la sortie est maintenue — exact",
+      "Le report est exactement ce que la consigne exclut : 雨が降っても…行います",
+      "8 h 40 est l'heure de DÉPART de l'école ; le rassemblement, lui, est fixé à 8 h 20",
+      "Le bento est obligatoire, mais la consigne ne dit nulle part où on le mange : elle interdit seulement les friandises dans le bus"
+     ],
+     "tests": ["jlpt:gram/ても", "jlpt:word/用意"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/tanbun-06",
+   "name": "Annonce de boutique : la boulangerie déménage",
+   "format": "tanbun",
+   "jp": "いつもご来店ありがとうございます。当店は、九月三十日をもちまして、この場所での営業を終了いたします。十月十五日に、駅の南口の新しい店で再びオープンいたします。その間はお休みをいただきますので、ご注文の品は九月二十五日までにお受け取りください。長い間、ありがとうございました。パン工房むぎ",
+   "fr": "Annonce d'une boulangerie : fermeture de la boutique actuelle le 30 septembre, réouverture le 15 octobre près de la gare.",
+   "tests": ["jlpt:word/営業", "jlpt:word/注文", "jlpt:word/南口"],
+   "questions": [
+    {
+     "stem": "この店について、正しいものはどれですか。",
+     "opts": [
+      "九月三十日で、この店はなくなってしまう",
+      "十月十五日から、今と同じ場所で営業を始める",
+      "注文した品は、新しい店で受け取ることになる",
+      "十月の初めは、この店の品を買うことができない"
+     ],
+     "answer": 3,
+     "difficulty": 3,
+     "description": "Trois dates à mettre bout à bout : dernier jour ici le <b>九月三十日</b>, réouverture ailleurs le <b>十月十五日</b>, et entre les deux <b>その間はお休みをいただきます</b>. Le piège est de lire 営業を終了いたします comme une fermeture définitive, alors que la phrase suivante annonce un déménagement.",
+     "gloss": "〜をもちまして « à l'issue de (annonce formelle) » · 当店（とうてん）« notre boutique » · 営業（えいぎょう）« activité, exploitation » · 再び（ふたたび）« de nouveau » · その間（そのあいだ）« dans l'intervalle » · 注文（ちゅうもん）« commande »",
+     "optionNote": [
+      "L'annonce n'est pas une fermeture mais un déménagement : 駅の南口の新しい店で再びオープン",
+      "La réouverture du 15 octobre a lieu près de la sortie sud de la gare, et non à l'emplacement actuel",
+      "Les commandes se retirent avant le 25 septembre, donc dans la boutique actuelle : rien n'est transféré",
+      "Fermeture le 30 septembre, réouverture le 15 octobre, et その間はお休み : du 1er au 14 octobre, la boutique ne vend rien — exact"
+     ],
+     "tests": ["jlpt:word/営業", "jlpt:word/品"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/tanbun-07",
+   "name": "Avis aux voyageurs : arrêt de bus déplacé",
+   "format": "tanbun",
+   "jp": "バスをご利用のお客様へ。道路工事のため、七月一日から二十日まで、「市役所前」のバス停は使えません。この期間、バスは「市役所前」に止まらず、百メートル先の「中央公園」のバス停に止まります。時刻表は変わりませんが、道が混むと遅れることがあります。お急ぎの方は、早めのバスをご利用ください。",
+   "fr": "Avis d'une compagnie de bus : pendant les travaux de voirie, l'arrêt « Mairie » est reporté cent mètres plus loin.",
+   "tests": ["jlpt:word/工事", "jlpt:word/期間", "jlpt:word/混む"],
+   "questions": [
+    {
+     "stem": "七月十日に、バスで市役所へ行く人はどうすればいいですか。",
+     "opts": [
+      "「市役所前」でバスを降りて、百メートルほど歩く",
+      "工事が終わるまで、バス以外の乗り物で行く",
+      "時刻表が変わるので、新しい時間を調べてから出かける",
+      "「中央公園」でバスを降りて、百メートルほど歩く"
+     ],
+     "answer": 3,
+     "difficulty": 2,
+     "description": "Deux données à croiser : la période (<b>七月一日から二十日まで</b> — le 10 en fait partie) et le report de l'arrêt (<b>百メートル先の「中央公園」</b>). L'horaire, lui, ne bouge pas : seuls des retards sont possibles.",
+     "gloss": "工事（こうじ）« travaux » · 期間（きかん）« période » · 〜先（さき）« plus loin » · 時刻表（じこくひょう）« horaires » · 混む（こむ）« être encombré »",
+     "optionNote": [
+      "L'arrêt 市役所前 est précisément celui qui est hors service : on ne peut pas y descendre",
+      "Les bus circulent normalement, seul l'arrêt change : renoncer au bus n'est pas ce que l'avis demande",
+      "L'avis dit l'inverse : 時刻表は変わりません. Ce sont les retards, dus à la circulation, qui sont possibles",
+      "Le 10 juillet tombe dans la période de travaux : le bus ne dessert plus 市役所前 et s'arrête à 中央公園, cent mètres plus loin — exact"
+     ],
+     "tests": ["jlpt:word/期間", "jlpt:word/工事"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/tanbun-08",
+   "name": "Mot d'un voisin : arroser les plantes pendant l'absence",
+   "format": "tanbun",
+   "jp": "田村さんへ。突然すみません。明日から一週間、家族で北海道の実家に帰ることになりました。留守の間、ベランダの植木に水をやっていただけないでしょうか。朝でも夕方でもかまいませんが、暑い昼間は避けてください。鍵はいつものとおり郵便受けに入れておきます。お礼はお土産で、ということでお許しください。西村",
+   "fr": "Mot glissé à un voisin : arroser les plantes du balcon pendant une semaine d'absence, la clé est dans la boîte aux lettres.",
+   "tests": ["jlpt:word/実家", "jlpt:word/留守", "jlpt:word/避ける"],
+   "questions": [
+    {
+     "stem": "西村さんが書いたこの手紙から分かることは何ですか。",
+     "opts": [
+      "西村さんの家族は、北海道に引っ越すことになった",
+      "西村さんは、お礼として田村さんにお金を渡す",
+      "田村さんは、郵便受けに入れてある鍵を使って西村さんの家に入る",
+      "田村さんは、毎日昼ごろに水をやることになっている"
+     ],
+     "answer": 2,
+     "difficulty": 3,
+     "description": "La réponse n'est écrite nulle part : elle se déduit de deux détails. Les plantes sont <b>ベランダの植木</b> — on n'y accède qu'en entrant — et <b>鍵はいつものとおり郵便受けに入れておきます</b> n'a pas d'autre raison d'être.",
+     "gloss": "実家（じっか）« maison familiale » · 留守（るす）« absence » · 植木（うえき）« plante en pot » · 避ける（さける）« éviter » · 郵便受け（ゆうびんうけ）« boîte aux lettres »",
+     "optionNote": [
+      "Il s'agit d'un séjour d'une semaine chez les parents (実家に帰る), pas d'un déménagement",
+      "Nishimura remercie par un souvenir de voyage (お礼はお土産で) : il n'est jamais question d'argent",
+      "Les plantes sont sur le balcon et la clé attend dans la boîte aux lettres : il faut entrer dans le logement — exact",
+      "Le milieu de journée est justement le moment à éviter (暑い昼間は避けてください) ; c'est le matin ou le soir, indifféremment"
+     ],
+     "tests": ["jlpt:word/実家", "jlpt:word/避ける"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/joho-02",
+   "name": "Piscine municipale : horaires et tarifs",
+   "format": "joho",
+   "jp": "さくら市民プール　ご利用案内　◆時間　平日　午前九時〜午後八時／土・日・祝日　午前九時〜午後六時（最終入場は、閉まる一時間前までです）　◆料金　大人四百円　小・中学生二百円。六十五歳以上の方と五歳以下のお子さんは無料です。　◆回数券　大人十一回分で四千円　◆その他　毎月第二水曜日は清掃のためお休みです。水泳帽をかぶらない方はご利用になれません。",
+   "fr": "Notice d'une piscine municipale : horaires selon les jours, tarifs par âge, carnet de séances et jours de fermeture.",
+   "tests": ["jlpt:word/料金", "jlpt:word/無料", "jlpt:word/平日"],
+   "questions": [
+    {
+     "stem": "日曜日にプールに入りたい人は、何時までに行けばいいですか。",
+     "opts": [
+      "午後五時までに",
+      "午後六時までに",
+      "午後七時までに",
+      "午後八時までに"
+     ],
+     "answer": 0,
+     "difficulty": 2,
+     "description": "Deux lignes à croiser : le dimanche relève de <b>土・日・祝日　午前九時〜午後六時</b>, et <b>最終入場は、閉まる一時間前まで</b>. L'heure cherchée, dix-sept heures, n'est écrite nulle part.",
+     "gloss": "平日（へいじつ）« jour de semaine » · 祝日（しゅくじつ）« jour férié » · 最終（さいしゅう）« dernier » · 入場（にゅうじょう）« entrée » · 閉まる（しまる）« fermer »",
+     "optionNote": [
+      "Le dimanche, la piscine ferme à dix-huit heures et la dernière entrée est une heure avant : dix-sept heures — exact",
+      "Dix-huit heures est l'heure de FERMETURE du dimanche : on n'entre déjà plus depuis une heure",
+      "Dix-neuf heures serait la dernière entrée en semaine (fermeture à vingt heures), pas le dimanche",
+      "Vingt heures est la fermeture des jours de semaine, et ce n'est de toute façon pas une heure d'entrée"
+     ],
+     "tests": ["jlpt:word/最終", "jlpt:word/入場"]
+    },
+    {
+     "stem": "七十歳の女性が、小学生の孫二人を連れて行くと、全部でいくら払いますか。",
+     "opts": [
+      "無料",
+      "二百円",
+      "四百円",
+      "八百円"
+     ],
+     "answer": 2,
+     "difficulty": 3,
+     "description": "Trois personnes, deux lignes du tarif : la grand-mère relève de <b>六十五歳以上の方…無料</b>, les deux petits-enfants de <b>小・中学生二百円</b>. Le total, quatre cents yens, coïncide avec le tarif adulte — c'est là qu'est le piège.",
+     "gloss": "孫（まご）« petit-enfant » · 〜以上（いじょう）« à partir de » · 〜以下（いか）« au plus » · 無料（むりょう）« gratuit » · 連れて行く（つれていく）« emmener »",
+     "optionNote": [
+      "La gratuité vaut pour les soixante-cinq ans et plus, donc pour la grand-mère seule : ses petits-enfants paient",
+      "Deux cents yens, c'est le tarif d'UN écolier ; ils sont deux",
+      "Gratuit pour elle (六十五歳以上), deux cents yens par écolier : 200 × 2 = 400 yens — exact",
+      "Huit cents yens ferait payer aussi la grand-mère au tarif adulte (400 + 400), alors qu'elle entre gratuitement"
+     ],
+     "tests": ["jlpt:word/以上", "jlpt:word/無料"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/joho-03",
+   "name": "Location de vélos en gare : tarifs et conditions",
+   "format": "joho",
+   "jp": "みどり駅前レンタサイクル　ご案内　◆貸出時間　午前八時〜午後七時（返すのも同じ時間の中でお願いします）　◆料金　普通の自転車　一日三百円／電動自転車　一日六百円　◆学生の方は、学生証をお見せいただくと、どちらも百円引きになります。　◆貸出には、写真のついた身分証明書が必要です。　◆午後七時までに返せない場合は、次の日の料金が加わります。",
+   "fr": "Notice d'un loueur de vélos : horaires de prêt, tarifs par type de vélo, réduction étudiante et règle en cas de retour tardif.",
+   "tests": ["jlpt:word/料金", "jlpt:word/学生", "jlpt:word/加わる"],
+   "questions": [
+    {
+     "stem": "大学生が電動自転車を一日借りると、いくら払いますか。",
+     "opts": [
+      "二百円",
+      "三百円",
+      "五百円",
+      "六百円"
+     ],
+     "answer": 2,
+     "difficulty": 2,
+     "description": "Deux lignes à croiser : <b>電動自転車　一日六百円</b> et <b>学生の方は…どちらも百円引き</b>. Le mot <b>どちらも</b> est décisif : la réduction ne se limite pas au vélo ordinaire.",
+     "gloss": "貸出（かしだし）« location, prêt » · 普通（ふつう）« ordinaire » · 電動（でんどう）« électrique » · 学生証（がくせいしょう）« carte d'étudiant » · 〜引き（びき）« remise de »",
+     "optionNote": [
+      "Deux cents yens, c'est le vélo ORDINAIRE avec la réduction étudiante (300 − 100)",
+      "Trois cents yens est le plein tarif du vélo ordinaire, pas de l'électrique",
+      "600 yens l'électrique, moins les 100 yens de réduction étudiante, qui vaut pour les deux types (どちらも) : 500 yens — exact",
+      "Six cents yens est le plein tarif de l'électrique : la réduction n'a pas été appliquée"
+     ],
+     "tests": ["jlpt:word/学生", "jlpt:word/払う"]
+    },
+    {
+     "stem": "午後六時に普通の自転車を借りて、次の日の朝八時に返した人は、全部でいくら払いますか。",
+     "opts": [
+      "三百円",
+      "六百円",
+      "九百円",
+      "千二百円"
+     ],
+     "answer": 1,
+     "difficulty": 3,
+     "description": "Le vélo est rendu le lendemain, donc bien après <b>午後七時</b> : <b>次の日の料金が加わります</b>. Deux journées de vélo ordinaire, 300 × 2 = 600 yens. Le retard n'est pas une pénalité qui s'ajouterait aux deux jours — il <b>est</b> le second jour.",
+     "gloss": "〜場合（ばあい）« dans le cas où » · 返す（かえす）« rendre » · 加わる（くわわる）« s'ajouter » · 次の日（つぎのひ）« le lendemain » · 全部で（ぜんぶで）« au total »",
+     "optionNote": [
+      "Trois cents yens, c'est une seule journée : or le vélo n'a pas été rendu avant dix-neuf heures",
+      "300 yens la journée, et un retour après dix-neuf heures fait s'ajouter la journée suivante : 300 × 2 = 600 yens — exact",
+      "Neuf cents yens feraient TROIS journées : la règle n'en ajoute qu'une, celle du lendemain (300 le jour de la location + 300 le lendemain). Le retard ne se facture pas en plus des deux jours, il EST le second jour",
+      "Mille deux cents yens correspondrait à deux journées d'ÉLECTRIQUE (600 × 2) ; le vélo loué est un vélo ordinaire"
+     ],
+     "tests": ["jlpt:word/場合", "jlpt:word/加わる"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/chubun-02",
+   "name": "Lettre à un ancien professeur : le cahier de trois lignes",
+   "format": "chubun",
+   "jp": "田村先生、ごぶさたしております。中学を卒業してから、もう十年になります。お変わりありませんか。急にこんな手紙を書いたのは、先週、会社で子ども向けの本を作ることになり、先生のことを思い出したからです。中学二年のとき、私は作文の時間がいちばん苦手でした。原稿用紙を前にしても何も浮かばず、四十五分間ただ座っていたこともあります。あのころ先生は、私に小さなノートをくださって、「毎日三行でいいから書いてごらん」とおっしゃいました。三行なら書けると思い、その日の給食のことや、帰り道で見かけた猫のことを書きました。先生はいつも赤い字で短い返事をくださいました。半年ほど続いたころには、書くことが少しも苦ではなくなっていました。今、私は文章を作る仕事をしています。あのノートがなければ、この仕事を選ぶことはなかったと思います。本ができましたら、いちばんにお送りします。",
+   "fr": "Lettre à un ancien professeur de collège : dix ans après, l'auteur raconte le cahier de trois lignes par jour et ce qu'il en reste dans son métier d'aujourd'hui.",
+   "tests": ["jlpt:word/卒業", "jlpt:word/作文", "jlpt:word/仕事"],
+   "questions": [
+    {
+     "stem": "筆者が田村先生に手紙を書こうと思ったのは、なぜですか。",
+     "opts": [
+      "中学を卒業してから十年たったから",
+      "できあがった本を先生に送ったから",
+      "先生から手紙をもらったから",
+      "子ども向けの本を作ることになったから"
+     ],
+     "answer": 3,
+     "difficulty": 1,
+     "description": "La cause est donnée telle quelle : <b>この手紙を書いたのは、先週、会社で子ども向けの本を作ることになり、先生のことを思い出したからです</b>. Les dix ans et le livre à envoyer figurent bien dans la lettre, mais ailleurs.",
+     "gloss": "ごぶさた « ne pas avoir donné de nouvelles » · 卒業（そつぎょう）« obtenir son diplôme » · 〜向け（むけ）« destiné à » · 思い出す（おもいだす）« se rappeler » · できあがる « être achevé »",
+     "optionNote": [
+      "Les dix ans écoulés situent la lettre dans le temps ; ce n'est pas ce qui a poussé l'auteur à écrire",
+      "Le livre n'est pas encore fait : 本ができましたら、いちばんにお送りします est une promesse, pas un envoi déjà effectué",
+      "Aucune lettre du professeur n'est évoquée : c'est l'auteur qui reprend contact après dix ans de silence",
+      "先週、会社で子ども向けの本を作ることになり、先生のことを思い出した : c'est le déclencheur, et la lettre le dit explicitement — exact"
+     ],
+     "tests": ["jlpt:word/卒業"]
+    },
+    {
+     "stem": "「毎日三行でいいから書いてごらん」と先生が言ったのは、どうしてだと考えられますか。",
+     "opts": [
+      "短い文章のほうが、上手に書けるから",
+      "三行なら、毎日でも続けられると考えたから",
+      "作文の宿題が多すぎると思ったから",
+      "日記の書き方を教えたかったから"
+     ],
+     "answer": 1,
+     "difficulty": 2,
+     "description": "La lettre ne donne jamais l'intention du professeur : elle en montre l'effet. <b>三行なら書けると思い</b> — la quantité était assez petite pour qu'un élève bloqué s'y mette — puis <b>半年ほど続いたころには</b> : c'est la durée, non la qualité, qui a fait le travail.",
+     "gloss": "〜てごらん « essaie de… (bienveillant) » · 苦手（にがて）« être mauvais en » · 原稿用紙（げんこうようし）« papier à manuscrit » · 続く（つづく）« durer » · 苦（く）« peine »",
+     "optionNote": [
+      "La justesse du texte n'est jamais en cause : c'est de ne rien écrire du tout que l'auteur souffrait",
+      "Trois lignes, c'est assez peu pour s'y mettre chaque jour : l'auteur écrit 三行なら書けると思い, et il a tenu six mois — exact",
+      "Le cahier s'ajoute au cours, il ne remplace aucun devoir : rien n'indique que le professeur ait voulu alléger la charge",
+      "Le professeur n'enseigne aucune méthode : il répond en quelques mots à l'encre rouge, c'est tout"
+     ],
+     "tests": ["jlpt:word/作文", "jlpt:word/続ける"]
+    },
+    {
+     "stem": "筆者がこの手紙で先生に一番伝えたいことは何ですか。",
+     "opts": [
+      "中学生のころ、作文がとても苦手だったこと",
+      "今の仕事が、思っていたより大変であること",
+      "先生にもらったノートが、今の仕事につながっていること",
+      "できあがった本を、ぜひ読んでほしいこと"
+     ],
+     "answer": 2,
+     "difficulty": 3,
+     "description": "La lettre se referme sur <b>あのノートがなければ、この仕事を選ぶことはなかったと思います</b> : tout le récit — le blocage, les trois lignes, les six mois — mène à cette dette. C'est une lettre de remerciement.",
+     "gloss": "〜がなければ « sans… » · 選ぶ（えらぶ）« choisir » · つながる « être relié à » · 伝える（つたえる）« faire savoir » · いちばんに « en tout premier »",
+     "optionNote": [
+      "Le blocage devant la copie blanche est le point de départ du récit, pas ce que l'auteur veut faire passer",
+      "La lettre ne se plaint de rien : elle ne dit pas un mot de la difficulté du métier actuel",
+      "あのノートがなければ、この仕事を選ぶことはなかった : l'auteur relie le cahier du professeur à son métier d'aujourd'hui — exact",
+      "L'envoi du livre est la dernière phrase, une promesse d'usage ; l'auteur ne demande même pas qu'on le lise"
+     ],
+     "tests": ["jlpt:word/仕事", "jlpt:word/選ぶ"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/chubun-03",
+   "name": "Courriel au service commercial : changer la conduite des réunions",
+   "format": "chubun",
+   "jp": "営業部のみなさん、お疲れさまです。来月から、火曜日の定例会議のやり方を変えます。これまでは、始めに資料を配り、その場で読む時間を取っていました。そのため、一時間の予定が九十分近くかかる日も少なくありませんでした。来月からは、資料を前の日の夕方までにメールでお送りします。当日は読む時間を取りませんので、必ず目を通してから来てください。会議そのものは三十分で終える予定です。短くすることだけが目的ではありません。これまでは、資料を読むだけで時間が過ぎてしまい、最後まで一度も発言しない人がいました。読む時間をなくせば、三十分すべてを話し合いに使えます。分かりにくいところや反対の意見こそ、その場で出していただきたいのです。一か月試してみて、うまくいかないようであれば、元のやり方に戻すことも考えます。まずはご協力をお願いします。",
+   "fr": "Courriel interne : à partir du mois prochain, le dossier de séance part la veille, la réunion tombe à trente minutes, et ces trente minutes entières passent à la discussion.",
+   "tests": ["jlpt:word/会議", "jlpt:word/資料", "jlpt:word/協力"],
+   "questions": [
+    {
+     "stem": "来月から、会議の資料はいつ届きますか。",
+     "opts": [
+      "会議の前の日の夕方まで",
+      "会議が始まってから",
+      "会議の当日の朝",
+      "会議の一週間前"
+     ],
+     "answer": 0,
+     "difficulty": 1,
+     "description": "<b>資料を前の日の夕方までにメールでお送りします</b>. Les autres moments cités existent bien dans le courriel, mais désignent l'ancienne pratique (le dossier distribué en séance) ou le jour de la réunion, où l'on ne lira plus.",
+     "gloss": "定例（ていれい）« régulier, périodique » · 資料（しりょう）« dossier, documents » · 配る（くばる）« distribuer » · 当日（とうじつ）« le jour même » · 目を通す（めをとおす）« parcourir »",
+     "optionNote": [
+      "前の日の夕方までにメールでお送りします : le dossier part la veille — exact",
+      "Recevoir le dossier en séance, c'est justement l'ancienne pratique (始めに資料を配り) que le courriel supprime",
+      "Le jour même est mentionné pour dire qu'on n'y lira plus (当日は読む時間を取りません), pas pour l'envoi",
+      "Une semaine à l'avance ne figure nulle part : le délai annoncé est la veille au soir"
+     ],
+     "tests": ["jlpt:word/資料"]
+    },
+    {
+     "stem": "これまでの会議で、最後まで発言しない人がいたのは、なぜだと考えられますか。",
+     "opts": [
+      "意見を言ってはいけない決まりがあったから",
+      "その場で資料を読むのに時間が使われ、話し合う時間が足りなかったから",
+      "会議に出ていない人が多かったから",
+      "反対の意見を言うと注意されたから"
+     ],
+     "answer": 1,
+     "difficulty": 2,
+     "description": "Le courriel ne l'explique pas ; il le laisse voir en accolant deux constats. <b>資料を読むだけで時間が過ぎてしまい、最後まで一度も発言しない人がいました</b>, et la suite le confirme à l'envers : <b>読む時間をなくせば、三十分すべてを話し合いに使えます</b>.",
+     "gloss": "発言（はつげん）« prise de parole » · 過ぎる（すぎる）« s'écouler » · 〜なくせば « si l'on supprime… » · 足りない（たりない）« être insuffisant » · 話し合う（はなしあう）« discuter »",
+     "optionNote": [
+      "Aucune règle de silence n'existe : le courriel réclame au contraire les objections",
+      "Le temps partait dans la lecture en séance, et il n'en restait pas pour discuter — c'est ce qu'indique 資料を読むだけで時間が過ぎてしまい — exact",
+      "L'absentéisme n'est évoqué nulle part : ces personnes étaient bien présentes, mais silencieuses",
+      "Le courriel demande expressément qu'on exprime les désaccords (反対の意見こそ) : les réprimander serait le contraire"
+     ],
+     "tests": ["jlpt:word/発言", "jlpt:word/話し合う"]
+    },
+    {
+     "stem": "このメールを書いた人が一番伝えたいことは何ですか。",
+     "opts": [
+      "会議が長すぎるので、出席する人を減らしたい",
+      "資料を先に読んできてもらい、その分、話し合う会議にしたい",
+      "来月から定例会議をやめ、メールでの報告に変えたい",
+      "会議で発言しない人に、気をつけるよう注意したい"
+     ],
+     "answer": 1,
+     "difficulty": 3,
+     "description": "La phrase charnière est <b>短くすることだけが目的ではありません</b>, placée juste après les trente minutes annoncées : la durée n'est qu'un moyen. Ce qui est visé vient aussitôt après — donner les trente minutes entières à la discussion.",
+     "gloss": "目的（もくてき）« but » · 〜こそ « précisément… » · 試す（ためす）« essayer » · 元（もと）« l'état antérieur » · その分（そのぶん）« d'autant » · 協力（きょうりょく）« coopération »",
+     "optionNote": [
+      "Le nombre de participants n'est jamais en cause : le courriel s'adresse à tout le service et veut plus de voix, pas moins",
+      "資料を前の日までに送る + 短くすることだけが目的ではありません + 三十分すべてを話し合いに使えます : lire avant pour que les trente minutes entières servent à discuter — exact",
+      "La réunion du mardi demeure ; seul son déroulement change, et le courriel prévoit même de revenir en arrière si l'essai échoue",
+      "Ceux qui ne parlaient pas sont la raison du changement, pas sa cible : rien dans le ton ne les met en cause"
+     ],
+     "tests": ["jlpt:word/目的", "jlpt:word/意見"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/chubun-04",
+   "name": "Billet : le quart d'heure du matin",
+   "format": "chubun",
+   "jp": "大学を出てデスクワークの仕事を始めて三年目の春、腰が痛くて朝起き上がれない日があった。医者には「薬よりも、まず体を動かすことです」と言われた。そこで走ることにした。新しい靴まで買ったのに、続いたのは一週間だけだった。朝は眠いし、雨が降れば休む。一度休むと、次の日はもっと休みやすくなる。今は、家の近くの公園で、朝六時半から十五分ほど体操をしている。市の広報で見つけた集まりで、参加しているのは私を入れて十人ほど、ほとんどが六十代より上の方だ。もう半年続いている。続いているのは、たぶん体操そのものの力ではない。一日でも休むと、次に行ったとき「昨日はどうしましたか」と声をかけられる。それが少し恥ずかしくて、眠い朝でもつい出かけてしまう。体のために始めたことなのに、今では、あの十五分の前後に交わす短い挨拶のほうが楽しみになっている。",
+   "fr": "Billet : un mal de dos conduit l'auteur au sport ; la course ne tient pas une semaine, la gymnastique du parc dure depuis six mois — et ce qui la fait durer n'est pas la gymnastique.",
+   "tests": ["jlpt:word/医者", "jlpt:word/参加", "jlpt:word/挨拶"],
+   "questions": [
+    {
+     "stem": "筆者は今、朝六時半から何をしていますか。",
+     "opts": [
+      "公園で体操をしている",
+      "公園の周りを走っている",
+      "医者のところへ通っている",
+      "家で薬を飲んでいる"
+     ],
+     "answer": 0,
+     "difficulty": 1,
+     "description": "<b>家の近くの公園で、朝六時半から十五分ほど体操をしている</b>. La course, le médecin et les médicaments appartiennent tous au texte, mais au passé ou à ce qui a été écarté.",
+     "gloss": "腰（こし）« reins, bas du dos » · 起き上がる（おきあがる）« se lever (du lit) » · 体操（たいそう）« gymnastique » · 広報（こうほう）« bulletin municipal » · 集まり（あつまり）« groupe, rassemblement »",
+     "optionNote": [
+      "朝六時半から十五分ほど体操をしている, au parc près de chez lui — exact",
+      "La course a bien eu lieu, chaussures neuves comprises, mais elle n'a tenu qu'une semaine",
+      "Le médecin n'apparaît qu'une fois, au début, pour donner un conseil : aucun suivi n'est évoqué",
+      "Les médicaments sont précisément ce que le médecin place au second rang : 薬よりも、まず体を動かすこと"
+     ],
+     "tests": ["jlpt:word/医者"]
+    },
+    {
+     "stem": "筆者が参加している集まりについて、この文章から分かることは何ですか。",
+     "opts": [
+      "雨の日は休みになる",
+      "市の職員が毎朝教えに来ている",
+      "参加している人の多くは、筆者より年上である",
+      "参加するにはお金がかかる"
+     ],
+     "answer": 2,
+     "difficulty": 2,
+     "description": "Aucun âge n'est donné en clair. Il faut rapprocher deux indications : <b>大学を出てデスクワークの仕事を始めて三年目</b> — l'auteur a donc environ vingt-cinq ans — et, pour le groupe, <b>ほとんどが六十代より上の方だ</b>.",
+     "gloss": "参加（さんか）« participation » · 〜を入れて « en comptant… » · 六十代（ろくじゅうだい）« les sexagénaires » · 声をかける（こえをかける）« adresser la parole » · 恥ずかしい（はずかしい）« gênant »",
+     "optionNote": [
+      "La pluie appartient à l'épisode de la course, celui qui n'a pas duré : rien n'indique que la gymnastique s'arrête sous la pluie",
+      "Le bulletin municipal est l'endroit où l'auteur a trouvé le groupe, pas la preuve que la mairie l'anime",
+      "大学を出て…三年目 d'un côté, ほとんどが六十代より上 de l'autre : la plupart des participants sont plus âgés que lui — exact",
+      "Aucun tarif n'est mentionné ; le texte ne parle jamais d'argent"
+     ],
+     "tests": ["jlpt:word/参加"]
+    },
+    {
+     "stem": "この文章を通して、筆者が伝えたいことは何ですか。",
+     "opts": [
+      "腰が痛いときは、走るより体操のほうが体にいい",
+      "医者に言われたことは、必ず守ったほうがいい",
+      "朝早く起きると、一日を気持ちよく過ごせる",
+      "一人では続かなかったことも、人と一緒なら続けられることがある"
+     ],
+     "answer": 3,
+     "difficulty": 3,
+     "description": "Le texte oppose deux tentatives : seul, une semaine ; en groupe, six mois. Et il en donne lui-même la raison — <b>続いているのは、たぶん体操そのものの力ではない</b>, mais le mot qu'on vous adresse quand vous manquez.",
+     "gloss": "続く（つづく）« durer » · そのもの « en soi, à proprement parler » · つい « malgré soi » · 交わす（かわす）« échanger (des mots) » · 楽しみ（たのしみ）« plaisir attendu »",
+     "optionNote": [
+      "Le texte ne compare jamais les mérites de la course et de la gymnastique pour le dos : ce qui les sépare, c'est qu'une seule a duré",
+      "Le médecin n'est que le point de départ : l'auteur a d'ailleurs commencé par un conseil suivi… sans succès",
+      "Le lever matinal est le cadre du récit ; l'auteur n'en vante nulle part les bienfaits",
+      "Une semaine tout seul, six mois avec dix personnes qui remarquent votre absence : c'est bien ce que l'auteur met en avant — exact"
+     ],
+     "tests": ["jlpt:word/続ける", "jlpt:word/挨拶"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/chubun-05",
+   "name": "Billet : deux façons de préparer un voyage",
+   "format": "chubun",
+   "jp": "妹は、旅行の計画は細かく立てるものだと言います。出かける前に電車の時間を調べ、行きたい店の休みの日まで確かめておきます。私はそこまでしません。朝の電車と泊まる所だけ決めて、あとはその日の気分で歩きます。去年の秋、二人で金沢へ行きました。二日目に美術館へ行くつもりでしたが、出かける前に妹が調べて、その日は休みだと教えてくれました。それで、美術館は一日目の午前に行くことにしました。一日目の午後、私は駅の裏の細い道で古い道具を売る店を見つけ、三十分のつもりが一時間半も店の人と話していました。地図にも案内の本にも出ていない店です。正直に言えば、あのときは妹のおかげで美術館に入れました。それでも、午後の予定を空けておくのをやめようとは思いません。今は二人で出かけるとき、午前は妹の計画、午後は私のやり方、と分けています。",
+   "fr": "Billet à deux voix : la sœur de l'auteur prépare tout dans le détail, lui ne fixe que le train du matin. À Kanazawa, la vérification de sa sœur leur évite un musée fermé — sans qu'il renonce pour autant à ses après-midi laissés libres.",
+   "tests": ["jlpt:word/旅行", "jlpt:word/計画", "jlpt:word/道具"],
+   "questions": [
+    {
+     "stem": "妹は旅行に出かける前に、どんなことをしていますか。",
+     "opts": [
+      "電車の時間や、行きたい店の休みの日を調べておく",
+      "泊まる所だけを決めておく",
+      "行きたい店に電話をかけておく",
+      "地図や案内の本で古い店をさがしておく"
+     ],
+     "answer": 0,
+     "difficulty": 1,
+     "description": "<b>出かける前に電車の時間を調べ、行きたい店の休みの日まで確かめておきます</b>. Les trois autres options décrivent soit la façon de faire de l'auteur, soit une démarche dont le texte ne parle jamais.",
+     "gloss": "計画（けいかく）« projet, préparation » · 細かい（こまかい）« minutieux, dans le détail » · 確かめる（たしかめる）« vérifier » · 気分（きぶん）« humeur du moment » · 案内（あんない）« guide, information »",
+     "optionNote": [
+      "電車の時間を調べ、行きたい店の休みの日まで確かめておきます : c'est mot pour mot ce que fait la sœur avant de partir — exact",
+      "Ne fixer que le logement, et le train du matin, c'est la façon de faire de l'auteur, pas celle de sa sœur",
+      "Aucun appel n'est évoqué : la sœur se renseigne de son côté, elle ne téléphone à personne",
+      "Les guides n'apparaissent dans le texte que pour dire le contraire : la boutique n'y figure pas, et c'est l'auteur qui la trouve, par hasard"
+     ],
+     "tests": ["jlpt:word/計画", "jlpt:word/確かめる"]
+    },
+    {
+     "stem": "もし妹が調べていなかったら、二人はどうなっていたと考えられますか。",
+     "opts": [
+      "二日目に美術館へ行って、休みで入れなかった",
+      "一日目の午前に美術館へ行っていた",
+      "金沢へ行くのをやめていた",
+      "筆者が古い道具の店を見つけることはなかった"
+     ],
+     "answer": 0,
+     "difficulty": 2,
+     "description": "Le texte ne dit pas ce qui serait arrivé : il en donne les deux morceaux. La visite était prévue <b>二日目</b>, et ce jour-là le musée était <b>休み</b>. Sans la vérification de la sœur, le déplacement se faisait pour rien.",
+     "gloss": "美術館（びじゅつかん）« musée » · 休み（やすみ）« jour de fermeture » · 〜ことにする « décider de… » · 裏（うら）« l'arrière, le derrière » · 道具（どうぐ）« ustensile, objet »",
+     "optionNote": [
+      "Le musée était prévu le deuxième jour, jour où il est fermé : sans la vérification, ils s'y rendaient pour trouver porte close — exact",
+      "C'est ce qui s'est réellement passé, et justement grâce à la vérification : sans elle, personne n'aurait avancé la visite au premier matin",
+      "Rien n'indique que le voyage entier aurait été annulé : c'est une seule visite qui était en jeu",
+      "La boutique est trouvée le premier après-midi, en marchant au hasard ; le jour retenu pour le musée n'y change rien"
+     ],
+     "tests": ["jlpt:word/美術館", "jlpt:word/調べる"]
+    },
+    {
+     "stem": "旅行の計画について、筆者はどう考えていますか。",
+     "opts": [
+      "計画は細かく立てておいたほうがよい",
+      "妹のやり方に助けられることもあるが、自分は決めない時間も残しておきたい",
+      "計画を立てすぎると、旅行は楽しくなくなってしまう",
+      "旅行の楽しさは、どこへ行くかよりも誰と行くかで決まる"
+     ],
+     "answer": 1,
+     "difficulty": 3,
+     "description": "Le billet fait entendre deux voix. La première phrase donne celle de la sœur (<b>妹は…と言います</b>) ; l'auteur lui accorde un point (<b>妹のおかげで美術館に入れました</b>), puis marque aussitôt sa distance (<b>それでも、午後の予定を空けておくのをやめようとは思いません</b>). Ni ralliement, ni rejet.",
+     "gloss": "正直に言えば（しょうじきにいえば）« à dire vrai » · おかげで « grâce à… » · それでも « malgré tout » · 〜ようとは思わない « ne pas avoir l'intention de… » · 分ける（わける）« répartir »",
+     "optionNote": [
+      "C'est l'opinion de la sœur, énoncée dès la première phrase : l'auteur la rapporte, il ne la reprend pas à son compte",
+      "妹のおかげで美術館に入れました, puis それでも…やめようとは思いません : il concède un point à sa sœur sans changer de façon de faire — exact",
+      "Le texte ne va pas jusque-là : la préparation de sa sœur leur a servi, et l'auteur le reconnaît sans réserve",
+      "La question de la compagnie n'est jamais posée : ce que le billet oppose, ce sont deux manières de préparer, pas deux compagnons"
+     ],
+     "tests": ["jlpt:word/正直", "jlpt:word/旅行"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/chubun-06",
+   "name": "Chronique : les parapluies en prêt de la gare",
+   "format": "chubun",
+   "jp": "先月、私の住む町の駅前に、「貸し傘」の箱が置かれた。急な雨のときに自由に借りて、次に駅へ来たときに返す、という決まりだ。黄色い印のついた傘が五十本用意されたと、地元の新聞に出ていた。面白い試みだと思い、雨の日に一本借りた。ところが、返しに行けたのは三日後だった。箱の中を見て驚いた。残っていたのは七本だけだった。借りた人が悪いのだろうか。私はそうは思わない。私自身、返す気がなかったわけではない。よく晴れた日に、わざわざ傘を持って家を出るのが面倒だっただけだ。同じように感じた人が四十人いれば、箱は空になる。駅の人に聞くと、雨の日には少しずつ戻ってくるそうだ。傘が要る日は、みんな傘のことを思い出すからだろう。うまく回らない仕組みを見ると、私たちはつい人を責めたくなる。しかし、変えたほうがいいのは、人の心よりも、返しにくいそのつくりのほうだ。",
+   "fr": "Chronique : sur cinquante parapluies mis en prêt à la gare, sept restent. L'auteur, qui a lui-même mis trois jours à rendre le sien, refuse d'y voir une faute des emprunteurs.",
+   "tests": ["jlpt:word/傘", "jlpt:word/借りる", "jlpt:word/返す"],
+   "questions": [
+    {
+     "stem": "筆者が三日後に箱の中を見たとき、傘は何本残っていましたか。",
+     "opts": [
+      "一本",
+      "七本",
+      "四十本",
+      "五十本"
+     ],
+     "answer": 1,
+     "difficulty": 1,
+     "description": "<b>残っていたのは七本だけだった</b>. Les trois autres nombres sont bien dans le texte : le parapluie que l'auteur a emprunté, les quarante personnes de son hypothèse, et les cinquante parapluies du début.",
+     "gloss": "貸し傘（かしがさ）« parapluie en prêt » · 印（しるし）« marque » · 用意（ようい）« préparer, mettre à disposition » · 試み（こころみ）« tentative, initiative » · 驚く（おどろく）« être surpris »",
+     "optionNote": [
+      "Un, c'est le nombre de parapluies que l'auteur a lui-même empruntés",
+      "残っていたのは七本だけだった — exact",
+      "Quarante est le nombre de personnes de son calcul (« si quarante personnes ont eu le même sentiment »), pas un stock",
+      "Cinquante, c'est ce qui avait été mis à disposition au départ, d'après le journal local"
+     ],
+     "tests": ["jlpt:word/傘"]
+    },
+    {
+     "stem": "筆者は、傘が戻ってこない一番の原因は何だと考えていますか。",
+     "opts": [
+      "借りた人に、返す気持ちがないこと",
+      "返す場所が駅から遠く、分かりにくいこと",
+      "用意された傘の数が足りなかったこと",
+      "晴れた日に傘を持って出かけるのが面倒に感じられること"
+     ],
+     "answer": 3,
+     "difficulty": 2,
+     "description": "L'auteur n'énonce aucune cause : il se prend lui-même pour exemple, puis généralise. <b>返す気がなかったわけではない</b> écarte la mauvaise volonté, <b>わざわざ傘を持って家を出るのが面倒だっただけだ</b> donne la vraie raison, et <b>同じように感じた人が四十人いれば</b> l'étend aux autres.",
+     "gloss": "〜わけではない « ce n'est pas que… » · わざわざ « se donner la peine de » · 面倒（めんどう）« pénible, embêtant » · 空（から）« vide » · 原因（げんいん）« cause »",
+     "optionNote": [
+      "C'est précisément ce que l'auteur refuse : 借りた人が悪いのだろうか。私はそうは思わない",
+      "La boîte est devant la gare, là où tout le monde passe ; le texte n'évoque aucune difficulté d'accès",
+      "Le nombre initial n'est pas en cause : cinquante parapluies auraient suffi s'ils étaient revenus",
+      "Sortir de chez soi un jour de beau temps avec un parapluie sous le bras : l'auteur l'a ressenti, et suppose que quarante autres aussi — exact"
+     ],
+     "tests": ["jlpt:word/面倒", "jlpt:word/原因"]
+    },
+    {
+     "stem": "貸し傘について、筆者の考えに最も近いものはどれですか。",
+     "opts": [
+      "借りたものを返さない人が増えていて、残念だ",
+      "うまくいかないときは、使う人が返しやすいように直すほうがよい",
+      "傘の数をもっと増やせば、この問題は解決する",
+      "駅で傘を借りるより、いつも自分の傘を持ち歩くほうがよい"
+     ],
+     "answer": 1,
+     "difficulty": 3,
+     "description": "La chronique se termine sur son propos : <b>変えたほうがいいのは、人の心よりも、返しにくいそのつくりのほうだ</b>. Tout ce qui précède — l'aveu de l'auteur, les quarante personnes, les retours les jours de pluie — sert à déplacer la faute du côté du dispositif.",
+     "gloss": "回る（まわる）« tourner, fonctionner » · つい « sans le vouloir » · 責める（せめる）« reprocher, blâmer » · つくり « conception, structure » · 〜にくい « difficile à… »",
+     "optionNote": [
+      "Le texte écarte ce jugement dès le milieu : 借りた人が悪いのだろうか。私はそうは思わない",
+      "変えたほうがいいのは、人の心よりも、返しにくいそのつくりのほう : corriger le dispositif plutôt que les gens — exact",
+      "Augmenter le stock ne changerait rien à ce que l'auteur décrit : les parapluies ne reviennent pas, quel qu'en soit le nombre",
+      "Renoncer au prêt serait abandonner l'initiative, que l'auteur trouve au contraire intéressante (面白い試み)"
+     ],
+     "tests": ["jlpt:word/責める", "jlpt:word/方法"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/chobun-01",
+   "name": "Essai : le parler qu'on croyait devoir corriger",
+   "format": "chobun",
+   "jp": "十八の春に大学へ入り、生まれた町を出た。新しい生活でまず気にしたのは、勉強でも友だちでもなく、自分の言葉だった。気をつけて話しているつもりでも、少し急ぐとふるさとの言い方が出てしまう。同じ学部の学生に「今の、どういう意味？」と聞き返されるたびに、顔が熱くなった。それからしばらく、私は話す前に頭の中で一度、言葉を並べかえるようになった。おかげで二年もすると、出身地を当てられることはなくなった。ただ、そのころの私は、人と話したあとにいつも疲れていた。考えが変わったのは、働き始めて三年目の冬だ。仕事で生まれた町の近くまで行き、七十を過ぎた職人さんに話を聞いた。初めのうち、返ってくるのは「はい」「まあ」といった短い言葉ばかりで、私は用意してきた質問を順に読み上げているだけだった。ところが、道具の名前をうっかり子どものころの言い方で言ったところ、その方は声を出して笑い、それから一時間以上も話してくださった。帰りの電車で、私はずっと考えていた。自分の言葉を直せば話が通じる、と長い間信じてきた。しかしあの日、話を先へ進めたのは正しい言い方ではなく、その方と私が同じ土地の音を知っている、ただそれだけのことだった。どこでもふるさとの言葉で話せばいいとは思わない。伝わらなければ意味がないのだから、相手によって言い方を変えるのは当たり前だ。それでも、選んで使い分けることと、なかったことにするのとは違う。最近は姪に頼まれて、祖母の口ぐせをときどき教えている。使わない言葉は、思い出せなくなるのが早い。",
+   "fr": "Essai : arrivé à l'université, l'auteur a effacé son parler d'origine — jusqu'au jour où c'est ce même parler, échappé par hasard, qui a ouvert un entretien resté muet.",
+   "tests": ["jlpt:word/言葉", "jlpt:word/方言", "jlpt:word/土地"],
+   "questions": [
+    {
+     "stem": "大学に入って二年ほどたったころ、筆者はどうなっていましたか。",
+     "opts": [
+      "出身地を人に当てられることがなくなっていた",
+      "ふるさとの言葉をまったく思い出せなくなっていた",
+      "人と話すのが楽になっていた",
+      "同じ学部の学生に言葉の意味を聞くようになっていた"
+     ],
+     "answer": 0,
+     "difficulty": 1,
+     "description": "<b>おかげで二年もすると、出身地を当てられることはなくなった</b>. La phrase suivante donne aussitôt le prix payé — 人と話したあとにいつも疲れていた — et interdit de lire ce résultat comme un confort.",
+     "gloss": "出身地（しゅっしんち）« lieu d'origine » · 当てる（あてる）« deviner juste » · 並べかえる（ならべかえる）« remettre dans un autre ordre » · 学部（がくぶ）« faculté (université) » · ふるさと « pays natal »",
+     "optionNote": [
+      "おかげで二年もすると、出身地を当てられることはなくなった — exact",
+      "Le texte parle d'un parler qu'on ne repère plus, jamais d'un parler oublié : à la fin, l'auteur enseigne encore les tournures de sa grand-mère",
+      "C'est l'inverse : そのころの私は、人と話したあとにいつも疲れていた",
+      "Le rapport est inversé — ce sont les autres étudiants qui lui demandaient 「今の、どういう意味？」"
+     ],
+     "tests": ["jlpt:word/言葉"]
+    },
+    {
+     "stem": "「同じ土地の音を知っている」とありますが、どういうことですか。",
+     "opts": [
+      "二人とも、その土地の祭りで使われる音楽にくわしいということ",
+      "二人とも、その土地の言葉の響きを体で覚えているということ",
+      "筆者が、職人さんの使う道具の音を聞き分けられるということ",
+      "職人さんが、筆者の声を以前から聞いて知っていたということ"
+     ],
+     "answer": 1,
+     "difficulty": 2,
+     "description": "L'entretien reste muet tant que l'auteur lit ses questions ; il s'ouvre <b>道具の名前をうっかり子どものころの言い方で言ったところ</b>. 「音」 désigne donc la sonorité d'un parler appris au même endroit — et la phrase l'oppose explicitement à 正しい言い方.",
+     "gloss": "職人（しょくにん）« artisan » · 道具（どうぐ）« outil » · うっかり « par inadvertance » · 土地（とち）« terroir, région » · 通じる（つうじる）« passer, être compris »",
+     "optionNote": [
+      "音 ne renvoie ici à aucune musique : la phrase suit immédiatement le mot prononcé à l'ancienne, et le texte ne parle nulle part de fête",
+      "Ce qui fait basculer l'entretien, c'est un nom d'outil dit 子どものころの言い方で : la même façon de sonner, apprise au même endroit — exact",
+      "道具 est bien dans le texte, mais c'est son NOM que l'auteur prononce, pas son bruit qu'il reconnaîtrait",
+      "Ils se rencontrent ce jour-là ; ce que les deux partagent est un parler, non une voix déjà entendue"
+     ],
+     "tests": ["jlpt:word/土地", "jlpt:word/伝わる"]
+    },
+    {
+     "stem": "学生のころの筆者と、職人さんに話を聞き始めたばかりのころの筆者には、どのような共通点がありますか。",
+     "opts": [
+      "どちらも、年上の人を相手に話していた",
+      "どちらも、相手の話す速さについていけずに困っていた",
+      "どちらも、口に出す前に言葉を選んでから話していた",
+      "どちらも、ふるさとの言葉が通じずに苦労していた"
+     ],
+     "answer": 2,
+     "difficulty": 3,
+     "description": "La réponse demande de rapprocher deux endroits éloignés du texte : <b>話す前に頭の中で一度、言葉を並べかえるようになった</b> (première partie) et <b>用意してきた質問を順に読み上げているだけだった</b> (au milieu). Deux fois des mots choisis à l'avance — et deux fois un échange qui ne prend pas.",
+     "gloss": "共通点（きょうつうてん）« point commun » · 用意（ようい）する « préparer » · 順に（じゅんに）« l'un après l'autre » · 苦労（くろう）する « peiner »",
+     "optionNote": [
+      "Vrai du seul artisan (七十を過ぎた) ; à l'université, ses interlocuteurs sont 同じ学部の学生",
+      "Rien de tel dans le texte : à l'université on lui demande de répéter, et l'artisan ne répond que par 「はい」「まあ」",
+      "話す前に頭の中で一度、言葉を並べかえる (étudiant) et 用意してきた質問を順に読み上げているだけだった (début de l'entretien) — exact",
+      "Vrai de la seule période étudiante : pendant l'entretien, c'est au contraire le parler d'enfance qui débloque tout"
+     ],
+     "tests": ["jlpt:word/相手", "jlpt:word/質問"]
+    },
+    {
+     "stem": "この文章で筆者が最も言いたいことは何ですか。",
+     "opts": [
+      "ふるさとの言葉は、できるだけ早く直したほうが暮らしやすい",
+      "人に伝えるためには、正しい言い方を身につけることが何より大切だ",
+      "話を聞き出すには、相手と同じ地方の出身であるほうがよい",
+      "自分の言葉を使い分けることと、なくしてしまうことは同じではない"
+     ],
+     "answer": 3,
+     "difficulty": 2,
+     "description": "Le fil du texte : 直せば通じると信じてきた → しかし話を先へ進めたのは同じ土地の音 → <b>選んで使い分けることと、なかったことにするのとは違う</b>, puis les tournures de la grand-mère transmises à sa nièce. Le それでも concède juste avant qu'il faille s'adapter à son interlocuteur : la conclusion ne l'annule pas, elle le complète.",
+     "gloss": "使い分ける（つかいわける）« employer selon le cas » · 姪（めい）« nièce » · 口ぐせ（くちぐせ）« expression qui revient toujours » · 当たり前（あたりまえ）« qui va de soi » · 身につける（みにつける）« acquérir »",
+     "optionNote": [
+      "C'est ce que l'auteur a cru pendant des années, et c'est précisément ce sur quoi il revient",
+      "Le texte accorde qu'il faut se faire comprendre (伝わらなければ意味がない), mais refuse d'en faire le tout : ce jour-là, 話を先へ進めたのは正しい言い方ではなかった",
+      "L'origine commune a servi une fois ; l'auteur n'en tire aucune règle, et personne ne choisit d'où vient son interlocuteur",
+      "選んで使い分けることと、なかったことにするのとは違う — et la dernière ligne montre ce qui se perd sinon : 使わない言葉は、思い出せなくなるのが早い — exact"
+     ],
+     "tests": ["jlpt:word/方言", "jlpt:word/選ぶ"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/chobun-02",
+   "name": "Exposé : la bibliothèque municipale, deux soirées contre un lundi",
+   "format": "chobun",
+   "jp": "市立図書館の開館時間をめぐって、二年ほど前から市民の意見が二つに分かれている。この図書館が開いているのは午前九時から午後五時までで、休館日はない。近くの会社に勤める人たちは、平日は仕事があるため、五時までに図書館へ来ることができない。夜八時まで開けてほしいという要望書には、二年前の春、千二百人の名前が集まった。一方、図書館の委員会には、これに反対する人もいた。開館時間を延ばせば、その分の人件費がかかる。市の予算は決まっているのだから、増えた費用は本を買うお金から出すしかない。委員の一人は「本のない図書館になっては困る」と話した。市は昨年十月から今年三月までの半年間、水曜と金曜に限って夜八時まで開ける試験を行った。五時より後に来た人は、一日平均三十二人だった。そのうち七割が、アンケートに「仕事の帰りに寄った」と答えている。また、ほかの曜日の利用者が減ったわけではなかった。この結果を受けて、市は今年四月から、水曜と金曜の夜間開館を続けることを決めた。ただし、これまで休みのなかった月曜を休館日にする。一日閉めれば、その分の人手を二つの夜に回すことができるからだ。求められていたのは毎日の延長であり、決まったのは週に二日である。夜が二つ増え、昼が一つ消えたことになる。新しい形になって、まだ半年もたっていない。市は来年三月、一年分の数字がそろった時点で、もう一度見直すことにしている。月曜に通っていた人がどこへ行ったのかは、そのときまで分からない。",
+   "fr": "Exposé : deux positions s'affrontent depuis deux ans sur les horaires de la bibliothèque municipale — ouvrir le soir pour ceux qui travaillent, ou préserver le budget d'achat de livres. Six mois d'essai chiffrés, puis un arbitrage qui échange deux soirées contre la fermeture du lundi, et dont le bilan n'est pas encore fait.",
+   "tests": ["jlpt:word/図書館", "jlpt:word/予算", "jlpt:word/意見"],
+   "questions": [
+    {
+     "stem": "市が今年四月から始めた開館の形は、どのようなものですか。",
+     "opts": [
+      "毎日夜八時まで開け、休館日は作らない",
+      "水曜と金曜は夜八時まで開け、そのかわりに月曜を休館日にする",
+      "試験のときと同じように、半年間だけ夜八時まで開ける",
+      "夜八時までの開館はやめ、これまでどおり毎日五時に閉める"
+     ],
+     "answer": 1,
+     "difficulty": 1,
+     "description": "La décision d'avril tient en deux phrases qui se suivent, et il faut les prendre ensemble : <b>水曜と金曜の夜間開館を続けることを決めた。ただし、これまで休みのなかった月曜を休館日にする</b>. Ce qui est accordé (deux soirs) et ce qui le paie (le lundi) sont indissociables — le texte le résume par 夜が二つ増え、昼が一つ消えた.",
+     "gloss": "休館日（きゅうかんび）« jour de fermeture » · 夜間開館（やかんかいかん）« ouverture en soirée » · そのかわり « en contrepartie » · 延長（えんちょう）« prolongation » · これまでどおり « comme jusqu'à présent » · 〜を受けて « en réponse à, à la suite de »",
+     "optionNote": [
+      "C'est ce que réclamait la pétition (夜八時まで開けてほしい), et la bibliothèque n'avait effectivement aucun jour de fermeture — mais la ville n'a retenu que deux soirs par semaine",
+      "水曜と金曜の夜間開館を続けることを決めた。ただし、これまで休みのなかった月曜を休館日にする — exact",
+      "Les six mois sont ceux de l'essai (昨年十月から今年三月まで) ; l'ouverture décidée en avril n'a pas de terme fixé, c'est un réexamen qui est prévu en mars",
+      "C'est ce que demandait la commission, et ce n'est pas ce qui a été décidé : l'ouverture du soir est maintenue deux jours par semaine"
+     ],
+     "tests": ["jlpt:word/決める", "jlpt:word/曜日"]
+    },
+    {
+     "stem": "「本のない図書館になっては困る」とありますが、この委員は何を心配しているのですか。",
+     "opts": [
+      "休館日が増えて、本を借りられない日ができてしまうこと",
+      "夜に来る人が増えても、本を借りずに帰ってしまうこと",
+      "開館時間を延ばす費用のために、本を買うお金が減ってしまうこと",
+      "働く人が足りなくなり、本を棚に並べる仕事が遅れること"
+     ],
+     "answer": 2,
+     "difficulty": 2,
+     "description": "L'image se lit sur la phrase qui la précède immédiatement : <b>市の予算は決まっているのだから、増えた費用は本を買うお金から出すしかない</b>. Le budget étant fixe, allonger les heures se paie sur les acquisitions — « une bibliothèque sans livres » nomme le bout de cette pente. Ce n'est donc pas une inquiétude sur les lecteurs ni sur le personnel.",
+     "gloss": "人件費（じんけんひ）« frais de personnel » · 予算（よさん）« budget » · 費用（ひよう）« coût, dépense » · 委員会（いいんかい）« commission » · 〜しかない « n'avoir d'autre choix que » · 困る（こまる）« ne pas pouvoir se le permettre »",
+     "optionNote": [
+      "Le jour de fermeture existe bien, mais il est décidé en avril, après l'essai ; la commission parle deux ans plus tôt et ne peut pas s'inquiéter de ce qui n'existe pas encore",
+      "Le texte ne dit rien de ce que font les visiteurs du soir, ni au moment de l'objection ni après l'essai : la commission parle d'argent, pas de comportement",
+      "増えた費用は本を買うお金から出すしかない : c'est la phrase qui précède l'image, et elle en donne le mécanisme — exact",
+      "人件費 est bien l'argument de la commission, mais c'est son coût qui l'inquiète, pas un manque de personnel : aucun retard de travail n'est évoqué"
+     ],
+     "tests": ["jlpt:word/予算", "jlpt:word/費用"]
+    },
+    {
+     "stem": "半年間の試験の数字は、夜も開けてほしいと求めた人たちの言い分について、何を明らかにしましたか。",
+     "opts": [
+      "仕事の帰りに寄る人よりも、近くに住む人のほうが多かったということ",
+      "これまで昼間に来ていた人が、来やすい夜のほうへ移っただけだということ",
+      "夜に図書館へ来る人の数は、昼間に来る人の数を上回っているということ",
+      "五時までには来られない人が実際にいて、その人たちが新しく図書館を使い始めたということ"
+     ],
+     "answer": 3,
+     "difficulty": 3,
+     "description": "Aucune phrase ne tranche seule : il faut relier les deux bouts du texte. Au début, la demande — <b>平日は仕事があるため、五時までに図書館へ来ることができない</b>. Après l'essai, deux relevés — sept visiteurs du soir sur dix déclarent 仕事の帰りに寄った, et <b>ほかの曜日の利用者が減ったわけではなかった</b>. Le premier dit d'où viennent ces gens, le second qu'ils ne manquent nulle part ailleurs : la demande était donc réelle, et non un simple déplacement.",
+     "gloss": "平日（へいじつ）« jour de semaine » · 利用者（りようしゃ）« usager » · 〜わけではない « cela ne veut pas dire que » · 要望書（ようぼうしょ）« demande écrite, pétition » · 言い分（いいぶん）« ce qu'on fait valoir, argument » · 明らか（あきらか）にする « établir, mettre en évidence » · 上回る（うわまわる）« dépasser » · 〜に限って « seulement, uniquement (tel jour) » · 平均（へいきん）« moyenne » · アンケート « questionnaire, sondage »",
+     "optionNote": [
+      "Renversement du relevé : 七割 des visiteurs du soir déclarent 仕事の帰りに寄った, et rien n'est dit de leur lieu d'habitation",
+      "C'est précisément ce que le dernier relevé écarte : si des visiteurs de la journée s'étaient déplacés vers le soir, les autres jours auraient baissé — ils n'ont pas baissé",
+      "Le texte ne donne qu'un chiffre, 一日平均三十二人 après cinq heures, et aucun pour la journée : la comparaison n'existe pas dans le texte",
+      "七割が仕事の帰りに寄ったと答え、しかも ほかの曜日の利用者が減ったわけではなかった : ces usagers du soir sont des usagers en plus — exact"
+     ],
+     "tests": ["jlpt:word/平日", "jlpt:word/利用"]
+    },
+    {
+     "stem": "この文章の書き方の説明として、最も適切なものはどれですか。",
+     "opts": [
+      "二つの言い分にそれぞれ理由を示し、市の折り合いと失われたものを伝えている",
+      "夜間開館を求める人たちの考えが正しかったことを、試験の数字を挙げて訴えている",
+      "限られたお金は本を買うために使うべきだという立場から、夜間開館の問題点を並べている",
+      "半年間の試験の進め方を細かく説明し、ほかの市にも同じやり方を勧めている"
+     ],
+     "answer": 0,
+     "difficulty": 3,
+     "description": "Le texte n'a pas de narrateur impliqué et ne retourne aucun jugement. Il expose deux positions avec leur raison (来られない人がいる d'un côté, 予算は決まっている de l'autre), apporte un relevé qui n'en départage qu'une partie, puis compte ce que l'arrangement coûte : <b>夜が二つ増え、昼が一つ消えたことになる</b>. Et il refuse de conclure — 月曜に通っていた人がどこへ行ったのかは、そのときまで分からない.",
+     "gloss": "折り合い（おりあい）« compromis, arrangement » · 立場（たちば）« position, point de vue » · 訴える（うったえる）« plaider, faire valoir » · 勧める（すすめる）« recommander » · 見直す（みなおす）« réexaminer » · 数字（すうじ）を挙げる（あげる）« citer des chiffres » · 〜をめぐって « à propos de, autour de » · 〜時点で « au moment où, au stade où »",
+     "optionNote": [
+      "Deux positions motivées, un relevé qui en départage une partie, puis 夜が二つ増え、昼が一つ消えたことになる : le gain est compté avec son prix — exact",
+      "Les chiffres soutiennent bien les demandeurs, mais le texte ne leur donne pas gain de cause : 求められていたのは毎日の延長であり、決まったのは週に二日である, et le sort du lundi reste ouvert",
+      "C'est la position de la commission, rapportée au même titre que l'autre ; le texte ne l'endosse pas — il relève au contraire que la fréquentation du soir n'était pas un report",
+      "L'essai est raconté par ses résultats, non par sa méthode, et aucune autre ville n'est mentionnée : le texte finit sur un bilan qui n'est pas encore fait"
+     ],
+     "tests": ["jlpt:word/意見", "jlpt:word/立場"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/chobun-03",
+   "name": "Récit : le cahier de passation de la papeterie",
+   "format": "chobun",
+   "jp": "学生のとき、駅前の小さな文房具店で四年間アルバイトをした。卒業を前に店をやめると伝えると、店長は「次の人のために、ノートを一冊書いてほしい」と言った。引き受けたものの、気は進まなかった。レジの打ち方も品物の並べ方も、慣れてしまえば何ということはない。わざわざ文字にするほどのことがあるだろうか、と思ったのだ。それでも約束なので、その週から手順を思い出しては書き並べ、三週間かけて厚いノートができあがった。読んだ店長は困った顔で言った。「よく書けている。でも、これは箱の裏に書いてあることばかりだね。」たしかにそのとおりだ。私が書いたのは誰が読んでも分かる決まりだけで、それなら説明書で足りる。「友だちに引き継ぐつもりで、もう一度書いてごらん」と言われて書き直すと、今度はまるで別のものになった。木曜の午後に来る先生は必ず同じ赤いペンを二本買うので、切らさないようにしていたこと。試験の前は、ノートより付箋のほうが早くなくなること。雨の日は、紙ではなくビニールの袋に入れて渡すと喜ばれること。どれも誰にも教わっていない。四年の間に勝手に覚えたことだ。書き終えて驚いたのは、自分がそんなに多くのことに気づいていたと、それまで思ってもみなかったことだ。あの日ノートを頼まれなければ、私はこの四年を「レジを打っていた四年」として片づけていたに違いない。今の仕事でも、月に一度、短い覚え書きを作る。うまく書けた日は少ない。それでも、書こうとすると、書くことがないと思っていた毎日から必ず何かが出てくる。",
+   "fr": "Récit d'expérience : chargé d'écrire un cahier pour son successeur, l'auteur produit d'abord un manuel de procédures, que le patron renvoie — la seconde version lui révèle quatre ans d'observations qu'il ne savait pas avoir.",
+   "tests": ["jlpt:word/仕事", "jlpt:word/記録", "jlpt:word/覚える"],
+   "questions": [
+    {
+     "stem": "アルバイトをやめる前に、ノートを書くよう頼まれた筆者は、初めどう思っていましたか。",
+     "opts": [
+      "次の人に何をどう教えればいいのか、見当もつかなかった",
+      "覚えることがとても多く、文字に書くのは大変な作業だと感じていた",
+      "レジの仕事も並べ方も慣れれば簡単で、わざわざ書くほどではないと思った",
+      "店長からの頼みを光栄に思い、すぐにでも引き受けようと思った"
+     ],
+     "answer": 2,
+     "difficulty": 1,
+     "description": "Le travail de caisse et le rangement ne sont pas vraiment difficiles une fois qu'on s'y est habitué — et c'est précisément pour cela que l'auteur doute qu'il y ait quoi que ce soit qui vaille la peine d'être écrit. <b>慣れてしまえば何ということはない。わざわざ文字にするほどのことがあるだろうか、と思ったのだ。</b>",
+     "gloss": "慣れる（なれる）« s'habituer » · 引き受ける（ひきうける）« accepter, se charger de » · 気が進まない（きがすすまない）« ne pas avoir le cœur à » · わざわざ « se donner la peine de, exprès »",
+     "optionNote": [
+      "Il ne manque pas d'idées : c'est justement parce qu'il juge ces tâches évidentes qu'il doute qu'il y ait quoi que ce soit à écrire",
+      "Le texte dit l'inverse : une fois habitué, ce n'est rien de spécial (慣れてしまえば何ということはない) — ce n'est pas la difficulté qui freine le narrateur",
+      "慣れてしまえば何ということはない。わざわざ文字にするほどのことがあるだろうか、と思ったのだ — exact",
+      "Contresens : 気は進まなかった dit l'inverse d'un accueil enthousiaste"
+     ],
+     "tests": ["jlpt:word/慣れる"]
+    },
+    {
+     "stem": "「これは箱の裏に書いてあることばかりだね」と店長に言われたとき、店長は何を言いたかったのですか。",
+     "opts": [
+      "三週間もかけて書いたにしては、量が少なすぎる",
+      "字が乱雑で読みにくく、内容がなかなか頭に入ってこない",
+      "商品の説明はもっと詳しく書き写すべきだった",
+      "誰が読んでも分かる当たり前のことしか書いていない"
+     ],
+     "answer": 3,
+     "difficulty": 2,
+     "description": "« Ceci » renvoie au premier cahier, celui que l'auteur a mis trois semaines à écrire. La remarque du patron ne porte pas sur l'écriture, mais sur le contenu : <b>私が書いたのは誰が読んでも分かる決まりだけで、それなら説明書で足りる。</b> — un reproche qui dit que ce cahier n'avait pas lieu d'être.",
+     "gloss": "決まり（きまり）« règle, ce qui est convenu » · 説明書（せつめいしょ）« notice explicative » · 足りる（たりる）« suffire »",
+     "optionNote": [
+      "Contredit par 三週間かけて厚いノートができあがった : la quantité n'est pas en cause",
+      "Contredit par la phrase qui précède immédiatement : よく書けている — l'écriture n'est pas en cause",
+      "Contresens : le problème n'est pas un manque de précision dans la copie, c'est que ce n'est QUE de la copie — en rajouter n'y changerait rien",
+      "私が書いたのは誰が読んでも分かる決まりだけで、それなら説明書で足りる — exact"
+     ],
+     "tests": ["jlpt:word/決まり"]
+    },
+    {
+     "stem": "書き直した二冊目のノートの内容には、どのような共通点がありますか。",
+     "opts": [
+      "誰にも教わらず、四年の間に自分で気づいて覚えたことである",
+      "店長が新しく決めた、店のルールである",
+      "レジの打ち方や品物の並べ方のような、決まった手順である",
+      "説明書に書けば十分な、単純な知識である"
+     ],
+     "answer": 0,
+     "difficulty": 3,
+     "description": "Le stylo rouge pour le client du jeudi, les papillons adhésifs avant les examens, les sacs les jours de pluie : rien de tout cela ne vient d'un enseignement du patron ni d'une règle écrite. <b>どれも誰にも教わっていない。四年の間に勝手に覚えたことだ。</b>",
+     "gloss": "付箋（ふせん）« papillon adhésif » · 切らす（きらす）« laisser manquer, être à court de » · 勝手に（かってに）« de soi-même, sans qu'on le demande » · 教わる（おそわる）« recevoir un enseignement, apprendre de qqn »",
+     "optionNote": [
+      "どれも誰にも教わっていない。四年の間に勝手に覚えたことだ — exact",
+      "Rien dans le texte n'attribue ces observations au patron : ce sont des remarques personnelles, glanées seul",
+      "C'est le contenu du PREMIER cahier — レジの打ち方も品物の並べ方も — celui que le patron renvoie, pas celui qu'il retient",
+      "C'est précisément le reproche fait au premier cahier (これは箱の裏に書いてあることばかりだね・説明書で足りる), pas une description du second"
+     ],
+     "tests": ["jlpt:word/教わる"]
+    },
+    {
+     "stem": "筆者がこの経験から学んだことは何ですか。",
+     "opts": [
+      "仕事の手順は、できるだけ細かく文字にしておいたほうがよい",
+      "書こうとすることで、自分が気づいていたことが初めて形になる",
+      "人に何かを引き継ぐときは、書くより実際にやって見せたほうが早い",
+      "長く続けた仕事ほど、人に説明するのが難しくなる"
+     ],
+     "answer": 1,
+     "difficulty": 2,
+     "description": "Deux cahiers, un refus, une seconde version : le texte est le récit de ce que l'écriture a fait apparaître. <b>書き終えて驚いたのは、自分がそんなに多くのことに気づいていたと、それまで思ってもみなかったことだ</b> — et la dernière ligne étend la leçon au travail d'aujourd'hui.",
+     "gloss": "経験（けいけん）« expérience vécue » · まるで別（べつ）の « tout autre » · 喜ぶ（よろこぶ）« être content » · 内容（ないよう）« contenu » · 実際（じっさい）に « concrètement, en vrai »",
+     "optionNote": [
+      "C'est exactement la première version du cahier, celle que le patron renvoie : これは箱の裏に書いてあることばかりだね",
+      "書き終えて驚いたのは…それまで思ってもみなかったことだ, puis la dernière ligne : écrire fait apparaître ce qu'on ne savait pas savoir — exact",
+      "Le texte ne compare jamais l'écrit à la démonstration : il compare deux façons d'écrire",
+      "Rien de tel : la difficulté n'était pas d'expliquer, mais de croire qu'il y eût quelque chose à écrire"
+     ],
+     "tests": ["jlpt:word/驚く", "jlpt:word/覚える"]
+    }
+   ]
+  }
+ ]
+}

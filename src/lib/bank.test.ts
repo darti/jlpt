@@ -2,7 +2,7 @@ import { test, expect } from "bun:test";
 import {
   shuffle, pickAdaptive, allocate, allocateCount, questionCount, loadCategory,
   clearCategoryCache, selectRecentErrors, composeSession, questionsForIds,
-  selectDiagnostic, loadAllCategories,
+  selectDiagnostic, loadAllCategories, withPassageGroups,
 } from "./bank.ts";
 import type { FetchLike } from "./bank.ts";
 import type { SkillRange } from "./graph.ts";
@@ -11,6 +11,9 @@ import type { Skill } from "../types/progress.ts";
 
 const q = (id: number, d: 1 | 2 | 3): Question =>
   ({ id, cat: "kanji", d, q: "", o: [], a: 0 });
+
+const qp = (id: number, passageId?: string): Question =>
+  ({ id, cat: "lecture", d: 2, q: `énoncé ${id}`, o: ["a", "b"], a: 0, ...(passageId ? { passageId } : {}) });
 
 /** Un sujet jlpt:Question tel que le graphe le sert — les tests de CHARGEMENT simulent
  *  désormais des documents `data/graph/q-<skill>.jsonld`, pas des tableaux bruts. */
@@ -85,6 +88,32 @@ test("loadCategory fetches the skill shard and memoizes", async () => {
   expect(a).toBe(b);        // same memoized array
   expect(calls).toBe(1);    // fetched once
   expect(a[0].id).toBe(0);  // projeté vers le type interne du moteur
+});
+
+test("loadCategory résout le passage et écarte une IRI pendante", async () => {
+  clearCategoryCache();
+  const fetchImpl = async (url: string) => ({
+    json: async () => url.includes("passage.jsonld")
+      ? { "@graph": [{
+          "@id": "jlpt:passage/tanbun-01", "@type": "jlpt:Passage",
+          "schema:name": "Note", "jlpt:jp": "エレベーターは 工事中 です。", "jlpt:format": "tanbun",
+        }] }
+      : { "@graph": [
+          { "@id": "jlpt:q/10307", "@type": "jlpt:Question", "jlpt:ord": 10307,
+            "jlpt:skill": "lecture", "jlpt:difficulty": 2, "jlpt:stem": "何 が 分かりますか。",
+            opts: ["a", "b"], "jlpt:answer": 0, readsPassage: "jlpt:passage/tanbun-01" },
+          { "@id": "jlpt:q/10308", "@type": "jlpt:Question", "jlpt:ord": 10308,
+            "jlpt:skill": "lecture", "jlpt:difficulty": 2, "jlpt:stem": "いつ ですか。",
+            opts: ["a", "b"], "jlpt:answer": 0, readsPassage: "jlpt:passage/absent" },
+          { "@id": "jlpt:q/10309", "@type": "jlpt:Question", "jlpt:ord": 10309,
+            "jlpt:skill": "lecture", "jlpt:difficulty": 1, "jlpt:stem": "どこ ですか。",
+            opts: ["a", "b"], "jlpt:answer": 0 },
+        ] },
+  });
+  const pool = await loadCategory("lecture", fetchImpl);
+  expect(pool.map((q) => q.id)).toEqual([10307, 10309]); // 10308 écartée : passage pendant
+  expect(pool[0].passage?.jp).toBe("エレベーターは 工事中 です。");
+  expect(pool[1].passage).toBeUndefined();               // question sans passage : intacte
 });
 
 test("selectRecentErrors returns [] for empty wrong or non-positive n", () => {
@@ -225,4 +254,31 @@ test("loadAllCategories lance les cinq fetch en parallèle, pas en cascade", asy
   // En cascade le pic vaudrait 1 : c'est exactement la régression que ce test garde.
   expect(peak).toBe(5);
   clearCategoryCache();
+});
+
+test("withPassageGroups complète la fratrie et la rend adjacente", () => {
+  const pool = [qp(1, "p/A"), qp(2, "p/A"), qp(3, "p/A"), qp(9)];
+  const session = [qp(9), qp(2, "p/A")]; // seule la 2 a été tirée
+  const out = withPassageGroups(session, pool, 4);
+  expect(out.map((q) => q.id)).toEqual([9, 1, 2, 3]); // fratrie complétée, triée, en bloc
+});
+
+test("withPassageGroups écarte un groupe qui ne tient pas dans le budget", () => {
+  const pool = [qp(1, "p/A"), qp(2, "p/A"), qp(3, "p/A"), qp(4, "p/A"), qp(9), qp(8)];
+  const session = [qp(9), qp(8), qp(2, "p/A")];
+  const out = withPassageGroups(session, pool, 3); // 2 isolées + 1 place → le groupe de 4 ne tient pas
+  expect(out.map((q) => q.id)).toEqual([9, 8]);     // groupe entier écarté, jamais tronqué
+});
+
+test("withPassageGroups laisse intacte une session sans passage", () => {
+  const pool = [qp(9), qp(8)];
+  const session = [qp(8), qp(9)];
+  expect(withPassageGroups(session, pool, 2).map((q) => q.id)).toEqual([8, 9]);
+});
+
+test("withPassageGroups ne dépasse jamais le budget", () => {
+  const pool = [qp(1, "p/A"), qp(2, "p/A"), qp(3, "p/B"), qp(4, "p/B"), qp(9)];
+  const session = [qp(9), qp(1, "p/A"), qp(3, "p/B")];
+  const out = withPassageGroups(session, pool, 3);
+  expect(out.length).toBeLessThanOrEqual(3);
 });

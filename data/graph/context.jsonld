@@ -8,6 +8,7 @@
     "usesKanji": { "@id": "jlpt:usesKanji", "@type": "@id", "@container": "@set" },
     "covers": { "@id": "jlpt:covers", "@type": "@id", "@container": "@list" },
     "illustrates": { "@id": "jlpt:illustrates", "@type": "@id" },
+    "readsPassage": { "@id": "jlpt:readsPassage", "@type": "@id" },
     "opts": { "@id": "jlpt:option", "@container": "@list" }
   }
 }

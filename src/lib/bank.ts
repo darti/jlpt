@@ -1,7 +1,7 @@
 import { SKILLS, type Skill } from "../types/progress.ts";
 import { DRATING } from "./elo.ts";
 import type { Question } from "../types/quiz.ts";
-import { clearGraphCache, loadSkill, skillOfOrd, type SkillRange } from "./graph.ts";
+import { clearGraphCache, loadPassages, loadSkill, skillOfOrd, type SkillRange } from "./graph.ts";
 
 export type FetchLike = (url: string) => Promise<{ json: () => Promise<unknown> }>;
 
@@ -21,11 +21,26 @@ export function clearCategoryCache(): void {
   clearGraphCache();
 }
 
-/** Le pool d'une compétence. Passe par le graphe (`q-<skill>.jsonld`) : la projection
- *  JSON-LD → `Question` vit dans `graph.ts`, pas ici, pour que les couches pures de ce
- *  module ne sachent rien du format des documents. */
-export function loadCategory(cat: Skill, fetchImpl: FetchLike = fetch as FetchLike): Promise<Question[]> {
-  return loadSkill(cat, fetchImpl);
+/** Le pool d'une compétence, passages **résolus**. Passe par le graphe (`q-<skill>.jsonld`) :
+ *  la projection JSON-LD → `Question` vit dans `graph.ts`, pas ici.
+ *
+ *  ⚠ Une question dont le `passageId` ne résout pas est ÉCARTÉE : sans son texte, elle est
+ *  inrépondable. Le court-circuit `some()` garde les quatre autres compétences sur le tableau
+ *  mémoïsé tel quel — seule la lecture paie la reconstruction (une centaine d'objets). */
+export async function loadCategory(
+  cat: Skill, fetchImpl: FetchLike = fetch as FetchLike,
+): Promise<Question[]> {
+  const pool = await loadSkill(cat, fetchImpl);
+  if (!pool.some((q) => typeof q.passageId === "string")) return pool;
+  const passages = await loadPassages(fetchImpl);
+  const out: Question[] = [];
+  for (const q of pool) {
+    if (typeof q.passageId !== "string") { out.push(q); continue; }
+    const p = passages.get(q.passageId);
+    if (!p) { console.warn(`question ${q.id} : passage ${q.passageId} introuvable — écartée`); continue; }
+    out.push({ ...q, passage: p });
+  }
+  return out;
 }
 
 /** Les cinq pools, chargés **en parallèle**. Une session composée a besoin de toutes les
@@ -113,6 +128,60 @@ export function composeSession(
   const adaptiveTarget = Math.max(0, total - errorQs.length);
   const adaptiveQs = shuffle(adaptiveCandidates, rng).slice(0, adaptiveTarget);
   return shuffle([...errorQs, ...adaptiveQs], rng);
+}
+
+/**
+ * Regroupe les questions d'un même passage : complète les fratries manquantes depuis `pool`,
+ * écarte un groupe qui ne tient pas dans le budget de `total` restant une fois le lot garanti
+ * décompté (ce dernier n'est lui-même jamais tronqué pour compenser un dépassement — propriété
+ * préexistante de `composeSession`), puis rend les membres adjacents et triés par `id` (l'ordre
+ * de lecture du texte). Pure.
+ *
+ * ⚠ Appelée APRÈS `composeSession` / `selectDiagnostic` : c'est la seule position qui survive
+ * au mélange final. L'ordre du reste de la session est préservé — chaque groupe est simplement
+ * ramené d'un bloc à la position de son premier membre.
+ *
+ * ⚠ Un groupe écarté n'est PAS remplacé : la session est alors plus courte (borné à 3
+ * questions). Refiler la place exigerait le vivier complet, les poids et le jeu d'exclusion —
+ * une session légèrement plus courte est le prix accepté (cf. spec §4).
+ */
+export function withPassageGroups(session: Question[], pool: Question[], total: number): Question[] {
+  // Construire l'index des groupes par passage dans le pool.
+  const groups = new Map<string, Question[]>();
+  for (const q of pool) {
+    const pid = typeof q.passageId === "string" ? q.passageId : null;
+    if (!pid) continue;
+    const g = groups.get(pid);
+    if (g) g.push(q); else groups.set(pid, [q]);
+  }
+  // Si aucun groupe, retourner la session telle quelle.
+  if (!groups.size) return session;
+  // Trier chaque groupe par id (ordre de lecture).
+  for (const g of groups.values()) g.sort((a, b) => a.id - b.id);
+
+  // Calculer quels groupes peuvent tenir : compter les places restantes après les singletons.
+  const pidOf = (q: Question) => (typeof q.passageId === "string" ? q.passageId : null);
+  let room = total - session.filter((q) => !pidOf(q)).length;
+  const kept = new Set<string>();
+  for (const q of session) {
+    const pid = pidOf(q);
+    if (!pid || kept.has(pid)) continue;
+    const g = groups.get(pid);
+    // Un groupe ne rentre que s'il tient ENTIER dans les places restantes.
+    if (g && g.length <= room) { kept.add(pid); room -= g.length; }
+  }
+
+  // Construire la sortie : replacer les groupes complétés à la position de leur premier membre.
+  const out: Question[] = [];
+  const placed = new Set<string>();
+  for (const q of session) {
+    const pid = pidOf(q);
+    if (!pid) { out.push(q); continue; }
+    if (!kept.has(pid) || placed.has(pid)) continue;
+    placed.add(pid);
+    out.push(...(groups.get(pid) as Question[]));
+  }
+  return out;
 }
 
 /** Questions for a session of `minutes` (~1.5/min, clamped to [4, 45]). */

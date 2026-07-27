@@ -57,8 +57,12 @@ export interface SkillCoverage {
 }
 
 /** Couverture par compétence depuis les bitsets vu/appris, bucketée par les intervalles du
- *  corpus (`corpus.jsonld`). Les ordinaux étant groupés par compétence, un intervalle suffit
- *  là où il fallait parcourir les 10 307 entrées de `bank-index.json`. */
+ *  corpus (`corpus.jsonld`).
+ *
+ *  ⚠ Une compétence peut occuper PLUSIEURS intervalles : le corpus n'est extensible qu'à sa
+ *  fin (renuméroter corromprait les bitsets persistés), donc toute question ajoutée à une
+ *  compétence qui n'est pas la dernière ouvre un second intervalle. Les compteurs s'ACCUMULENT
+ *  et les pourcentages ne se calculent qu'une fois tous les intervalles vus. */
 export function coverageBySkill(
   seen: Uint8Array,
   mastered: Uint8Array,
@@ -66,13 +70,19 @@ export function coverageBySkill(
 ): Record<Skill, SkillCoverage> {
   const out = {} as Record<Skill, SkillCoverage>;
   for (const r of ranges) {
-    let seenN = 0, masteredN = 0;
+    const acc = out[r.skill] ?? { seen: 0, mastered: 0, seenN: 0, masteredN: 0, total: 0 };
     for (let ord = r.from; ord < r.from + r.count; ord++) {
-      if (hasBit(seen, ord)) seenN++;
-      if (hasBit(mastered, ord)) masteredN++;
+      if (hasBit(seen, ord)) acc.seenN++;
+      if (hasBit(mastered, ord)) acc.masteredN++;
     }
-    const pct = (n: number) => (r.count ? Math.round((n / r.count) * 100) : 0);
-    out[r.skill] = { seen: pct(seenN), mastered: pct(masteredN), seenN, masteredN, total: r.count };
+    acc.total += r.count;
+    out[r.skill] = acc;
+  }
+  for (const c of Object.keys(out) as Skill[]) {
+    const a = out[c];
+    const pct = (n: number) => (a.total ? Math.round((n / a.total) * 100) : 0);
+    a.seen = pct(a.seenN);
+    a.mastered = pct(a.masteredN);
   }
   return out;
 }
