@@ -8,7 +8,7 @@ import { hasBit, masteredCount } from "./coverage.ts";
 /** Cible de maîtrise visée (fraction du corpus). */
 export const CIBLE_PCT = 0.70;
 /** Taille du corpus — gardée par un test de mesure (cf. cadence.test.ts). */
-export const TOTAL_QUESTIONS = 10339;
+export const TOTAL_QUESTIONS = 10351;
 
 /** Journal persisté sous `jlptN3_cadence`. `byDay`/`goalByDay` indexés par `dayNumber`. */
 export interface Cadence {

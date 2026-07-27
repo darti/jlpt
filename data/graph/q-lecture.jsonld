@@ -2107,6 +2107,339 @@
     "jlpt:word/責める",
     "jlpt:word/方法"
    ]
+  },
+  {
+   "@id": "jlpt:q/10339",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 1,
+   "jlpt:ord": 10339,
+   "jlpt:stem": "大学に入って二年ほどたったころ、筆者はどうなっていましたか。",
+   "opts": [
+    "出身地を人に当てられることがなくなっていた",
+    "ふるさとの言葉をまったく思い出せなくなっていた",
+    "人と話すのが楽になっていた",
+    "同じ学部の学生に言葉の意味を聞くようになっていた"
+   ],
+   "jlpt:answer": 0,
+   "readsPassage": "jlpt:passage/chobun-01",
+   "schema:description": "<b>おかげで二年もすると、出身地を当てられることはなくなった</b>. La phrase suivante donne aussitôt le prix payé — 人と話したあとにいつも疲れていた — et interdit de lire ce résultat comme un confort.",
+   "jlpt:gloss": "出身地（しゅっしんち）« lieu d'origine » · 当てる（あてる）« deviner juste » · 並べかえる（ならべかえる）« remettre dans un autre ordre » · 学部（がくぶ）« faculté (université) » · ふるさと « pays natal »",
+   "jlpt:optionNote": [
+    "おかげで二年もすると、出身地を当てられることはなくなった — exact",
+    "Le texte parle d'un parler qu'on ne repère plus, jamais d'un parler oublié : à la fin, l'auteur enseigne encore les tournures de sa grand-mère",
+    "C'est l'inverse : そのころの私は、人と話したあとにいつも疲れていた",
+    "Le rapport est inversé — ce sont les autres étudiants qui lui demandaient 「今の、どういう意味？」"
+   ],
+   "tests": [
+    "jlpt:word/言葉"
+   ]
+  },
+  {
+   "@id": "jlpt:q/10340",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 10340,
+   "jlpt:stem": "「同じ土地の音を知っている」とありますが、どういうことですか。",
+   "opts": [
+    "二人とも、その土地の言葉の響きを体で覚えているということ",
+    "二人とも、その土地の祭りで使われる音楽にくわしいということ",
+    "筆者が、職人さんの使う道具の音を聞き分けられるということ",
+    "職人さんが、筆者の声を以前から聞いて知っていたということ"
+   ],
+   "jlpt:answer": 0,
+   "readsPassage": "jlpt:passage/chobun-01",
+   "schema:description": "L'entretien reste muet tant que l'auteur lit ses questions ; il s'ouvre <b>道具の名前をうっかり子どものころの言い方で言ったところ</b>. 「音」 désigne donc la sonorité d'un parler appris au même endroit — et la phrase l'oppose explicitement à 正しい言い方.",
+   "jlpt:gloss": "職人（しょくにん）« artisan » · 道具（どうぐ）« outil » · うっかり « par inadvertance » · 土地（とち）« terroir, région » · 通じる（つうじる）« passer, être compris »",
+   "jlpt:optionNote": [
+    "Ce qui fait basculer l'entretien, c'est un nom d'outil dit 子どものころの言い方で : la même façon de sonner, apprise au même endroit — exact",
+    "音 ne renvoie ici à aucune musique : la phrase suit immédiatement le mot prononcé à l'ancienne, et le texte ne parle nulle part de fête",
+    "道具 est bien dans le texte, mais c'est son NOM que l'auteur prononce, pas son bruit qu'il reconnaîtrait",
+    "Ils se rencontrent ce jour-là ; ce que les deux partagent est un parler, non une voix déjà entendue"
+   ],
+   "tests": [
+    "jlpt:word/土地",
+    "jlpt:word/伝わる"
+   ]
+  },
+  {
+   "@id": "jlpt:q/10341",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 10341,
+   "jlpt:stem": "学生のころの筆者と、職人さんに話を聞き始めたばかりのころの筆者には、どのような共通点がありますか。",
+   "opts": [
+    "どちらも、口に出す前に言葉を選んでから話していた",
+    "どちらも、相手の話す速さについていけずに困っていた",
+    "どちらも、年上の人を相手に話していた",
+    "どちらも、ふるさとの言葉が通じずに苦労していた"
+   ],
+   "jlpt:answer": 0,
+   "readsPassage": "jlpt:passage/chobun-01",
+   "schema:description": "La réponse demande de rapprocher deux endroits éloignés du texte : <b>話す前に頭の中で一度、言葉を並べかえるようになった</b> (première partie) et <b>用意してきた質問を順に読み上げているだけだった</b> (au milieu). Deux fois des mots choisis à l'avance — et deux fois un échange qui ne prend pas.",
+   "jlpt:gloss": "共通点（きょうつうてん）« point commun » · 用意（ようい）する « préparer » · 順に（じゅんに）« l'un après l'autre » · 苦労（くろう）する « peiner »",
+   "jlpt:optionNote": [
+    "話す前に頭の中で一度、言葉を並べかえる (étudiant) et 用意してきた質問を順に読み上げているだけだった (début de l'entretien) — exact",
+    "Rien de tel dans le texte : à l'université on lui demande de répéter, et l'artisan ne répond que par 「はい」「まあ」",
+    "Vrai du seul artisan (七十を過ぎた) ; à l'université, ses interlocuteurs sont 同じ学部の学生",
+    "Vrai de la seule période étudiante : pendant l'entretien, c'est au contraire le parler d'enfance qui débloque tout"
+   ],
+   "tests": [
+    "jlpt:word/相手",
+    "jlpt:word/質問"
+   ]
+  },
+  {
+   "@id": "jlpt:q/10342",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 10342,
+   "jlpt:stem": "この文章で筆者が最も言いたいことは何ですか。",
+   "opts": [
+    "自分の言葉を使い分けることと、なくしてしまうことは同じではない",
+    "人に伝えるためには、正しい言い方を身につけることが何より大切だ",
+    "話を聞き出すには、相手と同じ地方の出身であるほうがよい",
+    "ふるさとの言葉は、できるだけ早く直したほうが暮らしやすい"
+   ],
+   "jlpt:answer": 0,
+   "readsPassage": "jlpt:passage/chobun-01",
+   "schema:description": "Le fil du texte : 直せば通じると信じてきた → しかし話を先へ進めたのは同じ土地の音 → <b>選んで使い分けることと、なかったことにするのとは違う</b>, puis les tournures de la grand-mère transmises à sa nièce. Le それでも concède juste avant qu'il faille s'adapter à son interlocuteur : la conclusion ne l'annule pas, elle le complète.",
+   "jlpt:gloss": "使い分ける（つかいわける）« employer selon le cas » · 姪（めい）« nièce » · 口ぐせ（くちぐせ）« expression qui revient toujours » · 当たり前（あたりまえ）« qui va de soi » · 身につける（みにつける）« acquérir »",
+   "jlpt:optionNote": [
+    "選んで使い分けることと、なかったことにするのとは違う — et la dernière ligne montre ce qui se perd sinon : 使わない言葉は、思い出せなくなるのが早い — exact",
+    "Le texte accorde qu'il faut se faire comprendre (伝わらなければ意味がない), mais refuse d'en faire le tout : ce jour-là, 話を先へ進めたのは正しい言い方ではなかった",
+    "L'origine commune a servi une fois ; l'auteur n'en tire aucune règle, et personne ne choisit d'où vient son interlocuteur",
+    "C'est ce que l'auteur a cru pendant des années, et c'est précisément ce sur quoi il revient"
+   ],
+   "tests": [
+    "jlpt:word/方言",
+    "jlpt:word/選ぶ"
+   ]
+  },
+  {
+   "@id": "jlpt:q/10343",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 1,
+   "jlpt:ord": 10343,
+   "jlpt:stem": "出口の近くの掲示板には、隠れる場所を増やしてから何が変わったと書かれていましたか。",
+   "opts": [
+    "動物が体調を崩す回数が減った",
+    "動物の姿が前より見えるようになった",
+    "入園料を下げられるようになった",
+    "園を訪れる人の数が増えた"
+   ],
+   "jlpt:answer": 0,
+   "readsPassage": "jlpt:passage/chobun-02",
+   "schema:description": "Le relevé affiché ne porte que sur un point, et il est chiffré : <b>隠れる場所を増やした年から、動物が体調を崩す回数がはっきり減った</b>. C'est lui qui transforme la règle affichée en argument.",
+   "jlpt:gloss": "掲示板（けいじばん）« panneau d'affichage » · 体調（たいちょう）を崩す（くずす）« tomber malade » · 回数（かいすう）« nombre de fois » · 記録（きろく）« relevé, données » · 増やす（ふやす）« augmenter »",
+   "jlpt:optionNote": [
+    "隠れる場所を増やした年から、動物が体調を崩す回数がはっきり減った — exact",
+    "L'inverse de ce que l'auteur constate ce jour-là, et le panneau ne promet rien de tel : il annonce au contraire des jours sans rien voir",
+    "入園料 est bien dans le texte, mais c'est l'auteur qui regrette de l'avoir payé ; le panneau n'en parle pas",
+    "Le nombre de visiteurs n'apparaît nulle part ; le seul chiffre affiché porte sur la santé des animaux"
+   ],
+   "tests": [
+    "jlpt:word/記録",
+    "jlpt:word/体調"
+   ]
+  },
+  {
+   "@id": "jlpt:q/10344",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 10344,
+   "jlpt:stem": "「見えないと損だ」という気持ちとありますが、どのような気持ちですか。",
+   "opts": [
+    "お金を払った以上、動物の姿を見なければ割に合わないという気持ち",
+    "十五分も待ったのだから、もう少し待つべきだったという気持ち",
+    "あまり広くない園なのだから、動物はもっと近くにいるはずだという気持ち",
+    "甥に楽しんでもらえなければ、連れて来た意味がないという気持ち"
+   ],
+   "jlpt:answer": 0,
+   "readsPassage": "jlpt:passage/chobun-02",
+   "schema:description": "損 = « y perdre ». Le sentiment renvoie au calcul posé plus haut dans le texte : <b>せっかく入園料を払ったのに、これでは何を見に来たのか分からない</b>. Les trois autres options reprennent des éléments vrais — les quinze minutes, la petite taille du parc, le neveu — mais aucun n'est une affaire d'argent.",
+   "jlpt:gloss": "損（そん）« perte, marché de dupes » · 入園料（にゅうえんりょう）« droit d'entrée » · せっかく « après tout le mal qu'on s'est donné » · 恥ずかしい（はずかしい）« gênant, honteux » · 割に合う（わりにあう）« valoir la peine »",
+   "jlpt:optionNote": [
+    "Le sentiment est nommé juste après 入園料を払ったのに、これでは何を見に来たのか分からない : c'est un calcul, ce que 損 dit exactement — exact",
+    "Les quinze minutes d'attente sont bien dans le texte, mais l'auteur ne se reproche pas d'avoir renoncé trop tôt : il en veut au zoo, pas à lui-même",
+    "La petite taille du parc est bien indiquée, et l'attente qu'elle crée est réelle — mais 損 chiffre une dépense, pas une distance",
+    "L'auteur écrit 私も同じ気持ちだった : il parle de ce qu'il éprouve lui, non de la déception de l'enfant"
+   ],
+   "tests": [
+    "jlpt:word/損",
+    "jlpt:word/気持ち"
+   ]
+  },
+  {
+   "@id": "jlpt:q/10345",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 10345,
+   "jlpt:stem": "この一日の初めと終わりで、甥の様子はどのように変わりましたか。",
+   "opts": [
+    "早く次へ行きたがっていたが、帰り道ではまだオオカミのことを気にしていた",
+    "オオカミを探すのに夢中だったが、帰り道では動物園の話をしなくなった",
+    "動物が見えないことに怒っていたが、掲示板の説明を読んで納得した",
+    "初めは楽しそうだったが、何も見られないまま元気をなくしてしまった"
+   ],
+   "jlpt:answer": 0,
+   "readsPassage": "jlpt:passage/chobun-02",
+   "schema:description": "Il faut tenir ensemble les deux extrémités du texte : au début <b>甥が小さな声で「もう行こう」と言った</b>, à la dernière ligne <b>「オオカミは今日、どこにいたのかな」</b>. L'enfant qui voulait partir est celui qui, dans la voiture, y pense encore — et c'est de cet écart que l'auteur tire 見えなかったからこそ、この子はオオカミのことを考えている.",
+   "jlpt:gloss": "甥（おい）« neveu » · 様子（ようす）« attitude, allure » · 夢中（むちゅう）« absorbé, captivé » · 納得（なっとく）する « se ranger à un argument » · 眺める（ながめる）« contempler »",
+   "jlpt:optionNote": [
+    "「もう行こう」 au bout de quinze minutes, puis 「オオカミは今日、どこにいたのかな」 sur le chemin du retour — exact",
+    "Exactement l'inverse : devant l'enclos il veut partir, et c'est au retour qu'il revient à l'animal",
+    "C'est l'auteur seul qui s'arrête devant le panneau et le lit ; rien n'indique que l'enfant en ait pris connaissance, et il n'est jamais montré en colère",
+    "Le texte ne montre à aucun moment un enfant abattu : sa question du retour prouve le contraire"
+   ],
+   "tests": [
+    "jlpt:word/関心",
+    "jlpt:word/隠れる"
+   ]
+  },
+  {
+   "@id": "jlpt:q/10346",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 10346,
+   "jlpt:stem": "この文章に題をつけるとしたら、最もふさわしいものはどれですか。",
+   "opts": [
+    "「見えない動物が教えてくれたこと」",
+    "「動物園の上手な回り方」",
+    "「子どもが喜ぶ動物園とは」",
+    "「動物を見せない園への疑問」"
+   ],
+   "jlpt:answer": 0,
+   "readsPassage": "jlpt:passage/chobun-02",
+   "schema:description": "Ce que l'auteur rapporte du zoo, c'est justement ce qu'il n'a pas vu : le panneau, la honte, puis la question du neveu. La dernière phrase ne dit pas que la journée fut réussie, elle dit qu'elle fut autre — <b>囲いの前で三分眺めて次へ行く日とは、たしかに違う一日だった</b>. Et la concession もちろん…つらいのは事実だ interdit de lire la chronique comme un éloge sans réserve.",
+   "jlpt:gloss": "価値（かち）« valeur » · 事実（じじつ）« fait » · 自由（じゆう）« liberté » · 囲い（かこい）« enclos » · 疑問（ぎもん）« doute, objection »",
+   "jlpt:optionNote": [
+    "Le zoo ne lui a rien montré, et c'est de cette absence que l'auteur tire tout ce qu'il rapporte — exact",
+    "Le texte ne donne aucun conseil de visite ; l'auteur lui-même ne sait pas quand il y retournera (すぐに思えたわけではない)",
+    "La difficulté pour les familles est reconnue (もちろん…つらいのは事実だ), mais c'est une concession en passant, pas le sujet",
+    "C'est le doute du début — 動物園は動物を見せるところではないのか — abandonné dès la lecture du panneau"
+   ],
+   "tests": [
+    "jlpt:word/価値",
+    "jlpt:word/自由"
+   ]
+  },
+  {
+   "@id": "jlpt:q/10347",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 1,
+   "jlpt:ord": 10347,
+   "jlpt:stem": "書き直した二冊目のノートには、どのようなことが書かれていましたか。",
+   "opts": [
+    "筆者が四年の間に自分で気づいた、客の好みや天気による工夫",
+    "レジの打ち方や品物の並べ方といった、店の決まった手順",
+    "店長から教わった、次の人に必ず伝えるべき注意",
+    "商品の箱や説明書に書かれている内容をまとめたもの"
+   ],
+   "jlpt:answer": 0,
+   "readsPassage": "jlpt:passage/chobun-03",
+   "schema:description": "Le jeudi et son stylo rouge, les papillons adhésifs avant les examens, le sac les jours de pluie : le texte les résume lui-même en une ligne — <b>どれも誰にも教わっていない。四年の間に勝手に覚えたことだ</b>.",
+   "jlpt:gloss": "引き継ぐ（ひきつぐ）« passer le relais, transmettre un poste » · 手順（てじゅん）« marche à suivre » · 付箋（ふせん）« papillon adhésif » · 切らす（きらす）« laisser manquer, être en rupture » · 文房具（ぶんぼうぐ）« papeterie, fournitures »",
+   "jlpt:optionNote": [
+    "どれも誰にも教わっていない。四年の間に勝手に覚えたことだ — exact",
+    "C'est le contenu du PREMIER cahier, celui que le patron renvoie",
+    "Le texte dit exactement l'inverse : どれも誰にも教わっていない",
+    "C'est précisément le reproche fait à la première version : これは箱の裏に書いてあることばかりだね"
+   ],
+   "tests": [
+    "jlpt:word/仕事"
+   ]
+  },
+  {
+   "@id": "jlpt:q/10348",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 10348,
+   "jlpt:stem": "「レジを打っていた四年」として片づけていた、とありますが、どういう意味ですか。",
+   "opts": [
+    "誰にでもできる決まった作業の繰り返しだったと考えて、それ以上振り返らない",
+    "四年の間に覚えたことを、次の人に伝えないまま店を去ってしまう",
+    "四年の間に書きためた記録を、店をやめるときに捨ててしまう",
+    "レジの仕事だけは上手になったと、自分で自分をほめる"
+   ],
+   "jlpt:answer": 0,
+   "readsPassage": "jlpt:passage/chobun-03",
+   "schema:description": "「〜として片づける」 = ranger une chose sous une étiquette et n'y plus revenir. La phrase qui précède donne la mesure de ce qui aurait été perdu : <b>自分がそんなに多くのことに気づいていたと、それまで思ってもみなかった</b>.",
+   "jlpt:gloss": "片づける（かたづける）« expédier, régler et ne plus y revenir » · 〜に違いない（ちがいない）« ce ne peut être que… » · 驚く（おどろく）« être surpris » · 勝手に（かってに）« de soi-même » · 振り返る（ふりかえる）« revenir sur, se retourner »",
+   "jlpt:optionNote": [
+    "Ramener quatre ans à une opération que n'importe qui refait à l'identique, et ne plus y penser — exact",
+    "La transmission est bien l'enjeu du cahier, mais la phrase porte sur le regard de l'auteur sur SES quatre années, pas sur ce que reçoit le successeur",
+    "Lecture littérale de 片づける (« ranger ») : rien n'est jeté dans le texte, et avant ce cahier il n'existait aucun écrit",
+    "Contresens inverse : la formule dévalorise ces quatre années, elle ne s'en vante pas"
+   ],
+   "tests": [
+    "jlpt:gram/に違いない"
+   ]
+  },
+  {
+   "@id": "jlpt:q/10349",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 3,
+   "jlpt:ord": 10349,
+   "jlpt:stem": "今の仕事で毎月覚え書きを作っている筆者は、ノートを頼まれたばかりのころと比べて、何が変わりましたか。",
+   "opts": [
+    "書くことがないと思える日にも、書けば何か出てくると考えるようになった",
+    "文章を上手に書けるようになった",
+    "決まった手順を短い時間で覚えられるようになった",
+    "人から教わったことだけを記録するようになった"
+   ],
+   "jlpt:answer": 0,
+   "readsPassage": "jlpt:passage/chobun-03",
+   "schema:description": "La réponse relie les deux extrémités du texte : <b>わざわざ文字にするほどのことがあるだろうか、と思ったのだ</b> (au début) et <b>書くことがないと思っていた毎日から必ず何かが出てくる</b> (dernière ligne). C'est le même jugement, retourné. Le distracteur 1 est démenti à la ligne d'avant — うまく書けた日は少ない : ce qui a changé n'est pas l'habileté, c'est l'attente.",
+   "jlpt:gloss": "覚え書き（おぼえがき）« mémo, notes » · わざわざ « se donner la peine de » · 気が進まない（きがすすまない）« ne pas avoir le cœur à » · 〜ものの « bien que… » · 厚い（あつい）« épais »",
+   "jlpt:optionNote": [
+    "Au début わざわざ文字にするほどのことがあるだろうか ; à la fin 書くことがないと思っていた毎日から必ず何かが出てくる — exact",
+    "Réfuté par la phrase qui précède immédiatement : うまく書けた日は少ない",
+    "La vitesse d'apprentissage n'est jamais en cause : l'auteur savait déjà que 慣れてしまえば何ということはない",
+    "L'inverse de ce que le second cahier lui a appris : どれも誰にも教わっていない"
+   ],
+   "tests": [
+    "jlpt:word/記録",
+    "jlpt:word/続ける"
+   ]
+  },
+  {
+   "@id": "jlpt:q/10350",
+   "@type": "jlpt:Question",
+   "jlpt:skill": "lecture",
+   "jlpt:difficulty": 2,
+   "jlpt:ord": 10350,
+   "jlpt:stem": "筆者がこの経験から学んだことは何ですか。",
+   "opts": [
+    "書こうとすることで、自分が気づいていたことが初めて形になる",
+    "仕事の手順は、できるだけ細かく文字にしておいたほうがよい",
+    "人に何かを引き継ぐときは、書くより実際にやって見せたほうが早い",
+    "長く続けた仕事ほど、人に説明するのが難しくなる"
+   ],
+   "jlpt:answer": 0,
+   "readsPassage": "jlpt:passage/chobun-03",
+   "schema:description": "Deux cahiers, un refus, une seconde version : le texte est le récit de ce que l'écriture a fait apparaître. <b>書き終えて驚いたのは、自分がそんなに多くのことに気づいていたと、それまで思ってもみなかったことだ</b> — et la dernière ligne étend la leçon au travail d'aujourd'hui.",
+   "jlpt:gloss": "経験（けいけん）« expérience vécue » · まるで別（べつ）の « tout autre » · 喜ぶ（よろこぶ）« être content » · 内容（ないよう）« contenu » · 実際（じっさい）に « concrètement, en vrai »",
+   "jlpt:optionNote": [
+    "書き終えて驚いたのは…それまで思ってもみなかったことだ, puis la dernière ligne : écrire fait apparaître ce qu'on ne savait pas savoir — exact",
+    "C'est exactement la première version du cahier, celle que le patron renvoie : これは箱の裏に書いてあることばかりだね",
+    "Le texte ne compare jamais l'écrit à la démonstration : il compare deux façons d'écrire",
+    "Rien de tel : la difficulté n'était pas d'expliquer, mais de croire qu'il y eût quelque chose à écrire"
+   ],
+   "tests": [
+    "jlpt:word/驚く",
+    "jlpt:word/覚える"
+   ]
   }
  ]
 }

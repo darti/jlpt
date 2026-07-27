@@ -4,7 +4,7 @@ import { setBit, emptyBits } from "./coverage.ts";
 import { readdirSync, readFileSync } from "node:fs";
 
 test("dailyGoal = rythme requis, arrondi au supérieur", () => {
-  // cible 70 % de 10339 = 7237 ; 0 appris, 134 jours → ⌈7237/134⌉ = 55
+  // cible 70 % de 10351 = 7246 ; 0 appris, 134 jours → ⌈7246/134⌉ = 55
   expect(dailyGoal(0, 134)).toBe(55);
 });
 
@@ -81,7 +81,7 @@ test("recordAnswer ne trace plus rien après l'examen (daysLeft ≤ 0)", () => {
 test("cadenceModel : objectif gelé du jour, progrès, série, cible/examen", () => {
   let c = emptyCadence();
   c = recordMastery(c, 10, 54);
-  // masteredNow=1000 sépare le gelé (54) du live (dailyGoal(1000,134)=⌈6215/134⌉=47) :
+  // masteredNow=1000 sépare le gelé (54) du live (dailyGoal(1000,134)=⌈6246/134⌉=47) :
   // ainsi l'assertion prouve VRAIMENT que l'objectif affiché est le gelé, pas le recalculé.
   const m = cadenceModel(c, 1000, 134, 10);
   expect(m.goal).toBe(54);        // gelé (54), et NON le live (47) — l'objectif ne dérive pas en cours de journée

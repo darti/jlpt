@@ -135,6 +135,6 @@ test("la couverture globale des arêtes ne retombe pas sous 95 %", async () => {
     ["q-grammaire", "q-vocabulaire", "q-kanji", "q-lecture", "q-ecoute"].map(G),
   )).flat().map(toQuestion);
   const resolus = qs.filter((q) => resolveRappel(q, idx) !== null).length;
-  expect(qs.length).toBe(10339);
+  expect(qs.length).toBe(10351);
   expect(resolus / qs.length).toBeGreaterThan(0.95);
 });
