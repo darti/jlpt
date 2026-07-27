@@ -59,8 +59,11 @@ n'en garde que ce qui se mord les doigts quand on l'ignore.
   `src/lib/bank.ts` (chargement/mémoïsation des pools + `pickAdaptive` / `selectDiagnostic` /
   `composeSession` / `allocate`, toutes pures et injectables via `rng`), `src/lib/scoring.ts`
   (score estimé /180 + probabilité de réussite), puis `src/features/quiz/useQuiz.ts` — **seule**
-  couche à effets (phases, reprise, persistance). Toute règle nouvelle va dans les couches
+  couche à effets (phases, orchestration). Toute règle nouvelle va dans les couches
   pures : c'est là que sont les tests.
+  Autour du hook, trois modules purs extraits de lui — y ajouter une règle plutôt que de le
+  regonfler : `answerPatch.ts` (ce qu'une réponse écrit + `pickSlice`), `resume.ts`
+  (`ResumeState`, lecture/écriture/péremption à 2 j), `sessionParams.ts` (`?min=` / `?resume=`).
   ⚠ Un refactor d'une couche numérique (`elo`/`bank`/`scoring`) se prouve **bit-identique** :
   capture golden des sorties sur des vecteurs variés AVANT, diff exact APRÈS. « Les tests
   passent » ne détecte pas une réassociation flottante qui mésestime un score sans rien casser.
@@ -283,6 +286,16 @@ code touché.
   `tools/copy-static.mjs` (`ROOT` / `isServedData` → build + prod ; gardé par `copy-static.test.ts`),
   `scripts/dev.ts` `STATIC_FILES` (allowlist du serveur de dev → sinon 404 en `bun run dev` seulement),
   et `sw.js` `SHELL` (précache PWA → sinon absent hors ligne seulement).
+- **Lire / écrire un document du graphe passe par `tools/graph/jsonld.mjs`** : `GRAPH_DIR`,
+  `graphPath(nom)`, `readJson(p)`, `readGraph(p)` → `{ doc, subjects }`, `writeGraph(p, doc, sujets)`.
+  ⚠ Le format d'écriture (**indentation 1, saut de ligne final**, japonais en clair) était retapé
+  dans huit outils. Ce n'est pas du style : c'est la forme sous laquelle 10 351 questions sont
+  versionnées, et une indentation qui dérive d'un cran dans UN outil réécrit le fichier entier.
+  `graphio.test.ts` le fige. (`readDoc` reste à part : il rend le contexte **analysé**, pour
+  valider — il ne permet pas de réécrire, faute de garder le document d'origine.)
+  ⚠ Preuve de non-régression pour tout refactor de ces outils : ils sont **idempotents**, donc
+  les rejouer tous doit laisser `git diff -- data/` **vide**. C'est un oracle exact, là où
+  « les tests passent » ne dirait rien d'un format qui a dérivé.
 - **`tools/*.mjs` s'exécutent sous `bun`, comme tout le reste** : `bun tools/validate-graph.mjs`,
   `bun tools/graph/readings.mjs`… Il n'y a **plus aucune exception** à la règle « bun
   exclusivement » — l'étape `setup-node` de la CI a été supprimée, et avec elle l'ancienne
@@ -368,6 +381,17 @@ code touché.
   ⚠ Écrire la progression **uniquement** via `writeProgress()` (`src/lib/storage.ts`) : c'est un
   **patch fusionné** sur le blob existant (deep-merge de `skill`). Réécrire le blob entier efface
   les champs des autres features.
+  ⚠ **Lire le blob uniquement via `src/lib/blob.ts`** (`asProgress`, `asSkillState`, `asWrong`,
+  `asHistory`, `asBits`/`asBitsB64`, `asNum`) : `storage.ts` possède l'accès au store, `blob.ts`
+  l'INTERPRÉTATION. Les gardes étaient retapées dans six fichiers — celle des bitsets cinq fois.
+  Tolérance obligatoire : le blob est de la donnée utilisateur ancienne, éventuellement
+  rapatriée d'un Gist ; un champ absent ou corrompu dégrade vers un défaut, il ne jette jamais.
+  ⚠ **Une préférence se déclare via `src/lib/pref.ts`** (`pref` / `boolPref` / `enumPref` /
+  `numberPref`), jamais en retapant un couple read/write. Les cinq préférences (thème, furigana,
+  police, débit, rappel) partageaient ce corps et **trois avaient perdu `stampUpdated`** : comme
+  `collectData` prend `UPDATED_KEY` pour `updatedAt` et que `cloudPull` n'applique le distant que
+  si `remoteT > localT`, changer seulement l'une des trois laissait l'horodatage périmé et la
+  synchro suivante restaurait l'ancienne valeur, sans erreur. La fabrique horodate toujours.
 
 ## Migration React (terminée)
 

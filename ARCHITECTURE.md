@@ -96,13 +96,20 @@ vit dans `AppShell`, monté une fois.
 C'est ce qui a permis de basculer tout le contenu sur le graphe sans qu'un seul composant ni un
 seul test de composant ne change. Toute nouvelle lecture du graphe passe par l'une des deux.
 
-**Le moteur de quiz : 3 couches pures + 1 hook à effets.**
+**Le moteur de quiz : des couches pures + 1 hook à effets.**
 
     elo.ts  ·  bank.ts  ·  scoring.ts      pures, injectables via `rng` — c'est là que sont les tests
-    useQuiz.ts                             SEULE couche à effets (phases, reprise, persistance)
+    answerPatch · resume · sessionParams   pures aussi, extraites du hook (patch, reprise, URL)
+    useQuiz.ts                             SEULE couche à effets (phases, orchestration)
 
 Toute règle nouvelle va dans les couches pures. Leur immuabilité pendant la migration du graphe
 (zéro diff, tests inchangés) est ce qui a prouvé que la bascule n'avait pas touché aux règles.
+
+**Deux modules possèdent la donnée locale, et eux seuls.** `lib/storage.ts` a l'accès au store ;
+`lib/blob.ts` a l'interprétation du blob de progression ; `lib/pref.ts` fabrique les préférences
+(clé + codec + défaut, horodatage systématique). Cette séparation est née d'un défaut réel : les
+préférences retapaient leur corps et trois d'entre elles avaient perdu l'horodatage, ce qui les
+faisait écraser à la synchro suivante — invisible tant que le code était en cinq exemplaires.
 
 **Le rappel du corrigé** (`src/features/quiz/rappel.ts`) résout `question.tests` vers un rappel
 unifié — grammaire, mot ou kanji — avec sa lecture, son sens, son exemple et son lien profond vers
