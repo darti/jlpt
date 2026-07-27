@@ -990,7 +990,7 @@ git commit -m "fix(graph): la clé de contradiction est l'énoncé seul, pas én
 l'ancien contenu en cache et ne voient aucune correction.
 
 ```bash
-TOKENSAVE_DISABLE_GREP_HOOK=1 grep -n 'CACHE' sw.js
+grep -n 'CACHE' sw.js
 ```
 Incrémenter `jlpt-n3-vN` → `jlpt-n3-v(N+1)`.
 
