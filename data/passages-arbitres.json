@@ -999,64 +999,64 @@
    "tests": ["jlpt:word/仕事", "jlpt:word/記録", "jlpt:word/覚える"],
    "questions": [
     {
-     "stem": "書き直した二冊目のノートには、どのようなことが書かれていましたか。",
+     "stem": "アルバイトをやめる前に、ノートを書くよう頼まれた筆者は、初めどう思っていましたか。",
      "opts": [
-      "筆者が四年の間に自分で気づいた、客の好みや天気による工夫",
-      "レジの打ち方や品物の並べ方といった、店の決まった手順",
-      "店長から教わった、次の人に必ず伝えるべき注意",
-      "商品の箱や説明書に書かれている内容をまとめたもの"
+      "レジの打ち方や品物の並べ方は、慣れてしまえば簡単なので、わざわざ書くほどのことではないと思った",
+      "覚えることが多く、書くのはとても大変な作業だと思った",
+      "次の人に何を教えればよいのか、見当がつかなかった",
+      "店長の頼みを光栄に思い、すぐに引き受けようと思った"
      ],
      "answer": 0,
      "difficulty": 1,
-     "description": "Le jeudi et son stylo rouge, les papillons adhésifs avant les examens, le sac les jours de pluie : le texte les résume lui-même en une ligne — <b>どれも誰にも教わっていない。四年の間に勝手に覚えたことだ</b>.",
-     "gloss": "引き継ぐ（ひきつぐ）« passer le relais, transmettre un poste » · 手順（てじゅん）« marche à suivre » · 付箋（ふせん）« papillon adhésif » · 切らす（きらす）« laisser manquer, être en rupture » · 文房具（ぶんぼうぐ）« papeterie, fournitures »",
+     "description": "レジの仕事も並べ方も、慣れてしまえば特に難しくない――だからこそ、わざわざ書き記すほどのことがあるのかと筆者は疑問に思う。<b>慣れてしまえば何ということはない。わざわざ文字にするほどのことがあるだろうか、と思ったのだ。</b>",
+     "gloss": "慣れる（なれる）« s'habituer » · 引き受ける（ひきうける）« accepter, se charger de » · 気が進まない（きがすすまない）« ne pas avoir le cœur à » · わざわざ « se donner la peine de, exprès »",
      "optionNote": [
-      "どれも誰にも教わっていない。四年の間に勝手に覚えたことだ — exact",
-      "C'est le contenu du PREMIER cahier, celui que le patron renvoie",
-      "Le texte dit exactement l'inverse : どれも誰にも教わっていない",
-      "C'est précisément le reproche fait à la première version : これは箱の裏に書いてあることばかりだね"
+      "慣れてしまえば何ということはない。わざわざ文字にするほどのことがあるだろうか、と思ったのだ — exact",
+      "Le texte dit l'inverse : une fois habitué, ce n'est rien de spécial (慣れてしまえば何ということはない) — ce n'est pas la difficulté qui freine le narrateur",
+      "Il ne manque pas d'idées : c'est justement parce qu'il juge ces tâches évidentes qu'il doute qu'il y ait quoi que ce soit à écrire",
+      "Contresens : 気は進まなかった dit l'inverse d'un accueil enthousiaste"
      ],
-     "tests": ["jlpt:word/仕事"]
+     "tests": ["jlpt:word/慣れる"]
     },
     {
-     "stem": "「レジを打っていた四年」として片づけていた、とありますが、どういう意味ですか。",
+     "stem": "「これは箱の裏に書いてあることばかりだね」と店長に言われたとき、店長は何を言いたかったのですか。",
      "opts": [
-      "誰にでもできる決まった作業の繰り返しだったと考えて、それ以上振り返らない",
-      "四年の間に覚えたことを、次の人に伝えないまま店を去ってしまう",
-      "四年の間に書きためた記録を、店をやめるときに捨ててしまう",
-      "レジの仕事だけは上手になったと、自分で自分をほめる"
+      "誰が読んでも分かる当たり前のことしか書かれておらず、筆者にしか書けない内容がない",
+      "字が乱雑で読みにくく、内容が頭に入ってこない",
+      "商品の説明をもっと詳しく書き写すべきだ",
+      "三週間もかけたにしては、量が少なすぎる"
      ],
      "answer": 0,
      "difficulty": 2,
-     "description": "「〜として片づける」 = ranger une chose sous une étiquette et n'y plus revenir. La phrase qui précède donne la mesure de ce qui aurait été perdu : <b>自分がそんなに多くのことに気づいていたと、それまで思ってもみなかった</b>.",
-     "gloss": "片づける（かたづける）« expédier, régler et ne plus y revenir » · 〜に違いない（ちがいない）« ce ne peut être que… » · 驚く（おどろく）« être surpris » · 勝手に（かってに）« de soi-même » · 振り返る（ふりかえる）« revenir sur, se retourner »",
+     "description": "「これ」は筆者が三週間かけて書いた一冊目のノートを指す。店長の一言は文字の巧拙ではなく中身を問うている。<b>私が書いたのは誰が読んでも分かる決まりだけで、それなら説明書で足りる。</b>――ノートである意味がない、という指摘。",
+     "gloss": "決まり（きまり）« règle, ce qui est convenu » · 説明書（せつめいしょ）« notice explicative » · 足りる（たりる）« suffire »",
      "optionNote": [
-      "Ramener quatre ans à une opération que n'importe qui refait à l'identique, et ne plus y penser — exact",
-      "La transmission est bien l'enjeu du cahier, mais la phrase porte sur le regard de l'auteur sur SES quatre années, pas sur ce que reçoit le successeur",
-      "Lecture littérale de 片づける (« ranger ») : rien n'est jeté dans le texte, et avant ce cahier il n'existait aucun écrit",
-      "Contresens inverse : la formule dévalorise ces quatre années, elle ne s'en vante pas"
+      "私が書いたのは誰が読んでも分かる決まりだけで、それなら説明書で足りる — exact",
+      "Contredit par la phrase qui précède immédiatement : よく書けている — l'écriture n'est pas en cause",
+      "Contresens : le problème n'est pas un manque de précision dans la copie, c'est que ce n'est QUE de la copie — en rajouter n'y changerait rien",
+      "Contredit par 三週間かけて厚いノートができあがった : la quantité n'est pas en cause"
      ],
-     "tests": ["jlpt:gram/に違いない"]
+     "tests": ["jlpt:word/決まり"]
     },
     {
-     "stem": "今の仕事で毎月覚え書きを作っている筆者は、ノートを頼まれたばかりのころと比べて、何が変わりましたか。",
+     "stem": "書き直した二冊目のノートの内容には、どのような共通点がありますか。",
      "opts": [
-      "書くことがないと思える日にも、書けば何か出てくると考えるようになった",
-      "文章を上手に書けるようになった",
-      "決まった手順を短い時間で覚えられるようになった",
-      "人から教わったことだけを記録するようになった"
+      "誰にも教わらず、四年の間に自分で気づいて覚えたことである",
+      "店長が新しく決めた、店のルールである",
+      "レジの打ち方や品物の並べ方のような、決まった手順である",
+      "説明書に書けば十分な、単純な知識である"
      ],
      "answer": 0,
      "difficulty": 3,
-     "description": "La réponse relie les deux extrémités du texte : <b>わざわざ文字にするほどのことがあるだろうか、と思ったのだ</b> (au début) et <b>書くことがないと思っていた毎日から必ず何かが出てくる</b> (dernière ligne). C'est le même jugement, retourné. Le distracteur 1 est démenti à la ligne d'avant — うまく書けた日は少ない : ce qui a changé n'est pas l'habileté, c'est l'attente.",
-     "gloss": "覚え書き（おぼえがき）« mémo, notes » · わざわざ « se donner la peine de » · 気が進まない（きがすすまない）« ne pas avoir le cœur à » · 〜ものの « bien que… » · 厚い（あつい）« épais »",
+     "description": "木曜に来る客の赤いペン、試験前の付箋、雨の日の袋――どれも店長に教わったことでも、決まりに載ることでもない。<b>どれも誰にも教わっていない。四年の間に勝手に覚えたことだ。</b>",
+     "gloss": "付箋（ふせん）« papillon adhésif » · 切らす（きらす）« laisser manquer, être à court de » · 勝手に（かってに）« de soi-même, sans qu'on le demande » · 教わる（おそわる）« recevoir un enseignement, apprendre de qqn »",
      "optionNote": [
-      "Au début わざわざ文字にするほどのことがあるだろうか ; à la fin 書くことがないと思っていた毎日から必ず何かが出てくる — exact",
-      "Réfuté par la phrase qui précède immédiatement : うまく書けた日は少ない",
-      "La vitesse d'apprentissage n'est jamais en cause : l'auteur savait déjà que 慣れてしまえば何ということはない",
-      "L'inverse de ce que le second cahier lui a appris : どれも誰にも教わっていない"
+      "どれも誰にも教わっていない。四年の間に勝手に覚えたことだ — exact",
+      "Rien dans le texte n'attribue ces observations au patron : ce sont des remarques personnelles, glanées seul",
+      "C'est le contenu du PREMIER cahier — レジの打ち方も品物の並べ方も — celui que le patron renvoie, pas celui qu'il retient",
+      "C'est précisément le reproche fait au premier cahier (これは箱の裏に書いてあることばかりだね・説明書で足りる), pas une description du second"
      ],
-     "tests": ["jlpt:word/記録", "jlpt:word/続ける"]
+     "tests": ["jlpt:word/教わる"]
     },
     {
      "stem": "筆者がこの経験から学んだことは何ですか。",
