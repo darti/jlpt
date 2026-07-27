@@ -1819,8 +1819,8 @@
    ],
    "jlpt:answer": 1,
    "readsPassage": "jlpt:passage/chubun-03",
-   "schema:description": "Le courriel ne l'explique pas ; il le laisse voir en accolant deux constats. <b>資料を読むだけで時間が過ぎてしまい、最後まで一度も発言しない人がいました</b>, et la suite le confirme à l'envers : <b>読む時間をなくせば、その分、話し合いに使える時間が増えます</b>.",
-   "jlpt:gloss": "発言（はつげん）« prise de parole » · 過ぎる（すぎる）« s'écouler » · 〜なくせば « si l'on supprime… » · その分（そのぶん）« d'autant » · 話し合う（はなしあう）« discuter »",
+   "schema:description": "Le courriel ne l'explique pas ; il le laisse voir en accolant deux constats. <b>資料を読むだけで時間が過ぎてしまい、最後まで一度も発言しない人がいました</b>, et la suite le confirme à l'envers : <b>読む時間をなくせば、三十分すべてを話し合いに使えます</b>.",
+   "jlpt:gloss": "発言（はつげん）« prise de parole » · 過ぎる（すぎる）« s'écouler » · 〜なくせば « si l'on supprime… » · 足りない（たりない）« être insuffisant » · 話し合う（はなしあう）« discuter »",
    "jlpt:optionNote": [
     "Aucune règle de silence n'existe : le courriel réclame au contraire les objections",
     "Le temps partait dans la lecture en séance, et il n'en restait pas pour discuter — c'est ce qu'indique 資料を読むだけで時間が過ぎてしまい — exact",
@@ -1847,11 +1847,11 @@
    ],
    "jlpt:answer": 1,
    "readsPassage": "jlpt:passage/chubun-03",
-   "schema:description": "La phrase charnière est <b>短くすることだけが目的ではありません</b>, placée juste après les trente minutes annoncées : la durée n'est qu'un moyen. Ce qui est visé vient aussitôt après — rendre le temps à la discussion.",
-   "jlpt:gloss": "目的（もくてき）« but » · 〜こそ « précisément… » · 試す（ためす）« essayer » · 元（もと）« l'état antérieur » · 協力（きょうりょく）« coopération »",
+   "schema:description": "La phrase charnière est <b>短くすることだけが目的ではありません</b>, placée juste après les trente minutes annoncées : la durée n'est qu'un moyen. Ce qui est visé vient aussitôt après — donner les trente minutes entières à la discussion.",
+   "jlpt:gloss": "目的（もくてき）« but » · 〜こそ « précisément… » · 試す（ためす）« essayer » · 元（もと）« l'état antérieur » · その分（そのぶん）« d'autant » · 協力（きょうりょく）« coopération »",
    "jlpt:optionNote": [
     "Le nombre de participants n'est jamais en cause : le courriel s'adresse à tout le service et veut plus de voix, pas moins",
-    "資料を前の日までに送る + 短くすることだけが目的ではありません + 話し合いに使える時間が増えます : lire avant pour discuter pendant — exact",
+    "資料を前の日までに送る + 短くすることだけが目的ではありません + 三十分すべてを話し合いに使えます : lire avant pour que les trente minutes entières servent à discuter — exact",
     "La réunion du mardi demeure ; seul son déroulement change, et le courriel prévoit même de revenir en arrière si l'essai échoue",
     "Ceux qui ne parlaient pas sont la raison du changement, pas sa cible : rien dans le ton ne les met en cause"
    ],
@@ -1902,12 +1902,12 @@
    ],
    "jlpt:answer": 2,
    "readsPassage": "jlpt:passage/chubun-04",
-   "schema:description": "Rien n'est dit de l'âge de l'auteur, ni de celui du groupe en face du sien. Il faut rapprocher deux données : il en est à sa <b>三年目</b> de vie active, et <b>ほとんどが六十代より上の方だ</b>.",
+   "schema:description": "Aucun âge n'est donné en clair. Il faut rapprocher deux indications : <b>大学を出てデスクワークの仕事を始めて三年目</b> — l'auteur a donc environ vingt-cinq ans — et, pour le groupe, <b>ほとんどが六十代より上の方だ</b>.",
    "jlpt:gloss": "参加（さんか）« participation » · 〜を入れて « en comptant… » · 六十代（ろくじゅうだい）« les sexagénaires » · 声をかける（こえをかける）« adresser la parole » · 恥ずかしい（はずかしい）« gênant »",
    "jlpt:optionNote": [
     "La pluie appartient à l'épisode de la course, celui qui n'a pas duré : rien n'indique que la gymnastique s'arrête sous la pluie",
     "Le bulletin municipal est l'endroit où l'auteur a trouvé le groupe, pas la preuve que la mairie l'anime",
-    "Troisième année de vie active d'un côté, ほとんどが六十代より上 de l'autre : la plupart des participants sont plus âgés que lui — exact",
+    "大学を出て…三年目 d'un côté, ほとんどが六十代より上 de l'autre : la plupart des participants sont plus âgés que lui — exact",
     "Aucun tarif n'est mentionné ; le texte ne parle jamais d'argent"
    ],
    "tests": [
@@ -1948,25 +1948,26 @@
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 1,
    "jlpt:ord": 10333,
-   "jlpt:stem": "高校生のとき、筆者はどのように英単語を覚えようとしましたか。",
+   "jlpt:stem": "妹は旅行に出かける前に、どんなことをしていますか。",
    "opts": [
-    "料理番組を見て覚えようとした",
-    "同じ単語を何度もノートに書いた",
-    "気になった単語だけを調べた",
-    "友人に教えてもらいながら覚えた"
+    "電車の時間や、行きたい店の休みの日を調べておく",
+    "泊まる所だけを決めておく",
+    "行きたい店に電話をかけておく",
+    "地図や案内の本で古い店をさがしておく"
    ],
-   "jlpt:answer": 1,
+   "jlpt:answer": 0,
    "readsPassage": "jlpt:passage/chubun-05",
-   "schema:description": "<b>ノートに同じ単語を五十回ずつ書き</b>. Les trois autres réponses décrivent l'époque de l'université, ou attribuent à l'ami un rôle qu'il n'a pas eu.",
-   "jlpt:gloss": "単語（たんご）« mot de vocabulaire » · 〜ずつ « chacun, à chaque fois » · 小テスト（しょうテスト）« interrogation » · 語学（ごがく）« étude des langues » · 才能（さいのう）« don, talent »",
+   "schema:description": "<b>出かける前に電車の時間を調べ、行きたい店の休みの日まで確かめておきます</b>. Les trois autres options décrivent soit la façon de faire de l'auteur, soit une démarche dont le texte ne parle jamais.",
+   "jlpt:gloss": "計画（けいかく）« projet, préparation » · 細かい（こまかい）« minutieux, dans le détail » · 確かめる（たしかめる）« vérifier » · 気分（きぶん）« humeur du moment » · 案内（あんない）« guide, information »",
    "jlpt:optionNote": [
-    "L'émission de cuisine vient plus tard, à l'université : c'est justement ce qui a changé sa façon de faire",
-    "同じ単語を五十回ずつ書き : la répétition écrite, et rien d'autre — exact",
-    "Ne chercher que les mots dont il avait besoin, c'est la méthode d'après, celle de l'émission",
-    "L'ami lui a conseillé l'émission ; à aucun moment il ne lui enseigne quoi que ce soit"
+    "電車の時間を調べ、行きたい店の休みの日まで確かめておきます : c'est mot pour mot ce que fait la sœur avant de partir — exact",
+    "Ne fixer que le logement, et le train du matin, c'est la façon de faire de l'auteur, pas celle de sa sœur",
+    "Aucun appel n'est évoqué : la sœur se renseigne de son côté, elle ne téléphone à personne",
+    "Les guides n'apparaissent dans le texte que pour dire le contraire : la boutique n'y figure pas, et c'est l'auteur qui la trouve, par hasard"
    ],
    "tests": [
-    "jlpt:word/単語"
+    "jlpt:word/計画",
+    "jlpt:word/確かめる"
    ]
   },
   {
@@ -1975,26 +1976,26 @@
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 2,
    "jlpt:ord": 10334,
-   "jlpt:stem": "高校のときと大学のときで、筆者は何が違ったと考えていますか。",
+   "jlpt:stem": "もし妹が調べていなかったら、二人はどうなっていたと考えられますか。",
    "opts": [
-    "勉強に使った時間の長さ",
-    "覚えようとした単語の数",
-    "言葉を調べるときの目的",
-    "教えてくれる人がいたかどうか"
+    "二日目に美術館へ行って、休みで入れなかった",
+    "一日目の午前に美術館へ行っていた",
+    "金沢へ行くのをやめていた",
+    "筆者が古い道具の店を見つけることはなかった"
    ],
-   "jlpt:answer": 2,
+   "jlpt:answer": 0,
    "readsPassage": "jlpt:passage/chubun-05",
-   "schema:description": "L'auteur ne nomme jamais la différence : il la met en parallèle. <b>単語を覚えるために単語を書いていた</b> d'un côté, <b>料理を作るために言葉を必要としていた</b> de l'autre. Ce qui change entre les deux, c'est ce à quoi le mot devait servir.",
-   "jlpt:gloss": "すすめる « recommander » · 弱火（よわび）« feu doux » · 今思えば（いまおもえば）« avec le recul » · 暗記（あんき）« apprentissage par cœur » · 違い（ちがい）« différence »",
+   "schema:description": "Le texte ne dit pas ce qui serait arrivé : il en donne les deux morceaux. La visite était prévue <b>二日目</b>, et ce jour-là le musée était <b>休み</b>. Sans la vérification de la sœur, le déplacement se faisait pour rien.",
+   "jlpt:gloss": "美術館（びじゅつかん）« musée » · 休み（やすみ）« jour de fermeture » · 〜ことにする « décider de… » · 裏（うら）« l'arrière, le derrière » · 道具（どうぐ）« ustensile, objet »",
    "jlpt:optionNote": [
-    "Aucune durée n'est comparée : cinquante copies d'un mot ne prennent d'ailleurs pas moins de temps que de regarder une émission",
-    "Le texte ne compte pas les mots appris : les cinquante sont des répétitions d'un seul et même mot",
-    "覚えるために書く d'un côté, 料理を作るために言葉を必要とする de l'autre : c'est le but de la recherche qui diffère — exact",
-    "Personne ne lui enseigne, ni au lycée ni à l'université : l'ami s'est contenté de lui conseiller une émission"
+    "Le musée était prévu le deuxième jour, jour où il est fermé : sans la vérification, ils s'y rendaient pour trouver porte close — exact",
+    "C'est ce qui s'est réellement passé, et justement grâce à la vérification : sans elle, personne n'aurait avancé la visite au premier matin",
+    "Rien n'indique que le voyage entier aurait été annulé : c'est une seule visite qui était en jeu",
+    "La boutique est trouvée le premier après-midi, en marchant au hasard ; le jour retenu pour le musée n'y change rien"
    ],
    "tests": [
-    "jlpt:word/目的",
-    "jlpt:word/暗記"
+    "jlpt:word/美術館",
+    "jlpt:word/調べる"
    ]
   },
   {
@@ -2003,26 +2004,26 @@
    "jlpt:skill": "lecture",
    "jlpt:difficulty": 3,
    "jlpt:ord": 10335,
-   "jlpt:stem": "この文章で筆者が最も伝えたいことは何ですか。",
+   "jlpt:stem": "旅行の計画について、筆者はどう考えていますか。",
    "opts": [
-    "語学の才能がなくても、五十回書けば単語は覚えられる",
-    "単語表を使った勉強は、やめたほうがいい",
-    "言葉は、それが必要になる場面で覚えるほうが身につく",
-    "英語を覚えるなら、料理番組がいちばんよい教材だ"
+    "計画は細かく立てておいたほうがよい",
+    "妹のやり方に助けられることもあるが、自分は決めない時間も残しておきたい",
+    "計画を立てすぎると、旅行は楽しくなくなってしまう",
+    "旅行の楽しさは、どこへ行くかよりも誰と行くかで決まる"
    ],
-   "jlpt:answer": 2,
+   "jlpt:answer": 1,
    "readsPassage": "jlpt:passage/chubun-05",
-   "schema:description": "La dernière phrase resserre tout le billet : <b>いちばん忘れない言葉は、いつも何かをしたくて調べた言葉だ</b>. Le それでも qui la précède concède l'usage des listes juste avant, sans rien retirer à la conclusion.",
-   "jlpt:gloss": "場面（ばめん）« situation, contexte » · 身につく（みにつく）« s'acquérir durablement » · 単語表（たんごひょう）« liste de vocabulaire » · 教材（きょうざい）« support pédagogique » · それでも « malgré tout »",
+   "schema:description": "Le billet fait entendre deux voix. La première phrase donne celle de la sœur (<b>妹は…と言います</b>) ; l'auteur lui accorde un point (<b>妹のおかげで美術館に入れました</b>), puis marque aussitôt sa distance (<b>それでも、午後の予定を空けておくのをやめようとは思いません</b>). Ni ralliement, ni rejet.",
+   "jlpt:gloss": "正直に言えば（しょうじきにいえば）« à dire vrai » · おかげで « grâce à… » · それでも « malgré tout » · 〜ようとは思わない « ne pas avoir l'intention de… » · 分ける（わける）« répartir »",
    "jlpt:optionNote": [
-    "C'est exactement ce que le texte réfute : écrit cinquante fois, le mot était oublié une semaine plus tard",
-    "L'auteur avoue au contraire s'en servir encore : 試験の前に単語表を見ることもある",
-    "いちばん忘れない言葉は、いつも何かをしたくて調べた言葉だ : le besoin fait tenir le mot — exact",
-    "L'émission n'est qu'un exemple : ce qui compte n'est pas le support, mais le fait d'avoir besoin du mot"
+    "C'est l'opinion de la sœur, énoncée dès la première phrase : l'auteur la rapporte, il ne la reprend pas à son compte",
+    "妹のおかげで美術館に入れました, puis それでも…やめようとは思いません : il concède un point à sa sœur sans changer de façon de faire — exact",
+    "Le texte ne va pas jusque-là : la préparation de sa sœur leur a servi, et l'auteur le reconnaît sans réserve",
+    "La question de la compagnie n'est jamais posée : ce que le billet oppose, ce sont deux manières de préparer, pas deux compagnons"
    ],
    "tests": [
-    "jlpt:word/場面",
-    "jlpt:word/必要"
+    "jlpt:word/正直",
+    "jlpt:word/旅行"
    ]
   },
   {

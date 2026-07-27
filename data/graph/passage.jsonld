@@ -230,8 +230,8 @@
    "@type": "jlpt:Passage",
    "schema:name": "Courriel au service commercial : changer la conduite des réunions",
    "jlpt:format": "chubun",
-   "jlpt:jp": "営業部のみなさん、お疲れさまです。来月から、火曜日の定例会議のやり方を変えます。これまでは、始めに資料を配り、その場で読む時間を取っていました。そのため、一時間の予定が九十分近くかかる日も少なくありませんでした。来月からは、資料を前の日の夕方までにメールでお送りします。当日は読む時間を取りませんので、必ず目を通してから来てください。会議そのものは三十分で終える予定です。短くすることだけが目的ではありません。これまでは、資料を読むだけで時間が過ぎてしまい、最後まで一度も発言しない人がいました。読む時間をなくせば、その分、話し合いに使える時間が増えます。分かりにくいところや反対の意見こそ、その場で出していただきたいのです。一か月試してみて、うまくいかないようであれば、元のやり方に戻すことも考えます。まずはご協力をお願いします。",
-   "schema:description": "Courriel interne : à partir du mois prochain, le dossier de séance part la veille, la réunion tombe à trente minutes, et le temps gagné passe à la discussion.",
+   "jlpt:jp": "営業部のみなさん、お疲れさまです。来月から、火曜日の定例会議のやり方を変えます。これまでは、始めに資料を配り、その場で読む時間を取っていました。そのため、一時間の予定が九十分近くかかる日も少なくありませんでした。来月からは、資料を前の日の夕方までにメールでお送りします。当日は読む時間を取りませんので、必ず目を通してから来てください。会議そのものは三十分で終える予定です。短くすることだけが目的ではありません。これまでは、資料を読むだけで時間が過ぎてしまい、最後まで一度も発言しない人がいました。読む時間をなくせば、三十分すべてを話し合いに使えます。分かりにくいところや反対の意見こそ、その場で出していただきたいのです。一か月試してみて、うまくいかないようであれば、元のやり方に戻すことも考えます。まずはご協力をお願いします。",
+   "schema:description": "Courriel interne : à partir du mois prochain, le dossier de séance part la veille, la réunion tombe à trente minutes, et ces trente minutes entières passent à la discussion.",
    "tests": [
     "jlpt:word/会議",
     "jlpt:word/資料",
@@ -243,7 +243,7 @@
    "@type": "jlpt:Passage",
    "schema:name": "Billet : le quart d'heure du matin",
    "jlpt:format": "chubun",
-   "jlpt:jp": "デスクワークの仕事を始めて三年目の春、腰が痛くて朝起き上がれない日があった。医者には「薬よりも、まず体を動かすことです」と言われた。そこで走ることにした。新しい靴まで買ったのに、続いたのは一週間だけだった。朝は眠いし、雨が降れば休む。一度休むと、次の日はもっと休みやすくなる。今は、家の近くの公園で、朝六時半から十五分ほど体操をしている。市の広報で見つけた集まりで、参加しているのは私を入れて十人ほど、ほとんどが六十代より上の方だ。もう半年続いている。続いているのは、たぶん体操そのものの力ではない。一日でも休むと、次に行ったとき「昨日はどうしましたか」と声をかけられる。それが少し恥ずかしくて、眠い朝でもつい出かけてしまう。体のために始めたことなのに、今では、あの十五分の前後に交わす短い挨拶のほうが楽しみになっている。",
+   "jlpt:jp": "大学を出てデスクワークの仕事を始めて三年目の春、腰が痛くて朝起き上がれない日があった。医者には「薬よりも、まず体を動かすことです」と言われた。そこで走ることにした。新しい靴まで買ったのに、続いたのは一週間だけだった。朝は眠いし、雨が降れば休む。一度休むと、次の日はもっと休みやすくなる。今は、家の近くの公園で、朝六時半から十五分ほど体操をしている。市の広報で見つけた集まりで、参加しているのは私を入れて十人ほど、ほとんどが六十代より上の方だ。もう半年続いている。続いているのは、たぶん体操そのものの力ではない。一日でも休むと、次に行ったとき「昨日はどうしましたか」と声をかけられる。それが少し恥ずかしくて、眠い朝でもつい出かけてしまう。体のために始めたことなのに、今では、あの十五分の前後に交わす短い挨拶のほうが楽しみになっている。",
    "schema:description": "Billet : un mal de dos conduit l'auteur au sport ; la course ne tient pas une semaine, la gymnastique du parc dure depuis six mois — et ce qui la fait durer n'est pas la gymnastique.",
    "tests": [
     "jlpt:word/医者",
@@ -254,14 +254,14 @@
   {
    "@id": "jlpt:passage/chubun-05",
    "@type": "jlpt:Passage",
-   "schema:name": "Billet : pourquoi les mots d'anglais ne restaient pas",
+   "schema:name": "Billet : deux façons de préparer un voyage",
    "jlpt:format": "chubun",
-   "jlpt:jp": "高校生のころ、英語の単語がどうしても覚えられなかった。ノートに同じ単語を五十回ずつ書き、その日の小テストでは書けるのに、一週間後にはきれいに忘れていた。自分には語学の才能がないのだと思っていた。考えが変わったのは、大学に入ってからだ。友人にすすめられて、英語の料理番組を見るようになった。知らない言葉ばかりだったが、作り方を知りたいので、どうしても必要な単語だけを調べた。「混ぜる」や「弱火」といった言葉は、一度調べただけで頭に残った。今思えば、高校のときの私は、単語を覚えるために単語を書いていた。番組を見ていたときは、料理を作るために言葉を必要としていた。同じ暗記でも、この違いは大きかったのだと思う。もちろん、試験の前に単語表を見ることもある。それでも、いちばん忘れない言葉は、いつも何かをしたくて調べた言葉だ。",
-   "schema:description": "Billet : cinquante copies d'un mot ne tenaient pas une semaine ; un mot cherché pour comprendre une recette, si. L'auteur y voit une différence de but, non de mémoire.",
+   "jlpt:jp": "妹は、旅行の計画は細かく立てるものだと言います。出かける前に電車の時間を調べ、行きたい店の休みの日まで確かめておきます。私はそこまでしません。朝の電車と泊まる所だけ決めて、あとはその日の気分で歩きます。去年の秋、二人で金沢へ行きました。二日目に美術館へ行くつもりでしたが、出かける前に妹が調べて、その日は休みだと教えてくれました。それで、美術館は一日目の午前に行くことにしました。一日目の午後、私は駅の裏の細い道で古い道具を売る店を見つけ、三十分のつもりが一時間半も店の人と話していました。地図にも案内の本にも出ていない店です。正直に言えば、あのときは妹のおかげで美術館に入れました。それでも、午後の予定を空けておくのをやめようとは思いません。今は二人で出かけるとき、午前は妹の計画、午後は私のやり方、と分けています。",
+   "schema:description": "Billet à deux voix : la sœur de l'auteur prépare tout dans le détail, lui ne fixe que le train du matin. À Kanazawa, la vérification de sa sœur leur évite un musée fermé — sans qu'il renonce pour autant à ses après-midi laissés libres.",
    "tests": [
-    "jlpt:word/単語",
-    "jlpt:word/才能",
-    "jlpt:word/暗記"
+    "jlpt:word/旅行",
+    "jlpt:word/計画",
+    "jlpt:word/道具"
    ]
   },
   {
