@@ -1,170 +1,39 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { SKILLS, type Skill } from "../../types/progress.ts";
+import { SKILLS } from "../../types/progress.ts";
 import type { Question } from "../../types/quiz.ts";
-import { updateRating } from "../../lib/elo.ts";
 import {
-  questionCount, allocateCount, loadAllCategories, pickAdaptive,
+  questionCount, allocateCount, loadAllCategories,
   questionsForIds, selectRecentErrors, composeSession, selectDiagnostic, withPassageGroups,
 } from "../../lib/bank.ts";
 import { loadCorpus, type SkillRange } from "../../lib/graph.ts";
 import { readRawProgress, writeProgress, readCadence, writeCadence } from "../../lib/storage.ts";
-import { asBits, asHistory, asNum, asProgress, asSkillState, asWrong } from "../../lib/blob.ts";
-import { encodeBits, setBit, hasBit, countUnseen } from "../../lib/coverage.ts";
+import { asBits, asHistory, asProgress, asWrong } from "../../lib/blob.ts";
+import { hasBit, countUnseen } from "../../lib/coverage.ts";
 import { recordAnswer } from "../../lib/cadence.ts";
 import { dashboardModel, prescriptiveWeights, daysUntilExam } from "../../lib/scoring.ts";
 import { cloudPush, type GistDeps } from "../../lib/gist.ts";
 import { pickSessionPlan, BUILT_CAPS } from "../entrainement/sessionPlan.ts";
-import { RESUME_KEY } from "../../lib/keys.ts";
-import { asConfusions, confusionPatch, dayNumber, trapModel, kindIndex, selectConfusion, activeConfusionCount } from "./traps.ts";
-import { asFsrs, fsrsPatch, dueBySkill, selectRevision } from "./revision.ts";
+import { asConfusions, dayNumber, trapModel, kindIndex, selectConfusion, activeConfusionCount } from "./traps.ts";
+import { asFsrs, dueBySkill, selectRevision } from "./revision.ts";
 import { checkReading } from "../../lib/kana.ts";
+import { answerPatch, pickSlice } from "./answerPatch.ts";
+import { resolveMinutes, parseSessionParams } from "./sessionParams.ts";
+import {
+  clearResumeState, persistResumeState, readResumeState, restoredCorrige, type ResumeState,
+} from "./resume.ts";
 
 export type Phase = "home" | "question" | "corrige" | "results" | "diag-intro" | "diag-results";
-
-/** Shape persisted at `jlptN3quiz_resume` — port of legacy `saveResume`/`getResume` (app-n3.html:430-446).
- *  `phase`/`chosen` are optional so a session interrupted on the corrigé (e.g. the user tapped
- *  « voir le point de grammaire ») re-opens on that same corrigé instead of the bare question —
- *  older blobs without them resume as a question, exactly as before. */
-export interface ResumeState {
-  kind: "quiz";
-  ids: number[];
-  qi: number;
-  right: number;
-  t: number;
-  phase?: "question" | "corrige";
-  chosen?: number;
-}
 
 /** One answered diagnostic item, kept for the end-of-test corrigé. */
 export interface DiagAnswer { question: Question; chosen: number; }
 
-/** À la reprise : faut-il rouvrir le corrigé (vs la question nue) et quelle option restaurer.
- *  Se base sur la SEULE phase : un corrigé de production erronée persiste `chosen: undefined`
- *  (aucun distracteur coché) — exiger `typeof chosen === "number"` le rouvrirait comme une
- *  question, la ferait re-répondre et recompter (Elo/FSRS/total en double). Pur → testé. */
-export function restoredCorrige(r: ResumeState): { answered: boolean; chosen: number | null } {
-  const onCorrige = r.phase === "corrige";
-  return { answered: onCorrige, chosen: onCorrige && typeof r.chosen === "number" ? r.chosen : null };
-}
-
 const DAY_MS = 864e5;
-const RESUME_MAX_AGE_MS = 2 * DAY_MS; // 2 days — mirrors legacy getResume()
 const PUSH_DEBOUNCE_MS = 1500;
 
 /** Days since a persisted timestamp (`diagAt`), or `null` when absent/invalid. */
 function daysSince(ts: unknown): number | null {
   return typeof ts === "number" && ts > 0 ? (Date.now() - ts) / DAY_MS : null;
-}
-
-/** Resolve a session length: a numeric `minArg` (URL handoff `?min=N`) wins; anything else
- *  falls back to the `minutes` state. Guards `start` when it's wired as `onStart={quiz.start}`
- *  and React passes the click event as the first arg (which would otherwise be NaN-ed). */
-export function resolveMinutes(minArg: unknown, minutes: number): number {
-  return typeof minArg === "number" ? minArg : minutes;
-}
-
-/** Pure parse of quiz session params from a URL query string (hub → quiz handoff). */
-export function parseSessionParams(search: string): { min?: number; resume: boolean } {
-  const p = new URLSearchParams(search);
-  if (p.get("resume") === "1") return { resume: true };
-  const raw = Number(p.get("min"));
-  if (Number.isFinite(raw) && raw > 0) return { min: Math.min(45, Math.max(1, Math.round(raw))), resume: false };
-  return { resume: false };
-}
-
-/**
- * Pioche `alloc[cat]` questions par catégorie via `pickAdaptive`, au niveau (R) de la
- * compétence. `exclude` est muté au fil de l'eau : aucune question ne sort deux fois dans
- * la même session, y compris entre deux tranches successives.
- *
- * `poolOf` laisse l'appelant restreindre le vivier — la tranche « apprendre » le filtre sur
- * le non-vu, la tranche adaptative prend le pool entier. C'est la seule différence entre les
- * deux, avec `wrong` (le bonus +150 n'a de sens que là où des erreurs peuvent apparaître).
- */
-function pickSlice(
-  alloc: Record<Skill, number>,
-  poolOf: (cat: Skill) => Question[],
-  raw: Record<string, unknown> | null,
-  exclude: Set<number>,
-  wrong: number[],
-): Question[] {
-  const out: Question[] = [];
-  for (const cat of SKILLS) {
-    const n = alloc[cat];
-    if (!n) continue;
-    const picks = pickAdaptive(poolOf(cat), asSkillState(raw, cat).R, exclude, wrong).slice(0, n);
-    for (const q of picks) exclude.add(q.id);
-    out.push(...picks);
-  }
-  return out;
-}
-
-/** Reads + validates the persisted `jlptN3quiz_resume` session (clears it if >2 days
- *  old). Exported so the Entraînement hub's session card reuses the exact same
- *  key + staleness rule instead of duplicating it. */
-export function readResumeState(): ResumeState | null {
-  try {
-    const raw = localStorage.getItem(RESUME_KEY);
-    if (!raw) return null;
-    const r = JSON.parse(raw) as ResumeState;
-    if (!r || r.kind !== "quiz" || !Array.isArray(r.ids)) return null;
-    if (typeof r.t !== "number" || Date.now() - r.t > RESUME_MAX_AGE_MS) {
-      localStorage.removeItem(RESUME_KEY);
-      return null;
-    }
-    return r;
-  } catch {
-    return null;
-  }
-}
-
-function persistResumeState(r: ResumeState): void {
-  try {
-    localStorage.setItem(RESUME_KEY, JSON.stringify({ ...r, t: Date.now() }));
-  } catch { /* best-effort, mirrors legacy saveResume */ }
-}
-
-function clearResumeState(): void {
-  try { localStorage.removeItem(RESUME_KEY); } catch { /* best-effort */ }
-}
-
-/** Patch de progression pour UNE réponse. Pur (temps injecté) → testé unitairement.
- *  `chosen` = index de l'option cochée, ou `null` en production (aucune option cochée) :
- *  dans ce cas on n'écrit PAS le graphe de confusion (erreur de rappel, pas de reconnaissance). */
-export function answerPatch(
-  raw: Record<string, unknown> | null,
-  q: Question,
-  correct: boolean,
-  chosen: number | null,
-  today: number,
-  nowMs: number,
-  isLastDiag: boolean,
-  production = false,
-): Record<string, unknown> {
-  const curWrong = asWrong(raw);
-  const nextSkill = updateRating(asSkillState(raw, q.cat), q.d, correct);
-  const withoutId = curWrong.filter((id) => id !== q.id);
-  const nextWrong = (correct ? withoutId : [...withoutId, q.id]).slice(-80);
-  const nextConfusions = chosen === null
-    ? undefined
-    : confusionPatch(asConfusions(raw), q.id, chosen, correct, today);
-  const nextFsrs = fsrsPatch(asFsrs(raw), Array.isArray(q.tests) ? q.tests : [], correct, today, production);
-  const seen = encodeBits(setBit(asBits(raw, "seen"), q.id));
-  const mastered = correct
-    ? encodeBits(setBit(asBits(raw, "mastered"), q.id))
-    : undefined;
-  return {
-    skill: { [q.cat]: nextSkill },
-    total: asNum(raw, "total") + 1,
-    right: asNum(raw, "right") + (correct ? 1 : 0),
-    wrong: nextWrong,
-    seen,
-    ...(mastered !== undefined ? { mastered } : {}),
-    ...(isLastDiag ? { diagAt: nowMs } : {}),
-    ...(nextConfusions !== undefined ? { confusions: nextConfusions } : {}),
-    ...(nextFsrs !== undefined ? { fsrs: nextFsrs } : {}),
-  };
 }
 
 /**
