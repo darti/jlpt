@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { SKILLS, type Progress, type Skill } from "../../types/progress.ts";
-import type { Question, SkillState } from "../../types/quiz.ts";
+import { SKILLS, type Skill } from "../../types/progress.ts";
+import type { Question } from "../../types/quiz.ts";
 import { updateRating } from "../../lib/elo.ts";
 import {
   questionCount, allocateCount, loadAllCategories, pickAdaptive,
@@ -9,7 +9,8 @@ import {
 } from "../../lib/bank.ts";
 import { loadCorpus, type SkillRange } from "../../lib/graph.ts";
 import { readRawProgress, writeProgress, readCadence, writeCadence } from "../../lib/storage.ts";
-import { decodeBits, encodeBits, setBit, hasBit, countUnseen, masteredCount } from "../../lib/coverage.ts";
+import { asBits, asHistory, asNum, asProgress, asSkillState, asWrong } from "../../lib/blob.ts";
+import { encodeBits, setBit, hasBit, countUnseen } from "../../lib/coverage.ts";
 import { recordAnswer } from "../../lib/cadence.ts";
 import { dashboardModel, prescriptiveWeights, daysUntilExam } from "../../lib/scoring.ts";
 import { cloudPush, type GistDeps } from "../../lib/gist.ts";
@@ -72,40 +73,6 @@ export function parseSessionParams(search: string): { min?: number; resume: bool
   return { resume: false };
 }
 
-function numField(raw: Record<string, unknown> | null, key: string): number {
-  const v = raw?.[key];
-  return typeof v === "number" ? v : 0;
-}
-
-/** La table `skill` du blob brut, ou `{}` si absente / malformée. */
-function skillMap(raw: Record<string, unknown> | null): Record<string, unknown> {
-  const s = raw?.skill;
-  return s && typeof s === "object" && !Array.isArray(s) ? (s as Record<string, unknown>) : {};
-}
-
-/** Builds the minimal `Progress`-shaped view of the raw blob that `scoring.ts#masteryOf` reads. */
-function asProgress(raw: Record<string, unknown> | null): Progress {
-  return { total: numField(raw, "total"), skill: skillMap(raw) as Progress["skill"] };
-}
-
-/** Full `{R,t,r}` skill state for one category from the raw blob — defaults to a blank skill (R:1450). */
-function skillStateOf(raw: Record<string, unknown> | null, cat: Skill): SkillState {
-  const s = skillMap(raw)[cat];
-  if (s && typeof s === "object") {
-    const o = s as Record<string, unknown>;
-    return {
-      R: typeof o.R === "number" ? o.R : 1450,
-      t: typeof o.t === "number" ? o.t : 0,
-      r: typeof o.r === "number" ? o.r : 0,
-    };
-  }
-  return { R: 1450, t: 0, r: 0 };
-}
-
-function asWrong(raw: Record<string, unknown> | null): number[] {
-  return Array.isArray(raw?.wrong) ? (raw.wrong as number[]) : [];
-}
-
 /**
  * Pioche `alloc[cat]` questions par catégorie via `pickAdaptive`, au niveau (R) de la
  * compétence. `exclude` est muté au fil de l'eau : aucune question ne sort deux fois dans
@@ -126,7 +93,7 @@ function pickSlice(
   for (const cat of SKILLS) {
     const n = alloc[cat];
     if (!n) continue;
-    const picks = pickAdaptive(poolOf(cat), skillStateOf(raw, cat).R, exclude, wrong).slice(0, n);
+    const picks = pickAdaptive(poolOf(cat), asSkillState(raw, cat).R, exclude, wrong).slice(0, n);
     for (const q of picks) exclude.add(q.id);
     out.push(...picks);
   }
@@ -176,21 +143,21 @@ export function answerPatch(
   production = false,
 ): Record<string, unknown> {
   const curWrong = asWrong(raw);
-  const nextSkill = updateRating(skillStateOf(raw, q.cat), q.d, correct);
+  const nextSkill = updateRating(asSkillState(raw, q.cat), q.d, correct);
   const withoutId = curWrong.filter((id) => id !== q.id);
   const nextWrong = (correct ? withoutId : [...withoutId, q.id]).slice(-80);
   const nextConfusions = chosen === null
     ? undefined
     : confusionPatch(asConfusions(raw), q.id, chosen, correct, today);
   const nextFsrs = fsrsPatch(asFsrs(raw), Array.isArray(q.tests) ? q.tests : [], correct, today, production);
-  const seen = encodeBits(setBit(decodeBits(typeof raw?.seen === "string" ? raw.seen : ""), q.id));
+  const seen = encodeBits(setBit(asBits(raw, "seen"), q.id));
   const mastered = correct
-    ? encodeBits(setBit(decodeBits(typeof raw?.mastered === "string" ? raw.mastered : ""), q.id))
+    ? encodeBits(setBit(asBits(raw, "mastered"), q.id))
     : undefined;
   return {
     skill: { [q.cat]: nextSkill },
-    total: numField(raw, "total") + 1,
-    right: numField(raw, "right") + (correct ? 1 : 0),
+    total: asNum(raw, "total") + 1,
+    right: asNum(raw, "right") + (correct ? 1 : 0),
     wrong: nextWrong,
     seen,
     ...(mastered !== undefined ? { mastered } : {}),
@@ -279,7 +246,7 @@ export function useQuiz() {
     // Coverage: count never-seen items for the learn ingredient (needs the corpus ranges).
     // ensureCorpus is prefetched on mount + cached, so awaiting it here is cheap.
     const ranges = await ensureCorpus();
-    const seen = decodeBits(typeof raw?.seen === "string" ? raw.seen : "");
+    const seen = asBits(raw, "seen");
     const newCoursePoints = ranges ? countUnseen(seen, ranges) : 0;
     // Modèle de mémoire : entités dues (R < 0,9) toutes compétences confondues — 0 tant que
     // la mémoire ne s'est pas accumulée (blob sans `fsrs`), la session reste alors inchangée.
@@ -409,7 +376,7 @@ export function useQuiz() {
     const isLastDiag = mode === "diagnostic" && index + 1 >= questions.length;
     writeProgress(answerPatch(raw, q, correct, chosen, dayNumber(now), now.getTime(), isLastDiag, production));
     // Cadence : enregistrer une éventuelle NOUVELLE maîtrise, au même instant que le bit `mastered`.
-    const prevMastered = decodeBits(typeof raw?.mastered === "string" ? raw.mastered : "");
+    const prevMastered = asBits(raw, "mastered");
     const cad = readCadence();
     const nextCad = recordAnswer(cad, prevMastered, q.id, correct, dayNumber(now), daysUntilExam(now));
     if (nextCad !== cad) writeCadence(nextCad);
@@ -461,9 +428,9 @@ export function useQuiz() {
     if (ni >= questions.length) {
       // C2: append a session-score history entry (legacy `finish()` shape, app-n3.html:971)
       // so ProgressChart has a real data source — the React quiz is otherwise history-less.
-      const raw: Record<string, unknown> = readRawProgress() ?? {};
+      const raw = readRawProgress();
       const score = dashboardModel(asProgress(raw), new Date()).sectionTotal; // estimated /180
-      const prevHist = Array.isArray(raw.history) ? (raw.history as unknown[]) : [];
+      const prevHist = asHistory(raw);
       writeProgress({ history: [...prevHist, { mode: "session", score, right: rightRef.current, n: questions.length }].slice(-40) });
       setPhase("results");
       clearResumeState();

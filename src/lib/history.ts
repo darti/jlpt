@@ -1,13 +1,10 @@
 import { readRawProgress } from "./storage.ts";
+import { asHistory } from "./blob.ts";
 
-/** Session scores /180 over time, from the raw blob's `history`. Non-numeric
- *  entries are dropped, so the result is always a clean numeric series in order. */
+/** Scores de session /180 au fil du temps, depuis le champ `history` du blob. Les entrées
+ *  non numériques sont écartées : la série rendue est toujours propre, dans l'ordre. */
 export function readSessionScores(store: Pick<Storage, "getItem"> = globalThis.localStorage): number[] {
-  const raw = readRawProgress(store);
-  const hist = raw && Array.isArray((raw as { history?: unknown }).history)
-    ? (raw as { history: unknown[] }).history
-    : [];
-  return hist
+  return asHistory(readRawProgress(store))
     .map((h) => (h && typeof (h as { score?: unknown }).score === "number" ? (h as { score: number }).score : NaN))
     .filter((n) => Number.isFinite(n));
 }
