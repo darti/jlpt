@@ -58,6 +58,44 @@ test("applyPassages étend l'intervalle existant plutôt que d'en créer un troi
   expect(intervalles.find((c) => c["@id"] === "jlpt:corpus/lecture-2")["jlpt:count"]).toBe(2);
 });
 
+test("applyPassages crée un nouvel intervalle si l'existant n'est pas contigu (trou creusé par une autre compétence)", () => {
+  const premier = applyPassages(decisions, docsVides());
+  const autre = { passages: [{ ...decisions.passages[0], id: "jlpt:passage/tanbun-04" }] };
+  // Une autre compétence a grandi entre les deux poses : le prochain ordinal libre (10230)
+  // n'est plus juste après "lecture-2" (qui se termine à 10225) — trou de 5 ordinaux.
+  const second = applyPassages(autre, {
+    passages: premier.passages, lecture: premier.questions, corpus: premier.corpus,
+    nextOrd: 10230,
+  });
+  const intervalles = second.corpus.filter((c) => c["jlpt:skill"] === "lecture");
+  expect(intervalles.length).toBe(3);
+  const inchange = intervalles.find((c) => c["@id"] === "jlpt:corpus/lecture-2");
+  expect(inchange["jlpt:from"]).toBe(10224);
+  expect(inchange["jlpt:count"]).toBe(1); // laissé intact, pas étendu à tort sur le trou
+  const nouveau = intervalles.find((c) => c["@id"] === "jlpt:corpus/lecture-3");
+  expect(nouveau["jlpt:from"]).toBe(10230);
+  expect(nouveau["jlpt:count"]).toBe(1);
+});
+
+test("applyPassages numérote le troisième intervalle lecture-3 (jamais lecture-2 codé en dur)", () => {
+  const docs = {
+    passages: [],
+    lecture: [{ "@id": "jlpt:q/10350", "@type": "jlpt:Question", "jlpt:skill": "lecture", "jlpt:ord": 10350 }],
+    corpus: [
+      { "@id": "jlpt:corpus/lecture", "@type": "jlpt:SkillRange", "jlpt:skill": "lecture", "jlpt:from": 10223, "jlpt:count": 52 },
+      { "@id": "jlpt:corpus/lecture-2", "@type": "jlpt:SkillRange", "jlpt:skill": "lecture", "jlpt:from": 10307, "jlpt:count": 44 },
+    ],
+    nextOrd: 10360, // trou : une autre compétence occupe [10351, 10360)
+  };
+  const r = applyPassages(decisions, docs);
+  const intervalles = r.corpus.filter((c) => c["jlpt:skill"] === "lecture");
+  expect(intervalles.length).toBe(3);
+  expect(intervalles.find((c) => c["@id"] === "jlpt:corpus/lecture-3")?.["jlpt:from"]).toBe(10360);
+  // les deux intervalles préexistants restent inchangés
+  expect(intervalles.find((c) => c["@id"] === "jlpt:corpus/lecture")?.["jlpt:count"]).toBe(52);
+  expect(intervalles.find((c) => c["@id"] === "jlpt:corpus/lecture-2")?.["jlpt:count"]).toBe(44);
+});
+
 test("applyPassages n'écrit pas les champs optionnels absents", () => {
   const minimal = {
     passages: [{

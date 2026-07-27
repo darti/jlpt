@@ -132,8 +132,10 @@ export function composeSession(
 
 /**
  * Regroupe les questions d'un même passage : complète les fratries manquantes depuis `pool`,
- * écarte un groupe qui ne tient pas dans `total`, puis rend les membres adjacents et triés par
- * `id` (l'ordre de lecture du texte). Pure.
+ * écarte un groupe qui ne tient pas dans le budget de `total` restant une fois le lot garanti
+ * décompté (ce dernier n'est lui-même jamais tronqué pour compenser un dépassement — propriété
+ * préexistante de `composeSession`), puis rend les membres adjacents et triés par `id` (l'ordre
+ * de lecture du texte). Pure.
  *
  * ⚠ Appelée APRÈS `composeSession` / `selectDiagnostic` : c'est la seule position qui survive
  * au mélange final. L'ordre du reste de la session est préservé — chaque groupe est simplement

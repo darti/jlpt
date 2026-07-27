@@ -84,15 +84,39 @@ export function applyPassages(decisions, docs) {
     // les objets qu'il contient. Un `existant["jlpt:count"] += …` modifierait le document de
     // l'appelant sous ses pieds — et la fonction cesserait d'être pure, contrairement à ce que
     // son propre commentaire affirme.
-    const i = corpus.findIndex((c) => c["@id"] === "jlpt:corpus/lecture-2");
-    if (i >= 0) corpus[i] = { ...corpus[i], "jlpt:count": corpus[i]["jlpt:count"] + ajoutees };
-    else corpus.push({
-      "@id": "jlpt:corpus/lecture-2",
-      "@type": "jlpt:SkillRange",
-      "jlpt:skill": "lecture",
-      "jlpt:from": premierOrd,
-      "jlpt:count": ajoutees,
-    });
+    //
+    // ⚠ Seuls les intervalles "-N" (posés par CET outil) sont candidats à l'extension : la
+    // base "jlpt:corpus/lecture" (sans suffixe) est posée une fois pour toutes par
+    // migrate-passages.mjs et n'est jamais retouchée ici.
+    const intervallesOutil = corpus.filter(
+      (c) => c["jlpt:skill"] === "lecture" && /^jlpt:corpus\/lecture-\d+$/.test(c["@id"]),
+    );
+    const dernier = intervallesOutil.reduce(
+      (max, c) => (!max || c["jlpt:from"] > max["jlpt:from"] ? c : max),
+      null,
+    );
+    // Un intervalle ne s'étend que s'il se termine EXACTEMENT là où les ordinaux neufs
+    // commencent — sinon une autre compétence a grandi entre-temps (le cas annoncé pour
+    // l'écoute) et l'extension revendiquerait des ordinaux qui ne lui appartiennent pas.
+    if (dernier && dernier["jlpt:from"] + dernier["jlpt:count"] === premierOrd) {
+      const i = corpus.indexOf(dernier);
+      corpus[i] = { ...dernier, "jlpt:count": dernier["jlpt:count"] + ajoutees };
+    } else {
+      // Suffixe dérivé du plus grand déjà posé (la base sans suffixe vaut 1 implicite),
+      // jamais du nombre d'intervalles présents — même politique que le compteur legacy-NN
+      // de migrate-passages.mjs : un intervalle renommé ou retiré ne referait pas collision.
+      const suffixes = corpus
+        .filter((c) => c["jlpt:skill"] === "lecture")
+        .map((c) => Number(/^jlpt:corpus\/lecture(?:-(\d+))?$/.exec(c["@id"])?.[1] ?? 1));
+      const next = suffixes.length ? Math.max(...suffixes) + 1 : 1;
+      corpus.push({
+        "@id": next === 1 ? "jlpt:corpus/lecture" : `jlpt:corpus/lecture-${next}`,
+        "@type": "jlpt:SkillRange",
+        "jlpt:skill": "lecture",
+        "jlpt:from": premierOrd,
+        "jlpt:count": ajoutees,
+      });
+    }
   }
   return { passages, questions, corpus, poses, deja };
 }
