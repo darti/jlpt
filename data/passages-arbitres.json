@@ -149,6 +149,316 @@
      "tests": ["jlpt:word/申し込み"]
     }
    ]
+  },
+  {
+   "id": "jlpt:passage/tanbun-02",
+   "name": "Mot laissé à la maison : un colis chez les voisins",
+   "format": "tanbun",
+   "jp": "お母さんへ。学校から帰ったけど、部活の集まりがあるので、六時ごろまた出かけます。冷蔵庫にカレーが入っているので、温めて食べてください。それから、さっき宅配便の人が来ました。留守だったので、隣の田中さんが受け取ってくれています。夜になると田中さんも休むので、明るいうちに取りに行ってください。ゆき",
+   "fr": "Mot laissé à sa mère par un enfant : le dîner est au réfrigérateur, et un colis attend chez les voisins — à récupérer avant la nuit.",
+   "tests": ["jlpt:word/留守", "jlpt:word/受け取る", "jlpt:word/冷蔵庫"],
+   "questions": [
+    {
+     "stem": "ゆきさんが書いたこの手紙から分かることは何ですか。",
+     "opts": [
+      "ゆきさんは、六時ごろ家に帰ってくる",
+      "夕飯は、田中さんの家で食べることになっている",
+      "荷物は、あとで宅配便の人がもう一度届けてくれる",
+      "荷物は、暗くなる前に隣の家へ取りに行く"
+     ],
+     "answer": 3,
+     "difficulty": 2,
+     "description": "Aucune phrase ne dit « va chercher le colis à côté avant la nuit » : il faut relier <b>隣の田中さんが受け取ってくれています</b> à <b>夜になると田中さんも休むので、明るいうちに</b>. Le colis est chez les voisins, et l'heure limite tient à leur coucher.",
+     "gloss": "部活（ぶかつ）« club scolaire » · 宅配便（たくはいびん）« livraison à domicile » · 留守（るす）« absence, personne à la maison » · 受け取る（うけとる）« réceptionner » · 〜うちに « tant que… (avant que cela change) »",
+     "optionNote": [
+      "Six heures est l'heure à laquelle Yuki RESSORT (また出かけます), pas celle de son retour",
+      "Le dîner est au réfrigérateur, à réchauffer : les Tanaka gardent le colis, pas le repas",
+      "Une seconde livraison : le livreur est déjà passé et le colis a été remis aux voisins, il ne repassera pas",
+      "暗くなる前に = 明るいうちに, et le colis est chez les Tanaka : les deux informations du mot, réunies — exact"
+     ],
+     "tests": ["jlpt:gram/うちに", "jlpt:word/受け取る"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/tanbun-03",
+   "name": "Avis de quartier : changement de jour pour les ordures",
+   "format": "tanbun",
+   "jp": "みどり町のみなさんへ。四月から、燃えるごみを出す日が変わります。これまでの火曜日と金曜日から、月曜日と木曜日になります。ごみは、朝八時までに集積所に出してください。前の日の夜に出すと、カラスに荒らされることがあります。なお、缶やびんの日はこれまでどおりです。みどり町自治会",
+   "fr": "Avis du comité de quartier : à partir d'avril, les déchets incinérables se sortent le lundi et le jeudi, avant huit heures du matin.",
+   "tests": ["jlpt:word/燃える", "jlpt:word/出す", "jlpt:word/缶"],
+   "questions": [
+    {
+     "stem": "四月から、燃えるごみを出すとき、どうすればいいですか。",
+     "opts": [
+      "火曜日か金曜日の朝八時までに集積所に出す",
+      "火曜日か金曜日の前の日の夜に集積所に出す",
+      "月曜日か木曜日の朝八時までに集積所に出す",
+      "月曜日か木曜日の前の日の夜に集積所に出す"
+     ],
+     "answer": 2,
+     "difficulty": 2,
+     "description": "Deux données à croiser, dont une seule change : le jour passe de <b>火・金</b> à <b>月・木</b>, tandis que l'heure reste <b>朝八時までに</b>. L'avis déconseille explicitement le dépôt de la veille au soir.",
+     "gloss": "燃えるごみ（もえるごみ）« déchets incinérables » · 集積所（しゅうせきじょ）« point de collecte » · 前の日（まえのひ）« la veille » · なお « par ailleurs » · これまでどおり « comme jusqu'à présent »",
+     "optionNote": [
+      "Mardi et vendredi sont les ANCIENS jours, ceux qui disparaissent en avril",
+      "Faux sur les deux points à la fois : anciens jours, et dépôt la veille au soir",
+      "Nouveaux jours (lundi, jeudi) et heure inchangée (huit heures du matin) — exact",
+      "La veille au soir : l'avis prévient au contraire que les corbeaux éventrent les sacs sortis la nuit"
+     ],
+     "tests": ["jlpt:gram/までに", "jlpt:word/出す"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/tanbun-04",
+   "name": "Courriel : reporter un rendez-vous chez le dentiste",
+   "format": "tanbun",
+   "jp": "さくら歯科医院　受付の方へ。今週の木曜日午後三時に予約をしている山本です。急に出張が入り、その日は伺えなくなりました。申し訳ありません。来週でしたら、月曜日以外はいつでも大丈夫です。できれば午前中にお願いしたいのですが、空いている日を教えていただけませんか。お手数をおかけします。",
+   "fr": "Courriel d'un patient à un cabinet dentaire : un déplacement professionnel l'empêche de venir jeudi, il demande une autre date.",
+   "tests": ["jlpt:word/予約", "jlpt:word/出張", "jlpt:word/伺う"],
+   "questions": [
+    {
+     "stem": "山本さんがこのメールで一番伝えたいことは何ですか。",
+     "opts": [
+      "来週の月曜日の午前中に予約を入れてほしい",
+      "木曜日の予約を取り消して、来週に変えてほしい",
+      "出張の日を変えられないか、相談したい",
+      "予約の時間に遅れそうなので、待っていてほしい"
+     ],
+     "answer": 1,
+     "difficulty": 2,
+     "description": "Le message enchaîne trois mouvements : je ne peux plus venir jeudi (<b>伺えなくなりました</b>), voici mes disponibilités (<b>月曜日以外</b>, de préférence le matin), donnez-moi une date. C'est une demande de report.",
+     "gloss": "予約（よやく）« rendez-vous » · 出張（しゅっちょう）« déplacement professionnel » · 伺う（うかがう）« se rendre chez (humble) » · 〜以外（いがい）« sauf » · お手数（おてすう）« dérangement »",
+     "optionNote": [
+      "Le lundi est justement le seul jour écarté : 月曜日以外はいつでも. Seule la préférence pour le matin est exacte",
+      "伺えなくなりました annule le jeudi, 空いている日を教えて demande un nouveau créneau la semaine suivante — exact",
+      "Le déplacement est un fait acquis, la cause de l'annulation ; et c'est à un cabinet dentaire que Yamamoto écrit",
+      "Il ne s'agit pas d'un retard : 伺えなくなりました dit qu'il ne viendra pas du tout ce jour-là"
+     ],
+     "tests": ["jlpt:word/伺う", "jlpt:word/以外"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/tanbun-05",
+   "name": "Consigne de classe : sortie scolaire de mercredi",
+   "format": "tanbun",
+   "jp": "三年二組のみなさんへ。来週の水曜日の社会科見学について。当日は八時二十分までに教室に集まってください。学校を出るのは八時四十分です。お弁当と水筒を必ず持ってきてください。雨が降っても見学は行いますので、傘ではなく雨がっぱを用意してください。バスの中でお菓子を食べてはいけません。",
+   "fr": "Consigne de classe : horaires, affaires à apporter et règles de la sortie scolaire de mercredi prochain.",
+   "tests": ["jlpt:word/見学", "jlpt:word/水筒", "jlpt:word/用意"],
+   "questions": [
+    {
+     "stem": "この見学のお知らせから分かることは何ですか。",
+     "opts": [
+      "雨が降った日でも見学に行くので、雨がっぱがいる",
+      "雨が降ったら、見学は別の日になる",
+      "八時四十分までに教室に集まればよい",
+      "お弁当はバスの中で食べることになっている"
+     ],
+     "answer": 0,
+     "difficulty": 1,
+     "description": "<b>雨が降っても見学は行います</b> : la sortie est maintenue par tous les temps, et c'est ce qui justifie la cape plutôt que le parapluie. Attention aux deux horaires : 8 h 20 pour se rassembler, 8 h 40 pour partir.",
+     "gloss": "見学（けんがく）« visite d'étude » · 当日（とうじつ）« le jour même » · 水筒（すいとう）« gourde » · 必ず（かならず）« impérativement » · 用意（ようい）« préparer »",
+     "optionNote": [
+      "雨が降っても見学は行います, d'où 傘ではなく雨がっぱ : la cape est prévue précisément parce que la sortie est maintenue — exact",
+      "Le report est exactement ce que la consigne exclut : 雨が降っても…行います",
+      "8 h 40 est l'heure de DÉPART de l'école ; le rassemblement, lui, est fixé à 8 h 20",
+      "Le bento est obligatoire, mais la consigne ne dit nulle part où on le mange : elle interdit seulement les friandises dans le bus"
+     ],
+     "tests": ["jlpt:gram/ても", "jlpt:word/用意"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/tanbun-06",
+   "name": "Annonce de boutique : la boulangerie déménage",
+   "format": "tanbun",
+   "jp": "いつもご来店ありがとうございます。当店は、九月三十日をもちまして、この場所での営業を終わります。十月十五日に、駅の南口の新しい店で再びオープンいたします。その間はお休みをいただきますので、ご注文の品は九月二十五日までにお受け取りください。長い間、ありがとうございました。パン工房むぎ",
+   "fr": "Annonce d'une boulangerie : fermeture de la boutique actuelle le 30 septembre, réouverture le 15 octobre près de la gare.",
+   "tests": ["jlpt:word/営業", "jlpt:word/注文", "jlpt:word/南口"],
+   "questions": [
+    {
+     "stem": "この店について、正しいものはどれですか。",
+     "opts": [
+      "九月三十日で、この店はなくなってしまう",
+      "十月十五日から、今と同じ場所で営業を始める",
+      "注文した品は、新しい店で受け取ることになる",
+      "十月の初めは、この店の品を買うことができない"
+     ],
+     "answer": 3,
+     "difficulty": 3,
+     "description": "Trois dates à mettre bout à bout : dernier jour ici le <b>九月三十日</b>, réouverture ailleurs le <b>十月十五日</b>, et entre les deux <b>その間はお休みをいただきます</b>. Le piège est de lire 営業を終わります comme une fermeture définitive, alors que la phrase suivante annonce un déménagement.",
+     "gloss": "当店（とうてん）« notre boutique » · 営業（えいぎょう）« activité, exploitation » · 再び（ふたたび）« de nouveau » · その間（そのあいだ）« dans l'intervalle » · 注文（ちゅうもん）« commande »",
+     "optionNote": [
+      "L'annonce n'est pas une fermeture mais un déménagement : 駅の南口の新しい店で再びオープン",
+      "La réouverture du 15 octobre a lieu près de la sortie sud de la gare, et non à l'emplacement actuel",
+      "Les commandes se retirent avant le 25 septembre, donc dans la boutique actuelle : rien n'est transféré",
+      "Fermeture le 30 septembre, réouverture le 15 octobre, et その間はお休み : du 1er au 14 octobre, la boutique ne vend rien — exact"
+     ],
+     "tests": ["jlpt:word/営業", "jlpt:word/品"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/tanbun-07",
+   "name": "Avis aux voyageurs : arrêt de bus déplacé",
+   "format": "tanbun",
+   "jp": "バスをご利用のお客様へ。道路工事のため、七月一日から二十日まで、「市役所前」のバス停は使えません。この期間、バスは「市役所前」に止まらず、百メートル先の「中央公園」のバス停に止まります。時刻表は変わりませんが、道が混むと遅れることがあります。お急ぎの方は、早めのバスをご利用ください。",
+   "fr": "Avis d'une compagnie de bus : pendant les travaux de voirie, l'arrêt « Mairie » est reporté cent mètres plus loin.",
+   "tests": ["jlpt:word/工事", "jlpt:word/期間", "jlpt:word/混む"],
+   "questions": [
+    {
+     "stem": "七月十日に、バスで市役所へ行く人はどうすればいいですか。",
+     "opts": [
+      "「市役所前」でバスを降りて、百メートルほど歩く",
+      "「中央公園」でバスを降りて、百メートルほど歩く",
+      "時刻表が変わるので、新しい時間を調べてから出かける",
+      "工事が終わるまで、バス以外の乗り物で行く"
+     ],
+     "answer": 1,
+     "difficulty": 2,
+     "description": "Deux données à croiser : la période (<b>七月一日から二十日まで</b> — le 10 en fait partie) et le report de l'arrêt (<b>百メートル先の「中央公園」</b>). L'horaire, lui, ne bouge pas : seuls des retards sont possibles.",
+     "gloss": "工事（こうじ）« travaux » · 期間（きかん）« période » · 〜先（さき）« plus loin » · 時刻表（じこくひょう）« horaires » · 混む（こむ）« être encombré »",
+     "optionNote": [
+      "L'arrêt 市役所前 est précisément celui qui est hors service : on ne peut pas y descendre",
+      "Le 10 juillet tombe dans la période de travaux : le bus ne dessert plus 市役所前 et s'arrête à 中央公園, cent mètres plus loin — exact",
+      "L'avis dit l'inverse : 時刻表は変わりません. Ce sont les retards, dus à la circulation, qui sont possibles",
+      "Les bus circulent normalement, seul l'arrêt change : renoncer au bus n'est pas ce que l'avis demande"
+     ],
+     "tests": ["jlpt:word/期間", "jlpt:word/工事"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/tanbun-08",
+   "name": "Mot d'un voisin : arroser les plantes pendant l'absence",
+   "format": "tanbun",
+   "jp": "田村さんへ。突然すみません。明日から一週間、家族で北海道の実家に帰ることになりました。留守の間、ベランダの植木に水をやっていただけないでしょうか。朝でも夕方でもかまいませんが、暑い昼間は避けてください。鍵はいつものとおり郵便受けに入れておきます。お礼はお土産で、ということでお許しください。西村",
+   "fr": "Mot glissé à un voisin : arroser les plantes du balcon pendant une semaine d'absence, la clé est dans la boîte aux lettres.",
+   "tests": ["jlpt:word/実家", "jlpt:word/留守", "jlpt:word/避ける"],
+   "questions": [
+    {
+     "stem": "西村さんが書いたこの手紙から分かることは何ですか。",
+     "opts": [
+      "西村さんの家族は、北海道に引っ越すことになった",
+      "西村さんは、お礼として田村さんにお金を渡す",
+      "田村さんは、郵便受けの鍵を使って西村さんの家に入る",
+      "田村さんは、毎日昼ごろに水をやることになっている"
+     ],
+     "answer": 2,
+     "difficulty": 3,
+     "description": "La réponse n'est écrite nulle part : elle se déduit de deux détails. Les plantes sont <b>ベランダの植木</b> — on n'y accède qu'en entrant — et <b>鍵はいつものとおり郵便受けに入れておきます</b> n'a pas d'autre raison d'être.",
+     "gloss": "実家（じっか）« maison familiale » · 留守（るす）« absence » · 植木（うえき）« plante en pot » · 避ける（さける）« éviter » · 郵便受け（ゆうびんうけ）« boîte aux lettres »",
+     "optionNote": [
+      "Il s'agit d'un séjour d'une semaine chez les parents (実家に帰る), pas d'un déménagement",
+      "Nishimura remercie par un souvenir de voyage (お礼はお土産で) : il n'est jamais question d'argent",
+      "Les plantes sont sur le balcon et la clé attend dans la boîte aux lettres : il faut entrer dans le logement — exact",
+      "Le milieu de journée est justement le moment à éviter (暑い昼間は避けてください) ; c'est le matin ou le soir, indifféremment"
+     ],
+     "tests": ["jlpt:word/実家", "jlpt:word/避ける"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/joho-02",
+   "name": "Piscine municipale : horaires et tarifs",
+   "format": "joho",
+   "jp": "さくら市民プール　ご利用案内　◆時間　平日　午前九時〜午後八時／土・日・祝日　午前九時〜午後六時（最終入場は、閉まる一時間前までです）　◆料金　大人四百円　小・中学生二百円。六十五歳以上の方と五歳以下のお子さんは無料です。　◆回数券　大人十一回分で四千円　◆その他　毎月第二水曜日は清掃のためお休みです。水泳帽をかぶらない方はご利用になれません。",
+   "fr": "Notice d'une piscine municipale : horaires selon les jours, tarifs par âge, carnet de séances et jours de fermeture.",
+   "tests": ["jlpt:word/料金", "jlpt:word/無料", "jlpt:word/平日"],
+   "questions": [
+    {
+     "stem": "日曜日にプールに入りたい人は、何時までに行けばいいですか。",
+     "opts": [
+      "午後五時までに",
+      "午後六時までに",
+      "午後七時までに",
+      "午後八時までに"
+     ],
+     "answer": 0,
+     "difficulty": 2,
+     "description": "Deux lignes à croiser : le dimanche relève de <b>土・日・祝日　午前九時〜午後六時</b>, et <b>最終入場は、閉まる一時間前まで</b>. L'heure cherchée, dix-sept heures, n'est écrite nulle part.",
+     "gloss": "平日（へいじつ）« jour de semaine » · 祝日（しゅくじつ）« jour férié » · 最終（さいしゅう）« dernier » · 入場（にゅうじょう）« entrée » · 閉まる（しまる）« fermer »",
+     "optionNote": [
+      "Le dimanche, la piscine ferme à dix-huit heures et la dernière entrée est une heure avant : dix-sept heures — exact",
+      "Dix-huit heures est l'heure de FERMETURE du dimanche : on n'entre déjà plus depuis une heure",
+      "Dix-neuf heures serait la dernière entrée en semaine (fermeture à vingt heures), pas le dimanche",
+      "Vingt heures est la fermeture des jours de semaine, et ce n'est de toute façon pas une heure d'entrée"
+     ],
+     "tests": ["jlpt:word/最終", "jlpt:word/入場"]
+    },
+    {
+     "stem": "七十歳の女性が、小学生の孫二人を連れて行くと、全部でいくら払いますか。",
+     "opts": [
+      "無料",
+      "二百円",
+      "四百円",
+      "八百円"
+     ],
+     "answer": 2,
+     "difficulty": 3,
+     "description": "Trois personnes, deux lignes du tarif : la grand-mère relève de <b>六十五歳以上の方…無料</b>, les deux petits-enfants de <b>小・中学生二百円</b>. Le total, quatre cents yens, coïncide avec le tarif adulte — c'est là qu'est le piège.",
+     "gloss": "孫（まご）« petit-enfant » · 〜以上（いじょう）« à partir de » · 〜以下（いか）« au plus » · 無料（むりょう）« gratuit » · 連れて行く（つれていく）« emmener »",
+     "optionNote": [
+      "La gratuité vaut pour les soixante-cinq ans et plus, donc pour la grand-mère seule : ses petits-enfants paient",
+      "Deux cents yens, c'est le tarif d'UN écolier ; ils sont deux",
+      "Gratuit pour elle (六十五歳以上), deux cents yens par écolier : 200 × 2 = 400 yens — exact",
+      "Huit cents yens ferait payer aussi la grand-mère au tarif adulte (400 + 400), alors qu'elle entre gratuitement"
+     ],
+     "tests": ["jlpt:word/以上", "jlpt:word/無料"]
+    }
+   ]
+  },
+  {
+   "id": "jlpt:passage/joho-03",
+   "name": "Location de vélos en gare : tarifs et conditions",
+   "format": "joho",
+   "jp": "みどり駅前レンタサイクル　ご案内　◆貸出時間　午前八時〜午後七時（返すのも同じ時間の中でお願いします）　◆料金　普通の自転車　一日三百円／電動自転車　一日六百円　◆学生の方は、学生証をお見せいただくと、どちらも百円引きになります。　◆貸出には、写真のついた身分証明書が必要です。　◆午後七時までに返せない場合は、次の日の料金が加わります。",
+   "fr": "Notice d'un loueur de vélos : horaires de prêt, tarifs par type de vélo, réduction étudiante et règle en cas de retour tardif.",
+   "tests": ["jlpt:word/料金", "jlpt:word/学生", "jlpt:word/加わる"],
+   "questions": [
+    {
+     "stem": "大学生が電動自転車を一日借りると、いくら払いますか。",
+     "opts": [
+      "二百円",
+      "三百円",
+      "五百円",
+      "六百円"
+     ],
+     "answer": 2,
+     "difficulty": 2,
+     "description": "Deux lignes à croiser : <b>電動自転車　一日六百円</b> et <b>学生の方は…どちらも百円引き</b>. Le mot <b>どちらも</b> est décisif : la réduction ne se limite pas au vélo ordinaire.",
+     "gloss": "貸出（かしだし）« location, prêt » · 普通（ふつう）« ordinaire » · 電動（でんどう）« électrique » · 学生証（がくせいしょう）« carte d'étudiant » · 〜引き（びき）« remise de »",
+     "optionNote": [
+      "Deux cents yens, c'est le vélo ORDINAIRE avec la réduction étudiante (300 − 100)",
+      "Trois cents yens est le plein tarif du vélo ordinaire, pas de l'électrique",
+      "600 yens l'électrique, moins les 100 yens de réduction étudiante, qui vaut pour les deux types (どちらも) : 500 yens — exact",
+      "Six cents yens est le plein tarif de l'électrique : la réduction n'a pas été appliquée"
+     ],
+     "tests": ["jlpt:word/学生", "jlpt:word/払う"]
+    },
+    {
+     "stem": "午後六時に普通の自転車を借りて、次の日の朝八時に返した人は、全部でいくら払いますか。",
+     "opts": [
+      "三百円",
+      "六百円",
+      "九百円",
+      "千二百円"
+     ],
+     "answer": 1,
+     "difficulty": 3,
+     "description": "Le vélo est rendu le lendemain, donc bien après <b>午後七時</b> : <b>次の日の料金が加わります</b>. Deux journées de vélo ordinaire, 300 × 2 = 600 yens. Le tarif ne se compte jamais à l'heure.",
+     "gloss": "〜場合（ばあい）« dans le cas où » · 返す（かえす）« rendre » · 加わる（くわわる）« s'ajouter » · 次の日（つぎのひ）« le lendemain » · 全部で（ぜんぶで）« au total »",
+     "optionNote": [
+      "Trois cents yens, c'est une seule journée : or le vélo n'a pas été rendu avant dix-neuf heures",
+      "300 yens la journée, et un retour après dix-neuf heures fait s'ajouter la journée suivante : 300 × 2 = 600 yens — exact",
+      "Aucun demi-tarif ne figure au tableau : la règle ajoute une journée entière, elle ne compte pas les heures",
+      "Mille deux cents yens correspondrait à deux journées d'ÉLECTRIQUE (600 × 2) ; le vélo loué est un vélo ordinaire"
+     ],
+     "tests": ["jlpt:word/場合", "jlpt:word/加わる"]
+    }
+   ]
   }
  ]
 }

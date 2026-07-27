@@ -94,6 +94,123 @@
     "jlpt:word/申し込み",
     "jlpt:word/参加"
    ]
+  },
+  {
+   "@id": "jlpt:passage/tanbun-02",
+   "@type": "jlpt:Passage",
+   "schema:name": "Mot laissé à la maison : un colis chez les voisins",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "お母さんへ。学校から帰ったけど、部活の集まりがあるので、六時ごろまた出かけます。冷蔵庫にカレーが入っているので、温めて食べてください。それから、さっき宅配便の人が来ました。留守だったので、隣の田中さんが受け取ってくれています。夜になると田中さんも休むので、明るいうちに取りに行ってください。ゆき",
+   "schema:description": "Mot laissé à sa mère par un enfant : le dîner est au réfrigérateur, et un colis attend chez les voisins — à récupérer avant la nuit.",
+   "tests": [
+    "jlpt:word/留守",
+    "jlpt:word/受け取る",
+    "jlpt:word/冷蔵庫"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/tanbun-03",
+   "@type": "jlpt:Passage",
+   "schema:name": "Avis de quartier : changement de jour pour les ordures",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "みどり町のみなさんへ。四月から、燃えるごみを出す日が変わります。これまでの火曜日と金曜日から、月曜日と木曜日になります。ごみは、朝八時までに集積所に出してください。前の日の夜に出すと、カラスに荒らされることがあります。なお、缶やびんの日はこれまでどおりです。みどり町自治会",
+   "schema:description": "Avis du comité de quartier : à partir d'avril, les déchets incinérables se sortent le lundi et le jeudi, avant huit heures du matin.",
+   "tests": [
+    "jlpt:word/燃える",
+    "jlpt:word/出す",
+    "jlpt:word/缶"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/tanbun-04",
+   "@type": "jlpt:Passage",
+   "schema:name": "Courriel : reporter un rendez-vous chez le dentiste",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "さくら歯科医院　受付の方へ。今週の木曜日午後三時に予約をしている山本です。急に出張が入り、その日は伺えなくなりました。申し訳ありません。来週でしたら、月曜日以外はいつでも大丈夫です。できれば午前中にお願いしたいのですが、空いている日を教えていただけませんか。お手数をおかけします。",
+   "schema:description": "Courriel d'un patient à un cabinet dentaire : un déplacement professionnel l'empêche de venir jeudi, il demande une autre date.",
+   "tests": [
+    "jlpt:word/予約",
+    "jlpt:word/出張",
+    "jlpt:word/伺う"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/tanbun-05",
+   "@type": "jlpt:Passage",
+   "schema:name": "Consigne de classe : sortie scolaire de mercredi",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "三年二組のみなさんへ。来週の水曜日の社会科見学について。当日は八時二十分までに教室に集まってください。学校を出るのは八時四十分です。お弁当と水筒を必ず持ってきてください。雨が降っても見学は行いますので、傘ではなく雨がっぱを用意してください。バスの中でお菓子を食べてはいけません。",
+   "schema:description": "Consigne de classe : horaires, affaires à apporter et règles de la sortie scolaire de mercredi prochain.",
+   "tests": [
+    "jlpt:word/見学",
+    "jlpt:word/水筒",
+    "jlpt:word/用意"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/tanbun-06",
+   "@type": "jlpt:Passage",
+   "schema:name": "Annonce de boutique : la boulangerie déménage",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "いつもご来店ありがとうございます。当店は、九月三十日をもちまして、この場所での営業を終わります。十月十五日に、駅の南口の新しい店で再びオープンいたします。その間はお休みをいただきますので、ご注文の品は九月二十五日までにお受け取りください。長い間、ありがとうございました。パン工房むぎ",
+   "schema:description": "Annonce d'une boulangerie : fermeture de la boutique actuelle le 30 septembre, réouverture le 15 octobre près de la gare.",
+   "tests": [
+    "jlpt:word/営業",
+    "jlpt:word/注文",
+    "jlpt:word/南口"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/tanbun-07",
+   "@type": "jlpt:Passage",
+   "schema:name": "Avis aux voyageurs : arrêt de bus déplacé",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "バスをご利用のお客様へ。道路工事のため、七月一日から二十日まで、「市役所前」のバス停は使えません。この期間、バスは「市役所前」に止まらず、百メートル先の「中央公園」のバス停に止まります。時刻表は変わりませんが、道が混むと遅れることがあります。お急ぎの方は、早めのバスをご利用ください。",
+   "schema:description": "Avis d'une compagnie de bus : pendant les travaux de voirie, l'arrêt « Mairie » est reporté cent mètres plus loin.",
+   "tests": [
+    "jlpt:word/工事",
+    "jlpt:word/期間",
+    "jlpt:word/混む"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/tanbun-08",
+   "@type": "jlpt:Passage",
+   "schema:name": "Mot d'un voisin : arroser les plantes pendant l'absence",
+   "jlpt:format": "tanbun",
+   "jlpt:jp": "田村さんへ。突然すみません。明日から一週間、家族で北海道の実家に帰ることになりました。留守の間、ベランダの植木に水をやっていただけないでしょうか。朝でも夕方でもかまいませんが、暑い昼間は避けてください。鍵はいつものとおり郵便受けに入れておきます。お礼はお土産で、ということでお許しください。西村",
+   "schema:description": "Mot glissé à un voisin : arroser les plantes du balcon pendant une semaine d'absence, la clé est dans la boîte aux lettres.",
+   "tests": [
+    "jlpt:word/実家",
+    "jlpt:word/留守",
+    "jlpt:word/避ける"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/joho-02",
+   "@type": "jlpt:Passage",
+   "schema:name": "Piscine municipale : horaires et tarifs",
+   "jlpt:format": "joho",
+   "jlpt:jp": "さくら市民プール　ご利用案内　◆時間　平日　午前九時〜午後八時／土・日・祝日　午前九時〜午後六時（最終入場は、閉まる一時間前までです）　◆料金　大人四百円　小・中学生二百円。六十五歳以上の方と五歳以下のお子さんは無料です。　◆回数券　大人十一回分で四千円　◆その他　毎月第二水曜日は清掃のためお休みです。水泳帽をかぶらない方はご利用になれません。",
+   "schema:description": "Notice d'une piscine municipale : horaires selon les jours, tarifs par âge, carnet de séances et jours de fermeture.",
+   "tests": [
+    "jlpt:word/料金",
+    "jlpt:word/無料",
+    "jlpt:word/平日"
+   ]
+  },
+  {
+   "@id": "jlpt:passage/joho-03",
+   "@type": "jlpt:Passage",
+   "schema:name": "Location de vélos en gare : tarifs et conditions",
+   "jlpt:format": "joho",
+   "jlpt:jp": "みどり駅前レンタサイクル　ご案内　◆貸出時間　午前八時〜午後七時（返すのも同じ時間の中でお願いします）　◆料金　普通の自転車　一日三百円／電動自転車　一日六百円　◆学生の方は、学生証をお見せいただくと、どちらも百円引きになります。　◆貸出には、写真のついた身分証明書が必要です。　◆午後七時までに返せない場合は、次の日の料金が加わります。",
+   "schema:description": "Notice d'un loueur de vélos : horaires de prêt, tarifs par type de vélo, réduction étudiante et règle en cas de retour tardif.",
+   "tests": [
+    "jlpt:word/料金",
+    "jlpt:word/学生",
+    "jlpt:word/加わる"
+   ]
   }
  ]
 }
