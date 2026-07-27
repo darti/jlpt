@@ -152,7 +152,7 @@ test("KINDS énumère exactement les types produits, autre compris", () => {
   for (const [, attendu] of CAS) expect(KINDS).toContain(attendu);
 });
 
-import { readFileSync } from "node:fs";
+import { graphPath, readGraph } from "./jsonld.mjs";
 
 // Mémoïsé : `couverture()` et le garde permanent plus bas lisent chacun `q-kanji`/`q-vocabulaire`
 // (2,6 Mo + 5,0 Mo) — sans cache, un seul `bun test` de ce fichier reparsait les deux shards deux
@@ -161,7 +161,7 @@ const shardCache = new Map<string, unknown[]>();
 function loadShard(shard: string): unknown[] {
   const cached = shardCache.get(shard);
   if (cached) return cached;
-  const sujets = JSON.parse(readFileSync(`data/graph/${shard}.jsonld`, "utf8"))["@graph"] ?? [];
+  const sujets = readGraph(graphPath(`${shard}.jsonld`)).subjects;
   shardCache.set(shard, sujets);
   return sujets;
 }

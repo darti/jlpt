@@ -1,6 +1,11 @@
 /** Charge le contenu de cours depuis le graphe (data/graph/*.jsonld) au runtime.
  *  null = chargement, [] = échec. La projection vit dans coursFromGraph.ts — ce hook ne fait
- *  que l'alimenter. */
+ *  que l'alimenter.
+ *
+ *  ⚠ N'utilise volontairement PAS `useAsyncOnce` malgré la forme identique : ce hook distingue
+ *  « en cours » (`null`) de « échec » (`[]`) pour que la page affiche un message plutôt qu'un
+ *  chargement infini. `useAsyncOnce` replie les deux sur `null` — passer par lui perdrait
+ *  précisément l'information qui justifie ce hook. */
 import { useEffect, useState } from "react";
 import type { CoursCategory } from "./coursSchema.ts";
 import { buildCours, type CoursDocs, type Sujet } from "./coursFromGraph.ts";
