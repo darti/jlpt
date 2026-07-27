@@ -25,7 +25,7 @@ alors le merge — ne jamais stasher ni écraser le travail d'un autre sans dema
 
 ## Architecture (non évidente — lire avant d'éditer)
 
-**Vue d'ensemble et format du graphe : [`ARCHITECTURE.md`](ARCHITECTURE.md)** — les huit types,
+**Vue d'ensemble et format du graphe : [`ARCHITECTURE.md`](ARCHITECTURE.md)** — les neuf types,
 les alias du `@context`, les deux étages de validation, les couches de projection. Ce qui suit
 n'en garde que ce qui se mord les doigts quand on l'ignore.
 
@@ -98,12 +98,13 @@ précédent avaient toutes la même cause, un dérivé que rien ne resynchronisa
 `lectures-kanji-arbitrees.json`, `mots-parasites.json`, `enonces-arbitres.json`) : ce sont des
 entrées d'outils, **jamais servies** — `isServedData` ne matche que `.jsonld`.
 
-Un seul validateur (`tools/validate-graph.mjs`), et huit types :
+Un seul validateur (`tools/validate-graph.mjs`), et neuf types :
 
 | Type | Document | Rôle |
 |---|---|---|
-| `jlpt:Question` | `q-<compétence>.jsonld` | les 10 307 questions ; `jlpt:ord` groupé par compétence |
-| `jlpt:SkillRange` | `corpus.jsonld` | les 5 intervalles — remplace l'ancien index de 190 Ko |
+| `jlpt:Question` | `q-<compétence>.jsonld` | les 10 351 questions ; `jlpt:ord` groupé par compétence |
+| `jlpt:SkillRange` | `corpus.jsonld` | les intervalles d'ordinaux — **plusieurs par compétence possibles** |
+| `jlpt:Passage` | `passage.jsonld` | 28 textes de 読解 ; une question y renvoie par `readsPassage` |
 | `jlpt:Word` | `word.jsonld` | mots **et** dictionnaire (furigana, tap-pour-définir) |
 | `jlpt:Kanji` | `kanji.jsonld` | 810 kanji, avec `onReading`/`kunReading`/`compound` |
 | `jlpt:GrammarPoint` | `gram.jsonld` | points de grammaire |
@@ -123,7 +124,7 @@ consultable depuis le corrigé du quiz, pas un ornement de leçon.
 ⚠ **Ne JAMAIS supprimer les fichiers de décisions** (`data/*-arbitrees.json`,
 `mots-parasites.json`), même une fois appliqués. Ils sont la **preuve que l'arbitrage a eu
 lieu** — le fondement de la posture CC BY-SA — et ils permettent de rejouer une correction
-perdue en une commande. 269 Ko au total, jamais servis. Les cinq chaînes ci-dessous sont
+perdue en une commande. 269 Ko au total, jamais servis. Les six chaînes ci-dessous sont
 idempotentes : les rejouer sur un graphe à jour ne change rien.
 
 **Lectures manquantes — première chaîne d'écriture outillée**, et elle n'écrase jamais rien :
@@ -206,11 +207,35 @@ des formes fléchies déposées par le minage des options, qui s'afficheraient c
 référentiel. Lecture et écoute sont exclues : leur réponse est un fragment de texte, pas une
 entité. Couverture des arêtes : 59 % → 95,7 %.
 
+**Textes de lecture (読解) — sixième chaîne**, même invariant : elle n'écrase jamais rien.
+
+    bun tools/graph/audit-passages.mjs   # garde de périmètre — erreurs bloquantes / avertissements
+    #   … l'auteur rédige ses textes dans data/passages-arbitres.json …
+    bun tools/graph/passages.mjs         # pose passage.jsonld + q-lecture.jsonld + corpus.jsonld
+
+⚠ Une correction de texte **déjà posé** se fait aux DEUX endroits (décisions **et** graphe) :
+l'applicateur n'écrase jamais un `@id` existant, il ne rejouera donc pas la correction.
+
+⚠ **`kanji.jsonld` est une liste d'ÉTUDE (810 kanji à apprendre), pas la liste de ce qu'un lecteur
+N3 sait lire** : 不, 用, 工, 便, 場, 方, 室 en sont absents. Un contrôle de périmètre qui BLOQUE
+là-dessus condamne des textes sains — il doit signaler, pas interdire. De même, `word.jsonld` ne
+porte **aucun** mot `N2`/`N1` : un filtre « hors N3 » fondé sur `jlpt:level` est inerte (état figé
+par un test de mesure dans `audit-passages.test.ts`).
+
 ⚠ **`jlpt:ord` = index global dans le corpus, groupé par compétence, et il doit rester
 stable** : c'est lui qu'indexent le bitset `seen`/`mastered`, `wrong[]` (erreurs) et
 `jlptN3quiz_resume.ids` persistés en localStorage. Renuméroter corrompt la progression des
-utilisateurs. **Ajouter en fin de shard**, et vérifier que `corpus.jsonld` suit
-(`checkCorpus` confronte les intervalles aux questions réelles).
+utilisateurs. **Ajouter en fin de CORPUS** (pas en fin de shard : seule la dernière compétence
+peut grandir sur place) — une compétence gagne alors un **second `SkillRange`**, ce que
+`checkCorpus` valide (union des intervalles, chevauchement refusé) et que `coverageBySkill`
+accumule. La lecture en a deux depuis le lot passages : `[10223, 10274]` et `[10307, 10350]`.
+
+**Ajouter des questions casse QUATRE tests de mesure, et c'est voulu** — les remonter fait partie
+de la tâche, ne jamais les assouplir : `src/lib/cadence.ts` (`TOTAL_QUESTIONS`),
+`src/lib/cadence.test.ts` (l'objectif quotidien en dérive), `src/features/quiz/rappel.reel.test.ts`
+(`expect(qs.length)`), et `tools/graph/shapes.test.ts` si un type s'ajoute. D'où : **toujours
+`bun test` complet avant de commiter**, jamais `bun test <fichier>` — ces cliquets vivent loin du
+code touché.
 
 ## Gotchas
 
@@ -266,6 +291,13 @@ utilisateurs. **Ajouter en fin de shard**, et vérifier que `corpus.jsonld` suit
      `競い合う`) ne doit PAS emprunter ces vidages → kanji rendu en clair. Ne jamais retirer ce filtre.
 - **Grep de références** : inclure `.tsx` ET `.ts` (`--include="*.ts"` seul rate les
   composants React → liens/imports morts non détectés, ex. un `href` vers une page supprimée).
+- **Greper un prédicat du graphe, c'est greper sa forme PRÉFIXÉE** : `grep '"passage"'` ne matche
+  pas `"jlpt:passage"` et rend « zéro occurrence » sur 16 réelles — une spec entière s'est bâtie
+  sur cette mesure fausse. Compter en parsant le JSON (`bun -e`), pas au grep.
+- **Rédiger du contenu en lot : imposer la variété de FORME aussi explicitement que celle des
+  sujets.** Trois lots successifs de textes ont convergé vers le même moule rhétorique parce que
+  la consigne ne spécifiait que les compétences à tester — l'apprenant répond alors par réflexe,
+  et c'est la question la plus chère à écrire (l'intention) qui perd le plus.
 - **Vérification navigateur — le chemin qui MARCHE.** L'extension Chrome n'est pas connectée et
   le MCP Playwright cherche un canal `chrome` absent. Piloter en CDP le Chromium que Playwright
   a déjà installé :

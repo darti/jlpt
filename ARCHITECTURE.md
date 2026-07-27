@@ -30,14 +30,15 @@ les arêtes lisiblement (`tests: ["jlpt:gram/たら"]` plutôt qu'un objet `@id`
 | `illustrates` | `jlpt:illustrates` | IRI — l'entité qu'un exemple illustre |
 | `opts` | `jlpt:option` | `@list` — les options d'une question |
 
-### Les huit types
+### Les neuf types
 
 `!` = obligatoire, `*` = répétable.
 
 | Type | Document | Propriétés |
 |---|---|---|
-| `Question` | `q-<compétence>.jsonld` | `stem!` `answer!` `ord!` `skill!` `difficulty!` `description` `gloss` `script` `passage` `tests*` |
-| `SkillRange` | `corpus.jsonld` | `skill!` `from!` `count!` |
+| `Question` | `q-<compétence>.jsonld` | `stem!` `answer!` `ord!` `skill!` `difficulty!` `description` `gloss` `script` `readsPassage` `tests*` |
+| `SkillRange` | `corpus.jsonld` | `skill!` `from!` `count!` — **plusieurs par compétence possibles** |
+| `Passage` | `passage.jsonld` | `name!` `jp!` `format!` (`tanbun`/`chubun`/`chobun`/`joho`) `description` `tests*` |
 | `Word` | `word.jsonld` | `name!` `reading` `description` `level` `usesKanji*` |
 | `Kanji` | `kanji.jsonld` | `name!` `description!` `onReading*` `kunReading*` `compound` `level` |
 | `GrammarPoint` | `gram.jsonld` | `form!` `altForm*` `description` `structure` `level` |
@@ -57,10 +58,21 @@ cours, le dictionnaire et le quiz — il n'y a qu'un nœud.
 `GrammarPoint` : l'exemple devient donc consultable depuis le corrigé du quiz, au lieu de rester
 enfermé dans le cours.
 
-**`corpus.jsonld` remplace un index de 190 Ko par 5 intervalles.** Possible parce que `jlpt:ord`
-est groupé par compétence : « à quelle compétence appartient l'id N » devient une comparaison de
-bornes. Et `checkCorpus` confronte ces intervalles aux questions réelles — la dérive est
-impossible, pas seulement improbable.
+**`corpus.jsonld` remplace un index de 190 Ko par une poignée d'intervalles.** Possible parce que
+`jlpt:ord` est groupé par compétence : « à quelle compétence appartient l'id N » devient une
+comparaison de bornes. Et `checkCorpus` confronte ces intervalles aux questions réelles — la
+dérive est impossible, pas seulement improbable.
+
+⚠ **Une compétence peut occuper PLUSIEURS intervalles.** Les ordinaux ne se renumérotent jamais
+(ils indexent des bitsets persistés), et le corpus ne peut donc grandir qu'à sa fin : toute
+question ajoutée à une compétence qui n'est pas la dernière lui ouvre un second intervalle.
+`checkCorpus` en valide l'union et refuse qu'un ordinal soit revendiqué deux fois ;
+`coverageBySkill` accumule au lieu d'écraser. La lecture en a deux depuis le lot passages.
+
+**Un passage est une entité, pas une chaîne recopiée.** Un texte de 中文 porte trois questions :
+le dupliquer sur chacune contredirait le principe du graphe. Les questions le désignent par
+`readsPassage`, et le passage porte ses propres arêtes `tests` — les questions d'un même texte
+voyagent donc ensemble dans une session (`withPassageGroups`, couche pure de `bank.ts`).
 
 ### Validation — deux étages
 
