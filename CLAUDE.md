@@ -124,7 +124,7 @@ consultable depuis le corrigé du quiz, pas un ornement de leçon.
 ⚠ **Ne JAMAIS supprimer les fichiers de décisions** (`data/*-arbitrees.json`,
 `mots-parasites.json`), même une fois appliqués. Ils sont la **preuve que l'arbitrage a eu
 lieu** — le fondement de la posture CC BY-SA — et ils permettent de rejouer une correction
-perdue en une commande. 269 Ko au total, jamais servis. Les six chaînes ci-dessous sont
+perdue en une commande. 364 Ko au total, jamais servis. Les six chaînes ci-dessous sont
 idempotentes : les rejouer sur un graphe à jour ne change rien.
 
 **Lectures manquantes — première chaîne d'écriture outillée**, et elle n'écrase jamais rien :
@@ -207,6 +207,17 @@ des formes fléchies déposées par le minage des options, qui s'afficheraient c
 référentiel. Lecture et écoute sont exclues : leur réponse est un fragment de texte, pas une
 entité. Couverture des arêtes : 59 % → 95,7 %.
 
+**Types de pièges — outil dérivé, pas une chaîne d'arbitrage** (aucun fichier de décisions) :
+
+    bun tools/graph/traps.mjs   # pose jlpt:trapKind sur chaque option, depuis sa jlpt:optionNote
+
+⚠ **Périmètre : kanji et vocabulaire, et EUX SEULS** — 9 049 options typées. La grammaire n'atteint
+que 20 % de typage (un distracteur de grammaire est presque toujours « un autre point, de valeur
+différente » : le type y est constant, donc muet), et lecture comme écoute testent la
+compréhension, pas la forme. **La PRÉSENCE du champ définit le périmètre** : c'est ce qui permet
+au runtime de distinguer « hors périmètre » (`trap` absent) de « dans le périmètre mais non
+classé » (`"autre"`). Alimente `TrapPanel` et la tranche confusion de la session.
+
 **Textes de lecture (読解) — sixième chaîne**, même invariant : elle n'écrase jamais rien.
 
     bun tools/graph/audit-passages.mjs   # garde de périmètre — erreurs bloquantes / avertissements
@@ -215,6 +226,21 @@ entité. Couverture des arêtes : 59 % → 95,7 %.
 
 ⚠ Une correction de texte **déjà posé** se fait aux DEUX endroits (décisions **et** graphe) :
 l'applicateur n'écrase jamais un `@id` existant, il ne rejouera donc pas la correction.
+
+⚠ **La POSITION de la bonne réponse est une propriété exploitable des données** : l'app ne
+mélange **jamais** les options (délibéré — `onChoose(i)` rend l'index d'origine, comparé à
+`question.a`), et `checkQuestion` contrôle les **bornes** de `jlpt:answer`, jamais sa
+**distribution**. Mesuré : `q-ecoute` **[32, 0, 0, 0]** — toute la section écoute se répond en
+cliquant la première option ; `q-grammaire` [508, 315, 213, 138]. **Tout contenu neuf doit
+répartir ses réponses sur les quatre positions.** Correctif de fond validé et spécifié :
+`docs/superpowers/specs/2026-07-26-lecture-passages-design.md` §9.
+
+⚠ Trois règles de rédaction que trois lots successifs ont dû réapprendre : **(1)** le meilleur
+distracteur est une donnée **vraie du texte** qui répond à une AUTRE question que celle posée —
+un distracteur littéralement satisfaisable est un défaut ; **(2)** tout mot difficile **dont
+dépend la réponse** doit être dans `jlpt:gloss`, sinon la question teste le vocabulaire au lieu
+de la compréhension ; **(3)** le corrigé (`schema:description`, `jlpt:optionNote`) s'écrit **en
+français** — c'est ce que l'apprenant lit après s'être trompé, quand il a le moins de ressources.
 
 ⚠ **`kanji.jsonld` est une liste d'ÉTUDE (810 kanji à apprendre), pas la liste de ce qu'un lecteur
 N3 sait lire** : 不, 用, 工, 便, 場, 方, 室 en sont absents. Un contrôle de périmètre qui BLOQUE
