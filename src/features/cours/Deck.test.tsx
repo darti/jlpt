@@ -1,7 +1,7 @@
 import { test, expect, afterEach } from "bun:test";
 import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, useLocation } from "react-router-dom";
 import { Deck, initialIndex } from "./Deck.tsx";
 import type { CoursGroup, CoursItem, LearnCategory } from "./coursSchema.ts";
 import type { EntityState } from "./entityState.ts";
@@ -96,4 +96,30 @@ test("from=quiz affiche le lien de retour au corrige", async () => {
 test("sans from=quiz il n y a pas de lien de retour", async () => {
   const el = await monter("", () => "neuf");
   expect(el.textContent).not.toContain("Revenir à la question");
+});
+
+// ⚠ Spec §4.2 : « Échap remonte à CategoryIndex ». Omis dans le premier passage — seuls
+// ArrowLeft/ArrowRight étaient gérés.
+test("Echap remonte a l index de categorie", async () => {
+  let pathname = "";
+  function LocationProbe() {
+    pathname = useLocation().pathname;
+    return null;
+  }
+  host = document.createElement("div");
+  document.body.appendChild(host);
+  root = createRoot(host);
+  await act(async () => {
+    root!.render(
+      <MemoryRouter initialEntries={["/cours/gram/g2"]}>
+        <LocationProbe />
+        <Deck category={category} group={group} stateOf={() => "neuf"} onKnown={() => {}} />
+      </MemoryRouter>,
+    );
+  });
+  expect(pathname).toBe("/cours/gram/g2");
+  await act(async () => {
+    globalThis.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+  });
+  expect(pathname).toBe("/cours/gram");
 });

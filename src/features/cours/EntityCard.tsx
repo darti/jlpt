@@ -12,6 +12,11 @@
  * CHAQUE exemple, ce qui est la répétition la plus coûteuse en hauteur du rendu d'origine. Le
  * paquet l'affiche une fois, en pied ; le corrigé ne l'affiche pas du tout (une seule carte, pas
  * besoin de clé).
+ *
+ * ⚠ `state` est OPTIONNEL : le corrigé du quiz ne connaît pas l'état de l'entité au moment où la
+ * réponse a été donnée (le paquet du cours peut montrer ● au même instant) — afficher un état
+ * inventé (ex. « à revoir » figé) induirait l'apprenant en erreur. Sans `state`, le `Badge` ne
+ * se rend pas ; le CONTENU de la carte (exemples, romaji, analyse) ne change pas.
  */
 import type {
   CoursExample, CoursItem, GramItem, KanjiItem, VocabItem,
@@ -111,7 +116,7 @@ export function EntityCard({
   item, state, legende = false,
 }: {
   item: CoursItem;
-  state: EntityState;
+  state?: EntityState;
   legende?: boolean;
 }) {
   const kind = itemKind(item);
@@ -121,7 +126,7 @@ export function EntityCard({
     return (
       <div data-cours-item={it.id} data-kind="gram" className="flex flex-col gap-2">
         <div className="flex items-center gap-2">
-          <Badge state={state} />
+          {state && <Badge state={state} />}
           <span className="text-fg text-2xl font-bold">{it.form}</span>
           {it.niv && <span className="text-meta text-fg-muted">{it.niv}</span>}
         </div>
@@ -143,7 +148,7 @@ export function EntityCard({
     return (
       <div data-cours-item={it.id} data-kind="kanji" className="flex flex-col gap-2">
         <div className="flex items-center gap-3">
-          <Badge state={state} />
+          {state && <Badge state={state} />}
           <span className="text-fg text-5xl font-light">{it.kanji}</span>
           <div className="flex-1 min-w-0">
             <div className="text-fg-muted text-base">{it.lecture}</div>
@@ -167,7 +172,7 @@ export function EntityCard({
   return (
     <div data-cours-item={it.id} data-kind="vocab" className="flex flex-col gap-2">
       <div className="flex items-center gap-3">
-        <Badge state={state} />
+        {state && <Badge state={state} />}
         <div className="flex-1 min-w-0">
           <span
             className="text-fg text-2xl"

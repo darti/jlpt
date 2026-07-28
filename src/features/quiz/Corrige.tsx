@@ -104,7 +104,7 @@ function RappelCard({ rappel }: { rappel: Rappel }) {
   return (
     <div className="mt-3 pt-3 border-t border-line">
       <p className="text-accent text-sm font-bold mb-1">Rappel</p>
-      <EntityCard item={itemFromRappel(rappel)} state="a-revoir" />
+      <EntityCard item={itemFromRappel(rappel)} />
       {href && (
         <a href={href} className="text-accent text-sm whitespace-nowrap">
           {LIBELLE[rappel.kind]} →

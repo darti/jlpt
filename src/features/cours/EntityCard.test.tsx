@@ -68,3 +68,17 @@ test("EntityCard rend toujours l exemple d un point de grammaire (pas de variant
   const html = renderToStaticMarkup(<EntityCard item={item} state="neuf" />);
   expect(html).toContain("yasukereba");
 });
+
+// ⚠ Le corrigé du quiz ne connaît pas l'état de l'entité (le paquet du cours peut montrer un
+// état différent au même instant) : sans `state`, aucun badge ne doit apparaître.
+test("EntityCard sans state ne rend aucun badge", () => {
+  const html = renderToStaticMarkup(
+    <EntityCard item={{ id: "jlpt:gram/ば", form: "〜ば", mean: "condition generale" }} />,
+  );
+  expect(html).not.toContain("état :");
+  expect(html).not.toContain("○");
+  expect(html).not.toContain("◐");
+  expect(html).not.toContain("◑");
+  expect(html).not.toContain("●");
+  expect(html).toContain("condition generale");
+});

@@ -30,8 +30,13 @@ function GroupRoute(
   if (!category || category.kind !== "learn") return <NotFound />;
   const g = category.groups.find((x) => x.id === group);
   if (!g) return <NotFound />;
+  // ⚠ `key` force le remontage au changement de groupe : les ids `g1`…`g16` sont RÉUTILISÉS
+  // entre pistes (gram/vocab/kanji, 25 collisions mesurées) — sans démontage, l'index de carte
+  // du groupe précédent survit et peut pointer hors des bornes du nouveau groupe (repli
+  // « Thème vide. » permanent). Inclure `category.id` lève l'ambiguïté sur l'id seul.
   return (
     <Deck
+      key={`${category.id}/${g.id}`}
       category={category} group={g}
       stateOf={etats.stateOf} onKnown={etats.markKnown}
     />

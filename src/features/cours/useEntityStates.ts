@@ -11,7 +11,6 @@ import { fsrsInit } from "../../lib/fsrs.ts";
 import { readRawProgress, writeProgress } from "../../lib/storage.ts";
 import { asFsrs, type FsrsMap } from "../quiz/revision.ts";
 import { dayNumber } from "../quiz/traps.ts";
-import { COURS_MIGRE_KEY } from "../../lib/keys.ts";
 import { entityState, type EntityState } from "./entityState.ts";
 import { loadCoursProgress, migrateCoursProgress } from "./coursProgress.ts";
 
@@ -26,18 +25,19 @@ export function useEntityStates(): EntityStates {
   const [today] = useState(() => dayNumber(new Date()));
   const [fsrs, setFsrs] = useState<FsrsMap>(() => asFsrs(readRawProgress()));
 
-  // Migration unique du cochage manuel (COURS_KEY) vers la carte FSRS. Le marqueur la rend
-  // idempotente ; `migrateCoursProgress` n'écrase jamais une carte existante.
+  // Migration du cochage manuel (COURS_KEY) vers la carte FSRS, à CHAQUE montage — sans drapeau.
+  // `migrateCoursProgress` est idempotente PAR CONSTRUCTION (elle n'écrase jamais une carte
+  // existante et rend `null` quand il n'y a rien à faire) : la rejouer est un no-op
+  // auto-cicatrisant. Un drapeau posé après une écriture `writeProgress` best-effort échouée
+  // (quota) aurait marqué la migration faite sans qu'elle le soit, sans jamais la rejouer ; et
+  // `gist.ts#applyData` ne fait que `setItem` (jamais `removeItem`), donc un `pull` d'une
+  // sauvegarde antérieure à la migration aurait laissé le drapeau à "1" avec un blob non migré.
   useEffect(() => {
-    let deja: string | null = null;
-    try { deja = globalThis.localStorage.getItem(COURS_MIGRE_KEY); } catch { return; }
-    if (deja === "1") return;
     const suivant = migrateCoursProgress(loadCoursProgress(), asFsrs(readRawProgress()), today);
     if (suivant) {
       writeProgress({ fsrs: suivant });
       setFsrs(suivant);
     }
-    try { globalThis.localStorage.setItem(COURS_MIGRE_KEY, "1"); } catch { /* best-effort */ }
   }, [today]);
 
   const stateOf = useCallback(
@@ -47,12 +47,17 @@ export function useEntityStates(): EntityStates {
 
   // ⚠ `writeProgress` ne deep-merge QUE `skill` : le champ `fsrs` est remplacé en entier, il
   // faut donc toujours réécrire la carte complète (même contrainte que `fsrsPatch`).
+  //
+  // ⚠ On relit `readRawProgress()` au moment du clic plutôt que de partir de `cur` (l'état React,
+  // figé au montage) : un autre onglet — ou un `cloudPull` Gist — a pu écrire des cartes depuis
+  // le montage de CE hook. Partir de `cur` les aurait écrasées en entier, sans erreur. L'effet
+  // de bord (`writeProgress`) est aussi sorti de l'updater de `setState` : React peut rejouer un
+  // updater plusieurs fois (StrictMode, concurrent), ce qui aurait pu écrire deux fois.
   const markKnown = useCallback((iri: string, grade: 1 | 3 = 3) => {
-    setFsrs((cur) => {
-      const suivant: FsrsMap = { ...cur, [iri]: fsrsInit(grade, today) };
-      writeProgress({ fsrs: suivant });
-      return suivant;
-    });
+    const base = asFsrs(readRawProgress());
+    const suivant: FsrsMap = { ...base, [iri]: fsrsInit(grade, today) };
+    writeProgress({ fsrs: suivant });
+    setFsrs(suivant);
   }, [today]);
 
   return { fsrs, today, stateOf, markKnown };

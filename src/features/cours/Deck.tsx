@@ -13,7 +13,7 @@
  * — 〜たら / 〜ば / 〜なら — sont alors à une touche, contre 800 px auparavant.
  */
 import { useCallback, useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import type { CoursGroup, CoursItem, LearnCategory } from "./coursSchema.ts";
 import type { EntityState } from "./entityState.ts";
 import { EntityCard } from "./EntityCard.tsx";
@@ -46,6 +46,7 @@ export function Deck({ category, group, stateOf, onKnown }: {
   stateOf: (iri: string) => EntityState;
   onKnown: (iri: string) => void;
 }) {
+  const navigate = useNavigate();
   const [params] = useSearchParams();
   const focus = params.get("focus");
   const fromQuiz = params.get("from") === "quiz";
@@ -71,10 +72,11 @@ export function Deck({ category, group, stateOf, onKnown }: {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight") bouge(1);
       else if (e.key === "ArrowLeft") bouge(-1);
+      else if (e.key === "Escape") navigate(`/cours/${category.id}`);
     };
     globalThis.addEventListener("keydown", onKey);
     return () => globalThis.removeEventListener("keydown", onKey);
-  }, [bouge]);
+  }, [bouge, navigate, category.id]);
 
   const item = items[i];
   if (!item) return <p className="text-fg-dim text-sm">Thème vide.</p>;

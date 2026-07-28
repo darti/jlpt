@@ -43,6 +43,14 @@ test("Corrige montre l exemple COMPLET du point testé : traduction, romaji et a
   expect(html).toContain("voir le point de grammaire");
 });
 
+// ⚠ Le corrigé ne connaît pas l'état FSRS de l'entité au moment de la réponse — l'ancien code
+// codait "à revoir" en dur, ce qui pouvait afficher une pastille rouge sur une notion acquise
+// depuis des semaines. La carte de rappel ne doit donc porter AUCUN badge d'état.
+test("Corrige naffiche pas d etat fige sur la carte de rappel", () => {
+  const html = renderToStaticMarkup(<Corrige question={gram} correct={true} rappel={RAPPEL_GRAM} />);
+  expect(html).not.toContain("à revoir");
+});
+
 test("Corrige montre un rappel pour un KANJI, avec sa lecture on・kun", () => {
   const q: Question = { id: 9, cat: "kanji", d: 1, q: "", o: ["a", "b"], a: 0, tests: ["jlpt:kanji/校"] };
   const html = renderToStaticMarkup(
