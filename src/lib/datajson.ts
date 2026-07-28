@@ -1,6 +1,6 @@
 import { collectData, applyData, type SyncPayload } from "./gist.ts";
 import { blankSkills } from "./elo.ts";
-import { PROGRESS_KEY, GH_CFG_KEY, stampUpdated } from "./keys.ts";
+import { PROGRESS_KEY, COURS_KEY, GH_CFG_KEY, stampUpdated } from "./keys.ts";
 
 type Store = Pick<Storage, "getItem" | "setItem"> & Partial<Pick<Storage, "removeItem" | "key" | "length">>;
 
@@ -33,11 +33,16 @@ export function importJson(
 
 /** Writes a fresh blank progress blob — mirrors the legacy `load()` default EXACTLY
  *  (M3: `gram:{}` included so vanilla SRS state isn't wiped/desynced). Does not touch
- *  theme/gist/fontscale keys. */
+ *  theme/gist/fontscale keys. Also clears the legacy cours checkmarks (`COURS_KEY`) :
+ *  `migrateCoursProgress` (`coursProgress.ts`) replays them into the FSRS cards on every
+ *  mount of `useEntityStates` and never overwrites an existing card, so leaving them behind
+ *  would resurrect all memory cards from the old manual checkmarks the next time the
+ *  learner opens `/cours` — a reset must reset everything. */
 export function resetProgress(store: Store = globalThis.localStorage): void {
   const blank = { skill: blankSkills(), total: 0, right: 0, bestStreak: 0, streak: 0, wrong: [], history: [], lastDiag: null, gram: {}, seen: "", mastered: "" };
   try {
     store.setItem(PROGRESS_KEY, JSON.stringify(blank));
+    store.removeItem?.(COURS_KEY);
     stampUpdated(store);
   } catch { /* best-effort */ }
 }

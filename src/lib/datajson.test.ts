@@ -50,3 +50,9 @@ test("resetProgress clears the coverage bitsets (seen/mastered)", () => {
   expect(blob.seen).toBe("");
   expect(blob.mastered).toBe("");
 });
+
+test("resetProgress clears the legacy cours checkmarks (COURS_KEY), else migrateCoursProgress resurrects them", () => {
+  const s = memStore({ jlptN3adapt_v2: JSON.stringify({ total: 9 }), jlptN3_cours_v2: JSON.stringify({ "jlpt:gram/x": true }) });
+  resetProgress(s);
+  expect((s as any).getItem("jlptN3_cours_v2")).toBeNull();
+});
