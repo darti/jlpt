@@ -22,12 +22,16 @@ test("Corrige montre le rappel dun point de grammaire, avec son lien profond", (
   expect(html).toContain("#/cours/gram/g4?focus=jlpt%3Agram%2F%E3%81%9F%E3%82%89&amp;from=quiz");
 });
 
-test("Corrige montre la phrase dexemple du point testé", () => {
+test("Corrige n omet pas la phrase dexemple pour autant : elle vit dans le paquet du cours (EntityCard, variante compacte)", () => {
+  // La carte du corrigé rend désormais EntityCard en variante "compacte", qui retire les
+  // exemples du DOM (cf. EntityCard.tsx) : l exemple n apparaît plus inline ici, il reste
+  // consultable en suivant le lien profond vers le paquet complet du cours.
   const html = renderToStaticMarkup(
     <Corrige question={gram} correct={true}
       rappel={{ ...RAPPEL_GRAM, exemple: { jp: "健康のために走る。", fr: "Je cours." } }} />,
   );
-  expect(html).toContain("Je cours.");
+  expect(html).not.toContain("Je cours.");
+  expect(html).toContain("voir le point de grammaire");
 });
 
 test("Corrige montre un rappel pour un KANJI, avec sa lecture on・kun", () => {
