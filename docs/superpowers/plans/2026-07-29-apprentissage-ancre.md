@@ -698,8 +698,14 @@ export function allocateLearn(
   };
   // Rapatriement : tout ce qui est allé aux compétences non enseignables revient à la piste
   // enseignable de plus fort poids (à égalité, l'ordre de TRACKS tranche — déterministe).
+  // ⚠ On teste l'APPARTENANCE aux pistes enseignables, PAS la valeur du poids. Une première
+  // rédaction faisait `enseignable(c) === 0` — or `enseignable` rend `weightOf(c)` pour les
+  // trois pistes enseignables : une piste enseignable de poids NUL était comptée comme
+  // orpheline et sa part réinjectée EN DOUBLE. Déclenchement : les trois poids nuls à la fois,
+  // où `allocateCount` bascule dans sa branche `sum === 0` et répartit en tournante.
+  // Mesuré sur le code fautif : poids tous nuls, total = 7 → somme 12.
   let orphelins = 0;
-  for (const c of SKILLS) if (enseignable(c) === 0 && weightOf(c) >= 0) orphelins += brut[c];
+  for (const c of SKILLS) if (!TRACKS.some((t) => TRACK_DE_SKILL[t] === c)) orphelins += brut[c];
   if (orphelins > 0) {
     const meilleure = TRACKS.reduce((a, b) =>
       weightOf(TRACK_DE_SKILL[b]) > weightOf(TRACK_DE_SKILL[a]) ? b : a);
