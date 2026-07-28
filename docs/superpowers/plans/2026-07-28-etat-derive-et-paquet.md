@@ -302,18 +302,22 @@ git commit -m "feat(cours): l etat d une entite se derive du modele de memoire"
   - `function migrateCoursProgress(legacy: CoursProgress, m: FsrsMap, today: number): FsrsMap | null`
     — rend la carte complète à écrire, ou `null` s'il n'y a rien à faire.
   - `loadCoursProgress` (inchangée, lecture seule) et `type CoursProgress` / `type ItemState` restent exportés.
-  - **Supprimés** : `cycleState`, `setItemState`, `saveCoursProgress`, `groupProgress`,
-    `categoryProgress`, `interface GroupStats` (remplacés par `entityState.ts`).
+
+> ⚠ **Cette task est purement ADDITIVE.** `cycleState`, `setItemState`, `saveCoursProgress`,
+> `groupProgress`, `categoryProgress` et `GroupStats` restent en place ici : ils sont encore
+> consommés par `CoursHub`, `CategoryIndex`, `GroupDetail` et `useCoursProgress`. Ils sont
+> supprimés à la Task 6, dans le même commit que le rebranchement de leurs appelants — c'est
+> ce qui garde le typecheck VERT à chaque commit de la branche.
 
 - [ ] **Step 1: Écrire le test qui échoue**
 
-Remplacer **tout** le contenu de `src/features/cours/coursProgress.test.ts` par :
+**Ajouter** à `src/features/cours/coursProgress.test.ts` (ne rien retirer : les tests de
+`groupProgress` / `cycleState` restent valides jusqu'à la Task 6, où ils partent avec leur
+sujet). Compléter les imports en tête du fichier, puis ajouter les cas :
 
 ```ts
-import { test, expect } from "bun:test";
 import { fsrsInit, type Fsrs } from "../../lib/fsrs.ts";
-import { migrateCoursProgress, loadCoursProgress } from "./coursProgress.ts";
-import { COURS_KEY } from "../../lib/keys.ts";
+import { migrateCoursProgress } from "./coursProgress.ts";
 
 test("migrateCoursProgress amorce known en Good et review en Again", () => {
   const out = migrateCoursProgress(
@@ -350,13 +354,6 @@ test("migrateCoursProgress conserve les cartes non concernees", () => {
   });
 });
 
-test("loadCoursProgress lit la cle legacy et ignore les valeurs inconnues", () => {
-  const store = {
-    getItem: () => JSON.stringify({ a: "known", b: "review", c: "n importe quoi" }),
-  };
-  expect(loadCoursProgress(store)).toEqual({ a: "known", b: "review" });
-  expect(COURS_KEY).toBe("jlptN3_cours_v2");
-});
 ```
 
 - [ ] **Step 2: Lancer le test et vérifier qu'il échoue**
@@ -378,43 +375,18 @@ Dans `src/lib/keys.ts`, juste après le bloc `COURS_KEY` :
 export const COURS_MIGRE_KEY = "jlptN3_coursMigre";
 ```
 
-- [ ] **Step 4: Réduire `coursProgress.ts` à la lecture + la migration**
+- [ ] **Step 4: Ajouter la migration à `coursProgress.ts` (sans rien retirer)**
 
-Remplacer **tout** le contenu de `src/features/cours/coursProgress.ts` par :
+En tête de `src/features/cours/coursProgress.ts`, ajouter l'import :
 
 ```ts
-/**
- * Vestige de la progression de cours manuelle : lecture seule + migration vers la mémoire.
- *
- * L'état d'un item n'est plus stocké, il se dérive (`entityState.ts`). Ce module ne sert plus
- * qu'à verser une fois l'ancien cochage dans la carte FSRS. ⚠ `COURS_KEY` n'est PAS supprimée :
- * elle reste la preuve du travail manuel déjà fait et permet de rejouer la migration si elle
- * est perdue. Elle n'est simplement plus jamais écrite.
- */
 import { fsrsInit } from "../../lib/fsrs.ts";
 import type { FsrsMap } from "../quiz/revision.ts";
-import { COURS_KEY } from "../../lib/keys.ts";
+```
 
-export type ItemState = "known" | "review";
-export type CoursProgress = Record<string, ItemState>;
+puis **ajouter à la fin du fichier**, sans toucher au reste :
 
-export function loadCoursProgress(
-  store: Pick<Storage, "getItem"> = globalThis.localStorage,
-): CoursProgress {
-  let raw: string | null;
-  try { raw = store.getItem(COURS_KEY); } catch { return {}; }
-  if (raw === null) return {};
-  try {
-    const parsed: unknown = JSON.parse(raw);
-    if (typeof parsed !== "object" || parsed === null) return {};
-    const out: CoursProgress = {};
-    for (const [k, v] of Object.entries(parsed as Record<string, unknown>)) {
-      if (v === "known" || v === "review") out[k] = v;
-    }
-    return out;
-  } catch { return {}; }
-}
-
+```ts
 /**
  * La carte FSRS après versement de l'ancien cochage — `null` s'il n'y a rien à écrire.
  *
@@ -443,15 +415,15 @@ cd .worktrees/feat-apprendre-avant-quiz && bun test src/features/cours/coursProg
 
 Attendu : 5 tests PASS.
 
-- [ ] **Step 6: Vérifier ce qui casse (attendu) et NE PAS le réparer ici**
+- [ ] **Step 6: Suite complète + typecheck**
 
 ```bash
-cd .worktrees/feat-apprendre-avant-quiz && bun run typecheck
+cd .worktrees/feat-apprendre-avant-quiz && bun test && bun run typecheck
 ```
 
-Attendu : ÉCHEC sur `CoursHub.tsx`, `CategoryIndex.tsx`, `useCoursProgress.ts` — ils importent
-`categoryProgress` / `groupProgress` / `cycleState`, désormais supprimés. **C'est normal :** ces
-appelants sont rebranchés à la Task 6. Noter les erreurs, passer à la suite.
+Attendu : **tout vert.** Cette task n'ajoute que du code ; les anciens exports vivent encore et
+leurs appelants compilent. Si le typecheck échoue, c'est qu'une fonction a été retirée par
+erreur — la restaurer, la suppression appartient à la Task 6.
 
 - [ ] **Step 7: Commit**
 
@@ -460,10 +432,6 @@ cd .worktrees/feat-apprendre-avant-quiz
 git add src/lib/keys.ts src/features/cours/coursProgress.ts src/features/cours/coursProgress.test.ts
 git commit -m "feat(cours): verser le cochage manuel dans la carte FSRS (migration idempotente)"
 ```
-
-> ⚠ Ce commit laisse volontairement le typecheck rouge. Il redevient vert à la Task 6. Si ce
-> découpage est inacceptable pour le relecteur, fusionner les Tasks 2 et 6 — mais ne PAS
-> ressusciter les fonctions supprimées pour faire passer le typecheck entre-temps.
 
 ---
 
@@ -1145,11 +1113,12 @@ export function Deck({ category, group, stateOf, onKnown }: {
     initialIndex(items, focus, (iri) => stateOf(iri) === "acquis"));
 
   // Le groupe change (navigation interne) → on rouvre le paquet à sa carte d'entrée.
+  // ⚠ `stateOf` est DÉLIBÉRÉMENT absent des dépendances : il change à chaque `markKnown`, et
+  // l'inclure repositionnerait le paquet à chaque clic sur « Je connais déjà » — on veut ne
+  // rouvrir la carte d'entrée qu'au changement de groupe ou de focus. (Le projet n'a pas de
+  // linter : cette omission se documente ici, elle ne se désactive nulle part.)
   useEffect(() => {
     setI(initialIndex(items, focus, (iri) => stateOf(iri) === "acquis"));
-    // stateOf est volontairement hors dépendances : il change à chaque markKnown, et le
-    // repositionnement ne doit se produire qu'au changement de groupe ou de focus.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [group.id, focus]);
 
   const bouge = useCallback((d: number) => {
@@ -1233,10 +1202,6 @@ export function Deck({ category, group, stateOf, onKnown }: {
 }
 ```
 
-> ⚠ Le commentaire `eslint-disable-next-line` ci-dessus est un **repère de lecture** : le projet
-> n'a pas de linter. Le garder tel quel documente l'omission volontaire de `stateOf` dans les
-> dépendances (sinon `markKnown` repositionnerait le paquet à chaque clic).
-
 - [ ] **Step 4: Lancer le test et vérifier qu'il passe**
 
 ```bash
@@ -1284,24 +1249,38 @@ git commit -m "feat(cours): paquet de cartes plein ecran, ouverture sur la premi
 
 **Interfaces:**
 - Consumes: `useEntityStates` (Task 3), `Deck` (Task 5), `groupStates` / `categoryStates` (Task 1).
-- Produces: aucune API nouvelle. C'est la task qui **remet le typecheck au vert** (cf. Task 2 §6).
+- Produces: aucune API nouvelle. C'est la task de **bascule** : elle rebranche les appelants
+  ET retire l'ancien code dans le même commit, pour que le typecheck reste vert à chaque commit.
 
-- [ ] **Step 1: Vérifier l'état rouge de départ**
-
-```bash
-cd .worktrees/feat-apprendre-avant-quiz && bun run typecheck
-```
-
-Attendu : ÉCHEC sur `CoursHub.tsx`, `CategoryIndex.tsx`, `useCoursProgress.ts` (imports de
-`categoryProgress` / `groupProgress` / `cycleState`, supprimés en Task 2).
-
-- [ ] **Step 2: Supprimer l'ancien écran et l'ancien hook**
+- [ ] **Step 1: Supprimer l'ancien écran et l'ancien hook**
 
 ```bash
 cd .worktrees/feat-apprendre-avant-quiz
 git rm src/features/cours/GroupDetail.tsx src/features/cours/GroupDetail.test.tsx \
        src/features/cours/useCoursProgress.ts src/features/cours/useCoursProgress.test.tsx
 ```
+
+- [ ] **Step 2: Retirer les fonctions de cochage devenues mortes**
+
+Dans `src/features/cours/coursProgress.ts`, supprimer `cycleState`, `setItemState`,
+`saveCoursProgress`, `groupProgress`, `categoryProgress` et `interface GroupStats` — remplacées
+par `entityState.ts`. Ne garder que `type ItemState`, `type CoursProgress`,
+`loadCoursProgress` et `migrateCoursProgress`, et mettre à jour la doc de tête du module :
+
+```ts
+/**
+ * Vestige de la progression de cours manuelle : lecture seule + migration vers la mémoire.
+ *
+ * L'état d'un item n'est plus stocké, il se dérive (`entityState.ts`). Ce module ne sert plus
+ * qu'à verser une fois l'ancien cochage dans la carte FSRS. ⚠ `COURS_KEY` n'est PAS supprimée :
+ * elle reste la preuve du travail manuel déjà fait et permet de rejouer la migration si elle
+ * est perdue. Elle n'est simplement plus jamais écrite.
+ */
+```
+
+Retirer de `src/features/cours/coursProgress.test.ts` les cas qui portaient sur ces fonctions
+(`groupProgress`, `categoryProgress`, `cycleState`, `setItemState`, `saveCoursProgress`) — leur
+sujet n'existe plus. Les cas de `migrateCoursProgress` et `loadCoursProgress` restent.
 
 - [ ] **Step 3: Rebrancher `Cours.tsx` sur `useEntityStates` + `Deck`**
 
@@ -1472,8 +1451,8 @@ et adapter les assertions de compteur (`0/3 appris` → `0/3 acquis`).
 cd .worktrees/feat-apprendre-avant-quiz && bun run typecheck && bun test
 ```
 
-Attendu : typecheck **vert** (la dette de la Task 2 est payée) et toute la suite au vert, y
-compris `cadence.test.ts`, `rappel.reel.test.ts` et `shapes.test.ts` (aucune question ajoutée).
+Attendu : typecheck **vert** et toute la suite au vert, y compris `cadence.test.ts`,
+`rappel.reel.test.ts` et `shapes.test.ts` (aucune question ajoutée).
 
 - [ ] **Step 8: Commit**
 
@@ -1691,9 +1670,11 @@ partout importé depuis `features/quiz/revision.ts`.
 
 **Écarts assumés, signalés ici plutôt que découverts en cours de route :**
 
-1. **La Task 2 laisse le typecheck rouge** jusqu'à la Task 6. C'est le seul découpage qui garde
-   la migration reviewable séparément de la bascule d'interface. L'alternative (fusionner 2 et 6)
-   est acceptable ; ressusciter les fonctions supprimées ne l'est pas.
+1. **Le typecheck reste vert à chaque commit.** La Task 2 est purement additive ; la suppression
+   des fonctions de cochage se fait à la Task 6, dans le même commit que le rebranchement de
+   leurs appelants. (Une première rédaction de ce plan faisait volontairement rougir le
+   typecheck entre les Tasks 2 et 6 — corrigé avant exécution : un commit qui ne compile pas
+   n'est pas bissectable, et le CI du projet lance `typecheck` sur chaque push.)
 2. **Le 4e usage d'`EntityCard`** annoncé en §4.1 de la spec (« carte d'entité en révision »)
    n'existe pas encore — il naît avec la phase d'apprentissage du lot 2. Trois usages sur quatre
    au terme de ce lot.
