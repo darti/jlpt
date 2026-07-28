@@ -22,12 +22,33 @@ test("Corrige montre le rappel dun point de grammaire, avec son lien profond", (
   expect(html).toContain("#/cours/gram/g4?focus=jlpt%3Agram%2F%E3%81%9F%E3%82%89&amp;from=quiz");
 });
 
-test("Corrige montre la phrase dexemple du point testé", () => {
+test("Corrige montre l exemple COMPLET du point testé : traduction, romaji et analyse", () => {
+  // Le corrigé rend EntityCard SANS variante compacte : l'exemple d'un point de grammaire
+  // s'affiche en entier (japonais furiganisé, romaji, traduction, analyse en blocs de
+  // couleur), exactement comme dans le paquet du cours — c'est ce qui en fait une vraie
+  // fiche de révision plutôt qu'un simple résumé.
   const html = renderToStaticMarkup(
     <Corrige question={gram} correct={true}
-      rappel={{ ...RAPPEL_GRAM, exemple: { jp: "健康のために走る。", fr: "Je cours." } }} />,
+      rappel={{
+        ...RAPPEL_GRAM,
+        exemple: {
+          jp: "健康のために走る。", ro: "kenkō no tame ni hashiru.", fr: "Je cours.",
+          an: ["健康（けんこう）« santé »"],
+        },
+      }} />,
   );
   expect(html).toContain("Je cours.");
+  expect(html).toContain("kenkō no tame ni hashiru.");
+  expect(html).toContain("santé");
+  expect(html).toContain("voir le point de grammaire");
+});
+
+// ⚠ Le corrigé ne connaît pas l'état FSRS de l'entité au moment de la réponse — l'ancien code
+// codait "à revoir" en dur, ce qui pouvait afficher une pastille rouge sur une notion acquise
+// depuis des semaines. La carte de rappel ne doit donc porter AUCUN badge d'état.
+test("Corrige naffiche pas d etat fige sur la carte de rappel", () => {
+  const html = renderToStaticMarkup(<Corrige question={gram} correct={true} rappel={RAPPEL_GRAM} />);
+  expect(html).not.toContain("à revoir");
 });
 
 test("Corrige montre un rappel pour un KANJI, avec sa lecture on・kun", () => {

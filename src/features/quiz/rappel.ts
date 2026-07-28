@@ -38,7 +38,7 @@ export interface Rappel {
    *  d'entité : « なかなか〜ない » est un point de grammaire rangé dans le cours de vocabulaire,
    *  et déduire la catégorie du type produisait un lien mort vers `/cours/gram/g24`. */
   coursCat: string;
-  exemple?: { jp: string; fr: string };
+  exemple?: { jp: string; ro: string; fr: string; an?: string[] };
 }
 
 export type RappelIndex = Map<string, Rappel>;
@@ -65,12 +65,18 @@ export function buildRappelIndex(docs: RappelDocs): RappelIndex {
     for (const iri of list(l.covers)) if (!groupOf.has(iri)) groupOf.set(iri, { group, cat });
   }
 
-  const exemples = new Map<string, { jp: string; fr: string }>();
+  const exemples = new Map<string, { jp: string; ro: string; fr: string; an?: string[] }>();
   for (const e of docs.example) {
     const cible = str(e.illustrates);
     // Le premier exemple suffit : un corrigé en montre un, pas la liste du cours.
     if (cible && !exemples.has(cible)) {
-      exemples.set(cible, { jp: str(e["jlpt:jp"]), fr: str(e["schema:description"]) });
+      const an = list(e["jlpt:analysis"]);
+      exemples.set(cible, {
+        jp: str(e["jlpt:jp"]),
+        ro: str(e["jlpt:romaji"]),
+        fr: str(e["schema:description"]),
+        ...(an.length ? { an } : {}),
+      });
     }
   }
 

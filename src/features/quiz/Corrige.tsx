@@ -5,6 +5,8 @@ import { SentenceAnalysis } from "../../ui/SentenceAnalysis.tsx";
 import { PANEL } from "../../ui/styles.ts";
 import { furi } from "../../lib/dict.ts";
 import { KIND_LABELS } from "./traps.ts";
+import { EntityCard } from "../cours/EntityCard.tsx";
+import { itemFromRappel } from "./rappelItem.ts";
 
 /** Port of the legacy corrigé block from `answer()` (app-n3.html:937-957):
  * correct/incorrect banner, rule explanation, grammar decomposition, and the
@@ -102,23 +104,11 @@ function RappelCard({ rappel }: { rappel: Rappel }) {
   return (
     <div className="mt-3 pt-3 border-t border-line">
       <p className="text-accent text-sm font-bold mb-1">Rappel</p>
-      <p className="text-fg-dim text-sm m-0">
-        <span className="text-fg font-bold" dangerouslySetInnerHTML={{ __html: furi(rappel.titre) }} />
-        {rappel.lecture && <span className="text-accent"> {rappel.lecture}</span>}
-        {rappel.niv && ` (${rappel.niv})`}
-        {rappel.sens && ` — ${rappel.sens}`}
-        {href && (
-          <>
-            {" "}
-            <a href={href} className="text-accent whitespace-nowrap">{LIBELLE[rappel.kind]} →</a>
-          </>
-        )}
-      </p>
-      {rappel.exemple && (
-        <p className="text-fg-dim text-sm mt-2 mb-0">
-          <span className="text-fg" dangerouslySetInnerHTML={{ __html: furi(rappel.exemple.jp) }} />
-          {rappel.exemple.fr && <span className="block text-fg-muted">{rappel.exemple.fr}</span>}
-        </p>
+      <EntityCard item={itemFromRappel(rappel)} />
+      {href && (
+        <a href={href} className="text-accent text-sm whitespace-nowrap">
+          {LIBELLE[rappel.kind]} →
+        </a>
       )}
     </div>
   );

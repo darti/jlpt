@@ -1,14 +1,14 @@
 import type { CoursCategory } from "./coursSchema.ts";
-import { categoryProgress, type CoursProgress } from "./coursProgress.ts";
+import { categoryStates } from "./entityState.ts";
+import type { EntityStates } from "./useEntityStates.ts";
 import { TILE, H2_ACCENT } from "../../ui/styles.ts";
 
-/** Niveau 0 : cartes de catégories (learn = ratio global ; method = page conseils). */
+/** Niveau 0 : cartes de catégories (learn = ratio dérivé ; method = page conseils). */
 export function CoursHub({
-  categories,
-  progress
+  categories, etats,
 }: {
   categories: CoursCategory[];
-  progress: CoursProgress;
+  etats: EntityStates;
 }) {
   return (
     <div className="flex flex-col gap-4">
@@ -17,8 +17,7 @@ export function CoursHub({
       </h2>
       <div className="grid gap-3 [grid-template-columns:repeat(auto-fill,minmax(210px,1fr))]">
         {categories.map((c) => {
-          const s =
-            c.kind === "learn" ? categoryProgress(c, progress) : null;
+          const s = c.kind === "learn" ? categoryStates(c, etats.fsrs, etats.today) : null;
           return (
             <a
               key={c.id}
@@ -28,7 +27,7 @@ export function CoursHub({
               <span className="text-fg font-bold">{c.title}</span>
               <span className="text-fg-muted text-meta">
                 {s
-                  ? `${s.known}/${s.total} appris${s.review > 0 ? ` · ${s.review} à revoir` : ""}`
+                  ? `${s.acquis}/${s.total} acquis${s.aRevoir > 0 ? ` · ${s.aRevoir} à revoir` : ""}`
                   : "Conseils d'examen"}
               </span>
             </a>
