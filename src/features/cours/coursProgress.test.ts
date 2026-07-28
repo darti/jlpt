@@ -1,11 +1,12 @@
 import { test, expect } from "bun:test";
 import {
   groupProgress, categoryProgress, cycleState, setItemState,
-  loadCoursProgress, saveCoursProgress, type CoursProgress,
+  loadCoursProgress, saveCoursProgress, migrateCoursProgress, type CoursProgress,
 } from "./coursProgress.ts";
 import type { CoursGroup, LearnCategory } from "./coursSchema.ts";
 import { memStore } from "../../testing/memStore.ts";
 import { UPDATED_KEY } from "../../lib/keys.ts";
+import { fsrsInit, type Fsrs } from "../../lib/fsrs.ts";
 
 const g = (id: string, ...ids: string[]): CoursGroup =>
   ({ id, title: id, items: ids.map((x) => ({ id: x, mot: x, lecture: "", sens: "" })) });
@@ -61,4 +62,39 @@ test("saveCoursProgress horodate la dernière écriture (sinon la synchro perd l
   const store = memStore();
   saveCoursProgress({ a: "known" }, store);
   expect(store._get(UPDATED_KEY)).toMatch(/^\d{4}-\d{2}-\d{2}T/);
+});
+
+test("migrateCoursProgress amorce known en Good et review en Again", () => {
+  const out = migrateCoursProgress(
+    { "jlpt:gram/ば": "known", "jlpt:gram/たら": "review" }, {}, 7,
+  );
+  expect(out).toEqual({
+    "jlpt:gram/ば": fsrsInit(3, 7),
+    "jlpt:gram/たら": fsrsInit(1, 7),
+  });
+});
+
+// Le modèle de mémoire fait autorité — même invariant que toutes les chaînes d'outils du
+// projet : un applicateur n'écrase jamais une donnée déjà posée.
+test("migrateCoursProgress n ecrase jamais une carte existante", () => {
+  const deja: Fsrs = [99, 5, 3];
+  const out = migrateCoursProgress(
+    { "jlpt:gram/ば": "known" }, { "jlpt:gram/ば": deja }, 7,
+  );
+  expect(out).toBeNull();
+});
+
+test("migrateCoursProgress rend null quand il n y a rien a migrer", () => {
+  expect(migrateCoursProgress({}, {}, 7)).toBeNull();
+});
+
+test("migrateCoursProgress conserve les cartes non concernees", () => {
+  const autre: Fsrs = [12, 4, 1];
+  const out = migrateCoursProgress(
+    { "jlpt:gram/ば": "known" }, { "jlpt:word/影響": autre }, 7,
+  );
+  expect(out).toEqual({
+    "jlpt:word/影響": autre,
+    "jlpt:gram/ば": fsrsInit(3, 7),
+  });
 });

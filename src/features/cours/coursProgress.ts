@@ -4,6 +4,8 @@
  */
 import type { CoursGroup, LearnCategory } from "./coursSchema.ts";
 import { COURS_KEY, stampUpdated } from "../../lib/keys.ts";
+import { fsrsInit } from "../../lib/fsrs.ts";
+import type { FsrsMap } from "../quiz/revision.ts";
 
 export type ItemState = "known" | "review";
 export type CoursProgress = Record<string, ItemState>;
@@ -74,4 +76,23 @@ export function saveCoursProgress(
     store.setItem(COURS_KEY, JSON.stringify(p));
     stampUpdated(store);
   } catch { /* best-effort */ }
+}
+
+/**
+ * La carte FSRS après versement de l'ancien cochage — `null` s'il n'y a rien à écrire.
+ *
+ * `known` → `fsrsInit(3)` (Good), `review` → `fsrsInit(1)` (Again). **N'écrase jamais** une
+ * carte existante : la mémoire mesurée fait autorité sur une déclaration manuelle. Pure.
+ */
+export function migrateCoursProgress(
+  legacy: CoursProgress, m: FsrsMap, today: number,
+): FsrsMap | null {
+  const next: FsrsMap = { ...m };
+  let touche = false;
+  for (const [iri, etat] of Object.entries(legacy)) {
+    if (next[iri]) continue; // la carte existante gagne
+    next[iri] = fsrsInit(etat === "known" ? 3 : 1, today);
+    touche = true;
+  }
+  return touche ? next : null;
 }

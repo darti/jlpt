@@ -30,6 +30,11 @@ export const RESUME_KEY = "jlptN3quiz_resume";
 // entrés. Relire une progression v1 (clés « gram:X ») afficherait 0 % partout, sans erreur.
 export const COURS_KEY = "jlptN3_cours_v2";
 
+/** Marqueur « la progression de cours manuelle a été versée dans la carte FSRS ».
+ *  Rend la migration idempotente. `COURS_KEY` est conservée (preuve du travail manuel,
+ *  rejouable) mais n'est plus jamais écrite. */
+export const COURS_MIGRE_KEY = "jlptN3_coursMigre";
+
 export const THEME_KEY = "jlptN3_theme";
 
 export const FURI_KEY = "jlptN3_furi";
