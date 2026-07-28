@@ -124,9 +124,22 @@ mémoire fait autorité ; c'est l'invariant de toutes les chaînes d'outils du p
 | `"review"` | `fsrsInit(1, today)` si aucune carte |
 
 La clé est ensuite **laissée en place mais plus jamais écrite** : elle reste la preuve du travail
-manuel déjà fait, rejouable si la migration est perdue. Un drapeau
-`jlptN3_coursMigre` (préfixe `KEY_PREFIX`, donc synchronisé par `gist.ts#collectData`) rend
-l'opération idempotente. `saveCoursProgress` et `cycleState` sont **supprimés**.
+manuel déjà fait, rejouable si la migration est perdue. `saveCoursProgress` et `cycleState` sont
+**supprimés**.
+
+> ⚠ **Correction (revue finale).** Cette section prévoyait un drapeau `jlptN3_coursMigre` pour
+> rendre l'opération idempotente. Il a été **retiré** : `migrateCoursProgress` est idempotente
+> **par construction** (elle n'écrase jamais une carte existante et rend `null` quand il n'y a
+> rien à faire), donc la rejouer à chaque montage est un no-op auto-cicatrisant. Le drapeau, lui,
+> avait deux modes de panne : `writeProgress` est best-effort et ne rend rien, donc le drapeau se
+> posait même quand l'écriture avait échoué (quota) ; et `gist.ts#applyData` ne fait que
+> `setItem`, jamais `removeItem`, donc un `pull` d'une sauvegarde antérieure à la migration
+> remplaçait le blob **en laissant le drapeau à `"1"`** — la migration ne se rejouait plus jamais.
+>
+> Corollaire non évident, relevé en revue : sans drapeau, `resetProgress` (`datajson.ts`) devait
+> **aussi effacer `COURS_KEY`**. Sinon « réinitialiser mes données » vidait le blob, puis le
+> premier passage sur `/cours` ressuscitait toutes les cartes depuis l'ancien cochage. Une
+> réinitialisation réinitialise.
 
 ## 4. `EntityCard` et le paquet
 

@@ -1646,7 +1646,27 @@ git commit -m "feat(quiz): le rappel du corrige rend la meme carte que le cours"
 
 ---
 
-## Amendement en cours d'exécution — la variante `compacte` est abandonnée
+## Amendements en cours d'exécution — lire ceci AVANT les blocs de code des tâches
+
+Les blocs de code des tâches ci-dessous décrivent l'état **prévu**. Trois amendements les ont
+modifiés en cours d'exécution ; **l'état livré est celui décrit dans cette section**.
+
+### 3. La revue finale a corrigé six points
+
+| Constat | Correctif livré (`c92ee98`) |
+|---|---|
+| `Corrige` passait `state="a-revoir"` en dur → pastille rouge sur une entité acquise | `state` devient **optionnel** dans `EntityCard`, le badge n'est rendu que s'il est fourni |
+| `markKnown` réécrivait la carte FSRS depuis un instantané du montage → effaçait les révisions d'un autre onglet | relecture de `readRawProgress()` **au moment du clic**, effet de bord sorti de l'updater `setState` |
+| ids de groupe en collision entre pistes (`g1` en gram **et** vocab **et** kanji) → « Thème vide. » permanent | `key={`${category.id}/${group.id}`}` sur le `Deck` |
+| `Échap` (spec §4.2) jamais implémenté | géré dans l'écouteur clavier via `useNavigate` |
+| `MethodPage` avait perdu son unique test par ricochet | `MethodPage.test.tsx` restauré |
+| drapeau `COURS_MIGRE_KEY` : deux modes de panne | **supprimé** — `migrateCoursProgress` est idempotente par construction |
+
+Et un septième, corollaire du sixième : `resetProgress` (`src/lib/datajson.ts`) efface désormais
+**aussi** `COURS_KEY`, sans quoi une réinitialisation était ressuscitée au passage suivant
+sur `/cours`.
+
+### Amendement 1 — la variante `compacte` est abandonnée
 
 Après la Task 7, l'implémenteur a signalé un changement visible : la variante `compacte`
 supprimait la phrase d'exemple que l'ancien `RappelCard` affichait déjà. Arbitrage rendu :
