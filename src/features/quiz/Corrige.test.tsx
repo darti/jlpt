@@ -22,15 +22,24 @@ test("Corrige montre le rappel dun point de grammaire, avec son lien profond", (
   expect(html).toContain("#/cours/gram/g4?focus=jlpt%3Agram%2F%E3%81%9F%E3%82%89&amp;from=quiz");
 });
 
-test("Corrige n omet pas la phrase dexemple pour autant : elle vit dans le paquet du cours (EntityCard, variante compacte)", () => {
-  // La carte du corrigé rend désormais EntityCard en variante "compacte", qui retire les
-  // exemples du DOM (cf. EntityCard.tsx) : l exemple n apparaît plus inline ici, il reste
-  // consultable en suivant le lien profond vers le paquet complet du cours.
+test("Corrige montre l exemple COMPLET du point testé : traduction, romaji et analyse", () => {
+  // Le corrigé rend EntityCard SANS variante compacte : l'exemple d'un point de grammaire
+  // s'affiche en entier (japonais furiganisé, romaji, traduction, analyse en blocs de
+  // couleur), exactement comme dans le paquet du cours — c'est ce qui en fait une vraie
+  // fiche de révision plutôt qu'un simple résumé.
   const html = renderToStaticMarkup(
     <Corrige question={gram} correct={true}
-      rappel={{ ...RAPPEL_GRAM, exemple: { jp: "健康のために走る。", fr: "Je cours." } }} />,
+      rappel={{
+        ...RAPPEL_GRAM,
+        exemple: {
+          jp: "健康のために走る。", ro: "kenkō no tame ni hashiru.", fr: "Je cours.",
+          an: ["健康（けんこう）« santé »"],
+        },
+      }} />,
   );
-  expect(html).not.toContain("Je cours.");
+  expect(html).toContain("Je cours.");
+  expect(html).toContain("kenkō no tame ni hashiru.");
+  expect(html).toContain("santé");
   expect(html).toContain("voir le point de grammaire");
 });
 

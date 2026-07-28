@@ -31,7 +31,7 @@ test("un point de grammaire donne forme, niveau, sens et son exemple", () => {
   expect(r?.titre).toBe("〜ために");
   expect(r?.niv).toBe("N3");
   expect(r?.sens).toBe("« afin de »");
-  expect(r?.exemple).toEqual({ jp: "健康のために走る。", fr: "Je cours pour ma santé." });
+  expect(r?.exemple).toEqual({ jp: "健康のために走る。", ro: "", fr: "Je cours pour ma santé." });
   expect(r?.group).toBe("g3");      // pour le lien profond
   expect(r?.coursCat).toBe("gram"); // catégorie lue sur la LEÇON, pas déduite du type
 });
@@ -73,6 +73,28 @@ test("resolveRappel sur un index absent rend null", () => {
 test("la première arête résoluble l'emporte", () => {
   const r = resolveRappel(q("kanji", ["jlpt:kanji/inconnu", "jlpt:kanji/校"]), buildRappelIndex(docs));
   expect(r?.titre).toBe("校");
+});
+
+test("le romaji et l analyse du document jlpt:Example traversent jusqu au rappel", () => {
+  // Le corrigé affiche désormais l'exemple COMPLET (fiche de révision) : romaji et analyse en
+  // blocs de couleur doivent traverser depuis le document du graphe, pas seulement jp/fr.
+  const avecRomajiEtAnalyse: RappelDocs = {
+    ...docs,
+    example: [{
+      "@id": "jlpt:example/ために-1", "@type": "jlpt:Example",
+      illustrates: "jlpt:gram/ために", "jlpt:jp": "健康のために走る。",
+      "jlpt:romaji": "kenkō no tame ni hashiru.",
+      "schema:description": "Je cours pour ma santé.",
+      "jlpt:analysis": ["健康（けんこう）« santé »", "走る（はしる）« courir »"],
+    }],
+  };
+  const r = resolveRappel(q("grammaire", ["jlpt:gram/ために"]), buildRappelIndex(avecRomajiEtAnalyse));
+  expect(r?.exemple).toEqual({
+    jp: "健康のために走る。",
+    ro: "kenkō no tame ni hashiru.",
+    fr: "Je cours pour ma santé.",
+    an: ["健康（けんこう）« santé »", "走る（はしる）« courir »"],
+  });
 });
 
 test("un point sans exemple rend un rappel sans exemple, pas une erreur", () => {

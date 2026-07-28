@@ -60,13 +60,11 @@ test("EntityCard rend la lecture et le sens d un mot", () => {
   expect(html).toContain("influence");
 });
 
-test("la variante compacte n affiche pas les exemples", () => {
+test("EntityCard rend toujours l exemple d un point de grammaire (pas de variante compacte)", () => {
   const item: CoursItem = {
     id: "jlpt:gram/ば", form: "〜ば",
     examples: [{ jp: "安ければ買います。", ro: "yasukereba", fr: "Si c est bon marche" }],
   };
-  const carte = renderToStaticMarkup(<EntityCard item={item} state="neuf" />);
-  const compacte = renderToStaticMarkup(<EntityCard item={item} state="neuf" variant="compacte" />);
-  expect(carte).toContain("yasukereba");
-  expect(compacte).not.toContain("yasukereba");
+  const html = renderToStaticMarkup(<EntityCard item={item} state="neuf" />);
+  expect(html).toContain("yasukereba");
 });

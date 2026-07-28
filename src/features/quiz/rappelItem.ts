@@ -17,7 +17,9 @@ export function itemFromRappel(r: Rappel): CoursItem {
       form: r.titre,
       ...(r.sens ? { mean: r.sens } : {}),
       ...(r.niv ? { niv: r.niv } : {}),
-      ...(r.exemple ? { examples: [{ jp: r.exemple.jp, ro: "", fr: r.exemple.fr }] } : {}),
+      ...(r.exemple
+        ? { examples: [{ jp: r.exemple.jp, ro: r.exemple.ro, fr: r.exemple.fr, ...(r.exemple.an ? { an: r.exemple.an } : {}) }] }
+        : {}),
     };
   }
   if (r.kind === "kanji") {

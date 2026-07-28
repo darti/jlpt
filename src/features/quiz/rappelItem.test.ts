@@ -26,7 +26,22 @@ test("itemFromRappel rend un item de vocabulaire pour kind word", () => {
 test("itemFromRappel reporte l exemple d un point de grammaire", () => {
   const it = itemFromRappel({
     ...base, kind: "gram", titre: "〜ば",
-    exemple: { jp: "安ければ買います。", fr: "Si c est bon marche" },
+    exemple: { jp: "安ければ買います。", ro: "yasukereba kaimasu.", fr: "Si c est bon marche" },
   });
   expect((it as { examples?: unknown[] }).examples).toHaveLength(1);
+});
+
+test("itemFromRappel reporte le romaji et l analyse jusqu a la carte", () => {
+  // Le corrigé affiche l'exemple COMPLET : le romaji et l'analyse ne doivent pas se perdre
+  // entre le Rappel (résolu depuis le graphe) et le CoursItem qu'EntityCard consomme.
+  const it = itemFromRappel({
+    ...base, kind: "gram", titre: "〜ば",
+    exemple: {
+      jp: "安ければ買います。", ro: "yasukereba kaimasu.", fr: "Si c est bon marche",
+      an: ["安い（やすい）→安ければ « conditionnel »"],
+    },
+  });
+  const [ex] = (it as { examples: { jp: string; ro: string; fr: string; an?: string[] }[] }).examples;
+  expect(ex.ro).toBe("yasukereba kaimasu.");
+  expect(ex.an).toEqual(["安い（やすい）→安ければ « conditionnel »"]);
 });

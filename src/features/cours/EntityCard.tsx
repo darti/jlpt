@@ -3,12 +3,15 @@
  *
  * Quatre sites rendaient une entité chacun à sa façon : `GramPoint` / `VocabRow` / `KanjiRow`
  * (l'ancien `GroupDetail`) et `RappelCard` (le corrigé du quiz). Un seul composant désormais,
- * deux variantes : `carte` (le paquet, l'apprentissage) et `compacte` (le corrigé, sans
- * exemples dépliés).
+ * un seul rendu : le corrigé du quiz montre EXACTEMENT la même carte que le paquet du cours,
+ * exemples compris — une fiche de révision complète, pas un résumé tronqué. Il n'existe donc
+ * pas de variante « compacte » : toute tentative d'en réintroduire une régresserait vers
+ * l'ancien défaut (cf. le correctif documenté dans la spec de ce lot).
  *
  * ⚠ `legende` par défaut à `false` : la clé des couleurs de `SentenceAnalysis` était réémise à
  * CHAQUE exemple, ce qui est la répétition la plus coûteuse en hauteur du rendu d'origine. Le
- * paquet l'affiche une fois, en pied.
+ * paquet l'affiche une fois, en pied ; le corrigé ne l'affiche pas du tout (une seule carte, pas
+ * besoin de clé).
  */
 import type {
   CoursExample, CoursItem, GramItem, KanjiItem, VocabItem,
@@ -105,15 +108,13 @@ function Exemple({ ex, legende }: { ex: CoursExample; legende: boolean }) {
 }
 
 export function EntityCard({
-  item, state, variant = "carte", legende = false,
+  item, state, legende = false,
 }: {
   item: CoursItem;
   state: EntityState;
-  variant?: "carte" | "compacte";
   legende?: boolean;
 }) {
   const kind = itemKind(item);
-  const complet = variant === "carte";
 
   if (kind === "gram") {
     const it = item as GramItem;
@@ -130,7 +131,7 @@ export function EntityCard({
           </div>
         )}
         {it.mean && <div className="text-fg-dim text-sm">{it.mean}</div>}
-        {complet && it.examples?.map((ex, i) => (
+        {it.examples?.map((ex, i) => (
           <Exemple key={i} ex={ex} legende={legende && i === 0} />
         ))}
       </div>
@@ -149,7 +150,7 @@ export function EntityCard({
             <div className="text-fg-dim text-sm">{it.sens}</div>
           </div>
         </div>
-        {complet && it.exemple && (
+        {it.exemple && (
           <div className="flex items-center gap-2">
             <div
               className="text-fg text-xl flex-1 min-w-0"
@@ -176,7 +177,7 @@ export function EntityCard({
           <div className="text-fg-dim text-sm">{it.sens}</div>
         </div>
         {it.niv && <span className="text-meta text-fg-muted">{it.niv}</span>}
-        {complet && <SpeakButton text={it.mot} />}
+        <SpeakButton text={it.mot} />
       </div>
     </div>
   );
