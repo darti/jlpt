@@ -66,7 +66,8 @@ en lieu et place de `GroupDetail` (supprimé). Aucune couche numérique (`elo`, 
 | `src/features/cours/Cours.tsx` | **modifié** — route `:cat/:group` → `Deck` |
 | `src/features/cours/CategoryIndex.tsx` | **modifié** — compteurs dérivés |
 | `src/features/cours/CoursHub.tsx` | **modifié** — compteurs dérivés |
-| `src/features/quiz/Corrige.tsx` | **modifié** — `RappelCard` rend `EntityCard variant="compacte"` |
+| `src/features/quiz/Corrige.tsx` | **modifié** — `RappelCard` rend `EntityCard` (exemple complet) |
+| `src/features/quiz/rappel.ts` | **modifié** (correctif Task 7) — `exemple` élargi à `{ jp, ro, fr, an? }` |
 | `src/lib/keys.ts` | **modifié** — `COURS_MIGRE_KEY` |
 
 ---
@@ -1644,6 +1645,19 @@ git commit -m "feat(quiz): le rappel du corrige rend la meme carte que le cours"
 ```
 
 ---
+
+## Amendement en cours d'exécution — la variante `compacte` est abandonnée
+
+Après la Task 7, l'implémenteur a signalé un changement visible : la variante `compacte`
+supprimait la phrase d'exemple que l'ancien `RappelCard` affichait déjà. Arbitrage rendu :
+**le corrigé montre l'exemple COMPLET** (romaji + analyse en blocs de couleur + lecture audio),
+et la prop `variant` est retirée d'`EntityCard` faute de consommateur.
+
+Conséquence en amont, découverte à cette occasion : `buildRappelIndex` projetait
+`exemple: { jp, fr }` en jetant `jlpt:romaji` et `jlpt:analysis`, pourtant présents dans
+`example.jsonld`. La projection s'était moulée sur son unique consommateur ; elle est élargie à
+`{ jp, ro, fr, an? }`. **Les blocs de code des Tasks 4 et 7 ci-dessus décrivent donc l'état
+AVANT cet amendement** — l'état livré est celui décrit ici.
 
 ## Self-Review
 

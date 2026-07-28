@@ -141,9 +141,20 @@ l'opération idempotente. `saveCoursProgress` et `cycleState` sont **supprimés*
 | rappel du corrigé | `Rappel` (`Corrige.tsx`) |
 | carte d'entité en révision | n'existe pas |
 
-Props : `{ item: CoursItem; state: EntityState; variant: "carte" | "compacte" }`. La variante
-compacte sert le corrigé (pas d'exemple déplié) ; la variante carte sert le paquet et
-l'apprentissage. `splitStruct` migre de `GroupDetail.tsx` vers ce module.
+Props : `{ item: CoursItem; state: EntityState; legende?: boolean }`. **Une seule forme de
+carte**, la même partout. `splitStruct` migre de `GroupDetail.tsx` vers ce module.
+
+> ⚠ **Correction (arbitrée en cours d'implémentation).** Cette section prévoyait d'abord une
+> variante `compacte` pour le corrigé, sans exemple déplié. C'était une régression : l'ancien
+> `RappelCard` affichait DÉJÀ une phrase d'exemple (japonais + français), et la variante l'aurait
+> silencieusement supprimée. Décision retenue : le corrigé affiche l'exemple **complet** (romaji
+> et analyse en blocs de couleur compris) et devient une fiche de révision. La variante
+> `compacte` n'a donc plus aucun consommateur — elle n'est pas construite.
+>
+> Cela a révélé une dette en amont : `buildRappelIndex` (`rappel.ts`) projetait
+> `exemple: { jp, fr }` en **jetant** `jlpt:romaji` et `jlpt:analysis`, que `example.jsonld`
+> porte pourtant. La projection s'était moulée sur son unique consommateur. Elle est élargie à
+> `{ jp, ro, fr, an? }`.
 
 La légende de `SentenceAnalysis` passe **une fois par paquet** (dans le pied), plus une fois par
 exemple : c'est la répétition la plus coûteuse en hauteur du rendu actuel.
@@ -287,7 +298,8 @@ suffit pas à la déclarer acquise.
 | `src/features/cours/coursProgress.ts` | réduit à la migration ; `cycleState` / `setItemState` / `saveCoursProgress` supprimés |
 | `src/features/cours/useCoursProgress.ts` | remplacé par une lecture de `FsrsMap` |
 | `src/features/cours/CategoryIndex.tsx` | compteurs dérivés |
-| `src/features/quiz/Corrige.tsx` | le rappel rend `EntityCard variant="compacte"` |
+| `src/features/quiz/Corrige.tsx` | le rappel rend `EntityCard` (exemple complet) |
+| `src/features/quiz/rappel.ts` | `exemple` élargi à `{ jp, ro, fr, an? }` — le romaji et l'analyse cessent d'être jetés |
 | `src/features/quiz/useQuiz.ts` | phase `apprendre`, file d'ancrage, reprises |
 | `src/features/quiz/resume.ts` | `learn?: string[]` |
 | `src/EntrainementApp.tsx` | branche de rendu de la phase `apprendre` |
