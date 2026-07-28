@@ -1,51 +1,17 @@
 /**
- * Progression de cours : état par item (known/review), persistée à part du quiz.
- * Pur + localStorage.
+ * Vestige de la progression de cours manuelle : lecture seule + migration vers la mémoire.
+ *
+ * L'état d'un item n'est plus stocké, il se dérive (`entityState.ts`). Ce module ne sert plus
+ * qu'à verser une fois l'ancien cochage dans la carte FSRS. ⚠ `COURS_KEY` n'est PAS supprimée :
+ * elle reste la preuve du travail manuel déjà fait et permet de rejouer la migration si elle
+ * est perdue. Elle n'est simplement plus jamais écrite.
  */
-import type { CoursGroup, LearnCategory } from "./coursSchema.ts";
-import { COURS_KEY, stampUpdated } from "../../lib/keys.ts";
+import { COURS_KEY } from "../../lib/keys.ts";
 import { fsrsInit } from "../../lib/fsrs.ts";
 import type { FsrsMap } from "../quiz/revision.ts";
 
 export type ItemState = "known" | "review";
 export type CoursProgress = Record<string, ItemState>;
-export interface GroupStats { known: number; review: number; total: number; }
-
-export function groupProgress(group: CoursGroup, p: CoursProgress): GroupStats {
-  let known = 0, review = 0;
-  for (const it of group.items) {
-    if (p[it.id] === "known") known++;
-    else if (p[it.id] === "review") review++;
-  }
-  return { known, review, total: group.items.length };
-}
-
-export function categoryProgress(cat: LearnCategory, p: CoursProgress): GroupStats {
-  return cat.groups.reduce<GroupStats>((acc, grp) => {
-    const s = groupProgress(grp, p);
-    return {
-      known: acc.known + s.known,
-      review: acc.review + s.review,
-      total: acc.total + s.total,
-    };
-  }, { known: 0, review: 0, total: 0 });
-}
-
-export function cycleState(cur: ItemState | undefined): ItemState | undefined {
-  if (cur === undefined) return "known";
-  if (cur === "known") return "review";
-  return undefined;
-}
-
-export function setItemState(
-  p: CoursProgress,
-  id: string,
-  s: ItemState | undefined
-): CoursProgress {
-  const next = { ...p };
-  if (s === undefined) delete next[id]; else next[id] = s;
-  return next;
-}
 
 export function loadCoursProgress(
   store: Pick<Storage, "getItem"> = globalThis.localStorage
@@ -62,20 +28,6 @@ export function loadCoursProgress(
     }
     return out;
   } catch { return {}; }
-}
-
-/** Persiste l'avancement **et** horodate l'écriture : `cloudPull()` compare `jlptN3_updatedAt`
- *  local et distant, donc sans ce tampon un appareil où seul le cours a bougé perd la
- *  comparaison et se fait écraser par la version en ligne. N'est appelée que depuis le
- *  toggle utilisateur (jamais au montage), le tampon reste donc fidèle. */
-export function saveCoursProgress(
-  p: CoursProgress,
-  store: Pick<Storage, "setItem"> = globalThis.localStorage
-): void {
-  try {
-    store.setItem(COURS_KEY, JSON.stringify(p));
-    stampUpdated(store);
-  } catch { /* best-effort */ }
 }
 
 /**

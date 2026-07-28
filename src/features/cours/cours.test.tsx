@@ -3,6 +3,7 @@ import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 import { Cours } from "./Cours.tsx";
+import { PROGRESS_KEY } from "../../lib/keys.ts";
 
 (globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 const origFetch = globalThis.fetch;
@@ -54,18 +55,19 @@ test("Cours /cours → hub des catégories", async () => {
   await act(async () => { root.unmount(); });
 });
 
-test("Cours /cours/gram/g1 → détail + toggle qui persiste", async () => {
+test("Cours /cours/gram/g1 → paquet + « je connais déjà » qui amorce la carte FSRS", async () => {
   const { host, root } = await mountAt("/cours/gram/g1");
   expect(host.innerHTML).toContain("〜ば");
-  const btn = host.querySelector('[data-item-id="jlpt:gram/ば"]') as HTMLButtonElement;
-  expect(btn).not.toBeNull();
-  await act(async () => { btn.click(); }); // neuf → known
-  const raw = globalThis.localStorage.getItem("jlptN3_cours_v2");
-  expect(JSON.parse(raw!)).toEqual({ "jlpt:gram/ば": "known" });
+  const btn = Array.from(host.querySelectorAll("button"))
+    .find((b) => b.textContent?.includes("Je connais déjà")) as HTMLButtonElement;
+  expect(btn).not.toBeUndefined();
+  await act(async () => { btn.click(); }); // neuf → amorce la mémoire (grade Good)
+  const blob = JSON.parse(globalThis.localStorage.getItem(PROGRESS_KEY)!);
+  expect(Object.keys(blob.fsrs)).toEqual(["jlpt:gram/ば"]);
   await act(async () => { root.unmount(); });
 });
 
-test("Cours /cours/kanji/k1 → détail kanji (dispatch GroupDetail)", async () => {
+test("Cours /cours/kanji/k1 → paquet kanji (rend EntityCard)", async () => {
   const { host, root } = await mountAt("/cours/kanji/k1");
   expect(host.innerHTML).toContain("水");
   expect(host.innerHTML).toContain("eau");
