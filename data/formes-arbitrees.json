@@ -1,0 +1,54 @@
+{
+ "_": [
+  "Décisions de l'auteur sur dix points de gram.jsonld qui rangeaient un PARADIGME DE",
+  "CONJUGAISON dans schema:description — champ qui porte partout ailleurs une glose",
+  "française. Repérés parce qu'aucune lettre latine n'y figurait : la carte de cours rend",
+  "jlpt:structure en chasse fixe et schema:description en prose, donc ces dix cartes",
+  "n'affichaient qu'un paradigme, jamais de sens.",
+  "",
+  "La correction déplace le paradigme, VERBATIM, vers jlpt:structure (champ libre, rien à",
+  "écraser) et pose dans schema:description la glose arbitrée ci-dessous. Les quatre",
+  "premières couvrent la leçon « Formes de base & conjugaison », les six suivantes les",
+  "deux tiers de « Politesse (敬語) & registres »."
+ ],
+ "jlpt:gram/動詞verbe": {
+  "structure": "行く · 行かない · 行った · 行かなかった",
+  "description": "Les quatre formes de base d'un verbe : non-passé, négatif, passé, passé négatif."
+ },
+ "jlpt:gram/い-adj": {
+  "structure": "高い · 高くない · 高かった · 高くなかった",
+  "description": "Les quatre formes de base d'un adjectif en い : le い final porte seul la conjugaison."
+ },
+ "jlpt:gram/な-adj": {
+  "structure": "静かだ · 静かじゃない · 静かだった · 静かじゃなかった",
+  "description": "Les quatre formes de base d'un adjectif en な : c'est la copule だ qui se conjugue."
+ },
+ "jlpt:gram/名nom": {
+  "structure": "学生だ · 学生じゃない · 学生だった · 学生じゃなかった",
+  "description": "Les quatre formes de base d'un nom suivi de la copule : identiques à celles de l'adjectif en な."
+ },
+ "jlpt:gram/する": {
+  "structure": "なさる · いたす",
+  "description": "« faire » : なさる honore la personne dont on parle, いたす abaisse le locuteur."
+ },
+ "jlpt:gram/行く・来る・いる": {
+  "structure": "いらっしゃる · 参る／伺う",
+  "description": "« aller / venir / être » : いらっしゃる couvre les trois ; 伺う s'emploie quand on se rend chez quelqu'un."
+ },
+ "jlpt:gram/言う": {
+  "structure": "おっしゃる · 申す／申し上げる",
+  "description": "« dire » : 申し上げる s'adresse à un interlocuteur précis, 申す se contente d'abaisser le locuteur."
+ },
+ "jlpt:gram/食べる・飲む": {
+  "structure": "召し上がる · いただく",
+  "description": "« manger / boire » : 召し上がる honore celui qui consomme, いただく abaisse celui qui reçoit."
+ },
+ "jlpt:gram/見る": {
+  "structure": "ご覧になる · 拝見する",
+  "description": "« regarder » : ご覧になる pour la personne honorée, 拝見する pour ce que l'on regarde soi-même."
+ },
+ "jlpt:gram/知っている": {
+  "structure": "ご存じだ · 存じておる",
+  "description": "« savoir » : ご存じだ attribue le savoir à autrui, 存じておる l'attribue modestement à soi."
+ }
+}
