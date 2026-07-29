@@ -102,7 +102,7 @@
   /* Mêmes hues Nord que le sombre, alphas relevés deux fois (.22–.26 d'origine → .34–.40 →
      .48–.44). Rapporté au canevas, l'écart de luminance du halo était tombé de ~28 points à ~5 :
      le calque était bien peint, mais ne survivait ni au voisinage des cartes ni à leur traversée.
-     Ce second relèvement sert AUSSI le verre : c'est lui qui autorise l'opacité à .52. */
+     Ce second relèvement sert AUSSI le verre : c'est lui qui autorise l'opacité à .52.
      ⚠ La GÉOMÉTRIE des halos (positions, rayons) vit dans `body::before`, partagée par les deux
      thèmes : la dominante rose du clair se règle donc uniquement par les COULEURS et les alphas.
      Le froid recule (1 et 2), le rose prend les deux positions de droite — nord15 au halo bas

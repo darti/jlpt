@@ -12,6 +12,7 @@
  */
 import { describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 const CSS = readFileSync(join(import.meta.dir, "themes.css"), "utf8");
@@ -80,6 +81,26 @@ describe("themes.css", () => {
   test("le calque d'aurore lit le filtre thémable plutôt qu'une valeur en dur", () => {
     expect(CSS).toContain("filter: var(--aurora-filter");
   });
+
+  // La feuille compile-t-elle réellement ? Rien d'autre ne le vérifie : `typecheck` ignore le
+  // CSS, et `styles.gen.css` est GÉNÉRÉ ET GITIGNORÉ — un exemplaire périmé traîne donc sur
+  // toute machine de dev et masque un échec de compilation. La panne s'est produite : un `*/`
+  // de trop fermait un commentaire au milieu d'une phrase, l'apostrophe de « n'a » devenait
+  // une chaîne non terminée, et la CI ne l'a signalé qu'à travers un test de bundle se
+  // plaignant d'un `styles.gen.css` INTROUVABLE — le symptôme, pas la cause.
+  test("la feuille de style compile", async () => {
+    const sortie = join(tmpdir(), `jlpt-css-check-${process.pid}.css`);
+    const p = Bun.spawn(
+      ["bunx", "@tailwindcss/cli", "-i", "src/styles/tailwind.css", "-o", sortie],
+      { stdout: "pipe", stderr: "pipe" },
+    );
+    const [code, err] = await Promise.all([p.exited, new Response(p.stderr).text()]);
+    // Tailwind rend 0 même en erreur sur certaines versions : on assert AUSSI l'absence
+    // d'erreur dans la sortie, sinon le test ne garderait rien.
+    expect(err).not.toContain("CssSyntaxError");
+    expect(err).not.toContain("Error:");
+    expect(code).toBe(0);
+  }, 60_000);
 
   test("l'élévation de carte du thème clair porte un liseré interne", () => {
     // La lumière de bord haute est ce qui fait lire une surface comme du verre ; le bloc
