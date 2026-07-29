@@ -2012,25 +2012,29 @@
    "@id": "jlpt:gram/動詞verbe",
    "@type": "jlpt:GrammarPoint",
    "jlpt:form": "動詞 verbe",
-   "schema:description": "行く · 行かない · 行った · 行かなかった"
+   "schema:description": "Les quatre formes de base d'un verbe : non-passé, négatif, passé, passé négatif.",
+   "jlpt:structure": "行く · 行かない · 行った · 行かなかった"
   },
   {
    "@id": "jlpt:gram/い-adj",
    "@type": "jlpt:GrammarPoint",
    "jlpt:form": "い-adj",
-   "schema:description": "高い · 高くない · 高かった · 高くなかった"
+   "schema:description": "Les quatre formes de base d'un adjectif en い : le い final porte seul la conjugaison.",
+   "jlpt:structure": "高い · 高くない · 高かった · 高くなかった"
   },
   {
    "@id": "jlpt:gram/な-adj",
    "@type": "jlpt:GrammarPoint",
    "jlpt:form": "な-adj",
-   "schema:description": "静かだ · 静かじゃない · 静かだった · 静かじゃなかった"
+   "schema:description": "Les quatre formes de base d'un adjectif en な : c'est la copule だ qui se conjugue.",
+   "jlpt:structure": "静かだ · 静かじゃない · 静かだった · 静かじゃなかった"
   },
   {
    "@id": "jlpt:gram/名nom",
    "@type": "jlpt:GrammarPoint",
    "jlpt:form": "名 nom",
-   "schema:description": "学生だ · 学生じゃない · 学生だった · 学生じゃなかった"
+   "schema:description": "Les quatre formes de base d'un nom suivi de la copule : identiques à celles de l'adjectif en な.",
+   "jlpt:structure": "学生だ · 学生じゃない · 学生だった · 学生じゃなかった"
   },
   {
    "@id": "jlpt:gram/と",
@@ -2608,37 +2612,43 @@
    "@id": "jlpt:gram/する",
    "@type": "jlpt:GrammarPoint",
    "jlpt:form": "する",
-   "schema:description": "なさる · いたす"
+   "schema:description": "« faire » : なさる honore la personne dont on parle, いたす abaisse le locuteur.",
+   "jlpt:structure": "なさる · いたす"
   },
   {
    "@id": "jlpt:gram/行く・来る・いる",
    "@type": "jlpt:GrammarPoint",
    "jlpt:form": "行く・来る・いる",
-   "schema:description": "いらっしゃる · 参る／伺う"
+   "schema:description": "« aller / venir / être » : いらっしゃる couvre les trois ; 参る est la forme modeste courante, 伺う s'emploie quand on se rend chez quelqu'un.",
+   "jlpt:structure": "いらっしゃる · 参る／伺う"
   },
   {
    "@id": "jlpt:gram/言う",
    "@type": "jlpt:GrammarPoint",
    "jlpt:form": "言う",
-   "schema:description": "おっしゃる · 申す／申し上げる"
+   "schema:description": "« dire » : おっしゃる honore la personne qui parle ; 申し上げる s'adresse à un interlocuteur précis, 申す se contente d'abaisser le locuteur.",
+   "jlpt:structure": "おっしゃる · 申す／申し上げる"
   },
   {
    "@id": "jlpt:gram/食べる・飲む",
    "@type": "jlpt:GrammarPoint",
    "jlpt:form": "食べる・飲む",
-   "schema:description": "召し上がる · いただく"
+   "schema:description": "« manger / boire » : 召し上がる honore celui qui consomme, いただく abaisse celui qui reçoit.",
+   "jlpt:structure": "召し上がる · いただく"
   },
   {
    "@id": "jlpt:gram/見る",
    "@type": "jlpt:GrammarPoint",
    "jlpt:form": "見る",
-   "schema:description": "ご覧になる · 拝見する"
+   "schema:description": "« regarder » : ご覧になる pour la personne honorée, 拝見する pour ce que l'on regarde soi-même.",
+   "jlpt:structure": "ご覧になる · 拝見する"
   },
   {
    "@id": "jlpt:gram/知っている",
    "@type": "jlpt:GrammarPoint",
    "jlpt:form": "知っている",
-   "schema:description": "ご存じだ · 存じておる"
+   "schema:description": "« savoir » : ご存じだ attribue le savoir à autrui, 存じておる l'attribue modestement à soi.",
+   "jlpt:structure": "ご存じだ · 存じておる"
   },
   {
    "@id": "jlpt:gram/おする",
