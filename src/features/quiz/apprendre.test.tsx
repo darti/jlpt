@@ -7,7 +7,7 @@ import { anchorIndex, selectAnchor, clearAnchorCache } from "./anchor.ts";
 import { clearRevisionCache } from "./revision.ts";
 import { clearCategoryCache } from "../../lib/bank.ts";
 import { clearCoursCache } from "../cours/useCours.ts";
-import { PROGRESS_KEY } from "../../lib/keys.ts";
+import { PROGRESS_KEY, RESUME_KEY } from "../../lib/keys.ts";
 import { useQuiz } from "./useQuiz.ts";
 import type { Question } from "../../types/quiz.ts";
 import type { CoursCategory, CoursItem } from "../cours/coursSchema.ts";
@@ -155,14 +155,18 @@ function bouchonneFetch(avecAretes: boolean) {
 
 type QuizApi = ReturnType<typeof useQuiz>;
 
-async function monterQuiz(avecAretes = true): Promise<{ api: () => QuizApi; root: Root }> {
+async function monterQuiz(
+  avecAretes = true, search = "",
+): Promise<{ api: () => QuizApi; root: Root }> {
   bouchonneFetch(avecAretes);
   let courant: QuizApi | null = null;
   function Probe() { courant = useQuiz(); return null; }
   const host = document.createElement("div");
   const root = createRoot(host);
   await act(async () => {
-    root.render(<MemoryRouter><Probe /></MemoryRouter>);
+    root.render(
+      <MemoryRouter initialEntries={[`/entrainement${search}`]}><Probe /></MemoryRouter>,
+    );
   });
   // Une frontière de macrotâche vide TOUTES les microtâches en attente : les six documents du
   // cours ont résolu quand elle rend la main (attente CONDITIONNELLE au sens de la règle : le
@@ -303,6 +307,31 @@ test("une reprise avec des entites restantes rouvre la phase apprendre", async (
   expect(api().learnStep?.hasAnchor).toBe(true);
   await act(async () => { api().learnNext(); });
   expect(api().question?.tests).toContain(GRAM[0]);
+  await act(async () => { root.unmount(); });
+});
+
+/**
+ * ⚠ LA COURSE — reproduite sur le chemin RÉEL du lien profond du cours (« Revenir à la
+ * question » → `#/entrainement?resume=1`), et distincte de la reprise MANUELLE ci-dessus.
+ *
+ * L'auto-reprise tire au MONTAGE : aucun commit React n'a encore posé `coursRef`, et les `await`
+ * de `resumeNow` (`ensureCorpus`, `questionsForIds`) résolvent depuis des caches module, en
+ * microtâches — jamais assez pour que React reflushe. Lire le ref y rendait donc TOUJOURS `null` :
+ * mêmes blob et séance, la reprise manuelle restaurait 5 cartes, l'auto **0**. Effet de second
+ * ordre : `avancerLearn` ne tournant plus, `resume.learn` n'était jamais élagué, et une reprise
+ * ultérieure ré-ouvrait les cartes en plein quiz.
+ */
+test("l auto reprise par ?resume=1 restaure la file d apprentissage", async () => {
+  // ords 0 et 2 = les ancres de e0 et e1 (deux questions par entité : 2i et 2i+1).
+  localStorage.setItem(RESUME_KEY, JSON.stringify({
+    kind: "quiz", ids: [0, 2, 5, 6, 7], qi: 0, right: 0, t: Date.now(),
+    learn: [GRAM[0], GRAM[1]],
+  }));
+  const { api, root } = await monterQuiz(true, "?resume=1");
+  expect(api().phase).toBe("apprendre");
+  expect(api().learnStep?.count).toBe(2);
+  expect(api().learnStep?.item.id).toBe(GRAM[0]);
+  expect(api().learnStep?.hasAnchor).toBe(true);
   await act(async () => { root.unmount(); });
 });
 

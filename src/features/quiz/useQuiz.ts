@@ -17,7 +17,7 @@ import { pickSessionPlan, BUILT_CAPS } from "../entrainement/sessionPlan.ts";
 import {
   allocateLearn, buildLearnQueue, rebuildLearnQueue, selectReprises, type LearnStep,
 } from "../entrainement/learnQueue.ts";
-import { useCours } from "../cours/useCours.ts";
+import { loadCours, useCours } from "../cours/useCours.ts";
 import { entityState } from "../cours/entityState.ts";
 import type { CoursCategory } from "../cours/coursSchema.ts";
 import { anchorIndex } from "./anchor.ts";
@@ -72,10 +72,14 @@ export function useQuiz() {
   // Le programme, pour savoir quoi enseigner. `null` tant que les six documents ne sont pas
   // chargés (ou en cas d'échec) : la phase d'apprentissage est alors SAUTÉE — une séance ne se
   // bloque, ni ne se retarde, sur le chargement du cours.
-  // ⚠ Lu par `coursRef` dans les callbacks, jamais depuis leur fermeture : `start`/`resumeNow`
-  // attendent corpus et viviers avant de composer, et le cours peut arriver pendant cette
-  // attente. Le prendre de la fermeture figerait le `null` du montage — une séance ouverte par
-  // `?min=` ou `?resume=` n'enseignerait alors jamais rien.
+  // ⚠ Lu par `coursRef` dans `start`, jamais depuis la fermeture : `start` attend corpus et
+  // viviers avant de composer, et le cours peut arriver pendant cette attente. Le prendre de la
+  // fermeture figerait le `null` du montage — une séance ouverte par `?min=` n'enseignerait
+  // alors jamais rien.
+  // ⚠ Le ref ne suffit PAS à `resumeNow` : il est posé par un effet, donc par un COMMIT React,
+  // et l'auto-reprise `?resume=1` tire au montage — ses `await` résolvent depuis des caches
+  // module, en microtâches, jamais assez pour que React reflushe. `resumeNow` attend donc
+  // `loadCours()` (mémoïsé au module, précaché par le SW) au lieu de lire le ref.
   const cours = useCours();
   const coursRef = useRef<CoursCategory[] | null>(null);
   useEffect(() => { coursRef.current = cours; }, [cours]);
@@ -500,10 +504,12 @@ export function useQuiz() {
     // resume blob recorded one; otherwise resume on the question, as before.
     const { answered: onCorrige, chosen: restoredChosen } = restoredCorrige(r);
     // La file d'apprentissage restante. Absente d'un blob antérieur au lot 2, vide une fois la
-    // phase 1 terminée, ignorée si le cours n'est pas chargé : on reprend alors en phase quiz,
-    // exactement comme avant — jamais d'échec, jamais d'attente.
-    const programme = coursRef.current;
-    const file = r.learn?.length && programme
+    // phase 1 terminée. Le programme s'ATTEND ici (cf. le ⚠ du `coursRef` : le ref n'est posé
+    // qu'au commit suivant, l'auto-reprise le lirait toujours à `null`) — l'attente ne coûte que
+    // sur un cache froid, et `resumeNow` attend déjà `questionsForIds`, bien plus lourd. Un
+    // chargement en échec rend `[]` : on reprend alors en phase quiz, exactement comme avant.
+    const programme = r.learn?.length ? await loadCours() : null;
+    const file = r.learn?.length && programme?.length
       ? rebuildLearnQueue(r.learn, programme, rebuilt, qi)
       : [];
     rightRef.current = r.right;
