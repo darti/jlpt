@@ -44,7 +44,7 @@ const HAS_LATIN = /[A-Za-z]/;
  */
 export function applyFormes(sujets, decisions) {
   const vises = new Set(Object.keys(decisions));
-  const poses = [];
+  const formes = [];
   const conflits = [];
   const out = sujets.map((s) => {
     if (!isGrammarPoint(s)) return s;
@@ -71,10 +71,10 @@ export function applyFormes(sujets, decisions) {
       change = true;
     }
 
-    if (change) poses.push(id);
+    if (change) formes.push(id);
     return patch ?? s;
   });
-  return { sujets: out, poses: poses.length, formes: poses, conflits, inconnus: [...vises] };
+  return { sujets: out, poses: formes.length, formes, conflits, inconnus: [...vises] };
 }
 
 if (import.meta.main) {

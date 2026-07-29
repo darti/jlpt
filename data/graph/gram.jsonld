@@ -2619,14 +2619,14 @@
    "@id": "jlpt:gram/行く・来る・いる",
    "@type": "jlpt:GrammarPoint",
    "jlpt:form": "行く・来る・いる",
-   "schema:description": "« aller / venir / être » : いらっしゃる couvre les trois ; 伺う s'emploie quand on se rend chez quelqu'un.",
+   "schema:description": "« aller / venir / être » : いらっしゃる couvre les trois ; 参る est la forme modeste courante, 伺う s'emploie quand on se rend chez quelqu'un.",
    "jlpt:structure": "いらっしゃる · 参る／伺う"
   },
   {
    "@id": "jlpt:gram/言う",
    "@type": "jlpt:GrammarPoint",
    "jlpt:form": "言う",
-   "schema:description": "« dire » : 申し上げる s'adresse à un interlocuteur précis, 申す se contente d'abaisser le locuteur.",
+   "schema:description": "« dire » : おっしゃる honore la personne qui parle ; 申し上げる s'adresse à un interlocuteur précis, 申す se contente d'abaisser le locuteur.",
    "jlpt:structure": "おっしゃる · 申す／申し上げる"
   },
   {
