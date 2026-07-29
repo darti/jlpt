@@ -49,6 +49,34 @@ test("une question sans arete tests n entre pas dans l index", () => {
   expect(selectAnchor("jlpt:gram/ば", anchorIndex([q(1)]), new Set())).toBeNull();
 });
 
+// ⚠ 44 questions de `q-lecture` portent À LA FOIS des arêtes `tests` et un `readsPassage`.
+// Elles ne sont PAS des ancres : servies hors de leur groupe de lecture elles perdent leur texte,
+// et une sœur tirée par l'adaptatif fait recompléter le groupe depuis le pool sans consulter
+// `exclude` → le même ord deux fois dans la séance (Elo, FSRS et total comptés en double).
+test("une question a passage n ancre rien, malgre ses aretes tests", () => {
+  const qp = { ...q(5, ["jlpt:word/発言"]), passageId: "jlpt:passage/p1" } as Question;
+  expect(selectAnchor("jlpt:word/発言", anchorIndex([qp]), new Set())).toBeNull();
+  clearAnchorCache();
+  expect(isAnchor("jlpt:word/発言", 5, anchorIndex([qp]))).toBe(false);
+});
+
+// Le pont kanji → mot passe par le MÊME index : une question à passage ne doit pas non plus
+// ancrer un kanji par la bande.
+test("une question a passage n ancre pas non plus par le pont kanji", () => {
+  const qp = { ...q(5, ["jlpt:word/美術館"]), passageId: "jlpt:passage/p1" } as Question;
+  expect(selectAnchor("jlpt:kanji/美", anchorIndex([qp]), new Set())).toBeNull();
+});
+
+// Et l'exclusion ne doit pas déborder : une question SANS passage garde son rôle d'ancre même
+// quand une question à passage teste la même entité.
+test("une question sans passage reste l ancre quand une question a passage teste la meme entite", () => {
+  const qs = [
+    { ...q(2, ["jlpt:word/発言"]), passageId: "jlpt:passage/p1" } as Question,
+    q(6, ["jlpt:word/発言"]),
+  ];
+  expect(selectAnchor("jlpt:word/発言", anchorIndex(qs), new Set())).toBe(6);
+});
+
 test("anchorIndex est memoise sur l identite du tableau", () => {
   const qs = [q(1, ["jlpt:gram/ば"])];
   expect(anchorIndex(qs)).toBe(anchorIndex(qs));

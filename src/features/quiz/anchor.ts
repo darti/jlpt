@@ -15,7 +15,8 @@
 import type { Question } from "../../types/quiz.ts";
 
 export interface AnchorIndex {
-  /** IRI d'entité → ords des questions qui la testent (arête `tests`). */
+  /** IRI d'entité → ords des questions qui la testent (arête `tests`), **hors questions à
+   *  passage** — cf. le ⚠ d'`anchorIndex`. */
   direct: Map<string, number[]>;
   /** Caractère kanji → ords des questions testant un MOT qui le contient. */
   parKanji: Map<string, number[]>;
@@ -39,6 +40,14 @@ export function anchorIndex(questions: Question[]): AnchorIndex {
   const direct = new Map<string, number[]>();
   const parKanji = new Map<string, number[]>();
   for (const q of questions) {
+    // ⚠ Une question à PASSAGE n'ancre rien, même quand elle porte des arêtes `tests` : 44
+    // questions de `q-lecture` sont dans ce cas, et 2 entités du programme s'y ancraient. Elle
+    // teste la compréhension d'un texte, pas l'entité — et surtout elle voyage en GROUPE
+    // (`withPassageGroups`) : concaténée après lui comme ancre, elle perdait son texte, et une
+    // sœur tirée par l'adaptatif faisait recompléter le groupe depuis le pool **sans consulter
+    // `exclude`** → le même ord deux fois dans la séance, Elo, FSRS et total comptés en double.
+    // Filtré ici plutôt que dans `selectAnchor` : `isAnchor` (reprise) doit suivre la même règle.
+    if (typeof q.passageId === "string") continue;
     for (const iri of q.tests ?? []) {
       push(direct, iri, q.id);
       if (!iri.startsWith(WORD)) continue;

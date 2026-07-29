@@ -2,7 +2,10 @@ import { test, expect } from "bun:test";
 import { anchorIndex, selectAnchor, clearAnchorCache } from "./anchor.ts";
 import type { Question } from "../../types/quiz.ts";
 
-/** Les questions du corpus réel, réduites à ce dont l'ancrage a besoin. */
+/** Les questions du corpus réel, réduites à ce dont l'ancrage a besoin.
+ *  ⚠ `readsPassage` en fait PARTIE : 44 questions de `q-lecture` portent à la fois des arêtes
+ *  `tests` et un passage, et `anchorIndex` les écarte. Sans le champ ici, ces cliquets
+ *  mesureraient un ancrage que le runtime ne produit pas. */
 async function corpus(): Promise<Question[]> {
   const out: Question[] = [];
   for (const f of ["kanji", "vocabulaire", "grammaire", "lecture", "ecoute"]) {
@@ -10,7 +13,11 @@ async function corpus(): Promise<Question[]> {
     for (const s of doc["@graph"] as Record<string, unknown>[]) {
       const t = s.tests;
       const tests = Array.isArray(t) ? (t as string[]) : (typeof t === "string" ? [t] : undefined);
-      out.push({ id: s["jlpt:ord"], cat: f, d: 1, q: "", o: [], a: 0, ...(tests ? { tests } : {}) } as unknown as Question);
+      const pid = typeof s.readsPassage === "string" ? (s.readsPassage as string) : undefined;
+      out.push({
+        id: s["jlpt:ord"], cat: f, d: 1, q: "", o: [], a: 0,
+        ...(tests ? { tests } : {}), ...(pid ? { passageId: pid } : {}),
+      } as unknown as Question);
     }
   }
   return out;

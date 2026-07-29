@@ -12,7 +12,6 @@ import type {
 } from "./coursSchema.ts";
 
 export type Sujet = Record<string, unknown>;
-export type FetchLike = (url: string) => Promise<{ json: () => Promise<unknown> }>;
 export interface CoursDocs {
   lesson: Sujet[]; gram: Sujet[]; kanji: Sujet[]; word: Sujet[]; example: Sujet[]; method: Sujet[];
 }

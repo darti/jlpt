@@ -8,7 +8,7 @@
  *  précisément l'information qui justifie ce hook. */
 import { useEffect, useState } from "react";
 import type { CoursCategory } from "./coursSchema.ts";
-import { buildCours, type CoursDocs, type FetchLike, type Sujet } from "./coursFromGraph.ts";
+import { buildCours, type CoursDocs, type Sujet } from "./coursFromGraph.ts";
 
 const DOCS = ["lesson", "gram", "kanji", "word", "example", "method"] as const;
 
@@ -27,12 +27,12 @@ export function clearCoursCache(): void { cache = null; }
  * `loadRappelIndex` (`rappel.ts`), y compris la **purge en cas d'échec** : une promesse rejetée
  * gardée en cache condamnerait le programme pour toute la session.
  */
-export function loadCours(fetchImpl: FetchLike = fetch as FetchLike): Promise<CoursCategory[]> {
+export function loadCours(): Promise<CoursCategory[]> {
   if (!cache) {
     // En parallèle : six documents chargés au fil d'une boucle `await` sérialiseraient six
     // allers-retours au premier affichage. Le SW les précache depuis le lot 2.
     cache = Promise.all(
-      DOCS.map((n) => fetchImpl(`data/graph/${n}.jsonld`)
+      DOCS.map((n) => fetch(`data/graph/${n}.jsonld`)
         .then((r) => r.json() as Promise<{ "@graph"?: Sujet[] }>)
         .then((d) => d["@graph"] ?? [])),
     )
