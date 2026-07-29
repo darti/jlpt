@@ -23,6 +23,13 @@ par tâche = branche + répertoire isolés.
 y avoir laissé des modifications non commitées (déjà rencontré : un document régénéré). Git refuse
 alors le merge — ne jamais stasher ni écraser le travail d'un autre sans demander.
 
+⚠ **Le hook pre-commit (`common:review`) bloque TOUJOURS un commit de sous-agent** : il exige la
+revue multi-agents, or un sous-agent n'a pas d'outil de dispatch et refuse — correctement — de
+fabriquer des verdicts. Le patron qui marche : le sous-agent laisse son travail **stagé**
+(`git add`) et rapporte le texte du blocage ; l'orchestrateur fait relire, puis commite lui-même.
+**Ne JAMAIS rejouer un `git commit` bloqué à l'identique** — ça passe parfois, et c'est exactement
+comme ça qu'un garde-fou cesse de garder. Le dire dans le prompt du sous-agent.
+
 ## Architecture (non évidente — lire avant d'éditer)
 
 **Vue d'ensemble et format du graphe : [`ARCHITECTURE.md`](ARCHITECTURE.md)** — les neuf types,
@@ -313,6 +320,8 @@ code touché.
 - **Tailwind vendorisé = sous-ensemble** : toutes les utilités ne sont PAS compilées
   (ex. `animate-spin` absent). Définir les manquantes (keyframes + règle/`@utility`)
   dans `src/styles/tailwind.css` `@layer base` — cf. `.jlpt-spin`, `.vbreak`/`.tok-*`.
+  ⚠ `src/styles/styles.gen.css` est **gitignoré** (généré) : son absence d'un diff est normale.
+  Pour prouver qu'une utilité est compilée, greper le fichier APRÈS `bun run css`, pas le diff.
 - **Furigana : `<span class="furi">`, JAMAIS `<ruby>`/`<rt>`.** L'annotation est un
   `<span class="furi-rt">` émis par `annote()` (`src/lib/dict.ts`), stylé en overlay absolu par
   `.furi > .furi-rt` (`src/styles/tailwind.css`). Trois invariants, tous **mesurés dans les deux
@@ -344,6 +353,11 @@ code touché.
       "$B" --headless=new --disable-gpu --remote-debugging-port=9333 --user-data-dir=/tmp/cdp about:blank
   puis `PUT /json/new?<url>` → WebSocket → `Runtime.evaluate`. ⚠ Le chargement à froid des cinq
   shards prend ~8 s : attendre moins fait conclure à tort « la session ne démarre pas ».
+  ⚠ Deux états masquent le démarrage d'une séance et font conclure à tort que rien ne marche :
+  une **session reprenable** laissée par un essai précédent remplace « Commencer » par
+  « Continuer / Nouvelle session », et un **diagnostic dû** détourne vers le diagnostic. Avant de
+  piloter : `localStorage.removeItem("jlptN3quiz_resume")` et poser `diagAt: Date.now()` dans le
+  blob pour prendre le chemin composé.
 - **Vérifier dans WebKit aussi** (tout ce qui touche au rendu du japonais : furigana, ruby,
   césure, largeur de base). Playwright a déjà installé le build : `bun add playwright-core` dans
   le scratchpad, puis `webkit.launch({ executablePath: "~/Library/Caches/ms-playwright/webkit-2311/pw_run.sh" })`
@@ -365,6 +379,12 @@ code touché.
   lecture »). Et un cliquet (`couverture > 93 %`) doit être **remonté** dès qu'on dépasse le
   seuil, sinon il cesse de garder quoi que ce soit. Un test de mesure laissé tel quel échoue en
   annonçant une régression alors qu'il constate un progrès.
+- **Le FIXTURE d'un test borne ce qu'il peut détecter.** Un test d'intégration monté sur un
+  `localStorage` vide ne voit pas un dépassement de budget de séance : sans erreurs ni entités
+  dues, la tranche adaptative laisse treize questions de marge et le débordement ne peut pas se
+  manifester. Un test vert dit « correct dans l'état que je construis » — relire cet état d'abord.
+  Corollaire : **prouver un test par MUTATION** (retirer le correctif, vérifier le rouge, remettre)
+  est le seul moyen de savoir qu'il garde quelque chose.
 - **Test navigateur (HashRouter)** : changer le hash (`#/x`) ne recharge PAS la page.
   Pour charger un nouveau bundle après `bun run build`, faire un vrai `location.reload()`
   (le HTML est network-first, donc pas besoin de bumper `sw.js`).
@@ -414,4 +434,8 @@ et les `sync-*.mjs` ont été supprimés. Le contenu vit dans `data/` et est cha
   Asserter le texte de base via `baseText()` (cf. `quiz.test.tsx`) ou une structure invariante.
   ⚠ `happydom.ts` est préchargé pour **toute** la suite (`bunfig.toml`) : `document`/`localStorage`
   existent même dans un test « pur ». Isoler explicitement l'état partagé (cf.
-  `clearCategoryCache()` dans `src/lib/bank.ts`, `clearGraphCache()` dans `src/lib/graph.ts`).
+  `clearCategoryCache()` dans `src/lib/bank.ts`, `clearGraphCache()` dans `src/lib/graph.ts`,
+  `clearCoursCache()` dans `src/features/cours/useCours.ts`, `clearAnchorCache()` dans
+  `src/features/quiz/anchor.ts`). ⚠ Les neuf `EntrainementApp.*.test.tsx` ne purgent PAS le cache
+  du cours : ils ne polluent rien uniquement parce que `src/testing/graphFixture.ts` sert `{}`
+  pour les six documents. Enrichir ce fixture casse trois fichiers d'un coup — purger d'abord.
