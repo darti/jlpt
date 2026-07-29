@@ -1,5 +1,5 @@
 import { test, expect, afterEach } from "bun:test";
-import { allocateLearn, buildLearnQueue, TRACK_DE_SKILL } from "./learnQueue.ts";
+import { allocateLearn, buildLearnQueue, rebuildLearnQueue, TRACK_DE_SKILL } from "./learnQueue.ts";
 import { anchorIndex, clearAnchorCache } from "../quiz/anchor.ts";
 import type { Question } from "../../types/quiz.ts";
 import type { CoursCategory, CoursItem } from "../cours/coursSchema.ts";
@@ -119,4 +119,43 @@ test("buildLearnQueue rend une file vide quand rien n est alloue", () => {
     categories: cats, fsrs: {}, today: 0,
     alloc: { gram: 0, vocab: 0, kanji: 0 }, index, exclude: new Set(),
   })).toEqual([]);
+});
+
+// ── Reprise ─────────────────────────────────────────────────────────────────────────────────
+// Les questions d'ancrage OUVRENT la session, dans l'ordre de la file : à la reprise, l'ancre se
+// LIT à la position courante. La rejouer par `selectAnchor` rendrait un autre ord — le jeu
+// d'exclusion d'origine (erreurs, révision, confusion) n'existe plus.
+
+test("rebuildLearnQueue rattache chaque entite restante a l ancre que la session lui reserve", () => {
+  const session = [q(7, ["jlpt:gram/ば"]), q(8, ["jlpt:word/位置"]), q(9, ["jlpt:gram/autre"])];
+  const file = rebuildLearnQueue(["jlpt:gram/ば", "jlpt:kanji/位"], cats, session, 0);
+  expect(file.map((s) => [s.item.id, s.anchor])).toEqual([
+    ["jlpt:gram/ば", 7],
+    ["jlpt:kanji/位", 8], // atteint via le mot 位置, comme au premier tirage
+  ]);
+});
+
+test("rebuildLearnQueue repart de la position courante, pas du debut de la session", () => {
+  const session = [q(7, ["jlpt:gram/ば"]), q(8, ["jlpt:gram/たら"])];
+  const file = rebuildLearnQueue(["jlpt:gram/たら"], cats, session, 1);
+  expect(file.map((s) => [s.item.id, s.anchor])).toEqual([["jlpt:gram/たら", 8]]);
+});
+
+// Une entité sans ancre ne consomme pas de question : la suivante doit garder la sienne.
+test("rebuildLearnQueue n avance pas la position sur une entite sans ancre", () => {
+  const session = [q(7, ["jlpt:gram/たら"])];
+  const file = rebuildLearnQueue(["jlpt:gram/ば", "jlpt:gram/たら"], cats, session, 0);
+  expect(file.map((s) => s.anchor)).toEqual([null, 7]);
+});
+
+// Le blob est de la donnée utilisateur : un IRI que le programme ne connaît plus est ignoré,
+// jamais une cause d'échec.
+test("rebuildLearnQueue ignore une entite absente du programme", () => {
+  const session = [q(7, ["jlpt:gram/ば"])];
+  const file = rebuildLearnQueue(["jlpt:gram/disparu", "jlpt:gram/ば"], cats, session, 0);
+  expect(file.map((s) => [s.item.id, s.anchor])).toEqual([["jlpt:gram/ば", 7]]);
+});
+
+test("rebuildLearnQueue rend une file vide quand il ne reste rien a enseigner", () => {
+  expect(rebuildLearnQueue([], cats, [q(7, ["jlpt:gram/ば"])], 0)).toEqual([]);
 });

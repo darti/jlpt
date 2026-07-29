@@ -6,9 +6,10 @@
  */
 import { allocateCount } from "../../lib/bank.ts";
 import { SKILLS, type Skill } from "../../types/progress.ts";
+import type { Question } from "../../types/quiz.ts";
 import type { CoursCategory, CoursItem } from "../cours/coursSchema.ts";
 import type { FsrsMap } from "../quiz/revision.ts";
-import { selectAnchor, type AnchorIndex } from "../quiz/anchor.ts";
+import { anchorIndex, isAnchor, selectAnchor, type AnchorIndex } from "../quiz/anchor.ts";
 import { nextLessonBlock, type Track } from "./curriculum.ts";
 
 /** Les trois pistes enseignables et la compétence de quiz correspondante. */
@@ -80,6 +81,48 @@ export function buildLearnQueue(args: {
       if (anchor !== null) pris.add(anchor);
       out.push({ item, anchor });
     }
+  }
+  return out;
+}
+
+/** Index IRI → item du programme, toutes pistes enseignables confondues. */
+function itemsParIri(categories: CoursCategory[]): Map<string, CoursItem> {
+  const out = new Map<string, CoursItem>();
+  for (const cat of categories) {
+    if (cat.kind !== "learn") continue;
+    for (const g of cat.groups) for (const it of g.items) out.set(it.id, it);
+  }
+  return out;
+}
+
+/**
+ * La file d'une session REPRISE : les entités restant à enseigner (`iris`, tels que persistés
+ * dans `ResumeState.learn`) et, pour chacune, l'ancre que la session lui réserve déjà.
+ *
+ * ⚠ L'ancre se **lit** dans l'ordre de la session, elle ne se recalcule pas. Les questions
+ * d'ancrage ouvrent `questions` dans l'ordre de la file et se consomment une par une : à partir
+ * de `from` (la position où la session s'est interrompue), la question courante est l'ancre de
+ * l'entité courante si elle la teste. Rejouer `selectAnchor` rendrait un autre ord — le jeu
+ * d'exclusion d'origine (erreurs, révision, confusion) n'existe plus à la reprise.
+ *
+ * Une entité que le programme ne connaît plus est ignorée. L'alignement dégrade alors vers
+ * « plus d'ancre » (les questions restantes redeviennent de simples questions de quiz), jamais
+ * vers une ancre fausse : le budget de la séance est préservé dans tous les cas.
+ */
+export function rebuildLearnQueue(
+  iris: string[], categories: CoursCategory[], questions: Question[], from: number,
+): LearnStep[] {
+  const parIri = itemsParIri(categories);
+  const index = anchorIndex(questions);
+  const out: LearnStep[] = [];
+  let pos = from;
+  for (const iri of iris) {
+    const item = parIri.get(iri);
+    if (!item) continue;
+    const q = questions[pos];
+    const anchor = q && isAnchor(iri, q.id, index) ? q.id : null;
+    if (anchor !== null) pos++;
+    out.push({ item, anchor });
   }
   return out;
 }

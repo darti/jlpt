@@ -1,5 +1,5 @@
 import { test, expect, afterEach } from "bun:test";
-import { anchorIndex, selectAnchor, clearAnchorCache } from "./anchor.ts";
+import { anchorIndex, isAnchor, selectAnchor, clearAnchorCache } from "./anchor.ts";
 import type { Question } from "../../types/quiz.ts";
 
 afterEach(() => { clearAnchorCache(); });
@@ -52,4 +52,25 @@ test("une question sans arete tests n entre pas dans l index", () => {
 test("anchorIndex est memoise sur l identite du tableau", () => {
   const qs = [q(1, ["jlpt:gram/ば"])];
   expect(anchorIndex(qs)).toBe(anchorIndex(qs));
+});
+
+// `isAnchor` répond sur un ord IMPOSÉ : c'est ce qui permet à une reprise de LIRE l'ancre que la
+// session persistée réserve à une carte, au lieu de la rechoisir sans son jeu d'exclusion.
+test("isAnchor reconnait l arete directe et refuse une autre question", () => {
+  const index = anchorIndex([q(3, ["jlpt:gram/ば"]), q(4, ["jlpt:gram/たら"])]);
+  expect(isAnchor("jlpt:gram/ば", 3, index)).toBe(true);
+  expect(isAnchor("jlpt:gram/ば", 4, index)).toBe(false);
+});
+
+test("isAnchor suit le pont kanji vers le mot", () => {
+  const index = anchorIndex([q(7, ["jlpt:word/位置"])]);
+  expect(isAnchor("jlpt:kanji/位", 7, index)).toBe(true);
+  expect(isAnchor("jlpt:kanji/仁", 7, index)).toBe(false);
+});
+
+// Contrairement à `selectAnchor`, `isAnchor` ne choisit pas : un ord plus grand reste une ancre
+// valable si c'est celui que la session a réservé.
+test("isAnchor accepte un ord qui n est pas le plus petit", () => {
+  const index = anchorIndex([q(3, ["jlpt:gram/ば"]), q(9, ["jlpt:gram/ば"])]);
+  expect(isAnchor("jlpt:gram/ば", 9, index)).toBe(true);
 });

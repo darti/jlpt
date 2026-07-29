@@ -72,3 +72,18 @@ export function selectAnchor(
   if (!iri.startsWith(KANJI)) return null;
   return premier(index.parKanji.get(iri.slice(KANJI.length)));
 }
+
+/**
+ * `ord` est-il une ancre de `iri` ? Même règle en deux temps que `selectAnchor` (arête directe,
+ * puis pont par le mot), mais sur un ord **imposé** au lieu d'un ord à choisir.
+ *
+ * Sert à RECONSTITUER une file d'apprentissage reprise : l'ancre y est déjà fixée par l'ordre de
+ * la session persistée. La rechoisir donnerait un autre ord — le jeu d'exclusion d'origine
+ * (erreurs, révision, confusion) est perdu à la reprise — et la carte cesserait d'être suivie de
+ * SA question.
+ */
+export function isAnchor(iri: string, ord: number, index: AnchorIndex): boolean {
+  if (index.direct.get(iri)?.includes(ord)) return true;
+  if (!iri.startsWith(KANJI)) return false;
+  return index.parKanji.get(iri.slice(KANJI.length))?.includes(ord) ?? false;
+}
