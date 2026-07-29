@@ -221,3 +221,63 @@ déclaration est celle qui est déjà en production pour le thème sombre, seule
 numériques changent (`blur` 16 → 18 px, `saturate` 140 → 180 %). Le reste (couleurs,
 `box-shadow`, `filter` sur un pseudo-élément) n'a pas d'écart connu entre moteurs. À rejouer
 si l'environnement WebKit redevient exploitable.
+
+## 7. Itération du 2026-07-30 — verre plus prononcé, fond plus vif et rosé
+
+Retour d'usage : effet de verre trop discret, fond trop sage. Les §3.1–3.3 ci-dessus décrivent
+donc l'état intermédiaire ; valeurs courantes ci-dessous.
+
+**Les deux réglages sont couplés, et c'est le point à retenir.** L'écart visuel carte ↔ gouttière
+vaut `opacité × (255 − fond)`. Baisser l'opacité du panneau (`.58 → .52`) laisse passer plus de
+halo — le levier direct du « plus de verre » — mais réduit du même coup cet écart. Ne le faire
+que si le fond gagne en vivacité en face : sinon la carte se **redissout** au lieu de devenir
+translucide.
+
+| | avant | après |
+|---|---|---|
+| `--color-bg` | `#e3e8f0` | `#e8e3ee` (tiré vers nord15) |
+| `--color-panel` / `-surface` | `.58` | `.52` |
+| `--effect-backdrop` | `blur(18px) saturate(180%)` | `blur(22px) saturate(210%)` |
+| aurores (alphas) | `.34–.40` | `.36–.60` |
+| `--aurora-filter` | `saturate(165%)` | `saturate(185%)` |
+
+Trois choses font lire une surface comme du verre, et il faut **les trois** : le liseré interne
+haut (monté à `.95`), un second liseré **bas** sombre qui donne son épaisseur à la dalle, et une
+ombre portée franche qui la décolle.
+
+⚠ Le flou reste à 22 px délibérément : chaque carte porte un `backdrop-filter` et il y en a une
+quinzaine à l'écran — au-delà, le coût GPU se paie au défilement sur mobile.
+
+⚠ La **géométrie** des halos (positions, rayons) vit dans `body::before`, partagée par les deux
+thèmes. La dominante rose du clair se règle donc uniquement par les couleurs et les alphas : le
+froid recule (nord7, nord14), le rose prend les deux positions de droite — nord15 au halo bas,
+et un rose plus chaud entre nord15 et nord11 au halo médian, Nord n'ayant qu'un seul mauve (deux
+nord15 côte à côte donneraient une tache plate).
+
+### Contraste — mesuré sur les pixels rendus
+
+Le fond d'une carte est un composite (canevas + aurore + `backdrop-filter` + blanc `.52`) que
+seul le moteur sait calculer : le déduire des valeurs nominales donnerait un faux chiffre. Mesure
+par échantillonnage du PNG (90ᵉ centile de luminance par zone = le fond, le texte étant écarté) :
+
+| zone | `fg` | `fg-dim` |
+|---|---|---|
+| carte (vide) | 10,60:1 | **4,77:1** |
+| carte (zone de texte) | 10,60:1 | **4,78:1** |
+| gouttière | 10,51:1 | **4,76:1** |
+| canevas | 9,88:1 | **4,60:1** |
+
+Tous au-dessus du seuil AA de 4,5. À alpha constant, le passage de l'état intermédiaire à
+celui-ci coûte `4,90 → 4,77` sur carte : marge conservée, mais **elle est mince** — un fond
+encore plus soutenu ferait passer `fg-dim` sous AA. C'est la contrainte qui borne la vivacité.
+
+### Dette ouverte — `--color-fg-muted`
+
+`fg-muted` mesure **≈ 3,0:1**, sous le seuil AA du texte. Ce n'est pas une régression de ce lot
+(3,14 → 3,06 à alpha constant, et l'original à `.45` valait ≈ 2,4:1), mais le token porte du
+**contenu** : les lectures de mots à `text-base` dans `EntityCard.tsx:154,181`.
+
+Le corriger n'est pas un réglage mais un arbitrage de typographie : atteindre 4,5:1 demande
+`≈ .70`, soit la valeur de `fg-dim` (`.72`) — la hiérarchie à trois niveaux de gris
+disparaîtrait. La vraie question est plutôt : une lecture de mot doit-elle être le tier le plus
+effacé de l'interface ? À trancher séparément.
