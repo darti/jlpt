@@ -17,6 +17,12 @@ export const REVISION_CAP = 0.4;
 /** Part maximale du budget consacrée au drill des confusions actives (types de pièges répétés). */
 export const CONFUSION_CAP = 0.25;
 
+/** Part du budget GARANTIE à l'apprentissage, prélevée avant les autres tranches — au prix de la
+ *  révision : en séance saturée à 45 questions, la révision passe de 18 à 10 et l'apprentissage
+ *  (11) la dépasse. Arbitrage délibéré, pas un bug à « corriger » : sans ce plancher, un
+ *  apprenant assidu n'apprenait plus rien de neuf (1 carte sur 8 questions, cf. sessionPlan.test.ts). */
+export const LEARN_FLOOR = 0.25;
+
 /** État de l'apprenant lu depuis la progression + la session reprenable. */
 export interface SessionState {
   /** Une session en cours (< 2 j) existe. */
@@ -59,19 +65,33 @@ export function pickSessionPlan(state: SessionState, total: number, caps: Caps):
     state.daysSinceDiagnostic == null || state.daysSinceDiagnostic >= DIAGNOSTIC_INTERVAL_DAYS;
   if (caps.diagnostic && diagnosticDue) return { kind: "diagnostic" };
 
-  const errors = caps.errors ? Math.min(state.wrongCount, Math.floor(ERRORS_CAP * total)) : 0;
+  // Plancher d'apprentissage : prélevé AVANT les autres tranches, sinon leurs plafonds cumulés
+  // (0,3 + 0,25 + 0,4 = 0,95) ne laissent que des miettes à l'apprentissage — plus la séance est
+  // chargée en erreurs/révisions, moins on enseigne de neuf, ce qui n'est pas soutenable.
+  const plancher = caps.learn
+    ? Math.min(total, state.newCoursePoints, Math.max(1, Math.round(LEARN_FLOOR * total)))
+    : 0;
+  const reste = total - plancher;
+
+  const errors = caps.errors ? Math.min(state.wrongCount, Math.floor(ERRORS_CAP * total), reste) : 0;
   // Confusion : le MOTIF répété, juste après les erreurs (les deux corrigent des fautes). Cap 0,25
   // qui ne comprime pas le cap 0,4 de la révision en session normale (cf. spec §3.2).
   const confusion = caps.confusion
-    ? Math.min(state.confusionCount, Math.floor(CONFUSION_CAP * total), Math.max(0, total - errors))
+    ? Math.min(state.confusionCount, Math.floor(CONFUSION_CAP * total), Math.max(0, reste - errors))
     : 0;
   // La révision suit : à 4,5 mois de l'examen, l'oubli prime (priorité haute).
   const revision = caps.revision
-    ? Math.min(state.revisionDue, Math.floor(REVISION_CAP * total), Math.max(0, total - errors - confusion))
+    ? Math.min(state.revisionDue, Math.floor(REVISION_CAP * total), Math.max(0, reste - errors - confusion))
     : 0;
-  const learn = caps.learn
-    ? Math.min(state.newCoursePoints, Math.floor(LEARN_CAP * total), Math.max(0, total - errors - confusion - revision))
+  // Au-delà du plancher, l'apprentissage peut encore monter jusqu'à son plafond s'il reste de la place.
+  const sup = caps.learn
+    ? Math.min(
+        state.newCoursePoints - plancher,
+        Math.floor(LEARN_CAP * total) - plancher,
+        Math.max(0, reste - errors - confusion - revision),
+      )
     : 0;
+  const learn = plancher + Math.max(0, sup);
   const adaptive = Math.max(0, total - errors - confusion - revision - learn);
   return { kind: "composed", alloc: { errors, confusion, revision, learn, adaptive } };
 }
