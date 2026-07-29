@@ -9,13 +9,20 @@ import {
 import { loadCorpus, type SkillRange } from "../../lib/graph.ts";
 import { readRawProgress, writeProgress, readCadence, writeCadence } from "../../lib/storage.ts";
 import { asBits, asHistory, asProgress, asWrong } from "../../lib/blob.ts";
-import { hasBit, countUnseen } from "../../lib/coverage.ts";
+import { countUnseen } from "../../lib/coverage.ts";
 import { recordAnswer } from "../../lib/cadence.ts";
 import { dashboardModel, prescriptiveWeights, daysUntilExam } from "../../lib/scoring.ts";
 import { cloudPush, type GistDeps } from "../../lib/gist.ts";
 import { pickSessionPlan, BUILT_CAPS } from "../entrainement/sessionPlan.ts";
+import {
+  allocateLearn, buildLearnQueue, rebuildLearnQueue, selectReprises, type LearnStep,
+} from "../entrainement/learnQueue.ts";
+import { loadCours, useCours } from "../cours/useCours.ts";
+import { entityState } from "../cours/entityState.ts";
+import type { CoursCategory } from "../cours/coursSchema.ts";
+import { anchorIndex } from "./anchor.ts";
 import { asConfusions, dayNumber, trapModel, kindIndex, selectConfusion, activeConfusionCount } from "./traps.ts";
-import { asFsrs, dueBySkill, selectRevision } from "./revision.ts";
+import { asFsrs, dueBySkill, fsrsPatch, selectRevision } from "./revision.ts";
 import { checkReading } from "../../lib/kana.ts";
 import { answerPatch, pickSlice } from "./answerPatch.ts";
 import { resolveMinutes, parseSessionParams } from "./sessionParams.ts";
@@ -23,7 +30,8 @@ import {
   clearResumeState, persistResumeState, readResumeState, restoredCorrige, type ResumeState,
 } from "./resume.ts";
 
-export type Phase = "home" | "question" | "corrige" | "results" | "diag-intro" | "diag-results";
+export type Phase =
+  | "home" | "apprendre" | "question" | "corrige" | "results" | "diag-intro" | "diag-results";
 
 /** One answered diagnostic item, kept for the end-of-test corrigé. */
 export interface DiagAnswer { question: Question; chosen: number; }
@@ -56,6 +64,25 @@ export function useQuiz() {
   const [confusionIds, setConfusionIds] = useState<Set<number>>(new Set());
   const [mode, setMode] = useState<"normal" | "diagnostic">("normal");
   const [diagAnswers, setDiagAnswers] = useState<DiagAnswer[]>([]);
+  // Phase 1 — les entités à enseigner et l'étape courante. Les questions d'ancrage OUVRENT
+  // `questions` (dans l'ordre de la file) : `index` y pointe déjà, il n'y a rien à remonter au
+  // passage en phase quiz, et la reprise persiste une seule liste d'ords comme avant.
+  const [learnQueue, setLearnQueue] = useState<LearnStep[]>([]);
+  const [learnIdx, setLearnIdx] = useState(0);
+  // Le programme, pour savoir quoi enseigner. `null` tant que les six documents ne sont pas
+  // chargés (ou en cas d'échec) : la phase d'apprentissage est alors SAUTÉE — une séance ne se
+  // bloque, ni ne se retarde, sur le chargement du cours.
+  // ⚠ Lu par `coursRef` dans `start`, jamais depuis la fermeture : `start` attend corpus et
+  // viviers avant de composer, et le cours peut arriver pendant cette attente. Le prendre de la
+  // fermeture figerait le `null` du montage — une séance ouverte par `?min=` n'enseignerait
+  // alors jamais rien.
+  // ⚠ Le ref ne suffit PAS à `resumeNow` : il est posé par un effet, donc par un COMMIT React,
+  // et l'auto-reprise `?resume=1` tire au montage — ses `await` résolvent depuis des caches
+  // module, en microtâches, jamais assez pour que React reflushe. `resumeNow` attend donc
+  // `loadCours()` (mémoïsé au module, précaché par le SW) au lieu de lire le ref.
+  const cours = useCours();
+  const coursRef = useRef<CoursCategory[] | null>(null);
+  useEffect(() => { coursRef.current = cours; }, [cours]);
 
   const rightRef = useRef(0);
   const corpusRef = useRef<SkillRange[] | null>(null);
@@ -152,6 +179,8 @@ export function useQuiz() {
       rightRef.current = 0;
       setQuestions(session);
       setIndex(0);
+      setLearnQueue([]); // un diagnostic n'enseigne rien : la file d'une séance précédente tombe
+      setLearnIdx(0);
       setDiagAnswers([]);
       setMode("diagnostic");
       setAnswered(false);
@@ -195,44 +224,92 @@ export function useQuiz() {
     for (const q of confusionQs) exclude.add(q.id);
     setConfusionIds(new Set(confusionQs.map((q) => q.id))); // alimente le badge « ciblée » du corrigé
 
-    // Learn slice: never-seen items, distributed by mastery and picked near the level. Each category's
-    // pool is filtered to unseen; unseen-thin categories simply contribute fewer (adaptive covers the
-    // shortfall below — budget still `total`).
-    // wrong ⊆ seen (choose() sets the seen bit when appending to wrong[]), so no wrong id is ever
-    // dans `unseen` — on passe [] plutôt qu'un bonus +150 qui ne peut pas se déclencher ici.
-    const learnQs = plan.alloc.learn > 0
-      ? pickSlice(
-          allocateCount((c) => weights[c], plan.alloc.learn),
-          (cat) => pools[cat].filter((q) => !hasBit(seen, q.id)),
-          raw, exclude, [],
-        )
-      : [];
+    // Phase d'apprentissage : `plan.alloc.learn` ne compte plus des questions inédites mais des
+    // ENTITÉS à enseigner (spec §5.1 — `sessionPlan` est inchangé, seule sa lecture change).
+    // Chaque carte est suivie de la question qui la teste ; la règle (quelle leçon, quelle ancre)
+    // vit dans `curriculum.ts` / `learnQueue.ts`, le hook n'orchestre que les phases.
+    // L'index d'ancrage balaie les 10 351 questions : on ne le construit que si la phase a lieu.
+    const programme = plan.alloc.learn > 0 ? coursRef.current : null;
+    const anchors = programme ? anchorIndex(allPool) : null;
+    const byId = anchors ? new Map(allPool.map((q) => [q.id, q])) : null;
+    const learnFile: LearnStep[] = [];
+    const ancreQs: Question[] = [];
+    if (programme && anchors && byId) {
+      for (const step of buildLearnQueue({
+        categories: programme, fsrs: fsrsMap, today: jourRevision,
+        alloc: allocateLearn((c) => weights[c], plan.alloc.learn),
+        index: anchors, exclude,
+      })) {
+        // Une ancre qui ne résout pas de question (impossible en principe : l'index vient des
+        // mêmes pools) redevient une entité SANS ancre — jamais une carte suivie d'un vide.
+        const q = step.anchor !== null ? byId.get(step.anchor) : undefined;
+        if (!q) { learnFile.push({ item: step.item, anchor: null }); continue; }
+        exclude.add(q.id);
+        ancreQs.push(q);
+        learnFile.push(step);
+      }
+    }
+
+    // ⚠ INVARIANT DE BUDGET : seule une ancre RÉSOLUE consomme un créneau de question. Le créneau
+    // d'une entité sans ancre retourne au quiz — la séance compte `total` questions quel que soit
+    // le taux d'ancrage (spec §5.1).
+    const quizBudget = Math.max(0, total - ancreQs.length);
+
+    // Reprises : une SECONDE question par entité enseignée. Elles rejoignent la tranche GARANTIE
+    // et non la tête de la file adaptive — `composeSession` mélange tout (bank.ts:125-131), aucune
+    // position ne survit, et c'est tant mieux : c'est l'espacement entre l'exposition et le
+    // re-test qui fabrique la mémoire, pas la proximité.
+    // ⚠ Elles ne prennent que les places que les trois autres tranches garanties laissent :
+    // `composeSession` ne tronque jamais son lot garanti, et `sessionPlan` n'a jamais budgété de
+    // reprises. La borne vit dans `selectReprises` — c'est là qu'elle est testée.
+    // La place que les trois tranches garanties déjà servies laissent dans le budget du quiz.
+    const place = Math.max(
+      0, quizBudget - errorQs.length - confusionQs.length - revisionQs.length,
+    );
+    const repriseQs: Question[] = [];
+    if (anchors && byId) {
+      for (const ord of selectReprises(learnFile, anchors, exclude, place)) {
+        const q = byId.get(ord);
+        if (!q) continue;
+        exclude.add(q.id);
+        repriseQs.push(q);
+      }
+    }
 
     // Adaptive fills the remaining budget (weighted by mastery), from the full pools.
     // `wrong` conservé → bonus +150 (plancher souple sur les erreurs passées).
-    const adaptiveTarget = Math.max(0, total - errorQs.length - confusionQs.length - revisionQs.length - learnQs.length);
+    const adaptiveTarget = place - repriseQs.length; // ≥ 0 : `selectReprises` borne à `place`
     const picked = pickSlice(
       allocateCount((c) => weights[c], adaptiveTarget),
       (cat) => pools[cat],
       raw, exclude, wrong,
     );
 
-    // Guaranteed slices (errors + révision + learn) + adaptive fill → composeSession reconciles the budget.
-    const session = withPassageGroups(
-      composeSession([...errorQs, ...confusionQs, ...revisionQs, ...learnQs], picked, total, Math.random),
+    // Guaranteed slices (errors + confusion + révision + reprises) + adaptive fill → composeSession
+    // reconciles the quiz budget.
+    const quizQs = withPassageGroups(
+      composeSession([...errorQs, ...confusionQs, ...revisionQs, ...repriseQs], picked, quizBudget, Math.random),
       pools.lecture,
-      total,
+      quizBudget,
     );
-    if (!session.length) return;
+    if (!quizQs.length) return;
+    // Les ancres d'abord, dans l'ordre de la file : `index` les traverse pendant la phase 1 et
+    // arrive naturellement sur la première question de quiz.
+    const session = [...ancreQs, ...quizQs];
 
     rightRef.current = 0;
     setQuestions(session);
     setIndex(0);
     setAnswered(false);
     setChosen(null);
-    setPhase("question");
+    setLearnQueue(learnFile);
+    setLearnIdx(0);
+    setPhase(learnFile.length ? "apprendre" : "question");
 
-    const r: ResumeState = { kind: "quiz", ids: session.map((q) => q.id), qi: 0, right: 0, t: Date.now() };
+    const r: ResumeState = {
+      kind: "quiz", ids: session.map((q) => q.id), qi: 0, right: 0, t: Date.now(),
+      ...(learnFile.length ? { learn: learnFile.map((s) => s.item.id) } : {}),
+    };
     persistResumeState(r);
     setResume(r);
   }, [minutes]);
@@ -292,7 +369,70 @@ export function useQuiz() {
     commitAnswer(q, correct, correct ? q.a : null, true);
   }, [questions, index, answered, commitAnswer]);
 
+  /**
+   * Avance d'une étape dans la file d'apprentissage, et entre dans le quiz quand elle est
+   * épuisée. `consommee` dit si l'étape quittée a bien consommé sa question d'ancrage — c'est ce
+   * qui garde `index` aligné sur la prochaine ancre, puis sur la première question du quiz.
+   */
+  const avancerLearn = useCallback((consommee: boolean) => {
+    const ni = learnIdx + 1;
+    const qi = index + (consommee ? 1 : 0);
+    setLearnIdx(ni);
+    setIndex(qi);
+    setAnswered(false);
+    setChosen(null);
+    setTyped(null);
+    setPhase(ni < learnQueue.length ? "apprendre" : "question");
+    setResume((prev) => {
+      if (!prev) return prev;
+      // `learn` ne garde que ce qui RESTE à enseigner : une reprise rouvre la carte courante.
+      const next: ResumeState = {
+        ...prev, qi, right: rightRef.current, phase: "question", chosen: undefined,
+        learn: learnQueue.slice(ni).map((s) => s.item.id),
+      };
+      persistResumeState(next);
+      return next;
+    });
+  }, [index, learnIdx, learnQueue]);
+
+  /** Carte suivante : sa question d'ancrage quand elle en a une, l'étape suivante sinon. */
+  const learnNext = useCallback(() => {
+    const step = learnQueue[learnIdx];
+    if (!step) return;
+    if (step.anchor === null) { avancerLearn(false); return; }
+    setAnswered(false);
+    setChosen(null);
+    setTyped(null);
+    setPhase("question"); // `index` pointe déjà sur l'ancre : elles ouvrent la session, dans l'ordre
+  }, [learnQueue, learnIdx, avancerLearn]);
+
+  /**
+   * Auto-évaluation d'une entité SANS ancre (rien dans le corpus ne la teste) : le seul signal
+   * disponible amorce le planificateur au lieu de ne rien écrire. Même grades que le QCM —
+   * « Je connais » = Good(3), « À revoir » = Again(1).
+   *
+   * ⚠ Refusée sur une entité ANCRÉE : elle avancerait la file sans consommer la question
+   * d'ancrage, et la carte suivante s'ouvrirait sur l'ancre de la PRÉCÉDENTE. Le hook doit rester
+   * cohérent tout seul, sans dépendre de la discipline de la vue (ni d'un double-clic).
+   *
+   * ⚠ `fsrsPatch` plutôt que `fsrsInit` : une entité « à revoir » qu'on ré-enseigne a déjà une
+   * carte, et `fsrsInit` la remettrait à zéro — on RÉVISE une carte connue, on n'en crée une que
+   * s'il n'y en a pas. `writeProgress` ne fusionne en profondeur que `skill` : `fsrsPatch` rend
+   * la carte ENTIÈRE, patcher la seule entité effacerait toutes les autres.
+   */
+  const learnSelfGrade = useCallback((grade: 1 | 3) => {
+    const step = learnQueue[learnIdx];
+    if (!step || step.anchor !== null) return;
+    const raw = readRawProgress();
+    const patch = fsrsPatch(asFsrs(raw), [step.item.id], grade === 3, dayNumber(new Date()));
+    if (patch) writeProgress({ fsrs: patch });
+    schedulePush();
+    avancerLearn(false);
+  }, [learnQueue, learnIdx, avancerLearn, schedulePush]);
+
   const next = useCallback(() => {
+    // Phase 1 : le corrigé d'une ancre rend la main à la FILE, pas à la question suivante.
+    if (learnIdx < learnQueue.length) { avancerLearn(true); return; }
     const ni = index + 1;
     if (ni >= questions.length) {
       // C2: append a session-score history entry (legacy `finish()` shape, app-n3.html:971)
@@ -319,7 +459,7 @@ export function useQuiz() {
         return next;
       });
     }
-  }, [index, questions.length]);
+  }, [index, questions.length, learnIdx, learnQueue.length, avancerLearn]);
 
   const restart = useCallback(() => {
     setPhase("home");
@@ -331,6 +471,8 @@ export function useQuiz() {
     setConfusionIds(new Set());
     setMode("normal");
     setDiagAnswers([]);
+    setLearnQueue([]);
+    setLearnIdx(0);
   }, []);
 
   const beginDiagnostic = useCallback(() => {
@@ -361,13 +503,26 @@ export function useQuiz() {
     // Restore the corrigé the user left (deep-linked to the cours and came back) when the
     // resume blob recorded one; otherwise resume on the question, as before.
     const { answered: onCorrige, chosen: restoredChosen } = restoredCorrige(r);
+    // La file d'apprentissage restante. Absente d'un blob antérieur au lot 2, vide une fois la
+    // phase 1 terminée. Le programme s'ATTEND ici (cf. le ⚠ du `coursRef` : le ref n'est posé
+    // qu'au commit suivant, l'auto-reprise le lirait toujours à `null`) — l'attente ne coûte que
+    // sur un cache froid, et `resumeNow` attend déjà `questionsForIds`, bien plus lourd. Un
+    // chargement en échec rend `[]` : on reprend alors en phase quiz, exactement comme avant.
+    const programme = r.learn?.length ? await loadCours() : null;
+    const file = r.learn?.length && programme?.length
+      ? rebuildLearnQueue(r.learn, programme, rebuilt, qi)
+      : [];
     rightRef.current = r.right;
     setQuestions(rebuilt);
     setIndex(qi);
     setAnswered(onCorrige);
     setChosen(restoredChosen);
     setTyped(null);
-    setPhase(onCorrige ? "corrige" : "question");
+    setLearnQueue(file);
+    setLearnIdx(0);
+    // Un corrigé interrompu se rouvre TEL QUEL : sa question était l'ancre de l'étape 0 de la
+    // file restante, et `next()` rendra la main à la file.
+    setPhase(onCorrige ? "corrige" : (file.length ? "apprendre" : "question"));
   }, [resume, ensureCorpus]);
 
   // One-shot hub → quiz handoff: `?min=N` (router search) auto-starts a session of that
@@ -383,11 +538,27 @@ export function useQuiz() {
     else if (params.min) { setMinutes(params.min); void start(params.min); }
   }, [resumeNow, start, setMinutes, searchParams]);
 
+  // La carte courante de la phase 1. L'état de l'entité se DÉRIVE de la mémoire (`entityState`)
+  // au moment où la carte s'ouvre : le blob n'est relu qu'au changement d'étape, pas à chaque
+  // rendu du hook.
+  const learnStep = useMemo(() => {
+    const step = learnQueue[learnIdx];
+    if (!step) return null;
+    return {
+      item: step.item,
+      state: entityState(asFsrs(readRawProgress())[step.item.id], dayNumber(new Date())),
+      index: learnIdx,
+      count: learnQueue.length,
+      hasAnchor: step.anchor !== null,
+    };
+  }, [learnQueue, learnIdx]);
+
   return {
     phase,
     question: questions[index] ?? null,
     index,
     count: questions.length,
+    learnStep,
     right: rightRef.current,
     minutes,
     resume,
@@ -400,6 +571,8 @@ export function useQuiz() {
     choose,
     submitTyped,
     next,
+    learnNext,
+    learnSelfGrade,
     restart,
     setMinutes,
     resumeNow,

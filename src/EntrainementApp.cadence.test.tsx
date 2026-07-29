@@ -5,6 +5,7 @@ import { MemoryRouter } from "react-router-dom";
 import EntrainementApp from "./EntrainementApp.tsx";
 import { clearCategoryCache } from "./lib/bank.ts";
 import { clearRappelCache } from "./features/quiz/rappel.ts";
+import { clearCoursCache } from "./features/cours/useCours.ts";
 import { graphFetch } from "./testing/graphFixture.ts";
 import { readCadence, readRawProgress } from "./lib/storage.ts";
 import { asBits } from "./lib/blob.ts";
@@ -16,12 +17,12 @@ import { dayNumber } from "./features/quiz/traps.ts";
 let container: HTMLDivElement; let root: Root; let origFetch: typeof fetch;
 
 beforeEach(() => {
-  localStorage.clear(); clearCategoryCache(); clearRappelCache();
+  localStorage.clear(); clearCategoryCache(); clearRappelCache(); clearCoursCache();
   origFetch = globalThis.fetch;
   globalThis.fetch = graphFetch();
   container = document.createElement("div"); document.body.appendChild(container); root = createRoot(container);
 });
-afterEach(() => { act(() => { root.unmount(); }); container.remove(); globalThis.fetch = origFetch; clearCategoryCache(); clearRappelCache(); });
+afterEach(() => { act(() => { root.unmount(); }); container.remove(); globalThis.fetch = origFetch; clearCategoryCache(); clearRappelCache(); clearCoursCache(); });
 
 async function click(text: string) {
   const btn = [...container.querySelectorAll("button")].find((b) => b.textContent === text);

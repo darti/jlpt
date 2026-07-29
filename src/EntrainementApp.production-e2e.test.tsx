@@ -5,6 +5,7 @@ import { MemoryRouter } from "react-router-dom";
 import EntrainementApp from "./EntrainementApp.tsx";
 import { clearCategoryCache } from "./lib/bank.ts";
 import { clearRappelCache } from "./features/quiz/rappel.ts";
+import { clearCoursCache } from "./features/cours/useCours.ts";
 import { readRawProgress } from "./lib/storage.ts";
 import { PROGRESS_KEY, PROD_KEY } from "./lib/keys.ts";
 
@@ -42,7 +43,7 @@ let origFetch: typeof fetch;
 
 beforeEach(() => {
   localStorage.clear();
-  clearCategoryCache(); clearRappelCache();
+  clearCategoryCache(); clearRappelCache(); clearCoursCache();
   origFetch = globalThis.fetch;
   globalThis.fetch = eligibleFetch();
   container = document.createElement("div");
@@ -54,7 +55,7 @@ afterEach(() => {
   act(() => { root.unmount(); });
   container.remove();
   globalThis.fetch = origFetch;
-  clearCategoryCache(); clearRappelCache();
+  clearCategoryCache(); clearRappelCache(); clearCoursCache();
 });
 
 const nativeSetter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")?.set;

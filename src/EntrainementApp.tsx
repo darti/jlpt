@@ -4,6 +4,7 @@ import { QuestionCard } from "./features/quiz/QuestionCard.tsx";
 import { Corrige } from "./features/quiz/Corrige.tsx";
 import { SessionProgress } from "./features/quiz/SessionProgress.tsx";
 import { Results } from "./features/quiz/Results.tsx";
+import { LearnCard } from "./features/quiz/LearnCard.tsx";
 import { useQuiz, type Phase } from "./features/quiz/useQuiz.ts";
 import type { ResumeState } from "./features/quiz/resume.ts";
 import { DiagnosticIntro } from "./features/quiz/DiagnosticIntro.tsx";
@@ -17,6 +18,8 @@ import { useRappelIndex } from "./features/quiz/useRappelIndex.ts";
 import { resolveRappel, type RappelIndex } from "./features/quiz/rappel.ts";
 import { BTN_PRIMARY } from "./ui/styles.ts";
 import { readProduction, writeProduction } from "./lib/production.ts";
+import type { CoursItem } from "./features/cours/coursSchema.ts";
+import type { EntityState } from "./features/cours/entityState.ts";
 
 /** Pure, prop-driven Entraînement content: the hub (phase "home") or the quiz flow
  *  (question/corrigé/résultats). SSR-renderable — all effects live in the container +
@@ -28,6 +31,7 @@ export function EntrainementAppView(props: {
   index?: number;
   mode?: "normal" | "diagnostic"; diagAnswers?: DiagAnswer[]; diagModel?: DashboardModel | null;
   coursIndex?: RappelIndex | null;
+  learnStep?: { item: CoursItem; state: EntityState; index: number; count: number; hasAnchor: boolean } | null;
   onStart: () => void; onChoose: (i: number) => void; onNext: () => void; onRestart: () => void;
   onSetMinutes: (m: number) => void;
   onResumeNow: () => void; onDismissResume: () => void;
@@ -35,6 +39,7 @@ export function EntrainementAppView(props: {
   production?: boolean; onToggleProduction?: () => void;
   onSubmitTyped?: (text: string) => void; typed?: string | null;
   confusionIds?: Set<number>;
+  onLearnNext?: () => void; onLearnSelfGrade?: (grade: 1 | 3) => void;
 }) {
   const { question } = props;
   const onSpeak = (rate?: number) => { if (question) speakQuestion(question, rate); };
@@ -60,6 +65,17 @@ export function EntrainementAppView(props: {
         </label>
       </div>
     );
+  }
+
+  if (props.phase === "apprendre") {
+    return props.learnStep ? (
+      <LearnCard
+        item={props.learnStep.item} state={props.learnStep.state}
+        index={props.learnStep.index} count={props.learnStep.count}
+        hasAnchor={props.learnStep.hasAnchor}
+        onNext={props.onLearnNext ?? (() => {})} onSelfGrade={props.onLearnSelfGrade ?? (() => {})}
+      />
+    ) : null;
   }
 
   if (props.phase === "diag-intro") {
@@ -119,6 +135,7 @@ export default function EntrainementApp() {
       chosen={quiz.chosen}
       mode={quiz.mode} diagAnswers={quiz.diagAnswers} diagModel={diagModel}
       coursIndex={coursIndex}
+      learnStep={quiz.learnStep}
       onStart={quiz.start} onChoose={quiz.choose} onNext={quiz.next} onRestart={quiz.restart}
       onSetMinutes={quiz.setMinutes}
       onResumeNow={quiz.resumeNow} onDismissResume={() => setResumeDismissed(true)}
@@ -126,6 +143,7 @@ export default function EntrainementApp() {
       onDiagDone={quiz.restart}
       production={production} onToggleProduction={toggleProduction}
       onSubmitTyped={quiz.submitTyped} typed={quiz.typed} confusionIds={quiz.confusionIds}
+      onLearnNext={quiz.learnNext} onLearnSelfGrade={quiz.learnSelfGrade}
     />
   );
 }

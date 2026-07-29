@@ -24,6 +24,10 @@ export interface ResumeState {
   t: number;
   phase?: "question" | "corrige";
   chosen?: number;
+  /** IRIs des entités restant à ENSEIGNER (phase « apprendre »). Absent d'un blob antérieur au
+   *  lot 2 : la reprise se fait alors directement en phase quiz. Ce ne sont pas des ords, ils
+   *  n'ont donc rien à faire dans `ids`. */
+  learn?: string[];
 }
 
 /**
@@ -50,6 +54,9 @@ export function readResumeState(): ResumeState | null {
     if (typeof r.t !== "number" || Date.now() - r.t > RESUME_MAX_AGE_MS) {
       localStorage.removeItem(RESUME_KEY);
       return null;
+    }
+    if (!Array.isArray(r.learn) || !r.learn.every((x) => typeof x === "string")) {
+      delete r.learn;
     }
     return r;
   } catch {

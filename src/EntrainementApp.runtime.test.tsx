@@ -3,6 +3,7 @@ import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { MemoryRouter } from "react-router-dom";
 import EntrainementApp from "./EntrainementApp.tsx";
+import { clearCoursCache } from "./features/cours/useCours.ts";
 
 // Runtime smoke: mounts the FULL container (useQuiz + useProgress effects) under happy-dom.
 // EntrainementApp is a route component → wrap in MemoryRouter (useSearchParams). No search
@@ -14,6 +15,7 @@ let root: Root;
 
 beforeEach(() => {
   localStorage.clear();
+  clearCoursCache(); // le programme est mémoïsé AU MODULE : il fuit d'un fichier de test à l'autre
   // Seed a realistic returning-user state: progress + a 2-session history + resume.
   localStorage.setItem("jlptN3adapt_v2", JSON.stringify({
     total: 60,
@@ -29,6 +31,7 @@ beforeEach(() => {
 afterEach(async () => {
   await act(async () => { root.unmount(); await new Promise((r) => setTimeout(r, 0)); });
   container.remove();
+  clearCoursCache();
 });
 
 async function renderApp() {
