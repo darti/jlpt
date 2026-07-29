@@ -322,6 +322,17 @@ code touché.
   dans `src/styles/tailwind.css` `@layer base` — cf. `.jlpt-spin`, `.vbreak`/`.tok-*`.
   ⚠ `src/styles/styles.gen.css` est **gitignoré** (généré) : son absence d'un diff est normale.
   Pour prouver qu'une utilité est compilée, greper le fichier APRÈS `bun run css`, pas le diff.
+- **Une erreur de syntaxe CSS ne casse RIEN de visible, et la CI l'accuse au mauvais endroit.**
+  `typecheck` ignore le CSS, et en local un `styles.gen.css` périmé traîne toujours sur disque :
+  la compilation peut échouer sans que rien ne bouge à l'écran. En CI le fichier est fabriqué par
+  un **effet de bord** — `scripts/dev.test.ts` lance le serveur de dev, dont `scripts/dev.ts` fait
+  un build Tailwind one-shot à l'import (personne n'assertait son code de sortie). Un CSS cassé
+  fait donc échouer ce build, le fichier n'est jamais créé, et le seul rouge est
+  `dict-bundle.test.ts` : « Could not resolve "../styles/styles.gen.css" » — le symptôme, pas la
+  cause. `src/styles/themes.test.ts` compile désormais la feuille et rend l'erreur réelle
+  (`CssSyntaxError … ligne:colonne`). ⚠ Piège concret déjà payé : un `*/` de trop au milieu d'un
+  commentaire français fait sortir la prose du commentaire, et la première **apostrophe** devient
+  une chaîne non terminée. Après toute édition de `src/styles/*.css`, lancer `bun run css`.
 - **Furigana : `<span class="furi">`, JAMAIS `<ruby>`/`<rt>`.** L'annotation est un
   `<span class="furi-rt">` émis par `annote()` (`src/lib/dict.ts`), stylé en overlay absolu par
   `.furi > .furi-rt` (`src/styles/tailwind.css`). Trois invariants, tous **mesurés dans les deux
