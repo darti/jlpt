@@ -1,6 +1,24 @@
 /* jlpt Nord Frost look, expressed as oku semantic tokens.
    Dark is the default (:root); light overrides via [data-theme="light"].
-   Values copied from the legacy theme.css semantic layer. */
+   Values copied from the legacy theme.css semantic layer.
+
+   ⚠ Le sélecteur du bloc sombre est `:root, :root[data-theme="dark"]` : sa branche `:root`
+   matche TOUS les thèmes. Un token qu'il déclare et que le bloc clair ne redéclare pas n'est
+   donc pas « au défaut neutre » — le clair tourne sur la valeur du thème SOMBRE. C'est ce qui
+   laissait le clair avec un `--effect-backdrop` calibré pour du verre sur fond noir.
+   D'où la séparation ci-dessous : les tokens réellement indépendants du thème (les formes)
+   vivent dans leur propre bloc, et `themes.test.ts` peut alors exiger que le clair redéclare
+   TOUT ce que le sombre déclare — sans quoi l'invariant ne distinguerait pas « partagé à
+   dessein » de « le clair a oublié d'override ». */
+
+/* Formes — mêmes valeurs dans les deux thèmes (un rayon n'a pas de polarité claire/sombre).
+   Rayons repris de theme.css (sm 12 / base 18 / lg 22). */
+:root {
+  --radius-lg: 0.75rem;                        /* 12px — petits éléments */
+  --radius-xl: 1.125rem;                       /* 18px — rayon des cartes */
+  --radius-2xl: 1.375rem;                      /* 22px — grandes surfaces */
+}
+
 :root,
 :root[data-theme="dark"] {
   --color-bg: #2e3440;                        /* nord0 */
@@ -26,10 +44,7 @@
   --aurora-2: rgba(163, 190, 140, 0.58);       /* nord14 */
   --aurora-3: rgba(180, 142, 173, 0.54);       /* nord15 */
   --aurora-4: rgba(136, 192, 208, 0.42);       /* nord8 */
-  /* Formes Nord Frost — rayons repris de theme.css (sm 12 / base 18 / lg 22) */
-  --radius-lg: 0.75rem;                        /* 12px — petits éléments */
-  --radius-xl: 1.125rem;                       /* 18px — rayon des cartes */
-  --radius-2xl: 1.375rem;                      /* 22px — grandes surfaces */
+  --aurora-filter: saturate(140%);
   /* Verre dépoli + élévations douces (spec Nord Frost, thème sombre) */
   --effect-backdrop: blur(16px) saturate(140%);
   --elevation-card: 0 8px 20px rgba(18, 27, 54, 0.30), 0 2px 6px rgba(18, 27, 54, 0.20), 0 1px 0 rgba(236, 239, 244, 0.05) inset;
@@ -37,37 +52,67 @@
   color-scheme: dark;
 }
 
+/* ---------- Thème clair ----------
+   Il ne suffit PAS d'éclaircir les valeurs du sombre. Le sombre marche parce que le panneau
+   ASSOMBRIT un fond que l'aurore a éclairé : la séparation vient du halo, pas de la couleur de
+   base. Éclaircir un fond déjà quasi blanc annule l'effet — mesuré, `rgba(255,255,255,.55)` sur
+   `#eceff4` donnait `≈ #f6f7f9`, soit 4 % d'écart, et on ne voyait pas où une carte finissait.
+   D'où le canevas descendu d'un cran : du verre blanc a besoin de quelque chose dont se
+   décoller. Tout le reste (aurore, liseré, ombre) en découle. */
 :root[data-theme="light"] {
-  --color-bg: #eceff4;                         /* nord6 */
-  --color-panel: rgba(255, 255, 255, 0.55);
-  --color-panel-2: rgba(229, 233, 240, 0.60);  /* nord5 .60 */
-  --color-surface: rgba(255, 255, 255, 0.55);
-  --color-surface-2: rgba(229, 233, 240, 0.60);
-  --color-line: rgba(46, 52, 64, 0.08);        /* nord0 .08 */
-  --color-line-soft: rgba(46, 52, 64, 0.08);
-  --color-line-hi: rgba(46, 52, 64, 0.14);
+  --color-bg: #e3e8f0;                          /* nord5 refroidi — PAS blanc, cf. ci-dessus */
+  --color-panel: rgba(255, 255, 255, 0.58);
+  --color-panel-2: rgba(216, 223, 235, 0.62);   /* se creuse sous un panneau plus blanc */
+  --color-surface: rgba(255, 255, 255, 0.58);
+  --color-surface-2: rgba(216, 223, 235, 0.62);
+  --color-line: rgba(46, 52, 64, 0.10);         /* nord0 .10 */
+  --color-line-soft: rgba(46, 52, 64, 0.10);
+  --color-line-hi: rgba(46, 52, 64, 0.16);
   --color-fg: #2e3440;                          /* nord0 */
-  --color-fg-dim: rgba(46, 52, 64, 0.62);
-  --color-fg-soft: rgba(46, 52, 64, 0.62);
-  --color-fg-muted: rgba(46, 52, 64, 0.45);
+  /* .62 → .72 : contrepartie du canevas assombri. Mesuré en luminance relative WCAG sur carte,
+     `fg-dim` passe de 3,75:1 — sous le seuil AA de 4,5 — à 4,84:1. Gain indépendant de l'aurore. */
+  --color-fg-dim: rgba(46, 52, 64, 0.72);
+  --color-fg-soft: rgba(46, 52, 64, 0.72);
+  --color-fg-muted: rgba(46, 52, 64, 0.55);
   --color-fg-on-accent: #ffffff;
   --color-accent: #5e81ac;                      /* nord10 */
-  --color-accent-hi: #5e81ac;
+  /* Sur fond CLAIR, une variante « haute » doit s'éloigner du fond, donc FONCER. Valait
+     `#5e81ac`, identique à `--color-accent` : un no-op silencieux. */
+  --color-accent-hi: #4c6b91;                   /* nord10 assombri */
   --color-status-completed: #5e8c4f;            /* darkened for light contrast */
   --color-status-failed: #b04a52;
   --color-prio-high: #a9882f;
-  --color-skill-grammaire: #5e81ac;
-  --color-skill-vocabulaire: #5e81ac;
-  --color-skill-kanji: #a9882f;
-  --color-skill-lecture: #5e8c4f;
-  /* Aurores plus discrètes sur fond clair */
-  --aurora-1: rgba(143, 188, 187, 0.26);
-  --aurora-2: rgba(163, 190, 140, 0.22);
-  --aurora-3: rgba(180, 142, 173, 0.22);
-  --aurora-4: rgba(136, 192, 208, 0.24);
-  /* Élévations plus discrètes sur fond clair (theme.css assombri) */
-  --elevation-card: 0 8px 20px rgba(96, 150, 225, 0.15), 0 2px 6px rgba(96, 150, 225, 0.10);
-  --elevation-pop: 0 28px 72px rgba(96, 150, 225, 0.26);
+  /* Quatre hues DISTINCTES : `CoverageRings` trace un anneau par compétence, et grammaire /
+     vocabulaire partageaient `#5e81ac` — deux anneaux confondus. Chacune vérifiée ≥ 3:1 sur
+     carte blanche (seuil AA des éléments graphiques). `ecoute` réutilise volontairement le
+     token de `lecture` (cf. CoverageRings.tsx). */
+  --color-skill-grammaire: #5e81ac;             /* nord10          — 3,72:1 */
+  --color-skill-vocabulaire: #37879b;           /* nord8 assombri  — 3,89:1 */
+  --color-skill-kanji: #a9882f;                 /* nord13 assombri — 3,13:1 */
+  --color-skill-lecture: #5e8c4f;               /* nord14 assombri — 3,58:1 */
+  /* `@theme` ne porte que des valeurs sombres (`#2a1a1a` / `#713030` / `#f87171`) : sans ces
+     trois lignes, `InstallPrompt` affiche un bloc rouge quasi noir en thème clair. */
+  --color-danger-bg: rgba(191, 97, 106, 0.12);
+  --color-danger-line: rgba(191, 97, 106, 0.38);
+  --color-danger-fg: #b04a52;                   /* 4,84:1 sur ce fond */
+  /* Mêmes hues Nord que le sombre, alphas relevés (.22–.26 → .34–.40). Rapporté au canevas,
+     l'écart de luminance du halo était tombé de ~28 points à ~5 : le calque était bien peint,
+     mais ne survivait ni au voisinage des cartes ni à leur traversée. */
+  --aurora-1: rgba(143, 188, 187, 0.38);
+  --aurora-2: rgba(163, 190, 140, 0.36);
+  --aurora-3: rgba(180, 142, 173, 0.36);
+  --aurora-4: rgba(136, 192, 208, 0.34);
+  --aurora-filter: saturate(165%);
+  /* La saturation du backdrop est ce qui fait que le halo GARDE SA TEINTE en traversant le
+     verre : c'est elle, plus que l'opacité, qui rend la transparence lisible en clair. */
+  --effect-backdrop: blur(18px) saturate(180%);
+  /* Le liseré interne (lumière de bord haute) est ce qui fait lire une surface comme du verre ;
+     le bloc clair l'avait perdu. Et l'ombre passait par `rgba(96,150,225,.15)` — une couleur
+     CLAIRE, qui teinte au lieu de détacher — remplacée par un bleu-gris sombre. */
+  --elevation-card: 0 10px 24px rgba(46, 58, 84, 0.13), 0 2px 6px rgba(46, 58, 84, 0.08), 0 1px 0 rgba(255, 255, 255, 0.75) inset;
+  --elevation-pop: 0 30px 78px rgba(46, 58, 84, 0.30), 0 1px 0 rgba(255, 255, 255, 0.85) inset;
+  /* `@theme` ne définit qu'une ombre noire `.38`, dure sur fond clair (`UpdateBanner`). */
+  --elevation-hover: 0 14px 32px rgba(46, 58, 84, 0.18), 0 3px 8px rgba(46, 58, 84, 0.10), 0 1px 0 rgba(255, 255, 255, 0.8) inset;
   color-scheme: light;
 }
 
@@ -85,7 +130,9 @@ body::before {
     radial-gradient(76% 72% at 46% 86%,  var(--aurora-2), transparent 72%),
     radial-gradient(72% 72% at 92% 78%,  var(--aurora-3), transparent 70%),
     radial-gradient(60% 66% at 104% 40%, var(--aurora-4), transparent 66%);
-  filter: saturate(140%);
+  /* Thémable : sur fond clair, les mêmes hues Nord ont besoin de plus de chroma pour ne pas
+     virer au gris. Le repli reprend la valeur historique du thème sombre. */
+  filter: var(--aurora-filter, saturate(140%));
   animation: aurora-drift 42s ease-in-out infinite alternate;
 }
 @keyframes aurora-drift {
