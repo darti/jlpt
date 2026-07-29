@@ -6,6 +6,8 @@ import { allocateLearn, buildLearnQueue } from "../entrainement/learnQueue.ts";
 import { anchorIndex, selectAnchor, clearAnchorCache } from "./anchor.ts";
 import { clearRevisionCache } from "./revision.ts";
 import { clearCategoryCache } from "../../lib/bank.ts";
+import { clearCoursCache } from "../cours/useCours.ts";
+import { PROGRESS_KEY } from "../../lib/keys.ts";
 import { useQuiz } from "./useQuiz.ts";
 import type { Question } from "../../types/quiz.ts";
 import type { CoursCategory, CoursItem } from "../cours/coursSchema.ts";
@@ -68,21 +70,37 @@ test("les ancres et les reprises ne se recouvrent jamais", () => {
 const SKILLS_STUB: Skill[] = ["grammaire", "vocabulaire", "kanji", "lecture", "ecoute"];
 /** 20 questions par compétence : le budget d'une séance de 10 min (15) doit pouvoir être servi. */
 const PAR_SKILL = 20;
-const ENTITES = ["jlpt:gram/ば", "jlpt:gram/たら", "jlpt:gram/なら"];
+/** 8 entités par piste enseignable, DEUX questions chacune (ancre + reprise) : ords `2i`/`2i+1`
+ *  du shard, ce qui laisse les ords 16-19 libres pour les erreurs. */
+const PAR_PISTE = 8;
+
+const PISTES = [
+  { track: "gram", skill: "grammaire" as Skill, prefix: "jlpt:gram/" },
+  { track: "vocab", skill: "vocabulaire" as Skill, prefix: "jlpt:word/" },
+  { track: "kanji", skill: "kanji" as Skill, prefix: "jlpt:kanji/" },
+];
+const iris = (prefix: string) =>
+  Array.from({ length: PAR_PISTE }, (_, i) => `${prefix}e${i}`);
+const GRAM = iris("jlpt:gram/");
+const base = (skill: Skill) => SKILLS_STUB.indexOf(skill) * PAR_SKILL;
 
 /** Un shard `q-<skill>.jsonld` : ords contigus, et — au besoin — les arêtes `tests` qui rendent
- *  les deux premières entités du programme ancrables (et re-testables : deux questions chacune). */
-function shard(skill: Skill, from: number, avecAretes: boolean) {
-  const aretes: Record<number, string[]> = avecAretes && skill === "grammaire"
-    ? { 0: [ENTITES[0]], 1: [ENTITES[1]], 2: [ENTITES[0]], 3: [ENTITES[1]] }
-    : {};
+ *  chaque entité de la piste ancrable ET re-testable (deux questions par entité). */
+function shard(skill: Skill, avecAretes: boolean) {
+  const piste = PISTES.find((p) => p.skill === skill);
+  const from = base(skill);
   return {
-    "@graph": Array.from({ length: PAR_SKILL }, (_, i) => ({
-      "@id": `jlpt:q/${from + i}`, "@type": "jlpt:Question",
-      "jlpt:ord": from + i, "jlpt:skill": skill, "jlpt:difficulty": 1,
-      "jlpt:stem": `question ${from + i}`, opts: ["a", "b", "c", "d"], "jlpt:answer": 0,
-      ...(aretes[i] ? { tests: aretes[i] } : {}),
-    })),
+    "@graph": Array.from({ length: PAR_SKILL }, (_, i) => {
+      const iri = avecAretes && piste && i < PAR_PISTE * 2
+        ? `${piste.prefix}e${Math.floor(i / 2)}`
+        : null;
+      return {
+        "@id": `jlpt:q/${from + i}`, "@type": "jlpt:Question",
+        "jlpt:ord": from + i, "jlpt:skill": skill, "jlpt:difficulty": 1,
+        "jlpt:stem": `question ${from + i}`, opts: ["a", "b", "c", "d"], "jlpt:answer": 0,
+        ...(iri ? { tests: [iri] } : {}),
+      };
+    }),
   };
 }
 
@@ -95,25 +113,33 @@ function documents(avecAretes: boolean): Record<string, unknown> {
       })),
     },
     "data/graph/lesson.jsonld": {
-      "@graph": [{
-        "@id": "jlpt:lesson/gram-g1", "@type": "jlpt:Lesson", "schema:name": "Conditionnels",
-        "jlpt:order": 0, "jlpt:track": "gram", covers: ENTITES,
-      }],
-    },
-    "data/graph/gram.jsonld": {
-      "@graph": ENTITES.map((iri) => ({
-        "@id": iri, "@type": "jlpt:GrammarPoint",
-        "jlpt:form": iri.split("/").pop(), "schema:description": "si",
+      "@graph": PISTES.map((p) => ({
+        "@id": `jlpt:lesson/${p.track}-g1`, "@type": "jlpt:Lesson", "schema:name": `Leçon ${p.track}`,
+        "jlpt:order": 0, "jlpt:track": p.track, covers: iris(p.prefix),
       })),
     },
-    "data/graph/kanji.jsonld": { "@graph": [] },
-    "data/graph/word.jsonld": { "@graph": [] },
+    "data/graph/gram.jsonld": {
+      "@graph": GRAM.map((iri) => ({
+        "@id": iri, "@type": "jlpt:GrammarPoint",
+        "jlpt:form": `〜${iri.split("/").pop()}`, "schema:description": "si",
+      })),
+    },
+    "data/graph/word.jsonld": {
+      "@graph": iris("jlpt:word/").map((iri) => ({
+        "@id": iri, "@type": "jlpt:Word",
+        "schema:name": iri.split("/").pop(), "jlpt:reading": "よみ", "schema:description": "sens",
+      })),
+    },
+    "data/graph/kanji.jsonld": {
+      "@graph": iris("jlpt:kanji/").map((iri) => ({
+        "@id": iri, "@type": "jlpt:Kanji",
+        "schema:name": iri.split("/").pop(), "schema:description": "sens",
+      })),
+    },
     "data/graph/example.jsonld": { "@graph": [] },
     "data/graph/method.jsonld": { "@graph": [] },
   };
-  SKILLS_STUB.forEach((s, i) => {
-    docs[`data/graph/q-${s}.jsonld`] = shard(s, i * PAR_SKILL, avecAretes);
-  });
+  for (const s of SKILLS_STUB) docs[`data/graph/q-${s}.jsonld`] = shard(s, avecAretes);
   return docs;
 }
 
@@ -145,19 +171,21 @@ async function monterQuiz(avecAretes = true): Promise<{ api: () => QuizApi; root
   return { api: () => courant as unknown as QuizApi, root };
 }
 
-beforeEach(() => {
+/** Tout l'état de module que ce fichier alimente avec ses bouchons (cf. CLAUDE.md : happy-dom
+ *  est préchargé pour toute la suite, les caches fuient d'un fichier de test à l'autre). */
+function isoler() {
   localStorage.clear();
   clearCategoryCache();
   clearAnchorCache();
   clearRevisionCache();
-});
+  clearCoursCache();
+}
+
+beforeEach(isoler);
 
 afterEach(() => {
   globalThis.fetch = vraiFetch;
-  clearCategoryCache();
-  clearAnchorCache();
-  clearRevisionCache();
-  localStorage.clear();
+  isoler();
 });
 
 test("une session qui a des entites a enseigner s ouvre sur la phase apprendre", async () => {
@@ -166,7 +194,7 @@ test("une session qui a des entites a enseigner s ouvre sur la phase apprendre",
   await act(async () => { await api().start(10, { skipDiagnostic: true }); });
   expect(api().phase).toBe("apprendre");
   expect(api().learnStep).not.toBeNull();
-  expect(api().learnStep?.item.id).toBe(ENTITES[0]);
+  expect(api().learnStep?.item.id).toBe(GRAM[0]);
   expect(api().learnStep?.state).toBe("neuf");
   await act(async () => { root.unmount(); });
 });
@@ -232,6 +260,22 @@ test("l auto evaluation d une entite sans ancre ecrit une carte fsrs", async () 
   await act(async () => { root.unmount(); });
 });
 
+// ⚠ Sur une entité ANCRÉE, l'auto-évaluation avancerait la file sans consommer la question :
+// la carte suivante s'ouvrirait sur l'ancre de la PRÉCÉDENTE. Le hook se garde lui-même — il ne
+// dépend pas de la vue pour ne pas exposer le bouton (ni d'un double-clic pour ne pas y mener).
+test("l auto evaluation est refusee sur une entite ancree", async () => {
+  const { api, root } = await monterQuiz();
+  await act(async () => { await api().start(10, { skipDiagnostic: true }); });
+  const iri = api().learnStep?.item.id as string;
+  expect(api().learnStep?.hasAnchor).toBe(true);
+  await act(async () => { api().learnSelfGrade(3); });
+  expect(api().learnStep?.item.id).toBe(iri); // la file n'a pas bougé
+  expect(api().phase).toBe("apprendre");
+  const blob = JSON.parse(localStorage.getItem(PROGRESS_KEY) ?? "{}");
+  expect(blob.fsrs?.[iri]).toBeUndefined(); // et rien n'a été écrit
+  await act(async () => { root.unmount(); });
+});
+
 // ⚠ Tolérance imposée aux lectures de blob : un blob antérieur au lot 2 n'a pas le champ
 // `learn` — la reprise doit dégrader silencieusement vers la phase quiz, jamais jeter.
 test("une reprise sans champ learn entre directement en phase quiz", async () => {
@@ -248,15 +292,42 @@ test("une reprise sans champ learn entre directement en phase quiz", async () =>
 test("une reprise avec des entites restantes rouvre la phase apprendre", async () => {
   const { api, root } = await monterQuiz();
   await act(async () => {
+    // ords 0 et 2 = les ancres de e0 et e1 (deux questions par entité : 2i et 2i+1).
     await api().resumeNow({
-      kind: "quiz", ids: [0, 1, 5, 6, 7], qi: 0, right: 0, t: Date.now(),
-      learn: [ENTITES[0], ENTITES[1]],
+      kind: "quiz", ids: [0, 2, 5, 6, 7], qi: 0, right: 0, t: Date.now(),
+      learn: [GRAM[0], GRAM[1]],
     });
   });
   expect(api().phase).toBe("apprendre");
-  expect(api().learnStep?.item.id).toBe(ENTITES[0]);
+  expect(api().learnStep?.item.id).toBe(GRAM[0]);
   expect(api().learnStep?.hasAnchor).toBe(true);
   await act(async () => { api().learnNext(); });
-  expect(api().question?.tests).toContain(ENTITES[0]);
+  expect(api().question?.tests).toContain(GRAM[0]);
+  await act(async () => { root.unmount(); });
+});
+
+/**
+ * ⚠ LE CAS QUE LE PREMIER JET NE POUVAIT PAS VOIR : un blob VIDE laisse `alloc.adaptive` à 13,
+ * treize places de marge où aucun débordement ne peut se manifester. Ici l'apprenant est CHARGÉ —
+ * erreurs et entités dues saturent le budget (`alloc.adaptive === 0`), l'état normal de
+ * quelqu'un qui révise depuis des semaines.
+ *
+ * Les reprises rejoignent la tranche GARANTIE, et `composeSession` ne tronque jamais celle-ci
+ * (`bank.ts:125-131`) : sans la borne de `selectReprises`, la séance rend `alloc.learn` questions
+ * de trop — 21 au lieu de 15.
+ */
+test("une seance d apprenant charge ne depasse pas son budget", async () => {
+  // 4 erreurs (ords 16-19 : les seules questions de grammaire sans arête) + 5 entités dues
+  // (e3..e7 de la piste grammaire, chacune testée par deux questions).
+  localStorage.setItem(PROGRESS_KEY, JSON.stringify({
+    total: 40, skill: {}, wrong: [16, 17, 18, 19],
+    fsrs: Object.fromEntries(GRAM.slice(3).map((iri) => [iri, [0.5, 5, 0]])),
+  }));
+  const { api, root } = await monterQuiz();
+  await act(async () => { await api().start(10, { skipDiagnostic: true }); });
+  // Plan : errors 4 + revision 5 + learn 6 + adaptive 0 = 15.
+  expect(api().phase).toBe("apprendre");
+  expect(api().learnStep?.count).toBe(6);
+  expect(api().count).toBe(15);
   await act(async () => { root.unmount(); });
 });

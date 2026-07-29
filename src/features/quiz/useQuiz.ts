@@ -15,12 +15,12 @@ import { dashboardModel, prescriptiveWeights, daysUntilExam } from "../../lib/sc
 import { cloudPush, type GistDeps } from "../../lib/gist.ts";
 import { pickSessionPlan, BUILT_CAPS } from "../entrainement/sessionPlan.ts";
 import {
-  allocateLearn, buildLearnQueue, rebuildLearnQueue, type LearnStep,
+  allocateLearn, buildLearnQueue, rebuildLearnQueue, selectReprises, type LearnStep,
 } from "../entrainement/learnQueue.ts";
 import { useCours } from "../cours/useCours.ts";
 import { entityState } from "../cours/entityState.ts";
 import type { CoursCategory } from "../cours/coursSchema.ts";
-import { anchorIndex, selectAnchor } from "./anchor.ts";
+import { anchorIndex } from "./anchor.ts";
 import { asConfusions, dayNumber, trapModel, kindIndex, selectConfusion, activeConfusionCount } from "./traps.ts";
 import { asFsrs, dueBySkill, fsrsPatch, selectRevision } from "./revision.ts";
 import { checkReading } from "../../lib/kana.ts";
@@ -224,14 +224,13 @@ export function useQuiz() {
     // ENTITÉS à enseigner (spec §5.1 — `sessionPlan` est inchangé, seule sa lecture change).
     // Chaque carte est suivie de la question qui la teste ; la règle (quelle leçon, quelle ancre)
     // vit dans `curriculum.ts` / `learnQueue.ts`, le hook n'orchestre que les phases.
+    // L'index d'ancrage balaie les 10 351 questions : on ne le construit que si la phase a lieu.
+    const programme = plan.alloc.learn > 0 ? coursRef.current : null;
+    const anchors = programme ? anchorIndex(allPool) : null;
+    const byId = anchors ? new Map(allPool.map((q) => [q.id, q])) : null;
     const learnFile: LearnStep[] = [];
     const ancreQs: Question[] = [];
-    const repriseQs: Question[] = [];
-    // L'index d'ancrage balaie les 10 351 questions : on ne le construit que si la phase a lieu.
-    const programme = coursRef.current;
-    if (plan.alloc.learn > 0 && programme) {
-      const anchors = anchorIndex(allPool);
-      const byId = new Map(allPool.map((q) => [q.id, q]));
+    if (programme && anchors && byId) {
       for (const step of buildLearnQueue({
         categories: programme, fsrs: fsrsMap, today: jourRevision,
         alloc: allocateLearn((c) => weights[c], plan.alloc.learn),
@@ -245,18 +244,6 @@ export function useQuiz() {
         ancreQs.push(q);
         learnFile.push(step);
       }
-
-      // Reprises : une SECONDE question par entité enseignée, les ancres déjà exclues. Elles
-      // rejoignent la tranche GARANTIE et non la tête de la file adaptive — `composeSession`
-      // mélange tout (bank.ts:125-131), aucune position ne survit, et c'est tant mieux : c'est
-      // l'espacement entre l'exposition et le re-test qui fabrique la mémoire, pas la proximité.
-      for (const step of learnFile) {
-        const ord = selectAnchor(step.item.id, anchors, exclude);
-        const q = ord !== null ? byId.get(ord) : undefined;
-        if (!q) continue;
-        exclude.add(q.id);
-        repriseQs.push(q);
-      }
     }
 
     // ⚠ INVARIANT DE BUDGET : seule une ancre RÉSOLUE consomme un créneau de question. Le créneau
@@ -264,11 +251,30 @@ export function useQuiz() {
     // le taux d'ancrage (spec §5.1).
     const quizBudget = Math.max(0, total - ancreQs.length);
 
+    // Reprises : une SECONDE question par entité enseignée. Elles rejoignent la tranche GARANTIE
+    // et non la tête de la file adaptive — `composeSession` mélange tout (bank.ts:125-131), aucune
+    // position ne survit, et c'est tant mieux : c'est l'espacement entre l'exposition et le
+    // re-test qui fabrique la mémoire, pas la proximité.
+    // ⚠ Elles ne prennent que les places que les trois autres tranches garanties laissent :
+    // `composeSession` ne tronque jamais son lot garanti, et `sessionPlan` n'a jamais budgété de
+    // reprises. La borne vit dans `selectReprises` — c'est là qu'elle est testée.
+    // La place que les trois tranches garanties déjà servies laissent dans le budget du quiz.
+    const place = Math.max(
+      0, quizBudget - errorQs.length - confusionQs.length - revisionQs.length,
+    );
+    const repriseQs: Question[] = [];
+    if (anchors && byId) {
+      for (const ord of selectReprises(learnFile, anchors, exclude, place)) {
+        const q = byId.get(ord);
+        if (!q) continue;
+        exclude.add(q.id);
+        repriseQs.push(q);
+      }
+    }
+
     // Adaptive fills the remaining budget (weighted by mastery), from the full pools.
     // `wrong` conservé → bonus +150 (plancher souple sur les erreurs passées).
-    const adaptiveTarget = Math.max(
-      0, quizBudget - errorQs.length - confusionQs.length - revisionQs.length - repriseQs.length,
-    );
+    const adaptiveTarget = place - repriseQs.length; // ≥ 0 : `selectReprises` borne à `place`
     const picked = pickSlice(
       allocateCount((c) => weights[c], adaptiveTarget),
       (cat) => pools[cat],
@@ -401,12 +407,18 @@ export function useQuiz() {
    * disponible amorce le planificateur au lieu de ne rien écrire. Même grades que le QCM —
    * « Je connais » = Good(3), « À revoir » = Again(1).
    *
-   * ⚠ `writeProgress` ne fusionne en profondeur que `skill` : `fsrsPatch` rend la carte ENTIÈRE,
-   * patcher la seule entité effacerait toutes les autres.
+   * ⚠ Refusée sur une entité ANCRÉE : elle avancerait la file sans consommer la question
+   * d'ancrage, et la carte suivante s'ouvrirait sur l'ancre de la PRÉCÉDENTE. Le hook doit rester
+   * cohérent tout seul, sans dépendre de la discipline de la vue (ni d'un double-clic).
+   *
+   * ⚠ `fsrsPatch` plutôt que `fsrsInit` : une entité « à revoir » qu'on ré-enseigne a déjà une
+   * carte, et `fsrsInit` la remettrait à zéro — on RÉVISE une carte connue, on n'en crée une que
+   * s'il n'y en a pas. `writeProgress` ne fusionne en profondeur que `skill` : `fsrsPatch` rend
+   * la carte ENTIÈRE, patcher la seule entité effacerait toutes les autres.
    */
   const learnSelfGrade = useCallback((grade: 1 | 3) => {
     const step = learnQueue[learnIdx];
-    if (!step) return;
+    if (!step || step.anchor !== null) return;
     const raw = readRawProgress();
     const patch = fsrsPatch(asFsrs(raw), [step.item.id], grade === 3, dayNumber(new Date()));
     if (patch) writeProgress({ fsrs: patch });

@@ -1,14 +1,19 @@
-import { test, expect, afterEach } from "bun:test";
+import { test, expect, afterEach, beforeEach } from "bun:test";
 import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { MemoryRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { Cours } from "./Cours.tsx";
+import { clearCoursCache } from "./useCours.ts";
 import { PROGRESS_KEY } from "../../lib/keys.ts";
 
 (globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 const origFetch = globalThis.fetch;
+// Le programme est mémoïsé AU MODULE : purger, sinon c'est le bouchon d'un autre fichier de
+// test qui alimente ces montages (l'ordre d'exécution suffirait à faire basculer le résultat).
+beforeEach(() => { clearCoursCache(); });
 afterEach(() => {
   globalThis.fetch = origFetch;
+  clearCoursCache();
   try { globalThis.localStorage.clear(); } catch { /* noop */ }
 });
 

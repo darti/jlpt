@@ -1,5 +1,7 @@
 import { test, expect, afterEach } from "bun:test";
-import { allocateLearn, buildLearnQueue, rebuildLearnQueue, TRACK_DE_SKILL } from "./learnQueue.ts";
+import {
+  allocateLearn, buildLearnQueue, rebuildLearnQueue, selectReprises, TRACK_DE_SKILL,
+} from "./learnQueue.ts";
 import { anchorIndex, clearAnchorCache } from "../quiz/anchor.ts";
 import type { Question } from "../../types/quiz.ts";
 import type { CoursCategory, CoursItem } from "../cours/coursSchema.ts";
@@ -119,6 +121,61 @@ test("buildLearnQueue rend une file vide quand rien n est alloue", () => {
     categories: cats, fsrs: {}, today: 0,
     alloc: { gram: 0, vocab: 0, kanji: 0 }, index, exclude: new Set(),
   })).toEqual([]);
+});
+
+// ── Reprises ────────────────────────────────────────────────────────────────────────────────
+// La tranche garantie de `composeSession` n'est JAMAIS tronquée (bank.ts:125-131) et
+// `sessionPlan` n'a jamais budgété de reprises : sans la borne `place`, une séance dont les
+// erreurs / la confusion / la révision saturent déjà le budget rend `alloc.learn` questions de
+// TROP (17 au lieu de 15 sur 10 min). La borne est donc la règle, pas une précaution.
+
+const fileDe = (...ids: string[]) => ids.map((id) => ({ item: item(id), anchor: 0 }));
+
+test("selectReprises ne rend rien quand il ne reste aucune place", () => {
+  const index = anchorIndex([q(1, ["jlpt:gram/ば"]), q(2, ["jlpt:gram/ば"])]);
+  expect(selectReprises(fileDe("jlpt:gram/ば"), index, new Set([1]), 0)).toEqual([]);
+});
+
+test("selectReprises ne depasse jamais la place disponible", () => {
+  const qs = [
+    q(1, ["jlpt:gram/ば"]), q(2, ["jlpt:gram/ば"]),
+    q(3, ["jlpt:gram/たら"]), q(4, ["jlpt:gram/たら"]),
+  ];
+  const index = anchorIndex(qs);
+  // Deux entités enseignées, leurs ancres (1 et 3) déjà prises : deux reprises possibles…
+  const exclude = new Set([1, 3]);
+  expect(selectReprises(fileDe("jlpt:gram/ば", "jlpt:gram/たら"), index, exclude, 2)).toEqual([2, 4]);
+  // … mais une seule place.
+  expect(selectReprises(fileDe("jlpt:gram/ば", "jlpt:gram/たら"), index, exclude, 1)).toEqual([2]);
+});
+
+test("selectReprises ne rend jamais un ord deja pris", () => {
+  const index = anchorIndex([q(1, ["jlpt:gram/ば"]), q(2, ["jlpt:gram/ば"])]);
+  const reprises = selectReprises(fileDe("jlpt:gram/ば"), index, new Set([1]), 5);
+  expect(reprises).toEqual([2]);
+  expect(reprises).not.toContain(1);
+});
+
+test("selectReprises ne mute pas le jeu d exclusion recu", () => {
+  const index = anchorIndex([q(1, ["jlpt:gram/ば"]), q(2, ["jlpt:gram/ば"])]);
+  const exclude = new Set([1]);
+  selectReprises(fileDe("jlpt:gram/ば"), index, exclude, 5);
+  expect([...exclude]).toEqual([1]);
+});
+
+// Une entité dont le corpus ne porte qu'UNE question n'a pas de reprise : son ancre l'a déjà
+// consommée. On n'invente pas de question, ici pas plus qu'ailleurs.
+test("selectReprises saute une entite sans seconde question", () => {
+  const index = anchorIndex([q(1, ["jlpt:gram/ば"]), q(2, ["jlpt:gram/たら"])]);
+  expect(selectReprises(fileDe("jlpt:gram/ば", "jlpt:gram/たら"), index, new Set([1, 2]), 5))
+    .toEqual([]);
+});
+
+test("selectReprises rend une seule reprise par entite", () => {
+  const index = anchorIndex([
+    q(1, ["jlpt:gram/ば"]), q(2, ["jlpt:gram/ば"]), q(3, ["jlpt:gram/ば"]),
+  ]);
+  expect(selectReprises(fileDe("jlpt:gram/ば"), index, new Set([1]), 5)).toEqual([2]);
 });
 
 // ── Reprise ─────────────────────────────────────────────────────────────────────────────────

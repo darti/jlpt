@@ -85,6 +85,37 @@ export function buildLearnQueue(args: {
   return out;
 }
 
+/**
+ * Les ords des **reprises** : une seconde question par entité enseignée, dans l'ordre de la file,
+ * bornée à `place` — les places que la tranche garantie du quiz a encore de libres.
+ *
+ * ⚠ **La borne est la raison d'être de cette fonction.** Les reprises rejoignent la tranche
+ * GARANTIE de `composeSession`, et celle-ci n'est JAMAIS tronquée (`bank.ts:125-131` :
+ * `adaptiveTarget = max(0, total - errorQs.length)` puis `[...errorQs, ...adaptiveQs]`). Or
+ * `sessionPlan` n'a jamais budgété de reprises : sans borne, une séance dont les erreurs, la
+ * confusion et la révision saturent déjà le budget (`alloc.adaptive === 0`, l'état NORMAL d'un
+ * apprenant chargé) rend `alloc.learn` questions de TROP — 17 au lieu de 15 sur 10 min, 48 au
+ * lieu de 45 sur 30 min, sans la moindre erreur.
+ *
+ * `exclude` n'est pas muté (copie interne, comme `buildLearnQueue`) : l'appelant décide ce qu'il
+ * réserve. Une entité sans seconde question disponible n'en produit simplement aucune.
+ */
+export function selectReprises(
+  learnFile: LearnStep[], index: AnchorIndex, exclude: Set<number>, place: number,
+): number[] {
+  if (place <= 0) return [];
+  const pris = new Set(exclude);
+  const out: number[] = [];
+  for (const step of learnFile) {
+    if (out.length >= place) break;
+    const ord = selectAnchor(step.item.id, index, pris);
+    if (ord === null) continue;
+    pris.add(ord);
+    out.push(ord);
+  }
+  return out;
+}
+
 /** Index IRI → item du programme, toutes pistes enseignables confondues. */
 function itemsParIri(categories: CoursCategory[]): Map<string, CoursItem> {
   const out = new Map<string, CoursItem>();
