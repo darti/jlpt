@@ -60,13 +60,17 @@
    D'où le canevas descendu d'un cran : du verre blanc a besoin de quelque chose dont se
    décoller. Tout le reste (aurore, liseré, ombre) en découle. */
 :root[data-theme="light"] {
-  --color-bg: #e3e8f0;                          /* nord5 refroidi — PAS blanc, cf. ci-dessus */
-  --color-panel: rgba(255, 255, 255, 0.58);
-  --color-panel-2: rgba(216, 223, 235, 0.62);   /* se creuse sous un panneau plus blanc */
-  --color-surface: rgba(255, 255, 255, 0.58);
-  --color-surface-2: rgba(216, 223, 235, 0.62);
-  --color-line: rgba(46, 52, 64, 0.10);         /* nord0 .10 */
-  --color-line-soft: rgba(46, 52, 64, 0.10);
+  --color-bg: #e8e3ee;                          /* nord5 tiré vers nord15 — PAS blanc, cf. ci-dessus */
+  /* Opacité BAISSÉE (.58 → .52) : c'est le levier direct du « plus de verre », plus de halo
+     traverse la carte. Il ne tient que parce que le fond est plus vif en face — l'écart
+     carte↔gouttière vaut `opacité × (255 − fond)`, donc baisser l'opacité sans saturer le fond
+     redissoudrait la carte au lieu de la rendre translucide. */
+  --color-panel: rgba(255, 255, 255, 0.52);
+  --color-panel-2: rgba(211, 220, 235, 0.66);   /* se creuse sous un panneau plus blanc */
+  --color-surface: rgba(255, 255, 255, 0.52);
+  --color-surface-2: rgba(211, 220, 235, 0.66);
+  --color-line: rgba(46, 52, 64, 0.12);         /* nord0 .12 */
+  --color-line-soft: rgba(46, 52, 64, 0.12);
   --color-line-hi: rgba(46, 52, 64, 0.16);
   --color-fg: #2e3440;                          /* nord0 */
   /* .62 → .72 : contrepartie du canevas assombri. Mesuré en luminance relative WCAG sur carte,
@@ -95,24 +99,34 @@
   --color-danger-bg: rgba(191, 97, 106, 0.12);
   --color-danger-line: rgba(191, 97, 106, 0.38);
   --color-danger-fg: #b04a52;                   /* 4,84:1 sur ce fond */
-  /* Mêmes hues Nord que le sombre, alphas relevés (.22–.26 → .34–.40). Rapporté au canevas,
-     l'écart de luminance du halo était tombé de ~28 points à ~5 : le calque était bien peint,
-     mais ne survivait ni au voisinage des cartes ni à leur traversée. */
-  --aurora-1: rgba(143, 188, 187, 0.38);
-  --aurora-2: rgba(163, 190, 140, 0.36);
-  --aurora-3: rgba(180, 142, 173, 0.36);
-  --aurora-4: rgba(136, 192, 208, 0.34);
-  --aurora-filter: saturate(165%);
+  /* Mêmes hues Nord que le sombre, alphas relevés deux fois (.22–.26 d'origine → .34–.40 →
+     .48–.44). Rapporté au canevas, l'écart de luminance du halo était tombé de ~28 points à ~5 :
+     le calque était bien peint, mais ne survivait ni au voisinage des cartes ni à leur traversée.
+     Ce second relèvement sert AUSSI le verre : c'est lui qui autorise l'opacité à .52. */
+     ⚠ La GÉOMÉTRIE des halos (positions, rayons) vit dans `body::before`, partagée par les deux
+     thèmes : la dominante rose du clair se règle donc uniquement par les COULEURS et les alphas.
+     Le froid recule (1 et 2), le rose prend les deux positions de droite — nord15 au halo bas
+     (3) et, au halo médian (4), un rose plus chaud obtenu entre nord15 et nord11 : Nord n'a
+     qu'un seul mauve, deux nord15 côte à côte donneraient une tache plate. */
+  --aurora-1: rgba(143, 188, 187, 0.40);        /* nord7  — turquoise, en retrait */
+  --aurora-2: rgba(163, 190, 140, 0.36);        /* nord14 — vert, en retrait */
+  --aurora-3: rgba(186, 138, 172, 0.60);        /* nord15 — mauve, dominante */
+  --aurora-4: rgba(198, 132, 158, 0.46);        /* nord15 × nord11 — rose chaud */
+  --aurora-filter: saturate(185%);
   /* La saturation du backdrop est ce qui fait que le halo GARDE SA TEINTE en traversant le
-     verre : c'est elle, plus que l'opacité, qui rend la transparence lisible en clair. */
-  --effect-backdrop: blur(18px) saturate(180%);
-  /* Le liseré interne (lumière de bord haute) est ce qui fait lire une surface comme du verre ;
-     le bloc clair l'avait perdu. Et l'ombre passait par `rgba(96,150,225,.15)` — une couleur
-     CLAIRE, qui teinte au lieu de détacher — remplacée par un bleu-gris sombre. */
-  --elevation-card: 0 10px 24px rgba(46, 58, 84, 0.13), 0 2px 6px rgba(46, 58, 84, 0.08), 0 1px 0 rgba(255, 255, 255, 0.75) inset;
-  --elevation-pop: 0 30px 78px rgba(46, 58, 84, 0.30), 0 1px 0 rgba(255, 255, 255, 0.85) inset;
+     verre : c'est elle, plus que l'opacité, qui rend la transparence lisible en clair. Le flou
+     reste modéré (22 px) : chaque carte porte un `backdrop-filter`, et il y en a une quinzaine
+     à l'écran — au-delà, le coût GPU se paie au défilement sur mobile. */
+  --effect-backdrop: blur(22px) saturate(210%);
+  /* Trois choses font lire une surface comme du VERRE, et il faut les trois :
+       1. le liseré interne haut — la lumière de bord (monté à .95, quasi blanc) ;
+       2. un second liseré BAS, sombre et discret, qui donne son épaisseur à la dalle ;
+       3. une ombre portée franche, qui la décolle.
+     Le bloc clair n'avait à l'origine aucun des trois. */
+  --elevation-card: 0 14px 34px rgba(46, 58, 84, 0.16), 0 3px 8px rgba(46, 58, 84, 0.10), 0 1px 0 rgba(255, 255, 255, 0.95) inset, 0 -1px 0 rgba(46, 58, 84, 0.05) inset;
+  --elevation-pop: 0 34px 84px rgba(46, 58, 84, 0.34), 0 1px 0 rgba(255, 255, 255, 0.95) inset, 0 -1px 0 rgba(46, 58, 84, 0.06) inset;
   /* `@theme` ne définit qu'une ombre noire `.38`, dure sur fond clair (`UpdateBanner`). */
-  --elevation-hover: 0 14px 32px rgba(46, 58, 84, 0.18), 0 3px 8px rgba(46, 58, 84, 0.10), 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  --elevation-hover: 0 18px 40px rgba(46, 58, 84, 0.20), 0 4px 10px rgba(46, 58, 84, 0.12), 0 1px 0 rgba(255, 255, 255, 0.95) inset;
   color-scheme: light;
 }
 
