@@ -135,13 +135,15 @@
    concentrent sur une surface bien plus petite et bien plus haute. Les deux halos roses
    couvrent alors la moitié droite de l'écran et traversent les cartes. Mêmes teintes, alphas
    et chroma en retrait — le clair de bureau, lui, ne bouge pas.
-   Mesuré à 390 px de large : dominante (R−G) de la bande la plus à droite 27,8 → 22,8 (−18 %),
-   « légèrement » atténué et non éteint. */
+   Mesuré à 390 px de large, dominante (R−G) de la bande la plus à droite : 27,8 sans ce bloc,
+   22,8 au premier dosage, 16,9 ici (−39 % au total) — le rose reste lisible, il ne domine plus.
+   ⚠ Ces trois valeurs se mesurent par bandes verticales : en moyenne d'écran l'écart est de 2,0,
+   parce que le rosé est LOCALISÉ à droite. */
 @media (max-width: 767px) {
   :root[data-theme="light"] {
-    --aurora-3: rgba(186, 138, 172, 0.52);
-    --aurora-4: rgba(198, 132, 158, 0.40);
-    --aurora-filter: saturate(170%);
+    --aurora-3: rgba(186, 138, 172, 0.42);
+    --aurora-4: rgba(198, 132, 158, 0.30);
+    --aurora-filter: saturate(150%);
   }
 }
 
