@@ -42,34 +42,37 @@ function nav(): HTMLElement {
   return el;
 }
 
-test("pinned nav applies the frosted backdrop blur", () => {
+function chrome(): HTMLElement {
+  const el = container.querySelector("[data-chrome]");
+  if (!el) throw new Error("chrome wrapper not found");
+  return el as HTMLElement;
+}
+
+test("pinned chrome applies the frosted backdrop blur", () => {
   renderNav();
-  expect(nav().className).toContain("surface-blur");
+  expect(chrome().className).toContain("surface-blur");
 });
 
-test("pinned nav renders a notch fill covering the safe-area strip", () => {
-  // On iOS the sticky nav pins at `top: env(safe-area-inset-top)`, below the notch, so
-  // the status-bar strip above it needs its own frosted surface to reach the screen top.
+test("the frosted surface covers the safe-area strip within its own box", () => {
+  // On iOS the tab row must clear the notch, so the frosted box has to START at the screen
+  // top and push its content down by the inset — hence `pt` + a matching negative `mt`,
+  // which hands the space back to the flow so nothing else moves.
   renderNav();
-  const fill = container.querySelector("[data-notch-fill]");
-  expect(fill).not.toBeNull();
-  expect(fill!.className).toContain("surface-blur");
-  expect(fill!.className).toContain("h-[env(safe-area-inset-top)]");
+  expect(chrome().className).toContain("pt-[env(safe-area-inset-top)]");
+  expect(chrome().className).toContain("mt-[calc(env(safe-area-inset-top)*-1)]");
+  expect(chrome().className).toContain("top-0");
 });
 
-test("notch fill is not nested inside a backdrop-filtered surface", () => {
-  // Measured in Blink (and the reported iOS symptom): an element carrying
-  // `backdrop-filter` becomes the *backdrop root* of its descendants, so a descendant's
-  // backdrop is empty outside that ancestor's box — it paints its colour but blurs
-  // nothing. The previous implementation was a `::before` on the blurred nav itself,
-  // placed at `bottom: 100%` (fully outside it), which is exactly that dead case.
-  // The fill must therefore stay a sibling, in the same backdrop root as the content.
+test("exactly one frosted surface spans notch strip and tab row", () => {
+  // Two adjacent blurred layers show a SEAM: each blur clamps its kernel at its own edge,
+  // so the tint steps at the boundary (reported on iPhone once the strip was filled by a
+  // separate overlay). One box, one blur.
+  // Second reason for a single box: an element with `backdrop-filter` is the *backdrop
+  // root* of its descendants, so a nested blurred child lying outside its parent's box has
+  // an empty backdrop — it paints its colour and blurs nothing (measured in Blink).
   renderNav();
-  const fill = container.querySelector("[data-notch-fill]");
-  // `closest` from the element itself would match its own `surface-blur`; walk the
-  // ANCESTRY, which is what decides the backdrop root. Assert on the tag name, not the
-  // node: happy-dom serialising a failed DOM match takes minutes, and a regression that
-  // looks like a hung suite is a regression nobody reads.
-  const blurredAncestor = fill!.parentElement!.closest(".surface-blur");
-  expect(blurredAncestor?.tagName ?? null).toBeNull();
+  expect(container.querySelectorAll(".surface-blur").length).toBe(1);
+  // Assert on the tag name, not the node: happy-dom serialising a failed DOM match takes
+  // minutes, and a regression that looks like a hung suite is a regression nobody reads.
+  expect(nav().className.includes("surface-blur") ? "NAV" : null).toBeNull();
 });

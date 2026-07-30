@@ -333,6 +333,22 @@ code touché.
   (`CssSyntaxError … ligne:colonne`). ⚠ Piège concret déjà payé : un `*/` de trop au milieu d'un
   commentaire français fait sortir la prose du commentaire, et la première **apostrophe** devient
   une chaîne non terminée. Après toute édition de `src/styles/*.css`, lancer `bun run css`.
+- **Une surface dépolie = UNE boîte. Jamais de `backdrop-filter` imbriqué, jamais deux couches
+  adjacentes.** Deux pannes distinctes, l'une mesurée, l'autre observée sur iPhone :
+  1. un élément à `backdrop-filter` devient le *backdrop root* de ses descendants, donc un
+     descendant situé **hors** de sa boîte n'a plus rien à flouter — il peint sa couleur et ne
+     floute rien (écart de pixels derrière la bande : **97** imbriqué, **1** en frère) ;
+  2. deux couches floutées **adjacentes** montrent une **couture** — chaque flou écrête son
+     noyau à son propre bord, la teinte fait un pas à la jonction.
+  D'où le montage du chrome haut (`CHROME`, `src/ui/TopNav.tsx`) : **un seul** conteneur
+  `sticky top-0` avec `pt-[env(safe-area-inset-top)]` **et** une marge négative égale. Le padding
+  dégage l'encoche, la marge rend la place au flux : la barre, la hauteur occupée et le seuil
+  d'épinglage sont identiques à un nav en `top: env(...)` (mesuré : barre à `y=47` dans les deux
+  montages), seule la surface peinte descend de `y=0`. ⚠ Le défaut est **invisible hors iPhone** :
+  `env(safe-area-inset-top)` valant 0 ailleurs, la bande a une hauteur nulle — un correctif faux
+  passe donc partout. `TopNav.stuck.test.tsx` garde le nombre de couches (`.surface-blur` = 1) et
+  la présence du couple `pt`/`mt` : l'ancien test n'assertait qu'un nom de classe et est resté
+  vert pendant que le bug était en production.
 - **Furigana : `<span class="furi">`, JAMAIS `<ruby>`/`<rt>`.** L'annotation est un
   `<span class="furi-rt">` émis par `annote()` (`src/lib/dict.ts`), stylé en overlay absolu par
   `.furi > .furi-rt` (`src/styles/tailwind.css`). Trois invariants, tous **mesurés dans les deux
@@ -369,6 +385,23 @@ code touché.
   « Continuer / Nouvelle session », et un **diagnostic dû** détourne vers le diagnostic. Avant de
   piloter : `localStorage.removeItem("jlptN3quiz_resume")` et poser `diagAt: Date.now()` dans le
   blob pour prendre le chemin composé.
+  ⚠ **Piloter l'app BUILDÉE : le service worker RECHARGE la page après le boot.** Un
+  `page.addStyleTag` disparaît en silence et un `evaluate` en cours meurt (« Execution context was
+  destroyed »). Injecter par `addInitScript` (rejoué à chaque navigation) **et** ouvrir le contexte
+  avec `serviceWorkers: "block"`. Puis **asserter que l'injection est encore là** : sinon on mesure
+  la page d'origine en croyant mesurer la variante (déjà payé — un « 36 vs 183 » entièrement
+  fictif).
+  ⚠ **Simuler l'encoche** : Chromium résout `env(safe-area-inset-top)` à **0**, donc forcer les
+  valeurs en px (`[data-chrome]{padding-top:47px!important;margin-top:-47px!important}`) — sans
+  quoi la zone testée est haute de 0 px et tout paraît vert.
+  ⚠ **Mesurer un FLOU ou une TEINTE demande un motif, et une métrique locale.** Le contenu réel
+  est trop uni pour conclure (écart 36 contre 2 : non concluant ; avec un damier
+  `repeating-linear-gradient` derrière, 255 contre 2). Et une moyenne d'écran dilue ce qui est
+  **localisé** : la dominante rose des aurores ne se voit qu'en profil par bandes verticales
+  (2,0 en moyenne globale, 27,8 sur la bande de droite). Décoder le PNG de `page.screenshot()` en
+  pur JS (`node:zlib.inflateSync`, ~40 lignes) plutôt que juger une image à l'œil.
+  ⚠ Figer `body::before{animation:none}` avant de comparer deux captures : `aurora-drift` déplace
+  le calque de fond en continu.
 - **Vérifier dans WebKit aussi** (tout ce qui touche au rendu du japonais : furigana, ruby,
   césure, largeur de base). Playwright a déjà installé le build : `bun add playwright-core` dans
   le scratchpad, puis `webkit.launch({ executablePath: "~/Library/Caches/ms-playwright/webkit-2311/pw_run.sh" })`
