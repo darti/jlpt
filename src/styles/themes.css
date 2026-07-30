@@ -130,6 +130,21 @@
   color-scheme: light;
 }
 
+/* Le rosé est TROP FORT sur un téléphone, et ce n'est pas une question de goût : les halos
+   gardent leurs positions en POURCENTAGE (`92%` et `104%`, cf. `body::before`) mais se
+   concentrent sur une surface bien plus petite et bien plus haute. Les deux halos roses
+   couvrent alors la moitié droite de l'écran et traversent les cartes. Mêmes teintes, alphas
+   et chroma en retrait — le clair de bureau, lui, ne bouge pas.
+   Mesuré à 390 px de large : dominante (R−G) de la bande la plus à droite 27,8 → 22,8 (−18 %),
+   « légèrement » atténué et non éteint. */
+@media (max-width: 767px) {
+  :root[data-theme="light"] {
+    --aurora-3: rgba(186, 138, 172, 0.52);
+    --aurora-4: rgba(198, 132, 158, 0.40);
+    --aurora-filter: saturate(170%);
+  }
+}
+
 /* ---------- Effet « aurores boréales » (fond partagé, repris de theme.css) ----------
    Halos de couleur diffus peints DERRIÈRE le contenu ; les surfaces translucides
    (--color-panel) les laissent transparaître → profondeur Nord Frost. */
