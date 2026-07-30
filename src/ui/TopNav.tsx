@@ -5,9 +5,17 @@ import { applyFuri, readFuri, writeFuri } from "../lib/furigana.ts";
 import { IconHome, IconDumbbell, IconBookOpen, IconGear, IconMoon, IconSun } from "./icons.tsx";
 
 // Panel background + border + blur — applied only while the nav is pinned to the top.
-// `notch-fill` extends that frosted background up through the iOS safe-area strip so the
-// blur reaches the very top of the screen instead of stopping at the notch (see tailwind.css).
-const STUCK_BG = "bg-panel border-b border-line surface-blur notch-fill";
+const STUCK_BG = "bg-panel border-b border-line surface-blur";
+
+// iOS notch fill. The pinned nav sits at `top: env(safe-area-inset-top)` to clear the notch,
+// leaving the status-bar strip above it unglassed; this overlay carries the same frosted
+// surface up to the screen top. It MUST stay a sibling of the nav, never a child: an element
+// with `backdrop-filter` is the *backdrop root* of its descendants, so a descendant lying
+// outside its box has an empty backdrop — it paints its colour but blurs nothing (measured in
+// Blink, and the shape of the reported iOS bug). `pointer-events-none` keeps the strip tappable
+// through to whatever is below; the height collapses to 0 wherever there is no inset.
+const NOTCH_FILL =
+  "fixed left-0 right-0 top-0 z-10 h-[env(safe-area-inset-top)] bg-panel surface-blur pointer-events-none";
 
 // Tabs show a monochrome icon; `label` stays as the accessible name (aria-label + tooltip).
 const ROUTES: { to: string; label: string; Icon: ComponentType; end?: boolean }[] = [
@@ -45,40 +53,43 @@ export function TopNav() {
   }, []);
 
   return (
-    <nav
-      ref={navRef}
-      className={`sticky top-[env(safe-area-inset-top)] z-10 flex gap-6 flex-wrap justify-center items-center px-3 py-2.5 ${stuck ? STUCK_BG : ""}`}
-    >
-      {ROUTES.map(({ to, label, Icon, end }) => (
-        <NavLink
-          key={to}
-          to={to}
-          end={end}
-          aria-label={label}
-          title={label}
-          className={({ isActive }) => (isActive ? ON : OFF)}
+    <>
+      {stuck && <div data-notch-fill aria-hidden="true" className={NOTCH_FILL} />}
+      <nav
+        ref={navRef}
+        className={`sticky top-[env(safe-area-inset-top)] z-10 flex gap-6 flex-wrap justify-center items-center px-3 py-2.5 ${stuck ? STUCK_BG : ""}`}
+      >
+        {ROUTES.map(({ to, label, Icon, end }) => (
+          <NavLink
+            key={to}
+            to={to}
+            end={end}
+            aria-label={label}
+            title={label}
+            className={({ isActive }) => (isActive ? ON : OFF)}
+          >
+            <Icon />
+          </NavLink>
+        ))}
+        <button
+          type="button"
+          onClick={toggleFuri}
+          aria-pressed={furiOn}
+          aria-label={furiOn ? "Masquer les furigana" : "Afficher les furigana"}
+          className={`${furiOn ? "text-accent" : "text-fg-dim"} rounded-full min-w-8 h-8 cursor-pointer border-none bg-transparent text-sm font-bold`}
         >
-          <Icon />
-        </NavLink>
-      ))}
-      <button
-        type="button"
-        onClick={toggleFuri}
-        aria-pressed={furiOn}
-        aria-label={furiOn ? "Masquer les furigana" : "Afficher les furigana"}
-        className={`${furiOn ? "text-accent" : "text-fg-dim"} rounded-full min-w-8 h-8 cursor-pointer border-none bg-transparent text-sm font-bold`}
-      >
-        ふ
-      </button>
-      <button
-        type="button"
-        onClick={toggle}
-        aria-label="Basculer le thème"
-        title="Basculer le thème"
-        className="text-fg-dim rounded-full min-w-8 h-8 cursor-pointer border-none bg-transparent inline-flex items-center justify-center text-lg"
-      >
-        {theme === "light" ? <IconMoon /> : <IconSun />}
-      </button>
-    </nav>
+          ふ
+        </button>
+        <button
+          type="button"
+          onClick={toggle}
+          aria-label="Basculer le thème"
+          title="Basculer le thème"
+          className="text-fg-dim rounded-full min-w-8 h-8 cursor-pointer border-none bg-transparent inline-flex items-center justify-center text-lg"
+        >
+          {theme === "light" ? <IconMoon /> : <IconSun />}
+        </button>
+      </nav>
+    </>
   );
 }

@@ -47,10 +47,29 @@ test("pinned nav applies the frosted backdrop blur", () => {
   expect(nav().className).toContain("surface-blur");
 });
 
-test("pinned nav extends its frosted backdrop through the safe-area notch strip", () => {
-  // On iOS the sticky nav pins at `top: env(safe-area-inset-top)`, below the notch.
-  // Without an explicit notch fill, its blur stops at the notch instead of reaching
-  // the very top of the screen. The `notch-fill` class paints that strip.
+test("pinned nav renders a notch fill covering the safe-area strip", () => {
+  // On iOS the sticky nav pins at `top: env(safe-area-inset-top)`, below the notch, so
+  // the status-bar strip above it needs its own frosted surface to reach the screen top.
   renderNav();
-  expect(nav().className).toContain("notch-fill");
+  const fill = container.querySelector("[data-notch-fill]");
+  expect(fill).not.toBeNull();
+  expect(fill!.className).toContain("surface-blur");
+  expect(fill!.className).toContain("h-[env(safe-area-inset-top)]");
+});
+
+test("notch fill is not nested inside a backdrop-filtered surface", () => {
+  // Measured in Blink (and the reported iOS symptom): an element carrying
+  // `backdrop-filter` becomes the *backdrop root* of its descendants, so a descendant's
+  // backdrop is empty outside that ancestor's box — it paints its colour but blurs
+  // nothing. The previous implementation was a `::before` on the blurred nav itself,
+  // placed at `bottom: 100%` (fully outside it), which is exactly that dead case.
+  // The fill must therefore stay a sibling, in the same backdrop root as the content.
+  renderNav();
+  const fill = container.querySelector("[data-notch-fill]");
+  // `closest` from the element itself would match its own `surface-blur`; walk the
+  // ANCESTRY, which is what decides the backdrop root. Assert on the tag name, not the
+  // node: happy-dom serialising a failed DOM match takes minutes, and a regression that
+  // looks like a hung suite is a regression nobody reads.
+  const blurredAncestor = fill!.parentElement!.closest(".surface-blur");
+  expect(blurredAncestor?.tagName ?? null).toBeNull();
 });

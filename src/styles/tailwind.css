@@ -145,28 +145,14 @@
   backdrop-filter: var(--effect-backdrop, none);
 }
 
-/* iOS notch fill for the pinned top-nav. The sticky nav pins at
- * `top: env(safe-area-inset-top)` to clear the notch, so its own frosted
- * background starts *below* the safe-area strip — leaving the status-bar /
- * notch region unblurred. This paint-only pseudo-element extends the same
- * `bg-panel` + `surface-blur` up through that strip so the blur reaches the
- * very top of the screen. `position: absolute` keeps it out of layout (no
- * content jump / no effect on the stuck-detection math); the sticky nav is
- * already a positioned containing block, so no `position: relative` is needed. */
-@utility notch-fill {
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 100%;
-    height: env(safe-area-inset-top);
-    background: var(--color-panel);
-    -webkit-backdrop-filter: var(--effect-backdrop, none);
-    backdrop-filter: var(--effect-backdrop, none);
-    pointer-events: none;
-  }
-}
+/* ⚠ Pas de `backdrop-filter` sur un élément IMBRIQUÉ dans une surface qui en porte
+ * déjà un : un élément à `backdrop-filter` devient le *backdrop root* de ses
+ * descendants, donc un descendant situé HORS de sa boîte n'a plus rien à flouter.
+ * Il peint alors sa couleur et ne floute rien — mesuré dans Blink, et c'était la
+ * panne du remplissage d'encoche iOS : un `::before` en `bottom: 100%` sur la nav
+ * floutée (écart de pixels 97 derrière la bande, contre 1 pour un frère non
+ * imbriqué). Le remplissage vit désormais dans `TopNav` (`NOTCH_FILL`), frère de
+ * la nav — même backdrop root que le contenu. */
 
 /* Themeable surface elevation. Tailwind's `shadow-*` namespace inlines token
  * values at build time, so these read `var(--elevation-*)` at element time
