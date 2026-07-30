@@ -402,6 +402,11 @@ code touché.
   pur JS (`node:zlib.inflateSync`, ~40 lignes) plutôt que juger une image à l'œil.
   ⚠ Figer `body::before{animation:none}` avant de comparer deux captures : `aurora-drift` déplace
   le calque de fond en continu.
+  ⚠ **Servir un `_site` PÉRIMÉ invalide toute la mesure, sans rien signaler** : `bun build` ne
+  nettoie pas le dossier, et un autre agent peut en laisser un d'un autre commit dans le
+  répertoire principal. Déjà payé : une dominante rose mesurée à −3,9 au lieu de 22,8. Bâtir dans
+  SON worktree et mesurer ce build-là ; une valeur qui contredit une mesure antérieure est
+  d'abord une erreur de harnais.
 - **Vérifier dans WebKit aussi** (tout ce qui touche au rendu du japonais : furigana, ruby,
   césure, largeur de base). Playwright a déjà installé le build : `bun add playwright-core` dans
   le scratchpad, puis `webkit.launch({ executablePath: "~/Library/Caches/ms-playwright/webkit-2311/pw_run.sh" })`
