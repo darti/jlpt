@@ -280,8 +280,15 @@
     max-width: 100%; box-sizing: border-box; min-width: 0;
   }
   /* `padding-top` réserve la bande où le furigana (overlay absolu) se pose, sinon il déborderait
-     du haut de la pastille. */
-  .vbreak .tok-jp { font-size: 1rem; line-height: 1.6; text-align: center; overflow-wrap: anywhere; padding-top: 0.9em; }
+     du haut de la pastille.
+
+     ⚠ `--fs-an`, PAS `--fs-jp` : c'est du japonais, mais sa taille se règle pour elle-même.
+     Ces pastilles s'alignent en ligne, portent une glose française dessous et un furigana en
+     surimpression — les grossir comme une phrase à lire fait sauter la mise en page bien avant
+     que la lecture n'en profite. La taille reste en `rem`, donc l'échelle d'INTERFACE continue
+     de s'y appliquer (c'est déjà le cas aujourd'hui) ; `--fs-an` s'y compose.
+     Le furigana (`0.5em`) et la réserve de bande (`0.9em`) suivent d'eux-mêmes. */
+  .vbreak .tok-jp { font-size: calc(1rem * var(--fs-an, 1)); line-height: 1.6; text-align: center; overflow-wrap: anywhere; padding-top: 0.9em; }
   .vbreak .tok-jp .furi-rt {
     /* Les furigana de l'analyse sont TOUJOURS visibles, quelle que soit la bascule « ふ ». On
        réutilise EXACTEMENT le mécanisme de l'app — overlay `position:absolute` hérité de la

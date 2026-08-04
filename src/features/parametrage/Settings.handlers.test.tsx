@@ -15,6 +15,7 @@ beforeEach(() => {
   localStorage.clear();
   document.documentElement.style.removeProperty("--fs-ui");
   document.documentElement.style.removeProperty("--fs-jp");
+  document.documentElement.style.removeProperty("--fs-an");
   container = document.createElement("div");
   document.body.appendChild(container);
   root = createRoot(container);
@@ -50,6 +51,25 @@ test("font-scale A− on Japanese persists jlptN3_fsJp and applies --fs-jp live"
   click(byLabel("Réduire Japonais"));
   expect(localStorage.getItem("jlptN3_fsJp")).toBe("0.9");
   expect(document.documentElement.style.getPropertyValue("--fs-jp")).toBe("0.9");
+});
+
+test("l échelle d analyse a sa propre ligne, persistée et appliquée à chaud", () => {
+  render();
+  click(byLabel("Agrandir Analyse grammaticale"));
+  expect(localStorage.getItem("jlptN3_fsAn")).toBe("1.1");
+  expect(document.documentElement.style.getPropertyValue("--fs-an")).toBe("1.1");
+});
+
+// ⚠ Les trois lignes sont INDÉPENDANTES : régler l'analyse ne doit pas déplacer la lecture, et
+// réciproquement. Le contraire se verrait à l'écran, jamais au typecheck — les trois partagent
+// le même composant et la même fabrique de préférence.
+test("régler une échelle ne déplace pas les deux autres", () => {
+  render();
+  click(byLabel("Agrandir Analyse grammaticale"));
+  expect(localStorage.getItem("jlptN3_fsUi")).toBeNull();
+  expect(localStorage.getItem("jlptN3_fsJp")).toBeNull();
+  expect(document.documentElement.style.getPropertyValue("--fs-ui")).toBe("1");
+  expect(document.documentElement.style.getPropertyValue("--fs-jp")).toBe("1");
 });
 
 test("Réinitialiser is gated by confirm — a declined confirm leaves progress intact", () => {

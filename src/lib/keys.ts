@@ -34,8 +34,13 @@ export const THEME_KEY = "jlptN3_theme";
 
 export const FURI_KEY = "jlptN3_furi";
 
-/** Échelle de police : `jlptN3_fsUi` / `jlptN3_fsJp`. */
-export function fsKey(kind: "Ui" | "Jp"): string {
+/** Échelle de police : `jlptN3_fsUi` / `jlptN3_fsJp` / `jlptN3_fsAn`.
+ *
+ *  `An` = le japonais des blocs d'ANALYSE grammaticale (les pastilles colorées de
+ *  `SentenceAnalysis`). Séparé de `Jp` parce que ces pastilles ont une contrainte de mise en page
+ *  que les surfaces de lecture n'ont pas : elles s'alignent en ligne, portent une glose française
+ *  dessous et un furigana en surimpression — leur taille se règle donc pour elle-même. */
+export function fsKey(kind: "Ui" | "Jp" | "An"): string {
   return `jlptN3_fs${kind}`;
 }
 

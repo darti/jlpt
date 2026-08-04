@@ -40,12 +40,26 @@ test("bumpFs isolated negative direction (not within clamp test)", () => {
   expect(s._get("jlptN3_fsUi")).toBe("1.4");
 });
 
-test("applyFontScale sets --fs-ui/--fs-jp from stored values", () => {
+test("applyFontScale sets --fs-ui/--fs-jp/--fs-an from stored values", () => {
   const props: Record<string, string> = {};
   const root = { style: { setProperty: (k: string, v: string) => { props[k] = v; } } } as unknown as HTMLElement;
-  applyFontScale(root, memStore({ jlptN3_fsUi: "1.2", jlptN3_fsJp: "1.4" }));
+  applyFontScale(root, memStore({ jlptN3_fsUi: "1.2", jlptN3_fsJp: "1.4", jlptN3_fsAn: "0.9" }));
   expect(props["--fs-ui"]).toBe("1.2");
   expect(props["--fs-jp"]).toBe("1.4");
+  expect(props["--fs-an"]).toBe("0.9");
+});
+
+// L'échelle d'analyse suit exactement le contrat des deux autres (bornes de lecture, pas, clamp).
+test("l échelle d analyse se lit, se borne et se décale comme les deux autres", () => {
+  expect(readFs("An", memStore())).toBe(1);                            // défaut
+  expect(readFs("An", memStore({ jlptN3_fsAn: "9" }))).toBe(1);        // hors bornes → défaut
+  expect(readFs("An", memStore({ jlptN3_fsAn: "1.3" }))).toBe(1.3);
+  const s = memStore({ jlptN3_fsAn: "1.0" });
+  expect(bumpFs("An", +1, s)).toBe(1.1);
+  expect(s._get("jlptN3_fsAn")).toBe("1.1");
+  // ⚠ L'horodatage conditionne la synchro Gist : sans lui, `cloudPull` restaurerait l'ancienne
+  // valeur au prochain aller-retour, sans erreur (cf. CLAUDE.md, le piège des trois préférences).
+  expect(typeof s._get("jlptN3_updatedAt")).toBe("string");
 });
 
 /**
@@ -80,4 +94,7 @@ test("la feuille compilée CONSOMME les deux échelles de police", async () => {
   expect(css).toMatch(/--ts:\s*var\(--fs-ui/);
   // Le japonais : au moins une taille réellement émise qui en dépend.
   expect(css).toMatch(/font-size:\s*calc\([^)]*var\(--fs-jp/);
+  // L'analyse grammaticale : ses pastilles sont en `rem` codé en dur dans la feuille, donc elles
+  // suivaient l'échelle d'INTERFACE et rien d'autre — d'où une échelle qui leur est propre.
+  expect(css).toMatch(/\.vbreak\s+\.tok-jp\s*\{[^}]*font-size:\s*calc\([^)]*var\(--fs-an/);
 }, 60_000);

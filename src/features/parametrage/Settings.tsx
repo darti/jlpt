@@ -68,6 +68,7 @@ export function Settings({ theme, onToggleTheme }: { theme: ThemeName; onToggleT
         <h3 className="text-fg text-sm font-bold m-0">Police</h3>
         <FontRow kind="Ui" label="Interface" />
         <FontRow kind="Jp" label="Japonais" />
+        <FontRow kind="An" label="Analyse grammaticale" />
       </section>
 
       <section className="flex items-center justify-between gap-3">
