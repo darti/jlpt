@@ -185,17 +185,32 @@
   :root {
     color-scheme: dark;
     overflow-x: hidden;
+    /* ⚠ ÉCHELLE DE POLICE DE L'INTERFACE — la SEULE règle qui rende le réglage opérant.
+     * `--fs-ui` / `--fs-jp` sont posées en style inline sur <html> par `applyFontScale`
+     * (src/lib/fontscale.ts), mais RIEN ne les lisait : le portage vanilla → React a emporté
+     * l'écriture et laissé la lecture derrière lui (le `theme.css` qui les consommait a été
+     * supprimé). Les deux boutons A− / A+ persistaient donc une valeur, affichaient un
+     * pourcentage, et ne changeaient pas un pixel.
+     *
+     * Toutes les utilités de taille de Tailwind sont en `rem` : mettre l'échelle sur la
+     * font-size de la racine les fait toutes suivre, sans toucher un seul composant.
+     * `100%` (et non `16px`) préserve la taille de police choisie dans le navigateur —
+     * l'échelle de l'app la multiplie au lieu de l'écraser. */
+    font-size: calc(100% * var(--fs-ui, 1));
     /* Typography scale — multiplier consumed by `text-[calc(Npx*var(--ts))]`
      * arbitrary values across the (responsive) shell. Tailwind inlines px
      * sizes literally, so this var is the only handle that makes them
      * react to viewport without per-class breakpoint variants. Bumped to
      * 1.3 below the `md` breakpoint (768px) since 11–13px reads too small
-     * on a phone. */
-    --ts: 1;
+     * on a phone.
+     * ⚠ Y REPORTER `--fs-ui` : ces tailles-là sont en PIXELS, donc insensibles à la
+     * font-size de la racine. Sans ce facteur, le chrome (nav, méta, badges) resterait
+     * seul figé pendant que tout le reste suit le réglage. */
+    --ts: var(--fs-ui, 1);
   }
   @media (max-width: 767px) {
     :root {
-      --ts: 1.3;
+      --ts: calc(1.3 * var(--fs-ui, 1));
     }
   }
   body {

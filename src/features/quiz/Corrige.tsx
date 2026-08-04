@@ -41,7 +41,7 @@ export function Corrige({ question, correct, rappel, targeted = false }: { quest
         <div className="mb-3">
           <p className="text-accent text-sm font-bold mb-1">Transcription</p>
           <div
-            className="text-fg-dim text-sm leading-relaxed"
+            className="text-fg-dim text-[calc(0.875rem*var(--fs-jp,1))] leading-relaxed"
             dangerouslySetInnerHTML={{ __html: furi(script) }}
           />
         </div>
