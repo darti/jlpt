@@ -98,7 +98,7 @@ function Exemple({ ex, legende }: { ex: CoursExample; legende: boolean }) {
     <div className="bg-surface-2 border border-line rounded-lg p-3 text-sm flex flex-col gap-0.5">
       <div className="flex items-start gap-2">
         <div
-          className="text-fg text-xl flex-1 min-w-0"
+          className="text-fg text-[calc(1.25rem*var(--fs-jp,1))] flex-1 min-w-0"
           dangerouslySetInnerHTML={{ __html: furi(ex.jp) }}
         />
         <SpeakButton text={ex.jp} />
@@ -127,11 +127,11 @@ export function EntityCard({
       <div data-cours-item={it.id} data-kind="gram" className="flex flex-col gap-2">
         <div className="flex items-center gap-2">
           {state && <Badge state={state} />}
-          <span className="text-fg text-2xl font-bold">{it.form}</span>
+          <span className="text-fg text-[calc(1.5rem*var(--fs-jp,1))] font-bold">{it.form}</span>
           {it.niv && <span className="text-meta text-fg-muted">{it.niv}</span>}
         </div>
         {it.struct && (
-          <div className="text-fg-muted text-base font-mono flex flex-col">
+          <div className="text-fg-muted text-[calc(1rem*var(--fs-jp,1))] font-mono flex flex-col">
             {splitStruct(it.struct).map((line, i) => <span key={i}>{line}</span>)}
           </div>
         )}
@@ -149,16 +149,16 @@ export function EntityCard({
       <div data-cours-item={it.id} data-kind="kanji" className="flex flex-col gap-2">
         <div className="flex items-center gap-3">
           {state && <Badge state={state} />}
-          <span className="text-fg text-5xl font-light">{it.kanji}</span>
+          <span className="text-fg text-[calc(3rem*var(--fs-jp,1))] font-light">{it.kanji}</span>
           <div className="flex-1 min-w-0">
-            <div className="text-fg-muted text-base">{it.lecture}</div>
+            <div className="text-fg-muted text-[calc(1rem*var(--fs-jp,1))]">{it.lecture}</div>
             <div className="text-fg-dim text-sm">{it.sens}</div>
           </div>
         </div>
         {it.exemple && (
           <div className="flex items-center gap-2">
             <div
-              className="text-fg text-xl flex-1 min-w-0"
+              className="text-fg text-[calc(1.25rem*var(--fs-jp,1))] flex-1 min-w-0"
               dangerouslySetInnerHTML={{ __html: furi(it.exemple) }}
             />
             <SpeakButton text={kanjiExempleJa(it.exemple)} />
@@ -175,10 +175,10 @@ export function EntityCard({
         {state && <Badge state={state} />}
         <div className="flex-1 min-w-0">
           <span
-            className="text-fg text-2xl"
+            className="text-fg text-[calc(1.5rem*var(--fs-jp,1))]"
             dangerouslySetInnerHTML={{ __html: furi(it.mot) }}
           />
-          <span className="text-fg-muted text-base ml-2">{it.lecture}</span>
+          <span className="text-fg-muted text-[calc(1rem*var(--fs-jp,1))] ml-2">{it.lecture}</span>
           <div className="text-fg-dim text-sm">{it.sens}</div>
         </div>
         {it.niv && <span className="text-meta text-fg-muted">{it.niv}</span>}

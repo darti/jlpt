@@ -1,4 +1,7 @@
 import { test, expect } from "bun:test";
+import { readFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { readFs, bumpFs, applyFontScale } from "./fontscale.ts";
 import { memStore } from "../testing/memStore.ts";
 
@@ -44,3 +47,37 @@ test("applyFontScale sets --fs-ui/--fs-jp from stored values", () => {
   expect(props["--fs-ui"]).toBe("1.2");
   expect(props["--fs-jp"]).toBe("1.4");
 });
+
+/**
+ * ⚠ LE MAILLON QUI MANQUAIT — et que rien au-dessus ne peut voir.
+ *
+ * Les tests ci-dessus prouvent que la préférence est lue, bornée, persistée, et posée sur la
+ * racine. Ils sont restés VERTS pendant que les deux réglages n'avaient aucun effet : le portage
+ * vanilla → React a emporté l'écriture et laissé la lecture derrière lui (le `theme.css` qui
+ * consommait ces variables a été supprimé). Personne ne lisait `--fs-ui` ni `--fs-jp`.
+ *
+ * On compile donc la feuille et on assert la CONSOMMATION. Deux raisons de compiler plutôt que
+ * de greper les sources :
+ *   — `styles.gen.css` est généré ET gitignoré : sur une machine propre il est absent, sur une
+ *     machine de dev il peut être périmé — le greper ne prouve rien ;
+ *   — le Tailwind vendorisé est un SOUS-ENSEMBLE : une utilité arbitraire écrite dans un
+ *     composant peut parfaitement ne jamais être émise. Seule la sortie fait foi.
+ */
+test("la feuille compilée CONSOMME les deux échelles de police", async () => {
+  const sortie = join(tmpdir(), `jlpt-fs-check-${process.pid}.css`);
+  const p = Bun.spawn(
+    ["bunx", "@tailwindcss/cli", "-i", "src/styles/tailwind.css", "-o", sortie],
+    { stdout: "pipe", stderr: "pipe" },
+  );
+  const [code, err] = await Promise.all([p.exited, new Response(p.stderr).text()]);
+  expect(err).not.toContain("CssSyntaxError");
+  expect(code).toBe(0);
+  const css = readFileSync(sortie, "utf8");
+
+  // L'interface : l'échelle porte sur la font-size de la RACINE (toutes les utilités Tailwind
+  // sont en rem) et sur `--ts` (les quelques tailles en px du chrome, insensibles au rem).
+  expect(css).toContain("font-size: calc(100% * var(--fs-ui");
+  expect(css).toMatch(/--ts:\s*var\(--fs-ui/);
+  // Le japonais : au moins une taille réellement émise qui en dépend.
+  expect(css).toMatch(/font-size:\s*calc\([^)]*var\(--fs-jp/);
+}, 60_000);

@@ -49,12 +49,12 @@ export function QuestionCard({
       <div className="text-fg-muted text-meta text-right mb-1 select-all font-mono">#{question.id}</div>
       {question.cat === "lecture" && passage && (
         <div
-          className="text-fg text-base mb-3 leading-loose"
+          className="text-fg text-[calc(1rem*var(--fs-jp,1))] mb-3 leading-loose"
           dangerouslySetInnerHTML={{ __html: furi(passage.jp) }}
         />
       )}
       <div
-        className="text-fg text-xl leading-relaxed mb-6"
+        className="text-fg text-[calc(1.25rem*var(--fs-jp,1))] leading-relaxed mb-6"
         dangerouslySetInnerHTML={{ __html: stemHtml }}
       />
       {question.cat === "ecoute" && (
@@ -97,7 +97,7 @@ export function QuestionCard({
             autoCapitalize="off"
             spellCheck={false}
             placeholder="Tapez la lecture en kana"
-            className="rounded-lg px-4 py-2.5 text-base bg-surface-2 border border-line text-fg outline-none focus:border-accent"
+            className="rounded-lg px-4 py-2.5 text-[calc(1rem*var(--fs-jp,1))] bg-surface-2 border border-line text-fg outline-none focus:border-accent"
           />
           <button type="submit" className={`self-start ${BTN_PRIMARY}`}>Valider</button>
         </form>
@@ -128,7 +128,7 @@ export function QuestionCard({
                   type="button"
                   disabled={answered}
                   onClick={() => onChoose(i)}
-                  className={`text-left rounded-lg px-4 py-2.5 text-base cursor-pointer ${cls}`}
+                  className={`text-left rounded-lg px-4 py-2.5 text-[calc(1rem*var(--fs-jp,1))] cursor-pointer ${cls}`}
                   dangerouslySetInnerHTML={{ __html: furi(opt) }}
                 />
               );
