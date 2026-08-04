@@ -1,5 +1,5 @@
 import { test, expect } from "bun:test";
-import { pickSessionPlan, BUILT_CAPS, REVISION_CAP, CONFUSION_CAP, LEARN_FLOOR, type Caps } from "./sessionPlan.ts";
+import { pickSessionPlan, BUILT_CAPS, REVISION_CAP, CONFUSION_CAP, LEARN_FLOOR, LEARN_MIN, type Caps } from "./sessionPlan.ts";
 
 const OFF: Caps = { diagnostic: false, errors: false, learn: false, revision: false, confusion: false };
 const base = {
@@ -56,14 +56,17 @@ test("learn : le plancher ne fabrique jamais plus de cartes que newCoursePoints 
   expect(plan).toEqual({ kind: "composed", alloc: { errors: 3, confusion: 0, revision: 0, learn: 2, adaptive: 5 } });
 });
 
-test("#4 contract: BUILT_CAPS enables learn (40% cap) alongside errors", () => {
+test("#4 contract: BUILT_CAPS enables learn alongside errors", () => {
   const plan = pickSessionPlan(
     { ...base, wrongCount: 50, newCoursePoints: 5, daysSinceDiagnostic: 3 },
     10,
     BUILT_CAPS,
   );
-  // errors = min(50,3)=3; revision = min(0,4,7)=0; learn = min(5, floor(0.4*10)=4, 10-3-0=7)=4; adaptive = 10-3-0-4=3
-  expect(plan).toEqual({ kind: "composed", alloc: { errors: 3, confusion: 0, revision: 0, learn: 4, adaptive: 3 } });
+  // plancher = min(10, newCoursePoints=5, max(LEARN_MIN=5, round(0.25*10)=3)) = 5 ; reste = 5.
+  // errors = min(50, floor(0.3*10)=3, 5) = 3 ; revision/confusion = 0 ;
+  // sup = min(5-5, floor(0.4*10)-5, 5-3) = 0 → learn = 5 ; adaptive = 10-3-5 = 2.
+  // Le plancher de grammaire (5 cartes) domine le plafond générique (40 %) sur une séance courte.
+  expect(plan).toEqual({ kind: "composed", alloc: { errors: 3, confusion: 0, revision: 0, learn: 5, adaptive: 2 } });
 });
 
 test("#2 contract: no errors emitted when wrong[] is empty", () => {
@@ -81,14 +84,26 @@ test("#3 contract: a recent diagnostic (<7d) yields a composed session", () => {
   expect(plan.kind).toBe("composed");
 });
 
-test("learn is capped at LEARN_CAP (40%) of the budget", () => {
+test("learn is capped at LEARN_CAP (40%) once the budget exceeds the LEARN_MIN floor", () => {
+  // total=30 : le plafond (floor(0.4*30)=12) dépasse le plancher (max(LEARN_MIN=5, round(0.25*30)=8)=8),
+  // c'est donc bien le plafond qui borne. plancher=8 ; sup=min(100-8, 12-8=4, 30-8=22)=4 → learn=12.
+  const plan = pickSessionPlan(
+    { ...base, newCoursePoints: 100 },
+    30,
+    { diagnostic: false, errors: false, learn: true, revision: false, confusion: false },
+  );
+  expect(plan).toEqual({ kind: "composed", alloc: { errors: 0, confusion: 0, revision: 0, learn: 12, adaptive: 18 } });
+});
+
+test("LEARN_MIN prend le dessus sur le plafond de 40 % quand le budget est court", () => {
+  // total=10 : le plancher LEARN_MIN=5 (50 %) dépasse le plafond floor(0.4*10)=4. C'est voulu —
+  // accélérer la grammaire prime sur le plafond générique sur les séances courtes.
   const plan = pickSessionPlan(
     { ...base, newCoursePoints: 100 },
     10,
     { diagnostic: false, errors: false, learn: true, revision: false, confusion: false },
   );
-  // errors off → 0; revision off → 0; learn = min(100, floor(0.4*10)=4, 10-0-0=10) = 4; adaptive = 6
-  expect(plan).toEqual({ kind: "composed", alloc: { errors: 0, confusion: 0, revision: 0, learn: 4, adaptive: 6 } });
+  expect(plan).toEqual({ kind: "composed", alloc: { errors: 0, confusion: 0, revision: 0, learn: 5, adaptive: 5 } });
 });
 
 const REVISION_CAPS: Caps = { diagnostic: false, errors: true, learn: true, revision: true, confusion: false };
@@ -209,17 +224,18 @@ test("le plancher tient sur les quatre durées réelles, profil saturé", () => 
   const state = {
     ...base, daysSinceDiagnostic: 3, wrongCount: 99, confusionCount: 99, revisionDue: 99, newCoursePoints: 9999,
   };
-  // Arbitré : 2, 4, 8, 11 questions d'apprentissage pour 5, 10, 20, 30 min (8/15/30/45 questions).
-  // Alloc complète figée (pas seulement learn) : c'est CE QUE le plancher déplace qu'on veut voir —
-  // à 45 questions la révision cède 8 points (18 → 10) et se fait dépasser par l'apprentissage (11).
+  // Plancher = max(LEARN_MIN=5, round(0.25*total)) : 5, 5, 8, 11 cartes pour 8/15/30/45 questions.
+  // Sur les séances courtes (8, 15) c'est LEARN_MIN qui domine (finance les 5 cartes de grammaire) ;
+  // au-delà (30, 45) c'est le quart du budget, inchangé — à 45 la révision cède 8 points (18 → 10)
+  // et se fait dépasser par l'apprentissage (11). Alloc complète figée : c'est CE QUE le plancher déplace.
   const attendu: Record<number, { errors: number; confusion: number; revision: number; learn: number; adaptive: number }> = {
-    8: { errors: 2, confusion: 2, revision: 2, learn: 2, adaptive: 0 },
-    15: { errors: 4, confusion: 3, revision: 4, learn: 4, adaptive: 0 },
+    8: { errors: 2, confusion: 1, revision: 0, learn: 5, adaptive: 0 },
+    15: { errors: 4, confusion: 3, revision: 3, learn: 5, adaptive: 0 },
     30: { errors: 9, confusion: 7, revision: 6, learn: 8, adaptive: 0 },
     45: { errors: 13, confusion: 11, revision: 10, learn: 11, adaptive: 0 },
   };
   for (const [total, allocAttendu] of Object.entries(attendu)) {
-    expect(allocAttendu.learn).toBe(Math.max(1, Math.round(LEARN_FLOOR * Number(total))));
+    expect(allocAttendu.learn).toBe(Math.max(LEARN_MIN, Math.round(LEARN_FLOOR * Number(total))));
     const p = pickSessionPlan(state, Number(total), BUILT_CAPS);
     if (p.kind !== "composed") throw new Error("composed attendu");
     expect(p.alloc).toEqual(allocAttendu);
@@ -237,8 +253,8 @@ test("newCoursePoints=0 (programme épuisé) → learn=0 malgré le plancher", (
 });
 
 test("total=0 : le plancher ne peut pas fabriquer une carte hors budget, aucune tranche négative", () => {
-  // Math.max(1, …) visait 1 carte même à budget nul ; c'est le Math.min(total, …) qui l'écrête.
-  // Sans lui, `reste` devient négatif et `errors` (borné par `reste`) sortirait à -1.
+  // Math.max(LEARN_MIN, …) voudrait 5 cartes même à budget nul ; c'est le Math.min(total, …) qui l'écrête.
+  // Sans lui, `reste` devient négatif et `errors` (borné par `reste`) sortirait négatif.
   const p = pickSessionPlan(
     { ...base, daysSinceDiagnostic: 3, wrongCount: 99, confusionCount: 99, revisionDue: 99, newCoursePoints: 9999 },
     0,
