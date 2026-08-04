@@ -132,13 +132,17 @@ export function Deck({ category, group, stateOf, onKnown }: {
         </button>
       </div>
 
-      {etat === "neuf" && (
+      {/* ⚠ Offert sur TOUTE entité non acquise, pas seulement `neuf` : « je connais déjà » vaut
+          autant pour un point rencontré une fois et su que pour un point jamais vu — c'est même
+          le cas le plus fréquent d'un apprenant qui reprend un programme. Sur une entité déjà
+          acquise le geste n'a rien à faire (il ne peut que la dégrader, cf. `declaredKnownCard`). */}
+      {etat !== "acquis" && (
         <button
           type="button"
           onClick={() => { onKnown(item.id); bouge(1); }}
           className={`w-full ${BTN_GHOST}`}
         >
-          Je connais déjà — le mettre en révision
+          Je sais déjà — le classer acquis
         </button>
       )}
     </div>

@@ -21,13 +21,26 @@ async function monter(): Promise<{ api: () => ReturnType<typeof useEntityStates>
   return { api: () => courant! };
 }
 
-test("markKnown amorce la carte FSRS et rend l entite non-neuve", async () => {
+// ⚠ « acquis », pas seulement « non-neuve » : l'ancien geste posait `fsrsInit(3)` et laissait
+// l'entité « en cours », donc due quatre jours plus tard. Asserter `not.toBe("neuf")` restait
+// vert sur ce défaut — c'est exactement ce que le test ne voyait pas.
+test("markKnown classe l entite acquise et ecrit la carte FSRS", async () => {
   const { api } = await monter();
   expect(api().stateOf("jlpt:gram/ば")).toBe("neuf");
   await act(async () => { api().markKnown("jlpt:gram/ば"); });
-  expect(api().stateOf("jlpt:gram/ば")).not.toBe("neuf");
+  expect(api().stateOf("jlpt:gram/ば")).toBe("acquis");
   const blob = JSON.parse(globalThis.localStorage.getItem(PROGRESS_KEY)!);
   expect(blob.fsrs["jlpt:gram/ば"]).toBeArrayOfSize(3);
+});
+
+// Le cas qui n'était pas offert avant (le bouton ne s'affichait que sur `neuf`) et qui est le
+// plus fréquent chez quelqu'un qui reprend un programme : un point déjà rencontré, mais su.
+test("markKnown evacue aussi une entite deja rencontree", async () => {
+  writeProgress({ fsrs: { "jlpt:gram/ば": [0.5, 6, 0] } });
+  const { api } = await monter();
+  expect(api().stateOf("jlpt:gram/ば")).not.toBe("acquis");
+  await act(async () => { api().markKnown("jlpt:gram/ば"); });
+  expect(api().stateOf("jlpt:gram/ば")).toBe("acquis");
 });
 
 test("markKnown preserve les cartes des autres entites", async () => {

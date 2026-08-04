@@ -4,6 +4,7 @@ import { createRoot, type Root } from "react-dom/client";
 import { MemoryRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { Cours } from "./Cours.tsx";
 import { clearCoursCache } from "./useCours.ts";
+import { STABILITE_ACQUISE } from "./entityState.ts";
 import { PROGRESS_KEY } from "../../lib/keys.ts";
 
 (globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
@@ -60,15 +61,18 @@ test("Cours /cours → hub des catégories", async () => {
   await act(async () => { root.unmount(); });
 });
 
-test("Cours /cours/gram/g1 → paquet + « je connais déjà » qui amorce la carte FSRS", async () => {
+test("Cours /cours/gram/g1 → paquet + « je sais déjà » qui classe l entité acquise", async () => {
   const { host, root } = await mountAt("/cours/gram/g1");
   expect(host.innerHTML).toContain("〜ば");
   const btn = Array.from(host.querySelectorAll("button"))
-    .find((b) => b.textContent?.includes("Je connais déjà")) as HTMLButtonElement;
+    .find((b) => b.textContent?.includes("Je sais déjà")) as HTMLButtonElement;
   expect(btn).not.toBeUndefined();
-  await act(async () => { btn.click(); }); // neuf → amorce la mémoire (grade Good)
+  await act(async () => { btn.click(); });
   const blob = JSON.parse(globalThis.localStorage.getItem(PROGRESS_KEY)!);
   expect(Object.keys(blob.fsrs)).toEqual(["jlpt:gram/ば"]);
+  // ⚠ Bout en bout : c'est la STABILITÉ écrite qui décide de l'évacuation. L'ancien geste posait
+  // 3,7 j (donc dû à j+4) et ce test restait vert en ne comptant que les clés.
+  expect(blob.fsrs["jlpt:gram/ば"][0]).toBeGreaterThanOrEqual(STABILITE_ACQUISE);
   await act(async () => { root.unmount(); });
 });
 
