@@ -47,9 +47,17 @@ test("nextLessonBlock rend un tableau vide quand n vaut zero", () => {
   expect(nextLessonBlock("gram", cats, {}, 0, 0)).toEqual([]);
 });
 
-// Un item « à revoir » ou « en cours » n'est PAS acquis : il reste enseignable. C'est voulu —
-// une notion vacillante mérite d'être ré-exposée, pas seulement re-testée.
-test("nextLessonBlock reprend un item non acquis mais deja rencontre", () => {
-  const m = { a: [0.5, 5, 0] as Fsrs }; // stabilité faible → « en-cours »
+// LA correction : un item « en cours » (déjà introduit, pas encore dû) a quitté la phase
+// d'apprentissage. Une seconde séance le même jour propose donc de NOUVEAUX points au lieu de
+// ré-enseigner ceux tout juste vus (jamais « acquis » avant deux succès espacés).
+test("nextLessonBlock saute un item en cours et propose le suivant", () => {
+  const m = { a: [3.7, 5, 0] as Fsrs }; // introduit aujourd'hui, non dû → « en-cours »
+  expect(nextLessonBlock("gram", cats, m, 0, 1).map((i) => i.id)).toEqual(["b"]);
+});
+
+// Un item DÛ (« à revoir ») reste enseignable : pour les entités sans ancre, la phase
+// d'apprentissage est le seul endroit qui puisse les re-surfacer.
+test("nextLessonBlock reprend un item du (a revoir)", () => {
+  const m = { a: [0.5, 5, -10] as Fsrs }; // révisé il y a 10 j, rétrievabilité < 0,9 → « a-revoir »
   expect(nextLessonBlock("gram", cats, m, 0, 1).map((i) => i.id)).toEqual(["a"]);
 });
