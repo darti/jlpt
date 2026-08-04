@@ -2,23 +2,22 @@
  * Lecture de l'état dérivé des entités du cours, et unique geste d'écriture (« je connais »).
  *
  * Remplace `useCoursProgress` : plus de cochage cyclique persisté, l'état se calcule depuis la
- * carte FSRS (`entityState.ts`). Le seul geste offert AMORCE la mémoire au lieu de poser un
- * drapeau — l'entité entre dans le planificateur et reviendra en révision. Une affirmation
- * devient une hypothèse testable au lieu d'un angle mort.
+ * carte FSRS (`entityState.ts`). Le seul geste offert écrit dans la MÉMOIRE au lieu de poser un
+ * drapeau — une affirmation devient une hypothèse testable au lieu d'un angle mort : l'entité est
+ * classée acquise, et le planificateur la ramènera une fois pour vérifier la déclaration.
  */
 import { useCallback, useEffect, useState } from "react";
-import { fsrsInit } from "../../lib/fsrs.ts";
 import { readRawProgress, writeProgress } from "../../lib/storage.ts";
 import { asFsrs, type FsrsMap } from "../quiz/revision.ts";
 import { dayNumber } from "../quiz/traps.ts";
-import { entityState, type EntityState } from "./entityState.ts";
+import { declaredKnownCard, entityState, type EntityState } from "./entityState.ts";
 import { loadCoursProgress, migrateCoursProgress } from "./coursProgress.ts";
 
 export interface EntityStates {
   fsrs: FsrsMap;
   today: number;
   stateOf: (iri: string) => EntityState;
-  markKnown: (iri: string, grade?: 1 | 3) => void;
+  markKnown: (iri: string) => void;
 }
 
 export function useEntityStates(): EntityStates {
@@ -53,9 +52,12 @@ export function useEntityStates(): EntityStates {
   // le montage de CE hook. Partir de `cur` les aurait écrasées en entier, sans erreur. L'effet
   // de bord (`writeProgress`) est aussi sorti de l'updater de `setState` : React peut rejouer un
   // updater plusieurs fois (StrictMode, concurrent), ce qui aurait pu écrire deux fois.
-  const markKnown = useCallback((iri: string, grade: 1 | 3 = 3) => {
+  // ⚠ `declaredKnownCard` plutôt que `fsrsInit(3)` : une DÉCLARATION pose le seuil d'acquisition,
+  // là où une note de révision repartait de 3,7 j — donc ramenait le point quatre jours plus tard
+  // au lieu de l'évacuer. Le geste n'a plus de grade : « je sais déjà » n'est pas une réponse.
+  const markKnown = useCallback((iri: string) => {
     const base = asFsrs(readRawProgress());
-    const suivant: FsrsMap = { ...base, [iri]: fsrsInit(grade, today) };
+    const suivant: FsrsMap = { ...base, [iri]: declaredKnownCard(base[iri], today) };
     writeProgress({ fsrs: suivant });
     setFsrs(suivant);
   }, [today]);

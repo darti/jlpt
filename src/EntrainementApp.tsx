@@ -39,7 +39,8 @@ export function EntrainementAppView(props: {
   production?: boolean; onToggleProduction?: () => void;
   onSubmitTyped?: (text: string) => void; typed?: string | null;
   confusionIds?: Set<number>;
-  onLearnNext?: () => void; onLearnSelfGrade?: (grade: 1 | 3) => void;
+  onLearnNext?: () => void;
+  onLearnDeclareKnown?: () => void; onLearnNeedsReview?: () => void;
 }) {
   const { question } = props;
   const onSpeak = (rate?: number) => { if (question) speakQuestion(question, rate); };
@@ -73,7 +74,9 @@ export function EntrainementAppView(props: {
         item={props.learnStep.item} state={props.learnStep.state}
         index={props.learnStep.index} count={props.learnStep.count}
         hasAnchor={props.learnStep.hasAnchor}
-        onNext={props.onLearnNext ?? (() => {})} onSelfGrade={props.onLearnSelfGrade ?? (() => {})}
+        onNext={props.onLearnNext ?? (() => {})}
+        onDeclareKnown={props.onLearnDeclareKnown ?? (() => {})}
+        onNeedsReview={props.onLearnNeedsReview ?? (() => {})}
       />
     ) : null;
   }
@@ -143,7 +146,8 @@ export default function EntrainementApp() {
       onDiagDone={quiz.restart}
       production={production} onToggleProduction={toggleProduction}
       onSubmitTyped={quiz.submitTyped} typed={quiz.typed} confusionIds={quiz.confusionIds}
-      onLearnNext={quiz.learnNext} onLearnSelfGrade={quiz.learnSelfGrade}
+      onLearnNext={quiz.learnNext}
+      onLearnDeclareKnown={quiz.learnDeclareKnown} onLearnNeedsReview={quiz.learnNeedsReview}
     />
   );
 }

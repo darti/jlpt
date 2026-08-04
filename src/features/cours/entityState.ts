@@ -6,7 +6,7 @@
  * 〜ばかり depuis trois semaines et voir toujours « ○ » dans le cours. L'état n'est donc plus
  * stocké — il se calcule. Module PUR : `today` est injecté, jamais lu d'une horloge.
  */
-import { isDue, type Fsrs } from "../../lib/fsrs.ts";
+import { fsrsInit, isDue, type Fsrs } from "../../lib/fsrs.ts";
 import type { FsrsMap } from "../quiz/revision.ts";
 import type { CoursGroup, LearnCategory } from "./coursSchema.ts";
 
@@ -34,6 +34,27 @@ export function entityState(f: Fsrs | undefined, today: number): EntityState {
   if (!f) return "neuf";
   if (isDue(f, today)) return "a-revoir";
   return f[0] >= STABILITE_ACQUISE ? "acquis" : "en-cours";
+}
+
+/**
+ * La carte d'une entité que l'apprenant DÉCLARE déjà connue (« Je sais déjà », dans le cours).
+ *
+ * ⚠ Une déclaration n'est pas une note de révision, et c'est pourquoi elle ne passe pas par
+ * `fsrsInit`. Ce dernier posait `S = 3,7 j` (Good) : comme une entité redevient due exactement
+ * `S` jours après sa dernière réponse (`R(S,S) = 0,9`, garanti par construction dans `fsrs.ts`),
+ * déclarer « je connais » ramenait le point QUATRE JOURS plus tard — l'inverse de l'évacuation
+ * demandée. On pose donc directement le seuil d'acquisition : l'entité devient « acquise », sort
+ * de la phase d'apprentissage (`nextLessonBlock` ne prend que le neuf et le dû) et ne revient
+ * qu'une fois, dans ~3 semaines, pour vérifier la déclaration.
+ *
+ * ⚠ **Ne dégrade JAMAIS une carte plus forte** (`Math.max`) : une mémoire mesurée à `S = 49 j`
+ * vaut mieux qu'une déclaration, et la ramener à 21 avancerait son échéance de quatre semaines.
+ * La difficulté mesurée est conservée telle quelle ; une entité neuve prend celle de `Good`.
+ *
+ * Pure — `today` est injecté.
+ */
+export function declaredKnownCard(f: Fsrs | undefined, today: number): Fsrs {
+  return [Math.max(f?.[0] ?? 0, STABILITE_ACQUISE), f?.[1] ?? fsrsInit(3, today)[1], today];
 }
 
 export interface GroupStats {

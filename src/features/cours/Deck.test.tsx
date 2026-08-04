@@ -123,3 +123,52 @@ test("Echap remonte a l index de categorie", async () => {
   });
   expect(pathname).toBe("/cours/gram");
 });
+
+// ── « Je sais déjà » ────────────────────────────────────────────────────────────────────────
+// Le bouton ne s'affichait que sur `neuf`, ce qui excluait le cas le plus fréquent d'un apprenant
+// qui reprend un programme : un point déjà rencontré, mais su. Il couvre désormais tout état non
+// acquis — et disparaît sur `acquis`, où le geste ne pourrait que dégrader la carte.
+const LIBELLE = "Je sais déjà";
+
+test("le bouton je sais deja s affiche sur une entite neuve", async () => {
+  const el = await monter("", () => "neuf");
+  expect(el.textContent).toContain(LIBELLE);
+});
+
+test("le bouton je sais deja s affiche sur une entite en cours ou a revoir", async () => {
+  for (const etat of ["en-cours", "a-revoir"] as const) {
+    const el = await monter("", () => etat);
+    expect(el.textContent).toContain(LIBELLE);
+    await act(async () => { root!.unmount(); });
+    root = null;
+  }
+});
+
+test("le bouton je sais deja disparait sur une entite acquise", async () => {
+  const el = await monter("", () => "acquis");
+  expect(el.textContent).not.toContain(LIBELLE);
+});
+
+test("le bouton je sais deja declare l entite courante et avance d une carte", async () => {
+  const vus: string[] = [];
+  host = document.createElement("div");
+  document.body.appendChild(host);
+  root = createRoot(host);
+  await act(async () => {
+    root!.render(
+      <MemoryRouter initialEntries={["/cours/gram/g2"]}>
+        <Deck
+          category={category} group={group}
+          stateOf={() => "neuf"} onKnown={(iri) => vus.push(iri)}
+        />
+      </MemoryRouter>,
+    );
+  });
+  const bouton = [...host.querySelectorAll("button")]
+    .find((b) => b.textContent?.includes(LIBELLE));
+  await act(async () => { bouton?.dispatchEvent(new MouseEvent("click", { bubbles: true })); });
+  expect(vus).toEqual(["jlpt:gram/ば"]);
+  // … et le paquet a avancé : on ne redemande pas la carte qu'on vient d'évacuer.
+  expect(host.querySelector("[data-cours-item]")?.getAttribute("data-cours-item"))
+    .toBe("jlpt:gram/たら");
+});
