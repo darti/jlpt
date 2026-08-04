@@ -1,7 +1,8 @@
 import { fsKey } from "./keys.ts";
 import { numberPref, type ReadStore, type WriteStore, type Pref } from "./pref.ts";
 
-export type FsKind = "Ui" | "Jp";
+/** Les trois échelles : interface, japonais de lecture, japonais des blocs d'analyse. */
+export type FsKind = "Ui" | "Jp" | "An";
 
 /** Bornes de LECTURE — une valeur persistée hors de [0,7 ; 2] est ignorée (→ 1). Plus larges
  *  que les bornes d'écriture ci-dessous : une échelle posée à la main reste honorée. */
@@ -9,10 +10,11 @@ const FS_MIN = 0.7, FS_MAX = 2, FS_DEFAULT = 1;
 /** Bornes du PAS — ce que la molette des réglages peut atteindre. */
 const BUMP_MIN = 0.8, BUMP_MAX = 1.8, BUMP_STEP = 0.1;
 
-/** Une préférence par échelle : `jlptN3_fsUi` et `jlptN3_fsJp`. */
+/** Une préférence par échelle : `jlptN3_fsUi`, `jlptN3_fsJp` et `jlptN3_fsAn`. */
 const scales: Record<FsKind, Pref<number>> = {
   Ui: numberPref(fsKey("Ui"), FS_MIN, FS_MAX, FS_DEFAULT),
   Jp: numberPref(fsKey("Jp"), FS_MIN, FS_MAX, FS_DEFAULT),
+  An: numberPref(fsKey("An"), FS_MIN, FS_MAX, FS_DEFAULT),
 };
 
 export function readFs(kind: FsKind, store: ReadStore = globalThis.localStorage): number {
@@ -33,4 +35,5 @@ export function applyFontScale(
 ): void {
   root.style.setProperty("--fs-ui", String(readFs("Ui", store)));
   root.style.setProperty("--fs-jp", String(readFs("Jp", store)));
+  root.style.setProperty("--fs-an", String(readFs("An", store)));
 }
