@@ -20,6 +20,18 @@ export const TRACK_DE_SKILL: Record<Track, Skill> = {
 const TRACKS: Track[] = ["gram", "vocab", "kanji"];
 
 /**
+ * Plancher de cartes de GRAMMAIRE par séance : au moins autant de cartes neuves de grammaire, pour
+ * en accélérer l'apprentissage. La grammaire est ainsi PRIORITAIRE sur le vocabulaire et les kanji,
+ * quels que soient les poids de maîtrise.
+ *
+ * ⚠ Deux bornes le plafonnent en aval, sans quoi il fabriquerait des cartes hors budget : le
+ * budget d'apprentissage (`total`, argument d'`allocateLearn`) et, plus loin, le nombre de points
+ * de grammaire encore neufs — `nextLessonBlock` n'en rend jamais plus qu'il n'en reste. Le budget
+ * lui-même est garanti par `sessionPlan.LEARN_MIN`, jumeau de ce plancher.
+ */
+export const GRAM_LEARN_FLOOR = 5;
+
+/**
  * Répartit `total` entités à enseigner sur les trois pistes enseignables.
  *
  * ⚠ `allocateCount` distribue sur les CINQ compétences, or `lecture` et `ecoute` n'ont aucune
@@ -27,6 +39,10 @@ const TRACKS: Track[] = ["gram", "vocab", "kanji"];
  * un poids nul, puis on RAPATRIE ce qui leur écherrait malgré tout : le reliquat de la division
  * entière est distribué par poids décroissant et peut les atteindre. Sans ce rapatriement, le
  * budget d'apprentissage fuit vers des pistes qui ne peuvent rien en faire.
+ *
+ * ⚠ Puis le plancher de grammaire (`GRAM_LEARN_FLOOR`) : la grammaire est ramenée à au moins
+ * `min(GRAM_LEARN_FLOOR, total)` cartes, ce qui lui manque étant prélevé sur le vocabulaire puis
+ * les kanji. Le total est conservé (simple transfert entre pistes).
  */
 export function allocateLearn(
   weightOf: (c: Skill) => number, total: number,
@@ -45,6 +61,14 @@ export function allocateLearn(
     const meilleure = TRACKS.reduce((a, b) =>
       weightOf(TRACK_DE_SKILL[b]) > weightOf(TRACK_DE_SKILL[a]) ? b : a);
     out[meilleure] += orphelins;
+  }
+  // Plancher de grammaire : prioritaire, prélevé sur vocab puis kanji. Borné par `total` — on ne
+  // fabrique jamais de carte au-delà du budget d'apprentissage de la séance.
+  let manque = Math.min(GRAM_LEARN_FLOOR, total) - out.gram;
+  for (const t of ["vocab", "kanji"] as const) {
+    if (manque <= 0) break;
+    const pris = Math.min(manque, out[t]);
+    out[t] -= pris; out.gram += pris; manque -= pris;
   }
   return out;
 }

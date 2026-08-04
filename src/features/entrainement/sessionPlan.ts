@@ -23,6 +23,14 @@ export const CONFUSION_CAP = 0.25;
  *  apprenant assidu n'apprenait plus rien de neuf (1 carte sur 8 questions, cf. sessionPlan.test.ts). */
 export const LEARN_FLOOR = 0.25;
 
+/** Nombre PLANCHER de cartes d'apprentissage par séance, en valeur absolue (pas une fraction) :
+ *  il finance le plancher de grammaire (`learnQueue.GRAM_LEARN_FLOOR`) — sans un budget
+ *  d'apprentissage d'au moins autant de cartes, `allocateLearn` ne pourrait pas garantir 5 cartes
+ *  de grammaire. Sur les séances courtes il l'emporte sur `LEARN_FLOOR` (25 %) : accélérer la
+ *  grammaire, c'est enseigner du neuf même quand le budget est serré, au prix des autres tranches.
+ *  Toujours borné par le budget total et par le nombre d'entités neuves réellement disponibles. */
+export const LEARN_MIN = 5;
+
 /** État de l'apprenant lu depuis la progression + la session reprenable. */
 export interface SessionState {
   /** Une session en cours (< 2 j) existe. */
@@ -69,7 +77,7 @@ export function pickSessionPlan(state: SessionState, total: number, caps: Caps):
   // (0,3 + 0,25 + 0,4 = 0,95) ne laissent que des miettes à l'apprentissage — plus la séance est
   // chargée en erreurs/révisions, moins on enseigne de neuf, ce qui n'est pas soutenable.
   const plancher = caps.learn
-    ? Math.min(total, state.newCoursePoints, Math.max(1, Math.round(LEARN_FLOOR * total)))
+    ? Math.min(total, state.newCoursePoints, Math.max(LEARN_MIN, Math.round(LEARN_FLOOR * total)))
     : 0;
   const reste = total - plancher;
 

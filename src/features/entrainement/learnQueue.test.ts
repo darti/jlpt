@@ -1,6 +1,7 @@
 import { test, expect, afterEach } from "bun:test";
 import {
   allocateLearn, buildLearnQueue, rebuildLearnQueue, selectReprises, TRACK_DE_SKILL,
+  GRAM_LEARN_FLOOR,
 } from "./learnQueue.ts";
 import { anchorIndex, clearAnchorCache } from "../quiz/anchor.ts";
 import type { Question } from "../../types/quiz.ts";
@@ -38,6 +39,35 @@ test("allocateLearn favorise la piste au plus fort poids", () => {
   const a = allocateLearn((c: Skill) => poids[c], 6);
   expect(a.gram).toBeGreaterThan(a.vocab);
   expect(a.gram).toBeGreaterThan(a.kanji);
+});
+
+// Plancher de grammaire : la grammaire est prioritaire, au moins `min(GRAM_LEARN_FLOOR, total)`
+// cartes, quels que soient les poids — c'est ce qui « accélère l'apprentissage de la grammaire ».
+test("allocateLearn garantit le plancher de grammaire, meme a poids egaux", () => {
+  const poids: Record<string, number> = {
+    grammaire: 1, vocabulaire: 1, kanji: 1, lecture: 0, ecoute: 0,
+  };
+  const a = allocateLearn((c: Skill) => poids[c], 9);
+  expect(a.gram).toBeGreaterThanOrEqual(GRAM_LEARN_FLOOR); // ≥ 5 sur un budget de 9
+  expect(a.gram + a.vocab + a.kanji).toBe(9);              // total conservé
+});
+
+test("allocateLearn : le plancher de grammaire l'emporte meme quand une autre piste pese plus", () => {
+  const poids: Record<string, number> = {
+    grammaire: 1, vocabulaire: 10, kanji: 10, lecture: 0, ecoute: 0,
+  };
+  const a = allocateLearn((c: Skill) => poids[c], 8);
+  expect(a.gram).toBeGreaterThanOrEqual(GRAM_LEARN_FLOOR); // grammaire priorisée malgré son faible poids
+  expect(a.gram + a.vocab + a.kanji).toBe(8);
+});
+
+test("allocateLearn : sous le plancher, la grammaire prend tout le budget disponible", () => {
+  // budget < GRAM_LEARN_FLOOR : la grammaire prend tout ce qu'il y a, jamais plus que `total`.
+  for (const total of [1, 2, 3, 4]) {
+    const a = allocateLearn(() => 1, total);
+    expect(a.gram).toBe(total);
+    expect(a.vocab + a.kanji).toBe(0);
+  }
 });
 
 // RÉGRESSION : quand les trois pistes enseignables ont un poids nul, `allocateCount` bascule
