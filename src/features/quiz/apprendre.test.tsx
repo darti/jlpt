@@ -7,6 +7,7 @@ import { anchorIndex, selectAnchor, clearAnchorCache } from "./anchor.ts";
 import { clearRevisionCache } from "./revision.ts";
 import { clearCategoryCache } from "../../lib/bank.ts";
 import { clearCoursCache } from "../cours/useCours.ts";
+import { STABILITE_ACQUISE } from "../cours/entityState.ts";
 import { PROGRESS_KEY, RESUME_KEY } from "../../lib/keys.ts";
 import { useQuiz } from "./useQuiz.ts";
 import type { Question } from "../../types/quiz.ts";
@@ -250,33 +251,76 @@ test("le corrige d une ancre ramene a la carte suivante", async () => {
   await act(async () => { root.unmount(); });
 });
 
-// Une entité sans ancre n'a pas de question : l'auto-évaluation est le seul signal disponible,
-// et elle doit AMORCER le planificateur (carte FSRS écrite), pas ne rien faire.
-test("l auto evaluation d une entite sans ancre ecrit une carte fsrs", async () => {
+// Une entité sans ancre n'a pas de question : « À revoir » est le seul signal d'échec disponible,
+// et il doit AMORCER le planificateur (carte FSRS écrite), pas ne rien faire.
+test("« a revoir » sur une entite sans ancre ecrit une carte fsrs", async () => {
   const { api, root } = await monterQuiz(false);
   await act(async () => { await api().start(10, { skipDiagnostic: true }); });
   const iri = api().learnStep?.item.id as string;
   expect(api().learnStep?.hasAnchor).toBe(false);
-  await act(async () => { api().learnSelfGrade(3); });
-  const blob = JSON.parse(localStorage.getItem("jlptN3adapt_v2") ?? "{}");
+  await act(async () => { api().learnNeedsReview(); });
+  const blob = JSON.parse(localStorage.getItem(PROGRESS_KEY) ?? "{}");
   expect(blob.fsrs?.[iri]).toBeDefined();
   expect(api().learnStep?.item.id).not.toBe(iri); // et la file a avancé
   await act(async () => { root.unmount(); });
 });
 
-// ⚠ Sur une entité ANCRÉE, l'auto-évaluation avancerait la file sans consommer la question :
-// la carte suivante s'ouvrirait sur l'ancre de la PRÉCÉDENTE. Le hook se garde lui-même — il ne
-// dépend pas de la vue pour ne pas exposer le bouton (ni d'un double-clic pour ne pas y mener).
-test("l auto evaluation est refusee sur une entite ancree", async () => {
+// ⚠ « À revoir » reste refusé sur une entité ANCRÉE : sans question à consommer, la file
+// avancerait en laissant l'ancre derrière elle et la carte suivante s'ouvrirait sur l'ancre de la
+// PRÉCÉDENTE. Le hook se garde lui-même, sans dépendre de la vue pour ne pas exposer le bouton.
+test("« a revoir » est refuse sur une entite ancree", async () => {
   const { api, root } = await monterQuiz();
   await act(async () => { await api().start(10, { skipDiagnostic: true }); });
   const iri = api().learnStep?.item.id as string;
   expect(api().learnStep?.hasAnchor).toBe(true);
-  await act(async () => { api().learnSelfGrade(3); });
+  await act(async () => { api().learnNeedsReview(); });
   expect(api().learnStep?.item.id).toBe(iri); // la file n'a pas bougé
   expect(api().phase).toBe("apprendre");
   const blob = JSON.parse(localStorage.getItem(PROGRESS_KEY) ?? "{}");
   expect(blob.fsrs?.[iri]).toBeUndefined(); // et rien n'a été écrit
+  await act(async () => { root.unmount(); });
+});
+
+// ── « Je sais déjà » en séance ──────────────────────────────────────────────────────────────
+// L'alignement demandé : le geste du cours, disponible sur TOUTE carte, avec la même écriture.
+
+test("« je sais deja » classe l entite acquise et avance, meme sans ancre", async () => {
+  const { api, root } = await monterQuiz(false);
+  await act(async () => { await api().start(10, { skipDiagnostic: true }); });
+  const iri = api().learnStep?.item.id as string;
+  expect(api().learnStep?.hasAnchor).toBe(false);
+  await act(async () => { api().learnDeclareKnown(); });
+  const blob = JSON.parse(localStorage.getItem(PROGRESS_KEY) ?? "{}");
+  expect(blob.fsrs[iri][0]).toBeGreaterThanOrEqual(STABILITE_ACQUISE);
+  expect(api().learnStep?.item.id).not.toBe(iri);
+  await act(async () => { root.unmount(); });
+});
+
+/**
+ * ⚠ LE cas que l'ancien refus catégorique évitait faute de savoir le traiter. Sur une entité
+ * ANCRÉE, déclarer doit (a) écrire la déclaration, (b) avancer la file, (c) RETIRER la question
+ * d'ancrage — et surtout (d) ne PAS laisser la carte suivante s'ouvrir sur l'ancre de la
+ * précédente. C'est (d) qui est le vrai piège : sans le retrait, `learnNext` enchaînerait sur une
+ * question qui teste l'entité qu'on vient d'évacuer.
+ */
+test("« je sais deja » sur une entite ancree retire sa question de la seance", async () => {
+  const { api, root } = await monterQuiz();
+  await act(async () => { await api().start(10, { skipDiagnostic: true }); });
+  const iri = api().learnStep?.item.id as string;
+  expect(api().learnStep?.hasAnchor).toBe(true);
+  const avant = api().count;
+  const ancre = api().question?.id; // l'index pointe déjà sur l'ancre de la carte courante
+  await act(async () => { api().learnDeclareKnown(); });
+
+  const blob = JSON.parse(localStorage.getItem(PROGRESS_KEY) ?? "{}");
+  expect(blob.fsrs[iri][0]).toBeGreaterThanOrEqual(STABILITE_ACQUISE); // (a)
+  expect(api().learnStep?.item.id).not.toBe(iri);                     // (b)
+  expect(api().count).toBe(avant - 1);                                // (c)
+  expect(api().question?.id).not.toBe(ancre);                         // (d)
+  // … et la séance persistée suit, sinon une reprise ressusciterait la question retirée.
+  const r = JSON.parse(localStorage.getItem(RESUME_KEY) ?? "{}");
+  expect(r.ids).toHaveLength(avant - 1);
+  expect(r.ids).not.toContain(ancre);
   await act(async () => { root.unmount(); });
 });
 

@@ -19,7 +19,7 @@ test("la phase apprendre rend la carte enseignee", () => {
       <EntrainementAppView
         {...base}
         learnStep={{ item, state: "neuf", index: 0, count: 4, hasAnchor: true }}
-        onLearnNext={() => {}} onLearnSelfGrade={() => {}}
+        onLearnNext={() => {}} onLearnDeclareKnown={() => {}} onLearnNeedsReview={() => {}}
       />
     </MemoryRouter>,
   );
@@ -32,7 +32,7 @@ test("la phase apprendre sans etape ne rend rien de la carte", () => {
   const html = renderToStaticMarkup(
     <MemoryRouter>
       <EntrainementAppView {...base} learnStep={null}
-        onLearnNext={() => {}} onLearnSelfGrade={() => {}} />
+        onLearnNext={() => {}} onLearnDeclareKnown={() => {}} onLearnNeedsReview={() => {}} />
     </MemoryRouter>,
   );
   expect(html).not.toContain("Apprendre ·");

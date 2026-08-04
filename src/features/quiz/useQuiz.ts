@@ -18,7 +18,7 @@ import {
   allocateLearn, buildLearnQueue, rebuildLearnQueue, selectReprises, type LearnStep,
 } from "../entrainement/learnQueue.ts";
 import { loadCours, useCours } from "../cours/useCours.ts";
-import { entityState } from "../cours/entityState.ts";
+import { declaredKnownCard, entityState } from "../cours/entityState.ts";
 import type { CoursCategory } from "../cours/coursSchema.ts";
 import { anchorIndex } from "./anchor.ts";
 import { asConfusions, dayNumber, trapModel, kindIndex, selectConfusion, activeConfusionCount } from "./traps.ts";
@@ -374,9 +374,21 @@ export function useQuiz() {
    * épuisée. `consommee` dit si l'étape quittée a bien consommé sa question d'ancrage — c'est ce
    * qui garde `index` aligné sur la prochaine ancre, puis sur la première question du quiz.
    */
-  const avancerLearn = useCallback((consommee: boolean) => {
+  /**
+   * Avance la file d'apprentissage d'une étape.
+   *
+   * `consommee` : la question d'ancrage a été RÉPONDUE — l'index avance sur elle.
+   * `retiree` : elle a été RETIRÉE de la séance (déclaration « je sais déjà ») — l'index ne bouge
+   * pas, la suivante ayant pris sa place, mais `questions` **et** `ids` doivent perdre l'entrée.
+   *
+   * ⚠ Retirer plutôt que sauter : `count` vaut `questions.length`, et le bilan de séance
+   * enregistre `n: questions.length`. Un simple saut d'index laisserait une question comptée mais
+   * jamais posée — une séance qui finit à 14/15 sans que rien ne soit raté.
+   */
+  const avancerLearn = useCallback((consommee: boolean, retiree = false) => {
     const ni = learnIdx + 1;
     const qi = index + (consommee ? 1 : 0);
+    if (retiree) setQuestions((qs) => qs.filter((_, k) => k !== index));
     setLearnIdx(ni);
     setIndex(qi);
     setAnswered(false);
@@ -388,6 +400,7 @@ export function useQuiz() {
       // `learn` ne garde que ce qui RESTE à enseigner : une reprise rouvre la carte courante.
       const next: ResumeState = {
         ...prev, qi, right: rightRef.current, phase: "question", chosen: undefined,
+        ...(retiree ? { ids: prev.ids.filter((_, k) => k !== index) } : {}),
         learn: learnQueue.slice(ni).map((s) => s.item.id),
       };
       persistResumeState(next);
@@ -407,24 +420,45 @@ export function useQuiz() {
   }, [learnQueue, learnIdx, avancerLearn]);
 
   /**
-   * Auto-évaluation d'une entité SANS ancre (rien dans le corpus ne la teste) : le seul signal
-   * disponible amorce le planificateur au lieu de ne rien écrire. Même grades que le QCM —
-   * « Je connais » = Good(3), « À revoir » = Again(1).
+   * « Je sais déjà » — la MÊME déclaration que dans le cours (`declaredKnownCard`), sur n'importe
+   * quelle carte de la phase 1.
    *
-   * ⚠ Refusée sur une entité ANCRÉE : elle avancerait la file sans consommer la question
-   * d'ancrage, et la carte suivante s'ouvrirait sur l'ancre de la PRÉCÉDENTE. Le hook doit rester
-   * cohérent tout seul, sans dépendre de la discipline de la vue (ni d'un double-clic).
+   * ⚠ Ce n'est pas une note de révision, et c'est pourquoi elle ne passe pas par `fsrsPatch` :
+   * un `Good(3)` posait `S = 3,7 j`, donc ramenait le point quatre jours plus tard alors que
+   * l'apprenant vient d'affirmer le connaître. La déclaration pose le seuil d'acquisition — un
+   * seul geste, et l'entité sort du programme (`nextLessonBlock` ne prend que le neuf et le dû).
    *
-   * ⚠ `fsrsPatch` plutôt que `fsrsInit` : une entité « à revoir » qu'on ré-enseigne a déjà une
-   * carte, et `fsrsInit` la remettrait à zéro — on RÉVISE une carte connue, on n'en crée une que
-   * s'il n'y en a pas. `writeProgress` ne fusionne en profondeur que `skill` : `fsrsPatch` rend
-   * la carte ENTIÈRE, patcher la seule entité effacerait toutes les autres.
+   * ⚠ Sur une entité ANCRÉE, la question est retirée de la séance (`avancerLearn(false, true)`)
+   * plutôt que sautée : sans cela la file avancerait en laissant l'ancre derrière elle, et la
+   * carte suivante s'ouvrirait sur l'ancre de la PRÉCÉDENTE — le défaut que l'ancien refus
+   * catégorique évitait faute de savoir la retirer.
+   *
+   * `writeProgress` ne fusionne en profondeur que `skill` : on réécrit donc la carte ENTIÈRE.
    */
-  const learnSelfGrade = useCallback((grade: 1 | 3) => {
+  const learnDeclareKnown = useCallback(() => {
+    const step = learnQueue[learnIdx];
+    if (!step) return;
+    const base = asFsrs(readRawProgress());
+    const jour = dayNumber(new Date());
+    writeProgress({ fsrs: { ...base, [step.item.id]: declaredKnownCard(base[step.item.id], jour) } });
+    schedulePush();
+    avancerLearn(false, step.anchor !== null);
+  }, [learnQueue, learnIdx, avancerLearn, schedulePush]);
+
+  /**
+   * « À revoir » — auto-évaluation NÉGATIVE d'une entité sans ancre (`Again(1)`).
+   *
+   * ⚠ Réservée aux entités sans ancre : quand une question existe, c'est ELLE qui porte le signal
+   * d'échec. Le hook se garde lui-même plutôt que de compter sur la vue pour ne pas exposer le
+   * bouton — sans ancre à consommer, la file avancerait en laissant la question derrière elle.
+   *
+   * ⚠ `fsrsPatch` plutôt que `fsrsInit` : une entité déjà rencontrée a une carte, et `fsrsInit`
+   * la remettrait à zéro — on RÉVISE une carte connue, on n'en crée une que s'il n'y en a pas.
+   */
+  const learnNeedsReview = useCallback(() => {
     const step = learnQueue[learnIdx];
     if (!step || step.anchor !== null) return;
-    const raw = readRawProgress();
-    const patch = fsrsPatch(asFsrs(raw), [step.item.id], grade === 3, dayNumber(new Date()));
+    const patch = fsrsPatch(asFsrs(readRawProgress()), [step.item.id], false, dayNumber(new Date()));
     if (patch) writeProgress({ fsrs: patch });
     schedulePush();
     avancerLearn(false);
@@ -572,7 +606,8 @@ export function useQuiz() {
     submitTyped,
     next,
     learnNext,
-    learnSelfGrade,
+    learnDeclareKnown,
+    learnNeedsReview,
     restart,
     setMinutes,
     resumeNow,
