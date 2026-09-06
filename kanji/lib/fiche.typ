@@ -19,19 +19,57 @@
   },
 )
 
-// Premiere case : modele franc, a repasser. Deuxieme : modele pale, pour ecrire
-// dessus sans s'appuyer dessus. Les suivantes : vides — c'est la seule qui
-// prouve que le caractere est su.
-#let grille(glyphe, colonnes: 4, lignes: 3, taille: 21mm, ecart: 1.2mm) = grid(
-  columns: (taille,) * colonnes,
-  rows: (taille,) * lignes,
-  column-gutter: ecart, row-gutter: ecart,
-  ..range(colonnes * lignes).map(i => {
-    if i == 0 { case(taille, modele: glyphe, encre: TRACE) }
-    else if i == 1 { case(taille, modele: glyphe, encre: TRACE-PALE) }
-    else { case(taille) }
-  }),
+// TROIS TAILLES, une par rangee. On apprend un caractere en GRAND — c'est la
+// seule taille ou l'on voit ce qu'on rate — mais on l'ECRIT en petit. Une
+// grille d'une seule taille entraine une main qu'on n'emploiera jamais : la
+// derniere rangee est calibree sur l'ecriture courante, celle d'une prise de
+// notes, et c'est la que 22 traits deviennent vraiment difficiles.
+//
+// Premiere case de la premiere rangee : modele franc, a repasser. Deuxieme :
+// modele pale, pour ecrire dessus sans s'appuyer dessus. Les rangees suivantes
+// n'ouvrent que sur un modele pale — passe la taille, c'est de memoire.
+//
+// Les largeurs sont calees sur les 93 mm de la colonne : 91,6 / 90,0 / 90,6.
+// Toucher une taille ou un nombre de cases sans refaire le calcul pousse la
+// rangee hors de la page — et une rangee tronquee ne leve aucune erreur.
+#let RANGEES = (
+  (taille: 22mm, cases: 4, modeles: (TRACE, TRACE-PALE)),
+  (taille: 14mm, cases: 6, modeles: (TRACE-PALE,)),
+  (taille: 9mm, cases: 9, modeles: (TRACE-PALE,)),
 )
+
+#let grille(glyphe, ecart: 1.2mm, entre-rangees: 3.4mm) = stack(
+  dir: ttb,
+  spacing: entre-rangees,
+  ..RANGEES.map(r => grid(
+    columns: (r.taille,) * r.cases,
+    column-gutter: ecart,
+    ..range(r.cases).map(i => if i < r.modeles.len() {
+      case(r.taille, modele: glyphe, encre: r.modeles.at(i))
+    } else {
+      case(r.taille)
+    }),
+  )),
+)
+
+// --- phrase d'exemple annotee ----------------------------------------------
+// Les furigana sont poses en GRILLE a deux rangees, pas en surimpression : la
+// colonne fait alors la largeur du plus large des deux (base ou lecture), donc
+// deux lectures voisines ne peuvent pas se chevaucher et la ligne de base reste
+// commune. C'est l'inverse du choix de l'app, ou l'annotation est hors flux
+// pour ne pas elargir la base — mais un ecran se relit en tapant, une page non.
+#let phrase-annotee(phrase, taille: 7pt, taille-lecture: 5pt) = {
+  let segs = segments-furigana(phrase)
+  grid(
+    columns: (auto,) * segs.len(),
+    row-gutter: 0.2mm,
+    align: center + bottom,
+    ..segs.map(s => if s.lecture == none { [] } else {
+      text(size: taille-lecture, fill: INK-SOFT)[#s.lecture]
+    }),
+    ..segs.map(s => text(size: taille)[#s.base]),
+  )
+}
 
 // --- blocs de la colonne gauche --------------------------------------------
 #let badge(txt) = box(
@@ -131,10 +169,14 @@
   if ex != none {
     place(bottom + left, block(width: 100%, {
       rule()
-      v(0.8mm)
-      text(size: 7pt)[#f(ex, "jlpt:jp")]
-      h(2mm)
-      text(size: 6.2pt, fill: INK-SOFT)[#gloss(ex)]
+      v(1mm)
+      grid(
+        columns: (auto, 1fr),
+        column-gutter: 3.5mm,
+        align: (left + bottom, left + bottom),
+        phrase-annotee(f(ex, "jlpt:jp")),
+        text(size: 6.2pt, fill: INK-SOFT)[#gloss(ex)],
+      )
     }))
   }
 }

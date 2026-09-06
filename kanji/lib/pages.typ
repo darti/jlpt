@@ -79,14 +79,21 @@
       l'inverse est faux.
 
       *La phrase du bas*, quand elle est là, montre le caractère en emploi.
+      Ses lectures sont notées au-dessus, en petit : les mots que le
+      dictionnaire du projet ne connaît pas restent en clair.
     ],
     [
-      *La grille.* La première case porte un modèle franc : repassez-le au
-      stylet, trait par trait, dans l'ordre. La deuxième est presque effacée :
-      écrivez dessus sans vous y appuyer. Les dix autres sont vides — ce sont
-      elles seules qui prouvent que le caractère est su. Les pointillés en
-      croix servent à placer les traits, pas à les décorer : visez leurs
-      quarts.
+      *La grille : trois tailles, une par rangée.* On apprend un caractère en
+      grand — c'est la seule taille où l'on voit ce qu'on rate — mais on
+      l'écrit petit. Descendez les rangées dans l'ordre : la dernière est
+      calibrée sur l'écriture courante, celle d'une prise de notes, et c'est
+      là que vingt traits deviennent vraiment difficiles.
+
+      La première case porte un modèle franc : repassez-le au stylet, trait
+      par trait, dans l'ordre. La deuxième est presque effacée : écrivez
+      dessus sans vous y appuyer. Les rangées suivantes n'ouvrent que sur un
+      modèle pâle — passé la taille, c'est de mémoire. Les pointillés en croix
+      servent à placer les traits, pas à les décorer : visez leurs quarts.
 
       *Les planches d'ouverture* de chaque famille se relisent en masquant
       les gloses : nommer les trente caractères d'un radical de mémoire est

@@ -25,12 +25,37 @@ haut, deux millimètres perdus, c'est une rangée de la grille.
 |---|---|
 | Titre, mode d'emploi, sommaire | 3 pages ; le sommaire donne les pages réelles des 62 chapitres |
 | Planche d'ouverture | les caractères de la famille avec leurs sens, en 8 colonnes — sert aussi de test de révision, gloses masquées |
-| Fiche | à gauche le caractère, son sens, ses lectures et jusqu'à 6 mots ; à droite 12 cases d'écriture ; en bas une phrase d'emploi quand il en existe une |
+| Fiche | à gauche le caractère, son sens, ses lectures et jusqu'à 6 mots ; à droite 19 cases d'écriture en trois tailles ; en bas une phrase d'emploi, furigana compris, quand il en existe une |
 | Index des lectures 音 | lecture (katakana) → caractère → page, en ordre gojūon |
 | Index des sens | sens français → caractère → page, accents repliés pour le classement |
 
-Les deux premières cases de la grille portent un modèle (franc, puis presque effacé) ;
-les dix autres sont vides. Les pointillés en croix servent à **placer** les traits.
+### La grille : trois tailles, une par rangée
+
+22 mm × 4 cases, 14 mm × 6, 9 mm × 9. On apprend un caractère en grand — c'est la seule
+taille où l'on voit ce qu'on rate — mais on l'écrit petit : la dernière rangée est calibrée
+sur l'écriture courante, et c'est là que vingt traits deviennent vraiment difficiles. Une
+grille d'une seule taille entraîne une main qu'on n'emploiera jamais.
+
+Modèle franc puis modèle pâle sur la première rangée, modèle pâle seul en tête des deux
+autres ; le reste est vide. Les pointillés en croix servent à **placer** les traits.
+
+Les largeurs sont calées sur les 93 mm de la colonne (91,6 / 90,0 / 90,6 mm). Changer une
+taille ou un nombre de cases sans refaire le calcul pousse la rangée hors de la page — et
+**une rangée tronquée ne lève aucune erreur**.
+
+### Furigana des phrases d'exemple
+
+Même algorithme que `src/lib/dict.ts#furi` : recherche gourmande dans le dictionnaire,
+confinée au run de kanji (富士山 est essayé avant 富士 puis 富), et **uniquement** des
+lectures tout en kana propre — les entrées mono-kanji portent parfois un vidage on/kun
+(« ユウ・やさ(しい)・すぐ(れる) »), absurde en furigana et si large qu'il déformerait la base.
+386 des 416 runs annotables le sont (92,8 %) ; les autres s'impriment en clair, un kanji
+sans lecture valant mieux qu'une lecture fausse.
+
+Le rendu, lui, **diffère** de l'app à dessein : ici les lectures sont posées en grille à
+deux rangées, donc la colonne fait la largeur du plus large des deux et deux lectures
+voisines ne peuvent pas se chevaucher. L'app les met hors flux pour ne pas élargir la base
+— un écran se relit en tapant dessus, une page non.
 
 ## Progression : celle du graphe, pas une autre
 
@@ -84,6 +109,9 @@ redeviendrait vert en silence si la fiche repassait à l'arête.
   les glyphes sont dans des boîtes de **hauteur fixée**.
 - **Le titre de planche EST le `heading` de niveau 1**, sinon `outline` ne trouve rien et
   le sommaire sort **vide** — c'est aussi ce qui donne les signets du PDF.
+- **Une closure ne peut pas modifier une variable de la portée englobante.** La
+  segmentation des furigana accumule donc en deux passes (découpage brut, puis fusion des
+  morceaux non annotés) plutôt qu'avec un `vider()` sur un tampon.
 
 ## Vérifier une modification
 

@@ -109,6 +109,90 @@
   if es.len() == 0 { none } else { es.sorted(key: e => f(e, "jlpt:jp", default: "").clusters().len()).first() }
 }
 
+// --- furigana des phrases d'exemple ----------------------------------------
+// Meme algorithme que `src/lib/dict.ts#furi` dans l'app, et pour la meme
+// raison : une phrase d'exemple sans lectures ne se lit pas encore a ce
+// niveau, donc elle n'apprend que le sens. Deux implementations peuvent
+// deriver — celle-ci est en Typst faute de pouvoir executer du TS pendant la
+// composition — d'ou la reprise des memes REGLES, qui sont ce qui compte :
+//
+//   * on n'annote qu'avec une lecture TOUT EN KANA PROPRE. Les entrees
+//     mono-kanji du dictionnaire portent parfois un vidage on/kun
+//     («ユウ・やさ(しい)・すぐ(れる)») : en furigana c'est absurde, et si large
+//     que ca deforme la base ;
+//   * la recherche est GOURMANDE et confinee au run de kanji : 富士山 est
+//     essaye avant 富士 puis 富. Sans ca 富士山 se lirait «とみ・し・やま».
+//
+// La branche «lecture inline 漢字（かな）» de l'app est volontairement absente :
+// elle sert aux enonces de quiz, et aucune des 227 phrases n'en porte.
+//
+// Mesure : 386 des 416 runs annotables le sont (92,8 %). Les 30 restants
+// s'impriment en clair — un kanji sans lecture vaut mieux qu'une lecture fausse.
+#let _KANA-PROPRE = regex("^[ぁ-んァ-ンー]+$")
+#let _EST-KANJI = regex("[一-鿿々]")
+
+#let READ = {
+  let m = (:)
+  for w in WORD-DOC {
+    let r = reading(w)
+    if r != none and r.match(_KANA-PROPRE) != none { m.insert(name(w), r) }
+  }
+  m
+}
+
+// Rend une suite de `(base, lecture)` ou `lecture` vaut `none` hors annotation.
+// Les morceaux non annotes consecutifs sont FUSIONNES : chaque segment devient
+// une colonne de grille a la composition, et une colonne par kana casserait le
+// crenage de la phrase.
+#let segments-furigana(phrase) = {
+  let cs = phrase.clusters()
+  let n = cs.len()
+
+  // 1. decoupage brut : un element par mot reconnu, un par caractere sinon.
+  // ⚠ Pas de fonction auxiliaire pour vider un tampon : une closure Typst ne
+  // peut PAS modifier une variable de la portee englobante.
+  let bruts = ()
+  let i = 0
+  while i < n {
+    if cs.at(i).match(_EST-KANJI) == none {
+      bruts.push((base: cs.at(i), lecture: none))
+      i += 1
+      continue
+    }
+    let fin = i
+    while fin < n and cs.at(fin).match(_EST-KANJI) != none { fin += 1 }
+    let k = i
+    while k < fin {
+      let trouve = none
+      let taille = calc.min(12, fin - k)
+      while taille >= 1 and trouve == none {
+        let sous = cs.slice(k, k + taille).join()
+        if sous in READ { trouve = sous }
+        taille -= 1
+      }
+      if trouve == none {
+        bruts.push((base: cs.at(k), lecture: none))
+        k += 1
+      } else {
+        bruts.push((base: trouve, lecture: READ.at(trouve)))
+        k += trouve.clusters().len()
+      }
+    }
+    i = fin
+  }
+
+  // 2. fusion des morceaux non annotes consecutifs.
+  let out = ()
+  for b in bruts {
+    if b.lecture == none and out.len() > 0 and out.last().lecture == none {
+      out.at(out.len() - 1) = (base: out.last().base + b.base, lecture: none)
+    } else {
+      out.push(b)
+    }
+  }
+  out
+}
+
 // --- chapitres -------------------------------------------------------------
 // Partie I : les 51 lecons `track: kanji`, deja groupees par famille de
 // radical (「Famille 氵 — eau」) et deja ordonnees par `jlpt:order`. On ne
