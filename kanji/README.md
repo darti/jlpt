@@ -4,7 +4,7 @@ Un livre PDF de **889 pages** : une fiche par kanji du référentiel N3 (810), a
 lectures 音/訓, les mots que le caractère permet de lire, et une grille d'écriture à
 remplir au stylet. Composé avec **Typst**, directement depuis `data/graph/`.
 
-    bun run cahier          # → kanji/book.pdf
+    bun run cahier          # → kanji/kanjis.pdf
     bun run cahier:watch    # recompose à chaque édition
 
 `typst` doit être sur le `PATH` (il n'est pas dans les dépendances bun ; la CI ne compose

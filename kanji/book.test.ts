@@ -73,7 +73,7 @@ describe("composition du livre", () => {
   test.if(dispo)(
     "typst compose les 889 pages et les assertions internes passent",
     () => {
-      const sortie = join(mkdtempSync(join(tmpdir(), "cahier-")), "book.pdf");
+      const sortie = join(mkdtempSync(join(tmpdir(), "cahier-")), "kanjis.pdf");
       const r = spawnSync("typst", ["compile", "--root", ".", "kanji/book.typ", sortie], {
         cwd: RACINE,
         encoding: "utf8",

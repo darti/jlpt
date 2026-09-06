@@ -1,6 +1,6 @@
 // 漢字 — Cahier d'écriture JLPT N3, pour reMarkable Paper Pro Move.
 //
-//   typst compile --root . kanji/book.typ kanji/book.pdf
+//   typst compile --root . kanji/book.typ kanji/kanjis.pdf
 //
 // Le `--root .` n'est pas optionnel : les modules lisent `/data/graph/*.jsonld`
 // depuis la racine du depot, parce que le graphe est la source et qu'aucun
