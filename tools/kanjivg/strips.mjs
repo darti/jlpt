@@ -19,9 +19,12 @@ const GRAPHE = "data/graph/kanji.jsonld";
 
 // Le canevas KanjiVG fait 109 x 109 ; on garde ses unités et on juxtapose les cases.
 const COTE = 109;
+// ⚠ Calés pour l'e-ink : la dalle écrase vers le blanc tout ce qui dépasse ~75 %
+// de luminance. Les traits déjà posés étaient à 79 % et le cadre à 89 % —
+// lisibles à la relecture sur écran, invisibles sur l'appareil.
 const ENCRE = "#000000";
-const PASSE = "#c9c9c9";
-const CADRE = "#e2e2e2";
+const PASSE = "#9a9a9a";
+const CADRE = "#b4b4b4";
 
 export function cle(caractere) {
   return caractere.codePointAt(0).toString(16).padStart(5, "0");

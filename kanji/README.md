@@ -75,6 +75,30 @@ dans 91,6 mm feraient des cases de 4,2 mm, contre 7 mm sur 153.
 Les tracés sont partagés par `<defs>` + `<use>` dans chaque SVG : sans ça un caractère de
 22 traits répéterait ses tracés 253 fois. Le lot pèse 3,6 Mo, et n'ajoute que 0,8 Mo au PDF.
 
+## Les gris sont calés pour l'e-ink, pas pour un écran
+
+La dalle ne rend qu'une quinzaine de niveaux et **écrase vers le blanc tout ce qui dépasse
+~75 % de luminance**. Les premières valeurs — modèle à repasser à 74 %, modèle pâle à 90 %,
+guides à 78 %, traits déjà posés du diagramme à 79 % — étaient parfaitement lisibles à la
+relecture sur ordinateur et **invisibles sur l'appareil**.
+
+| Gris | Avant | Après |
+|---|---|---|
+| Filets (`RULE`) | 54 % | 43 % |
+| Cadre d'une case (`GRID`) | 60 % | 44 % |
+| Pointillés en croix (`GUIDE`) | 78 % | 61 % |
+| Modèle à repasser (`TRACE`) | 74 % | 55 % |
+| Modèle à surcharger (`TRACE-PALE`) | 90 % | 74 % |
+| Traits déjà posés du diagramme | 79 % | 60 % |
+| Cadre d'une case du diagramme | 89 % | 71 % |
+
+L'écart entre les deux modèles reste franc (55 % contre 74 %) : le premier se repasse, le
+second se surcharge sans qu'on s'appuie dessus. Et la borne basse n'est pas libre — un
+modèle trop foncé ne se distingue plus de l'encre du stylet.
+
+> **Le rendu à l'écran ne dit rien de la lisibilité sur l'appareil.** C'est la seule des
+> pannes de ce dossier qu'aucune mesure ne rattrape : il faut charger le PDF sur la liseuse.
+
 ## Une seule molette : `ECHELLE`
 
 Toutes les tailles de texte du livre passent par `P()` dans `lib/theme.typ`, et `P` ne fait

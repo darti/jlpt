@@ -117,7 +117,7 @@
   text(size: P(7.5))[#glyphe]
   h(0.8mm)
   text(size: P(5.8), fill: INK-SOFT)[#libelle]
-  box(width: 1fr, repeat(text(size: P(5), fill: luma(190))[.]))
+  box(width: 1fr, repeat(text(size: P(5), fill: luma(150))[.]))
   text(size: P(5.8), fill: INK-SOFT)[#pages.at(glyphe)]
 })
 
@@ -272,7 +272,7 @@
     "Sommaire",
     chapitres.map(c => block(spacing: 1.15mm, box(width: 100%, {
       text(size: P(6.2))[#c.titre]
-      box(width: 1fr, repeat(text(size: P(5), fill: luma(190))[.]))
+      box(width: 1fr, repeat(text(size: P(5), fill: luma(150))[.]))
       text(size: P(6.2))[#c.page]
     }))),
     colonnes: 2,

@@ -20,15 +20,26 @@
 #let LARGEUR-UTILE = PAGE-W - 2 * MARGIN-X
 #let HAUTEUR-UTILE = PAGE-H - 2 * MARGIN-Y
 
-// Encre : l'e-ink couleur du Paper Move rend les teintes tres pales. On reste
-// donc en niveaux de gris, sauf UN accent, reserve aux reperes de lecture.
+// Encre : niveaux de gris seulement — l'e-ink couleur du Paper Move rend les
+// teintes tres pales, et un accent colore n'y gagnerait rien.
+//
+// ⚠ CES GRIS SONT CALES POUR L'E-INK, PAS POUR UN ECRAN. La dalle ne rend
+// qu'une quinzaine de niveaux et ecrase vers le blanc tout ce qui depasse ~75 %
+// de luminance : les valeurs precedentes (modele a repasser a 74 %, modele pale
+// a 90 %, guides a 78 %) etaient parfaitement lisibles a la relecture sur
+// ordinateur et INVISIBLES sur l'appareil. Le rendu d'un PDF a l'ecran ne dit
+// donc rien de sa lisibilite ici — c'est la seule facon de se tromper sans que
+// rien ne le signale.
+//
+// L'ecart entre les deux modeles reste franc (55 % contre 74 %) : le premier se
+// repasse, le second se surcharge sans qu'on s'appuie dessus.
 #let INK = rgb("#000000")
-#let INK-SOFT = rgb("#555555")
-#let RULE = rgb("#8a8a8a")
-#let GRID = rgb("#9a9a9a")
-#let GUIDE = rgb("#c8c8c8")
-#let TRACE = rgb("#bdbdbd")   // modele a repasser au stylet
-#let TRACE-PALE = rgb("#e6e6e6")
+#let INK-SOFT = rgb("#4a4a4a")
+#let RULE = rgb("#6e6e6e")
+#let GRID = rgb("#707070")     // cadre d'une case d'ecriture
+#let GUIDE = rgb("#9c9c9c")    // pointilles en croix, dans la case
+#let TRACE = rgb("#8c8c8c")    // modele a repasser au stylet
+#let TRACE-PALE = rgb("#bcbcbc")   // modele a surcharger
 #let ACCENT = rgb("#1f4e79")
 
 // Polices : mincho d'abord — c'est la forme de reference d'un caractere

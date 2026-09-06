@@ -95,7 +95,7 @@
 #let badge(txt) = box(
   inset: (x: 1.1mm, y: 0.5mm),
   radius: 0.6mm,
-  fill: luma(232),
+  fill: luma(214),
   text(size: P(5.5), fill: INK-SOFT, font: JP-SANS)[#txt],
 )
 
