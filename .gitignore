@@ -16,3 +16,4 @@ docs/superpowers/mots-fabriques.md
 # Réglages Claude Code propres à la machine (chemins absolus, allowlist locale)
 .claude/settings.local.json
 .superpowers/
+kanji/*.pdf
