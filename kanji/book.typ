@@ -20,7 +20,7 @@
 
 // Le titre de planche EST le titre de chapitre : un seul element, donc le
 // sommaire et les signets du PDF ne peuvent pas diverger de ce qui est imprime.
-#show heading.where(level: 1): it => text(size: 11pt, font: JP-SANS, weight: "bold")[#it.body]
+#show heading.where(level: 1): it => text(size: P(11), font: JP-SANS, weight: "bold")[#it.body]
 #set heading(numbering: none)
 
 // --- liminaire -------------------------------------------------------------
@@ -31,13 +31,13 @@
 #pagebreak()
 
 #block(spacing: 0pt, {
-  text(size: 11pt, font: JP-SANS, weight: "bold")[Sommaire]
+  text(size: P(11), font: JP-SANS, weight: "bold")[Sommaire]
   v(1mm)
   rule(thickness: 0.7pt, paint: INK)
 })
 #v(2mm)
-#columns(3, gutter: 5mm)[
-  #set text(size: 6.2pt)
+#columns(2, gutter: 6mm)[
+  #set text(size: P(6.2))
   #show outline.entry: it => block(spacing: 1.15mm, it)
   #outline(title: none, depth: 1, indent: 0mm)
 ]

@@ -16,7 +16,7 @@
       // du PDF sont alors le MEME element que ce qui est imprime, donc ils ne
       // peuvent pas diverger. Un titre pose en `text` laisse un sommaire vide.
       heading(level: 1, outlined: true, bookmarked: true)[#chapitre.titre],
-      context text(size: 6.5pt, fill: INK-SOFT, font: JP-SANS)[#ks.len() kanji · chapitre #numero / #total · p. #here().page()],
+      context text(size: P(6.5), fill: INK-SOFT, font: JP-SANS)[#ks.len() kanji · chapitre #numero / #total · p. #here().page()],
     )
     v(1mm)
     rule(thickness: 0.7pt, paint: INK)
@@ -38,7 +38,7 @@
       // la quatrieme — les gloses du bas disparaissaient sans erreur.
       box(height: 8.6mm, align(center + horizon, text(size: 7.5mm)[#name(k)]))
       v(0.3mm)
-      text(size: 5pt, fill: INK-SOFT)[#gloss(k)]
+      text(size: P(5), fill: INK-SOFT)[#gloss(k)]
     })),
   )
 }
@@ -50,24 +50,24 @@
   // 12 mm sous le titre, que `v()` ne peut que creuser davantage.
   box(height: 27mm, align(center + horizon, text(size: 24mm)[漢字]))
   v(4mm)
-  text(size: 13pt, font: JP-SANS, weight: "bold")[Cahier d'écriture — JLPT N3]
+  text(size: P(13), font: JP-SANS, weight: "bold")[Cahier d'écriture — JLPT N3]
   v(2mm)
-  text(size: 8pt, fill: INK-SOFT)[#FICHES fiches · #CHAPTERS.len() chapitres, dont #ORPHAN-CHAPTERS.len() hors des groupes du référentiel]
+  text(size: P(8), fill: INK-SOFT)[#FICHES fiches · #CHAPTERS.len() chapitres, dont #ORPHAN-CHAPTERS.len() hors des groupes du référentiel]
   v(3.5mm)
-  text(size: 7pt, fill: INK-SOFT)[Composé depuis le graphe du projet — reMarkable Paper Pro Move, 163 × 92 mm]
+  text(size: P(7), fill: INK-SOFT)[Composé depuis le graphe du projet — reMarkable Paper Pro Move, 163 × 92 mm]
 }
 
 #let mode-emploi = {
-  text(size: 11pt, font: JP-SANS, weight: "bold")[Comment se servir de ce cahier]
+  text(size: P(11), font: JP-SANS, weight: "bold")[Comment se servir de ce cahier]
   v(1mm)
   rule(thickness: 0.7pt, paint: INK)
   v(2.5mm)
-  set text(size: 7.5pt)
+  set text(size: P(7.5))
   set par(leading: 0.62em)
-  grid(
-    columns: (1fr, 1fr),
-    column-gutter: 6mm,
-    [
+  // `columns`, pas `grid` : une grille a deux colonnes ne se REEQUILIBRE pas
+  // quand elle passe sur une seconde page — la premiere colonne se vide et la
+  // seconde deborde. `columns` repartit le texte page apres page.
+  columns(2, gutter: 6mm)[
       *Une fiche, un caractère.* À gauche le caractère à la taille où l'on
       distingue les traits, son sens, ses lectures 音 (on, en katakana) et
       訓 (kun, en hiragana ; ce qui suit entre parenthèses est l'okurigana,
@@ -81,8 +81,7 @@
       *La phrase du bas*, quand elle est là, montre le caractère en emploi.
       Ses lectures sont notées au-dessus, en petit : les mots que le
       dictionnaire du projet ne connaît pas restent en clair.
-    ],
-    [
+
       *La grille : trois tailles, une par rangée.* On apprend un caractère en
       grand — c'est la seule taille où l'on voit ce qu'on rate — mais on
       l'écrit petit. Descendez les rangées dans l'ordre : la dernière est
@@ -98,8 +97,7 @@
       *Les planches d'ouverture* de chaque famille se relisent en masquant
       les gloses : nommer les trente caractères d'un radical de mémoire est
       une révision plus dure, et plus utile, qu'une fiche relue.
-    ],
-  )
+  ]
 }
 
 // --- index -----------------------------------------------------------------
@@ -123,22 +121,24 @@
   m
 }
 
-#let _entree(glyphe, libelle, pages) = box(width: 100%, {
-  text(size: 7.5pt)[#glyphe]
+// `block`, pas `box` : une boite ne coupe pas les lignes, donc un libelle plus
+// large que la colonne DEBORDE sur la colonne voisine — silencieusement.
+#let _entree(glyphe, libelle, pages) = block(width: 100%, {
+  text(size: P(7.5))[#glyphe]
   h(0.8mm)
-  text(size: 5.8pt, fill: INK-SOFT)[#libelle]
-  box(width: 1fr, repeat(text(size: 5pt, fill: luma(190))[.]))
-  text(size: 5.8pt, fill: INK-SOFT)[#pages.at(glyphe)]
+  text(size: P(5.8), fill: INK-SOFT)[#libelle]
+  box(width: 1fr, repeat(text(size: P(5), fill: luma(190))[.]))
+  text(size: P(5.8), fill: INK-SOFT)[#pages.at(glyphe)]
 })
 
 #let _titre-index(titre, chapeau) = {
   block(spacing: 0pt, {
-    text(size: 11pt, font: JP-SANS, weight: "bold")[#titre]
+    text(size: P(11), font: JP-SANS, weight: "bold")[#titre]
     v(1mm)
     rule(thickness: 0.7pt, paint: INK)
   })
   v(1mm)
-  text(size: 6.5pt, fill: INK-SOFT)[#chapeau]
+  text(size: P(6.5), fill: INK-SOFT)[#chapeau]
   v(2mm)
 }
 
@@ -166,8 +166,8 @@
   for k in KANJI {
     for r in on-readings(k) { lignes.push((r, name(k))) }
   }
-  set text(size: 6pt)
-  columns(5, gutter: 4mm)[
+  set text(size: P(6))
+  columns(3, gutter: 5mm)[
     #for (r, g) in lignes.sorted(key: e => (e.at(0), e.at(1))) {
       block(spacing: 1.05mm, _entree(g, r, pages))
     }
@@ -180,8 +180,8 @@
     "Index des sens",
     "Sens français → caractère → page. Accents repliés pour le classement : « écrire » se lit à la lettre E.",
   )
-  set text(size: 6pt)
-  columns(5, gutter: 4mm)[
+  set text(size: P(6))
+  columns(3, gutter: 5mm)[
     #for k in KANJI.sorted(key: k => (plier(gloss(k)), name(k))) {
       block(spacing: 1.05mm, _entree(name(k), gloss(k), pages))
     }

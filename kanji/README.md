@@ -1,6 +1,6 @@
 # 漢字 — cahier d'écriture pour reMarkable Paper Pro Move
 
-Un livre PDF de **889 pages** : une fiche par kanji du référentiel N3 (810), avec sens,
+Un livre PDF de **909 pages** : une fiche par kanji du référentiel N3 (810), avec sens,
 lectures 音/訓, les mots que le caractère permet de lire, et une grille d'écriture à
 remplir au stylet. Composé avec **Typst**, directement depuis `data/graph/`.
 
@@ -11,6 +11,21 @@ remplir au stylet. Composé avec **Typst**, directement depuis `data/graph/`.
 donc pas le livre — `kanji/book.test.ts` saute cette partie quand le binaire est absent).
 Le PDF est **gitignoré** : il se refait en huit secondes, et un binaire de 5,7 Mo versionné
 serait exactement le dérivé désynchronisable que la migration vers le graphe a supprimé.
+
+## Une seule molette : `ECHELLE`
+
+Toutes les tailles de texte du livre passent par `P()` dans `lib/theme.typ`, et `P` ne fait
+que multiplier par `ECHELLE` (**1,5** aujourd'hui). Les tailles en **millimètres** — le
+caractère de la fiche, celui de la planche, le 漢字 du titre — n'y passent pas : ce sont
+des dessins, dimensionnés par la place qu'on leur donne.
+
+Sur une page de 163 × 92 mm, agrandir se paie en contenu par page, et le prix est réel :
+à 1,5 une fiche porte **1 à 4 mots** au lieu de six, les familles de plus de 24 caractères
+tiennent sur deux planches, le sommaire et le mode d'emploi passent à deux pages. Rien
+n'est perdu — tout est reporté. Descendre à 1,25 rend la plupart des mots.
+
+Aucune de ces limites n'est écrite en dur : le nombre de mots d'une fiche vient d'une
+**mesure**, pas d'un calcul (voir plus bas), donc changer `ECHELLE` suffit.
 
 ## Le format n'est pas un choix esthétique
 
@@ -113,9 +128,21 @@ redeviendrait vert en silence si la fiche repassait à l'arête.
   segmentation des furigana accumule donc en deux passes (découpage brut, puis fusion des
   morceaux non annotés) plutôt qu'avec un `vider()` sur un tampon.
 - **`place` ne réserve aucune place.** La phrase d'exemple est posée en `place(bottom)` :
-  un bloc de mots trop haut passerait dessous **sans erreur**. D'où le budget vertical
-  explicite (34 mm avec phrase, 45 sans) et le `measure()` qui retire des mots par la fin
-  tant que le bloc dépasse — le nombre affiché s'adapte, la collision est impossible.
+  un bloc de mots trop haut passerait dessous **sans erreur**. Le nombre de mots est donc
+  borné par `measure()`, qui en retire par la fin tant que le bloc dépasse.
+- **La place restante se LIT, elle ne se calcule pas.** Une première version du budget
+  additionnait en-tête + caractère + glose + blancs : elle se trompait de **17 mm**, parce
+  que la hauteur de ligne d'un texte ne vaut pas sa taille de police et que l'écart varie
+  avec `ECHELLE`. Le budget part maintenant de `here().position().y` — la position réelle
+  du bloc — moins la hauteur mesurée de la bande du bas.
+- **Un `box` ne coupe pas les lignes.** Les entrées d'index étaient des `box` : un libellé
+  plus large que sa colonne débordait sur la voisine, en silence. Ce sont des `block`.
+- **Un `grid` à deux colonnes ne se rééquilibre pas** quand il passe sur une seconde page :
+  la première colonne se vide et la seconde déborde. Le mode d'emploi est en `columns`.
+- **Un mot français long ne se coupe pas.** À l'échelle 1,5, « appréhender, » était plus
+  large que le créneau de 26 mm laissé à côté du caractère et débordait dans la grille
+  d'écriture. La colonne de gauche est donc entièrement **empilée** : caractère, glose,
+  lectures et mots occupent chacun toute sa largeur.
 
 ## Vérifier une modification
 

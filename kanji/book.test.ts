@@ -71,7 +71,7 @@ describe("composition du livre", () => {
   const dispo = typst.status === 0;
 
   test.if(dispo)(
-    "typst compose les 889 pages et les assertions internes passent",
+    "typst compose les 909 pages et les assertions internes passent",
     () => {
       const sortie = join(mkdtempSync(join(tmpdir(), "cahier-")), "kanjis.pdf");
       const r = spawnSync("typst", ["compile", "--root", ".", "kanji/book.typ", sortie], {
@@ -84,11 +84,15 @@ describe("composition du livre", () => {
       expect(r.status).toBe(0);
       expect(existsSync(sortie)).toBe(true);
 
-      // 3 liminaire + 62 planches + 810 fiches + 14 pages d'index. Un ecart
-      // signale une planche qui a deborde sur une seconde page, ce que rien
-      // d'autre ne rend visible.
+      // 5 pages de liminaire + 66 planches (62 chapitres, dont 4 familles trop
+      // grandes pour une seule page) + 810 fiches + 28 pages d'index.
+      //
+      // Test de MESURE : il fige un etat, il n'exprime pas un invariant. Le
+      // total bouge des que `ECHELLE` change ou que le graphe grossit, et il
+      // faut alors le remonter DELIBEREMENT — apres avoir regarde les pages,
+      // parce qu'un debordement silencieux est precisement ce qu'il attrape.
       const pdf = readFileSync(sortie, "latin1");
-      expect(pdf.match(/\/Type *\/Page[^s]/g)?.length).toBe(889);
+      expect(pdf.match(/\/Type *\/Page[^s]/g)?.length).toBe(909);
     },
     120_000,
   );

@@ -9,6 +9,8 @@
 #let PAGE-H = 92mm
 #let MARGIN-X = 5mm
 #let MARGIN-Y = 4mm
+#let LARGEUR-UTILE = PAGE-W - 2 * MARGIN-X
+#let HAUTEUR-UTILE = PAGE-H - 2 * MARGIN-Y
 
 // Encre : l'e-ink couleur du Paper Move rend les teintes tres pales. On reste
 // donc en niveaux de gris, sauf UN accent, reserve aux reperes de lecture.
@@ -36,13 +38,25 @@
   "Hiragino Sans", "Noto Sans CJK JP", "Noto Sans JP", "IPAGothic",
 )
 
+// ECHELLE — le facteur de TOUTES les tailles de texte du livre, en un seul
+// endroit. Sur une page de 163 x 92 mm, agrandir se paie forcement en contenu
+// par page : monter ce nombre reduit le nombre de mots par fiche, ajoute des
+// pages d'index et peut faire tenir une planche sur deux pages. C'est un
+// arbitrage, pas un reglage — mais il se refait en changeant un chiffre.
+//
+// Les tailles en MILLIMETRES (le glyphe de la fiche, celui de la planche, le
+// 漢字 du titre) ne passent PAS par ici : ce sont des dessins, pas du texte,
+// et ils sont dimensionnes par la place qu'on leur donne.
+#let ECHELLE = 1.5
+#let P(taille) = taille * ECHELLE * 1pt
+
 #let apply-theme(doc) = {
   set page(
     width: PAGE-W, height: PAGE-H,
     margin: (x: MARGIN-X, y: MARGIN-Y),
     fill: white,
   )
-  set text(font: JP-SERIF, size: 8pt, fill: INK, lang: "fr")
+  set text(font: JP-SERIF, size: P(8), fill: INK, lang: "fr")
   set par(leading: 0.55em, justify: false)
   show heading: set text(font: JP-SANS)
   doc
