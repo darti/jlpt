@@ -139,36 +139,35 @@
 // bloc depasse le budget. C'est ce qui autorise un ecart genereux sans parier
 // sur la longueur des gloses — 「約束した やくそくした promesse, rendez-vous」
 // passe a la ligne, 「政 せい politique」 non.
-// Le nombre de mots s'ADAPTE a la place qui reste.
+// Le nombre de mots s'ADAPTE a la place qui reste, et cette place est celle que
+// la mise en page lui DONNE — pas une soustraction de hauteurs prevues.
 //
-// ⚠ La place restante se lit sur la POSITION REELLE du bloc — `here()` — et ne
-// se calcule pas en soustrayant des hauteurs prevues. Une premiere version
-// additionnait en-tete + glyphe + glose + blancs : elle se trompait de 17 mm,
-// parce que la hauteur de ligne d'un texte ne vaut pas sa taille de police et
-// que l'ecart varie avec ECHELLE. Resultat, la liste chevauchait la phrase
-// d'exemple — laquelle est posee en `place(bottom)` et ne reserve rien, donc
-// rien ne le signalait.
-#let mots(k, hauteur-bande) = context {
+// ⚠ Une version precedente calculait « hauteur utile moins en-tete moins
+// caractere moins glose moins blancs » : elle se trompait de 17 mm, la hauteur
+// de ligne d'un texte ne valant pas sa taille de police. Une autre lisait
+// `here().position().y`, ce qui etait juste mais cesse de l'etre des que la
+// page est pivotee. La bonne reponse est la rangee `1fr` de la colonne : sa
+// hauteur EST la place restante, et `layout()` la donne.
+#let mots(k, dispo) = {
   let tous = words-for(name(k))
   if tous.len() == 0 {
     let c = f(k, "jlpt:compound")
     if c != none { text(size: P(6.5), fill: INK-SOFT)[#c] }
     return
   }
-  let dispo = PAGE-H - MARGIN-Y - hauteur-bande - MARGE-SECURITE - here().position().y
   let bloc(n) = block(width: COL-GAUCHE, tous.slice(0, n).map(_ligne-mot).join())
   let n = calc.min(MOTS-MAX, tous.len())
-  while n > 1 and measure(bloc(n)).height > dispo { n -= 1 }
+  while n > 1 and measure(bloc(n)).height > dispo - MARGE-SECURITE { n -= 1 }
   bloc(n)
 }
 
 // --- la fiche --------------------------------------------------------------
-// `context` a la racine : toute la mise en page depend de MESURES. Les tailles
-// de texte suivent ECHELLE, donc aucune hauteur ne peut plus etre ecrite en dur
-// — la glose tient sur une ou deux lignes selon le facteur, la bande du bas
-// grandit avec lui, et c'est ce qui reste apres elles qui borne la liste de
-// mots. Un budget cale a la main survit a un facteur, pas a deux.
-#let fiche(k, chapitre: "", numero: 0, total: 0) = context {
+// Quatre rangees, dont UNE en `1fr` : en-tete, ordre des traits, corps, phrase.
+// C'est la grille qui distribue la hauteur, et la rangee elastique est le corps
+// — donc la colonne de mots recoit exactement ce que les trois autres laissent.
+// Rien n'est calcule, rien n'est place en absolu : la fiche se compose aussi
+// bien droite que pivotee.
+#let fiche(k, chapitre: "", numero: 0, total: 0) = {
   let glyphe = name(k)
   let ex = example-for(glyphe)
 
@@ -179,16 +178,16 @@
   // vide et l'index s'imprime entierement en « — », sans la moindre erreur.
   [#metadata(glyphe)<fiche>]
 
-  let entete = block(spacing: 0pt, {
+  let entete = {
     grid(
       columns: (1fr, auto),
       align: (left + horizon, right + horizon),
       text(size: P(6), fill: INK-SOFT, font: JP-SANS)[#chapitre],
-      text(size: P(6), fill: INK-SOFT, font: JP-SANS)[#numero / #total · p. #here().page()],
+      context text(size: P(6), fill: INK-SOFT, font: JP-SANS)[#numero / #total · p. #here().page()],
     )
     v(0.6mm)
     rule()
-  })
+  }
 
   // Colonne de gauche EMPILEE, tout sur la pleine largeur : glyphe, glose,
   // lectures, mots. Rien n'est plus pose « a cote » du caractere.
@@ -198,11 +197,6 @@
   // francais long ne se coupe pas — et 「かえり(みる)」 s'y brisait en laissant
   // 「る)」 seul sur une ligne. Les deux pires cas du corpus sont mesures :
   // glose de 32 caracteres (省), lecture kun de 22 demi-chasses (試, 優).
-  //
-  // Le glyphe occupe toute la largeur, centre. Il est passe de 18 a 14 mm quand
-  // la bande d'ordre des traits est arrivee : c'est la moitie des 11 mm qu'elle
-  // coute, l'autre moitie venant des cases d'ecriture. La boite lui donne aussi
-  // le meme aplomb qu'a 一 — l'interligne d'une police CJK varie avec le glyphe.
   let tete = {
     box(width: 100%, height: 19mm, align(center + horizon, text(size: 14mm)[#glyphe]))
     v(2.5mm)
@@ -211,43 +205,37 @@
     lectures(k)
   }
 
-  let bande = if ex == none { none } else {
-    block(width: 100%, {
-      rule()
-      v(1mm)
-      grid(
-        columns: (auto, 1fr),
-        column-gutter: 3.5mm,
-        align: (left + bottom, left + bottom),
-        phrase-annotee(f(ex, "jlpt:jp")),
-        text(size: P(6.2), fill: INK-SOFT)[#gloss(ex)],
-      )
-    })
-  }
-
-  let h-bande = if bande == none { 0mm } else { measure(block(width: LARGEUR-UTILE, bande)).height }
-
-  entete
-  v(2.6mm)
-
-  // La bande couvre les DEUX colonnes : c'est la seule position qui lui donne
-  // 153 mm, et donc des cases lisibles jusqu'a 22 traits.
   let traits = ordre-des-traits(glyphe)
-  if traits != none {
-    traits
-    v(3mm)
-  }
 
   grid(
-    columns: (COL-GAUCHE, 1fr),
-    column-gutter: 4mm,
-    {
-      tete
-      v(3mm)
-      mots(k, h-bande)
+    rows: (auto, auto, 1fr, auto),
+    row-gutter: 0mm,
+    block(width: 100%, { entete; v(2.6mm) }),
+    if traits == none { [] } else { block(width: 100%, { traits; v(3mm) }) },
+    grid(
+      columns: (COL-GAUCHE, 1fr),
+      column-gutter: 4mm,
+      grid(
+        rows: (auto, 1fr),
+        row-gutter: 3mm,
+        tete,
+        layout(place-restante => mots(k, place-restante.height)),
+      ),
+      align(center + top, grille(glyphe)),
+    ),
+    if ex == none { [] } else {
+      block(width: 100%, {
+        v(1.5mm)
+        rule()
+        v(1mm)
+        grid(
+          columns: (auto, 1fr),
+          column-gutter: 3.5mm,
+          align: (left + bottom, left + bottom),
+          phrase-annotee(f(ex, "jlpt:jp")),
+          text(size: P(6.2), fill: INK-SOFT)[#gloss(ex)],
+        )
+      })
     },
-    align(center + top, grille(glyphe)),
   )
-
-  if bande != none { place(bottom + left, bande) }
 }

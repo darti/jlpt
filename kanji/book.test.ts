@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { spawnSync } from "node:child_process";
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -88,89 +88,62 @@ describe("composition du livre", () => {
   const dispo = typst.status === 0;
   const avecTraits = existsSync(join(RACINE, ".kanjivg/traits/index.json"));
 
-  const lance = (args: string[], sortieFichier?: string) => {
-    const r = spawnSync("typst", args, { cwd: RACINE, encoding: "utf8" });
+  const compose = (entrees: string[]) => {
+    const sortie = join(mkdtempSync(join(tmpdir(), "cahier-")), "kanjis.pdf");
+    const r = spawnSync("typst", ["compile", "--root", ".", ...entrees, "kanji/book.typ", sortie], {
+      cwd: RACINE,
+      encoding: "utf8",
+    });
     // `stderr` porte les avertissements de police absente, qui dépendent de la
-    // machine : on juge sur le code de sortie et sur ce qui est produit.
+    // machine : on juge sur le code de sortie et le PDF produit.
     expect(r.stderr).not.toContain("error:");
     expect(r.status).toBe(0);
-    if (sortieFichier) expect(existsSync(sortieFichier)).toBe(true);
-    return r.stdout;
-  };
+    expect(existsSync(sortie)).toBe(true);
 
-  const pdf = (chemin: string) => {
-    const b = readFileSync(chemin, "latin1");
+    const b = readFileSync(sortie, "latin1");
     const boite = b.match(/MediaBox\[0 0 ([\d.]+) ([\d.]+)\]/);
     return {
       pages: b.match(/\/Type *\/Page[^s]/g)?.length ?? 0,
       largeur: Math.round(Number(boite?.[1] ?? 0)),
       hauteur: Math.round(Number(boite?.[2] ?? 0)),
-      signets: Number(b.match(/\/Outlines[\s\S]{0,120}?\/Count (\d+)/)?.[1] ?? 0),
+      signets: Number(b.match(/\/Outlines[\s\S]{0,200}?\/Count (\d+)/)?.[1] ?? 0),
     };
   };
 
+  // 92 × 163 mm en points : la page est PORTRAIT, son contenu composé en
+  // paysage puis posé pivoté. Une page paysage ici voudrait dire que
+  // `tournee()` a cessé de tourner quoi que ce soit.
+  const PORTRAIT = [261, 462];
+
   test.if(dispo)(
-    "sans les diagrammes : 909 pages en paysage",
+    "sans les diagrammes : 910 pages portrait, et les assertions internes passent",
     () => {
       // Ce chemin-là doit marcher sur une machine qui n'a jamais lancé la chaîne
       // KanjiVG — c'est ce qui garde le livre composable sans rien télécharger.
       //
       // Test de MESURE : il fige un état. Le total bouge dès que `ECHELLE`
       // change ou que le graphe grossit, et il faut alors le remonter
-      // DÉLIBÉRÉMENT, après avoir regardé les pages — un débordement silencieux
-      // est précisément ce qu'il attrape.
-      const sortie = join(mkdtempSync(join(tmpdir(), "cahier-")), "kanjis.pdf");
-      lance(["compile", "--root", ".", "kanji/book.typ", sortie], sortie);
-      const p = pdf(sortie);
-      expect(p.pages).toBe(909);
-      expect([p.largeur, p.hauteur]).toEqual([462, 261]);
+      // DÉLIBÉRÉMENT, après avoir regardé les pages. Ce qu'il attrape n'a rien
+      // de théorique : sur une page pivotée rien ne « coule », donc un bloc trop
+      // haut se superpose au lieu de passer à la page suivante — la planche de
+      // la famille 亻 et les colonnes d'index l'ont fait, sans une erreur.
+      const p = compose([]);
+      expect(p.pages).toBe(910);
+      expect([p.largeur, p.hauteur]).toEqual(PORTRAIT);
+      expect(p.signets).toBe(62);
     },
-    120_000,
+    180_000,
   );
 
   test.if(dispo && avecTraits)(
-    "la chaîne complète rend 914 pages en PORTRAIT, signets compris",
+    "avec les diagrammes : 911 pages portrait (une planche de plus, et les crédits)",
     () => {
-      // Les trois commandes de `bun run cahier`, dans l'ordre. La rotation est
-      // une COMPOSITION Typst, pas une retouche du PDF : la seconde passe
-      // incorpore les pages de la première et les fait pivoter.
-      // ⚠ Tout doit rester SOUS LA RACINE du projet : `image()` et `json()`
-      // résolvent leur argument comme un chemin Typst, donc un `/tmp/…` est
-      // cherché dans `<racine>/tmp/…`. Les sous-produits sont donc dans
-      // `kanji/`, couverts par le `.gitignore`, et retirés à la fin.
-      const paysage = "kanji/.test-paysage.pdf";
-      const tourne = "kanji/.test-kanjis.pdf";
-      const plan = "kanji/.test-chapitres.json";
-      const entrees = ["--input", "traits=oui"];
-
-      lance(["compile", "--root", ".", ...entrees, "kanji/book.typ", paysage], join(RACINE, paysage));
-      const releve = lance([
-        "eval", "--root", ".", ...entrees, "--in", "kanji/book.typ",
-        "query(<chapitre>).map(it => it.value)",
-      ]);
-      writeFileSync(join(RACINE, plan), releve);
-
-      lance([
-        "compile", "--root", ".",
-        "--input", `source=/${paysage}`,
-        "--input", `plan=/${plan}`,
-        "kanji/tourne.typ", tourne,
-      ], join(RACINE, tourne));
-
-      const avant = pdf(join(RACINE, paysage));
-      const apres = pdf(join(RACINE, tourne));
-      for (const f of [paysage, tourne, plan]) rmSync(join(RACINE, f));
-      expect(avant.pages).toBe(914);
-      expect([avant.largeur, avant.hauteur]).toEqual([462, 261]);
-
-      // Tourner ne perd ni page ni chapitre : le nombre est le même, la boîte
-      // est retournée, et les 62 signets sont reconstruits depuis le relevé —
-      // incorporer des pages les aurait sinon tous perdus, sans erreur.
-      expect(apres.pages).toBe(914);
-      expect([apres.largeur, apres.hauteur]).toEqual([261, 462]);
-      expect(apres.signets).toBe(62);
+      const p = compose(["--input", "traits=oui"]);
+      expect(p.pages).toBe(911);
+      expect([p.largeur, p.hauteur]).toEqual(PORTRAIT);
+      expect(p.signets).toBe(62);
     },
-    240_000,
+    180_000,
   );
 
   test.if(!dispo)("typst absent : compilation non vérifiée ici", () => {

@@ -1,54 +1,49 @@
 # 漢字 — cahier d'écriture pour reMarkable Paper Pro Move
 
-Un livre PDF de **914 pages** au format portrait 92 × 163 mm (contenu tourné de 90°) : une fiche par kanji du référentiel N3 (810), avec l'ordre
+Un livre PDF de **911 pages** au format portrait 92 × 163 mm (contenu composé en paysage, tourné de 90°) : une fiche par kanji du référentiel N3 (810), avec l'ordre
 des traits, le sens, les lectures 音/訓, les mots que le caractère permet de lire, et une
 grille d'écriture à remplir au stylet. Composé avec **Typst**, directement depuis
 `data/graph/`.
 
     bun tools/kanjivg/fetch.mjs && bun tools/kanjivg/strips.mjs   # diagrammes (une fois)
-    bun run cahier          # → kanji/kanjis.pdf
+    bun run cahier              # → kanji/kanjis.pdf
+    bun run cahier:sans-traits  # le même, sans les diagrammes (910 pages)
 
-Sans la première ligne, retirer `--input traits=oui` des commandes compose le livre **sans
-les diagrammes** (909 pages, et pas de pages de crédits). Typst ne sait pas demander si un
-fichier existe — `json()` sur un chemin absent est une **erreur de compilation** — donc la
-présence des diagrammes se déclare, elle ne se devine pas.
+Une seule commande, une seule passe :
 
-## Deux passes, et la seconde tourne les pages
+    typst compile --root . --input traits=oui kanji/book.typ kanji/kanjis.pdf
 
-`bun run cahier` enchaîne **trois commandes `typst`**, rien d'autre :
+Typst ne sait pas demander si un fichier existe — `json()` sur un chemin absent est une
+**erreur de compilation** — donc la présence des diagrammes se **déclare**, elle ne se
+devine pas. Sans `--input traits=oui`, le livre est identique moins les diagrammes et les
+pages de crédits, et n'emprunte alors rien à personne.
 
-    typst compile --root . --input traits=oui kanji/book.typ kanji/kanjis-paysage.pdf
-    typst eval --root . --input traits=oui --in kanji/book.typ \
-      'query(<chapitre>).map(it => it.value)' > kanji/.chapitres.json
-    typst compile --root . --input source=/kanji/kanjis-paysage.pdf \
-      --input plan=/kanji/.chapitres.json kanji/tourne.typ kanji/kanjis.pdf
+## La page est portrait, le contenu est paysage
 
-Le livre se compose en **163 × 92 mm** (la dalle, en paysage), puis chaque page est reposée
-pivotée de 90° sur une page **portrait de 92 × 163 mm** : la liseuse l'affiche alors plein
-écran dans son orientation native, et c'est l'appareil qu'on tourne. La rotation est une
-**composition Typst**, pas une retouche du PDF — le texte reste sélectionnable, Typst
-incorpore les pages du PDF source au lieu de les rastériser.
+La liseuse est haute : un PDF **portrait de 92 × 163 mm** s'y affiche plein écran, et c'est
+l'appareil qu'on tourne pour lire. Chaque page est donc composée dans un bloc **paysage de
+163 × 92 mm**, posé pivoté de 90° par `tournee()` (`lib/theme.typ`) — en **une seule
+passe**, sans PDF intermédiaire ni post-traitement.
 
-Deux choses que la seconde passe ne peut pas deviner, et que le relevé `<chapitre>` lui
-donne :
+Ce choix a un prix, et il est structurel : **un bloc pivoté ne coule pas sur la page
+suivante**. Ce qui déborde se superpose en bas de page, **sans aucune erreur**. Le livre
+pagine donc lui-même tout ce qui coulait avant — index, sommaire, prose, et les planches de
+plus de trois rangées — via `paginer()`, qui découpe une liste de blocs en pages **en les
+mesurant**. Aucune hauteur n'est écrite en dur : un changement d'`ECHELLE` se propage seul.
 
-- **le nombre de pages** — le dernier enregistrement porte `titre: none` et sa page *est* le
-  total, ce qui évite de compter des objets dans le PDF ;
-- **les signets.** Incorporer des pages les perd tous, sans erreur. Ils sont reconstruits
-  depuis le relevé (`hide()` garde l'élément et sa position sans rien imprimer). Sur 914
-  pages, un livre sans signets ne se parcourt plus qu'en faisant défiler — le test vérifie
-  qu'il en reste 62.
+> ⚠ `paginer` mesure la colonne **cumulée**, pas chaque bloc isolément : `measure` ignore le
+> `spacing` qui sépare deux blocs, et sur une colonne de trente entrées à 1 mm d'écart c'est
+> 30 mm de trop. Les dernières entrées de chaque colonne d'index se superposaient — vu à
+> l'œil sur une page rendue, jamais signalé par la compilation.
 
-`--input sens=antihoraire` tourne dans l'autre sens. Par défaut le haut du contenu part à
-droite : on tourne la liseuse vers la gauche pour lire.
+La fiche, elle, n'a plus rien à calculer : ses quatre rangées (en-tête, ordre des traits,
+corps, phrase) dont une en `1fr` laissent la grille distribuer la hauteur, et la colonne de
+mots reçoit exactement ce que les trois autres laissent — `layout()` le lui donne. Deux
+versions précédentes soustrayaient des hauteurs prévues (17 mm d'erreur) puis lisaient
+`here().position().y` (juste, mais faux dès que la page pivote).
 
-`kanji/kanjis-paysage.pdf` reste sur le disque — c'est la source de la seconde passe, et
-c'est aussi le livre à lire sur un écran large. Les deux sont gitignorés.
-
-`typst` doit être sur le `PATH` (il n'est pas dans les dépendances bun ; la CI ne compose
-donc pas le livre — `kanji/book.test.ts` saute cette partie quand le binaire est absent).
-Le PDF est **gitignoré** : il se refait en huit secondes, et un binaire de 5,7 Mo versionné
-serait exactement le dérivé désynchronisable que la migration vers le graphe a supprimé.
+Le sommaire et les signets du PDF sont bâtis sur le **même** relevé `<chapitre>` déposé par
+chaque planche : un seul élément, donc l'imprimé et le navigable ne peuvent pas diverger.
 
 ## Ordre des traits : la seule dépendance sous licence
 
@@ -215,7 +210,7 @@ redeviendrait vert en silence si la fiche repassait à l'arête.
 
 ## Vérifier une modification
 
-    bun test kanji/book.test.ts   # données + licence + les deux passes (pages, format, signets)
+    bun test kanji/book.test.ts   # données + licence + composition réelle (pages, format portrait, signets)
     bun run cahier && ~/.local/bin/typst compile --root . --pages 1,3,4,5,876 kanji/book.typ /tmp/p{p}.png --ppi 180
 
 Rendre les pages en PNG et **les regarder** : les quatre pannes ci-dessus sont toutes
