@@ -1,37 +1,116 @@
 # 漢字 — cahier d'écriture pour reMarkable Paper Pro Move
 
-Un livre PDF de **889 pages** : une fiche par kanji du référentiel N3 (810), avec sens,
-lectures 音/訓, les mots que le caractère permet de lire, et une grille d'écriture à
-remplir au stylet. Composé avec **Typst**, directement depuis `data/graph/`.
+Un livre PDF de **911 pages** au format portrait 92 × 163 mm (contenu composé en paysage, tourné de 90°) : une fiche par kanji du référentiel N3 (810), avec l'ordre
+des traits, le sens, les lectures 音/訓, les mots que le caractère permet de lire, et une
+grille d'écriture à remplir au stylet. Composé avec **Typst**, directement depuis
+`data/graph/`.
 
-    bun run cahier          # → kanji/book.pdf
-    bun run cahier:watch    # recompose à chaque édition
+    bun tools/kanjivg/fetch.mjs && bun tools/kanjivg/strips.mjs   # diagrammes (une fois)
+    bun run cahier              # → kanji/kanjis.pdf
+    bun run cahier:sans-traits  # le même, sans les diagrammes (910 pages)
 
-`typst` doit être sur le `PATH` (il n'est pas dans les dépendances bun ; la CI ne compose
-donc pas le livre — `kanji/book.test.ts` saute cette partie quand le binaire est absent).
-Le PDF est **gitignoré** : il se refait en huit secondes, et un binaire de 5,7 Mo versionné
-serait exactement le dérivé désynchronisable que la migration vers le graphe a supprimé.
+Une seule commande, une seule passe :
+
+    typst compile --root . --input traits=oui kanji/book.typ kanji/kanjis.pdf
+
+Typst ne sait pas demander si un fichier existe — `json()` sur un chemin absent est une
+**erreur de compilation** — donc la présence des diagrammes se **déclare**, elle ne se
+devine pas. Sans `--input traits=oui`, le livre est identique moins les diagrammes et les
+pages de crédits, et n'emprunte alors rien à personne.
+
+## La page est portrait, le contenu est paysage
+
+La liseuse est haute : un PDF **portrait de 92 × 163 mm** s'y affiche plein écran, et c'est
+l'appareil qu'on tourne pour lire. Chaque page est donc composée dans un bloc **paysage de
+163 × 92 mm**, posé pivoté de 90° par `tournee()` (`lib/theme.typ`) — en **une seule
+passe**, sans PDF intermédiaire ni post-traitement.
+
+Ce choix a un prix, et il est structurel : **un bloc pivoté ne coule pas sur la page
+suivante**. Ce qui déborde se superpose en bas de page, **sans aucune erreur**. Le livre
+pagine donc lui-même tout ce qui coulait avant — index, sommaire, prose, et les planches de
+plus de trois rangées — via `paginer()`, qui découpe une liste de blocs en pages **en les
+mesurant**. Aucune hauteur n'est écrite en dur : un changement d'`ECHELLE` se propage seul.
+
+> ⚠ `paginer` mesure la colonne **cumulée**, pas chaque bloc isolément : `measure` ignore le
+> `spacing` qui sépare deux blocs, et sur une colonne de trente entrées à 1 mm d'écart c'est
+> 30 mm de trop. Les dernières entrées de chaque colonne d'index se superposaient — vu à
+> l'œil sur une page rendue, jamais signalé par la compilation.
+
+La fiche, elle, n'a plus rien à calculer : ses quatre rangées (en-tête, ordre des traits,
+corps, phrase) dont une en `1fr` laissent la grille distribuer la hauteur, et la colonne de
+mots reçoit exactement ce que les trois autres laissent — `layout()` le lui donne. Deux
+versions précédentes soustrayaient des hauteurs prévues (17 mm d'erreur) puis lisaient
+`here().position().y` (juste, mais faux dès que la page pivote).
+
+Le sommaire et les signets du PDF sont bâtis sur le **même** relevé `<chapitre>` déposé par
+chaque planche : un seul élément, donc l'imprimé et le navigable ne peuvent pas diverger.
+
+## Ordre des traits : la seule dépendance sous licence
+
+Les diagrammes viennent de **[KanjiVG](https://kanjivg.tagaini.net/)** (© Ulrich Apel,
+**CC BY-SA 3.0**), récupéré dans `.kanjivg/` — **gitignoré, jamais commité**, comme
+`.jmdict/` et `.kanjidic/`.
+
+Mais la ressemblance s'arrête là, et la différence est licencielle. JMdict et KANJIDIC2
+servent à **proposer** : l'auteur arbitre, ses saisies entrent dans le graphe, rien de la
+source n'est redistribué. **Un ordre de traits ne s'arbitre pas** — c'est un tracé, et
+l'afficher, c'est le redistribuer. Conséquences, assumées et cantonnées :
+
+- `data/graph/` n'est **pas** touché : l'app reste libre de toute attribution ;
+- seul `kanji/kanjis.pdf` incorpore ces tracés. Il en est une **œuvre dérivée** :
+  attribution (imprimée sur ses deux pages de crédits) et **ShareAlike si vous le
+  distribuez**. Pour un cahier d'usage personnel, la question ne se pose pas ;
+- ne pas lancer la chaîne suffit à retrouver un livre entièrement libre de cette contrainte.
+
+`kanji/book.test.ts` garde l'invariant : `.gitignore` contient `.kanjivg/`, `git ls-files`
+n'y voit rien, et `kanji.jsonld` ne mentionne pas KanjiVG. Un `.kanjivg/` commité par
+mégarde changerait la licence du dépôt entier sans que rien ne le signale.
+
+**La forme du diagramme** est une case par trait — le dernier en noir, les précédents en
+gris — et non un caractère annoté de numéros : on veut voir où le trait commence et dans
+quel sens il part, ce que des numéros ne disent qu'à qui connaît déjà l'ordre. La bande
+occupe toute la largeur de la page et non la colonne de droite, par lisibilité : 22 traits
+dans 91,6 mm feraient des cases de 4,2 mm, contre 7 mm sur 153.
+
+Les tracés sont partagés par `<defs>` + `<use>` dans chaque SVG : sans ça un caractère de
+22 traits répéterait ses tracés 253 fois. Le lot pèse 3,6 Mo, et n'ajoute que 0,8 Mo au PDF.
+
+## Une seule molette : `ECHELLE`
+
+Toutes les tailles de texte du livre passent par `P()` dans `lib/theme.typ`, et `P` ne fait
+que multiplier par `ECHELLE` (**1,5** aujourd'hui). Les tailles en **millimètres** — le
+caractère de la fiche, celui de la planche, le 漢字 du titre — n'y passent pas : ce sont
+des dessins, dimensionnés par la place qu'on leur donne.
+
+Sur une page de 163 × 92 mm, agrandir se paie en contenu par page, et le prix est réel :
+à 1,5 une fiche porte **1 à 4 mots** au lieu de six, les familles de plus de 24 caractères
+tiennent sur deux planches, le sommaire et le mode d'emploi passent à deux pages. Rien
+n'est perdu — tout est reporté. Descendre à 1,25 rend la plupart des mots.
+
+Aucune de ces limites n'est écrite en dur : le nombre de mots d'une fiche vient d'une
+**mesure**, pas d'un calcul (voir plus bas), donc changer `ECHELLE` suffit.
 
 ## Le format n'est pas un choix esthétique
 
-La dalle du Paper Pro Move fait 1696 × 954 px à 264 dpi, soit **163 × 92 mm en paysage**.
-Le PDF est composé à cette taille exacte : la liseuse l'affiche alors sans marge grise ni
-recadrage. Toute autre proportion coûte de la surface utile — sur une page de 92 mm de
+La dalle du Paper Pro Move fait 1696 × 954 px à 264 dpi, soit **163 × 92 mm en paysage** —
+92 × 163 dans l'orientation native de l'appareil. Le PDF est produit à cette taille exacte :
+la liseuse l'affiche alors sans marge grise ni recadrage. Toute autre proportion coûte de la surface utile — sur une page de 92 mm de
 haut, deux millimètres perdus, c'est une rangée de la grille.
 
 ## Ce que contient une page
 
 | Page | Rôle |
 |---|---|
-| Titre, mode d'emploi, sommaire | 3 pages ; le sommaire donne les pages réelles des 62 chapitres |
+| Titre, mode d'emploi, sommaire | 5 pages ; le sommaire donne les pages réelles des 62 chapitres |
 | Planche d'ouverture | les caractères de la famille avec leurs sens, en 8 colonnes — sert aussi de test de révision, gloses masquées |
-| Fiche | à gauche le caractère, son sens, ses lectures et jusqu'à 6 mots (un par ligne, nombre ajusté à la place réelle) ; à droite 19 cases d'écriture en trois tailles ; en bas une phrase d'emploi, furigana compris, quand il en existe une |
+| Fiche | en haut l'ordre des traits, pleine largeur ; à gauche le caractère, son sens, ses lectures et jusqu'à 6 mots (un par ligne, nombre ajusté à la place réelle) ; à droite 23 cases d'écriture en trois tailles ; en bas une phrase d'emploi, furigana compris, quand il en existe une |
 | Index des lectures 音 | lecture (katakana) → caractère → page, en ordre gojūon |
 | Index des sens | sens français → caractère → page, accents repliés pour le classement |
+| Crédits | 2 pages, imprimées seulement si les diagrammes le sont — sans eux le livre n'emprunte rien |
 
 ### La grille : trois tailles, une par rangée
 
-22 mm × 4 cases, 14 mm × 6, 9 mm × 9. On apprend un caractère en grand — c'est la seule
+17 mm × 5 cases, 11 mm × 7, 7 mm × 11 — resserrées quand la bande d'ordre des traits est arrivée, qui prend 11 mm. On apprend un caractère en grand — c'est la seule
 taille où l'on voit ce qu'on rate — mais on l'écrit petit : la dernière rangée est calibrée
 sur l'écriture courante, et c'est là que vingt traits deviennent vraiment difficiles. Une
 grille d'une seule taille entraîne une main qu'on n'emploiera jamais.
@@ -39,7 +118,7 @@ grille d'une seule taille entraîne une main qu'on n'emploiera jamais.
 Modèle franc puis modèle pâle sur la première rangée, modèle pâle seul en tête des deux
 autres ; le reste est vide. Les pointillés en croix servent à **placer** les traits.
 
-Les largeurs sont calées sur les 93 mm de la colonne (91,6 / 90,0 / 90,6 mm). Changer une
+Les largeurs sont calées sur les 91,6 mm de la colonne (89,8 / 84,2 / 89,0 mm). Changer une
 taille ou un nombre de cases sans refaire le calcul pousse la rangée hors de la page — et
 **une rangée tronquée ne lève aucune erreur**.
 
@@ -113,13 +192,25 @@ redeviendrait vert en silence si la fiche repassait à l'arête.
   segmentation des furigana accumule donc en deux passes (découpage brut, puis fusion des
   morceaux non annotés) plutôt qu'avec un `vider()` sur un tampon.
 - **`place` ne réserve aucune place.** La phrase d'exemple est posée en `place(bottom)` :
-  un bloc de mots trop haut passerait dessous **sans erreur**. D'où le budget vertical
-  explicite (34 mm avec phrase, 45 sans) et le `measure()` qui retire des mots par la fin
-  tant que le bloc dépasse — le nombre affiché s'adapte, la collision est impossible.
+  un bloc de mots trop haut passerait dessous **sans erreur**. Le nombre de mots est donc
+  borné par `measure()`, qui en retire par la fin tant que le bloc dépasse.
+- **La place restante se LIT, elle ne se calcule pas.** Une première version du budget
+  additionnait en-tête + caractère + glose + blancs : elle se trompait de **17 mm**, parce
+  que la hauteur de ligne d'un texte ne vaut pas sa taille de police et que l'écart varie
+  avec `ECHELLE`. Le budget part maintenant de `here().position().y` — la position réelle
+  du bloc — moins la hauteur mesurée de la bande du bas.
+- **Un `box` ne coupe pas les lignes.** Les entrées d'index étaient des `box` : un libellé
+  plus large que sa colonne débordait sur la voisine, en silence. Ce sont des `block`.
+- **Un `grid` à deux colonnes ne se rééquilibre pas** quand il passe sur une seconde page :
+  la première colonne se vide et la seconde déborde. Le mode d'emploi est en `columns`.
+- **Un mot français long ne se coupe pas.** À l'échelle 1,5, « appréhender, » était plus
+  large que le créneau de 26 mm laissé à côté du caractère et débordait dans la grille
+  d'écriture. La colonne de gauche est donc entièrement **empilée** : caractère, glose,
+  lectures et mots occupent chacun toute sa largeur.
 
 ## Vérifier une modification
 
-    bun test kanji/book.test.ts   # contrat de données + compilation réelle
+    bun test kanji/book.test.ts   # données + licence + composition réelle (pages, format portrait, signets)
     bun run cahier && ~/.local/bin/typst compile --root . --pages 1,3,4,5,876 kanji/book.typ /tmp/p{p}.png --ppi 180
 
 Rendre les pages en PNG et **les regarder** : les quatre pannes ci-dessus sont toutes

@@ -4,13 +4,13 @@
   "type": "module",
   "scripts": {
     "css": "bunx @tailwindcss/cli -i src/styles/tailwind.css -o src/styles/styles.gen.css",
-    "cahier": "typst compile --root . kanji/book.typ kanji/book.pdf",
-    "cahier:watch": "typst watch --root . kanji/book.typ kanji/book.pdf",
+    "cahier": "typst compile --root . --input traits=oui kanji/book.typ kanji/kanjis.pdf",
     "dev": "bun run scripts/dev.ts",
     "build": "bun run css -- --minify && bun build ./index.html --minify --splitting --outdir=_site && bun tools/copy-static.mjs",
     "test": "bun test",
     "typecheck": "tsc --noEmit",
-    "validate:graph": "bun tools/validate-graph.mjs"
+    "validate:graph": "bun tools/validate-graph.mjs",
+    "cahier:sans-traits": "typst compile --root . kanji/book.typ kanji/kanjis.pdf"
   },
   "dependencies": {
     "echarts": "^6.1.0",

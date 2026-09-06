@@ -32,13 +32,16 @@
 // Les largeurs sont calees sur les 93 mm de la colonne : 91,6 / 90,0 / 90,6.
 // Toucher une taille ou un nombre de cases sans refaire le calcul pousse la
 // rangee hors de la page — et une rangee tronquee ne leve aucune erreur.
+// Largeurs calees sur les 91,6 mm de la colonne : 89,8 / 84,2 / 89,0. Les
+// hauteurs, elles, ont ete reprises quand la bande d'ordre des traits est
+// arrivee en haut de page : elle prend 11 mm, qu'il a fallu rendre.
 #let RANGEES = (
-  (taille: 22mm, cases: 4, modeles: (TRACE, TRACE-PALE)),
-  (taille: 14mm, cases: 6, modeles: (TRACE-PALE,)),
-  (taille: 9mm, cases: 9, modeles: (TRACE-PALE,)),
+  (taille: 17mm, cases: 5, modeles: (TRACE, TRACE-PALE)),
+  (taille: 11mm, cases: 7, modeles: (TRACE-PALE,)),
+  (taille: 7mm, cases: 11, modeles: (TRACE-PALE,)),
 )
 
-#let grille(glyphe, ecart: 1.2mm, entre-rangees: 3.4mm) = stack(
+#let grille(glyphe, ecart: 1.2mm, entre-rangees: 2.8mm) = stack(
   dir: ttb,
   spacing: entre-rangees,
   ..RANGEES.map(r => grid(
@@ -52,13 +55,30 @@
   )),
 )
 
+// --- ordre des traits ------------------------------------------------------
+// Une case par trait, le dernier en noir, les precedents en gris : on voit ou
+// le trait COMMENCE et dans quel sens il part, ce qu'un caractere annote de
+// numeros ne montre qu'a qui connait deja l'ordre.
+//
+// La bande occupe toute la largeur de la page, pas la colonne de droite, et
+// c'est une contrainte de lisibilite : 22 traits dans 91,6 mm donneraient des
+// cases de 4,2 mm. Sur 153 mm elles font 7 mm au pire, 8 mm des que le
+// caractere en compte 18 ou moins — soit 800 des 810.
+#let CASE-TRAIT = 8mm
+
+#let ordre-des-traits(ch) = {
+  let b = bande-traits(ch)
+  if b == none { return none }
+  align(center, image(b.chemin, width: calc.min(CASE-TRAIT * b.traits, LARGEUR-UTILE)))
+}
+
 // --- phrase d'exemple annotee ----------------------------------------------
 // Les furigana sont poses en GRILLE a deux rangees, pas en surimpression : la
 // colonne fait alors la largeur du plus large des deux (base ou lecture), donc
 // deux lectures voisines ne peuvent pas se chevaucher et la ligne de base reste
 // commune. C'est l'inverse du choix de l'app, ou l'annotation est hors flux
 // pour ne pas elargir la base — mais un ecran se relit en tapant, une page non.
-#let phrase-annotee(phrase, taille: 7pt, taille-lecture: 5pt) = {
+#let phrase-annotee(phrase, taille: P(7), taille-lecture: P(5)) = {
   let segs = segments-furigana(phrase)
   grid(
     columns: (auto,) * segs.len(),
@@ -76,13 +96,13 @@
   inset: (x: 1.1mm, y: 0.5mm),
   radius: 0.6mm,
   fill: luma(232),
-  text(size: 5.5pt, fill: INK-SOFT, font: JP-SANS)[#txt],
+  text(size: P(5.5), fill: INK-SOFT, font: JP-SANS)[#txt],
 )
 
 #let lectures(k) = {
   let on = on-readings(k)
   let kun = kun-readings(k)
-  set text(size: 7.5pt)
+  set text(size: P(7.5))
   if on.len() > 0 { block(spacing: 1.1mm)[#badge("音") #h(1mm) #on.join("・")] }
   if kun.len() > 0 { block(spacing: 1.1mm)[#badge("訓") #h(1mm) #kun.join("・")] }
 }
@@ -98,12 +118,15 @@
 #let COL-GAUCHE = 56mm
 #let MOTS-MAX = 6
 #let ECART-MOTS = 2.4mm
+// `measure` sous-estime legerement un bloc de plusieurs paragraphes : la marge
+// absorbe l'ecart, verifie sur les fiches les plus chargees du corpus.
+#let MARGE-SECURITE = 2mm
 
 #let _ligne-mot(w) = block(spacing: ECART-MOTS, {
-  text(size: 7.6pt)[#name(w)]
-  text(size: 6pt, fill: INK-SOFT)[ #reading(w) ]
+  text(size: P(7.6))[#name(w)]
+  text(size: P(6), fill: INK-SOFT)[ #reading(w) ]
   h(1.4mm)
-  text(size: 6.2pt, fill: INK-SOFT)[#gloss(w)]
+  text(size: P(6.2), fill: INK-SOFT)[#gloss(w)]
 })
 
 // Un mot par LIGNE — mot, lecture et sens ensemble — plutot que sur deux.
@@ -116,20 +139,34 @@
 // bloc depasse le budget. C'est ce qui autorise un ecart genereux sans parier
 // sur la longueur des gloses — 「約束した やくそくした promesse, rendez-vous」
 // passe a la ligne, 「政 せい politique」 non.
-#let mots(k, budget: 34mm) = context {
+// Le nombre de mots s'ADAPTE a la place qui reste, et cette place est celle que
+// la mise en page lui DONNE — pas une soustraction de hauteurs prevues.
+//
+// ⚠ Une version precedente calculait « hauteur utile moins en-tete moins
+// caractere moins glose moins blancs » : elle se trompait de 17 mm, la hauteur
+// de ligne d'un texte ne valant pas sa taille de police. Une autre lisait
+// `here().position().y`, ce qui etait juste mais cesse de l'etre des que la
+// page est pivotee. La bonne reponse est la rangee `1fr` de la colonne : sa
+// hauteur EST la place restante, et `layout()` la donne.
+#let mots(k, dispo) = {
   let tous = words-for(name(k))
   if tous.len() == 0 {
     let c = f(k, "jlpt:compound")
-    if c != none { text(size: 6.5pt, fill: INK-SOFT)[#c] }
+    if c != none { text(size: P(6.5), fill: INK-SOFT)[#c] }
     return
   }
   let bloc(n) = block(width: COL-GAUCHE, tous.slice(0, n).map(_ligne-mot).join())
   let n = calc.min(MOTS-MAX, tous.len())
-  while n > 1 and measure(bloc(n)).height > budget { n -= 1 }
+  while n > 1 and measure(bloc(n)).height > dispo - MARGE-SECURITE { n -= 1 }
   bloc(n)
 }
 
 // --- la fiche --------------------------------------------------------------
+// Quatre rangees, dont UNE en `1fr` : en-tete, ordre des traits, corps, phrase.
+// C'est la grille qui distribue la hauteur, et la rangee elastique est le corps
+// — donc la colonne de mots recoit exactement ce que les trois autres laissent.
+// Rien n'est calcule, rien n'est place en absolu : la fiche se compose aussi
+// bien droite que pivotee.
 #let fiche(k, chapitre: "", numero: 0, total: 0) = {
   let glyphe = name(k)
   let ex = example-for(glyphe)
@@ -141,64 +178,64 @@
   // vide et l'index s'imprime entierement en « — », sans la moindre erreur.
   [#metadata(glyphe)<fiche>]
 
-  block(spacing: 0pt, {
+  let entete = {
     grid(
       columns: (1fr, auto),
       align: (left + horizon, right + horizon),
-      text(size: 6pt, fill: INK-SOFT, font: JP-SANS)[#chapitre],
-      context text(size: 6pt, fill: INK-SOFT, font: JP-SANS)[#numero / #total · p. #here().page()],
+      text(size: P(6), fill: INK-SOFT, font: JP-SANS)[#chapitre],
+      context text(size: P(6), fill: INK-SOFT, font: JP-SANS)[#numero / #total · p. #here().page()],
     )
     v(0.6mm)
     rule()
-  })
+  }
 
-  v(2.6mm)
+  // Colonne de gauche EMPILEE, tout sur la pleine largeur : glyphe, glose,
+  // lectures, mots. Rien n'est plus pose « a cote » du caractere.
+  //
+  // C'est la mise en page qu'impose l'echelle. A cote du glyphe il ne restait
+  // que 26 mm : la glose y debordait dans la grille d'ecriture — un mot
+  // francais long ne se coupe pas — et 「かえり(みる)」 s'y brisait en laissant
+  // 「る)」 seul sur une ligne. Les deux pires cas du corpus sont mesures :
+  // glose de 32 caracteres (省), lecture kun de 22 demi-chasses (試, 優).
+  let tete = {
+    box(width: 100%, height: 19mm, align(center + horizon, text(size: 14mm)[#glyphe]))
+    v(2.5mm)
+    text(size: P(9), weight: "bold")[#gloss(k)]
+    v(1.8mm)
+    lectures(k)
+  }
+
+  let traits = ordre-des-traits(glyphe)
 
   grid(
-    columns: (56mm, 1fr),
-    column-gutter: 4mm,
-    {
-      // En-tete du caractere : le glyphe a la taille ou l'on distingue les
-      // traits, la glose juste a cote — c'est le couple qu'on veut memoriser.
-      //
-      // Le glyphe vit dans une BOITE plus grande que lui, et c'est le blanc
-      // autour qui le rend saillant : colle a la glose et aux mots, il n'etait
-      // qu'un mot de plus en gros. La boite est aussi ce qui donne le meme
-      // aplomb a 一 et a 優 — l'interligne d'une police CJK varie avec le
-      // glyphe, donc sans hauteur fixee la glose remonte ou descend d'une
-      // fiche a l'autre.
+    rows: (auto, auto, 1fr, auto),
+    row-gutter: 0mm,
+    block(width: 100%, { entete; v(2.6mm) }),
+    if traits == none { [] } else { block(width: 100%, { traits; v(3mm) }) },
+    grid(
+      columns: (COL-GAUCHE, 1fr),
+      column-gutter: 4mm,
       grid(
-        columns: (26mm, 1fr),
-        column-gutter: 5mm,
-        align: (center + horizon, left + top),
-        box(height: 26mm, align(center + horizon, text(size: 15.5mm)[#glyphe])),
-        {
-          v(2.5mm)
-          text(size: 9pt, weight: "bold")[#gloss(k)]
-          v(1.6mm)
-          lectures(k)
-        },
-      )
-      v(4mm)
-      // 84 mm utiles, moins l'en-tete (4,2), le blanc (2,6), le glyphe (26) et
-      // ce blanc-ci (4) : 47,2 mm. La bande du bas en prend 11 quand il y a une
-      // phrase ; on garde 2 mm de marge de securite dans les deux cas.
-      mots(k, budget: if ex == none { 45mm } else { 34mm })
+        rows: (auto, 1fr),
+        row-gutter: 3mm,
+        tete,
+        layout(place-restante => mots(k, place-restante.height)),
+      ),
+      align(center + top, grille(glyphe)),
+    ),
+    if ex == none { [] } else {
+      block(width: 100%, {
+        v(1.5mm)
+        rule()
+        v(1mm)
+        grid(
+          columns: (auto, 1fr),
+          column-gutter: 3.5mm,
+          align: (left + bottom, left + bottom),
+          phrase-annotee(f(ex, "jlpt:jp")),
+          text(size: P(6.2), fill: INK-SOFT)[#gloss(ex)],
+        )
+      })
     },
-    align(center + top, grille(glyphe)),
   )
-
-  if ex != none {
-    place(bottom + left, block(width: 100%, {
-      rule()
-      v(1mm)
-      grid(
-        columns: (auto, 1fr),
-        column-gutter: 3.5mm,
-        align: (left + bottom, left + bottom),
-        phrase-annotee(f(ex, "jlpt:jp")),
-        text(size: 6.2pt, fill: INK-SOFT)[#gloss(ex)],
-      )
-    }))
-  }
 }

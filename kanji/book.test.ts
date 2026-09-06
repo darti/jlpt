@@ -66,34 +66,87 @@ describe("contrat de donnees du cahier", () => {
   });
 });
 
+describe("licence des tracés", () => {
+  // Garde-fou licenciel, pas cosmétique : KanjiVG est en CC BY-SA 3.0. Tant que
+  // ses tracés restent hors dépôt, le graphe et l'app n'empruntent rien et ne
+  // doivent aucune attribution ; un `.kanjivg/` committé par mégarde changerait
+  // la licence du dépôt entier, sans que rien ne le signale.
+  test(".kanjivg/ est ignoré par git et absent du graphe", () => {
+    const ignore = readFileSync(join(RACINE, ".gitignore"), "utf8");
+    expect(ignore).toContain(".kanjivg/");
+
+    const suivi = spawnSync("git", ["ls-files", ".kanjivg"], { cwd: RACINE, encoding: "utf8" });
+    expect(suivi.stdout.trim()).toBe("");
+
+    const graphe = readFileSync(join(RACINE, "data/graph/kanji.jsonld"), "utf8");
+    expect(graphe.toLowerCase()).not.toContain("kanjivg");
+  });
+});
+
 describe("composition du livre", () => {
   const typst = spawnSync("typst", ["--version"], { encoding: "utf8" });
   const dispo = typst.status === 0;
+  const avecTraits = existsSync(join(RACINE, ".kanjivg/traits/index.json"));
+
+  const compose = (entrees: string[]) => {
+    const sortie = join(mkdtempSync(join(tmpdir(), "cahier-")), "kanjis.pdf");
+    const r = spawnSync("typst", ["compile", "--root", ".", ...entrees, "kanji/book.typ", sortie], {
+      cwd: RACINE,
+      encoding: "utf8",
+    });
+    // `stderr` porte les avertissements de police absente, qui dépendent de la
+    // machine : on juge sur le code de sortie et le PDF produit.
+    expect(r.stderr).not.toContain("error:");
+    expect(r.status).toBe(0);
+    expect(existsSync(sortie)).toBe(true);
+
+    const b = readFileSync(sortie, "latin1");
+    const boite = b.match(/MediaBox\[0 0 ([\d.]+) ([\d.]+)\]/);
+    return {
+      pages: b.match(/\/Type *\/Page[^s]/g)?.length ?? 0,
+      largeur: Math.round(Number(boite?.[1] ?? 0)),
+      hauteur: Math.round(Number(boite?.[2] ?? 0)),
+      signets: Number(b.match(/\/Outlines[\s\S]{0,200}?\/Count (\d+)/)?.[1] ?? 0),
+    };
+  };
+
+  // 92 × 163 mm en points : la page est PORTRAIT, son contenu composé en
+  // paysage puis posé pivoté. Une page paysage ici voudrait dire que
+  // `tournee()` a cessé de tourner quoi que ce soit.
+  const PORTRAIT = [261, 462];
 
   test.if(dispo)(
-    "typst compose les 889 pages et les assertions internes passent",
+    "sans les diagrammes : 910 pages portrait, et les assertions internes passent",
     () => {
-      const sortie = join(mkdtempSync(join(tmpdir(), "cahier-")), "book.pdf");
-      const r = spawnSync("typst", ["compile", "--root", ".", "kanji/book.typ", sortie], {
-        cwd: RACINE,
-        encoding: "utf8",
-      });
-      // `stderr` porte les avertissements de police absente, qui dependent de
-      // la machine : on juge sur le code de sortie et le PDF produit.
-      expect(r.stderr).not.toContain("error:");
-      expect(r.status).toBe(0);
-      expect(existsSync(sortie)).toBe(true);
-
-      // 3 liminaire + 62 planches + 810 fiches + 14 pages d'index. Un ecart
-      // signale une planche qui a deborde sur une seconde page, ce que rien
-      // d'autre ne rend visible.
-      const pdf = readFileSync(sortie, "latin1");
-      expect(pdf.match(/\/Type *\/Page[^s]/g)?.length).toBe(889);
+      // Ce chemin-là doit marcher sur une machine qui n'a jamais lancé la chaîne
+      // KanjiVG — c'est ce qui garde le livre composable sans rien télécharger.
+      //
+      // Test de MESURE : il fige un état. Le total bouge dès que `ECHELLE`
+      // change ou que le graphe grossit, et il faut alors le remonter
+      // DÉLIBÉRÉMENT, après avoir regardé les pages. Ce qu'il attrape n'a rien
+      // de théorique : sur une page pivotée rien ne « coule », donc un bloc trop
+      // haut se superpose au lieu de passer à la page suivante — la planche de
+      // la famille 亻 et les colonnes d'index l'ont fait, sans une erreur.
+      const p = compose([]);
+      expect(p.pages).toBe(910);
+      expect([p.largeur, p.hauteur]).toEqual(PORTRAIT);
+      expect(p.signets).toBe(62);
     },
-    120_000,
+    180_000,
   );
 
-  test.if(!dispo)("typst absent : compilation non verifiee ici", () => {
+  test.if(dispo && avecTraits)(
+    "avec les diagrammes : 911 pages portrait (une planche de plus, et les crédits)",
+    () => {
+      const p = compose(["--input", "traits=oui"]);
+      expect(p.pages).toBe(911);
+      expect([p.largeur, p.hauteur]).toEqual(PORTRAIT);
+      expect(p.signets).toBe(62);
+    },
+    180_000,
+  );
+
+  test.if(!dispo)("typst absent : compilation non vérifiée ici", () => {
     expect(dispo).toBe(false);
   });
 });
