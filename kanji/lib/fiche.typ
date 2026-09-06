@@ -95,7 +95,7 @@
     rule()
   })
 
-  v(1.6mm)
+  v(2.6mm)
 
   grid(
     columns: (56mm, 1fr),
@@ -103,19 +103,26 @@
     {
       // En-tete du caractere : le glyphe a la taille ou l'on distingue les
       // traits, la glose juste a cote — c'est le couple qu'on veut memoriser.
+      //
+      // Le glyphe vit dans une BOITE plus grande que lui, et c'est le blanc
+      // autour qui le rend saillant : colle a la glose et aux mots, il n'etait
+      // qu'un mot de plus en gros. La boite est aussi ce qui donne le meme
+      // aplomb a 一 et a 優 — l'interligne d'une police CJK varie avec le
+      // glyphe, donc sans hauteur fixee la glose remonte ou descend d'une
+      // fiche a l'autre.
       grid(
-        columns: (auto, 1fr),
-        column-gutter: 2.5mm,
-        align: (left + top, left + top),
-        text(size: 17mm)[#glyphe],
+        columns: (26mm, 1fr),
+        column-gutter: 5mm,
+        align: (center + horizon, left + top),
+        box(height: 26mm, align(center + horizon, text(size: 15.5mm)[#glyphe])),
         {
-          v(1mm)
+          v(2.5mm)
           text(size: 9pt, weight: "bold")[#gloss(k)]
-          v(1.4mm)
+          v(1.6mm)
           lectures(k)
         },
       )
-      v(1.8mm)
+      v(4mm)
       mots(k)
     },
     align(center + top, grille(glyphe)),
