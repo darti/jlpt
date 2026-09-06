@@ -55,6 +55,47 @@
   text(size: P(8), fill: INK-SOFT)[#FICHES fiches · #CHAPTERS.len() chapitres, dont #ORPHAN-CHAPTERS.len() hors des groupes du référentiel]
   v(3.5mm)
   text(size: P(7), fill: INK-SOFT)[Composé depuis le graphe du projet — reMarkable Paper Pro Move, 163 × 92 mm]
+  if TRAITS {
+    v(1.5mm)
+    text(size: P(6.2), fill: INK-SOFT)[Diagrammes d'ordre des traits : KanjiVG, CC BY-SA 3.0 — voir les crédits en fin de volume]
+  }
+}
+
+// Page de CRÉDITS — obligatoire, pas décorative.
+//
+// Les tracés d'ordre des traits viennent de KanjiVG, sous CC BY-SA 3.0 : cette
+// licence exige d'attribuer l'œuvre et de lier vers son site, et impose le
+// ShareAlike à toute redistribution de ce PDF. Le reste du livre ne vient que
+// du graphe du projet — c'est pourquoi la page dit précisément CE QUI est
+// emprunté, et n'attribue pas plus que ce qui l'est.
+#let page-credits = {
+  block(spacing: 0pt, {
+    text(size: P(11), font: JP-SANS, weight: "bold")[Crédits]
+    v(1mm)
+    rule(thickness: 0.7pt, paint: INK)
+  })
+  v(3mm)
+  set text(size: P(7.5))
+  set par(leading: 0.62em)
+  columns(2, gutter: 6mm)[
+    *Diagrammes d'ordre des traits.* Les tracés proviennent de #link("https://kanjivg.tagaini.net/")[KanjiVG],
+    © Ulrich Apel, distribué sous licence #link("https://creativecommons.org/licenses/by-sa/3.0/")[Creative Commons Attribution — Partage dans les mêmes conditions 3.0].
+    Ce cahier en est une œuvre dérivée : le redistribuer suppose de le faire sous la
+    même licence, ou une licence compatible, et de conserver cette attribution.
+
+    Aucune autre partie du livre n'en dépend. Les caractères, leurs sens, leurs lectures,
+    les mots et les phrases d'exemple viennent du graphe du projet, et le cahier se
+    compose sans les diagrammes — il est alors libre de cette contrainte.
+
+    *Sens, lectures, mots, phrases.* Contenu propre au projet, arbitré à la main. Les
+    lectures manquantes ont été décidées en s'appuyant sur JMdict et KANJIDIC2
+    (EDRDG, CC BY-SA 4.0), consultés comme sources de décision : aucune de leurs données
+    n'est reproduite ici.
+
+    *Progression.* Les 51 familles de radicaux et leur ordre sont ceux des leçons du
+    projet. Les caractères qu'aucune ne couvre sont classés par le nombre de mots du
+    référentiel qui les emploient.
+  ]
 }
 
 #let mode-emploi = {
@@ -68,6 +109,11 @@
   // quand elle passe sur une seconde page — la premiere colonne se vide et la
   // seconde deborde. `columns` repartit le texte page apres page.
   columns(2, gutter: 6mm)[
+      *La bande du haut* montre l'ordre des traits : une case par trait, le
+      dernier en noir, les précédents en gris. On y voit où le trait commence
+      et dans quel sens il part — ce qu'un caractère annoté de numéros ne dit
+      qu'à qui connaît déjà l'ordre. Suivez-la avant d'écrire quoi que ce soit.
+
       *Une fiche, un caractère.* À gauche le caractère à la taille où l'on
       distingue les traits, son sens, ses lectures 音 (on, en katakana) et
       訓 (kun, en hiragana ; ce qui suit entre parenthèses est l'okurigana,

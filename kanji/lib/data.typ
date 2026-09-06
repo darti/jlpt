@@ -193,6 +193,25 @@
   out
 }
 
+// --- ordre des traits ------------------------------------------------------
+// Les diagrammes viennent de KanjiVG (CC BY-SA 3.0), hors depot, produits par
+// `bun tools/kanjivg/fetch.mjs` puis `bun tools/kanjivg/strips.mjs`. Le graphe
+// ne porte AUCUNE donnee de trace : l'app reste libre de toute attribution,
+// seul le PDF est une oeuvre derivee (cf. sa page de credits).
+//
+// ⚠ Typst ne sait pas demander si un fichier existe, et `json()` sur un chemin
+// absent est une ERREUR de compilation. Le livre ne peut donc pas « essayer ».
+// Deux verrous : `--input traits=oui`, pose par `kanji/build.ts` uniquement si
+// le dossier est la, et l'index ci-dessous, qui dit quels caracteres en ont un.
+#let TRAITS = sys.inputs.at("traits", default: "non") == "oui"
+#let TRAITS-INDEX = if TRAITS { json("/.kanjivg/traits/index.json") } else { (:) }
+// Rend `(chemin, traits)` ou `none`. Le nombre de traits vient de l'index et
+// non du SVG : c'est lui qui fixe la largeur d'une case.
+#let bande-traits(ch) = if ch in TRAITS-INDEX {
+  let e = TRAITS-INDEX.at(ch)
+  (chemin: "/.kanjivg/traits/" + e.f + ".svg", traits: e.n)
+} else { none }
+
 // --- chapitres -------------------------------------------------------------
 // Partie I : les 51 lecons `track: kanji`, deja groupees par famille de
 // radical (「Famille 氵 — eau」) et deja ordonnees par `jlpt:order`. On ne

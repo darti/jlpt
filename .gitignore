@@ -17,3 +17,6 @@ docs/superpowers/mots-fabriques.md
 .claude/settings.local.json
 .superpowers/
 kanji/*.pdf
+
+# KanjiVG : tracés CC BY-SA 3.0, hors dépôt (cf. tools/kanjivg/).
+.kanjivg/

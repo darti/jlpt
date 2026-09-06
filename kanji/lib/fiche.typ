@@ -32,13 +32,16 @@
 // Les largeurs sont calees sur les 93 mm de la colonne : 91,6 / 90,0 / 90,6.
 // Toucher une taille ou un nombre de cases sans refaire le calcul pousse la
 // rangee hors de la page — et une rangee tronquee ne leve aucune erreur.
+// Largeurs calees sur les 91,6 mm de la colonne : 89,8 / 84,2 / 89,0. Les
+// hauteurs, elles, ont ete reprises quand la bande d'ordre des traits est
+// arrivee en haut de page : elle prend 11 mm, qu'il a fallu rendre.
 #let RANGEES = (
-  (taille: 22mm, cases: 4, modeles: (TRACE, TRACE-PALE)),
-  (taille: 14mm, cases: 6, modeles: (TRACE-PALE,)),
-  (taille: 9mm, cases: 9, modeles: (TRACE-PALE,)),
+  (taille: 17mm, cases: 5, modeles: (TRACE, TRACE-PALE)),
+  (taille: 11mm, cases: 7, modeles: (TRACE-PALE,)),
+  (taille: 7mm, cases: 11, modeles: (TRACE-PALE,)),
 )
 
-#let grille(glyphe, ecart: 1.2mm, entre-rangees: 3.4mm) = stack(
+#let grille(glyphe, ecart: 1.2mm, entre-rangees: 2.8mm) = stack(
   dir: ttb,
   spacing: entre-rangees,
   ..RANGEES.map(r => grid(
@@ -51,6 +54,23 @@
     }),
   )),
 )
+
+// --- ordre des traits ------------------------------------------------------
+// Une case par trait, le dernier en noir, les precedents en gris : on voit ou
+// le trait COMMENCE et dans quel sens il part, ce qu'un caractere annote de
+// numeros ne montre qu'a qui connait deja l'ordre.
+//
+// La bande occupe toute la largeur de la page, pas la colonne de droite, et
+// c'est une contrainte de lisibilite : 22 traits dans 91,6 mm donneraient des
+// cases de 4,2 mm. Sur 153 mm elles font 7 mm au pire, 8 mm des que le
+// caractere en compte 18 ou moins — soit 800 des 810.
+#let CASE-TRAIT = 8mm
+
+#let ordre-des-traits(ch) = {
+  let b = bande-traits(ch)
+  if b == none { return none }
+  align(center, image(b.chemin, width: calc.min(CASE-TRAIT * b.traits, LARGEUR-UTILE)))
+}
 
 // --- phrase d'exemple annotee ----------------------------------------------
 // Les furigana sont poses en GRILLE a deux rangees, pas en surimpression : la
@@ -179,11 +199,12 @@
   // 「る)」 seul sur une ligne. Les deux pires cas du corpus sont mesures :
   // glose de 32 caracteres (省), lecture kun de 22 demi-chasses (試, 優).
   //
-  // Le glyphe occupe donc toute la largeur, centre, et il y gagne : 18 mm au
-  // lieu de 15,5. La boite lui donne aussi le meme aplomb qu'a 一 — l'inter-
-  // ligne d'une police CJK varie avec le glyphe.
+  // Le glyphe occupe toute la largeur, centre. Il est passe de 18 a 14 mm quand
+  // la bande d'ordre des traits est arrivee : c'est la moitie des 11 mm qu'elle
+  // coute, l'autre moitie venant des cases d'ecriture. La boite lui donne aussi
+  // le meme aplomb qu'a 一 — l'interligne d'une police CJK varie avec le glyphe.
   let tete = {
-    box(width: 100%, height: 26mm, align(center + horizon, text(size: 18mm)[#glyphe]))
+    box(width: 100%, height: 19mm, align(center + horizon, text(size: 14mm)[#glyphe]))
     v(2.5mm)
     text(size: P(9), weight: "bold")[#gloss(k)]
     v(1.8mm)
@@ -208,6 +229,15 @@
 
   entete
   v(2.6mm)
+
+  // La bande couvre les DEUX colonnes : c'est la seule position qui lui donne
+  // 153 mm, et donc des cases lisibles jusqu'a 22 traits.
+  let traits = ordre-des-traits(glyphe)
+  if traits != none {
+    traits
+    v(3mm)
+  }
+
   grid(
     columns: (COL-GAUCHE, 1fr),
     column-gutter: 4mm,

@@ -66,38 +66,66 @@ describe("contrat de donnees du cahier", () => {
   });
 });
 
+describe("licence des tracés", () => {
+  // Garde-fou licenciel, pas cosmétique : KanjiVG est en CC BY-SA 3.0. Tant que
+  // ses tracés restent hors dépôt, le graphe et l'app n'empruntent rien et ne
+  // doivent aucune attribution ; un `.kanjivg/` committé par mégarde changerait
+  // la licence du dépôt entier, sans que rien ne le signale.
+  test(".kanjivg/ est ignoré par git et absent du graphe", () => {
+    const ignore = readFileSync(join(RACINE, ".gitignore"), "utf8");
+    expect(ignore).toContain(".kanjivg/");
+
+    const suivi = spawnSync("git", ["ls-files", ".kanjivg"], { cwd: RACINE, encoding: "utf8" });
+    expect(suivi.stdout.trim()).toBe("");
+
+    const graphe = readFileSync(join(RACINE, "data/graph/kanji.jsonld"), "utf8");
+    expect(graphe.toLowerCase()).not.toContain("kanjivg");
+  });
+});
+
 describe("composition du livre", () => {
   const typst = spawnSync("typst", ["--version"], { encoding: "utf8" });
   const dispo = typst.status === 0;
+  const avecTraits = existsSync(join(RACINE, ".kanjivg/traits/index.json"));
+
+  const compose = (entrees: string[]) => {
+    const sortie = join(mkdtempSync(join(tmpdir(), "cahier-")), "kanjis.pdf");
+    const r = spawnSync("typst", ["compile", "--root", ".", ...entrees, "kanji/book.typ", sortie], {
+      cwd: RACINE,
+      encoding: "utf8",
+    });
+    // `stderr` porte les avertissements de police absente, qui dépendent de la
+    // machine : on juge sur le code de sortie et le PDF produit.
+    expect(r.stderr).not.toContain("error:");
+    expect(r.status).toBe(0);
+    expect(existsSync(sortie)).toBe(true);
+    return readFileSync(sortie, "latin1").match(/\/Type *\/Page[^s]/g)?.length;
+  };
 
   test.if(dispo)(
-    "typst compose les 909 pages et les assertions internes passent",
+    "sans les diagrammes : 909 pages, et les assertions internes passent",
     () => {
-      const sortie = join(mkdtempSync(join(tmpdir(), "cahier-")), "kanjis.pdf");
-      const r = spawnSync("typst", ["compile", "--root", ".", "kanji/book.typ", sortie], {
-        cwd: RACINE,
-        encoding: "utf8",
-      });
-      // `stderr` porte les avertissements de police absente, qui dependent de
-      // la machine : on juge sur le code de sortie et le PDF produit.
-      expect(r.stderr).not.toContain("error:");
-      expect(r.status).toBe(0);
-      expect(existsSync(sortie)).toBe(true);
-
-      // 5 pages de liminaire + 66 planches (62 chapitres, dont 4 familles trop
-      // grandes pour une seule page) + 810 fiches + 28 pages d'index.
+      // Ce chemin-là doit marcher sur une machine qui n'a jamais lancé la chaîne
+      // KanjiVG — c'est ce qui garde le livre composable sans rien télécharger.
       //
-      // Test de MESURE : il fige un etat, il n'exprime pas un invariant. Le
-      // total bouge des que `ECHELLE` change ou que le graphe grossit, et il
-      // faut alors le remonter DELIBEREMENT — apres avoir regarde les pages,
-      // parce qu'un debordement silencieux est precisement ce qu'il attrape.
-      const pdf = readFileSync(sortie, "latin1");
-      expect(pdf.match(/\/Type *\/Page[^s]/g)?.length).toBe(909);
+      // Test de MESURE : il fige un état. Le total bouge dès que `ECHELLE`
+      // change ou que le graphe grossit, et il faut alors le remonter
+      // DÉLIBÉRÉMENT, après avoir regardé les pages — un débordement silencieux
+      // est précisément ce qu'il attrape.
+      expect(compose([])).toBe(909);
     },
     120_000,
   );
 
-  test.if(!dispo)("typst absent : compilation non verifiee ici", () => {
+  test.if(dispo && avecTraits)(
+    "avec les diagrammes : 914 pages (bande d'ordre des traits + 2 pages de crédits)",
+    () => {
+      expect(compose(["--input", "traits=oui"])).toBe(914);
+    },
+    120_000,
+  );
+
+  test.if(!dispo)("typst absent : compilation non vérifiée ici", () => {
     expect(dispo).toBe(false);
   });
 });

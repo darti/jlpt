@@ -1,16 +1,53 @@
 # 漢字 — cahier d'écriture pour reMarkable Paper Pro Move
 
-Un livre PDF de **909 pages** : une fiche par kanji du référentiel N3 (810), avec sens,
-lectures 音/訓, les mots que le caractère permet de lire, et une grille d'écriture à
-remplir au stylet. Composé avec **Typst**, directement depuis `data/graph/`.
+Un livre PDF de **914 pages** : une fiche par kanji du référentiel N3 (810), avec l'ordre
+des traits, le sens, les lectures 音/訓, les mots que le caractère permet de lire, et une
+grille d'écriture à remplir au stylet. Composé avec **Typst**, directement depuis
+`data/graph/`.
 
+    bun tools/kanjivg/fetch.mjs && bun tools/kanjivg/strips.mjs   # diagrammes (une fois)
     bun run cahier          # → kanji/kanjis.pdf
     bun run cahier:watch    # recompose à chaque édition
+
+Sans la première ligne le livre se compose quand même, **sans les diagrammes** (909 pages) :
+`kanji/build.ts` regarde si `.kanjivg/traits/` existe et ne passe `--input traits=oui` que
+dans ce cas. Typst ne sait pas demander si un fichier existe — `json()` sur un chemin absent
+est une erreur de compilation — donc la décision se prend avant de l'appeler.
 
 `typst` doit être sur le `PATH` (il n'est pas dans les dépendances bun ; la CI ne compose
 donc pas le livre — `kanji/book.test.ts` saute cette partie quand le binaire est absent).
 Le PDF est **gitignoré** : il se refait en huit secondes, et un binaire de 5,7 Mo versionné
 serait exactement le dérivé désynchronisable que la migration vers le graphe a supprimé.
+
+## Ordre des traits : la seule dépendance sous licence
+
+Les diagrammes viennent de **[KanjiVG](https://kanjivg.tagaini.net/)** (© Ulrich Apel,
+**CC BY-SA 3.0**), récupéré dans `.kanjivg/` — **gitignoré, jamais commité**, comme
+`.jmdict/` et `.kanjidic/`.
+
+Mais la ressemblance s'arrête là, et la différence est licencielle. JMdict et KANJIDIC2
+servent à **proposer** : l'auteur arbitre, ses saisies entrent dans le graphe, rien de la
+source n'est redistribué. **Un ordre de traits ne s'arbitre pas** — c'est un tracé, et
+l'afficher, c'est le redistribuer. Conséquences, assumées et cantonnées :
+
+- `data/graph/` n'est **pas** touché : l'app reste libre de toute attribution ;
+- seul `kanji/kanjis.pdf` incorpore ces tracés. Il en est une **œuvre dérivée** :
+  attribution (imprimée sur ses deux pages de crédits) et **ShareAlike si vous le
+  distribuez**. Pour un cahier d'usage personnel, la question ne se pose pas ;
+- ne pas lancer la chaîne suffit à retrouver un livre entièrement libre de cette contrainte.
+
+`kanji/book.test.ts` garde l'invariant : `.gitignore` contient `.kanjivg/`, `git ls-files`
+n'y voit rien, et `kanji.jsonld` ne mentionne pas KanjiVG. Un `.kanjivg/` commité par
+mégarde changerait la licence du dépôt entier sans que rien ne le signale.
+
+**La forme du diagramme** est une case par trait — le dernier en noir, les précédents en
+gris — et non un caractère annoté de numéros : on veut voir où le trait commence et dans
+quel sens il part, ce que des numéros ne disent qu'à qui connaît déjà l'ordre. La bande
+occupe toute la largeur de la page et non la colonne de droite, par lisibilité : 22 traits
+dans 91,6 mm feraient des cases de 4,2 mm, contre 7 mm sur 153.
+
+Les tracés sont partagés par `<defs>` + `<use>` dans chaque SVG : sans ça un caractère de
+22 traits répéterait ses tracés 253 fois. Le lot pèse 3,6 Mo, et n'ajoute que 0,8 Mo au PDF.
 
 ## Une seule molette : `ECHELLE`
 
@@ -38,15 +75,16 @@ haut, deux millimètres perdus, c'est une rangée de la grille.
 
 | Page | Rôle |
 |---|---|
-| Titre, mode d'emploi, sommaire | 3 pages ; le sommaire donne les pages réelles des 62 chapitres |
+| Titre, mode d'emploi, sommaire | 5 pages ; le sommaire donne les pages réelles des 62 chapitres |
 | Planche d'ouverture | les caractères de la famille avec leurs sens, en 8 colonnes — sert aussi de test de révision, gloses masquées |
-| Fiche | à gauche le caractère, son sens, ses lectures et jusqu'à 6 mots (un par ligne, nombre ajusté à la place réelle) ; à droite 19 cases d'écriture en trois tailles ; en bas une phrase d'emploi, furigana compris, quand il en existe une |
+| Fiche | en haut l'ordre des traits, pleine largeur ; à gauche le caractère, son sens, ses lectures et jusqu'à 6 mots (un par ligne, nombre ajusté à la place réelle) ; à droite 23 cases d'écriture en trois tailles ; en bas une phrase d'emploi, furigana compris, quand il en existe une |
 | Index des lectures 音 | lecture (katakana) → caractère → page, en ordre gojūon |
 | Index des sens | sens français → caractère → page, accents repliés pour le classement |
+| Crédits | 2 pages, imprimées seulement si les diagrammes le sont — sans eux le livre n'emprunte rien |
 
 ### La grille : trois tailles, une par rangée
 
-22 mm × 4 cases, 14 mm × 6, 9 mm × 9. On apprend un caractère en grand — c'est la seule
+17 mm × 5 cases, 11 mm × 7, 7 mm × 11 — resserrées quand la bande d'ordre des traits est arrivée, qui prend 11 mm. On apprend un caractère en grand — c'est la seule
 taille où l'on voit ce qu'on rate — mais on l'écrit petit : la dernière rangée est calibrée
 sur l'écriture courante, et c'est là que vingt traits deviennent vraiment difficiles. Une
 grille d'une seule taille entraîne une main qu'on n'emploiera jamais.
@@ -54,7 +92,7 @@ grille d'une seule taille entraîne une main qu'on n'emploiera jamais.
 Modèle franc puis modèle pâle sur la première rangée, modèle pâle seul en tête des deux
 autres ; le reste est vide. Les pointillés en croix servent à **placer** les traits.
 
-Les largeurs sont calées sur les 93 mm de la colonne (91,6 / 90,0 / 90,6 mm). Changer une
+Les largeurs sont calées sur les 91,6 mm de la colonne (89,8 / 84,2 / 89,0 mm). Changer une
 taille ou un nombre de cases sans refaire le calcul pousse la rangée hors de la page — et
 **une rangée tronquée ne lève aucune erreur**.
 
@@ -146,7 +184,7 @@ redeviendrait vert en silence si la fiche repassait à l'arête.
 
 ## Vérifier une modification
 
-    bun test kanji/book.test.ts   # contrat de données + compilation réelle
+    bun test kanji/book.test.ts   # contrat de données + licence + compilation réelle (avec et sans diagrammes)
     bun run cahier && ~/.local/bin/typst compile --root . --pages 1,3,4,5,876 kanji/book.typ /tmp/p{p}.png --ppi 180
 
 Rendre les pages en PNG et **les regarder** : les quatre pannes ci-dessus sont toutes

@@ -61,3 +61,10 @@
 #index-lectures
 #pagebreak()
 #index-sens
+
+// Les credits ne sont imprimes que si les diagrammes le sont : sans eux, le
+// livre n'emprunte rien et n'a rien a attribuer.
+#if TRAITS {
+  pagebreak()
+  page-credits
+}
