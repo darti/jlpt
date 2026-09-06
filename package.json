@@ -4,13 +4,15 @@
   "type": "module",
   "scripts": {
     "css": "bunx @tailwindcss/cli -i src/styles/tailwind.css -o src/styles/styles.gen.css",
-    "cahier": "bun kanji/build.ts",
-    "cahier:watch": "CAHIER_WATCH=1 bun kanji/build.ts",
+    "cahier": "typst compile --root . --input traits=oui kanji/book.typ kanji/kanjis-paysage.pdf && typst eval --root . --input traits=oui --in kanji/book.typ 'query(<chapitre>).map(it => it.value)' > kanji/.chapitres.json && typst compile --root . --input source=/kanji/kanjis-paysage.pdf --input plan=/kanji/.chapitres.json kanji/tourne.typ kanji/kanjis.pdf",
     "dev": "bun run scripts/dev.ts",
     "build": "bun run css -- --minify && bun build ./index.html --minify --splitting --outdir=_site && bun tools/copy-static.mjs",
     "test": "bun test",
     "typecheck": "tsc --noEmit",
-    "validate:graph": "bun tools/validate-graph.mjs"
+    "validate:graph": "bun tools/validate-graph.mjs",
+    "cahier:paysage": "typst compile --root . --input traits=oui kanji/book.typ kanji/kanjis-paysage.pdf",
+    "cahier:tourner": "typst compile --root . --input source=/kanji/kanjis-paysage.pdf --input plan=/kanji/.chapitres.json kanji/tourne.typ kanji/kanjis.pdf",
+    "cahier:plan": "typst eval --root . --input traits=oui --in kanji/book.typ 'query(<chapitre>).map(it => it.value)' > kanji/.chapitres.json"
   },
   "dependencies": {
     "echarts": "^6.1.0",

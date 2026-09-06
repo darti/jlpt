@@ -20,3 +20,9 @@ kanji/*.pdf
 
 # KanjiVG : tracés CC BY-SA 3.0, hors dépôt (cf. tools/kanjivg/).
 .kanjivg/
+
+# Sous-produits de `bun run cahier` et de son test : relevé des chapitres pour la
+# seconde passe, et fichiers intermédiaires — ils doivent vivre sous la racine,
+# `image()` et `json()` de Typst résolvant leurs chemins depuis elle.
+kanji/.chapitres.json
+kanji/.test-*

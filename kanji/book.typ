@@ -68,3 +68,8 @@
   pagebreak()
   page-credits
 }
+
+// Dernier releve : `titre: none` marque la fin du volume, et sa page EST le
+// nombre de pages. C'est ce qui evite a la seconde passe de compter des objets
+// dans le PDF — elle lit la meme source que les signets.
+#context [#metadata((titre: none, page: here().page()))<chapitre>]

@@ -8,6 +8,11 @@
 // masquant les gloses.
 #let planche(chapitre, numero: 0, total: 0) = {
   let ks = chapitre.kanji
+
+  // Titre + page reelle du chapitre, releves pour la SECONDE PASSE. Tourner les
+  // pages les embarque comme images, ce qui perd les signets du PDF : c'est ce
+  // relevé, extrait par `typst query`, qui permet de les reconstruire.
+  context [#metadata((titre: chapitre.titre, page: here().page()))<chapitre>]
   block(spacing: 0pt, {
     grid(
       columns: (1fr, auto),

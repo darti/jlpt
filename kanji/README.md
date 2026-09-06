@@ -1,18 +1,49 @@
 # 漢字 — cahier d'écriture pour reMarkable Paper Pro Move
 
-Un livre PDF de **914 pages** : une fiche par kanji du référentiel N3 (810), avec l'ordre
+Un livre PDF de **914 pages** au format portrait 92 × 163 mm (contenu tourné de 90°) : une fiche par kanji du référentiel N3 (810), avec l'ordre
 des traits, le sens, les lectures 音/訓, les mots que le caractère permet de lire, et une
 grille d'écriture à remplir au stylet. Composé avec **Typst**, directement depuis
 `data/graph/`.
 
     bun tools/kanjivg/fetch.mjs && bun tools/kanjivg/strips.mjs   # diagrammes (une fois)
     bun run cahier          # → kanji/kanjis.pdf
-    bun run cahier:watch    # recompose à chaque édition
 
-Sans la première ligne le livre se compose quand même, **sans les diagrammes** (909 pages) :
-`kanji/build.ts` regarde si `.kanjivg/traits/` existe et ne passe `--input traits=oui` que
-dans ce cas. Typst ne sait pas demander si un fichier existe — `json()` sur un chemin absent
-est une erreur de compilation — donc la décision se prend avant de l'appeler.
+Sans la première ligne, retirer `--input traits=oui` des commandes compose le livre **sans
+les diagrammes** (909 pages, et pas de pages de crédits). Typst ne sait pas demander si un
+fichier existe — `json()` sur un chemin absent est une **erreur de compilation** — donc la
+présence des diagrammes se déclare, elle ne se devine pas.
+
+## Deux passes, et la seconde tourne les pages
+
+`bun run cahier` enchaîne **trois commandes `typst`**, rien d'autre :
+
+    typst compile --root . --input traits=oui kanji/book.typ kanji/kanjis-paysage.pdf
+    typst eval --root . --input traits=oui --in kanji/book.typ \
+      'query(<chapitre>).map(it => it.value)' > kanji/.chapitres.json
+    typst compile --root . --input source=/kanji/kanjis-paysage.pdf \
+      --input plan=/kanji/.chapitres.json kanji/tourne.typ kanji/kanjis.pdf
+
+Le livre se compose en **163 × 92 mm** (la dalle, en paysage), puis chaque page est reposée
+pivotée de 90° sur une page **portrait de 92 × 163 mm** : la liseuse l'affiche alors plein
+écran dans son orientation native, et c'est l'appareil qu'on tourne. La rotation est une
+**composition Typst**, pas une retouche du PDF — le texte reste sélectionnable, Typst
+incorpore les pages du PDF source au lieu de les rastériser.
+
+Deux choses que la seconde passe ne peut pas deviner, et que le relevé `<chapitre>` lui
+donne :
+
+- **le nombre de pages** — le dernier enregistrement porte `titre: none` et sa page *est* le
+  total, ce qui évite de compter des objets dans le PDF ;
+- **les signets.** Incorporer des pages les perd tous, sans erreur. Ils sont reconstruits
+  depuis le relevé (`hide()` garde l'élément et sa position sans rien imprimer). Sur 914
+  pages, un livre sans signets ne se parcourt plus qu'en faisant défiler — le test vérifie
+  qu'il en reste 62.
+
+`--input sens=antihoraire` tourne dans l'autre sens. Par défaut le haut du contenu part à
+droite : on tourne la liseuse vers la gauche pour lire.
+
+`kanji/kanjis-paysage.pdf` reste sur le disque — c'est la source de la seconde passe, et
+c'est aussi le livre à lire sur un écran large. Les deux sont gitignorés.
 
 `typst` doit être sur le `PATH` (il n'est pas dans les dépendances bun ; la CI ne compose
 donc pas le livre — `kanji/book.test.ts` saute cette partie quand le binaire est absent).
@@ -66,9 +97,9 @@ Aucune de ces limites n'est écrite en dur : le nombre de mots d'une fiche vient
 
 ## Le format n'est pas un choix esthétique
 
-La dalle du Paper Pro Move fait 1696 × 954 px à 264 dpi, soit **163 × 92 mm en paysage**.
-Le PDF est composé à cette taille exacte : la liseuse l'affiche alors sans marge grise ni
-recadrage. Toute autre proportion coûte de la surface utile — sur une page de 92 mm de
+La dalle du Paper Pro Move fait 1696 × 954 px à 264 dpi, soit **163 × 92 mm en paysage** —
+92 × 163 dans l'orientation native de l'appareil. Le PDF est produit à cette taille exacte :
+la liseuse l'affiche alors sans marge grise ni recadrage. Toute autre proportion coûte de la surface utile — sur une page de 92 mm de
 haut, deux millimètres perdus, c'est une rangée de la grille.
 
 ## Ce que contient une page
@@ -184,7 +215,7 @@ redeviendrait vert en silence si la fiche repassait à l'arête.
 
 ## Vérifier une modification
 
-    bun test kanji/book.test.ts   # contrat de données + licence + compilation réelle (avec et sans diagrammes)
+    bun test kanji/book.test.ts   # données + licence + les deux passes (pages, format, signets)
     bun run cahier && ~/.local/bin/typst compile --root . --pages 1,3,4,5,876 kanji/book.typ /tmp/p{p}.png --ppi 180
 
 Rendre les pages en PNG et **les regarder** : les quatre pannes ci-dessus sont toutes
