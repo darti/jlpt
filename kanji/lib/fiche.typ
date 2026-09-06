@@ -91,23 +91,42 @@
 // caractere. On en montre peu et en entier — lecture ET sens — plutot que
 // beaucoup en abrege ; un mot sans lecture ne se prononce pas, un mot sans
 // sens ne se retient pas.
-#let mots(k, maxi: 6) = {
+// Largeur utile de la colonne de gauche, et budget vertical du bloc de mots.
+// Les deux servent a MESURER : la phrase d'exemple est posee en `place`, donc
+// elle ne reserve aucune place — un bloc de mots trop haut passerait dessous
+// sans qu'aucune erreur ne soit levee.
+#let COL-GAUCHE = 56mm
+#let MOTS-MAX = 6
+#let ECART-MOTS = 2.4mm
+
+#let _ligne-mot(w) = block(spacing: ECART-MOTS, {
+  text(size: 7.6pt)[#name(w)]
+  text(size: 6pt, fill: INK-SOFT)[ #reading(w) ]
+  h(1.4mm)
+  text(size: 6.2pt, fill: INK-SOFT)[#gloss(w)]
+})
+
+// Un mot par LIGNE — mot, lecture et sens ensemble — plutot que sur deux.
+// Le sens en dessous doublait la hauteur de chaque entree, si bien que six
+// mots remplissaient la colonne et que l'ecart entre eux ne pouvait plus etre
+// que d'un millimetre : la liste se lisait comme un pave. Sur une ligne, le
+// meme espace vertical sert a SEPARER les mots au lieu de les couper en deux.
+//
+// Le nombre affiche s'ADAPTE : on mesure et on retire par la fin tant que le
+// bloc depasse le budget. C'est ce qui autorise un ecart genereux sans parier
+// sur la longueur des gloses — 「約束した やくそくした promesse, rendez-vous」
+// passe a la ligne, 「政 せい politique」 non.
+#let mots(k, budget: 34mm) = context {
   let tous = words-for(name(k))
-  let ws = tous.slice(0, calc.min(maxi, tous.len()))
-  if ws.len() == 0 {
+  if tous.len() == 0 {
     let c = f(k, "jlpt:compound")
     if c != none { text(size: 6.5pt, fill: INK-SOFT)[#c] }
     return
   }
-  set text(size: 6.8pt)
-  for w in ws {
-    block(spacing: 0.9mm, {
-      text(size: 7.6pt)[#name(w)]
-      text(size: 6pt, fill: INK-SOFT)[ #reading(w) ]
-      linebreak()
-      text(size: 6.2pt, fill: INK-SOFT)[#gloss(w)]
-    })
-  }
+  let bloc(n) = block(width: COL-GAUCHE, tous.slice(0, n).map(_ligne-mot).join())
+  let n = calc.min(MOTS-MAX, tous.len())
+  while n > 1 and measure(bloc(n)).height > budget { n -= 1 }
+  bloc(n)
 }
 
 // --- la fiche --------------------------------------------------------------
@@ -161,7 +180,10 @@
         },
       )
       v(4mm)
-      mots(k)
+      // 84 mm utiles, moins l'en-tete (4,2), le blanc (2,6), le glyphe (26) et
+      // ce blanc-ci (4) : 47,2 mm. La bande du bas en prend 11 quand il y a une
+      // phrase ; on garde 2 mm de marge de securite dans les deux cas.
+      mots(k, budget: if ex == none { 45mm } else { 34mm })
     },
     align(center + top, grille(glyphe)),
   )

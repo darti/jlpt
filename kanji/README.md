@@ -25,7 +25,7 @@ haut, deux millimètres perdus, c'est une rangée de la grille.
 |---|---|
 | Titre, mode d'emploi, sommaire | 3 pages ; le sommaire donne les pages réelles des 62 chapitres |
 | Planche d'ouverture | les caractères de la famille avec leurs sens, en 8 colonnes — sert aussi de test de révision, gloses masquées |
-| Fiche | à gauche le caractère, son sens, ses lectures et jusqu'à 6 mots ; à droite 19 cases d'écriture en trois tailles ; en bas une phrase d'emploi, furigana compris, quand il en existe une |
+| Fiche | à gauche le caractère, son sens, ses lectures et jusqu'à 6 mots (un par ligne, nombre ajusté à la place réelle) ; à droite 19 cases d'écriture en trois tailles ; en bas une phrase d'emploi, furigana compris, quand il en existe une |
 | Index des lectures 音 | lecture (katakana) → caractère → page, en ordre gojūon |
 | Index des sens | sens français → caractère → page, accents repliés pour le classement |
 
@@ -112,6 +112,10 @@ redeviendrait vert en silence si la fiche repassait à l'arête.
 - **Une closure ne peut pas modifier une variable de la portée englobante.** La
   segmentation des furigana accumule donc en deux passes (découpage brut, puis fusion des
   morceaux non annotés) plutôt qu'avec un `vider()` sur un tampon.
+- **`place` ne réserve aucune place.** La phrase d'exemple est posée en `place(bottom)` :
+  un bloc de mots trop haut passerait dessous **sans erreur**. D'où le budget vertical
+  explicite (34 mm avec phrase, 45 sans) et le `measure()` qui retire des mots par la fin
+  tant que le bloc dépasse — le nombre affiché s'adapte, la collision est impossible.
 
 ## Vérifier une modification
 
