@@ -112,6 +112,16 @@ describe("licence des tracés", () => {
   });
 });
 
+// ⚠ LES DEUX COMPTES DE PAGES CI-DESSOUS DÉPENDENT DES POLICES INSTALLÉES, pas seulement du
+// document. La cascade de `lib/theme.typ` descend glyphe par glyphe, et deux fontes CJK n'ont
+// pas la même hauteur de ligne. Mesuré : avec Noto Serif/Sans CJK JP, le même commit donne
+// 909 / 910 là où la calibration d'origine (cascade attrapant Hiragino) donne 910 / 911.
+//
+// Ce n'est donc PAS une régression quand l'écart vaut une page sur une autre machine — et ce
+// n'est pas non plus une raison d'assouplir le test. Avant de toucher à ces nombres, isoler
+// la cause : recomposer le commit PRÉCÉDENT avec les mêmes polices. Si lui aussi rend 909,
+// c'est la fonte ; s'il rend le compte attendu, c'est bien le document qui a grandi, et il
+// faut alors REGARDER les pages avant de remonter le cliquet.
 describe("composition du livre", () => {
   const typst = spawnSync("typst", ["--version"], { encoding: "utf8" });
   const dispo = typst.status === 0;

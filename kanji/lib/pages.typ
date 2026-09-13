@@ -201,6 +201,13 @@
     [*Les planches d'ouverture* de chaque famille se relisent en masquant les
      gloses : nommer les trente caractères d'un radical de mémoire est une
      révision plus dure, et plus utile, qu'une fiche relue.],
+    [*Le volume va du plus simple au plus dur*, et la mesure est le nombre de
+     traits, imprimé en haut de chaque fiche : ce qu'un cahier d'écriture a à
+     mesurer, c'est le nombre de gestes à enchaîner dans une case de sept
+     millimètres, pas la rareté du mot. On s'ouvre donc sur un trait et on se
+     ferme sur vingt-deux. Chaque fiche se suffit à elle-même : prendre les
+     chapitres dans l'ordre évite seulement de buter sur un caractère dont la
+     main n'a pas encore les moyens.],
   ).map(b => block(spacing: 2.4mm, b)),
   colonnes: 2,
   taille: P(7.5),
@@ -229,10 +236,11 @@
     [*Sens, lectures, mots, phrases.* Contenu propre au projet, arbitré à la
      main. Les lectures manquantes ont été décidées en s'appuyant sur JMdict et
      KANJIDIC2 (EDRDG, CC BY-SA 4.0), consultés comme sources de décision :
-     aucune de leurs données n'est reproduite ici.],
-    [*Progression.* Les 51 familles de radicaux et leur ordre sont ceux des
-     leçons du projet. Les caractères qu'aucune ne couvre sont classés par le
-     nombre de mots du référentiel qui les emploient.],
+     aucune de leurs définitions ni de leurs lectures n'est reproduite ici. Les
+     nombres de traits sont des faits, identiques dans ces sources.],
+    [*Progression.* Volume ordonné par *nombre de traits croissant*, fiches et
+     chapitres. Les 51 familles de radicaux sont celles des leçons du projet ;
+     les caractères qu'aucune ne couvre forment des tranches, triées de même.],
   ).map(b => block(spacing: 2.4mm, b)),
   colonnes: 2,
   taille: P(7.5),
