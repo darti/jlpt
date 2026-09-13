@@ -116,7 +116,7 @@ Un seul validateur (`tools/validate-graph.mjs`), et neuf types :
 | `jlpt:SkillRange` | `corpus.jsonld` | les intervalles d'ordinaux — **plusieurs par compétence possibles** |
 | `jlpt:Passage` | `passage.jsonld` | 28 textes de 読解 ; une question y renvoie par `readsPassage` |
 | `jlpt:Word` | `word.jsonld` | mots **et** dictionnaire (furigana, tap-pour-définir) |
-| `jlpt:Kanji` | `kanji.jsonld` | 810 kanji, avec `onReading`/`kunReading`/`compound` |
+| `jlpt:Kanji` | `kanji.jsonld` | 810 kanji, avec `strokeCount`, `onReading`/`kunReading`/`compound` |
 | `jlpt:GrammarPoint` | `gram.jsonld` | points de grammaire |
 | `jlpt:Example` | `example.jsonld` | 227 phrases d'exemple → `illustrates` un GrammarPoint |
 | `jlpt:Lesson` | `lesson.jsonld` | les 92 leçons : elles **ordonnent** des entités, `covers` |
@@ -134,8 +134,9 @@ consultable depuis le corrigé du quiz, pas un ornement de leçon.
 ⚠ **Ne JAMAIS supprimer les fichiers de décisions** (`data/*-arbitrees.json`,
 `mots-parasites.json`), même une fois appliqués. Ils sont la **preuve que l'arbitrage a eu
 lieu** — le fondement de la posture CC BY-SA — et ils permettent de rejouer une correction
-perdue en une commande. 364 Ko au total, jamais servis. Les six chaînes ci-dessous sont
-idempotentes : les rejouer sur un graphe à jour ne change rien.
+perdue en une commande. 364 Ko au total, jamais servis. (`data/traits-kanji.json` n'en est PAS
+un : il ne consigne aucune décision, il se régénère — cf. la chaîne des traits.) Les chaînes
+ci-dessous sont idempotentes : les rejouer sur un graphe à jour ne change rien.
 
 **Lectures manquantes — première chaîne d'écriture outillée**, et elle n'écrase jamais rien :
 
@@ -216,6 +217,27 @@ point de `gram.jsonld` ; la chercher dans `word.jsonld` donne `食べられた`,
 des formes fléchies déposées par le minage des options, qui s'afficheraient comme des mots du
 référentiel. Lecture et écoute sont exclues : leur réponse est un fragment de texte, pas une
 entité. Couverture des arêtes : 59 % → 95,7 %.
+
+**Nombre de traits — septième chaîne, et la SEULE à confronter deux sources** :
+
+    bun tools/kanjidic/fetch.mjs           # et/ou  bun tools/kanjivg/fetch.mjs
+    bun tools/graph/traits.mjs --proposer  # → data/traits-kanji.json (810 entiers)
+    bun tools/graph/traits.mjs             # → pose jlpt:strokeCount sur kanji.jsonld
+
+⚠ **Ce n'est pas une chaîne d'arbitrage, et le fichier n'est pas un fichier de décisions.**
+Une lecture s'arbitre ; un nombre de traits n'admet qu'une valeur, fixée par la forme du
+caractère et non par la source. Le proposeur confronte donc KANJIDIC2 (`<stroke_count>`) et
+KanjiVG (nombre de tracés) et **refuse d'écrire** tant qu'ils divergent — une table que deux
+corpus indépendants reproduisent n'est pas un emprunt à l'un d'eux. C'est ce qui autorise
+l'exception apparente à « rien de KanjiVG n'entre dans le graphe » : **aucun tracé n'y entre**,
+et 810 entiers ne dessinent aucun caractère. KANJIDIC porte PLUSIEURS `<stroke_count>` par
+caractère — sa DTD dit que **le premier** est le bon, les suivants sont des erreurs de
+comptage recensées.
+
+⚠ `jlpt:strokeCount` est **obligatoire** (`sh:minCount` 1) et sa plage 1–34 est vérifiée par
+`checkKanji` (impératif : Oku vide un `sh:in` numérique). C'est lui qui **ordonne le cahier
+d'écriture** (`kanji/`, tri par difficulté croissante) : un kanji ajouté sans compte partirait
+en fin de chapitre en silence, d'où l'obligation plutôt qu'un prédicat facultatif.
 
 **Types de pièges — outil dérivé, pas une chaîne d'arbitrage** (aucun fichier de décisions) :
 

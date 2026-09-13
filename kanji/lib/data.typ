@@ -32,6 +32,17 @@
 #let on-readings(node) = lst(f(node, "jlpt:onReading"))
 #let kun-readings(node) = lst(f(node, "jlpt:kunReading"))
 
+// Nombre de traits — la mesure de DIFFICULTE sur laquelle tout le volume est ordonne
+// (cf. « progression » plus bas). Pose par `bun tools/graph/traits.mjs`, et la shape du
+// graphe l'impose desormais a chaque kanji (`sh:minCount` 1, plage 1-34 verifiee par
+// `checkKanji`) : les 810 en portent un, et la CI refuse le graphe si l'un le perd.
+//
+// ⚠ Le defaut est 99, pas 0, et ce n'est pas un detail : un compte manquant qui vaudrait
+// 0 se rangerait EN TETE DU VOLUME, c'est-a-dire a la place du caractere le plus simple.
+// Le defaut choisi renvoie l'anomalie en fin de chapitre, ou elle se voit. Le seul cas ou
+// il peut servir est un graphe edite a la main sans revalidation.
+#let strokes(node) = f(node, "jlpt:strokeCount", default: 99)
+
 // --- kanji -----------------------------------------------------------------
 #let KANJI = KANJI-DOC.filter(k => f(k, "@type") == "jlpt:Kanji")
 
@@ -212,11 +223,44 @@
   (chemin: "/.kanjivg/traits/" + e.f + ".svg", traits: e.n)
 } else { none }
 
+// --- difficulte ------------------------------------------------------------
+// LA DIFFICULTE DE CE LIVRE EST LE NOMBRE DE TRAITS, et c'est un choix de fond,
+// pas un tri parmi d'autres. Un cahier d'ECRITURE entraine une main : ce qui y
+// est difficile, c'est le nombre de gestes a enchainer dans une case de 7 mm,
+// pas la rarete du mot ni le niveau d'examen. 一 (1 trait) est trivial a tracer
+// et 驚 (22) ne l'est jamais, quel que soit le niveau JLPT de chacun.
+//
+// Rang d'une fiche, du plus simple au plus dur :
+//   1. le nombre de traits ;
+//   2. a egalite, le PLUS PRODUCTIF d'abord — le caractere qui rend le plus de
+//      mots lisibles se rentabilise le plus vite, et c'etait deja le critere
+//      qui ordonnait les chapitres hors famille ;
+//   3. le glyphe, pour que l'ordre soit TOTAL. Sans ce dernier cran, deux
+//      caracteres a egalite parfaite se rangeraient dans l'ordre du graphe,
+//      donc le livre changerait d'ordre a chaque retouche de `kanji.jsonld`.
+#let rang-kanji(k) = (strokes(k), -words-for(name(k)).len(), name(k))
+
+// Difficulte d'un chapitre = la MOYENNE des traits de ses fiches.
+//
+// La moyenne, et non le maximum : un maximum ferait d'un seul caractere dense
+// la difficulte de toute sa famille — 「Famille 言」 partirait en fin de volume
+// pour son 議 (20) alors que ses onze autres membres sont sous les treize
+// traits. La moyenne dit ce que la famille coute a ECRIRE d'un bout a l'autre,
+// qui est ce qu'on lui demande.
+#let difficulte-chapitre(ks) = if ks.len() == 0 { 0 } else {
+  ks.map(strokes).sum() / ks.len()
+}
+
 // --- chapitres -------------------------------------------------------------
-// Partie I : les 51 lecons `track: kanji`, deja groupees par famille de
-// radical (「Famille 氵 — eau」) et deja ordonnees par `jlpt:order`. On ne
-// reinvente pas de progression : celle du graphe est celle que l'app enseigne,
-// et un livre qui la contredirait desapprendrait ce que l'app apprend.
+// Les 51 lecons `track: kanji` donnent les familles de radical (「Famille 氵 —
+// eau」) ; le graphe les ordonnait par `jlpt:order`, et le livre suivait.
+//
+// ⚠ CE LIVRE NE SUIT PLUS CET ORDRE, et il faut savoir ce que ca coute. La
+// progression du graphe est celle que l'app enseigne : un cahier qui la
+// contredit n'est plus le compagnon de l'app, c'est un volume d'entrainement
+// au TRACE, qui se parcourt du geste le plus simple au plus dur. Le GROUPEMENT
+// par famille, lui, est intact — c'est lui qui fait qu'une planche montre ce
+// que le radical a en commun, et aucun tri ne le defait.
 #let LESSONS = LESSON-DOC.filter(l => f(l, "jlpt:track") == "kanji").sorted(key: l => f(l, "jlpt:order", default: 0))
 
 #let LESSON-CHAPTERS = LESSONS.map(l => (
@@ -225,18 +269,18 @@
   kanji: lst(f(l, "covers")).filter(id => id in KANJI-BY-ID).map(id => KANJI-BY-ID.at(id)),
 ))
 
-// Partie II : les 259 kanji qu'aucune lecon ne couvre. Le graphe ne porte pas
-// de decomposition en radicaux : leur inventer une famille serait se tromper
-// en silence. On les classe donc par PRODUCTIVITE — le nombre de mots du
-// referentiel qui les emploient — ce qui est mesure, et met en premier ceux
-// qui rendent le plus de mots lisibles.
+// Les 259 kanji qu'aucune lecon ne couvre. Le graphe ne porte pas de
+// decomposition en radicaux : leur inventer une famille serait se tromper en
+// silence. Ils sont donc tries par la MEME regle que tout le reste, puis
+// decoupes en tranches — ce qui rend chaque tranche homogene en difficulte, la
+// premiere ne portant que des caracteres de quelques traits.
 #let COVERED-IDS = {
   let s = (:)
   for ch in LESSON-CHAPTERS { for k in ch.kanji { s.insert(f(k, "@id"), true) } }
   s
 }
 
-#let ORPHANS = KANJI.filter(k => not (f(k, "@id") in COVERED-IDS)).sorted(key: k => (-words-for(name(k)).len(), name(k)))
+#let ORPHANS = KANJI.filter(k => not (f(k, "@id") in COVERED-IDS)).sorted(key: rang-kanji)
 
 #let ORPHAN-SIZE = 24
 
@@ -253,5 +297,49 @@
   out
 }
 
-#let CHAPTERS = LESSON-CHAPTERS + ORPHAN-CHAPTERS
+// L'ordre du volume : fiches triees dans chaque chapitre, puis chapitres tries
+// entre eux. Les deux familles de chapitres sont melees a dessein — une tranche
+// « hors famille » de six traits se lit apres 「Famille 亻」 et avant
+// 「Famille 言」 si c'est la sa place, parce que le lecteur suit une courbe de
+// difficulte, pas un decoupage administratif du referentiel.
+//
+// ⚠ Le tri des chapitres se fait sur `(difficulte, indice d'origine)`. L'indice
+// n'est pas une precaution de style : `sorted` est stable en Typst, mais la
+// moyenne est un FLOTTANT, et deux chapitres de meme moyenne exacte se
+// departagent alors par leur place dans le graphe plutot que par l'ordre
+// d'evaluation — c'est reproductible, et ca se relit.
+#let CHAPTERS = {
+  let tous = LESSON-CHAPTERS + ORPHAN-CHAPTERS
+  let indexes = tous.enumerate().map(((i, c)) => (
+    titre: c.titre,
+    source: c.source,
+    kanji: c.kanji.sorted(key: rang-kanji),
+    ordre: i,
+  ))
+  indexes.sorted(key: c => (difficulte-chapitre(c.kanji), c.ordre))
+}
+
 #let FICHES = CHAPTERS.map(c => c.kanji.len()).sum()
+
+// L'ORDRE EST L'ARGUMENT DE CE LIVRE : il se prouve, il ne se constate pas.
+//
+// Ces deux assertions coutent une passe sur 810 entiers et attrapent la seule
+// panne qui compte ici — un volume qui s'imprime dans le desordre, ce qui ne
+// leve rien du tout. Elles echouent a la COMPILATION, donc `kanji/book.test.ts`
+// les declenche partout ou `typst` existe.
+//
+// ⚠ Une comparaison NON STRICTE : les ex aequo sont la regle, pas l'exception
+// (57 kanji a 5 traits, et deux chapitres peuvent partager une moyenne). Exiger
+// une croissance stricte ferait echouer un livre parfaitement ordonne.
+#let _moyennes = CHAPTERS.map(c => difficulte-chapitre(c.kanji))
+#assert(
+  _moyennes.sorted() == _moyennes,
+  message: "chapitres hors ordre de difficulte : " + repr(_moyennes),
+)
+#for c in CHAPTERS {
+  let ts = c.kanji.map(strokes)
+  assert(
+    ts.sorted() == ts,
+    message: "fiches hors ordre de difficulte dans « " + c.titre + " » : " + repr(ts),
+  )
+}

@@ -46,6 +46,27 @@ describe("contrat de donnees du cahier", () => {
     expect(dedans.length).toBe(551);
   });
 
+  test("l'ordre du volume est total : 810 comptes de traits, aucun ex aequo indécidable", () => {
+    // Le cahier se lit du geste le plus simple au plus dur : `jlpt:strokeCount` n'y est pas
+    // un ornement de fiche, c'est la CLÉ DE TRI des 62 chapitres et des 810 fiches. Un seul
+    // compte manquant enverrait sa fiche en fin de chapitre (défaut 99 dans `data.typ`), et
+    // rien à l'écran ne le dirait.
+    const sans = kanji.filter((k) => !Number.isInteger(k["jlpt:strokeCount"]));
+    expect(sans.map((k) => k["@id"])).toEqual([]);
+
+    // La plage est celle du corpus, mesurée : elle borne aussi ce que la fiche imprime
+    // (« 22 traits ») et la largeur d'une bande d'ordre des traits.
+    const ns = kanji.map((k) => k["jlpt:strokeCount"] as number);
+    expect([Math.min(...ns), Math.max(...ns)]).toEqual([1, 22]);
+
+    // Le rang d'une fiche est `(traits, -productivité, glyphe)`. Le glyphe est ce qui rend
+    // l'ordre TOTAL : sans ce dernier cran, deux caractères à égalité parfaite se
+    // rangeraient dans l'ordre du graphe, et le livre changerait de pagination à chaque
+    // retouche de `kanji.jsonld`. Les glyphes sont uniques, donc l'ordre l'est aussi.
+    const glyphes = kanji.map((k) => k["schema:name"]);
+    expect(new Set(glyphes).size).toBe(glyphes.length);
+  });
+
   test("presque tout kanji a un mot glose ET lu qui l'emploie", () => {
     // La fiche indexe les mots par PRESENCE du caractere, pas par l'arete
     // `usesKanji` — celle-ci est incomplete (泳ぐ, 泳ぎ ne la portent pas) et
@@ -68,9 +89,17 @@ describe("contrat de donnees du cahier", () => {
 
 describe("licence des tracés", () => {
   // Garde-fou licenciel, pas cosmétique : KanjiVG est en CC BY-SA 3.0. Tant que
-  // ses tracés restent hors dépôt, le graphe et l'app n'empruntent rien et ne
+  // ses TRACÉS restent hors dépôt, le graphe et l'app n'empruntent rien et ne
   // doivent aucune attribution ; un `.kanjivg/` committé par mégarde changerait
   // la licence du dépôt entier, sans que rien ne le signale.
+  //
+  // ⚠ Ce que ce test garde a été PRÉCISÉ, pas affaibli, quand `jlpt:strokeCount`
+  // est entré dans le graphe. Un compte de traits n'est pas un tracé : c'est un
+  // entier constaté, que KANJIDIC2 et KanjiVG publient à l'identique parce qu'il
+  // n'y a qu'une bonne réponse — `tools/graph/traits.mjs` refuse d'ailleurs
+  // d'écrire la table tant que les deux sources divergent. Ce qui reste interdit,
+  // et que ce test continue de vérifier, c'est qu'aucune DONNÉE DE TRACÉ ni
+  // aucune mention de la source n'entre dans `kanji.jsonld`.
   test(".kanjivg/ est ignoré par git et absent du graphe", () => {
     const ignore = readFileSync(join(RACINE, ".gitignore"), "utf8");
     expect(ignore).toContain(".kanjivg/");
@@ -101,7 +130,14 @@ describe("composition du livre", () => {
     expect(existsSync(sortie)).toBe(true);
 
     const b = readFileSync(sortie, "latin1");
-    const boite = b.match(/MediaBox\[0 0 ([\d.]+) ([\d.]+)\]/);
+    // ⚠ Les espaces sont TOLÉRÉS dans le motif, et ce n'est pas de la coquetterie :
+    // l'espacement du `MediaBox` appartient à l'écrivain PDF de typst, pas au document.
+    // typst 0.13.1 écrit « MediaBox [0 0 261 462] » — un motif collé n'y matche pas, rend
+    // `null`, et l'assertion compare alors [0, 0] à [261, 462]. Elle échoue donc en
+    // annonçant une page qui ne serait plus portrait, alors que la page est parfaitement
+    // portrait et que seul le motif a vieilli : le pire genre de rouge, celui qui accuse
+    // au mauvais endroit.
+    const boite = b.match(/MediaBox\s*\[\s*0\s+0\s+([\d.]+)\s+([\d.]+)\s*\]/);
     return {
       pages: b.match(/\/Type *\/Page[^s]/g)?.length ?? 0,
       largeur: Math.round(Number(boite?.[1] ?? 0)),

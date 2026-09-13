@@ -66,7 +66,7 @@ test("formatLecture assemble on et kun comme le graphe les attend", () => {
 
 // --- élagage : de la liste exhaustive à une proposition utilisable -------------
 
-import { elaguer } from "./parse.mjs";
+import { elaguer, strokeCountOfCharacter } from "./parse.mjs";
 
 test("elaguer ne garde que la première lecture on", () => {
   // KANJIDIC liste toutes les lectures attestées ; 101 des 259 kanji en ont plusieurs.
@@ -94,4 +94,16 @@ test("elaguer sur un kanji sans lecture rend deux listes vides", () => {
 
 test("elaguer conserve l'okurigana de la lecture retenue", () => {
   expect(elaguer([], ["あたら.しい", "あら.た"])).toEqual({ on: [], kun: ["あたら(しい)"] });
+});
+
+test("strokeCountOfCharacter retient le premier compte, pas les erreurs recensées", () => {
+  // La DTD : « The first stroke_count in the character is the accepted count. Subsequent
+  // ones are common miscounts. » Un caractère peut donc en porter plusieurs, et prendre le
+  // mauvais verse dans le graphe l'erreur que KANJIDIC signalait.
+  expect(strokeCountOfCharacter("<stroke_count>9</stroke_count><stroke_count>8</stroke_count>")).toBe(9);
+});
+
+test("strokeCountOfCharacter rend undefined quand le bloc n'en porte aucun", () => {
+  // Pas un 0 : un zéro rangerait le kanji avant 一 dans le cahier d'écriture.
+  expect(strokeCountOfCharacter("<literal>政</literal>")).toBeUndefined();
 });
