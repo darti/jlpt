@@ -78,3 +78,20 @@ export function elaguer(on, kun) {
     kun: autonome ? [okuriganaEnParentheses(autonome)] : [],
   };
 }
+
+/**
+ * Nombre de traits d'un bloc `<character>`, ou `undefined`.
+ *
+ * ⚠ Un `<character>` peut porter PLUSIEURS `<stroke_count>`, et sa DTD dit lequel vaut :
+ * « The first stroke_count in the character is the accepted count. Subsequent ones are
+ * common miscounts. » Prendre le dernier, ou tous, verse donc dans le graphe une erreur
+ * de comptage que KANJIDIC recensait précisément pour la signaler.
+ *
+ * ⚠ Un compte de traits est un FAIT, pas une lecture : il ne s'arbitre pas. C'est
+ * pourquoi il ne passe pas par un fichier de décisions relu à la main mais par une table
+ * vérifiable contre une seconde source (cf. tools/graph/traits.mjs).
+ */
+export function strokeCountOfCharacter(bloc) {
+  const m = /<stroke_count>(\d+)<\/stroke_count>/.exec(bloc);
+  return m ? Number(m[1]) : undefined;
+}

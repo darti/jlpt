@@ -56,11 +56,18 @@ servent à **proposer** : l'auteur arbitre, ses saisies entrent dans le graphe, 
 source n'est redistribué. **Un ordre de traits ne s'arbitre pas** — c'est un tracé, et
 l'afficher, c'est le redistribuer. Conséquences, assumées et cantonnées :
 
-- `data/graph/` n'est **pas** touché : l'app reste libre de toute attribution ;
+- **aucun tracé** n'entre dans `data/graph/` : l'app reste libre de toute attribution ;
 - seul `kanji/kanjis.pdf` incorpore ces tracés. Il en est une **œuvre dérivée** :
   attribution (imprimée sur ses deux pages de crédits) et **ShareAlike si vous le
   distribuez**. Pour un cahier d'usage personnel, la question ne se pose pas ;
 - ne pas lancer la chaîne suffit à retrouver un livre entièrement libre de cette contrainte.
+
+⚠ **Le `jlpt:strokeCount` du graphe n'est pas une exception à cette règle, et il faut voir
+pourquoi.** Un compte de traits n'est pas une œuvre : c'est un entier constaté, que KANJIDIC2
+et KanjiVG publient à l'identique parce qu'il n'y a qu'une bonne réponse — et
+`tools/graph/traits.mjs` refuse d'écrire sa table tant que les deux sources divergent. Ce qui
+reste interdit, et ne doit jamais cesser de l'être, c'est qu'une **donnée de tracé** entre
+dans le graphe. Les 810 entiers ne permettent de dessiner aucun caractère.
 
 `kanji/book.test.ts` garde l'invariant : `.gitignore` contient `.kanjivg/`, `git ls-files`
 n'y voit rien, et `kanji.jsonld` ne mentionne pas KanjiVG. Un `.kanjivg/` commité par
@@ -102,8 +109,8 @@ haut, deux millimètres perdus, c'est une rangée de la grille.
 | Page | Rôle |
 |---|---|
 | Titre, mode d'emploi, sommaire | 5 pages ; le sommaire donne les pages réelles des 62 chapitres |
-| Planche d'ouverture | les caractères de la famille avec leurs sens, en 8 colonnes — sert aussi de test de révision, gloses masquées |
-| Fiche | en haut l'ordre des traits, pleine largeur ; à gauche le caractère, son sens, ses lectures et jusqu'à 6 mots (un par ligne, nombre ajusté à la place réelle) ; à droite 23 cases d'écriture en trois tailles ; en bas une phrase d'emploi, furigana compris, quand il en existe une |
+| Planche d'ouverture | les caractères du chapitre avec leurs sens, en 8 colonnes, **du plus simple au plus dense** — sert aussi de test de révision, gloses masquées |
+| Fiche | en-tête : chapitre, **nombre de traits**, rang dans le volume, page ; en haut l'ordre des traits, pleine largeur ; à gauche le caractère, son sens, ses lectures et jusqu'à 6 mots (un par ligne, nombre ajusté à la place réelle) ; à droite 23 cases d'écriture en trois tailles ; en bas une phrase d'emploi, furigana compris, quand il en existe une |
 | Index des lectures 音 | lecture (katakana) → caractère → page, en ordre gojūon |
 | Index des sens | sens français → caractère → page, accents repliés pour le classement |
 | Crédits | 2 pages, imprimées seulement si les diagrammes le sont — sans eux le livre n'emprunte rien |
@@ -136,23 +143,82 @@ deux rangées, donc la colonne fait la largeur du plus large des deux et deux le
 voisines ne peuvent pas se chevaucher. L'app les met hors flux pour ne pas élargir la base
 — un écran se relit en tapant dessus, une page non.
 
-## Progression : celle du graphe, pas une autre
+## Progression : du geste le plus simple au plus dur
 
-Les 51 leçons `jlpt:track = "kanji"` de `lesson.jsonld` sont déjà groupées par famille de
-radical (「Famille 氵 — eau」) et déjà ordonnées par `jlpt:order`. Le livre les suit
-telles quelles : un cahier qui contredirait l'ordre d'apprentissage de l'app
-désapprendrait ce qu'elle enseigne.
+**Le volume est ordonné par nombre de traits croissant**, fiches et chapitres. Il ouvre sur
+一 (1 trait) et se ferme sur 驚 (22) ; les moyennes de chapitre montent de **2,58** à
+**16,47** sans un seul palier qui redescende.
+
+Le critère n'est pas un tri parmi d'autres, c'est ce qu'un cahier d'**écriture** mesure. Ce
+qui y est difficile, c'est le nombre de gestes à enchaîner dans une case de 7 mm — pas la
+rareté du mot ni le niveau d'examen. 一 est trivial à tracer et 驚 ne l'est jamais, quels
+que soient leurs niveaux JLPT respectifs.
+
+Le rang d'une fiche est `(traits, −productivité, glyphe)` :
+
+- **les traits** d'abord ;
+- **à égalité, le plus productif** — le caractère qui rend le plus de mots du référentiel
+  lisibles se rentabilise le plus vite. C'était déjà le critère des chapitres hors famille ;
+- **le glyphe**, pour que l'ordre soit **total**. Sans ce dernier cran, deux caractères à
+  égalité parfaite se rangeraient dans l'ordre du graphe, et le livre changerait de
+  pagination à chaque retouche de `kanji.jsonld`.
+
+Un chapitre est classé sur la **moyenne** des traits de ses fiches, pas sur leur maximum :
+un maximum ferait d'un seul caractère dense la difficulté de toute sa famille — 「Famille
+言」 partirait en fin de volume pour son 議 (20) alors que ses onze autres membres sont sous
+les treize traits.
+
+> ⚠ **Ce que ce choix coûte, et il faut le savoir.** Les 51 leçons `jlpt:track = "kanji"`
+> sont déjà ordonnées par `jlpt:order`, et c'est la progression que **l'app enseigne**. Le
+> cahier ne la suit plus : il n'est plus le compagnon page à page de l'app, c'est un volume
+> d'entraînement au tracé. Le **groupement** par famille, lui, est intact — c'est lui qui
+> fait qu'une planche montre ce que le radical a en commun, et aucun tri ne le défait.
 
 Ces leçons couvrent **551 kanji sur 810**. Le graphe ne portant aucune donnée de
 décomposition, inventer une famille aux 259 restants reviendrait à se tromper en silence :
-ils sont donc réunis dans 11 chapitres « hors famille », classés par **productivité** — le
-nombre de mots du référentiel qui les emploient. C'est mesuré, et ça met en tête les
-caractères qui rendent le plus de mots lisibles (日, 一, 大, 人, 気…).
+ils sont triés par la **même** règle puis découpés en 11 tranches de 24, ce qui les rend
+homogènes en difficulté. Les deux sortes de chapitres sont **mêlées** dans le volume — une
+tranche « hors famille » de six traits se lit avant 「Famille 言」 si c'est là sa place,
+parce que le lecteur suit une courbe de difficulté, pas un découpage du référentiel.
+
+**L'ordre se prouve, il ne se constate pas.** `lib/data.typ` assortit `CHAPTERS` de deux
+`assert` — moyennes de chapitre non décroissantes, traits non décroissants dans chaque
+chapitre — qui échouent à la **compilation**. C'est la seule panne qui compte ici : un
+volume imprimé dans le désordre ne lève rien du tout. Les comparaisons sont **non
+strictes**, les ex æquo étant la règle (57 kanji à 5 traits).
 
 > **Piste d'amélioration la plus rentable** : une chaîne d'arbitrage des radicaux, sur le
 > modèle de `readings.mjs` (KRADFILE/EDRDG, même éditeur et même licence que JMdict et
 > KANJIDIC2, donc même invariant : la source sert à **décider**, elle n'entre pas dans le
 > graphe). Elle ferait passer les 259 orphelins dans de vraies familles.
+
+### D'où viennent les comptes de traits
+
+`jlpt:strokeCount`, sur chaque kanji de `kanji.jsonld`. Il est posé une fois par une chaîne
+à part, et la shape l'impose désormais (`sh:minCount` 1, plage 1–34 vérifiée par
+`checkKanji`) : un kanji ajouté sans compte fait échouer `bun tools/validate-graph.mjs`.
+
+    bun tools/kanjidic/fetch.mjs                 # et/ou  bun tools/kanjivg/fetch.mjs
+    bun tools/graph/traits.mjs --proposer        # → data/traits-kanji.json
+    bun tools/graph/traits.mjs                   # → pose jlpt:strokeCount sur kanji.jsonld
+
+⚠ **Ce n'est PAS une chaîne d'arbitrage, et c'est délibéré.** Une lecture s'arbitre :
+KANJIDIC en recense plusieurs, le cours en écrit une, l'auteur tranche. Un nombre de traits
+n'admet qu'une valeur — il est fixé par la forme normalisée du caractère, pas par la source
+qui le publie. Il n'y a rien à relire, et un fichier de « décisions » y serait un mensonge de
+forme : `data/traits-kanji.json` est une **table de faits**, régénérable et vérifiable.
+
+C'est ce que le proposeur rend littéral : avec les **deux** corpus présents, il confronte
+KANJIDIC2 (`<stroke_count>`) et KanjiVG (nombre de tracés) et **refuse d'écrire** tant qu'ils
+divergent. Avec un seul, il écrit et le dit. L'applicateur suit l'invariant des autres
+chaînes — il ajoute ce qui manque, n'écrase jamais une valeur existante, signale un désaccord
+au lieu de le résoudre.
+
+⚠ Deux pièges payés ici. KANJIDIC porte **plusieurs** `<stroke_count>` par caractère, et sa
+DTD dit lequel vaut : *« The first stroke_count in the character is the accepted count.
+Subsequent ones are common miscounts. »* Prendre le dernier verse dans le graphe l'erreur
+que KANJIDIC recensait pour la signaler. Et côté livre, un compte manquant vaut **99**, pas
+0 : un zéro rangerait la fiche **en tête du volume**, à la place du caractère le plus simple.
 
 ## Les mots viennent de la présence du caractère, pas de l'arête `usesKanji`
 
@@ -211,7 +277,13 @@ redeviendrait vert en silence si la fiche repassait à l'arête.
 ## Vérifier une modification
 
     bun test kanji/book.test.ts   # données + licence + composition réelle (pages, format portrait, signets)
+    bun tools/validate-graph.mjs  # jlpt:strokeCount : présent sur les 810, dans la plage 1-34
     bun run cahier && ~/.local/bin/typst compile --root . --pages 1,3,4,5,876 kanji/book.typ /tmp/p{p}.png --ppi 180
+
+L'ordre du volume se relit sans ouvrir le PDF — `query` rend le relevé `<chapitre>` réel,
+après mise en page, pas une estimation :
+
+    typst query --root . kanji/book.typ '<chapitre>' --field value
 
 Rendre les pages en PNG et **les regarder** : les quatre pannes ci-dessus sont toutes
 passées au travers d'une compilation verte.

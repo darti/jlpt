@@ -40,7 +40,7 @@ les arêtes lisiblement (`tests: ["jlpt:gram/たら"]` plutôt qu'un objet `@id`
 | `SkillRange` | `corpus.jsonld` | `skill!` `from!` `count!` — **plusieurs par compétence possibles** |
 | `Passage` | `passage.jsonld` | `name!` `jp!` `format!` (`tanbun`/`chubun`/`chobun`/`joho`) `description` `tests*` |
 | `Word` | `word.jsonld` | `name!` `reading` `description` `level` `usesKanji*` |
-| `Kanji` | `kanji.jsonld` | `name!` `description!` `onReading*` `kunReading*` `compound` `level` |
+| `Kanji` | `kanji.jsonld` | `name!` `description!` `strokeCount!` `onReading*` `kunReading*` `compound` `level` |
 | `GrammarPoint` | `gram.jsonld` | `form!` `altForm*` `description` `structure` `level` |
 | `Example` | `example.jsonld` | `illustrates!` `jp!` `romaji` `description` `analysis*` |
 | `Lesson` | `lesson.jsonld` | `name!` `order!` `track!` `covers*` |

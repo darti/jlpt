@@ -39,6 +39,20 @@ test("difficulty utilise xsd:integer et NON un sh:in numérique", () => {
   expect(d.allowedValues).toBeUndefined();
 });
 
+test("la shape Kanji impose un strokeCount entier et unique", () => {
+  // Invariant, pas mesure : les 810 kanji en portent un, et c'est lui qui ORDONNE le cahier
+  // d'écriture (`kanji/`). Un kanji ajouté sans compte se rangerait en fin de volume sans
+  // que rien ne le signale — d'où `sh:minCount` 1 plutôt qu'un prédicat facultatif.
+  const k = shapes().find((s) => s.targetClass.endsWith("#Kanji"));
+  const sc = k.properties.find((p) => p.path.endsWith("#strokeCount"));
+  expect(sc.datatype).toBe("http://www.w3.org/2001/XMLSchema#integer");
+  expect(sc.minCount).toBe(1);
+  expect(sc.maxCount).toBe(1);
+  // La PLAGE reste impérative (checkKanji) : Oku fait filter_map(as_str) sur sh:in, où une
+  // liste de nombres deviendrait une contrainte vide qui validerait n'importe quoi.
+  expect(sc.allowedValues).toBeUndefined();
+});
+
 test("les prédicats de relation sont déclarés sh:nodeKind IRI", () => {
   const byClass = Object.fromEntries(shapes().map((s) => [s.targetClass.split("#").pop(), s]));
   const kind = (cls: string, pred: string) =>
@@ -62,7 +76,7 @@ const ctx = () => readContext(CONTEXT);
 /** Les sujets d'exemple de la spec, un par type. */
 const SUJETS = [
   { "@id": "jlpt:kanji/政", "@type": "jlpt:Kanji",
-    "schema:name": "政", "schema:description": "politique, gouvernement",
+    "schema:name": "政", "schema:description": "politique, gouvernement", "jlpt:strokeCount": 9,
     "jlpt:onReading": ["セイ", "ショウ"], "jlpt:kunReading": ["まつりごと"], "jlpt:level": "N3" },
   { "@id": "jlpt:word/影響", "@type": "jlpt:Word",
     "schema:name": "影響", "jlpt:reading": "えいきょう", "schema:description": "influence",

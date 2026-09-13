@@ -93,6 +93,25 @@ export function checkLessonCoverage(subjects) {
   return errs;
 }
 
+/**
+ * Contrôles internes à un kanji : la PLAGE de `jlpt:strokeCount`.
+ *
+ * La cardinalité et le type sont dans la shape ; la plage n'y est pas, et pour la même
+ * raison que `difficulty` — Oku fait `filter_map(as_str)` sur `sh:in`, où une liste de
+ * nombres deviendrait une contrainte vide qui validerait n'importe quoi.
+ *
+ * La borne haute est 34 (le maximum des jōyō) et non les 22 du corpus : elle attrape ce
+ * qui ne peut PAS être un compte de traits — un parsing qui dérive rend des milliers, pas
+ * 35 — sans interdire l'ajout d'un caractère plus dense que ceux du N3. C'est ce compte qui
+ * ordonne le cahier d'écriture (`kanji/`) : un zéro ou un `undefined` y ferait remonter un
+ * kanji en tête de volume sans lever quoi que ce soit.
+ */
+export function checkKanji(s) {
+  const n = s["jlpt:strokeCount"];
+  if (Number.isInteger(n) && n >= 1 && n <= 34) return [];
+  return [`${s["@id"] ?? "(sans @id)"} : strokeCount ${JSON.stringify(n)} hors de 1–34`];
+}
+
 /** Invariants portant sur l'ensemble du corpus : densité et unicité des ordinaux,
  *  intégrité référentielle, questions contradictoires. */
 export function checkCorpus(subjects) {

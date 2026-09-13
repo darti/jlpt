@@ -178,12 +178,17 @@
   // vide et l'index s'imprime entierement en « — », sans la moindre erreur.
   [#metadata(glyphe)<fiche>]
 
+  // Le nombre de traits est imprime parce qu'il ORDONNE le volume : sans lui, la
+  // progression du livre est un fait qu'on subit sans pouvoir le lire. Il vient
+  // du graphe et non de l'index KanjiVG, donc il est la aussi quand les
+  // diagrammes ne le sont pas — ou la moitie des fiches l'annoncerait.
   let entete = {
     grid(
       columns: (1fr, auto),
       align: (left + horizon, right + horizon),
       text(size: P(6), fill: INK-SOFT, font: JP-SANS)[#chapitre],
-      context text(size: P(6), fill: INK-SOFT, font: JP-SANS)[#numero / #total · p. #here().page()],
+      // 一 ouvre le volume avec UN trait : le singulier n'est pas theorique.
+      context text(size: P(6), fill: INK-SOFT, font: JP-SANS)[#strokes(k) #if strokes(k) > 1 { "traits" } else { "trait" } · #numero / #total · p. #here().page()],
     )
     v(0.6mm)
     rule()

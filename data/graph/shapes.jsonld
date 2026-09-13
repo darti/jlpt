@@ -8,6 +8,7 @@
         { "sh:path": "schema:description", "sh:datatype": "xsd:string", "sh:minCount": 1, "sh:maxCount": 1 },
         { "sh:path": "jlpt:onReading", "sh:datatype": "xsd:string" },
         { "sh:path": "jlpt:kunReading", "sh:datatype": "xsd:string" },
+        { "sh:path": "jlpt:strokeCount", "sh:datatype": "xsd:integer", "sh:minCount": 1, "sh:maxCount": 1 },
         { "sh:path": "jlpt:compound", "sh:datatype": "xsd:string", "sh:maxCount": 1 },
         { "sh:path": "jlpt:level", "sh:in": ["N5", "N4", "N3", "N2", "N1"], "sh:maxCount": 1 }
       ]

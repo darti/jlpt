@@ -6,16 +6,18 @@
 import { existsSync, readdirSync } from "node:fs";
 import { GRAPH_DIR, graphPath, readContext, readDoc } from "./graph/jsonld.mjs";
 import { parseShapes, validateAll } from "./graph/shacl.mjs";
-import { checkQuestion, checkCorpus } from "./graph/integrity.mjs";
+import { checkQuestion, checkKanji, checkCorpus } from "./graph/integrity.mjs";
 
 const DIR = GRAPH_DIR;
 const CONTEXT = graphPath("context.jsonld");
 const SHAPES = graphPath("shapes.jsonld");
 
-const isQuestion = (s) => {
+const hasType = (s, type) => {
   const t = s["@type"];
-  return (Array.isArray(t) ? t : [t]).includes("jlpt:Question");
+  return (Array.isArray(t) ? t : [t]).includes(type);
 };
+const isQuestion = (s) => hasType(s, "jlpt:Question");
+const isKanji = (s) => hasType(s, "jlpt:Kanji");
 
 function main() {
   for (const f of [DIR, CONTEXT, SHAPES]) {
@@ -38,6 +40,7 @@ function main() {
   const errors = [
     ...validateAll(subjects, shapes, context),
     ...subjects.filter(isQuestion).flatMap(checkQuestion),
+    ...subjects.filter(isKanji).flatMap(checkKanji),
     ...checkCorpus(subjects),
   ];
 
