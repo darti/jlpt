@@ -2,7 +2,7 @@ import type { Progress, Skill } from "../types/progress.ts";
 import { BAR_SKILLS, SKILLS } from "../types/progress.ts";
 
 export const PASS_RATING = 1600;
-export const EXAM_DATE = new Date("2026-12-06T09:00:00");
+export const EXAM_DATE = new Date("2027-07-04T09:00:00");
 const MS_PER_DAY = 864e5;
 
 function skR(p: Progress, c: Skill): number {
