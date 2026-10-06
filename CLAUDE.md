@@ -53,7 +53,7 @@ n'en garde que ce qui se mord les doigts quand on l'ignore.
   `window.furi` ni de garde `typeof furi === "function"` : vestiges du `dict.js` vanilla
   supprimé. `setupDict` n'expose plus que `hideDef`/`jlptSay`, appelés par nom depuis les
   `onclick=` du popup de définition, construit en HTML brut.
-- **Date de l'examen = une seule constante** : `EXAM_DATE` (`src/lib/scoring.ts`, 2026-12-06).
+- **Date de l'examen = une seule constante** : `EXAM_DATE` (`src/lib/scoring.ts`, 2027-07-04 — session de juillet).
   Compte à rebours, phases de la méthode et score projeté en dérivent tous.
 - Styles : tokens oku (Tailwind v4) compilés dans `src/styles/styles.gen.css` ; look Nord via
   `[data-theme]` (`themes.css`). Furigana masqués par défaut (tap pour révéler / bascule `ふ`).

@@ -61,8 +61,8 @@ test("hasEnough is false under 5 answers", () => {
 });
 
 test("daysUntilExam counts down and floors at 0", () => {
-  expect(daysUntilExam(new Date("2026-07-10T00:00:00"))).toBe(150);
-  expect(daysUntilExam(new Date("2027-01-01T00:00:00"))).toBe(0);
+  expect(daysUntilExam(new Date("2026-07-10T00:00:00"))).toBe(360);
+  expect(daysUntilExam(new Date("2027-08-01T00:00:00"))).toBe(0);
 });
 
 test("passTier thresholds match legacy pct>=70/40 buckets", () => {

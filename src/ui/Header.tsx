@@ -5,7 +5,7 @@ export function Header() {
         Préparation <span className="text-accent">JLPT N3</span>
       </h1>
       <p className="text-fg-dim text-sm mt-1">
-        Objectif : session de décembre 2026 · 5 mois de préparation
+        Objectif : session de juillet 2027 · 9 mois de préparation
       </p>
     </header>
   );
